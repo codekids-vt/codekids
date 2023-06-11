@@ -1,6 +1,6 @@
 # pulls image
-FROM node:20-alpine3.17
-WORKDIR /app
+FROM node:18-alpine3.17
+WORKDIR /usr/app
 COPY . .
 # installs /node_modules
 RUN npm install
@@ -8,3 +8,6 @@ RUN npm install
 EXPOSE 3000
 # starts client
 CMD [ "npm", "run", "dev" ]
+
+# build: docker build -t raseen3/kidata-frontend .        
+# run: docker run -itp 3000:3000 raseen3/kidata-frontend
