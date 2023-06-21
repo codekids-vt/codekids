@@ -1,37 +1,98 @@
+"use client"
+
+import { useForm, SubmitHandler, Resolver } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+import { FormValues } from "../_forms/form-values";
+
+function ErrorNote({ message }: { message: string }) {
+  return <div className="text-sm py-1 text-red-500">{message}</div>;
+}
+
+type LoginFormValues = { long: boolean } & FormValues;
+
+const validationSchema = yup
+  .object()
+  .shape({
+    username: yup.string().required("Username is required"),
+      /*
+      .min(6, "Username must be at least 6 characters")
+      .max(20, "Username must not exceed 20 characters")
+      .matches(
+        /^(?!.*__)[a-zA-Z0-9_]+$/,
+        "Username cannot have two consecutive underscores"
+      )
+      .test(
+        "prefix_suffix",
+        "Username cannot start or end with an underscore",
+        (username) => {
+          return username.charAt(0) !== "_" 
+            && username.charAt(username.length) !== "_";
+        }
+      )
+      .matches(
+        /^(?!_)(?!.*_{2})[a-zA-Z0-9_]+(?<!_)$/,
+        "Username must only contain alphanumeric characters or underscores"
+      ),
+      */
+    password: yup.string().required("Password is required"),
+    long: yup.bool()
+  })
+  .required();
+
 // TODO: determine if we should put all of this inside of a "form page" of sorts?
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<LoginFormValues>({ 
+    resolver: yupResolver(validationSchema)  
+  });
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
+
   return (
     <div className="container mx-auto flex flex-col justify-center">
       {/* action is temp. -- need to replace with onSubmit later: */}
-      <form action="/api/login" method="post">
+      <form onSubmit={onSubmit}>
         <div className="w-80 mx-auto">
           <div className="[&>*]:pb-4">
-            {/* this should be exported to a component, maybe use react-hook-form? */}
             <div>
               <p>Username</p>
               <input
-                type="text"
-                name="username"
+                {...register("username")}
                 className="p-1 w-full rounded-md shadow-black drop-shadow-lg" 
               />
+
+              { errors.username &&
+                <ErrorNote message={errors.username.message as string} /> 
+              }
             </div>
 
             <div>
               <p>Password</p>
               <input
                 type="password"
-                name="password"
+                {...register("password")}
                 className="p-1 w-full rounded-md shadow-black drop-shadow-lg" 
               />
+
+              { errors.password &&
+                <ErrorNote message={errors.password.message as string} /> 
+              }
             </div>
 
-            <div className="flex justify-between">
-              <span>
-                <input 
-                  id="session_checkbox"
-                  type="checkbox" 
-                  name="long"
-                />
+            <div>
+              <input 
+                type="checkbox"
+                {...register("long")}
+                className="mr-1"
+              />
+              <span className="text-sm">
+                Remember me for 7 days
               </span>
             </div>
           </div>
