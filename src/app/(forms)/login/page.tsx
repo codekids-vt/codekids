@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import { FormValues } from "../_forms/form-values";
+import joinClasses from "@/util/joinClasses";
 
 function ErrorNote({ message }: { message: string }) {
   return <div className="text-sm py-1 text-red-500">{message}</div>;
@@ -59,12 +60,15 @@ export default function Login() {
       {/* action is temp. -- need to replace with onSubmit later: */}
       <form onSubmit={onSubmit}>
         <div className="w-80 mx-auto">
-          <div className="[&>*]:pb-4">
+          <div className="[&>*]:pb-2">
             <div>
               <p>Username</p>
               <input
                 {...register("username")}
-                className="p-1 w-full rounded-md shadow-black drop-shadow-lg" 
+                className={joinClasses(
+                  "p-1 w-full rounded-md shadow-black drop-shadow-lg",
+                  errors.username && "border border-red-500"
+                )}
               />
 
               { errors.username &&
@@ -77,7 +81,10 @@ export default function Login() {
               <input
                 type="password"
                 {...register("password")}
-                className="p-1 w-full rounded-md shadow-black drop-shadow-lg" 
+                className={joinClasses(
+                  "p-1 w-full rounded-md shadow-black drop-shadow-lg",
+                  errors.password && "border border-red-500"
+                )}
               />
 
               { errors.password &&
