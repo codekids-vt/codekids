@@ -71,8 +71,8 @@ export default function Login() {
                 )}
               />
 
-              { errors.username &&
-                <ErrorNote message={errors.username.message as string} /> 
+              { errors.username?.message &&
+                <ErrorNote message={errors.username.message} /> 
               }
             </div>
 
@@ -87,8 +87,8 @@ export default function Login() {
                 )}
               />
 
-              { errors.password &&
-                <ErrorNote message={errors.password.message as string} /> 
+              { errors.password?.message &&
+                <ErrorNote message={errors.password.message} /> 
               }
             </div>
 
