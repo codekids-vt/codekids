@@ -4,7 +4,7 @@ import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
-import { FormValues } from "../_forms/form-values";
+import { FormValues } from "../_forms/formValues";
 import joinClasses from "@/util/joinClasses";
 
 function ErrorNote({ message }: { message: string }) {
