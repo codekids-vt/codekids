@@ -7,6 +7,11 @@ import * as yup from "yup";
 import { FormValues } from "../_forms/formValues";
 import joinClasses from "@/util/joinClasses";
 
+const DEFAULT_FIELD_STYLING = joinClasses(
+  "p-1 w-full rounded-md shadow-black drop-shadow-lg",
+  "focus:shadow-xl transition duration-250 ease-out"
+);
+
 function ErrorNote({ message }: { message: string }) {
   return <div className="text-sm py-1 text-red-500">{message}</div>;
 }
@@ -66,7 +71,7 @@ export default function Login() {
               <input
                 {...register("username")}
                 className={joinClasses(
-                  "p-1 w-full rounded-md shadow-black drop-shadow-lg",
+                  DEFAULT_FIELD_STYLING,
                   errors.username && "border border-red-500"
                 )}
               />
@@ -82,7 +87,7 @@ export default function Login() {
                 type="password"
                 {...register("password")}
                 className={joinClasses(
-                  "p-1 w-full rounded-md shadow-black drop-shadow-lg",
+                  DEFAULT_FIELD_STYLING,
                   errors.password && "border border-red-500"
                 )}
               />
@@ -92,11 +97,14 @@ export default function Login() {
               }
             </div>
 
-            <div>
+            <div className="flex">
               <input 
                 type="checkbox"
                 {...register("long")}
-                className="mr-1"
+                className={joinClasses(
+                  "my-auto mr-1 drop-shadow-md",
+                  "hover:shadow-lg transition duration-200 ease-out"
+                )}
               />
               <span className="text-sm">
                 Remember me for 7 days
@@ -107,7 +115,11 @@ export default function Login() {
           <div className="text-center">
             <input 
               type="submit"
-              className="w-auto py-1 px-12 text-white bg-blue-500 shadow-blue-500/50 shadow-lg rounded-md" 
+              className={joinClasses(
+                "w-auto py-1 px-12 text-white bg-blue-500 shadow-blue-500/40 shadow-md rounded-md",
+                "hover:cursor-pointer hover:shadow-black/50 hover:drop-shadow-xl",
+                "transition duration-200 ease-out"
+              )}
             />
           </div>
         </div>
