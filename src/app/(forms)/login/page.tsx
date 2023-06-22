@@ -117,7 +117,7 @@ export default function Login() {
               type="submit"
               className={joinClasses(
                 "w-auto py-1 px-12 text-white bg-blue-500 shadow-blue-500/40 shadow-md rounded-md",
-                "hover:cursor-pointer hover:shadow-black/50 hover:drop-shadow-xl",
+                "hover:cursor-pointer hover:shadow-black/40 hover:drop-shadow-xl",
                 "transition duration-200 ease-out"
               )}
             />
