@@ -52,9 +52,13 @@ export default function Navbar() {
 
         <div className="flex-grow my-auto">
           <ul className="text-sm text-right">
-            { navbarLinks.map((route) => <NavButton {...route} />) }
+            { 
+              navbarLinks.map((route, i) => (
+                <NavButton {...route} key={`nav-${i}`} />
+              )) 
+            }
             <Link href="/login">
-              <li className={`
+              <li key="nav-play" className={`
                 inline-block px-3 py-2 ml-2
                 rounded-md bg-lime-500 outline outline-1 outline-lime-600/60
                 transition-shadow duration-500 shadow-lime-500/20 shadow-md 
