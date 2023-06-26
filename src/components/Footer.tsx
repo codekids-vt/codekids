@@ -7,7 +7,7 @@ function FooterLink({
   href: string
 }) {
   return (
-    <li className="m-2 float-right tablet:float-none tablet:inline-block">
+    <li className="m-1 p-1 float-right tablet:float-none tablet:inline-block">
       <Link href={href}>
         {name}
       </Link>
@@ -21,7 +21,7 @@ export default function Footer() {
       <span className="flex-1 p-2 tablet:text-center">
         &copy; KiData Project 2023. All Rights Reserved.
       </span>
-      <ul className="p-auto tablet:text-center">
+      <ul className="p-auto my-auto tablet:text-center text-sm">
         <FooterLink name="About" href="/about" />
         <FooterLink name="Contact" href="/contact" />
         <FooterLink name="License" href="/license" />
