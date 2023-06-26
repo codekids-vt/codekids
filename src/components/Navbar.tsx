@@ -47,7 +47,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 w-full p-2  bg-white shadow-sm shadow-black/20">
+    <header className="sticky top-0 w-full px-2 bg-white shadow-sm shadow-black/20">
       <div className="container mx-auto sm:flex justify-between">
         <div className="flex flex-row items-center justify-between">
           <Image
@@ -57,7 +57,10 @@ export default function Navbar() {
             height={400}
             className="md:mx-2 my-auto w-40"
           />
-          <button onClick={() => setOpen(!open)} className="w-10 sm:hidden">
+          <button onClick={() => setOpen(!open)} className={`
+            sm:hidden aspect-square w-10 h-auto
+            rounded-md outline outline-1 outline-neutral-300
+          `}>
             <svg className="h-6 w-6 fill-current mx-auto" viewBox="0 0 24 24">
               {
                 open
@@ -67,7 +70,10 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
-        <nav className={joinClasses(open ? "block" : "hidden", "sm:block")}>
+        <nav className={joinClasses(
+          open ? "block" : "hidden", 
+          "sm:block my-auto pb-2 sm:pb-0"
+        )}>
           <ul className="tablet:container tablet:mx-auto sm:flex sm:items-center text-center text-sm">
             { 
               navbarLinks.map((route, i) => (
