@@ -4,7 +4,7 @@ function Card() {
         <img
           className="w-full object-cover rounded-lg"
           src="/images/card.png"
-          alt="Sunset in the mountains"
+          alt="Game card image"
         />
         <div className="px-6 py-4 mx-2 bg-cardGreen rounded-b">
           <p className="text-gray-700 text-base">
