@@ -21,3 +21,8 @@ body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
 }
+
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("/public/fonts/PressStart2P-Regular.ttf");
+}

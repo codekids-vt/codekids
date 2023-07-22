@@ -9,25 +9,18 @@ export default function Home() {
         className="flex flex-col items-center bg-local"
         style={{ backgroundImage: `url('/bg-cover-bottom.png')` }}
       >
-        {/* <Image
-          src="/bg-cover-top.png"
-          alt="grey gradient background"
-          width={1675}
-          height={653}
-          className="bg-cover bg-center"
-        ></Image> */}
         <Image
           src="/background.png"
           alt="KIDATA"
-          width={764}
-          height={503}
+          width={500}
+          height={300}
           className="pb-20"
         />
-        <h1 className="pb-80 font-bold">
+        <h1 className="pb-80 font-bold font-press">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </h1>
       </div>
-      <div className="flex justify-between items-center pb-10">
+      <div className="flex justify-between items-center pt-20 pb-10 px-10">
         <Card />
         <Card />
         <Card />
