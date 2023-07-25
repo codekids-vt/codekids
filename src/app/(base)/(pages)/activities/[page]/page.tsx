@@ -56,7 +56,7 @@ export default async function ActivityPostList({
 
   return (
     <>
-      <section className="p-2">
+      <section className="p-2 mx-auto max-w-6xl">
         {
           pagePostData?.length > 0
             ? <PostPreviewList pagePostData={pagePostData} />

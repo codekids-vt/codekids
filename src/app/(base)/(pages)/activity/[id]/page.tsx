@@ -14,7 +14,7 @@ function ActivityPostDisplay({
   id: string
 }) {
   return (
-    <>
+    <div className="mx-auto max-w-6xl">
       <section className="card p-2 mb-2">
         <section className="mb-2">
           <h1 className="text-3xl font-medium">{postData.title}</h1>
@@ -54,7 +54,7 @@ function ActivityPostDisplay({
           </li>
         </ul>
       </section>
-    </>
+    </div>
   );
 }
 

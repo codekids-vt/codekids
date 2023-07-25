@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import React from "react";
 
 export default function BasePageLayout({
@@ -6,8 +7,11 @@ export default function BasePageLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="container mx-auto">
-      {children}
-    </div>
+    <>
+      <Navbar />
+      <div className="container mx-auto">
+        {children}
+      </div>
+    </>
   );
 }
