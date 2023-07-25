@@ -6,7 +6,7 @@ export default function BasePageLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="container mx-auto py-4">
+    <div className="container mx-auto">
       {children}
     </div>
   );

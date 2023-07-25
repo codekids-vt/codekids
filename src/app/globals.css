@@ -24,5 +24,103 @@ body {
 
 @font-face {
   font-family: "Press Start 2P";
-  src: url("/public/fonts/PressStart2P-Regular.ttf");
+  src: url("/fonts/PressStart2P-Regular.ttf");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+*/
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-rgb));
+}
+
+@layer components {
+  /* tag base, see ActivityTag */
+  .tag {
+    @apply 
+      px-1.5 py-1
+      text-xs lowercase font-medium 
+      outline outline-1 outline-black/25 -outline-offset-1
+      shadow shadow-black/25
+      rounded-lg 
+  }
+  
+  .card {
+    @apply
+      outline outline-1 outline-black/25
+      shadow shadow-black/20
+      rounded-xl
+  }
+
+  /* markdown styling */
+  .markdown-viewer {
+    @apply px-3 py-3
+  }
+
+  .markdown-viewer > :first-child {
+    @apply mt-0
+  }
+
+  .markdown-viewer p {
+    @apply indent-8
+  }
+
+  .markdown-viewer h1,
+  .markdown-viewer h2,
+  .markdown-viewer h3,
+  .markdown-viewer h4 {
+    @apply mt-2.5 font-medium
+  }
+
+  .markdown-viewer h1 {
+    @apply text-3xl
+  }
+
+  .markdown-viewer h2 {
+    @apply text-2xl
+  }
+
+  .markdown-viewer h3 {
+    @apply text-2xl
+  }
+
+  .markdown-viewer ul,
+  .markdown-viewer ol,
+  .markdown-viewer menu {
+    @apply ml-8
+  }
+
+  .markdown-viewer ol {
+    @apply list-decimal
+  }
+
+  .markdown-viewer ul,
+  .markdown-viewer menu {
+    @apply list-disc
+  }
+
+  .markdown-viewer img {
+    @apply max-h-80 mx-auto mt-4
+  }
+
+  .markdown-viewer center {
+    @apply text-sm text-neutral-500
+  }
 }

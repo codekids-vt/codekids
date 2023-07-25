@@ -25,7 +25,7 @@ export default function Home() {
         <Card />
         <Card />
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mb-16">
         <ViewAllGamesButton />
       </div>
     </>
