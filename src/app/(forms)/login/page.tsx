@@ -16,7 +16,7 @@ function ErrorNote({ message }: { message: string }) {
   return <div className="text-sm py-1 text-red-500">{message}</div>;
 }
 
-type LoginFormValues = { long: boolean } & FormValues;
+type LoginFormValues = { long: boolean | undefined } & FormValues;
 
 const validationSchema = yup
   .object()
