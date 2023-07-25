@@ -20,8 +20,11 @@ function PostPreview({ postData }: { postData: PostData }) {
 
         <ul className="[&>*:not(:last-child)]:mr-1">
           {
-            postData.tags.map((tagData: { name: string, color: string | undefined }) => (
-              <li className="inline-block">
+            postData.tags.map((
+              tagData: { name: string, color: string | undefined },
+              i: number
+            ) => (
+              <li className="inline-block" key={`tag-${i}`}>
                 <ActivityTag name={tagData.name} color={tagData.color} />
               </li>                        
             ))
@@ -38,8 +41,8 @@ function PostPreviewList({ pagePostData }: { pagePostData: PostData[] }) {
   return (
     <ul className="[&>*:not(:last-child)]:mb-2">
       {
-        pagePostData.map((postData: PostData) => (
-          <PostPreview postData={postData} />
+        pagePostData.map((postData: PostData, i: number) => (
+          <PostPreview postData={postData} key={`postData-${i}`} />
         ))
       }
     </ul>
@@ -62,7 +65,7 @@ export default async function ActivityPostList({
             ? <PostPreviewList pagePostData={pagePostData} />
             : (
               <h1 className="text-center text-xl font-medium">
-                Looks like there's nothing here... page {params.page} doesn't have anything!
+                Looks like there&apos;s nothing here... page {params.page} doesn&apos;t have anything!
               </h1>
             )
         }

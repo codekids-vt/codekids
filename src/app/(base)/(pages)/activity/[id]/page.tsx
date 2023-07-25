@@ -23,8 +23,11 @@ function ActivityPostDisplay({
 
         <ul className="[&>*:not(:last-child)]:mr-1">
           {
-            postData.tags.map(({ name, color }: { name: string, color: string | undefined }) => (
-              <li className="inline-block">
+            postData.tags.map((
+              { name, color }: { name: string, color: string | undefined }, 
+              i: number
+            ) => (
+              <li className="inline-block" key={`tag-${i}`}>
                 <ActivityTag name={name} color={color} />
               </li>
             ))
@@ -69,7 +72,7 @@ export default async function ActivityPage({ params }: { params: { id: string } 
           ? <ActivityPostDisplay postData={postData} id={params.id} />
           : (
             <h1 className="text-center text-lg font-medium">
-              We couldn't find anything for activity {params.id} here!
+              We couldn&apos;t find anything for activity {params.id} here!
             </h1>
           )
       }
