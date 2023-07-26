@@ -22,8 +22,12 @@ const navbarLinks: readonly NavLinkRoute[] = [
     href: "/#games"
   },
   {
-    text: "Lessons",
-    href: "/#lessons"
+    text: "Activities",
+    href: "/activities/1"
+  },
+  {
+    text: "Blockly Demo",
+    href: "/blockly-demo"
   },
 ];
 
@@ -47,7 +51,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 w-full px-2 bg-white shadow-sm shadow-black/20">
+    <header className="sticky top-0 w-full px-2 bg-white shadow-sm shadow-black/20 z-[100]">
       <div className="container mx-auto sm:flex justify-between">
         <div className="flex flex-row items-center justify-between">
           <Image

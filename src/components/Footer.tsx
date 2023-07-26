@@ -17,7 +17,7 @@ function FooterLink({
 
 export default function Footer() {
   return (
-    <footer className="flex tablet:flex-col justify-center bottom-0 p-4 shadow-black shadow">
+    <footer className="flex tablet:flex-col justify-center bottom-0 p-4 shadow-black shadow z-[100]">
       <span className="flex-1 p-2 tablet:text-center">
         &copy; KiData Project 2023. All Rights Reserved.
       </span>
