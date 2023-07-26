@@ -51,6 +51,11 @@ body {
   background-color: rgb(var(--background-rgb));
 }
 
+/* fix for Blockly w/ Tailwind: https://github.com/google/blockly/issues/5840 */
+svg[display="none"] {
+  display: none;
+}
+
 @layer components {
   /* tag base, see ActivityTag */
   .tag {
