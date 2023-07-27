@@ -121,9 +121,16 @@ export default function BlocklyDemo() {
   
   return (
     <div className="mx-auto my-8 max-w-4xl">
+      <section className="mb-2 text-sm">
+        <h1 className="font-bold text-xl">Blockly Demo</h1>
+        <p>
+          Create a function called &quot;add&quot; that takes two inputs: <code>x</code> and <code>y</code> and adds them together.
+        </p>
+      </section>
+
       <button 
         onClick={runTests}
-        className="my-1 px-2 py-1 text-sm rounded-sm outline outline-1 outline-black/20 hover:shadow-md shadow-black"
+        className="my-1 px-2 py-1 text-sm rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
       >
         Test my code!
       </button>
