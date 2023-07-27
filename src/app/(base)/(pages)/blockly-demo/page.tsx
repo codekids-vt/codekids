@@ -125,7 +125,7 @@ export default function BlocklyDemo() {
         onClick={runTests}
         className="my-1 px-2 py-1 text-sm rounded-sm outline outline-1 outline-black/20 hover:shadow-md shadow-black"
       >
-        Test
+        Test my code!
       </button>
 
       <div 
