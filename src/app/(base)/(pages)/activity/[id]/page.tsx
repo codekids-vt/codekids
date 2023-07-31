@@ -35,7 +35,7 @@ function ActivityPostDisplay({
         </ul>
       </section>
 
-      <section className="mb-2 card">
+      <section className="card">
         <MarkdownView content={postData.content} />
         <Link href={`/activity-raw/${id}`}>
           <p className="p-2 text-center text-blue-500 underline underline-offset-1">
@@ -44,6 +44,7 @@ function ActivityPostDisplay({
         </Link>
       </section>
 
+      {/*
       <section className="card px-2 py-1.5">
         <h1 className="text-lg font-medium">{postData.author} provided resources:</h1>
 
@@ -57,6 +58,7 @@ function ActivityPostDisplay({
           </li>
         </ul>
       </section>
+      */}
     </div>
   );
 }
