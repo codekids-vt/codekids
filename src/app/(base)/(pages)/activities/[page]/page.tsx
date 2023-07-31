@@ -10,7 +10,7 @@ import PostData from "@/util/PostData";
 function PostPreview({ postData }: { postData: PostData }) {
   return (
     <li className={joinClasses(
-      "px-2 py-1.5 rounded-md outline outline-1 outline-black/20",
+      "px-2 py-1.5 card",
       "shadow shadow-transparent hover:shadow-black/20",
       "transition-shadow"
     )}>
