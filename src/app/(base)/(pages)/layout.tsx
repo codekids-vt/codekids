@@ -9,7 +9,7 @@ export default function BasePageLayout({
   return (
     <>
       <Navbar />
-      <div className="container mx-auto">
+      <div className="mx-auto">
         {children}
       </div>
     </>

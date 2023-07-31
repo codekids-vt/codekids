@@ -11,6 +11,7 @@ module.exports = {
         tablet: { max: "640px" },
       },
       colors: {
+        'primary-green': "#A7BB01",
         'cardGreen': '#C3CD7A',
       },
       fontFamily: {

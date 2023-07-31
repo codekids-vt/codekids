@@ -5,7 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import joinClasses from "@/util/joinClasses";
+import { Press_Start_2P } from "next/font/google";
 
 interface NavLinkRoute {
   text: string;
@@ -18,10 +18,6 @@ const navbarLinks: readonly NavLinkRoute[] = [
     href: "/"
   },
   {
-    text: "Games",
-    href: "/#games"
-  },
-  {
     text: "Activities",
     href: "/activities/1"
   },
@@ -29,7 +25,16 @@ const navbarLinks: readonly NavLinkRoute[] = [
     text: "Blockly Demo",
     href: "/blockly-demo"
   },
+  {
+    text: "Resources",
+    href: "/resources"
+  },
 ];
+
+const pressStart2P = Press_Start_2P({
+  weight: ["400"],
+  subsets: ["latin"]
+});
 
 function NavButton(route: NavLinkRoute) {
   const { text, href } = route;
@@ -39,7 +44,7 @@ function NavButton(route: NavLinkRoute) {
       <li className={`
         p-2 mx-1 my-2
         transition-colors hover:bg-black/10 hover:text-lime-700
-        rounded-md outline-1 outline-neutral-300 hover:outline
+        rounded-md outline-1 outline-neutral-300/20 hover:outline
       `}>
         {text}
       </li>
@@ -51,7 +56,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 w-full px-2 bg-white shadow-sm shadow-black/20 z-[100]">
+    <header className={`top-0 fixed w-full px-2 z-[100] ${pressStart2P.className}`}>
       <div className="container mx-auto sm:flex justify-between">
         <div className="flex flex-row items-center justify-between">
           <Image
@@ -74,28 +79,32 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
-        <nav className={joinClasses(
-          open ? "block" : "hidden", 
-          "sm:block my-auto pb-2 sm:pb-0"
-        )}>
+
+        <nav className={`
+          px-1
+          bg-stone-800 text-white
+          ${open ? "block" : "hidden"}
+          sm:block my-auto pb-2 sm:pb-0
+        `}>
           <ul className="tablet:container tablet:mx-auto sm:flex sm:items-center text-center text-sm">
             { 
               navbarLinks.map((route, i) => (
                 <NavButton {...route} key={`nav-${i}`} />
               )) 
             }
-            <Link href="/login">
-              <li key="nav-play" className={`
-                m-1 px-3 py-2
-                rounded-md bg-lime-500 outline outline-1 outline-lime-600/60
-                transition-shadow duration-500 shadow-lime-500/20 shadow-md 
-                hover:shadow-lime-500/50 hover:shadow-lg
-              `}>
-                Play now!
-              </li>
-            </Link>
           </ul>
         </nav>
+
+        <a className="my-auto" href="">
+          <p className={`
+            px-3 py-2
+            text-neutral-100 text-center text-sm bg-primary-green rounded-md
+            transition-shadow duration-200 shadow-black/40 shadow-none
+            hover:shadow-black/20 hover:shadow-md
+          `}>
+            CONTACT US
+          </p>
+        </a>
       </div>
     </header>
   );
