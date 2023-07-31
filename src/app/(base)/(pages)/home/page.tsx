@@ -6,15 +6,6 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <div 
-        className="absolute w-full h-full bg-local z-0"
-        style={{ 
-          backgroundImage: "url(\"/bg-cover-bottom.png\")",
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat"
-        }}
-      />
-      
       <div className="flex flex-col items-center container mx-auto z-10">
         <div className="mt-8">
           <Image
@@ -28,10 +19,22 @@ export default function Home() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </h1>
         </div>
-        <div className="flex flex-col sm:flex-row">
-          <Card />
-          <Card />
-          <Card />
+        <div className="w-full flex flex-col sm:flex-row sm:justify-between">
+          <Card 
+            title="Activities"
+            blurb=""
+            href="/activities/1"
+          />
+          <Card 
+            title="Blockly Demo"
+            blurb=""
+            href="/blockly-demo"
+          />
+          <Card 
+            title="Resources"
+            blurb=""
+            href="/resources"
+          />
         </div>
       </div>
       {/* <div className="flex flex-col items-center mb-16" id="games">
