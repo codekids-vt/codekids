@@ -56,7 +56,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className={`top-0 fixed w-full px-2 z-[100] ${pressStart2P.className}`}>
+    <header className={`top-0 sticky w-full px-2 z-[100] ${pressStart2P.className}`}>
       <div className="container mx-auto sm:flex justify-between">
         <div className="flex flex-row items-center justify-between">
           <Image
