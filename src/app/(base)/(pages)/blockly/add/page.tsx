@@ -120,7 +120,7 @@ export default function BlocklyDemo() {
   }
   
   return (
-    <div className="mx-auto my-8 max-w-4xl">
+    <div className="mx-auto my-8 max-w-6xl">
       <section className="mb-2 text-sm">
         <h1 className="font-bold text-xl">Blockly Demo</h1>
         <p>
@@ -135,24 +135,28 @@ export default function BlocklyDemo() {
         Test my code!
       </button>
 
-      <div 
-        ref={workspaceRef}
-        className="mx-auto mb-2 h-[720px]"
-      />
+      <div className="flex flex-col sm:flex-row gap-2">
+        <div 
+          ref={workspaceRef}
+          className="mx-auto mb-2 flex-grow h-[720px]"
+        />
 
-      <section className="mb-2 text-sm">
-        <h1 className="font-bold text-xl">Testing</h1>
-        { codeResultElement }
-      </section>
+        <div className="card p-4 max-w-xs">
+          <section className="mb-2 text-sm">
+            <h1 className="font-bold text-xl">Testing</h1>
+            { codeResultElement }
+          </section>
 
-      <section className="text-sm">
-        <h1 className="font-bold text-xl">Your Code</h1>
-        {
-          codeOutput
-            ? <pre className="font-mono">{codeOutput}</pre>
-            : <p>Write some code and it&apos;ll pop up here!</p>
-        }
-      </section>
+          <section className="text-sm">
+            <h1 className="font-bold text-xl">Your Code</h1>
+            {
+              codeOutput
+                ? <p className="font-mono break-words">{codeOutput}</p>
+                : <p>Write some code and it&apos;ll pop up here!</p>
+            }
+          </section>
+        </div>
+      </div>
     </div>
   );
 }
