@@ -58,7 +58,7 @@ export default function Navbar() {
   return (
     <header className={`top-0 sticky w-full px-2 z-[100] ${pressStart2P.className}`}>
       <div className="container mx-auto sm:flex justify-between">
-        <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center justify-between py-2 sm:py-0">
           <Image
             src="/kidata.png"
             alt="KIDATA"
@@ -84,7 +84,8 @@ export default function Navbar() {
           px-1
           bg-stone-800 text-white
           ${open ? "block" : "hidden"}
-          sm:block my-auto pb-2 sm:pb-0
+          sm:block my-auto py-0.5 sm:py-0
+          rounded-b-md
         `}>
           <ul className="tablet:container tablet:mx-auto sm:flex sm:items-center text-center text-sm">
             { 
