@@ -7,17 +7,26 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col items-center container mx-auto z-10">
-        <div className="mt-8">
+        <div>
           <Image
             src="/background.png"
             alt="KIDATA"
             width={500}
             height={300}
-            className="mx-auto mb-4"
+            className="mx-auto"
           />
-          <h1 className="pb-8 font-bold text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </h1>
+          <div className="card p-2 mb-2 max-w-lg text-center">
+            <h1 className="text-2xl font-bold">
+              Welcome to CodeKids!
+            </h1>
+            <p>
+              <strong>Do you want to learn how to code?</strong> CodeKids has you covered, from activities for students 
+              and teachers to interactive code block puzzles!
+            </p>
+            <p>
+              Get started by clicking on any of the categories below!
+            </p>
+          </div>
         </div>
         <div className="w-full flex flex-col sm:flex-row sm:justify-between max-w-7xl">
           <Card 
