@@ -9,7 +9,7 @@ function Card({
   href: string
 }) {
     return (
-      <Link href={href}>
+      <Link href={href} className="mx-auto">
         <div className="max-w-sm m-2 drop-shadow-md">
           <Image
             src="/GameImage_1.png"

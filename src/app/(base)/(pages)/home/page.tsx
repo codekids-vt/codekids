@@ -19,7 +19,7 @@ export default function Home() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </h1>
         </div>
-        <div className="w-full flex flex-col sm:flex-row sm:justify-between">
+        <div className="w-full flex flex-col sm:flex-row sm:justify-between max-w-7xl">
           <Card 
             title="Activities"
             blurb="Looking for something to do? Check out our activities geared for both kids and teachers alike!"
