@@ -7,6 +7,7 @@ import { javascriptGenerator } from "blockly/javascript";
 
 import useWorkspace from "@/components/Blockly/useWorkspace";
 import toolbox from "./_toolbox";
+import Link from "next/link";
 
 // testing build:
 class AssertError extends Error {
@@ -120,25 +121,51 @@ export default function BlocklyDemo() {
   }
   
   return (
-    <div className="mx-auto my-8 max-w-6xl">
-      <section className="mb-2 text-sm">
+    <div className="mx-auto my-4 max-w-6xl">
+      <section className="mb-2">
         <h1 className="font-bold text-xl">Blockly Demo</h1>
         <p>
           Create a function called &quot;add&quot; that takes two inputs: <code>x</code> and <code>y</code> and adds them together.
         </p>
+        <p className="text-sm text-black/50">
+          Hint: Use the blocks found in &quot;Functions&quot; and &quot;Math&quot;!
+        </p>
       </section>
 
-      <button 
-        onClick={runTests}
-        className="my-1 px-2 py-1 text-sm rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
-      >
-        Test my code!
-      </button>
+      <div className="flex flex-row justify-between">
+        <button 
+          onClick={runTests}
+          className="my-1 px-2 py-1 bg-white rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
+        >
+          Test my code!
+        </button>
 
-      <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex flex-row gap-1 my-auto">
+          <Link 
+            href="/blockly/name"
+            className="my-1 px-2 py-1 bg-white rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
+          >
+            Back to previous lesson
+          </Link>
+
+          <Link 
+            href="/blockly/convert"
+            className="my-1 px-2 py-1 bg-white rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
+          >
+            <span>
+              All done?&nbsp;
+            </span>
+            <span className="text-green-500">
+              Go to the next lesson!
+            </span>
+          </Link>
+        </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-2 h-[600px] mb-2">
         <div 
           ref={workspaceRef}
-          className="mx-auto mb-2 flex-grow h-[720px]"
+          className="mx-auto mb-2 flex-grow h-full"
         />
 
         <div className="card p-4 max-w-xs">

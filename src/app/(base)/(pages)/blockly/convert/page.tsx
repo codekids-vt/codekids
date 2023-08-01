@@ -7,6 +7,7 @@ import { javascriptGenerator } from "blockly/javascript";
 
 import useWorkspace from "@/components/Blockly/useWorkspace";
 import toolbox from "./_toolbox";
+import Link from "next/link";
 
 // testing build:
 class AssertError extends Error {
@@ -30,14 +31,11 @@ test(1, 1);
 const setupTestCode = (code: string) => {
   const testSamples = Array.from(
     { length: 100 }, 
-    () => [
-      Math.floor(Math.random() * 500 + 1),
-      Math.floor(Math.random() * 500 + 1)
-    ]
+    () => Math.floor(Math.random() * 500 + 1)
   );
   
   const testCode = testSamples
-    .map(([a, b], _) => `${test.name}(convert(${a}, ${b}), ${referenceConvert(a, b)});`)
+    .map((a, _) => `${test.name}(convert(${a}), ${referenceConvert(a)});`)
     .join('\n');
   
   return `${code}\n${testCode}`;
@@ -120,25 +118,39 @@ export default function BlocklyDemo() {
   }
   
   return (
-    <div className="mx-auto my-8 max-w-6xl">
-      <section className="mb-2 text-sm">
+    <div className="mx-auto my-4 max-w-6xl">
+      <section className="mb-2">
         <h1 className="font-bold text-xl">Blockly Demo</h1>
         <p>
-          Create a function called &quot;convert&quot; that takes two inputs: <code>x</code> and <code>y</code> and converts them together.
+          Create a function called &quot;convert&quot; that takes an input: <code>x</code> in Fahrenheit and converts it to Celsius. Don&apos;t be afraid to look things up!
+        </p>
+        <p className="text-sm text-black/50">
+          Hint: You can get Celsius by subtracting 32 from Fahrenheit, and then multiplying it by the fraction 5 / 9! Like the &quot;add&quot; problem, use the blocks in &quot;Math&quot;!
         </p>
       </section>
 
-      <button 
-        onClick={runTests}
-        className="my-1 px-2 py-1 text-sm rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
-      >
-        Test my code!
-      </button>
+      <div className="flex flex-row justify-between">
+        <button 
+          onClick={runTests}
+          className="my-1 px-2 py-1 bg-white rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
+        >
+          Test my code!
+        </button>
 
-      <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex flex-row gap-1 my-auto">
+          <Link 
+            href="/blockly/add"
+            className="my-1 px-2 py-1 bg-white rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
+          >
+            Back to previous lesson
+          </Link>
+        </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-2 h-[600px] mb-2">
         <div 
           ref={workspaceRef}
-          className="mx-auto mb-2 flex-grow h-[720px]"
+          className="mx-auto mb-2 flex-grow h-full"
         />
 
         <div className="card p-4 max-w-xs">
