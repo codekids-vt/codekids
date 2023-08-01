@@ -16,33 +16,7 @@ class AssertError extends Error {
   }
 }
 
-// assertion
-const referenceAdd = (a: number, b: number) => {
-  return a + b;
-}
 
-const test = (actual: any, expected: any) => {
-  if (actual != expected) {
-    throw new AssertError(`Expected ${expected}, got ${actual}`);
-  }
-}
-test(1, 1);
-
-const setupTestCode = (code: string) => {
-  const testSamples = Array.from(
-    { length: 100 }, 
-    () => [
-      Math.floor(Math.random() * 500 + 1),
-      Math.floor(Math.random() * 500 + 1)
-    ]
-  );
-  
-  const testCode = testSamples
-    .map(([a, b], _) => `${test.name}(add(${a}, ${b}), ${referenceAdd(a, b)});`)
-    .join('\n');
-  
-  return `${code}\n${testCode}`;
-}
 
 const interpretError = (e: any) => {
   if (e instanceof AssertError) {
@@ -84,7 +58,7 @@ export default function BlocklyDemo() {
       return;
     }
 
-    const testingCode = setupTestCode(codeOutput);
+    const testingCode = codeOutput + "\nalert(`Hello ${firstName}!`)";
 
     try {
       eval(testingCode);
@@ -125,10 +99,10 @@ export default function BlocklyDemo() {
       <section className="mb-2">
         <h1 className="font-bold text-xl">Blockly Demo</h1>
         <p>
-          Create a function called &quot;add&quot; that takes two inputs: <code>x</code> and <code>y</code> and adds them together.
+          Create a variable called &quot;firstName&quot; that takes text and put your name in it.
         </p>
         <p className="text-sm text-black/50">
-          Hint: Use the blocks found in &quot;Functions&quot; and &quot;Math&quot;!
+          Hint: Use the Blocks found in &quot;Control Flow&quot; and &quot;Text&quot;
         </p>
       </section>
 
@@ -142,14 +116,7 @@ export default function BlocklyDemo() {
 
         <div className="flex flex-row gap-1 my-auto">
           <Link 
-            href="/blockly/name"
-            className="my-1 px-2 py-1 bg-white rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
-          >
-            Back to previous lesson
-          </Link>
-
-          <Link 
-            href="/blockly/convert"
+            href="/blockly/add"
             className="my-1 px-2 py-1 bg-white rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
           >
             <span>

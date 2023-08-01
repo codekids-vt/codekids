@@ -17,12 +17,12 @@ class AssertError extends Error {
 }
 
 // assertion
-const referenceAdd = (a: number, b: number) => {
-  return a + b;
+const referenceConvert = (a: number) => {
+  return (a - 32)  * 5 / 9;
 }
 
 const test = (actual: any, expected: any) => {
-  if (actual != expected) {
+  if (Math.abs(actual - expected) > 0.25) {
     throw new AssertError(`Expected ${expected}, got ${actual}`);
   }
 }
@@ -31,14 +31,11 @@ test(1, 1);
 const setupTestCode = (code: string) => {
   const testSamples = Array.from(
     { length: 100 }, 
-    () => [
-      Math.floor(Math.random() * 500 + 1),
-      Math.floor(Math.random() * 500 + 1)
-    ]
+    () => Math.floor(Math.random() * 500 + 1)
   );
   
   const testCode = testSamples
-    .map(([a, b], _) => `${test.name}(add(${a}, ${b}), ${referenceAdd(a, b)});`)
+    .map((a, _) => `${test.name}(convert(${a}), ${referenceConvert(a)});`)
     .join('\n');
   
   return `${code}\n${testCode}`;
@@ -49,7 +46,7 @@ const interpretError = (e: any) => {
     return "Looks like a test case failed! Look for the matching case below, and see if your solution works for the two input values.";
   }
   if (e instanceof ReferenceError) {
-    return "Looks like we couldn't find your function. Did you name your function \"add\"?";
+    return "Looks like we couldn't find your function. Did you name your function \"convert\"?";
   }
   else if (e instanceof TypeError) {
   }
@@ -125,10 +122,10 @@ export default function BlocklyDemo() {
       <section className="mb-2">
         <h1 className="font-bold text-xl">Blockly Demo</h1>
         <p>
-          Create a function called &quot;add&quot; that takes two inputs: <code>x</code> and <code>y</code> and adds them together.
+          Create a function called &quot;convert&quot; that takes an input: <code>x</code> in Fahrenheit and converts it to Celsius. Don&apos;t be afraid to look things up!
         </p>
         <p className="text-sm text-black/50">
-          Hint: Use the blocks found in &quot;Functions&quot; and &quot;Math&quot;!
+          Hint: You can get Celsius by subtracting 32 from Fahrenheit, and then multiplying it by the fraction 5 / 9! Like the &quot;add&quot; problem, use the blocks in &quot;Math&quot;!
         </p>
       </section>
 
@@ -142,22 +139,10 @@ export default function BlocklyDemo() {
 
         <div className="flex flex-row gap-1 my-auto">
           <Link 
-            href="/blockly/name"
+            href="/blockly/add"
             className="my-1 px-2 py-1 bg-white rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
           >
             Back to previous lesson
-          </Link>
-
-          <Link 
-            href="/blockly/convert"
-            className="my-1 px-2 py-1 bg-white rounded-sm hover:bg-blue-100 transition-colors outline outline-1 outline-black/20 hover:shadow-md shadow-black"
-          >
-            <span>
-              All done?&nbsp;
-            </span>
-            <span className="text-green-500">
-              Go to the next lesson!
-            </span>
           </Link>
         </div>
       </div>
