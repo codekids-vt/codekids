@@ -28,7 +28,7 @@ export default function Home() {
           <Card 
             title="Blockly Demo"
             blurb="Ready to test yourself? Try out our block coding exercises!"
-            href="/blockly-demo"
+            href="/blockly/name"
           />
           <Card 
             title="Resources"

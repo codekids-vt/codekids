@@ -23,9 +23,9 @@ function ResourceDetails({
 
 export default async function ResourcesPage() {
   return (
-    <div className="container max-w-4xl mx-auto p-2 my-4 card">
-      <section className="mb-2">
-        <h1 className="text-2xl font-medium">Resources</h1>
+    <div className="container max-w-4xl mx-auto p-4 my-4 card">
+      <section className="mb-4">
+        <h1 className="text-3xl font-bold">Resources</h1>
         <p>Here&apos;s what else we worked on:</p>
       </section>
 
