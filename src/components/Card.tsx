@@ -18,11 +18,11 @@ function Card({
             height={300}
             className="w-full object-cover rounded-lg"
           />
-          <div className="px-4 py-2.5 mx-2 bg-cardGreen rounded-b">
-            <h1 className="font-medium text-lg mb-2">
+          <div className="px-4 py-2.5 mx-2 bg-cardGreen rounded-b-md">
+            <h1 className="font-medium text-lg">
               {title}
             </h1>
-            <p className="text-gray-700 text-base">
+            <p className="text-neutral-800 text-sm">
               {blurb}
             </p>
           </div>

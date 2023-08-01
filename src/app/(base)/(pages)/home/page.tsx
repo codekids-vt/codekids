@@ -22,17 +22,17 @@ export default function Home() {
         <div className="w-full flex flex-col sm:flex-row sm:justify-between">
           <Card 
             title="Activities"
-            blurb=""
+            blurb="Looking for something to do? Check out our activities geared for both kids and teachers alike!"
             href="/activities/1"
           />
           <Card 
             title="Blockly Demo"
-            blurb=""
+            blurb="Ready to test yourself? Try out our block coding exercises!"
             href="/blockly-demo"
           />
           <Card 
             title="Resources"
-            blurb=""
+            blurb="Check out what other cool things we've been making!"
             href="/resources"
           />
         </div>
