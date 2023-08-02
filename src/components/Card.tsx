@@ -10,7 +10,7 @@ function Card({
 }) {
     return (
       <Link href={href} className="mx-auto">
-        <div className="max-w-sm m-2 drop-shadow-md">
+        <div className="max-w-sm m-2 drop-shadow-md transition-transform hover:-translate-y-1">
           <Image
             src="/GameImage_1.png"
             alt="Game card image"
