@@ -96,7 +96,7 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <a className="my-auto" href="">
+        <Link className="my-auto" href="/contact">
           <p className={`
             px-3 py-2
             text-neutral-100 text-center text-sm bg-primary-green rounded-md
@@ -105,7 +105,7 @@ export default function Navbar() {
           `}>
             CONTACT US
           </p>
-        </a>
+        </Link>
       </div>
     </header>
   );
