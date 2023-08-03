@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function ContactPage() {
   const [message, setMessage] = useState("");
+  const [signature, setSignature] = useState("");
 
   return (
     <div className="my-10">
@@ -14,8 +15,7 @@ export default function ContactPage() {
             See something you did or didn&apos;t like about CodeKids?
           </h1>
           <p>
-            Let us know! You can fill out the email form below, or manually send an
-            email to us at&nbsp;
+            Let us know! You can fill out the email form below, or manually send an email to us at&nbsp;
             <a href="mailto:shamouda@vt.edu">
               <span className="text-blue-500 underline">
                 shamouda@vt.edu
@@ -26,16 +26,24 @@ export default function ContactPage() {
         </div>
 
         <div>
+          <h1 className="text-lg font-medium">Your name:</h1>
+          <input
+            className="card p-2 w-full"
+            type="text"
+            placeholder="Your name"
+            onChange={(event) => setSignature(event.target.value)}
+          />
+          
           <h1 className="text-lg font-medium">What are your thoughts?</h1>
           <textarea 
             className="h-40 max-h-80 card p-2 w-full break-words"
             name="body"
-            placeholder="Your Message"
+            placeholder="Your message"
             onChange={(event) => setMessage(event.target.value)}
           />
           <a
             className={`transition-opacity ${message !== "" ? "opacity-100" : "opacity-25"}`}
-            href={`mailto:shamouda@vt.edu?subject=CodeKids Feedback&body=${message}`}
+            href={`mailto:shamouda@vt.edu?subject=CodeKids Feedback&body=${message}\n\n${signature}`}
           >
             <p className={joinClasses(
               "text-center card px-1.5 py-1 font-medium transition-colors",
