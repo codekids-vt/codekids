@@ -63,13 +63,15 @@ export default function Navbar() {
     <header className={`top-0 sticky w-full px-2 z-[100] ${pressStart2P.className}`}>
       <div className="container mx-auto sm:flex justify-between">
         <div className="flex flex-row items-center justify-between py-2 sm:py-0">
-          <Image
-            src="/kidata.png"
-            alt="KIDATA"
-            width={1850}
-            height={400}
-            className="md:mx-2 my-auto w-40"
-          />
+          <a href='/'>
+            <Image
+              src="/kidata.png"
+              alt="KIDATA"
+              width={1850}
+              height={400}
+              className="md:mx-2 my-auto w-40"
+            />
+          </a>
           <button onClick={() => setOpen(!open)} className={`
             sm:hidden aspect-square w-10 h-auto
             rounded-md outline outline-1 outline-neutral-300
