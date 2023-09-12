@@ -29,6 +29,10 @@ const navbarLinks: readonly NavLinkRoute[] = [
     text: "Resources",
     href: "/resources"
   },
+  {
+    text: "Books",
+    href: "/books/1"
+  },
 ];
 
 const pressStart2P = Press_Start_2P({
