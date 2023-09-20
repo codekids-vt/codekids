@@ -58,7 +58,7 @@ export default async function ActivityBookList({
         image: "page_2.png",
       },
     ],
-  }
+  } as Book
 
   const pageBookData = [bookData]
 

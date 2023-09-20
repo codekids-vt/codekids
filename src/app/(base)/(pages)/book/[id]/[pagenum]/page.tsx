@@ -1,10 +1,16 @@
 import Link from "next/link";
 
 // import { GET as routeHandler } from "../../../../api/activity/[id]/route";
-
 import { Book, Page } from "@/util/BookData";
-
 import Image from "next/image";
+import React from "react";
+import ColorPattern from "@/components/ColorPattern";
+import NumericalPattern from "@/components/NumericalPatter";
+
+const numericalProps = {
+  answer: ["16", "32", "64"],
+  pattern: [2, 4, 6, 8, '__', '__', '__'],
+}
 
 function BookImage({ image }: { image: string }) {
   return (
@@ -14,10 +20,10 @@ function BookImage({ image }: { image: string }) {
   );
 }
 
-function BookContent({ content }: { content: string[] }) {
+function BookContent({ content, game }: { content: string[], game: string | null }) {
   return (
     <div className="flex flex-grow items-center justify-center bg-gray-400 rounded-2xl">
-      <ul className="flex flex-col">
+      <ul className="flex flex-col mx-2">
         {content.map((line: string, i: number) => (
           <li className="text-center" key={`line-${i}`}>
             {line}
@@ -25,6 +31,8 @@ function BookContent({ content }: { content: string[] }) {
         ))
         }
       </ul>
+      {game && game === "color" && <ColorPattern/>}
+      {game && game === "number" && <NumericalPattern pattern={numericalProps.pattern} answer={numericalProps.answer} />}
     </div>
   );
 }
@@ -39,7 +47,7 @@ function ActivityBookDisplay({
   return (
     <div className=" flex flex-row justify-between flex-grow bg-white rounded-xl shadow-xl p-2">
       <BookImage image={page.image} />
-      <BookContent content={page.content} />
+      <BookContent content={page.content} game={page.game} />
     </div>
   );
 }
@@ -53,20 +61,37 @@ export default async function ActivityPage({ params }: { params: { id: string, p
     author: "Dev",
     pages: [
       {
-        content: ["This is timmy",
-          "This is timmy",
+        content: ["In this activity well go over different patterns and how to identify them.",
+          "What is a pattern?",
+          "Patterns and functions can be represented in many ways and described using words, tables, graphs, and symbols."
         ],
         image: "/lego-sort-example-clumping.png",
+        game: null
       },
       {
-        content: ["This is the Title of page 2",
-          "Some content about page 2"],
+        content: ["This is the first activity",
+          "Lets try creating the pattern: Red, Red, Blue, Blue"],
         image: "/lego-sort-example-clumping.png",
+        game: "color"
+      },
+      {
+        content: ["Ok that wasnt too bad lets see how we do with numerical patterns.",
+          "Lets try completing the pattern now!"],
+        image: "/lego-sort-example-clumping.png",
+        game: "number"
       },
     ],
   }
   const pageNum = parseInt(params.pagenum)
   const page = book.pages[pageNum]
+
+  function getNextPageNum() {
+    return pageNum + 1 > book.pages.length - 1 ? pageNum : pageNum + 1;
+  }
+
+  function getPrevPageNum() {
+    return pageNum - 1 >= 0 ? pageNum - 1 : pageNum;
+  }
 
   return (
     <div className="p-2 flex flex-col flex-grow h-[52rem]" >
@@ -79,14 +104,14 @@ export default async function ActivityPage({ params }: { params: { id: string, p
       {/* next and back buttons */}
       <div className="p-2">
         <div className="flex flex-row justify-between">
-          <Link href={`/book/${params.id}/${pageNum - 1}`}>
-            <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold py-2 px-4 rounded-full">
+          <Link href={`/book/${params.id}/${getPrevPageNum()}`}>
+            <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold py-2 px-4 rounded-full text-2xl mx-2">
               Back
             </button>
           </Link>
           <p>  {pageNum} </p>
-          <Link href={`/book/${params.id}/${pageNum + 1}`}>
-            <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold py-2 px-4 rounded-full">
+          <Link href={`/book/${params.id}/${getNextPageNum()}`}>
+            <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold py-2 px-4 rounded-full text-2xl mx-2">
               Next
             </button>
           </Link>

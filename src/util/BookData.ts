@@ -1,6 +1,7 @@
 export interface Page {
     content: string[],
     image: string,
+    game: string | null
 }
 
 export interface Book {
