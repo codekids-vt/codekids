@@ -36,7 +36,7 @@ class ColorPattern extends Component<{}, colorState> {
   renderCurrentPattern() {
     return this.state.userInput.map((color: string,  i: number) => (
         <button
-        className={`font-bold  text-white py-2 px-4 rounded`}
+        className={`font-bold py-2 px-4 rounded`}
         key={`userPattern-${i}`}
         disabled
         >{color}</button>
@@ -48,9 +48,9 @@ class ColorPattern extends Component<{}, colorState> {
 
     return colors.map((color: string,  i: number) => (
       <button
-      className={`font-bold py-2 px-4 rounded text-${color}-500`}
-      key={`color-${i}`}
-      onClick={() => this.handleColorSelection(color)}
+        className={`font-bold py-2 px-4 rounded text-${color}-500`}
+        key={i}
+        onClick={() => this.handleColorSelection(color)}
       >{color}</button>
     ));
   }
@@ -68,7 +68,7 @@ class ColorPattern extends Component<{}, colorState> {
     const { message } = this.state;
 
     return (
-      <div className='flex flex-col outline-dashed'>
+      <div className='flex flex-col p-2'>
         <h1 className='text-2xl shadow-orange-50'>Color Pattern Matching</h1>
         <div className='flex flex-col'>
           <div>

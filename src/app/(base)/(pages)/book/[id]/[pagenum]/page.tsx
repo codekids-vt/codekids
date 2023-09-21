@@ -6,10 +6,12 @@ import Image from "next/image";
 import React from "react";
 import ColorPattern from "@/components/ColorPattern";
 import NumericalPattern from "@/components/NumericalPatter";
+import { CodeComplete } from "@/components/CodeComplete";
+import { Reader } from "@/components/Reader";
 
 const numericalProps = {
-  answer: ["16", "32", "64"],
   pattern: [2, 4, 6, 8, '__', '__', '__'],
+  answer: ["10", "12", "14"]
 }
 
 function BookImage({ image }: { image: string }) {
@@ -22,17 +24,18 @@ function BookImage({ image }: { image: string }) {
 
 function BookContent({ content, game }: { content: string[], game: string | null }) {
   return (
-    <div className="flex flex-grow items-center justify-center bg-gray-400 rounded-2xl">
-      <ul className="flex flex-col mx-2">
-        {content.map((line: string, i: number) => (
-          <li className="text-center" key={`line-${i}`}>
-            {line}
+    <div className="flex flex-grow flex-col items-center justify-center bg-gray-100 rounded-2xl">
+      <ul className="flex flex-col p-4">
+        {content.map((line, i) => (
+          <li className="text-center text-lg" key={i}>
+            <Reader text={line} />
           </li>
         ))
         }
       </ul>
       {game && game === "color" && <ColorPattern/>}
       {game && game === "number" && <NumericalPattern pattern={numericalProps.pattern} answer={numericalProps.answer} />}
+      {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
     </div>
   );
 }
@@ -45,7 +48,7 @@ function ActivityBookDisplay({
   id: string
 }) {
   return (
-    <div className=" flex flex-row justify-between flex-grow bg-white rounded-xl shadow-xl p-2">
+    <div className=" flex flex-row justify-between flex-grow bg-white rounded-2xl shadow-xl p-2">
       <BookImage image={page.image} />
       <BookContent content={page.content} game={page.game} />
     </div>
@@ -75,10 +78,15 @@ export default async function ActivityPage({ params }: { params: { id: string, p
         game: "color"
       },
       {
-        content: ["Ok that wasnt too bad lets see how we do with numerical patterns.",
+        content: ["Ok that wasn't too bad lets see how we do with numerical patterns.",
           "Lets try completing the pattern now!"],
         image: "/lego-sort-example-clumping.png",
         game: "number"
+      },
+      {
+        content: ["Try completing this code snippet!"],
+        image: "/lego-sort-example-clumping.png",
+        game: "code"
       },
     ],
   }
@@ -94,7 +102,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
   }
 
   return (
-    <div className="p-2 flex flex-col flex-grow h-[52rem]" >
+    <div className="p-2 flex flex-col flex-grow h-[42rem]" >
       {book && <ActivityBookDisplay page={page} id={params.id} />}
       {!book &&
         <h1 className="text-center text-lg font-medium">

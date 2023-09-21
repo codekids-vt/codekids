@@ -45,7 +45,7 @@ class NumericalPattern extends Component<numericalProps, numericalState> {
   renderCurrentPattern() {
     return this.props.pattern.map((number: number | string,  i: number) => (
         <button
-        className={`font-bold  text-white py-2 px-4 rounded`}
+        className={`font-bold py-2 px-4 rounded`}
         key={`userPattern-${i}`}
         disabled
         >{number}</button>
