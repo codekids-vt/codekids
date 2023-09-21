@@ -20,7 +20,7 @@ class NumericalPattern extends Component<numericalProps, numericalState> {
       pattern: this.props.pattern,
       userInput: [],
       message: 'Finish the Pattern!',
-      currentInput: null
+      currentInput: ""
     };
   }
 
@@ -35,7 +35,7 @@ class NumericalPattern extends Component<numericalProps, numericalState> {
         this.setState({ userInput: newUserInput, currentInput: "", pattern: pattern });
         this.setState({ message: 'Keep going, almost there!' });
         if (!pattern.includes("__")) {
-            this.setState({ message: 'Great job! You completed the pattern.' });
+            this.setState({ message: 'Great Job! You completed the pattern.' });
         }
     } else {
         this.setState({ message: 'Oops! Try again.', currentInput: "" });
@@ -52,6 +52,15 @@ class NumericalPattern extends Component<numericalProps, numericalState> {
       ));
   }
 
+  
+  renderResetSelection() {
+    return (
+        <button
+        className='px-4 py-2 text-lg font-medium bg-primary-green text-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-primary-green'
+        onClick={()=> this.setState({userInput: [], message: 'Finish the Pattern!'})}>
+            Reset
+        </button>
+    )}
 
   renderAnswerBox() {
     return (
@@ -68,7 +77,7 @@ class NumericalPattern extends Component<numericalProps, numericalState> {
   renderCheckBtn() {
     return (
         <button
-        className='font-extrabold rounded mx-2 text-blue-700'
+        className='px-4 py-2 text-lg font-medium bg-primary-green text-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-primary-green'
         onClick={()=> this.handleUserInput()}>
             Check
         </button>
@@ -86,12 +95,15 @@ class NumericalPattern extends Component<numericalProps, numericalState> {
           </div>
           <div className='flex flex-row items-center mt-5'>
           </div>
-          <div className='flex flex-row justify-between'>
-            {this.renderAnswerBox()}
-            {this.renderCheckBtn()}
-          </div>
+          {!message.includes("Great Job") && 
+            <div className='flex flex-row justify-between'>
+              {this.renderAnswerBox()}
+              {this.renderCheckBtn()}
+            </div>
+          }
         </div>
         <div className={`text-xl mt-5 self-center`}>{message}</div>
+        { message.includes("Great Job") && this.renderResetSelection()}
       </div>
     );
   }

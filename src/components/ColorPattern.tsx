@@ -36,7 +36,7 @@ class ColorPattern extends Component<{}, colorState> {
   renderCurrentPattern() {
     return this.state.userInput.map((color: string,  i: number) => (
         <button
-        className={`font-bold py-2 px-4 rounded`}
+        className={`font-bold py-2 px-4 rounded text-${color}-500`}
         key={`userPattern-${i}`}
         disabled
         >{color}</button>
