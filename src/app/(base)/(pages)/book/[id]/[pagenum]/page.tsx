@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Book, Page } from "@/util/BookData";
 import Image from "next/image";
 import React from "react";
-import ColorPattern from "@/components/ColorPattern";
+import { ColorPattern } from "@/components/ColorPattern";
 import NumericalPattern from "@/components/NumericalPatter";
 import { CodeComplete } from "@/components/CodeComplete";
 import { Reader } from "@/components/Reader";
