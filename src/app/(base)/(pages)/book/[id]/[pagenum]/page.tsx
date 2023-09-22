@@ -14,47 +14,6 @@ const numericalProps = {
   answer: ["10", "12", "14"]
 }
 
-function BookImage({ image }: { image: string }) {
-  return (
-    <div className="flex flex-col flex-grow items-center justify-center">
-      <Image src={image} alt="book image" width={300} height={500} />
-    </div>
-  );
-}
-
-function BookContent({ content, game }: { content: string[], game: string | null }) {
-  return (
-    <div className="flex flex-grow flex-col items-center justify-center bg-gray-100 rounded-2xl">
-      <ul className="flex flex-col p-4">
-        {content.map((line, i) => (
-          <li className="text-center text-lg" key={i}>
-            <Reader text={line} />
-          </li>
-        ))
-        }
-      </ul>
-      {game && game === "color" && <ColorPattern/>}
-      {game && game === "number" && <NumericalPattern pattern={numericalProps.pattern} answer={numericalProps.answer} />}
-      {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
-    </div>
-  );
-}
-
-
-function ActivityBookDisplay({
-  page, id
-}: {
-  page: Page,
-  id: string
-}) {
-  return (
-    <div className=" flex flex-row justify-between flex-grow bg-white rounded-2xl shadow-xl p-2">
-      <BookImage image={page.image} />
-      <BookContent content={page.content} game={page.game} />
-    </div>
-  );
-}
-
 export default async function ActivityPage({ params }: { params: { id: string, pagenum: string } }) {
   // const response = await routeHandler(null, { params });
   const book: Book = {
@@ -102,29 +61,56 @@ export default async function ActivityPage({ params }: { params: { id: string, p
   }
 
   return (
-    <div className="p-2 flex flex-col flex-grow h-[42rem]" >
-      {book && <ActivityBookDisplay page={page} id={params.id} />}
-      {!book &&
-        <h1 className="text-center text-lg font-medium">
-          We couldn't find anything for activity {params.id} here!
-        </h1 >
-      }
-      {/* next and back buttons */}
-      <div className="p-2">
-        <div className="flex flex-row justify-between">
-          <Link href={`/book/${params.id}/${getPrevPageNum()}`}>
-            <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold py-2 px-4 rounded-full text-2xl mx-2">
-              Back
-            </button>
-          </Link>
-          <p>  {pageNum} </p>
-          <Link href={`/book/${params.id}/${getNextPageNum()}`}>
-            <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold py-2 px-4 rounded-full text-2xl mx-2">
-              Next
-            </button>
-          </Link>
+    // height of screen minus header and footer 
+    <div className="md:px-48 py-2 h-[calc(100vh-9rem)] flex">
+      {page && <div className=" grid grid-cols-2 bg-white rounded-2xl shadow-xl p-2 flex-grow">
+        <div className="flex flex-col flex-grow items-center justify-center">
+          <div className="flex flex-col justify-between flex-grow w-full">
+            <div className="flex flex-col flex-grow items-center justify-center">
+              <Image src={page.image} alt="book image" width={300} height={500} />
+            </div>
+            <div className="flex flex-row justify-start p-2">
+              <Link href={`/book/${params.id}/${getPrevPageNum()}`}>
+                <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-6 rounded-full text-2xl">
+                  Back
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-grow flex-col items-center justify-center bg-gray-100 rounded-2xl">
+          <div className="flex flex-col justify-between flex-grow w-full">
+            <div className="flex flex-col flex-grow items-center justify-center">
+              <ul className="flex flex-col p-4">
+                {page.content.map((line, i) => (
+                  <li className="text-center text-lg" key={i}>
+                    <Reader text={line} />
+                  </li>
+                ))
+                }
+              </ul>
+              {page.game && page.game === "color" && <ColorPattern />}
+              {page.game && page.game === "number" && <NumericalPattern pattern={numericalProps.pattern} answer={numericalProps.answer} />}
+              {page.game && page.game === "code" && <CodeComplete beforeCode="if (" afterCode={') \n brushTeeth()'} answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
+            </div>
+            <div className="flex flex-row justify-end p-2">
+              <Link href={`/book/${params.id}/${getNextPageNum()}`}>
+                <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-6 rounded-full text-2xl">
+                  Next
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
+      }
+      {!page &&
+        <div className="flex flex-col flex-grow items-center justify-center">
+          <h1 className="text-center text-lg font-medium">
+            We couldn't find anything for this page.
+          </h1 >
+        </div>
+      }
     </div >
   )
 }
