@@ -1,13 +1,15 @@
+"use client"
 import Link from "next/link";
 
 // import { GET as routeHandler } from "../../../../api/activity/[id]/route";
 import { Book, Page } from "@/util/BookData";
 import Image from "next/image";
-import React from "react";
+import React, { useState} from "react";
 import { ColorPattern } from "@/components/ColorPattern";
 import NumericalPattern from "@/components/NumericalPatter";
 import { CodeComplete } from "@/components/CodeComplete";
 import { Reader } from "@/components/Reader";
+import { HokieBirdColoring } from "@/components/HokieBirdColor";
 
 const numericalProps = {
   pattern: [2, 4, 6, 8, '__', '__', '__'],
@@ -15,14 +17,28 @@ const numericalProps = {
 }
 
 function BookImage({ image }: { image: string }) {
+
+  const [isImage] =  useState(image.includes("."));
+
   return (
-    <div className="flex flex-col flex-grow items-center justify-center">
-      <Image src={image} alt="book image" width={300} height={500} />
+    <div  className="flex flex-col flex-grow items-center justify-center">
+      { isImage && 
+        <Image src={image} alt="book image" width={300} height={500} />
+      }
+      { image === "HokieBirdActivity" &&
+        <HokieBirdColoring></HokieBirdColoring>
+      }
     </div>
   );
 }
 
 function BookContent({ content, game }: { content: string[], game: string | null }) {
+
+  function handleOnDrag(e: React.DragEvent, color: string) {
+    e.dataTransfer.setData("Color", color);
+    console.log("started Dragging")
+  }
+
   return (
     <div className="flex flex-grow flex-col items-center justify-center bg-gray-100 rounded-2xl">
       <ul className="flex flex-col p-4">
@@ -48,7 +64,7 @@ function ActivityBookDisplay({
   id: string
 }) {
   return (
-    <div className=" flex flex-row justify-between flex-grow bg-white rounded-2xl shadow-xl p-2">
+    <div className="flex flex-row justify-between flex-grow bg-white rounded-2xl shadow-xl p-2 h-max">
       <BookImage image={page.image} />
       <BookContent content={page.content} game={page.game} />
     </div>
@@ -56,8 +72,8 @@ function ActivityBookDisplay({
 }
 
 export default async function ActivityPage({ params }: { params: { id: string, pagenum: string } }) {
-  // const response = await routeHandler(null, { params });
-  const book: Book = {
+  const books: Book[] = [
+  {
     BookId: 1,
     title: "Book 1 test",
     blurb: "some blurb",
@@ -89,12 +105,36 @@ export default async function ActivityPage({ params }: { params: { id: string, p
         game: "code"
       },
     ],
-  }
+  },
+  {
+    BookId: 2,
+    title: "Variables With Coloring",
+    blurb: "Learn about different variables types, coloring the Hokie Bird!",
+    author: "Dev",
+    pages: [
+      {
+        content: ["In this book we will discover how to drag and drop different colors into variables",
+          "We will also learn how to manually complete vairables!",
+        ],
+        image: "/HokieBird.png",
+      },
+      {
+        content: ["Here you are able to drag and drop the different colors into the three differnt parts of the Hokie Bird.",
+          "The Hokie Bird is split into three parts; a head, a body, and the legs.",
+          "Try dragging different colors and see the changes happen live!"
+        ],
+        image: "HokieBirdActivity",
+      },
+    ],
+    }
+  ] as Book[]
+  
+  const bookNum = parseInt(params.id) - 1
   const pageNum = parseInt(params.pagenum)
-  const page = book.pages[pageNum]
+  const page = books[bookNum].pages[pageNum]
 
   function getNextPageNum() {
-    return pageNum + 1 > book.pages.length - 1 ? pageNum : pageNum + 1;
+    return pageNum + 1 > books[bookNum].pages.length - 1 ? pageNum : pageNum + 1;
   }
 
   function getPrevPageNum() {
@@ -103,8 +143,8 @@ export default async function ActivityPage({ params }: { params: { id: string, p
 
   return (
     <div className="p-2 flex flex-col flex-grow h-[42rem]" >
-      {book && <ActivityBookDisplay page={page} id={params.id} />}
-      {!book &&
+      {bookNum && <ActivityBookDisplay page={page} id={params.id} />}
+      {!bookNum &&
         <h1 className="text-center text-lg font-medium">
           We couldn't find anything for activity {params.id} here!
         </h1 >
