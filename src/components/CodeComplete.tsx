@@ -28,7 +28,7 @@ export function CodeComplete(props: ICodeCompleteProps) {
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
       <div className="border border-gray-300 rounded-md p-4 my-4">
-        <p className="text-lg font-medium">{beforeCode + " " + previewCode + " " + afterCode}</p>
+        <pre className="text-lg font-medium">{beforeCode + " " + previewCode + " " + afterCode} </pre>
       </div>
       <div className="flex flex-wrap justify-center space-x-4">
         {choices.map((choice, index) => (

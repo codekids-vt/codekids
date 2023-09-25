@@ -141,10 +141,12 @@ export default async function ActivityPage({ params }: { params: { id: string, p
     return pageNum - 1 >= 0 ? pageNum - 1 : pageNum;
   }
 
+  console.log(books[bookNum])
+
   return (
     <div className="p-2 flex flex-col flex-grow h-[42rem]" >
-      {bookNum && <ActivityBookDisplay page={page} id={params.id} />}
-      {!bookNum &&
+      {books[bookNum] && <ActivityBookDisplay page={page} id={params.id} />}
+      {!books[bookNum] &&
         <h1 className="text-center text-lg font-medium">
           We couldn't find anything for activity {params.id} here!
         </h1 >
@@ -165,6 +167,13 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           </Link>
         </div>
       </div>
+      {!page &&
+        <div className="flex flex-col flex-grow items-center justify-center">
+          <h1 className="text-center text-lg font-medium">
+            We couldn't find anything for this page.
+          </h1 >
+        </div>
+      }
     </div >
   )
 }
