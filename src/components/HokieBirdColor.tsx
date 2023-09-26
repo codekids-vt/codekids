@@ -9,7 +9,7 @@ interface HokieBirdColorState {
 
 const availableColors = ["red", "orange", "green", "maroon", "gold"]
 
-export function HokieBirdColoring() {
+export function HokieBirdColoring({ props }: { props: any}) {
     const [colors, setColors] = useState({
         head: "",
         body: "",
@@ -61,24 +61,25 @@ export function HokieBirdColoring() {
                     <input 
                     key={"headText"} type="text" 
                     className="rounded" 
-                    placeholder="Drag or Type Here"  
+                    placeholder={props?.type ? "Type Here" : "Drag Here"}  
                     onKeyDown={(e) => handleOnSubmitColor(e, "head")}
                     defaultValue={colors.head}
+                    disabled={!props.type}
                     ></input>
                 </div>
                 <div onDrop={(e) => handleOnDrop(e, "body")} onDragOver={(e) => handleDragOver(e)} className="flex outline-black mt-6 outline-dotted text-center" >Hokie Body = 
-                <input key={"bodyTex"}  type="text" className="rounded" placeholder="Drag or Type Here" defaultValue={colors.body} onKeyDown={(e) => handleOnSubmitColor(e, "body")}></input>
+                <input key={"bodyTex"}  type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Here"}   defaultValue={colors.body} onKeyDown={(e) => handleOnSubmitColor(e, "body")} disabled={!props.type}></input>
                 </div>
                 <div onDrop={(e) => handleOnDrop(e, "legs")} onDragOver={(e) => handleDragOver(e)} className="flex outline-black mt-6 outline-dotted text-center">Hokie Legs = 
-                <input key={"legsText"} type="text" className="rounded" placeholder="Drag or Type Here" defaultValue={colors.legs} onKeyDown={(e) => handleOnSubmitColor(e, "legs")}></input>
+                <input key={"legsText"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Here"}   defaultValue={colors.legs} onKeyDown={(e) => handleOnSubmitColor(e, "legs")} disabled={!props.type}></input>
                 </div>
             </div>
             <div className="flex flex-row flex-grow justify-around">
-                <div draggable className="flex text-red-600" onDragStart={(e) => handleOnDrag(e, "red")}>Red</div>
-                <div draggable className="flex text-orange-600" onDragStart={(e) => handleOnDrag(e, "orange")}>Orange</div>
-                <div draggable className="flex text-green-700" onDragStart={(e) => handleOnDrag(e, "green")}>Green</div>
-                <div draggable className="flex text-amber-950" onDragStart={(e) => handleOnDrag(e, "maroon")}>Maroon</div>
-                <div draggable className="flex text-orange-400" onDragStart={(e) => handleOnDrag(e, "gold")}>Gold</div>
+                <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDrag(e, "red")}>Red</div>
+                <div draggable={props.draggable} className="flex text-orange-600" onDragStart={(e) => handleOnDrag(e, "orange")}>Orange</div>
+                <div draggable={props.draggable} className="flex text-green-700" onDragStart={(e) => handleOnDrag(e, "green")}>Green</div>
+                <div draggable={props.draggable} className="flex text-amber-950" onDragStart={(e) => handleOnDrag(e, "maroon")}>Maroon</div>
+                <div draggable={props.draggable} className="flex text-orange-400" onDragStart={(e) => handleOnDrag(e, "gold")}>Gold</div>
                 
             </div>
           </div>

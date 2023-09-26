@@ -16,7 +16,7 @@ const numericalProps = {
   answer: ["10", "12", "14"]
 }
 
-function BookImage({ image }: { image: string }) {
+function BookImage({ image, page }: { image: string, page: Page}) {
 
   const [isImage] =  useState(image.includes("."));
 
@@ -26,7 +26,7 @@ function BookImage({ image }: { image: string }) {
         <Image src={image} alt="book image" width={300} height={500} />
       }
       { image === "HokieBirdActivity" &&
-        <HokieBirdColoring></HokieBirdColoring>
+        <HokieBirdColoring props={page?.props}></HokieBirdColoring>
       }
     </div>
   );
@@ -60,7 +60,7 @@ function ActivityBookDisplay({
 }) {
   return (
     <div className="flex flex-row justify-between flex-grow bg-white rounded-2xl shadow-xl p-2 h-max">
-      <BookImage image={page.image} />
+      <BookImage image={page.image} page={page} />
       <BookContent content={page.content} game={page.game} />
     </div>
   );
@@ -116,9 +116,23 @@ export default async function ActivityPage({ params }: { params: { id: string, p
       {
         content: ["Here you are able to drag and drop the different colors into the three differnt parts of the Hokie Bird.",
           "The Hokie Bird is split into three parts; a head, a body, and the legs.",
-          "Try dragging different colors and see the changes happen live!"
+          "Try dragging different colors and see the changes happen live!",
+          "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable"
         ],
         image: "HokieBirdActivity",
+        props: {
+          draggable: true
+        }
+      },
+      {
+        content: ["Now that you assigned variables by dragging values over them, lets try typing in the colors!",
+                  "Click on the part of the Hokie Bird you would like to color and type in any of the listed colors",
+                  "After pressing enter the values should update the color of the bird"
+        ],
+        image: "HokieBirdActivity",
+        props: {
+          type: true
+        }
       },
     ],
     }
