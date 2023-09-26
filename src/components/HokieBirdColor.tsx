@@ -33,7 +33,6 @@ export function HokieBirdColoring({ props }: { props: any}) {
             }
         }
     
-    
         function handleOnDrop (e: React.DragEvent, part: string) {
             const color = e.dataTransfer.getData("Color") as string;
             const temp = colors[part as keyof HokieBirdColorState] =  color
@@ -57,21 +56,27 @@ export function HokieBirdColoring({ props }: { props: any}) {
             <div className="flex flex-col flex-grow mx-10">
             <div>Drag The Colors over thse boxes</div>
             <div className="flex flex-col flex-grow justify-center items-center">
-                <div onDrop={(e) => handleOnDrop(e, "head")} onDragOver={(e) => handleDragOver(e)} className="flex outline-black outline-dotted">Hokie Head = 
-                    <input 
-                    key={"headText"} type="text" 
-                    className="rounded" 
-                    placeholder={props?.type ? "Type Here" : "Drag Here"}  
-                    onKeyDown={(e) => handleOnSubmitColor(e, "head")}
-                    defaultValue={colors.head}
-                    disabled={!props.type}
-                    ></input>
+                <div onDrop={(e) => handleOnDrop(e, "head")} onDragOver={(e) => handleDragOver(e)} className="flex outline-black outline-dotted">
+                    <label htmlFor="headText"> Hokie Head = 
+                        <input 
+                        key={"headText"} type="text" 
+                        className="rounded ml-4" 
+                        placeholder={props?.type ? "Type Here" : "Drag Here"}  
+                        onKeyDown={(e) => handleOnSubmitColor(e, "head")}
+                        defaultValue={colors.head}
+                        disabled={!props.type}
+                        />
+                    </label>
                 </div>
-                <div onDrop={(e) => handleOnDrop(e, "body")} onDragOver={(e) => handleDragOver(e)} className="flex outline-black mt-6 outline-dotted text-center" >Hokie Body = 
-                <input key={"bodyTex"}  type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Here"}   defaultValue={colors.body} onKeyDown={(e) => handleOnSubmitColor(e, "body")} disabled={!props.type}></input>
+                <div onDrop={(e) => handleOnDrop(e, "body")} onDragOver={(e) => handleDragOver(e)} className="flex outline-black mt-6 outline-dotted text-center" >
+                <label htmlFor="bodyTex"> Hokie Body = 
+                    <input key={"bodyTex"}  type="text" className="rounded ml-4" placeholder={props?.type ? "Type Here" : "Drag Here"}   defaultValue={colors.body} onKeyDown={(e) => handleOnSubmitColor(e, "body")} disabled={!props.type}/>
+                </label>
                 </div>
-                <div onDrop={(e) => handleOnDrop(e, "legs")} onDragOver={(e) => handleDragOver(e)} className="flex outline-black mt-6 outline-dotted text-center">Hokie Legs = 
-                <input key={"legsText"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Here"}   defaultValue={colors.legs} onKeyDown={(e) => handleOnSubmitColor(e, "legs")} disabled={!props.type}></input>
+                <div onDrop={(e) => handleOnDrop(e, "legs")} onDragOver={(e) => handleDragOver(e)} className="flex outline-black mt-6 outline-dotted text-center">
+                <label htmlFor="legsText"> Hokie Legs = 
+                    <input key={"legsText"} type="text" className="rounded ml-4" placeholder={props?.type ? "Type Here" : "Drag Here"}   defaultValue={colors.legs} onKeyDown={(e) => handleOnSubmitColor(e, "legs")} disabled={!props.type}/>
+                </label>
                 </div>
             </div>
             <div className="flex flex-row flex-grow justify-around">
