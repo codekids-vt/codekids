@@ -34,11 +34,6 @@ function BookImage({ image }: { image: string }) {
 
 function BookContent({ content, game }: { content: string[], game: string | null }) {
 
-  function handleOnDrag(e: React.DragEvent, color: string) {
-    e.dataTransfer.setData("Color", color);
-    console.log("started Dragging")
-  }
-
   return (
     <div className="flex flex-grow flex-col items-center justify-center bg-gray-100 rounded-2xl">
       <ul className="flex flex-col p-4">
@@ -140,8 +135,6 @@ export default async function ActivityPage({ params }: { params: { id: string, p
   function getPrevPageNum() {
     return pageNum - 1 >= 0 ? pageNum - 1 : pageNum;
   }
-
-  console.log(books[bookNum])
 
   return (
     <div className="p-2 flex flex-col flex-grow h-[42rem]" >

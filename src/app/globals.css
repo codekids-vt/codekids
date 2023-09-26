@@ -36,23 +36,23 @@ body {
   --background-rgb: 255, 255, 255;
 }
 
-.img-red {
+.img-Red {
   filter: opacity(0.3) drop-shadow(0 0 0 red);
 }
 
-.img-maroon {
+.img-Maroon {
   filter: opacity(.2) drop-shadow(0 0 0 maroon);
 }
 
-.img-orange {
+.img-Orange {
   filter: opacity(.2) drop-shadow(0 0 0 orange);
 }
 
-.img-green {
+.img-Green {
   filter: opacity(.2) drop-shadow(0 0 0 green);
 }
 
-.img-gold {
+.img-Gold {
   filter: opacity(0.3) drop-shadow(0 0 0 gold);
 }
 
