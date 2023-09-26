@@ -1,4 +1,4 @@
-import { setState } from "blockly/core/utils/aria";
+"use client"
 import React, { useState} from "react";
 
 interface HokieBirdColorState {
@@ -9,7 +9,7 @@ interface HokieBirdColorState {
 
 const availableColors = ["red", "orange", "green", "maroon", "gold"]
 
-export const HokieBirdColoring = () => {
+export function HokieBirdColoring() {
 
     const [colors, setColors] = useState({
         head: "transparent",
@@ -25,6 +25,7 @@ export const HokieBirdColoring = () => {
 
 
     const [textHead, setTextHead] = useState("");
+
     const [textBody, setTextBody] = useState("");
     const [textLegs, setTextLegs] = useState("");
     function handleOnSubmitColor (e: React.KeyboardEvent<HTMLInputElement>, part: string) {
@@ -71,19 +72,26 @@ export const HokieBirdColoring = () => {
         e.dataTransfer.setData("Color", color);
     }
 
-    const HokieBirdColors = () => {      
+    function HokieBirdColors() {      
         return (
             <div className="flex flex-col flex-grow mx-10">
             {/* <div>Drag The Colors over thse boxes</div> */}
             <div className="flex flex-col flex-grow justify-center items-center">
                 <div onDrop={(e) => handleOnDrop(e, "head")} onDragOver={(e) => handleDragOver(e)} className="flex outline-black outline-dotted">Hokie Head = 
-                    <input key={1} value={textHead} type="text" className="rounded" placeholder="Drag or Type Here" onChange={e => setTextHead(e.target.value)} onKeyDown={(e) => handleOnSubmitColor(e, "head")}></input>
+                    <input 
+                    key={"headText"} type="text" 
+                    className="rounded" 
+                    placeholder="Drag or Type Here"  
+                    onChange={e => setTextHead(e.target.value)}
+                    onKeyDown={(e) => handleOnSubmitColor(e, "head")}
+                    value={textHead}
+                    ></input>
                 </div>
                 <div onDrop={(e) => handleOnDrop(e, "body")} onDragOver={(e) => handleDragOver(e)} className="flex outline-black mt-6 outline-dotted text-center" >Hokie Body = 
-                <input key={3} value={textBody} type="text" className="rounded" placeholder="Drag or Type Here" onChange={e => setTextBody(e.target.value)} onKeyDown={(e) => handleOnSubmitColor(e, "body")}></input>
+                <input key={"bodyTex"}  type="text" className="rounded" placeholder="Drag or Type Here" defaultValue={""} onKeyDown={(e) => handleOnSubmitColor(e, "body")}></input>
                 </div>
                 <div onDrop={(e) => handleOnDrop(e, "legs")} onDragOver={(e) => handleDragOver(e)} className="flex outline-black mt-6 outline-dotted text-center">Hokie Legs = 
-                <input key={2} value={textLegs} type="text" className="rounded" placeholder="Drag or Type Here" onChange={e =>setTextLegs(e.target.value) } onKeyDown={(e) => handleOnSubmitColor(e, "legs")}></input>
+                <input key={"legsText"} type="text" className="rounded" placeholder="Drag or Type Here" defaultValue="" onKeyDown={(e) => handleOnSubmitColor(e, "legs")}></input>
                 </div>
             </div>
             <div className="flex flex-row flex-grow justify-around">
@@ -99,28 +107,9 @@ export const HokieBirdColoring = () => {
     }
 
 
-    const  HokieBird = () =>{
-        const [good, setGood] = useState("img-transparent")
-      
-      
-        const handleOnDrop = (e: React.DragEvent) => {
-          const color = e.dataTransfer.getData("Color") as string;
-          console.log( color)
-          setGood(`img-${color}`)
-        }
-        
-        function handleDragOver(e: React.DragEvent) {
-          e.preventDefault()
-          setGood("img-hover")
-        }
-      
-        function dragLeaveHandler(e: React.DragEvent) {
-          e.preventDefault();
-          setGood("img-transparent")
-        }
-      
+    function HokieBird() {      
         return (
-          <div className="flex flex-col flex-grow justify-center items-center mx-10" onDragOver={handleDragOver} onDrop={handleOnDrop} onDragLeave={ dragLeaveHandler }>
+          <div className="flex flex-col flex-grow justify-center items-center mx-10">
             <img src="/HokieBird.png" alt="book image" className={'absolute top-25 left-20'} width={175} height={500} />
             <img  src="/HokieHead.png" alt="book image" className={`absolute top-25 left-20 img-${colors.head} `} width={175} height={500} />
             <img src="/HokieBody.png" alt="book image" className={`absolute  top-25 left-20 img-${colors.body} `} width={175} height={500} />
