@@ -41,7 +41,7 @@ body {
 }
 
 .img-raroon {
-  filter: opacity(.2) drop-shadow(0 0 0 maroon);
+  filter: opacity(.1) drop-shadow(0 0 0 maroon);
 }
 
 .img-orange {
@@ -56,7 +56,7 @@ body {
   filter: opacity(0.3) drop-shadow(0 0 0 gold);
 }
 
-.img-transparent {
+.img- {
   filter: opacity(0.0) drop-shadow(0 0 0 white);
 }
 
