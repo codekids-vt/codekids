@@ -59,7 +59,7 @@ function ActivityBookDisplay({
   id: string
 }) {
   return (
-    <div className="flex flex-row justify-between flex-grow bg-white rounded-2xl shadow-xl p-2 h-max">
+    <div className="flex flex-row flex-grow bg-white rounded-2xl shadow-xl p-2">
       <BookImage image={page.image} page={page} />
       <BookContent content={page.content} game={page.game} />
     </div>
@@ -151,7 +151,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
   }
 
   return (
-    <div className="p-2 flex flex-col flex-grow h-[42rem]" >
+    <div className="p-2 flex flex-col flex-grow h-[56rem]" >
       {books[bookNum] && <ActivityBookDisplay page={page} id={params.id} />}
       {!books[bookNum] &&
         <h1 className="text-center text-lg font-medium">
@@ -162,13 +162,13 @@ export default async function ActivityPage({ params }: { params: { id: string, p
       <div className="p-2">
         <div className="flex flex-row justify-between">
           <Link href={`/book/${params.id}/${getPrevPageNum()}`}>
-            <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold py-2 px-4 rounded-full text-2xl mx-2">
+            <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold py-2 px-4 rounded-full text-3xl mx-2 fixed bottom-48 left-48">
               Back
             </button>
           </Link>
           <p>  {pageNum} </p>
           <Link href={`/book/${params.id}/${getNextPageNum()}`}>
-            <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold py-2 px-4 rounded-full text-2xl mx-2">
+            <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold py-2 px-4 rounded-full text-3xl mx-2 fixed bottom-48 right-48">
               Next
             </button>
           </Link>
