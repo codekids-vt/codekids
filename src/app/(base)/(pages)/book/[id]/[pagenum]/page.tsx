@@ -10,6 +10,8 @@ import NumericalPattern from "@/components/NumericalPatter";
 import { CodeComplete } from "@/components/CodeComplete";
 import { Reader } from "@/components/Reader";
 import { HokieBirdColoring } from "@/components/HokieBirdColor";
+import { HokieBirdMap } from "@/components/HokieBirdMap";
+
 
 const numericalProps = {
   pattern: [2, 4, 6, 8, '__', '__', '__'],
@@ -27,6 +29,10 @@ function BookImage({ image, page }: { image: string, page: Page}) {
       }
       { image === "HokieBirdActivity" &&
         <HokieBirdColoring props={page?.props}></HokieBirdColoring>
+      }
+      {
+        image === "HokieBirdMazeActivity" &&
+        <HokieBirdMap props={page?.props}></HokieBirdMap>
       }
     </div>
   );
@@ -135,6 +141,25 @@ export default async function ActivityPage({ params }: { params: { id: string, p
         }
       },
     ],
+    },
+    
+    {
+      BookId: 3,
+      title: "If-condition and For-loop with HokieBird Maze",
+      blurb: "some blurb",
+      author: "Dev",
+      pages: [
+        {
+          content: ["In this book we will discover how to drag and drop different colors into variables",
+          "We will also learn how to manually complete vairables!",
+        ],
+        image: "HokieBirdMazeActivity",
+        props: {
+            title: "Hokie Bird Maze",
+            hokieBird: "LostHokieBird.png",
+        }
+        }
+      ]
     }
   ] as Book[]
   

@@ -80,6 +80,20 @@ export default async function ActivityBookList({
           image: "HokieBirdActivity",
         },
       ],
+    },
+    {
+      BookId: 3,
+      title: "If-condition and For-loop with HokieBird Maze",
+      blurb: "some blurb",
+      author: "Dev",
+      pages: [
+        {
+          content: ["In this book we will discover how to drag and drop different colors into variables",
+          "We will also learn how to manually complete vairables!",
+        ],
+        image: "/LostHokieBird.png",
+        }
+      ]
     }
 ] as Book[]
 
