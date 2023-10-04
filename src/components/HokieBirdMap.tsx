@@ -36,8 +36,6 @@ export function HokieBirdMap({ props }: { props: any}) {
             condition: condition
         })
         setGood(condition === props.ans?.condition && game.statement === props.ans?.statement);
-        // checkAnswers();
-        console.log(good)
     }
 
     function handleOnDropStatement (e: React.DragEvent, statementNumber: string) {
@@ -49,8 +47,7 @@ export function HokieBirdMap({ props }: { props: any}) {
         }
         setGame(newColors);
         setGood(newColors.condition === props.ans?.condition && newColors.statement === props.ans?.statement);
-        // checkAnswers();
-        console.log(good)
+
     }
 
 
@@ -63,9 +60,7 @@ export function HokieBirdMap({ props }: { props: any}) {
     }
 
     function checkAnswers() {
-        console.log(props)
         setGood(game.condition === props.ans?.condition && game.statement === props.ans?.statement);
-        console.log(good)
     }
 
     return (
@@ -92,10 +87,10 @@ export function HokieBirdMap({ props }: { props: any}) {
                 </div>
                 <div className="flex flex-col flex-grow justify-between ml-4">
                     { good ?
-                        <Link href={`/book/3/${props.pageNum+1}`} className="rounded bg-green-500">  
+                        <Link href={`/book/3/${props.pageNum+1}`} className="rounded bg-green-500 text-center">  
                             <button  onClick={e => checkAnswers()}>Run</button>
                         </Link> :
-                            <button className="rounded bg-green-500" onClick={e => checkAnswers()}>Run</button>
+                            <button className="rounded bg-green-500 text-center" onClick={e => checkAnswers()}>Run</button>
                     }
                     <button className="rounded bg-red-500" onClick={e => handleResetMaze()}>Reset</button>
                 </div>
