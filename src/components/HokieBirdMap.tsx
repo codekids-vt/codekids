@@ -46,7 +46,7 @@ export function HokieBirdMap({ props }: { props: any}) {
             temp
         }
         setGame(newColors);
-        setGood(newColors.condition === props.ans?.condition && newColors.statement === props.ans?.statement);
+        setGood(newColors.condition === props.ans.condition && newColors.statement === props.ans.statement);
 
     }
 
@@ -100,14 +100,14 @@ export function HokieBirdMap({ props }: { props: any}) {
             <div className="mb-36">
                 <div className="flex flex-col flex-grow">
                     <div className="flex flex-row flex-grow justify-around">
+                        <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "hokieBird.turnLeft()")}>hokieBurd.turnLeft()</div>
                         <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "hokieBird.move()")}>hokieBird.move()</div>
                         <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "hokieBird.turnRight()")}>hokieBird.turnRight()</div>
-                        <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "hokieBurd.turnLeft()")}>hokieBurd.turnLeft()</div>
                     </div>
                     <div className="flex flex-row flex-grow justify-around">
-                        <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "hokieBirdCanMove()")}>hokieBirdCanMove()</div>
                         <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "canHokieBirdTurnRight()")}>canHokieBirdTurnRight()</div>
                         <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "canHokieBirdTurnLeft()")}>canHokieBirdTurnLeft()</div>
+                        <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "hokieBirdCanMove()")}>hokieBirdCanMove()</div>
                     </div>
                 </div>
             </div>

@@ -183,7 +183,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             ans: {
               condition: "hokieBirdCanMove()",
               statement: "hokieBird.move()"
-           }
+            }
           }
         },
         {
@@ -196,7 +196,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             ans: {
               condition: "canHokieBirdTurnRight()",
               statement: "hokieBird.turnRight()"
-           }
+            }
           }
         },
         {
@@ -218,7 +218,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze4.png",
-            pageNum: 5
+            pageNum: 5,
+            ans: {
+              condition: "canHokieBirdTurnLeft()",
+              statement: "hokieBird.turnLeft()"
+           }
           }
         },
         {
@@ -227,7 +231,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze5.png",
-            pageNum: 6
+            pageNum: 6,
+            ans: {
+              condition: "hokieBirdCanMove()",
+              statement: "hokieBird.move()"
+           }
           }
         },
         {
@@ -236,7 +244,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze6.png",
-            pageNum: 7
+            pageNum: 7,
+            ans: {
+              condition: "canHokieBirdTurnLeft()",
+              statement: "hokieBird.turnLeft()"
+           }
           }
         },
         {
@@ -245,7 +257,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze7.png",
-            pageNum: 8
+            pageNum: 8,
+            ans: {
+              condition: "hokieBirdCanMove()",
+              statement: "hokieBird.move()"
+           }
           }
         },
         {
@@ -254,7 +270,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze8.png",
-            pageNum: 9
+            pageNum: 9,
+            ans: {
+              condition: "canHokieBirdTurnRight()",
+              statement: "hokieBird.turnRight()"
+           }
           }
         },
         {
@@ -263,7 +283,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze9.png",
-            pageNum: 10
+            pageNum: 10,
+            ans: {
+              condition: "hokieBirdCanMove()",
+              statement: "hokieBird.move()"
+           }
           }
         },
         {
@@ -272,7 +296,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze10.png",
-            pageNum: 11
+            pageNum: 11,
+            ans: {
+              condition: "canHokieBirdTurnRight()",
+              statement: "hokieBird.turnRight()"
+           }
           }
         },
         {
@@ -281,7 +309,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze11.png",
-            pageNum: 12
+            pageNum: 12,
+            ans: {
+              condition: "hokieBirdCanMove()",
+              statement: "hokieBird.move()"
+           }
           }
         },
         {
@@ -290,7 +322,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze12.png",
-            pageNum: 13
+            pageNum: 13,
+            ans: {
+              condition: "canHokieBirdTurnLeft()",
+              statement: "hokieBird.turnLeft()"
+           }
           }
         },
         {
@@ -299,7 +335,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze13.png",
-            pageNum: 14
+            pageNum: 14,
+            ans: {
+              condition: "hokieBirdCanMove()",
+              statement: "hokieBird.move()"
+           }
           }
         },
         {
