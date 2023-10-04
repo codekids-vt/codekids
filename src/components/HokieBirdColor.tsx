@@ -1,5 +1,6 @@
 "use client"
 import React, { useState} from "react";
+import Image from "next/image";
 
 interface HokieBirdColorState {
     head: string,
@@ -95,10 +96,10 @@ export function HokieBirdColoring({ props }: { props: any}) {
     function HokieBird() {      
         return (
           <div className="flex flex-col flex-grow justify-center items-center mx-10">
-            <img src="/HokieBird.png" alt="book image" className={'absolute top-25 left-20'} width={175} height={500} />
-            <img  src="/HokieHead.png" alt="book image" className={`absolute top-25 left-20 img-${colors.head} `} width={175} height={500} />
-            <img src="/HokieBody.png" alt="book image" className={`absolute  top-25 left-20 img-${colors.body} `} width={175} height={500} />
-            <img src="/HokieLegs.png" alt="book image" className={`absolute  top-25 left-20 img-${colors.legs} `} width={175} height={500} />
+            <Image src="/HokieBird.png" alt="book image" className={'absolute top-25 left-20'} width={175} height={500} />
+            <Image  src="/HokieHead.png" alt="book image" className={`absolute top-25 left-20 img-${colors.head} `} width={175} height={500} />
+            <Image src="/HokieBody.png" alt="book image" className={`absolute  top-25 left-20 img-${colors.body} `} width={175} height={500} />
+            <Image src="/HokieLegs.png" alt="book image" className={`absolute  top-25 left-20 img-${colors.legs} `} width={175} height={500} />
           </div>
         )
       }

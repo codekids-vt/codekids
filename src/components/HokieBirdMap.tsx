@@ -1,6 +1,7 @@
 "use client"
 import React, { useState} from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface HokieBirdColorState {
     condition: string,
@@ -65,7 +66,7 @@ export function HokieBirdMap({ props }: { props: any}) {
 
     return (
         <div className="flex flex-col flex-grow justify-between">
-            <img src={`/Maze/${props?.image}`} width={400} height={300}></img>
+            <Image src={`/Maze/${props?.image}`} width={400} height={300} alt="Hokie Bird Maze Image"></Image>
             { !props.finished && 
             <div className="flex flex-row">
                 <div>

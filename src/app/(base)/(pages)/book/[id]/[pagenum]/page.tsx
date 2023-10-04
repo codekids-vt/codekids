@@ -373,7 +373,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
       {books[bookNum] && <ActivityBookDisplay page={page} id={params.id} />}
       {!books[bookNum] &&
         <h1 className="text-center text-lg font-medium">
-          We couldn't find anything for activity {params.id} here!
+          We could not find anything for activity {params.id} here!
         </h1 >
       }
       {/* next and back buttons */}
@@ -395,7 +395,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
       {!page &&
         <div className="flex flex-col flex-grow items-center justify-center">
           <h1 className="text-center text-lg font-medium">
-            We couldn't find anything for this page.
+            We could not find anything for this page.
           </h1 >
         </div>
       }
