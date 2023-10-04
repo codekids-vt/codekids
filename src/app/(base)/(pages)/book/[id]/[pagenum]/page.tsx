@@ -30,8 +30,7 @@ function BookImage({ image, page }: { image: string, page: Page}) {
       { image === "HokieBirdActivity" &&
         <HokieBirdColoring props={page?.props}></HokieBirdColoring>
       }
-      {
-        image === "HokieBirdMazeActivity" &&
+      { image === "HokieBirdMazeActivity" &&
         <HokieBirdMap props={page?.props}></HokieBirdMap>
       }
     </div>
@@ -142,7 +141,6 @@ export default async function ActivityPage({ params }: { params: { id: string, p
       },
     ],
     },
-    
     {
       BookId: 3,
       title: "If-condition and For-loop with HokieBird Maze",
@@ -150,14 +148,36 @@ export default async function ActivityPage({ params }: { params: { id: string, p
       author: "Dev",
       pages: [
         {
-          content: ["In this book we will discover how to drag and drop different colors into variables",
-          "We will also learn how to manually complete vairables!",
-        ],
-        image: "HokieBirdMazeActivity",
-        props: {
-            title: "Hokie Bird Maze",
-            hokieBird: "LostHokieBird.png",
-        }
+          content: ["The game is about to start, and HokieBird is very worried when he got lost. ",
+          "We will use If conditions to help the Hokie bird make it to Lane Stadium",
+          "If Conditions have two outcomes, they are either true or false",
+          "If a value is true the 'code' that immediatley follows is taken.",
+          "If the value is false then the 'code' that follows is ignored",
+          "For the next few examples we will use the commands hokieBird.move() to move the bird forward",
+          "To make the Hokiebird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
+          ],
+          image: "/HokieBirdMaze.png",
+        },
+        {
+          content: ["Since we now know how to move the hokeiBird around, we need to determine what actions we should do.",
+                  "This is where the If statement comes in, we know that if there is a square infront of the bird then we can move",
+                  "We also know that if the road turns right or left we can move the hokie bird",
+                  "We will check multiple conditions",
+                  "The first condition will be hokieBirdCanMove(), this is used to move the bird forward",
+                  "Turning left and right is similar with the functions canHokieBirdTurnLeft() and canHokieBirdTurnRight()",
+                  "Placing any of these commands in the if statement will either make it true or false",
+                  "If the condition is false then the statement in the else block will be used instead"
+          ],
+          image: "/HokieBirdMaze.png",
+        },
+        {
+          content: ["Lets try moving the Hokie Bird forward!",
+                    "The Statements are in red and conditions are in blue"
+            ],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true
+            }
         }
       ]
     }
