@@ -172,12 +172,133 @@ export default async function ActivityPage({ params }: { params: { id: string, p
         },
         {
           content: ["Lets try moving the Hokie Bird forward!",
-                    "The Statements are in red and conditions are in blue"
+                    "The Statements are in red and conditions are in blue",
+                    "When you are ready to test, click the Run button"
             ],
           image: "HokieBirdMazeActivity",
           props: {
-            draggable: true
+            draggable: true,
+            image: "Maze1.png",
+            pageNum: 2
             }
+        },
+        {
+          content: ["Good Work! Now we need to turn the hokieBird", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze2.png",
+            pageNum: 3
+          }
+        },
+        {
+          content: ["Nicely done! Keep Going!", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze3.png",
+            pageNum: 4
+          }
+        },
+        {
+          content: ["Good Work! Now we need to turn the HokieBird", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze4.png",
+            pageNum: 5
+          }
+        },
+        {
+          content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze5.png",
+            pageNum: 6
+          }
+        },
+        {
+          content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze6.png",
+            pageNum: 7
+          }
+        },
+        {
+          content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze7.png",
+            pageNum: 8
+          }
+        },
+        {
+          content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze8.png",
+            pageNum: 9
+          }
+        },
+        {
+          content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze9.png",
+            pageNum: 10
+          }
+        },
+        {
+          content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze10.png",
+            pageNum: 11
+          }
+        },
+        {
+          content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze11.png",
+            pageNum: 12
+          }
+        },
+        {
+          content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze12.png",
+            pageNum: 13
+          }
+        },
+        {
+          content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: true,
+            image: "Maze13.png",
+            pageNum: 14
+          }
+        },
+        {
+          content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
+          image: "HokieBirdMazeActivity",
+          props: {
+            draggable: false,
+            image: "Maze14.png",
+            pageNum: 15,
+            finished: true
+          }
         }
       ]
     }
