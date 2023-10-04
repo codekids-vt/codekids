@@ -1,22 +1,19 @@
 "use client"
 import React, { useState} from "react";
-import { useRouter } from 'next/router'
 import Link from "next/link";
 
 interface HokieBirdColorState {
     condition: string,
-    statement1: string,
-    statement2: string
+    statement: string,
+    // statement2: string
 }
 
 
 export function HokieBirdMap({ props }: { props: any}) {
-
-    // const router = useRouter()
+    const [good, setGood] = useState(false)
     const [game, setGame] = useState({
         condition: "",
-        statement1: "",
-        statement2: ""
+        statement: "",
     });
 
     function handleOnDragStatement(e: React.DragEvent, statement: string) {
@@ -38,6 +35,9 @@ export function HokieBirdMap({ props }: { props: any}) {
             ...game,
             condition: condition
         })
+        setGood(condition === props.ans?.condition && game.statement === props.ans?.statement);
+        // checkAnswers();
+        console.log(good)
     }
 
     function handleOnDropStatement (e: React.DragEvent, statementNumber: string) {
@@ -48,21 +48,26 @@ export function HokieBirdMap({ props }: { props: any}) {
             temp
         }
         setGame(newColors);
+        setGood(newColors.condition === props.ans?.condition && newColors.statement === props.ans?.statement);
+        // checkAnswers();
+        console.log(good)
     }
+
 
     function handleResetMaze() {
         setGame({
             condition: "",
-            statement1: "",
-            statement2: ""
+            statement: "",
+            // statement2: ""
         })
     }
 
-    function checkAnswers(){
-        // router.push(`book/3/${props.pageNum++}`)
+    function checkAnswers() {
+        console.log(props)
+        setGood(game.condition === props.ans?.condition && game.statement === props.ans?.statement);
+        console.log(good)
     }
 
-    console.log(props.finished)
     return (
         <div className="flex flex-col flex-grow justify-between">
             <img src={`/Maze/${props?.image}`} width={400} height={300}></img>
@@ -75,9 +80,9 @@ export function HokieBirdMap({ props }: { props: any}) {
                         ):
                         </label> 
                     </div>
-                    <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement1")} onDragOver={(e) => handleDragOver(e)}>
+                    <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
                         <label htmlFor="ifConditionStatement1" className="flex flex-grow ml-5 mt-5"> 
-                            <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement1}/> 
+                            <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement}/> 
                         </label>
                     </div>
                     {/* <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement2")} onDragOver={(e) => handleDragOver(e)}>
@@ -86,9 +91,12 @@ export function HokieBirdMap({ props }: { props: any}) {
                     </div> */}
                 </div>
                 <div className="flex flex-col flex-grow justify-between ml-4">
-                    <Link href={`/book/3/${props.pageNum+1}`}> 
-                    <button className="rounded bg-green-500" onClick={e => checkAnswers()}>Run</button>
-                    </Link>
+                    { good ?
+                        <Link href={`/book/3/${props.pageNum+1}`} className="rounded bg-green-500">  
+                            <button  onClick={e => checkAnswers()}>Run</button>
+                        </Link> :
+                            <button className="rounded bg-green-500" onClick={e => checkAnswers()}>Run</button>
+                    }
                     <button className="rounded bg-red-500" onClick={e => handleResetMaze()}>Reset</button>
                 </div>
             </div>

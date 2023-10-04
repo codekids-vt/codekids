@@ -179,8 +179,12 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze1.png",
-            pageNum: 2
-            }
+            pageNum: 2,
+            ans: {
+              condition: "hokieBirdCanMove()",
+              statement: "hokieBird.move()"
+           }
+          }
         },
         {
           content: ["Good Work! Now we need to turn the hokieBird", "The Statements are in red and conditions are in blue"],
@@ -188,7 +192,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze2.png",
-            pageNum: 3
+            pageNum: 3,
+            ans: {
+              condition: "canHokieBirdTurnRight()",
+              statement: "hokieBird.turnRight()"
+           }
           }
         },
         {
@@ -197,7 +205,11 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             draggable: true,
             image: "Maze3.png",
-            pageNum: 4
+            pageNum: 4,
+            ans: {
+              condition: "hokieBirdCanMove()",
+              statement: "hokieBird.move()"
+           }
           }
         },
         {
