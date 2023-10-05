@@ -89,13 +89,21 @@ export default async function ActivityBookList({
       pages: [
         {
           content: ["In this book we will discover how to drag and drop different colors into variables",
-          "We will also learn how to manually complete vairables!",
-        ],
-        image: "/LostHokieBird.png",
+            "We will also learn how to manually complete vairables!",
+          ],
+          image: "/LostHokieBird.png",
         }
       ]
+    },
+    {
+      BookId: 4,
+      title: "IO Hand and Hand Park",
+      blurb: "Learning about IO and how to use it in a program",
+      author: "Prapti",
+      pages: [
+      ]
     }
-] as Book[]
+  ] as Book[]
 
   // const pageBookData = [bookData]
 

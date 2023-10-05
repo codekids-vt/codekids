@@ -25,7 +25,10 @@ function BookImage({ image, page }: { image: string, page: Page }) {
   return (
     <div>
       {isImage &&
-        <Image src={image} alt="book image" width={300} height={500} />
+        // give the image max size it can fit
+        <Image src={image} alt="book image" width={500} height={500}
+          className="object-contain max-w-full max-h-full"
+        />
       }
       {image === "HokieBirdActivity" &&
         <HokieBirdColoring props={page?.props}></HokieBirdColoring>
@@ -338,6 +341,28 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             finished: true
           }
         }
+      ]
+    },
+    {
+      BookId: 4,
+      title: "If-condition and For-loop with HokieBird Maze",
+      blurb: "some blurb",
+      author: "Dev",
+      pages: [
+        {
+          content: ["Come to Hand-in-Hand Park in Blacksburg, Virginia.",
+            "You'll find swings to play on, make new friends, and enjoy the shade of big trees.",
+            "It's a fun and friendly place for everyone.",
+            "Take a break from the hustle and bustle and unwind in this peaceful oasis."],
+          image: "/io_book/park.png",
+        },
+        {
+          content: ["Welcome to Hand-in-Hand Park!",
+            "This is a place where you can play with your friends and have fun.",
+            "You can also learn about the different types of trees that grow here.",
+            "Let's get started!"],
+          image: "/io_book/intro.png",
+        },
       ]
     }
   ] as Book[]
