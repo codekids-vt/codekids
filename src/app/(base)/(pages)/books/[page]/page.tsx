@@ -84,7 +84,7 @@ export default async function ActivityBookList({
     {
       BookId: 3,
       title: "If-condition and For-loop with HokieBird Maze",
-      blurb: "some blurb",
+      blurb: "Learn about different variables types, coloring the Hokie Bird!",
       author: "Dev",
       pages: [
         {

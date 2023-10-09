@@ -133,9 +133,18 @@ export default async function ActivityPage({ params }: { params: { id: string, p
     {
       BookId: 3,
       title: "If-condition and For-loop with HokieBird Maze",
-      blurb: "some blurb",
+      blurb: "Learn about if-condition and for-loop with the Hokie Bird Maze!",
       author: "Dev",
       pages: [
+        {
+          content: ["There will be a football game at Virginia Tech this afternoon,",
+            "and HokieBird is one of the participants.",
+            "Unfortunately, HokieBird does not know where Lane Stadium is",
+            "If you would like to help HokieBird, please click the Next button.",
+            "Go to the next page and enter the game.",
+          ],
+          image: "/SadHokieBird.png",
+        },
         {
           content: ["The game is about to start, and HokieBird is very worried when he got lost. ",
             "We will use If conditions to help the Hokie bird make it to Lane Stadium",
@@ -361,7 +370,9 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             "This is a place where you can play with your friends and have fun.",
             "You can also learn about the different types of trees that grow here.",
             "Let's get started!"],
-          image: "/io_book/intro.png",
+          image: "/io_book/intro.png"
+
+
         },
       ]
     }
