@@ -180,6 +180,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze1.png",
             pageNum: 2,
+            bookID: 3,
             ans: {
               condition: "hokieBirdCanMove()",
               statement: "hokieBird.move()"
@@ -193,6 +194,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze2.png",
             pageNum: 3,
+            bookID: 3,
             ans: {
               condition: "canHokieBirdTurnRight()",
               statement: "hokieBird.turnRight()"
@@ -206,6 +208,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze3.png",
             pageNum: 4,
+            bookID: 3,
             ans: {
               condition: "hokieBirdCanMove()",
               statement: "hokieBird.move()"
@@ -219,6 +222,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze4.png",
             pageNum: 5,
+            bookID: 3,
             ans: {
               condition: "canHokieBirdTurnLeft()",
               statement: "hokieBird.turnLeft()"
@@ -232,6 +236,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze5.png",
             pageNum: 6,
+            bookID: 3,
             ans: {
               condition: "hokieBirdCanMove()",
               statement: "hokieBird.move()"
@@ -245,6 +250,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze6.png",
             pageNum: 7,
+            bookID: 3,
             ans: {
               condition: "canHokieBirdTurnLeft()",
               statement: "hokieBird.turnLeft()"
@@ -258,6 +264,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze7.png",
             pageNum: 8,
+            bookID: 3,
             ans: {
               condition: "hokieBirdCanMove()",
               statement: "hokieBird.move()"
@@ -271,6 +278,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze8.png",
             pageNum: 9,
+            bookID: 3,
             ans: {
               condition: "canHokieBirdTurnRight()",
               statement: "hokieBird.turnRight()"
@@ -284,6 +292,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze9.png",
             pageNum: 10,
+            bookID: 3,
             ans: {
               condition: "hokieBirdCanMove()",
               statement: "hokieBird.move()"
@@ -297,6 +306,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze10.png",
             pageNum: 11,
+            bookID: 3,
             ans: {
               condition: "canHokieBirdTurnRight()",
               statement: "hokieBird.turnRight()"
@@ -310,6 +320,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze11.png",
             pageNum: 12,
+            bookID: 3,
             ans: {
               condition: "hokieBirdCanMove()",
               statement: "hokieBird.move()"
@@ -323,6 +334,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze12.png",
             pageNum: 13,
+            bookID: 3,
             ans: {
               condition: "canHokieBirdTurnLeft()",
               statement: "hokieBird.turnLeft()"
@@ -336,6 +348,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: true,
             image: "Maze13.png",
             pageNum: 14,
+            bookID: 3,
             ans: {
               condition: "hokieBirdCanMove()",
               statement: "hokieBird.move()"
@@ -349,9 +362,237 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             draggable: false,
             image: "Maze14.png",
             pageNum: 15,
+            bookID: 3,
             finished: true
           }
-        }
+        },
+      ]
+    },
+    {
+          BookId: 4,
+          title: "If-condition and For-loop with HokieBird Maze Code Completion",
+          blurb: "some blurb",
+          author: "Dev",
+          pages: [
+            {
+              content: ["The game is about to start, and HokieBird is very worried when he got lost. ",
+              "We will use If conditions to help the Hokie bird make it to Lane Stadium",
+              "If Conditions have two outcomes, they are either true or false",
+              "If a value is true the 'code' that immediatley follows is taken.",
+              "If the value is false then the 'code' that follows is ignored",
+              "For the next few examples we will use the commands hokieBird.move() to move the bird forward",
+              "To make the Hokiebird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
+              ],
+              image: "/HokieBirdMaze.png",
+            },
+            {
+              content: ["Since we now know how to move the hokeiBird around, we need to determine what actions we should do.",
+                      "This is where the If statement comes in, we know that if there is a square infront of the bird then we can move",
+                      "We also know that if the road turns right or left we can move the hokie bird",
+                      "We will check multiple conditions",
+                      "The first condition will be hokieBirdCanMove(), this is used to move the bird forward",
+                      "Turning left and right is similar with the functions canHokieBirdTurnLeft() and canHokieBirdTurnRight()",
+                      "Placing any of these commands in the if statement will either make it true or false",
+                      "If the condition is false then the statement in the else block will be used instead"
+              ],
+              image: "/HokieBirdMaze.png",
+            },
+            {
+              content: ["Lets try moving the Hokie Bird forward!",
+                        "The Statements are in red and conditions are in blue",
+                        "When you are ready to test, click the Run button"
+                ],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze1.png",
+                pageNum: 2,
+                bookID: 4,
+                ans: {
+                  condition: "hokieBirdCanMove()",
+                  statement: "hokieBird.move()"
+                }
+              }
+            },
+            {
+              content: ["Good Work! Now we need to turn the hokieBird", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze2.png",
+                pageNum: 3,
+                bookID: 4,
+                ans: {
+                  condition: "canHokieBirdTurnRight()",
+                  statement: "hokieBird.turnRight()"
+                }
+              }
+            },
+            {
+              content: ["Nicely done! Keep Going!", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze3.png",
+                pageNum: 4,
+                bookID: 4,
+                ans: {
+                  condition: "hokieBirdCanMove()",
+                  statement: "hokieBird.move()"
+               }
+              }
+            },
+            {
+              content: ["Good Work! Now we need to turn the HokieBird", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze4.png",
+                pageNum: 5,
+                bookID: 4,
+                ans: {
+                  condition: "canHokieBirdTurnLeft()",
+                  statement: "hokieBird.turnLeft()"
+               }
+              }
+            },
+            {
+              content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze5.png",
+                pageNum: 6,
+                bookID: 4,
+                ans: {
+                  condition: "hokieBirdCanMove()",
+                  statement: "hokieBird.move()"
+               }
+              }
+            },
+            {
+              content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze6.png",
+                pageNum: 7,
+                bookID: 4,
+                ans: {
+                  condition: "canHokieBirdTurnLeft()",
+                  statement: "hokieBird.turnLeft()"
+               }
+              }
+            },
+            {
+              content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze7.png",
+                pageNum: 8,
+                bookID: 4,
+                ans: {
+                  condition: "hokieBirdCanMove()",
+                  statement: "hokieBird.move()"
+               }
+              }
+            },
+            {
+              content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze8.png",
+                pageNum: 9,
+                bookID: 4,
+                ans: {
+                  condition: "canHokieBirdTurnRight()",
+                  statement: "hokieBird.turnRight()"
+               }
+              }
+            },
+            {
+              content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze9.png",
+                pageNum: 10,
+                bookID: 4,
+                ans: {
+                  condition: "hokieBirdCanMove()",
+                  statement: "hokieBird.move()"
+               }
+              }
+            },
+            {
+              content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze10.png",
+                pageNum: 11,
+                bookID: 4,
+                ans: {
+                  condition: "canHokieBirdTurnRight()",
+                  statement: "hokieBird.turnRight()"
+               }
+              }
+            },
+            {
+              content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze11.png",
+                pageNum: 12,
+                bookID: 4,
+                ans: {
+                  condition: "hokieBirdCanMove()",
+                  statement: "hokieBird.move()"
+               }
+              }
+            },
+            {
+              content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze12.png",
+                pageNum: 13,
+                bookID: 4,
+                ans: {
+                  condition: "canHokieBirdTurnLeft()",
+                  statement: "hokieBird.turnLeft()"
+               }
+              }
+            },
+            {
+              content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: true,
+                image: "Maze13.png",
+                pageNum: 14,
+                bookID: 4,
+                ans: {
+                  condition: "hokieBirdCanMove()",
+                  statement: "hokieBird.move()"
+               }
+              }
+            },
+            {
+              content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
+              image: "HokieBirdMazeActivity",
+              props: {
+                type: false,
+                image: "Maze14.png",
+                pageNum: 15,
+                bookID: 4,
+                finished: true
+              }
+            }
       ]
     }
   ] as Book[]

@@ -1,5 +1,5 @@
 "use client"
-import React, { useState} from "react";
+import React, { ChangeEvent, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -60,25 +60,46 @@ export function HokieBirdMap({ props }: { props: any}) {
         })
     }
 
+    function handleInputChangeCondition (e: ChangeEvent<HTMLInputElement>) {
+        e.preventDefault();
+        const val = e.currentTarget.value as string
+        setGame({
+            condition: val,
+            statement: game.statement
+        });
+        setGood(val === props.ans?.condition && game.statement === props.ans?.statement);
+    }
+
+    function handleInputChangeStatement (e: ChangeEvent<HTMLInputElement>) {
+        e.preventDefault();
+        const val = e.currentTarget.value as string
+        setGame({
+            condition: game.condition,
+            statement: val
+        });
+        setGood(game.condition === props.ans?.condition && val === props.ans?.statement);
+    }
+
     function checkAnswers() {
+        console.log(game)
         setGood(game.condition === props.ans?.condition && game.statement === props.ans?.statement);
     }
 
     return (
         <div className="flex flex-col flex-grow justify-between">
-            <Image src={`/Maze/${props?.image}`} width={400} height={300} alt="Hokie Bird Maze Image"></Image>
+            <Image src={`/Maze/${props?.image}`} width={400} height={500} alt="Hokie Bird Maze Image"></Image>
             { !props.finished && 
             <div className="flex flex-row">
                 <div>
                     <div className="flex flex-col" onDrop={(e) => handleOnDropCondition(e, "condition")} onDragOver={(e) => handleDragOver(e)}>
                         <label htmlFor="ifCondition" className="flex flex-grow"> If (
-                            <input key={"ifCondition"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={game.condition}/>
+                            <input key={"ifCondition"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={game.condition} onChange={(e) => handleInputChangeCondition(e)}/>
                         ):
                         </label> 
                     </div>
                     <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
                         <label htmlFor="ifConditionStatement1" className="flex flex-grow ml-5 mt-5"> 
-                            <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement}/> 
+                            <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)}/> 
                         </label>
                     </div>
                     {/* <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement2")} onDragOver={(e) => handleDragOver(e)}>
@@ -88,7 +109,7 @@ export function HokieBirdMap({ props }: { props: any}) {
                 </div>
                 <div className="flex flex-col flex-grow justify-between ml-4">
                     { good ?
-                        <Link href={`/book/3/${props.pageNum+1}`} className="rounded bg-green-500 text-center">  
+                        <Link href={`/book/${props.bookID}/${props.pageNum+1}`} className="rounded bg-green-500 text-center">  
                             <button  onClick={e => checkAnswers()}>Run</button>
                         </Link> :
                             <button className="rounded bg-green-500 text-center" onClick={e => checkAnswers()}>Run</button>
