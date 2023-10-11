@@ -89,9 +89,9 @@ export default async function ActivityBookList({
       pages: [
         {
           content: ["In this book we will discover how to drag and drop different colors into variables",
-          "We will also learn how to manually complete vairables!",
-        ],
-        image: "/LostHokieBird.png",
+            "We will also learn how to manually complete vairables!",
+          ],
+          image: "/LostHokieBird.png",
         }
       ]
     },
