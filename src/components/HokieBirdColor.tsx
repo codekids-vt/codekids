@@ -22,16 +22,6 @@ export function HokieBirdColoring({ props }: { props: any}) {
    
     function HokieBirdColors() {  
 
-        // function handleOnSubmitPart (e: string) {
-        //     // if(e.key === 'Enter') {
-        //         // e.preventDefault();
-        //         const val = e.toLowerCase();
-        //         if (availableParts.includes(val)) {
-        //             setPart(e.currentTarget.value)
-        //         }
-        //     // }
-        // }
-
         function handleOnSubmitColor (e: React.KeyboardEvent<HTMLInputElement>, part: string) {
             if(e.key === 'Enter') {
                 e.preventDefault();
@@ -88,7 +78,6 @@ export function HokieBirdColoring({ props }: { props: any}) {
                                 style={{ width: '100px' }}
                                 placeholder="Body Part"
                                 onBlur={(e) => setPart(e.target.value.toLowerCase())}
-                                // onBlur={(e) => handleOnSubmitPart(e.target.value)}
                                 defaultValue={part}
                                 disabled={!props.type}
                             />
