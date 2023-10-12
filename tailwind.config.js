@@ -12,6 +12,7 @@ module.exports = {
       },
       colors: {
         'primary-green': "#A7BB01",
+        'hover-green': "#C3CD7A",
         'cardGreen': '#C3CD7A',
       },
       fontFamily: {
