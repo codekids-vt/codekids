@@ -128,6 +128,15 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             type: true
           }
         },
+        {
+          content: ["now, you know how to set color for each part, you can type body part with corresponding color"
+          ],
+          image: "HokieBirdActivity",
+          props: {
+            type: true,
+            typeVariable: true,
+          }
+        },
       ],
     },
     {
