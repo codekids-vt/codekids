@@ -11,6 +11,7 @@ import { CodeComplete } from "@/components/CodeComplete";
 import { Reader } from "@/components/Reader";
 import { HokieBirdColoring } from "@/components/HokieBirdColor";
 import { HokieBirdMap } from "@/components/HokieBirdMap";
+import { NumberInputActivity } from "@/components/NumberInputActivity";
 
 
 const numericalProps = {
@@ -40,13 +41,13 @@ function BookImage({ image, page }: { image: string, page: Page }) {
   );
 }
 
-function BookContent({ content, game }: { content: string[], game: string | null }) {
+function BookContent({ content, game, props }: { content: string[], game: string | null, props: any }) {
 
   return (
     <div>
       <ul className="flex flex-col p-4">
         {content.map((line, i) => (
-          <li className="text-center text-lg" key={i}>
+          <li className="text-center text-2xl py-3 font-semibold " key={i}>
             <Reader text={line} />
           </li>
         ))
@@ -55,6 +56,7 @@ function BookContent({ content, game }: { content: string[], game: string | null
       {game && game === "color" && <ColorPattern />}
       {game && game === "number" && <NumericalPattern pattern={numericalProps.pattern} answer={numericalProps.answer} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
+      {game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}
     </div>
   );
 }
@@ -594,8 +596,8 @@ export default async function ActivityPage({ params }: { params: { id: string, p
       ]
     },
     {
-      BookId: 4,
-      title: "If-condition and For-loop with HokieBird Maze",
+      BookId: 5,
+      title: "IO at Hand-in-Hand Park",
       blurb: "some blurb",
       author: "Dev",
       pages: [
@@ -612,9 +614,34 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             "You can also learn about the different types of trees that grow here.",
             "Let's get started!"],
           image: "/io_book/intro.png"
-
-
         },
+        {
+          content: ["Let's start by trying to count the number of slides in the park.", "How many slides are there in the park?"],
+          image: "/io_book/park_1.png",
+          game: "NumberInputActivity",
+          props: {
+            showIOLabels: true,
+            options: [1, 2, 3, 4],
+            answer: 3,
+          }
+        },
+        {
+          content: [
+            "Hope you had fun. Let’s see what the definition for input and output is before we move forward!",
+            "Input",
+            "It is the stuff you tell a computer. It's the information or instructions you give to a computer so it can do something.",
+            "Output",
+            "It is what the computer gives back to you after it does something with the input. It's the computer's answer."
+          ],
+          image: "/io_book/def.png",
+        },
+        {
+          content: [
+            "In every row there are certain number of yellow and pink flowers planted. Observe the pattern in the number of each color flower planted.",
+            "Now guess the number pink flowers that should be planted in the last row? "
+          ],
+          image: "/io_book/def.png",
+        }
       ]
     }
   ] as Book[]
@@ -654,7 +681,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           <div className="flex flex-grow flex-col items-center justify-center bg-gray-100 rounded-2xl">
             <div className="flex flex-col justify-between flex-grow w-full">
               <div className="flex flex-col flex-grow items-center justify-center">
-                <BookContent content={page.content} game={page.game} />
+                <BookContent content={page.content} game={page.game} props={page.props} />
               </div>
               <div className="flex flex-row justify-end p-2">
                 <Link href={`/book/${params.id}/${getNextPageNum()}`}>
