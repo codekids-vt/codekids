@@ -1,5 +1,5 @@
 "use client"
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 interface HokieBirdColorState {
@@ -11,7 +11,7 @@ interface HokieBirdColorState {
 const availableColors = ["red", "orange", "green", "maroon", "gold"]
 const availableParts = ["head", "body", "legs"]
 
-export function HokieBirdColoring({ props }: { props: any}) {
+export function HokieBirdColoring({ props }: { props: any }) {
     const [colors, setColors] = useState({
         head: "",
         body: "",
@@ -19,15 +19,15 @@ export function HokieBirdColoring({ props }: { props: any}) {
     });
 
     const [parts, setParts] = useState(["", "", ""]);
-   
-    function HokieBirdColors() {  
 
-        function handleOnSubmitColor (e: React.KeyboardEvent<HTMLInputElement>, part: string) {
-            if(e.key === 'Enter') {
+    function HokieBirdColors() {
+
+        function handleOnSubmitColor(e: React.KeyboardEvent<HTMLInputElement>, part: string) {
+            if (e.key === 'Enter') {
                 e.preventDefault();
                 const val = e.currentTarget.value.toLowerCase();
                 if (availableColors.includes(val)) {
-                    const temp = colors[part as keyof HokieBirdColorState] =  val
+                    const temp = colors[part as keyof HokieBirdColorState] = val
                     const newColors = {
                         ...colors,
                         temp
@@ -36,26 +36,26 @@ export function HokieBirdColoring({ props }: { props: any}) {
                 }
             }
         }
-    
-        function handleOnDrop (e: React.DragEvent, part: string) {
+
+        function handleOnDrop(e: React.DragEvent, part: string) {
             const color = e.dataTransfer.getData("Color") as string;
-            const temp = colors[part as keyof HokieBirdColorState] =  color
+            const temp = colors[part as keyof HokieBirdColorState] = color
             const newColors = {
                 ...colors,
                 temp
             }
             setColors(newColors);
         }
-          
+
         function handleDragOver(e: React.DragEvent) {
             e.preventDefault()
         }
-    
-    
+
+
         function handleOnDrag(e: React.DragEvent, color: string) {
             e.dataTransfer.setData("Color", color);
         }
-        
+
         return (
             <div className="flex flex-col flex-grow mx-10">
             <div> {props?.type ? (
@@ -182,7 +182,7 @@ export function HokieBirdColoring({ props }: { props: any}) {
     }
 
 
-    function HokieBird() {      
+    function HokieBird() {
         return (
             <div className="flex flex-col flex-grow justify-center items-center mx-10">
                 <Image src="/HokieBird.png" alt="book image" className={'center-left'} width={220} height={500}/>
@@ -191,7 +191,7 @@ export function HokieBirdColoring({ props }: { props: any}) {
                 <Image src="/HokieLegs.png" alt="book image" className={`absolute center-left img-${colors.legs} `} width={220} height={500} />
             </div>
         )
-      }
+    }
 
     return (
         <div className="flex flex-col">

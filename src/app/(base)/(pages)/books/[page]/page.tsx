@@ -84,7 +84,21 @@ export default async function ActivityBookList({
     {
       BookId: 3,
       title: "If-condition and For-loop with HokieBird Maze",
-      blurb: "some blurb",
+      blurb: "Drap and drop exercise",
+      author: "Dev",
+      pages: [
+        {
+          content: ["In this book we will discover how to drag and drop different colors into variables",
+            "We will also learn how to manually complete vairables!",
+          ],
+          image: "/LostHokieBird.png",
+        }
+      ]
+    },
+    {
+      BookId: 4,
+      title: "If-condition and For-loop with HokieBird Maze",
+      blurb: "Code Completion",
       author: "Dev",
       pages: [
         {
