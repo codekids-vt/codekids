@@ -58,11 +58,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
 
         return (
             <div className="flex flex-col flex-grow mx-10">
-            <div> {props?.type ? (
-                props.typeVariable
-                ? "Type the Body Part and Colors over these boxes"
-                : "Type the Colors over these boxes"
-                ) : "Drag the Colors over these boxes"}
+            <div> {props.command}
             </div> 
             <div className="flex flex-col flex-grow justify-center items-center">
                 {props?.typeVariable? 
