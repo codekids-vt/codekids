@@ -127,7 +127,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           image: "HokieBirdActivity",
           props: {
             type: true,
-            command: "Type the Colors over these boxes test 2",
+            command: "Type the Colors over these boxes",
           }
         },
         {
@@ -137,7 +137,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           props: {
             type: true,
             typeVariable: true,
-            command: "Type the Body Part and Colors over these boxes 3",
+            command: "Type the Body Part and Colors over these boxes",
           }
         },
       ],
