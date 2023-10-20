@@ -18,11 +18,15 @@ export function HokieBirdColoring({ props }: { props: any }) {
         legs: ""
     });
 
-    const [part, setPart] = useState("");
-    const [part2, setPart2] = useState("");
-    const [part3, setPart3] = useState("");
+    const [part, setPart] = useState(["","",""]);
 
     function HokieBirdColors() {
+        
+        const handlePart = (index: number, e: { target: { value: string; }; }) => {
+            const updateParts = [...part];
+            updateParts[index] = e.target.value.toLowerCase()
+            setPart(updateParts)
+        }
 
         function handleOnSubmitColor(e: React.KeyboardEvent<HTMLInputElement>, part: string) {
             if (e.key === 'Enter') {
@@ -60,171 +64,71 @@ export function HokieBirdColoring({ props }: { props: any }) {
 
         return (
             <div className="flex flex-col flex-grow mx-10">
-            <div> {props.command}
-            </div> 
-            <div className="flex flex-col flex-grow justify-center items-center">
-                {props?.typeVariable? 
-                    <>
-                        <div
-                            onDrop={(e) => handleOnDrop(e, "head")}
-                            onDragOver={(e) => handleDragOver(e)}
-                            className="flex outline-black mt-6 outline-dotted text-center">
-                            <label htmlFor="headText">
-                                <input
-                                    key={"headText1"}
-                                    type="text"
-                                    className="rounded ml-4"
-                                    style={{ width: '100px' }}
-                                    placeholder="Body Part"
-                                    onBlur={(e) => setPart(e.target.value.toLowerCase())}
-                                    defaultValue={part}
-                                    disabled={!props.type} />
+                <h1 style={{ fontWeight: 'bold' }}>{props.command}</h1>
+                <div className="flex flex-row flex-grow ms-2" style={{ marginRight: '16px' }}>
+                    <div className="flex flex-col flex-grow ms-2">
+                        {availableParts.map((availablePart, index) => (
+                            <div
+                                key={`partText${index}`}
+                                onDrop={(e) => handleOnDrop(e, availablePart)}
+                                onDragOver={(e) => handleDragOver(e)}
+                                className="flex flex-col flex-grow outline-black mt-6 outline-dotted text-center"
+                            >
+                                <label htmlFor={`${part}Text`}>
+                                {props?.typeVariable ? (
+                                    <input
+                                        key={`${part}Text1`}
+                                        type="text"
+                                        className="rounded ml-4"
+                                        style={{ width: '100px' }}
+                                        placeholder="Part"
+                                        onBlur={(e) => handlePart(index, e)}
+                                        defaultValue={part[index]}
+                                        disabled={!props.type} 
+                                    />
+                                ) : (
+                                    `${availablePart}`
+                                )}
                                 {' = '}
                                 <input
-                                    key={"headText2"}
+                                    key={`${part}Text2`}
                                     type="text"
                                     className="rounded ml-4"
                                     style={{ width: '100px' }}
                                     placeholder="Color"
-                                    onKeyDown={(e) => handleOnSubmitColor(e, part)}
-                                    defaultValue={colors[part as keyof HokieBirdColorState]}
-                                    disabled={!props.type} />
-                            </label>
-                        </div>
-                        <div
-                            onDrop={(e) => handleOnDrop(e, "head")}
-                            onDragOver={(e) => handleDragOver(e)}
-                            className="flex outline-black mt-6 outline-dotted text-center">
-                            <label htmlFor="headText">
-                                <input
-                                    key={"headText1"}
-                                    type="text"
-                                    className="rounded ml-4"
-                                    style={{ width: '100px' }}
-                                    placeholder="Body Part"
-                                    onBlur={(e) => setPart2(e.target.value.toLowerCase())}
-                                    defaultValue={part2}
-                                    disabled={!props.type} 
-                                />
-                                {' = '}
-                                <input
-                                    key={"headText2"}
-                                    type="text"
-                                    className="rounded ml-4"
-                                    style={{ width: '100px' }}
-                                    placeholder="Color"
-                                    onKeyDown={(e) => handleOnSubmitColor(e, part2)}
-                                    defaultValue={colors[part2 as keyof HokieBirdColorState]}
-                                    disabled={!props.type} 
-                                />
-                            </label>
-                        </div>
-                        <div 
-                            onDrop={(e) => handleOnDrop(e, "head")} 
-                            onDragOver={(e) => handleDragOver(e)} 
-                            className="flex outline-black mt-6 outline-dotted text-center">
-                            <label htmlFor="headText">
-                                <input
-                                    key={"headText1"}
-                                    type="text"
-                                    className="rounded ml-4"
-                                    style={{ width: '100px' }}
-                                    placeholder="Body Part"
-                                    onBlur={(e) => setPart3(e.target.value.toLowerCase())}
-                                    defaultValue={part3}
+                                    onKeyDown={(e) => handleOnSubmitColor(e, props?.typeVariable ? part[index] : availablePart)}
+                                    defaultValue={props?.typeVariable ? colors[part[index] as keyof HokieBirdColorState] : colors[availablePart as keyof HokieBirdColorState]}
                                     disabled={!props.type}
                                 />
-                                {' = '}
-                                <input
-                                    key={"headText2"}
-                                    type="text"
-                                    className="rounded ml-4"
-                                    style={{ width: '100px' }}
-                                    placeholder="Color"
-                                    onKeyDown={(e) => handleOnSubmitColor(e, part3)}
-                                    defaultValue={colors[part3 as keyof HokieBirdColorState]}
-                                    disabled={!props.type}
-                                />
-                            </label>
+                                </label>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="flex flex-col mt-6" style={{ marginLeft: '16px' }}>
+                        Option:
+                        <div className="flex flex-row mt-6">
+                            {props?.typeVariable ? (
+                            <div className="flex flex-col flex-grow justify-around" style={{ marginRight: '8px' }}>
+                                {availableParts.map((part, index) => (
+                                <div key={`option${index}`} className="mb-2">{part}</div>
+                                ))}
+                            </div>
+                            ) : (
+                            ''
+                            )}
+                            <div className="flex flex-col flex-grow justify-around" style={{ marginLeft: '8px' }}>
+                                <div draggable={props.draggable} className="flex text-red-600 mb-2" onDragStart={(e) => handleOnDrag(e, "red")}>red</div>
+                                <div draggable={props.draggable} className="flex text-orange-600 mb-2" onDragStart={(e) => handleOnDrag(e, "orange")}>orange</div>
+                                <div draggable={props.draggable} className="flex text-green-700 mb-2" onDragStart={(e) => handleOnDrag(e, "green")}>green</div>
+                                <div draggable={props.draggable} className="flex text-maroon mb-2" onDragStart={(e) => handleOnDrag(e, "maroon")}>maroon</div>
+                                <div draggable={props.draggable} className="flex text-yellow-500 mb-2" onDragStart={(e) => handleOnDrag(e, "gold")}>gold</div>  
+                            </div>
                         </div>
-                    </>
-                    :
-                    <>
-                        <div
-                            onDrop={(e) => handleOnDrop(e, "head")}
-                            onDragOver={(e) => handleDragOver(e)}
-                            className="flex outline-black mt-6 outline-dotted text-center">
-                            <label htmlFor="headText">Hokie Head =
-                                <input
-                                    key={"headText"} 
-                                    type="text"
-                                    className="rounded ml-4"
-                                    style={{ width: '100px' }}
-                                    placeholder={props?.type ? "Type Here" : "Drag Here"}
-                                    onKeyDown={(e) => handleOnSubmitColor(e, "head")}
-                                    defaultValue={colors.head}
-                                    disabled={!props.type} />
-                            </label>
-                        </div>
-                        <div 
-                            onDrop={(e) => handleOnDrop(e, "body")}
-                            onDragOver={(e) => handleDragOver(e)}
-                            className="flex outline-black mt-6 outline-dotted text-center">
-                            <label htmlFor="bodyTex">Hokie Body =
-                                <input
-                                    key={"bodyTex"}
-                                    type="text"
-                                    className="rounded ml-4"
-                                    style={{ width: '100px' }}
-                                    placeholder={props?.type ? "Type Here" : "Drag Here"}
-                                    defaultValue={colors.body}
-                                    onKeyDown={(e) => handleOnSubmitColor(e, "body")}
-                                    disabled={!props.type}
-                                />
-                            </label>
-                        </div>
-                        <div 
-                            onDrop={(e) => handleOnDrop(e, "legs")} 
-                            onDragOver={(e) => handleDragOver(e)} 
-                            className="flex outline-black mt-6 outline-dotted text-center">
-                            <label htmlFor="legsText">Hokie Legs = 
-                                <input 
-                                    key={"legsText"} 
-                                    type="text"
-                                    className="rounded ml-4"
-                                    style={{ width: '100px' }}
-                                    placeholder={props?.type ? "Type Here" : "Drag Here"}   
-                                    defaultValue={colors.legs} onKeyDown={(e) => handleOnSubmitColor(e, "legs")} 
-                                    disabled={!props.type}
-                                />
-                            </label>
-                        </div>
-                    </>
-                }
-            </div>
-            <div
-                className="flex flex-col mt-6">
-                Option:
-                {
-                    props?.typeVariable? 
-                    <div className="flex flex-row flex-grow justify-around">
-                        <div>head</div>
-                        <div>body</div>
-                        <div>legs</div>
-                    </div> : ""
-                }
-                <div className="flex flex-row flex-grow justify-around">
-                    <div draggable={props.draggable} className="flex text-red-600"  onDragStart={(e) => handleOnDrag(e, "red")}>red</div>
-                    <div draggable={props.draggable} className="flex text-orange-600" onDragStart={(e) => handleOnDrag(e, "orange")}>orange</div>
-                    <div draggable={props.draggable} className="flex text-green-700" onDragStart={(e) => handleOnDrag(e, "green")}>green</div>
-                    <div draggable={props.draggable} className="flex text-maroon" onDragStart={(e) => handleOnDrag(e, "maroon")}>maroon</div>
-                    <div draggable={props.draggable} className="flex text-yellow-500" onDragStart={(e) => handleOnDrag(e, "gold")}>gold</div>  
+                    </div>
                 </div>
             </div>
-          </div>
         )
     }
-
 
     function HokieBird() {
         return (
