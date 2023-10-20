@@ -22,24 +22,22 @@ export function HokieBirdColoring({ props }: { props: any }) {
 
     function HokieBirdColors() {
         
-        const handlePart = (index: number, e: { target: { value: string; }; }) => {
-            const updateParts = [...part];
-            updateParts[index] = e.target.value.toLowerCase()
-            setPart(updateParts)
+        const handlePart = (index: number, value: string) => {
+            const val = value.toLowerCase();
+            if (availableParts.includes(val)) {
+                const updatedParts = [...part];
+                updatedParts[index] = val;
+                setPart(updatedParts);
+            }
         }
 
-        function handleOnSubmitColor(e: React.KeyboardEvent<HTMLInputElement>, part: string) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                const val = e.currentTarget.value.toLowerCase();
-                if (availableColors.includes(val)) {
-                    const temp = colors[part as keyof HokieBirdColorState] = val
-                    const newColors = {
-                        ...colors,
-                        temp
-                    }
-                    setColors(newColors);
-                }
+        const handleColorChange = (part: string, value: string) => {
+            const val = value.toLowerCase();
+            if (availableColors.includes(val) && part != '') {
+                setColors((prevColors) => ({
+                    ...prevColors,
+                    [part]: val,
+                }));
             }
         }
 
@@ -65,14 +63,14 @@ export function HokieBirdColoring({ props }: { props: any }) {
         return (
             <div className="flex flex-col flex-grow mx-10">
                 <h1 style={{ fontWeight: 'bold' }}>{props.command}</h1>
-                <div className="flex flex-row flex-grow ms-2" style={{ marginRight: '16px' }}>
+                <div className="flex flex-row flex-grow mt-4" style={{ marginRight: '16px' }}>
                     <div className="flex flex-col flex-grow ms-2">
                         {availableParts.map((availablePart, index) => (
                             <div
                                 key={`partText${index}`}
                                 onDrop={(e) => handleOnDrop(e, availablePart)}
                                 onDragOver={(e) => handleDragOver(e)}
-                                className="flex flex-col flex-grow outline-black mt-6 outline-dotted text-center"
+                                className="outline-black mt-6 outline-dotted text-center"
                             >
                                 <label htmlFor={`${part}Text`}>
                                 {props?.typeVariable ? (
@@ -82,7 +80,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                         className="rounded ml-4"
                                         style={{ width: '100px' }}
                                         placeholder="Part"
-                                        onBlur={(e) => handlePart(index, e)}
+                                        onChange={(e) => handlePart(index, e.target.value)}
                                         defaultValue={part[index]}
                                         disabled={!props.type} 
                                     />
@@ -96,7 +94,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                     className="rounded ml-4"
                                     style={{ width: '100px' }}
                                     placeholder="Color"
-                                    onKeyDown={(e) => handleOnSubmitColor(e, props?.typeVariable ? part[index] : availablePart)}
+                                    onChange={(e) => handleColorChange(props?.typeVariable ? part[index] : availablePart, e.target.value)}
                                     defaultValue={props?.typeVariable ? colors[part[index] as keyof HokieBirdColorState] : colors[availablePart as keyof HokieBirdColorState]}
                                     disabled={!props.type}
                                 />
@@ -104,9 +102,9 @@ export function HokieBirdColoring({ props }: { props: any }) {
                             </div>
                         ))}
                     </div>
-                    <div className="flex flex-col mt-6" style={{ marginLeft: '16px' }}>
+                    <div className="flex flex-col" style={{ marginLeft: '16px' }}>
                         Option:
-                        <div className="flex flex-row mt-6">
+                        <div className="flex flex-row">
                             {props?.typeVariable ? (
                             <div className="flex flex-col flex-grow justify-around" style={{ marginRight: '8px' }}>
                                 {availableParts.map((part, index) => (
