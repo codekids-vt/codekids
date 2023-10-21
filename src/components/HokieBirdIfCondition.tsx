@@ -87,35 +87,35 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
 
     return (
         <div className="flex flex-col flex-grow justify-between">
-            <Image src={currentImage} width={400} height={500} alt="Hokie Bird Image"></Image>
-            <div className="flex flex-row">
+            <div className="flex flex-col flex-grow justify-center items-center mb-48 mt-28">
+                <Image src={currentImage} width={400} height={500} alt="Hokie Bird Image" className="absolute "></Image>
+                <Image src="/if_condition/snow02.gif" width={400} height={500} alt="Hokie Bird Image" className="absolute "></Image>
+            </div>
+            <div className="flex flex-row mt-20">
                 <div>
                     <div className="flex flex-col" onDrop={(e) => handleOnDropCondition(e, "condition")} onDragOver={(e) => handleDragOver(e)}>
-                        <label htmlFor="ifCondition" className="flex flex-grow"> If (
+                        <label htmlFor="ifCondition" className="flex flex-grow"> <p className="mx-2">If</p>
                             <input key={"ifCondition"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={props.condition} onChange={(e) => handleInputChangeCondition(e)} />
-                            ):
                         </label>
                     </div>
                     <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
                         <label htmlFor="ifConditionStatement1" className="flex flex-grow ml-5 mt-5">
-                            <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
+                            <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag appropriate action here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
                         </label>
                     </div>
                 </div>
                 <div className="flex flex-col flex-grow justify-between ml-4">
-                    <button className="rounded bg-red-500" onClick={e => handleReset(e)}>Reset</button>
+                    {
+                        props.statements.map((statement: string, i: number) => (
+                            <div key={`ifActivity-${i}`} draggable={props.draggable} className="flex text-blue-600" onDragStart={(e) => handleOnDragStatement(e, statement)}>{statement}</div>
+                        ))
+                    }
                 </div>
             </div>
-            <div className="mb-36">
+            <div className="mt-10 mb-6">
                 <div className="flex flex-col flex-grow">
                     <div className="flex flex-row flex-grow justify-around">
-                        {
-                            props.statements.map((statement: string, i: number) => (
-                                <div key={`ifActivity-${i}`} draggable={props.draggable} className="flex text-blue-600 mt-5" onDragStart={(e) => handleOnDragStatement(e, statement)}>{statement}</div>
-                            ))
-                        }
-                    </div>
-                    <div className="flex flex-row flex-grow justify-around">
+                        <button className="rounded bg-red-500" onClick={e => handleReset(e)}>Reset</button>
                     </div>
                 </div>
             </div>
