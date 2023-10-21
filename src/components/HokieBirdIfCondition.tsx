@@ -89,7 +89,9 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
         <div className="flex flex-col flex-grow justify-between">
             <div className="flex flex-col flex-grow justify-center items-center mb-48 mt-28">
                 <Image src={currentImage} width={400} height={500} alt="Hokie Bird Image" className="absolute "></Image>
-                <Image src="/if_condition/snow02.gif" width={400} height={500} alt="Hokie Bird Image" className="absolute "></Image>
+                {props?.effect &&
+                    <Image src={props.effect} width={400} height={500} alt="Hokie Bird Image Effect" className="absolute "></Image>
+                }
             </div>
             <div className="flex flex-row mt-20">
                 <div>

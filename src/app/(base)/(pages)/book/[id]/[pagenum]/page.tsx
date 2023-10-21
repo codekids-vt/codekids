@@ -671,7 +671,22 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             condition: "weather_is_cold",
             ans: "winter_jacket",
             image: "/if_condition/HokieBirdIf.png",
-            ans_image: "/if_condition/HokieBirdJacket.png"
+            ans_image: "/if_condition/HokieBirdJacket.png",
+            effect: "/if_condition/snow.gif"
+          }
+        },
+        {
+          content: ["Awesome work!",
+            "Now lets give the hokie bird some warmer clothes as its a lot colder out...brrrrr"],
+          image: "HokieBirdIfConditionActivity",
+          props: {
+            draggable: true,
+            statements: ["sunglasses", "umbrella"],
+            condition: "weather_is_raining",
+            ans: "umbrella",
+            image: "/if_condition/HokieBirdIf.png",
+            ans_image: "/if_condition/Umbrella.png",
+            effect: "/if_condition/rain.gif"
           }
         },
       ]
