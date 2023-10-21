@@ -119,7 +119,8 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           ],
           image: "HokieBirdActivity",
           props: {
-            draggable: true
+            draggable: true,
+            command: "Drag the Colors over these boxes",
           }
         },
         {
@@ -129,7 +130,18 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           ],
           image: "HokieBirdActivity",
           props: {
-            type: true
+            type: true,
+            command: "Type the Colors over these boxes",
+          }
+        },
+        {
+          content: ["now, you know how to set color for each part, you can type body part with corresponding color"
+          ],
+          image: "HokieBirdActivity",
+          props: {
+            type: true,
+            typeVariable: true,
+            command: "Type the Body Part and Colors over these boxes",
           }
         },
       ],
