@@ -698,7 +698,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
   const page = books[bookNum].pages[pageNum]
 
   function getNextPageNum() {
-    return pageNum + 1 > books[bookNum].pages.length - 1 ? pageNum : pageNum + 1;
+    return pageNum + 1 > books[bookNum].pages.length - 1 ? false : pageNum + 1;
   }
 
   function getPrevPageNum() {
@@ -711,6 +711,21 @@ export default async function ActivityPage({ params }: { params: { id: string, p
         Back
       </button>
     </Link>
+  )
+
+  const forwardButton = (
+    getNextPageNum() ?
+      <Link href={`/book/${params.id}/${getNextPageNum()}`}>
+        <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-6 rounded-full text-2xl">
+          Next
+        </button>
+      </Link>
+      :
+      <Link href={`/books/1`}>
+        <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-6 rounded-full text-2xl">
+          Home
+        </button>
+      </Link>
   )
 
   return (
@@ -730,13 +745,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
               <div className="flex flex-col flex-grow items-center justify-center">
                 <BookContent content={page.content} game={page.game} />
               </div>
-              <div className="flex flex-row justify-end p-2">
-                <Link href={`/book/${params.id}/${getNextPageNum()}`}>
-                  <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-6 rounded-full text-2xl">
-                    Next
-                  </button>
-                </Link>
-              </div>
+              <div className="flex flex-row justify-end p-2">{forwardButton}</div>
             </div>
           </div>
         </div>
