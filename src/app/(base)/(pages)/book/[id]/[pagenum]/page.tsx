@@ -11,6 +11,7 @@ import { CodeComplete } from "@/components/CodeComplete";
 import { Reader } from "@/components/Reader";
 import { HokieBirdColoring } from "@/components/HokieBirdColor";
 import { HokieBirdMap } from "@/components/HokieBirdMap";
+import { HokieBirdIfCondition } from "@/components/HokieBirdIfCondition";
 
 
 const numericalProps = {
@@ -35,6 +36,9 @@ function BookImage({ image, page }: { image: string, page: Page }) {
       }
       {image === "HokieBirdMazeActivity" &&
         <HokieBirdMap props={page?.props}></HokieBirdMap>
+      }
+      {image === "HokieBirdIfConditionActivity" &&
+        <HokieBirdIfCondition props={page?.props}></HokieBirdIfCondition>
       }
     </div>
   );
@@ -606,7 +610,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
       ]
     },
     {
-      BookId: 4,
+      BookId: 5,
       title: "If-condition and For-loop with HokieBird Maze",
       blurb: "some blurb",
       author: "Dev",
@@ -626,6 +630,49 @@ export default async function ActivityPage({ params }: { params: { id: string, p
           image: "/io_book/intro.png"
 
 
+        },
+      ]
+    },
+    {
+      BookId: 6,
+      title: "If-condition and For-loop with HokieBird Maze",
+      blurb: "some blurb",
+      author: "Dev",
+      pages: [
+        {
+          content: ["We will use If conditions to help the Hokie bird make it to Lane Stadium",
+            "If Conditions have two outcomes, they are either true or false",
+            "If a value is true the 'code' that immediatley follows is taken.",
+            "If the value is false then the 'code' that follows is ignored",],
+          image: "/if_condition/HokieBirdIf.png",
+        },
+        {
+          content: ["Lets start with dragging and drop statements that should happen if the condition is true!",
+            "This means that whatever the if conditon, what is inside the '()', is true the statement will happen!",
+            "Here the HokieBird is outside and the temperature is around 70 degrees, not too cold, not too hot, lets dress him!",
+            "When youre done move onto the next page with the next button"],
+          image: "HokieBirdIfConditionActivity",
+          props: {
+            draggable: true,
+            statements: ["tshirt", "winter_jacket"],
+            condition: "weather_is_hot",
+            ans: "tshirt",
+            image: "/if_condition/HokieBirdIf.png",
+            ans_image: "/if_condition/HokieBirdShirt.png"
+          }
+        },
+        {
+          content: ["Awesome work!",
+            "Now lets give the hokie bird some warmer clothes as its a lot colder out...brrrrr"],
+          image: "HokieBirdIfConditionActivity",
+          props: {
+            draggable: true,
+            statements: ["tshirt", "winter_jacket"],
+            condition: "weather_is_cold",
+            ans: "winter_jacket",
+            image: "/if_condition/HokieBirdIf.png",
+            ans_image: "/if_condition/HokieBirdJacket.png"
+          }
         },
       ]
     }

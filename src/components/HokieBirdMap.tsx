@@ -66,6 +66,7 @@ export function HokieBirdMap({ props }: { props: any }) {
             condition: val,
             statement: game.statement
         });
+        console.log("here")
         setGood(val === props.ans?.condition && game.statement === props.ans?.statement);
     }
 
@@ -81,6 +82,7 @@ export function HokieBirdMap({ props }: { props: any }) {
 
     function checkAnswers() {
         console.log(game)
+        console.log(good)
         setGood(game.condition === props.ans?.condition && game.statement === props.ans?.statement);
     }
 

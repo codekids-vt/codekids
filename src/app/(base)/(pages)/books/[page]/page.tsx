@@ -81,39 +81,47 @@ export default async function ActivityBookList({
         },
       ],
     },
+    // {
+    //   BookId: 3,
+    //   title: "If-condition and For-loop with HokieBird Maze",
+    //   blurb: "Drap and drop exercise",
+    //   author: "Dev",
+    //   pages: [
+    //     {
+    //       content: ["In this book we will discover how to drag and drop different colors into variables",
+    //         "We will also learn how to manually complete vairables!",
+    //       ],
+    //       image: "/LostHokieBird.png",
+    //     }
+    //   ]
+    // },
+    // {
+    //   BookId: 4,
+    //   title: "If-condition and For-loop with HokieBird Maze",
+    //   blurb: "Code Completion",
+    //   author: "Dev",
+    //   pages: [
+    //     {
+    //       content: ["In this book we will discover how to drag and drop different colors into variables",
+    //         "We will also learn how to manually complete vairables!",
+    //       ],
+    //       image: "/LostHokieBird.png",
+    //     }
+    //   ]
+    // },
     {
-      BookId: 3,
-      title: "If-condition and For-loop with HokieBird Maze",
-      blurb: "Drap and drop exercise",
-      author: "Dev",
-      pages: [
-        {
-          content: ["In this book we will discover how to drag and drop different colors into variables",
-            "We will also learn how to manually complete vairables!",
-          ],
-          image: "/LostHokieBird.png",
-        }
-      ]
-    },
-    {
-      BookId: 4,
-      title: "If-condition and For-loop with HokieBird Maze",
-      blurb: "Code Completion",
-      author: "Dev",
-      pages: [
-        {
-          content: ["In this book we will discover how to drag and drop different colors into variables",
-            "We will also learn how to manually complete vairables!",
-          ],
-          image: "/LostHokieBird.png",
-        }
-      ]
-    },
-    {
-      BookId: 4,
+      BookId: 5,
       title: "IO Hand and Hand Park",
       blurb: "Learning about IO and how to use it in a program",
       author: "Prapti",
+      pages: [
+      ]
+    },
+    {
+      BookId: 6,
+      title: "Hokie Bird if Conditions",
+      blurb: "Learn about if conditons",
+      author: "Lin",
       pages: [
       ]
     }

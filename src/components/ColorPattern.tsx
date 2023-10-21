@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 
 interface colorState {
-    pattern: string[],
-    userInput: string[],
-    message: string
+  pattern: string[],
+  userInput: string[],
+  message: string
 }
 
 export function ColorPattern() {
@@ -12,13 +12,13 @@ export function ColorPattern() {
   const [userInput, setUserInput] = useState(['']);
   const [message, setMessage] = useState('Repeat the pattern!');
 
-  const  handleColorSelection = (color: string) => {
+  const handleColorSelection = (color: string) => {
     // const { pattern, userInput } = this.state;
 
     if (color === pattern[userInput.length]) {
       const newUserInput = [...userInput, color];
       setUserInput(newUserInput);
-  
+
       if (newUserInput.length === pattern.length) {
         setMessage('Great job! You completed the pattern.')
       }
@@ -29,19 +29,19 @@ export function ColorPattern() {
   }
 
   const renderCurrentPattern = () => {
-    return userInput.map((color: string,  i: number) => (
-        <button
+    return userInput.map((color: string, i: number) => (
+      <button
         className={`font-bold py-2 px-4 rounded text-${color}-500`}
         key={`userPattern-${i}`}
         disabled
-        >{color}</button>
-      ));
+      >{color}</button>
+    ));
   }
 
   const renderColorButtons = () => {
     const colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple'];
 
-    return colors.map((color: string,  i: number) => (
+    return colors.map((color: string, i: number) => (
       <button
         className={`font-bold py-2 px-4 rounded text-${color}-500`}
         key={i}
@@ -52,12 +52,13 @@ export function ColorPattern() {
 
   const renderResetSelection = () => {
     return (
-        <button
+      <button
         className='font-extrabold rounded mx-2'
-        onClick={()=>{ setUserInput([]),  setMessage('Repeat the pattern!')}}>
-            Reset
-        </button>
-  )}
+        onClick={() => { setUserInput([]), setMessage('Repeat the pattern!') }}>
+        Reset
+      </button>
+    )
+  }
 
   return (
     <div className='flex flex-col p-2'>
