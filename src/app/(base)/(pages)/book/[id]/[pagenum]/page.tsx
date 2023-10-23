@@ -47,8 +47,8 @@ function BookImage({ image, page }: { image: string, page: Page }) {
 function BookContent({ content, game }: { content: string[], game: string | null }) {
 
   return (
-    <div>
-      <ul className="flex flex-col p-4">
+    <div className=" h-[calc(100vh-14rem)] overflow-y-scroll scrollbar-hide flex flex-col items-center justify-center w-full">
+      <ul className="flex flex-col p-4 space-y-4">
         {content.map((line, i) => (
           <li className="text-center text-lg" key={i}>
             <Reader text={line} />
@@ -100,7 +100,6 @@ export default async function ActivityPage({ params }: { params: { id: string, p
         </button>
       </Link>
   )
-
   return (
     <div className="md:px-24 py-2 h-[calc(100vh-5rem)] flex">
       {page && (
@@ -113,9 +112,9 @@ export default async function ActivityPage({ params }: { params: { id: string, p
               <div className="flex flex-row justify-start p-2">{backButton}</div>
             </div>
           </div>
-          <div className="flex flex-grow flex-col items-center justify-center bg-gray-100 rounded-2xl">
-            <div className="flex flex-col justify-between flex-grow w-full">
-              <div className="flex flex-col flex-grow items-center justify-center">
+          <div className="flex flex-col items-center justify-center bg-gray-100 rounded-2xl">
+            <div className="flex flex-col justify-between w-full">
+              <div className="flex flex-col items-center justify-center">
                 <BookContent content={page.content} game={page.game} />
               </div>
               <div className="flex flex-row justify-end p-2">{forwardButton}</div>
