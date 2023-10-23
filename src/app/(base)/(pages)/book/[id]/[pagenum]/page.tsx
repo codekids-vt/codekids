@@ -640,6 +640,16 @@ export default async function ActivityPage({ params }: { params: { id: string, p
       author: "Dev",
       pages: [
         {
+          content: ["If-condition is to see if the conditions is satistfied or not to determine which situation to reach.",
+            "If-statement diagram is a very common strategy to solve if-condition problems.",
+            "You can try the following question with the if-statement diagram on the left.",
+            "Example:",
+            "If it is a hot day, then HokieBird need to wear a T-shirt.",
+            "If it is a chilly day, then HokieBird need to wear a Winter-jacket.",
+          ],
+          image: "/if_condition/if-statement.png",
+        },
+        {
           content: ["We will use If conditions to help the Hokie bird make it to Lane Stadium",
             "If Conditions have two outcomes, they are either true or false",
             "If a value is true the 'code' that immediatley follows is taken.",
@@ -657,8 +667,8 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             statements: ["tshirt", "winter_jacket"],
             condition: "weather_is_hot",
             ans: "tshirt",
-            image: "/if_condition/HokieBirdIf.png",
-            ans_image: "/if_condition/HokieBirdShirt.png"
+            image: "/if_condition/sun.gif",
+            ans_image: "/if_condition/HokieBirdHot.gif"
           }
         },
         {
@@ -687,6 +697,79 @@ export default async function ActivityPage({ params }: { params: { id: string, p
             image: "/if_condition/HokieBirdIf.png",
             ans_image: "/if_condition/Umbrella.png",
             effect: "/if_condition/rain.gif"
+          }
+          
+        },
+        {
+          content: ["Awesome work!",
+            "Now lets give the hokie bird some warmer clothes as its a lot colder out...brrrrr"],
+          image: "HokieBirdIfConditionActivity",
+          props: {
+            draggable: true,
+            statements: ["cry", "laugh"],
+            condition: "rains_without_an_umbrella",
+            ans: "cry",
+            image: "/if_condition/HokieBirdIf.png",
+            ans_image: "/if_condition/HokieBirdCry.jpg",
+            effect: "/if_condition/rain.gif"
+          }
+          
+        },
+        {
+          content: ["We all make different facial expressions based on different emotions. ",
+            "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
+          image: "/if_condition/mode.gif",
+        },
+        {
+          content: ["We all make different facial expressions based on different emotions. ",
+            "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
+          image: "HokieBirdIfConditionActivity",
+          props: {
+            draggable: true,
+            statements: ["cry", "laugh", "surprised", "angry"],
+            condition: "Hokie feels sad",
+            ans: "cry",
+            image: "/if_condition/mode.gif",
+            ans_image: "/if_condition/sad.png",
+          }
+        },
+        {
+          content: ["We all make different facial expressions based on different emotions. ",
+            "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
+          image: "HokieBirdIfConditionActivity",
+          props: {
+            draggable: true,
+            statements: ["cry", "laugh", "surprised", "angry"],
+            condition: "Hokie feels happy",
+            ans: "laugh",
+            image: "/if_condition/mode.gif",
+            ans_image: "/if_condition/happy.png",
+          }
+        },
+        {
+          content: ["We all make different facial expressions based on different emotions. ",
+            "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
+          image: "HokieBirdIfConditionActivity",
+          props: {
+            draggable: true,
+            statements: ["cry", "laugh", "surprised", "angry"],
+            condition: "Hokie feels angry",
+            ans: "angry",
+            image: "/if_condition/mode.gif",
+            ans_image: "/if_condition/angry.png",
+          }
+        },
+        {
+          content: ["We all make different facial expressions based on different emotions. ",
+            "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
+          image: "HokieBirdIfConditionActivity",
+          props: {
+            draggable: true,
+            statements: ["cry", "laugh", "surprised", "angry"],
+            condition: "Hokie feels surprised",
+            ans: "surprised",
+            image: "/if_condition/mode.gif",
+            ans_image: "/if_condition/surprise.png",
           }
         },
       ]
