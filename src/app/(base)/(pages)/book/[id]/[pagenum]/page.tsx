@@ -102,7 +102,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
   )
 
   return (
-    <div className="md:px-48 py-2 h-[calc(100vh-9rem)] flex">
+    <div className="md:px-48 py-2 h-[calc(100vh-5rem)] flex">
       {page && (
         <div className="grid grid-cols-2 bg-white rounded-2xl shadow-xl p-2 flex-grow">
           <div className="flex flex-col flex-grow items-center">
