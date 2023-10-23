@@ -66,7 +66,6 @@ export function HokieBirdMap({ props }: { props: any }) {
             condition: val,
             statement: game.statement
         });
-        console.log("here")
         setGood(val === props.ans?.condition && game.statement === props.ans?.statement);
     }
 
@@ -81,8 +80,6 @@ export function HokieBirdMap({ props }: { props: any }) {
     }
 
     function checkAnswers() {
-        console.log(game)
-        console.log(good)
         setGood(game.condition === props.ans?.condition && game.statement === props.ans?.statement);
     }
 
@@ -93,9 +90,9 @@ export function HokieBirdMap({ props }: { props: any }) {
                 <div className="flex flex-row">
                     <div>
                         <div className="flex flex-col" onDrop={(e) => handleOnDropCondition(e, "condition")} onDragOver={(e) => handleDragOver(e)}>
-                            <label htmlFor="ifCondition" className="flex flex-grow"> If (
+                            <label htmlFor="ifCondition" className="flex flex-grow"> <p className="mr-4">If</p>
                                 <input key={"ifCondition"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={game.condition} onChange={(e) => handleInputChangeCondition(e)} />
-                                ):
+
                             </label>
                         </div>
                         <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
@@ -108,34 +105,33 @@ export function HokieBirdMap({ props }: { props: any }) {
                         <input key={"ifConditionStatement2"} type="text" className="rounded ml-5" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement2}/> 
                     </div> */}
                     </div>
+                </div>
+            }
+            {!props.finished &&
+                <div className="mb-36 mt-10">
+                    <div className="flex flex-col flex-grow">
+                        <div className="flex flex-row flex-grow justify-around">
+                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "turn_left")}>turn_left</div>
+                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "move")}>move</div>
+                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "turn_right")}>turn_right</div>
+                        </div>
+                        <div className="flex flex-row flex-grow justify-around">
+                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_turn_right")}>can_turn_right</div>
+                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_turn_left")}>can_turn_left</div>
+                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_move_forward")}>can_move_forward</div>
+                        </div>
+                    </div>
                     <div className="flex flex-col flex-grow justify-between ml-4">
                         {good ?
                             <Link href={`/book/${props.bookID}/${props.pageNum + 1}`} className="rounded bg-green-500 text-center">
                                 <button onClick={e => checkAnswers()}>Run</button>
                             </Link> :
-                            <button className="rounded bg-green-500 text-center" onClick={e => checkAnswers()}>Run</button>
+                            <button className="rounded bg-green-500 text-center mx-5 mb-5 mt-5" onClick={e => checkAnswers()}>Run</button>
                         }
-                        <button className="rounded bg-red-500" onClick={e => handleResetMaze()}>Reset</button>
+                        <button className="rounded bg-red-500 mx-5" onClick={e => handleResetMaze()}>Reset</button>
                     </div>
                 </div>
             }
-            {!props.finished &&
-                <div className="mb-36">
-                    <div className="flex flex-col flex-grow">
-                        <div className="flex flex-row flex-grow justify-around">
-                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "hokieBird.turnLeft()")}>hokieBurd.turnLeft()</div>
-                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "hokieBird.move()")}>hokieBird.move()</div>
-                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "hokieBird.turnRight()")}>hokieBird.turnRight()</div>
-                        </div>
-                        <div className="flex flex-row flex-grow justify-around">
-                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "canHokieBirdTurnRight()")}>canHokieBirdTurnRight()</div>
-                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "canHokieBirdTurnLeft()")}>canHokieBirdTurnLeft()</div>
-                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "hokieBirdCanMove()")}>hokieBirdCanMove()</div>
-                        </div>
-                    </div>
-                </div>
-            }
-
         </div>
     )
 }
