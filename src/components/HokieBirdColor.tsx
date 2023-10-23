@@ -103,7 +103,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                         ))}
                     </div>
                     <div className="flex flex-col" style={{ marginLeft: '16px' }}>
-                        Option:
+                        Options:
                         <div className="flex flex-row">
                             {props?.typeVariable ? (
                             <div className="flex flex-col flex-grow justify-around" style={{ marginRight: '8px' }}>
