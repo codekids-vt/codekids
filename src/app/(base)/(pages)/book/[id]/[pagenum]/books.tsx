@@ -87,22 +87,22 @@ export const books: Book[] = [
     blurb: "Learn about if-condition and for-loop with the Hokie Bird Maze!",
     author: "Dev",
     pages: [
-      {
-        content: ["There will be a football game at Virginia Tech this afternoon,",
-          "and HokieBird is one of the participants.",
-          "Unfortunately, HokieBird does not know where Lane Stadium is",
-          "If you would like to help HokieBird, please click the Next button.",
-          "Go to the next page and enter the game.",
-        ],
-        image: "/SadHokieBird.png",
-      },
+      // {
+      //   content: ["There will be a football game at Virginia Tech this afternoon,",
+      //     "and HokieBird is one of the participants.",
+      //     "Unfortunately, HokieBird does not know where Lane Stadium is",
+      //     "If you would like to help HokieBird, please click the Next button.",
+      //     "Go to the next page and enter the game.",
+      //   ],
+      //   image: "/SadHokieBird.png",
+      // },
       {
         content: ["The game is about to start, and HokieBird is very worried when he got lost. ",
           "We will use If conditions to help the Hokie bird make it to Lane Stadium",
           "If Conditions have two outcomes, they are either true or false",
           "If a value is true the 'code' that immediatley follows is taken.",
           "If the value is false then the 'code' that follows is ignored",
-          "For the next few examples we will use the commands hokieBird.move() to move the bird forward",
+          "For the next few examples we will use the commands move to move the bird forward",
           "To make the Hokiebird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
         ],
         image: "/HokieBirdMaze.png",
@@ -112,8 +112,8 @@ export const books: Book[] = [
           "This is where the If statement comes in, we know that if there is a square infront of the bird then we can move",
           "We also know that if the road turns right or left we can move the hokie bird",
           "We will check multiple conditions",
-          "The first condition will be hokieBirdCanMove(), this is used to move the bird forward",
-          "Turning left and right is similar with the functions canHokieBirdTurnLeft() and canHokieBirdTurnRight()",
+          "The first condition will be can_move_forward, this is used to move the bird forward",
+          "Turning left and right is similar with the functions can_turn_left and can_turn_right",
           "Placing any of these commands in the if statement will either make it true or false",
           "If the condition is false then the statement in the else block will be used instead"
         ],
@@ -131,8 +131,8 @@ export const books: Book[] = [
           pageNum: 2,
           bookID: 3,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -145,8 +145,8 @@ export const books: Book[] = [
           pageNum: 3,
           bookID: 3,
           ans: {
-            condition: "canHokieBirdTurnRight()",
-            statement: "hokieBird.turnRight()"
+            condition: "can_turn_right",
+            statement: "turn_right"
           }
         }
       },
@@ -159,8 +159,8 @@ export const books: Book[] = [
           pageNum: 4,
           bookID: 3,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -173,8 +173,8 @@ export const books: Book[] = [
           pageNum: 5,
           bookID: 3,
           ans: {
-            condition: "canHokieBirdTurnLeft()",
-            statement: "hokieBird.turnLeft()"
+            condition: "can_turn_left",
+            statement: "turn_left"
           }
         }
       },
@@ -187,8 +187,8 @@ export const books: Book[] = [
           pageNum: 6,
           bookID: 3,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -201,8 +201,8 @@ export const books: Book[] = [
           pageNum: 7,
           bookID: 3,
           ans: {
-            condition: "canHokieBirdTurnLeft()",
-            statement: "hokieBird.turnLeft()"
+            condition: "can_turn_left",
+            statement: "turn_left"
           }
         }
       },
@@ -215,8 +215,8 @@ export const books: Book[] = [
           pageNum: 8,
           bookID: 3,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -229,8 +229,8 @@ export const books: Book[] = [
           pageNum: 9,
           bookID: 3,
           ans: {
-            condition: "canHokieBirdTurnRight()",
-            statement: "hokieBird.turnRight()"
+            condition: "can_turn_right",
+            statement: "turn_right"
           }
         }
       },
@@ -243,8 +243,8 @@ export const books: Book[] = [
           pageNum: 10,
           bookID: 3,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -257,8 +257,8 @@ export const books: Book[] = [
           pageNum: 11,
           bookID: 3,
           ans: {
-            condition: "canHokieBirdTurnRight()",
-            statement: "hokieBird.turnRight()"
+            condition: "can_turn_right",
+            statement: "turn_right"
           }
         }
       },
@@ -271,8 +271,8 @@ export const books: Book[] = [
           pageNum: 12,
           bookID: 3,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -285,7 +285,7 @@ export const books: Book[] = [
           pageNum: 13,
           bookID: 3,
           ans: {
-            condition: "canHokieBirdTurnLeft()",
+            condition: "can_turn_left",
             statement: "hokieBird.turnLeft()"
           }
         }
@@ -299,8 +299,8 @@ export const books: Book[] = [
           pageNum: 14,
           bookID: 3,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -329,7 +329,7 @@ export const books: Book[] = [
           "If Conditions have two outcomes, they are either true or false",
           "If a value is true the 'code' that immediatley follows is taken.",
           "If the value is false then the 'code' that follows is ignored",
-          "For the next few examples we will use the commands hokieBird.move() to move the bird forward",
+          "For the next few examples we will use the commands move to move the bird forward",
           "To make the Hokiebird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
         ],
         image: "/HokieBirdMaze.png",
@@ -339,8 +339,8 @@ export const books: Book[] = [
           "This is where the If statement comes in, we know that if there is a square infront of the bird then we can move",
           "We also know that if the road turns right or left we can move the hokie bird",
           "We will check multiple conditions",
-          "The first condition will be hokieBirdCanMove(), this is used to move the bird forward",
-          "Turning left and right is similar with the functions canHokieBirdTurnLeft() and canHokieBirdTurnRight()",
+          "The first condition will be can_move_forward, this is used to move the bird forward",
+          "Turning left and right is similar with the functions can_turn_left and can_turn_right",
           "Placing any of these commands in the if statement will either make it true or false",
           "If the condition is false then the statement in the else block will be used instead"
         ],
@@ -358,8 +358,8 @@ export const books: Book[] = [
           pageNum: 2,
           bookID: 4,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -372,8 +372,8 @@ export const books: Book[] = [
           pageNum: 3,
           bookID: 4,
           ans: {
-            condition: "canHokieBirdTurnRight()",
-            statement: "hokieBird.turnRight()"
+            condition: "can_turn_right",
+            statement: "turn_right"
           }
         }
       },
@@ -386,8 +386,8 @@ export const books: Book[] = [
           pageNum: 4,
           bookID: 4,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -400,7 +400,7 @@ export const books: Book[] = [
           pageNum: 5,
           bookID: 4,
           ans: {
-            condition: "canHokieBirdTurnLeft()",
+            condition: "can_turn_left",
             statement: "hokieBird.turnLeft()"
           }
         }
@@ -414,8 +414,8 @@ export const books: Book[] = [
           pageNum: 6,
           bookID: 4,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -428,7 +428,7 @@ export const books: Book[] = [
           pageNum: 7,
           bookID: 4,
           ans: {
-            condition: "canHokieBirdTurnLeft()",
+            condition: "can_turn_left",
             statement: "hokieBird.turnLeft()"
           }
         }
@@ -442,8 +442,8 @@ export const books: Book[] = [
           pageNum: 8,
           bookID: 4,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -456,8 +456,8 @@ export const books: Book[] = [
           pageNum: 9,
           bookID: 4,
           ans: {
-            condition: "canHokieBirdTurnRight()",
-            statement: "hokieBird.turnRight()"
+            condition: "can_turn_right",
+            statement: "turn_right"
           }
         }
       },
@@ -470,8 +470,8 @@ export const books: Book[] = [
           pageNum: 10,
           bookID: 4,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -484,8 +484,8 @@ export const books: Book[] = [
           pageNum: 11,
           bookID: 4,
           ans: {
-            condition: "canHokieBirdTurnRight()",
-            statement: "hokieBird.turnRight()"
+            condition: "can_turn_right",
+            statement: "turn_right"
           }
         }
       },
@@ -498,8 +498,8 @@ export const books: Book[] = [
           pageNum: 12,
           bookID: 4,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
@@ -512,7 +512,7 @@ export const books: Book[] = [
           pageNum: 13,
           bookID: 4,
           ans: {
-            condition: "canHokieBirdTurnLeft()",
+            condition: "can_turn_left",
             statement: "hokieBird.turnLeft()"
           }
         }
@@ -526,8 +526,8 @@ export const books: Book[] = [
           pageNum: 14,
           bookID: 4,
           ans: {
-            condition: "hokieBirdCanMove()",
-            statement: "hokieBird.move()"
+            condition: "can_move_forward",
+            statement: "move"
           }
         }
       },
