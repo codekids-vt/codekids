@@ -664,7 +664,7 @@ export const books: Book[] = [
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie feels sad",
           ans: "cry",
-          image: "/if_condition/mode.gif",
+          image: "/if_condition/mood.gif",
           ans_image: "/if_condition/sad.png",
         }
       },
@@ -677,7 +677,7 @@ export const books: Book[] = [
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie feels happy",
           ans: "laugh",
-          image: "/if_condition/mode.gif",
+          image: "/if_condition/mood.gif",
           ans_image: "/if_condition/happy.png",
         }
       },
@@ -690,7 +690,7 @@ export const books: Book[] = [
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie feels angry",
           ans: "angry",
-          image: "/if_condition/mode.gif",
+          image: "/if_condition/mood.gif",
           ans_image: "/if_condition/angry.png",
         }
       },
@@ -703,7 +703,7 @@ export const books: Book[] = [
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie feels surprised",
           ans: "surprised",
-          image: "/if_condition/mode.gif",
+          image: "/if_condition/mood.gif",
           ans_image: "/if_condition/surprise.png",
         }
       },
