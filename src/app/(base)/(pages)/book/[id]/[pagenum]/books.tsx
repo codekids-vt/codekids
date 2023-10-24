@@ -629,7 +629,7 @@ export const books: Book[] = [
           statements: ["sunglasses", "umbrella"],
           condition: "weather_is_raining",
           ans: "umbrella",
-          image: "/if_condition/HokieBirdIf.png",
+          image: "/if_condition/HokieBirdIf2.png",
           ans_image: "/if_condition/Umbrella.png",
           effect: "/if_condition/rain.gif"
         }
@@ -644,7 +644,7 @@ export const books: Book[] = [
           statements: ["cry", "laugh"],
           condition: "rains_without_an_umbrella",
           ans: "cry",
-          image: "/if_condition/HokieBirdIf.png",
+          image: "/if_condition/HokieBirdIf2.png",
           ans_image: "/if_condition/HokieBirdCry.jpg",
           effect: "/if_condition/rain.gif"
         }
@@ -653,7 +653,7 @@ export const books: Book[] = [
       {
         content: ["We all make different facial expressions based on different emotions. ",
           "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
-        image: "/if_condition/mode.gif",
+        image: "/if_condition/mood.gif",
       },
       {
         content: ["We all make different facial expressions based on different emotions. ",
