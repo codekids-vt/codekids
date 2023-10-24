@@ -1,17 +1,11 @@
 import React from "react"
 import Footer from "@/components/Footer";
 
-import { headers } from "next/headers";
-
 export default function BaseLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
-  const headersList = headers();
-  const pathname = headersList.get("x-invoke-path") || "";
-  const shouldRenderFooter = !pathname.includes("book");
-
+  }) {
   return (
     <>
       <div className="flex-grow">
@@ -26,7 +20,7 @@ export default function BaseLayout({
         />
         {children}
       </div>
-      {shouldRenderFooter && <Footer />}
+      <Footer />
     </>
   );
 }
