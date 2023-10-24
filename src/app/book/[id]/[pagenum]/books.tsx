@@ -548,7 +548,7 @@ export const books: Book[] = [
     BookId: 5,
     title: "IO at Hand-in-Hand Park",
     blurb: "Learn about how a computer can compute patterns!",
-    author: "Dev",
+    author: "Prapti",
     pages: [
       {
         content: ["Come to Hand-in-Hand Park in Blacksburg, Virginia.",
@@ -563,9 +563,34 @@ export const books: Book[] = [
           "You can also learn about the different types of trees that grow here.",
           "Let's get started!"],
         image: "/io_book/intro.png"
-
-
       },
+      {
+        content: ["Let's start by trying to count the number of slides in the park.", "How many slides are there in the park?"],
+        image: "/io_book/park_1.png",
+        game: "NumberInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [1, 2, 3, 4],
+          answer: 3,
+        }
+      },
+      {
+        content: [
+          "Hope you had fun. Let's see what the definition for input and output is before we move forward!",
+          "Input",
+          "It is the stuff you tell a computer. It's the information or instructions you give to a computer so it can do something.",
+          "Output",
+          "It is what the computer gives back to you after it does something with the input. It's the computer's answer."
+        ],
+        image: "/io_book/def.png",
+      },
+      {
+        content: [
+          "In every row there are certain number of yellow and pink flowers planted. Observe the pattern in the number of each color flower planted.",
+          "Now guess the number pink flowers that should be planted in the last row? "
+        ],
+        image: "/io_book/def.png",
+      }
     ]
   },
   {

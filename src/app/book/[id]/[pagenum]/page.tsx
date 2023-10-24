@@ -15,6 +15,7 @@ import { HokieBirdIfCondition } from "@/components/HokieBirdIfCondition";
 import { books } from "./books"
 import Navbar from "@/components/Navbar";
 import { PythonTutor } from "@/components/PythonTutor";
+import { NumberInputActivity } from "@/components/NumberInputActivity";
 
 const numericalProps = {
   pattern: [2, 4, 6, 8, '__', '__', '__'],
@@ -36,13 +37,12 @@ function BookImage({ image, page }: { image: string, page: Page }) {
   );
 }
 
-function BookContent({ content, game }: { content: string[], game: string | null }) {
-
+function BookContent({ content, game, props }: { content: string[], game: string | null, props: any }) {
   return (
-    <div className="h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center justify-center w-full">
+    <div className="h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
       <ul className="flex flex-col p-4 space-y-4">
         {content.map((line, i) => (
-          <li className="text-center text-lg" key={i}>
+          <li className="text-center text-2xl py-3 font-semibold " key={i}>
             <Reader text={line} />
           </li>
         ))
@@ -51,6 +51,7 @@ function BookContent({ content, game }: { content: string[], game: string | null
       {game && game === "color" && <ColorPattern />}
       {game && game === "number" && <NumericalPattern pattern={numericalProps.pattern} answer={numericalProps.answer} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
+      {game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}
     </div>
   );
 }
@@ -110,7 +111,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
               <div className="flex flex-col items-center justify-center bg-gray-100 rounded-2xl">
                 <div className="flex flex-col justify-between w-full">
                   <div className="flex flex-col items-center justify-center">
-                    <BookContent content={page.content} game={page.game} />
+                    <BookContent content={page.content} game={page.game} props={page.props} />
                   </div>
                   <div className="flex flex-row justify-end p-2">{forwardButton}</div>
                 </div>
