@@ -25,11 +25,11 @@ function BookImage({ image, page }: { image: string, page: Page }) {
   const [isImage] = useState(image.includes("."));
 
   return (
-    <div>
+    <div className="h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
       {isImage &&
         // give the image max size it can fit
         <Image src={image} alt="book image" width={500} height={500}
-          className="object-contain max-w-full max-h-full"
+        className="object-contain max-w-full max-h-full"
         />
       }
       {image === "HokieBirdActivity" &&
@@ -48,7 +48,7 @@ function BookImage({ image, page }: { image: string, page: Page }) {
 function BookContent({ content, game }: { content: string[], game: string | null }) {
 
   return (
-    <div className=" h-[calc(100vh-14rem)] overflow-y-scroll scrollbar-hide flex flex-col items-center justify-center w-full">
+    <div className="h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center justify-center w-full">
       <ul className="flex flex-col p-4 space-y-4">
         {content.map((line, i) => (
           <li className="text-center text-lg" key={i}>
