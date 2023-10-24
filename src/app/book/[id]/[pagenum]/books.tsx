@@ -319,8 +319,8 @@ export const books: Book[] = [
   },
   {
     BookId: 4,
-    title: "If-condition and For-loop with HokieBird Maze Code Completion",
-    blurb: "some blurb",
+    title: "If-condition and For-loop with HokieBird Maze",
+    blurb: "Learn about if-condition and for-loop with the Hokie Bird Maze!",
     author: "Dev",
     pages: [
       {
@@ -546,8 +546,8 @@ export const books: Book[] = [
   },
   {
     BookId: 5,
-    title: "If-condition and For-loop with HokieBird Maze",
-    blurb: "some blurb",
+    title: "IO at Hand-in-Hand Park",
+    blurb: "Learn about how a computer can compute patterns!",
     author: "Dev",
     pages: [
       {
@@ -570,8 +570,8 @@ export const books: Book[] = [
   },
   {
     BookId: 6,
-    title: "If-condition and For-loop with HokieBird Maze",
-    blurb: "some blurb",
+    title: "Conditionals with HokieBird",
+    blurb: "Lean when and when not a command will run with HokieBird!",
     author: "Dev",
     pages: [
       {
@@ -708,5 +708,22 @@ export const books: Book[] = [
         }
       },
     ]
-  }
+  },
+  {
+    BookId: 7,
+    title: "Python Tutor",
+    blurb: "Learn programming with a visualizer",
+    author: "Dev",
+    pages:
+      [{
+        content: ["Python Tutor is a visualizer that allows you to see how your code is executed step by step.",
+          "You can see the values of variables and how they change as your code is executed.",
+          "You can also see the call stack and how functions are called and returned.",
+          "Let's try it out!"],
+        image: "tutor",
+        props: {
+          code: "def add(a, b):\n\treturn a + b\n\nx = 1\ny = 2\nz = add(x, y)",
+        }
+      }],
+  },
 ] as Book[]

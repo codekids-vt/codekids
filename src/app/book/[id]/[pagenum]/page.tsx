@@ -2,9 +2,9 @@
 import Link from "next/link";
 
 // import { GET as routeHandler } from "../../../../api/activity/[id]/route";
-import { Book, Page } from "@/util/BookData";
+import { Page } from "@/util/BookData";
 import Image from "next/image";
-import React, { ReactElement, useState } from "react";
+import React, { useState } from "react";
 import { ColorPattern } from "@/components/ColorPattern";
 import NumericalPattern from "@/components/NumericalPatter";
 import { CodeComplete } from "@/components/CodeComplete";
@@ -14,6 +14,7 @@ import { HokieBirdMap } from "@/components/HokieBirdMap";
 import { HokieBirdIfCondition } from "@/components/HokieBirdIfCondition";
 import { books } from "./books"
 import Navbar from "@/components/Navbar";
+import { PythonTutor } from "@/components/PythonTutor";
 
 const numericalProps = {
   pattern: [2, 4, 6, 8, '__', '__', '__'],
@@ -26,21 +27,11 @@ function BookImage({ image, page }: { image: string, page: Page }) {
 
   return (
     <div className="h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
-      {isImage &&
-        // give the image max size it can fit
-        <Image src={image} alt="book image" width={500} height={500}
-        className="object-contain max-w-full max-h-full"
-        />
-      }
-      {image === "HokieBirdActivity" &&
-        <HokieBirdColoring props={page?.props}></HokieBirdColoring>
-      }
-      {image === "HokieBirdMazeActivity" &&
-        <HokieBirdMap props={page?.props}></HokieBirdMap>
-      }
-      {image === "HokieBirdIfConditionActivity" &&
-        <HokieBirdIfCondition props={page?.props}></HokieBirdIfCondition>
-      }
+      {isImage && <Image src={image} alt="book image" width={500} height={500} className="object-contain max-w-full max-h-full" />}
+      {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} />}
+      {image === "tutor" && <PythonTutor props={page?.props} />}
+      {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} />}
+      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}
     </div>
   );
 }
