@@ -15,7 +15,7 @@ export function PythonTutor({ props }: { props: any | IPythonTutorProps }) {
 
   return (
     <iframe width={width} height={height}
-      src={`http://pythontutor.com/iframe-embed.html#code=${code}&cumulative=${cumulative}&py=2`}>
+      src={`https://pythontutor.com/iframe-embed.html#code=${code}&cumulative=${cumulative}&py=2`}>
     </iframe>
   );
 }
