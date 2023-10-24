@@ -4,7 +4,7 @@ import Link from "next/link";
 // import { GET as routeHandler } from "../../../../api/activity/[id]/route";
 import { Book, Page } from "@/util/BookData";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { ColorPattern } from "@/components/ColorPattern";
 import NumericalPattern from "@/components/NumericalPatter";
 import { CodeComplete } from "@/components/CodeComplete";
@@ -13,6 +13,7 @@ import { HokieBirdColoring } from "@/components/HokieBirdColor";
 import { HokieBirdMap } from "@/components/HokieBirdMap";
 import { HokieBirdIfCondition } from "@/components/HokieBirdIfCondition";
 import { books } from "./books"
+import Navbar from "@/components/Navbar";
 
 const numericalProps = {
   pattern: [2, 4, 6, 8, '__', '__', '__'],
@@ -24,11 +25,11 @@ function BookImage({ image, page }: { image: string, page: Page }) {
   const [isImage] = useState(image.includes("."));
 
   return (
-    <div>
+    <div className="h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
       {isImage &&
         // give the image max size it can fit
         <Image src={image} alt="book image" width={500} height={500}
-          className="object-contain max-w-full max-h-full"
+        className="object-contain max-w-full max-h-full"
         />
       }
       {image === "HokieBirdActivity" &&
@@ -47,8 +48,8 @@ function BookImage({ image, page }: { image: string, page: Page }) {
 function BookContent({ content, game }: { content: string[], game: string | null }) {
 
   return (
-    <div>
-      <ul className="flex flex-col p-4">
+    <div className="h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center justify-center w-full">
+      <ul className="flex flex-col p-4 space-y-4">
         {content.map((line, i) => (
           <li className="text-center text-lg" key={i}>
             <Reader text={line} />
@@ -100,37 +101,41 @@ export default async function ActivityPage({ params }: { params: { id: string, p
         </button>
       </Link>
   )
-
   return (
-    <div className="md:px-48 py-2 h-[calc(100vh-9rem)] flex">
-      {page && (
-        <div className="grid grid-cols-2 bg-white rounded-2xl shadow-xl p-2 flex-grow">
-          <div className="flex flex-col flex-grow items-center">
-            <div className="flex flex-col justify-between flex-grow w-full">
-              <div className="flex flex-col flex-grow items-center justify-center">
-                <BookImage image={page.image} page={page} />
+    <div>
+      <Navbar />
+      <div className="mx-auto">
+        <div className="md:px-24 py-2 h-[calc(100vh-5rem)] flex">
+          {page && (
+            <div className="grid grid-cols-2 bg-white rounded-2xl shadow-xl p-2 flex-grow">
+              <div className="flex flex-col flex-grow items-center">
+                <div className="flex flex-col justify-between flex-grow w-full">
+                  <div className="flex flex-col flex-grow items-center justify-center">
+                    <BookImage image={page.image} page={page} />
+                  </div>
+                  <div className="flex flex-row justify-start p-2">{backButton}</div>
+                </div>
               </div>
-              <div className="flex flex-row justify-start p-2">{backButton}</div>
-            </div>
-          </div>
-          <div className="flex flex-grow flex-col items-center justify-center bg-gray-100 rounded-2xl">
-            <div className="flex flex-col justify-between flex-grow w-full">
-              <div className="flex flex-col flex-grow items-center justify-center">
-                <BookContent content={page.content} game={page.game} />
+              <div className="flex flex-col items-center justify-center bg-gray-100 rounded-2xl">
+                <div className="flex flex-col justify-between w-full">
+                  <div className="flex flex-col items-center justify-center">
+                    <BookContent content={page.content} game={page.game} />
+                  </div>
+                  <div className="flex flex-row justify-end p-2">{forwardButton}</div>
+                </div>
               </div>
-              <div className="flex flex-row justify-end p-2">{forwardButton}</div>
             </div>
-          </div>
-        </div>
-      )
-      }
-      {!page &&
-        <div className="flex flex-col flex-grow items-center justify-center">
-          <h1 className="text-center text-lg font-medium">
-            We could not find anything for this page.
-          </h1 >
-        </div>
-      }
-    </div >
+          )
+          }
+          {!page &&
+            <div className="flex flex-col flex-grow items-center justify-center">
+              <h1 className="text-center text-lg font-medium">
+                We could not find anything for this page.
+              </h1 >
+            </div>
+          }
+        </div >
+      </div>
+    </div>
   )
 }
