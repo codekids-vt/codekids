@@ -90,7 +90,7 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
             <div className="flex flex-col items-center h-[300px] w-[300px] relative">
                 <Image src={currentImage} width={250} height={250} alt="Hokie Bird Image" className="absolute rounded-2xl"></Image>
                 {props?.effect &&
-                    <Image src={props.effect} width={250} height={250} alt="Hokie Bird Image Effect" className="absolute rounded-2xl"></Image>
+                    <Image src={props.effect} width={400} height={500} alt="Hokie Bird Image Effect" className="absolute "></Image>
                 }
             </div>
             <div className="flex flex-row">
