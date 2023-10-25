@@ -105,7 +105,7 @@ export const books: Book[] = [
           "For the next few examples we will use the commands move to move the bird forward",
           "To make the Hokiebird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
         ],
-        image: "/HokieBirdMaze.png",
+        image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Since we now know how to move the hokeiBird around, we need to determine what actions we should do.",
@@ -117,7 +117,7 @@ export const books: Book[] = [
           "Placing any of these commands in the if statement will either make it true or false",
           "If the condition is false then the statement in the else block will be used instead"
         ],
-        image: "/HokieBirdMaze.png",
+        image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Lets try moving the Hokie Bird forward!",
@@ -332,7 +332,7 @@ export const books: Book[] = [
           "For the next few examples we will use the commands move to move the bird forward",
           "To make the Hokiebird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
         ],
-        image: "/HokieBirdMaze.png",
+        image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Since we now know how to move the hokeiBird around, we need to determine what actions we should do.",
@@ -344,7 +344,7 @@ export const books: Book[] = [
           "Placing any of these commands in the if statement will either make it true or false",
           "If the condition is false then the statement in the else block will be used instead"
         ],
-        image: "/HokieBirdMaze.png",
+        image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Lets try moving the Hokie Bird forward!",
