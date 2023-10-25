@@ -707,6 +707,81 @@ export const books: Book[] = [
           ans_image: "/if_condition/surprise.png",
         }
       },
+      {
+        content: ["Recently, HokieBird picked up a few dancing steps, although he frequently forgets them.",
+          "Let's assist him in repeatedly practicing the moves!",
+        "The appropriate dance steps are: action1(bend sideways), action2(back kick), action3(butt twist), action4(wave arm), action5(rotate)"],
+        image: "HokieBirdIfConditionActivity",
+        props: {
+          draggable: true,
+          statements: ["bend sideways", "back kick", "butt twist", "wave arm", "rotate"],
+          condition: "HokieBird make the action1",
+          ans: "bend sideways",
+          image: "/if_condition/ready.gif",
+          ans_image: "/if_condition/action1.gif",
+        }
+      },
+      {
+        content: ["Recently, HokieBird picked up a few dancing steps, although he frequently forgets them.",
+          "Let's assist him in repeatedly practicing the moves!",
+        "The appropriate dance steps are: action1(bend sideways), action2(back kick), action3(butt twist), action4(wave arm), action5(rotate)"],
+        image: "HokieBirdIfConditionActivity",
+        props: {
+          draggable: true,
+          statements: ["bend sideways", "back kick", "butt twist", "wave arm", "rotate"],
+          condition: "HokieBird make the action4",
+          ans: "wave arm",
+          image: "/if_condition/ready.gif",
+          ans_image: "/if_condition/action4.gif",
+        }
+      },
+      {
+        content: ["Recently, HokieBird picked up a few dancing steps, although he frequently forgets them.",
+          "Let's assist him in repeatedly practicing the moves!",
+        "The appropriate dance steps are: action1(bend sideways), action2(back kick), action3(butt twist), action4(wave arm), action5(rotate)"],
+        image: "HokieBirdIfConditionActivity",
+        props: {
+          draggable: true,
+          statements: ["bend sideways", "back kick", "butt twist", "wave arm", "rotate"],
+          condition: "HokieBird make the action3",
+          ans: "butt twist",
+          image: "/if_condition/ready.gif",
+          ans_image: "/if_condition/action3.gif",
+        }
+      },
+      {
+        content: ["Recently, HokieBird picked up a few dancing steps, although he frequently forgets them.",
+          "Let's assist him in repeatedly practicing the moves!",
+        "The appropriate dance steps are: action1(bend sideways), action2(back kick), action3(butt twist), action4(wave arm), action5(rotate)"],
+        image: "HokieBirdIfConditionActivity",
+        props: {
+          draggable: true,
+          statements: ["bend sideways", "back kick", "butt twist", "wave arm", "rotate"],
+          condition: "HokieBird make the action5",
+          ans: "rotate",
+          image: "/if_condition/ready.gif",
+          ans_image: "/if_condition/action5.gif",
+        }
+      },
+      {
+        content: ["Recently, HokieBird picked up a few dancing steps, although he frequently forgets them.",
+          "Let's assist him in repeatedly practicing the moves!",
+        "The appropriate dance steps are: action1(bend sideways), action2(back kick), action3(butt twist), action4(wave arm), action5(rotate)"],
+        image: "HokieBirdIfConditionActivity",
+        props: {
+          draggable: true,
+          statements: ["bend sideways", "back kick", "butt twist", "wave arm", "rotate"],
+          condition: "HokieBird make the action2",
+          ans: "back kick",
+          image: "/if_condition/ready.gif",
+          ans_image: "/if_condition/action2.gif",
+        }
+      },
+      {
+        content: ["Thank you for your help!!!",
+        "HokieBird successfully memorized all the dancing steps!"],
+        image: "/if_condition/thanks.gif"
+      },
     ]
   }
 ] as Book[]
