@@ -123,7 +123,7 @@ export function HokieBirdMap({ props }: { props: any }) {
                     </div>
                     <div className="flex flex-col flex-grow justify-between ml-4">
                         {good ?
-                            <Link href={`/book/${props.bookID}/${props.pageNum + 1}`} className="rounded bg-green-500 text-center">
+                            <Link href={`/book/${props.bookID}/${props.pageNum + 1}`} className="rounded bg-green-500 text-center mx-5 mb-5 mt-5">
                                 <button onClick={e => checkAnswers()}>Run</button>
                             </Link> :
                             <button className="rounded bg-green-500 text-center mx-5 mb-5 mt-5" onClick={e => checkAnswers()}>Run</button>
