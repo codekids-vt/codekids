@@ -319,8 +319,8 @@ export const books: Book[] = [
   },
   {
     BookId: 4,
-    title: "If-condition and For-loop with HokieBird Maze Code Completion",
-    blurb: "some blurb",
+    title: "If-condition and For-loop with HokieBird Maze",
+    blurb: "Learn about if-condition and for-loop with the Hokie Bird Maze!",
     author: "Dev",
     pages: [
       {
@@ -546,9 +546,9 @@ export const books: Book[] = [
   },
   {
     BookId: 5,
-    title: "If-condition and For-loop with HokieBird Maze",
-    blurb: "some blurb",
-    author: "Dev",
+    title: "IO at Hand-in-Hand Park",
+    blurb: "Learn about how a computer can compute patterns!",
+    author: "Prapti",
     pages: [
       {
         content: ["Come to Hand-in-Hand Park in Blacksburg, Virginia.",
@@ -563,15 +563,40 @@ export const books: Book[] = [
           "You can also learn about the different types of trees that grow here.",
           "Let's get started!"],
         image: "/io_book/intro.png"
-
-
       },
+      {
+        content: ["Let's start by trying to count the number of slides in the park.", "How many slides are there in the park?"],
+        image: "/io_book/park_1.png",
+        game: "NumberInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [1, 2, 3, 4],
+          answer: 3,
+        }
+      },
+      {
+        content: [
+          "Hope you had fun. Let's see what the definition for input and output is before we move forward!",
+          "Input",
+          "It is the stuff you tell a computer. It's the information or instructions you give to a computer so it can do something.",
+          "Output",
+          "It is what the computer gives back to you after it does something with the input. It's the computer's answer."
+        ],
+        image: "/io_book/def.png",
+      },
+      {
+        content: [
+          "In every row there are certain number of yellow and pink flowers planted. Observe the pattern in the number of each color flower planted.",
+          "Now guess the number pink flowers that should be planted in the last row? "
+        ],
+        image: "/io_book/def.png",
+      }
     ]
   },
   {
     BookId: 6,
-    title: "If-condition and For-loop with HokieBird Maze",
-    blurb: "some blurb",
+    title: "Conditionals with HokieBird",
+    blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     pages: [
       {
@@ -783,5 +808,22 @@ export const books: Book[] = [
         image: "/if_condition/thanks.gif"
       },
     ]
-  }
+  },
+  {
+    BookId: 7,
+    title: "Python Tutor",
+    blurb: "Learn programming with a visualizer",
+    author: "Dev",
+    pages:
+      [{
+        content: ["Python Tutor is a visualizer that allows you to see how your code is executed step by step.",
+          "You can see the values of variables and how they change as your code is executed.",
+          "You can also see the call stack and how functions are called and returned.",
+          "Let's try it out!"],
+        image: "tutor",
+        props: {
+          code: "def add(a, b):\n\treturn a + b\n\nx = 1\ny = 2\nz = add(x, y)",
+        }
+      }],
+  },
 ] as Book[]

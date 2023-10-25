@@ -86,38 +86,39 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
     }
 
     return (
-        <div className="flex flex-col flex-grow justify-between">
-            <div className="flex flex-col flex-grow justify-center items-center mb-48 mt-28">
-                <Image src={currentImage} width={400} height={400} alt="Hokie Bird Image" className="h-[400px] absolute"></Image>
+        <div className="flex flex-col items-center justify-between">
+            <div className="flex flex-col items-center h-[300px] w-[300px] relative">
+                <Image src={currentImage} width={250} height={250} alt="Hokie Bird Image" className="absolute rounded-2xl"></Image>
                 {props?.effect &&
-                    <Image src={props.effect} width={400} height={400} alt="Hokie Bird Image Effect" className="absolute "></Image>
+                    <Image src={props.effect} width={400} height={500} alt="Hokie Bird Image Effect" className="absolute "></Image>
                 }
             </div>
-            <div className="flex flex-row mt-20">
-                <div>
+            <div className="flex flex-row">
+                <div className="p-2">
                     <div className="flex flex-col" onDrop={(e) => handleOnDropCondition(e, "condition")} onDragOver={(e) => handleDragOver(e)}>
-                        <label htmlFor="ifCondition" className="flex flex-grow"> <p className="mx-2">If</p>
-                            <input key={"ifCondition"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={props.condition} onChange={(e) => handleInputChangeCondition(e)} />
+                        <label htmlFor="ifCondition" className="flex flex-grow">
+                            <p className="px-2">If</p>
+                            <input key={"ifCondition"} type="text" className="rounded-xl p-2" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={props.condition} onChange={(e) => handleInputChangeCondition(e)} />
                         </label>
                     </div>
                     <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
-                        <label htmlFor="ifConditionStatement1" className="flex flex-grow ml-5 mt-5">
-                            <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag appropriate action here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
-                        </label>
+                        <label htmlFor="ifConditionStatement1" className="flex flex-grow p-2" />
+                        <input key={"ifConditionStatement1"} type="text" className="rounded-xl p-2" placeholder={props?.type ? "Type Here" : "Drag appropriate action here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
                     </div>
                 </div>
-                <div className="flex flex-col flex-grow justify-between ml-4">
+                <div className="grid grid-cols-2 flex-grow justify-between p-2">
                     {
                         props.statements.map((statement: string, i: number) => (
-                            <div key={`ifActivity-${i}`} draggable={props.draggable} className="flex text-blue-600" onDragStart={(e) => handleOnDragStatement(e, statement)}>{statement}</div>
+                            <div className="p-2" key={`ifActivity-${i}`}>
+                                <div draggable={props.draggable}
+                                    className="flex p-2 bg-gray-300  rounded-xl text-blue-600 shadow-xl hover:shadow-2xl hover:bg-gray-400 hover:text-white"
+                                    onDragStart={(e) => handleOnDragStatement(e, statement)}>{statement}
+                                </div>
+                            </div>
                         ))
                     }
-                </div>
-            </div>
-            <div className="mt-10 mb-6">
-                <div className="flex flex-col flex-grow">
-                    <div className="flex flex-row flex-grow justify-around">
-                        <button className="rounded bg-red-500" onClick={e => handleReset(e)}>Reset</button>
+                    <div className="flex flex-row flex-grow justify-around p-1">
+                        <button className="p-2 rounded-full bg-red-500" onClick={e => handleReset(e)}>Reset</button>
                     </div>
                 </div>
             </div>

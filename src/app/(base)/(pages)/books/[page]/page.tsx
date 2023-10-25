@@ -7,6 +7,7 @@ import ActivityTag from "@/components/ActivityTag";
 import joinClasses from "@/util/joinClasses";
 
 import { Book } from "@/util/BookData";
+import { books } from "@/app/book/[id]/[pagenum]/books";
 
 function BookPreview({ BookData }: { BookData: Book }) {
   return (
@@ -40,101 +41,14 @@ export default async function ActivityBookList({
 }: {
   params: { page: string }
 }) {
-  const books: Book[] = [
-    {
-      BookId: 1,
-      title: "Book 1 test",
-      blurb: "some blurb",
-      author: "Dev",
-      pages: [
-        {
-          content: ["This is timmy",
-            "This is timmy",
-          ],
-          image: "page_1.png",
-        },
-        {
-          content: ["This is the Title of page 2",
-            "Some content about page 2"],
-          image: "page_2.png",
-        },
-      ],
-    },
-    {
-      BookId: 2,
-      title: "Variables With Coloring",
-      blurb: "Learn about different variables types, coloring the Hokie Bird!",
-      author: "Dev",
-      pages: [
-        {
-          content: ["In this book we will discover how to drag and drop different colors into variables",
-            "We will also learn how to manually complete vairables!",
-          ],
-          image: "HokieBird.png",
-        },
-        {
-          content: ["Here you are able to drag and drop the different colors into the three differnt parts of the Hokie Bird.",
-            "The Hokie Bird is split into three parts; a head, a body, and the legs.",
-            "Try dragging different colors and see the changes happen live!"
-          ],
-          image: "HokieBirdActivity",
-        },
-      ],
-    },
-    {
-      BookId: 3,
-      title: "If-condition and For-loop with HokieBird Maze",
-      blurb: "Drap and drop exercise",
-      author: "Dev",
-      pages: [
-        {
-          content: ["In this book we will discover how to drag and drop different colors into variables",
-            "We will also learn how to manually complete vairables!",
-          ],
-          image: "/LostHokieBird.png",
-        }
-      ]
-    },
-    // {
-    //   BookId: 4,
-    //   title: "If-condition and For-loop with HokieBird Maze",
-    //   blurb: "Code Completion",
-    //   author: "Dev",
-    //   pages: [
-    //     {
-    //       content: ["In this book we will discover how to drag and drop different colors into variables",
-    //         "We will also learn how to manually complete vairables!",
-    //       ],
-    //       image: "/LostHokieBird.png",
-    //     }
-    //   ]
-    // },
-    {
-      BookId: 5,
-      title: "IO Hand and Hand Park",
-      blurb: "Learning about IO and how to use it in a program",
-      author: "Prapti",
-      pages: [
-      ]
-    },
-    {
-      BookId: 6,
-      title: "Hokie Bird if Conditions",
-      blurb: "Learn about if conditons",
-      author: "Lin",
-      pages: [
-      ]
-    }
-  ] as Book[]
-
-  // const pageBookData = [bookData]
+  const allBooks: Book[] = books as Book[];
 
   return (
     <>
       <section className="p-2 mx-auto max-w-6xl">
         {
-          books?.length > 0
-            ? <BookPreviewList pageBookData={books} />
+          allBooks?.length > 0
+            ? <BookPreviewList pageBookData={allBooks} />
             : (
               <h1 className="text-center text-xl font-medium">
                 Looks like there&apos;s nothing here... page {params.page} doesn&apos;t have anything!
