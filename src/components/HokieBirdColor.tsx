@@ -83,9 +83,9 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                     {props?.typeVariable ? (
                                         <input
                                             key={`${part}Text1`}
-                                            className={`rounded w-16 animate-pulse bg-yellow-50`}
+                                            className={`rounded w-36 animate-pulse bg-yellow-50`}
                                             type="text"
-                                            placeholder="Part"
+                                            placeholder="Type a body part"
                                             onChange={(e) => handlePart(index, e.target.value)}
                                             defaultValue={part[index]}
                                             disabled={!props.type}
@@ -97,8 +97,8 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                     <input
                                         key={`${part}Text2`}
                                         type="text"
-                                        className={`rounded w-32 animate-pulse bg-yellow-50`}
-                                        placeholder="Color"
+                                        className={`rounded w-36 animate-pulse bg-yellow-50`}
+                                        placeholder={props?.type ? "Type a color here" : "Drag a color here"}
                                         onChange={(e) => handleColorChange(props?.typeVariable ? part[index] : availablePart, e.target.value)}
                                         defaultValue={props?.typeVariable ? colors[part[index] as keyof HokieBirdColorState] : colors[availablePart as keyof HokieBirdColorState]}
                                         disabled={!props.type}
