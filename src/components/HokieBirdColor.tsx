@@ -9,6 +9,13 @@ interface HokieBirdColorState {
 }
 
 const availableColors = ["red", "orange", "green", "maroon", "gold"]
+const availableColorsTailwind: { [key: string]: string } = {
+    red: "bg-red-600",
+    orange: "bg-orange-600",
+    green: "bg-green-700",
+    maroon: "bg-maroon",
+    gold: "bg-yellow-500"
+}
 const availableParts = ["head", "body", "legs"]
 
 export function HokieBirdColoring({ props }: { props: any }) {
@@ -18,10 +25,10 @@ export function HokieBirdColoring({ props }: { props: any }) {
         legs: ""
     });
 
-    const [part, setPart] = useState(["","",""]);
+    const [part, setPart] = useState(["", "", ""]);
 
     function HokieBirdColors() {
-        
+
         const handlePart = (index: number, value: string) => {
             const val = value.toLowerCase();
             if (availableParts.includes(val)) {
@@ -61,65 +68,59 @@ export function HokieBirdColoring({ props }: { props: any }) {
         }
 
         return (
-            <div className="flex flex-col flex-grow mx-10">
-                <h1 style={{ fontWeight: 'bold' }}>{props.command}</h1>
-                <div className="flex flex-row flex-grow mt-4" style={{ marginRight: '16px' }}>
-                    <div className="flex flex-col flex-grow ms-2">
+            <div className="flex flex-col p-5 bg-gray-200 rounded-2xl">
+                <h1 className="font-bold">{props.command}</h1>
+                <div className="flex flex-row p-4">
+                    <div className="flex flex-col p-2 space-y-2">
                         {availableParts.map((availablePart, index) => (
                             <div
                                 key={`partText${index}`}
                                 onDrop={(e) => handleOnDrop(e, availablePart)}
                                 onDragOver={(e) => handleDragOver(e)}
-                                className="outline-black mt-6 outline-dotted text-center"
+                                className="outline-black p-2 rounded-2xl outline-dotted text-center"
                             >
                                 <label htmlFor={`${part}Text`}>
-                                {props?.typeVariable ? (
-                                    <input
-                                        key={`${part}Text1`}
-                                        type="text"
-                                        className="rounded ml-4"
-                                        style={{ width: '100px' }}
-                                        placeholder="Part"
-                                        onChange={(e) => handlePart(index, e.target.value)}
-                                        defaultValue={part[index]}
-                                        disabled={!props.type} 
-                                    />
-                                ) : (
+                                    {props?.typeVariable ? (
+                                        <input
+                                            key={`${part}Text1`}
+                                            className={`rounded w-16 animate-pulse bg-yellow-50`}
+                                            type="text"
+                                            placeholder="Part"
+                                            onChange={(e) => handlePart(index, e.target.value)}
+                                            defaultValue={part[index]}
+                                            disabled={!props.type}
+                                        />
+                                    ) : (
                                     `${availablePart}`
-                                )}
-                                {' = '}
-                                <input
-                                    key={`${part}Text2`}
-                                    type="text"
-                                    className="rounded ml-4"
-                                    style={{ width: '100px' }}
-                                    placeholder="Color"
-                                    onChange={(e) => handleColorChange(props?.typeVariable ? part[index] : availablePart, e.target.value)}
-                                    defaultValue={props?.typeVariable ? colors[part[index] as keyof HokieBirdColorState] : colors[availablePart as keyof HokieBirdColorState]}
-                                    disabled={!props.type}
-                                />
+                                    )}
+                                    {' = '}
+                                    <input
+                                        key={`${part}Text2`}
+                                        type="text"
+                                        className={`rounded w-32 animate-pulse bg-yellow-50`}
+                                        placeholder="Color"
+                                        onChange={(e) => handleColorChange(props?.typeVariable ? part[index] : availablePart, e.target.value)}
+                                        defaultValue={props?.typeVariable ? colors[part[index] as keyof HokieBirdColorState] : colors[availablePart as keyof HokieBirdColorState]}
+                                        disabled={!props.type}
+                                    />
                                 </label>
                             </div>
                         ))}
                     </div>
-                    <div className="flex flex-col" style={{ marginLeft: '16px' }}>
-                        Options:
-                        <div className="flex flex-row">
-                            {props?.typeVariable ? (
-                            <div className="flex flex-col flex-grow justify-around" style={{ marginRight: '8px' }}>
-                                {availableParts.map((part, index) => (
-                                <div key={`option${index}`} className="mb-2">{part}</div>
-                                ))}
-                            </div>
-                            ) : (
-                            ''
+                    <div className="flex flex-col px-2">
+                        <h1 className="font-bold">Options</h1>
+                        <div className="grid grid-cols-2 gap-2">
+                            {props?.typeVariable && (
+                                <div className="flex flex-col flex-grow space-y-2">
+                                    {availableParts.map((part, index) => (
+                                        <div key={`option${index}`} className="p-1 rounded-2xl bg-gray-300 text-center">{part}</div>
+                                    ))}
+                                </div>
                             )}
-                            <div className="flex flex-col flex-grow justify-around" style={{ marginLeft: '8px' }}>
-                                <div draggable={props.draggable} className="flex text-red-600 mb-2" onDragStart={(e) => handleOnDrag(e, "red")}>red</div>
-                                <div draggable={props.draggable} className="flex text-orange-600 mb-2" onDragStart={(e) => handleOnDrag(e, "orange")}>orange</div>
-                                <div draggable={props.draggable} className="flex text-green-700 mb-2" onDragStart={(e) => handleOnDrag(e, "green")}>green</div>
-                                <div draggable={props.draggable} className="flex text-maroon mb-2" onDragStart={(e) => handleOnDrag(e, "maroon")}>maroon</div>
-                                <div draggable={props.draggable} className="flex text-yellow-500 mb-2" onDragStart={(e) => handleOnDrag(e, "gold")}>gold</div>  
+                            <div className="flex flex-col flex-grow space-y-2">
+                                {availableColors.map((color, index) => (
+                                    <div key={index} draggable={props.draggable} className={`flex ${availableColorsTailwind[color]} p-1 place-content-center rounded-2xl shadow-2xl`} onDragStart={(e) => handleOnDrag(e, color)}>{color}</div>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -131,7 +132,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
     function HokieBird() {
         return (
             <div className="flex flex-col flex-grow justify-center items-center mx-10">
-                <Image src="/HokieBird.png" alt="book image" className={'center-left'} width={220} height={500}/>
+                <Image src="/HokieBird.png" alt="book image" className={'center-left'} width={220} height={500} />
                 <Image src="/HokieHead.png" alt="book image" className={`absolute center-left img-${colors.head} `} width={220} height={500} />
                 <Image src="/HokieBody.png" alt="book image" className={`absolute center-left img-${colors.body} `} width={220} height={500} />
                 <Image src="/HokieLegs.png" alt="book image" className={`absolute center-left img-${colors.legs} `} width={220} height={500} />
