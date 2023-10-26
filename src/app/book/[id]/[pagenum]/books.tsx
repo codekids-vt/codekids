@@ -586,25 +586,25 @@ export const books: Book[] = [
       },
       {
         content: [
-          "In every row there are certain number of yellow and pink flowers planted. Observe the pattern in the number of each color flower planted.",
-          "Now guess the number pink flowers that should be planted in the last row? "
+          "Hey! Let's hop on to the next activity.",
+          "Observe the pattern in the number of each color flower planted."
         ],
         image: "/io_book/def.png",
       },
       {
         content: [
           "In every row there are certain number of yellow and pink flowers planted.", 
-          "Observe the pattern in the number of each color flower planted.",
+          "Now guess the number of pink flowers that should be planted in the last row? "
         ],
-        image: "/io_book/flower_incomplete.png",
+        image: "/io_book/flowers_1.png",
       },
       {
         content: [
-        "Now guess the number pink flowers that should be planted in the last row?"
+        "Now guess the number of pink flowers that should be planted in the last row?"
         ],
         game: "TableCompletionActivity",
-        image: "/io_book/flower_incomplete.png",
-        props: {image: "/io_book/flower_incomplete.png"},
+        image: "/io_book/flowers_1.png",
+        props: {image: "/io_book/flowers_1.png"},
       }
     ]
   },
