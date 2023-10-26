@@ -558,11 +558,10 @@ export const books: Book[] = [
         image: "/io_book/park.png",
       },
       {
-        content: ["Welcome to Hand-in-Hand Park!",
-          "This is a place where you can play with your friends and have fun.",
-          "You can also learn about the different types of trees that grow here.",
-          "Let's get started!"],
-        image: "/io_book/intro.png"
+        content: [
+         "Hello, My name is Sarah! Today we will learn about Input/Output.",
+         "Let’s chat with the computer and explore the park!"],
+        image: "/io_book/def.png"
       },
       {
         content: ["Let's start by trying to count the number of slides in the park.", "How many slides are there in the park?"],
