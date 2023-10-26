@@ -590,6 +590,21 @@ export const books: Book[] = [
           "Now guess the number pink flowers that should be planted in the last row? "
         ],
         image: "/io_book/def.png",
+      },
+      {
+        content: [
+          "In every row there are certain number of yellow and pink flowers planted.", 
+          "Observe the pattern in the number of each color flower planted.",
+        ],
+        image: "/io_book/flower_incomplete.png",
+      },
+      {
+        content: [
+        "Now guess the number pink flowers that should be planted in the last row?"
+        ],
+        game: "TableCompletionActivity",
+        image: "/io_book/flower_incomplete.png",
+        props: {image: "/io_book/flower_incomplete.png"},
       }
     ]
   },
