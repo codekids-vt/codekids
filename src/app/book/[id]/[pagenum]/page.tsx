@@ -17,6 +17,7 @@ import Navbar from "@/components/Navbar";
 import { PythonTutor } from "@/components/PythonTutor";
 import { NumberInputActivity } from "@/components/NumberInputActivity";
 import { TableCompletionActivity } from "@/components/TableCompletionActivity";
+import { TableCompletionActivityTrees } from "@/components/TableCompletionActivityTrees";
 
 const numericalProps = {
   pattern: [2, 4, 6, 8, '__', '__', '__'],
@@ -53,7 +54,8 @@ function BookContent({ content, game, props }: { content: string[], game: string
       {game && game === "number" && <NumericalPattern pattern={numericalProps.pattern} answer={numericalProps.answer} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
       {game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}
-      {game && game === "TableCompletionActivity" && <TableCompletionActivity options={props.options} answer={props.answer} />}    
+      {game && game === "TableCompletionActivity" && <TableCompletionActivity options={props.options} answer={props.answer} />}
+      {game && game === "TableCompletionActivityTrees" && <TableCompletionActivityTrees options={props.options} answer={props.answer} />}    
     </div>
   );
 }

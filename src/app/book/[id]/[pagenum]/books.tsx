@@ -594,17 +594,20 @@ export const books: Book[] = [
       {
         content: [
           "In every row there are certain number of yellow and pink flowers planted.", 
-          "Now guess the number of pink flowers that should be planted in the last row? "
-        ],
-        image: "/io_book/flowers_1.png",
-      },
-      {
-        content: [
         "Now guess the number of pink flowers that should be planted in the last row?"
         ],
         game: "TableCompletionActivity",
         image: "/io_book/flowers_1.png",
         props: {image: "/io_book/flowers_1.png"},
+      },
+      {
+        content: [
+          "Each corner of the park has certain number of green and yellow trees.  Observe the pattern in the number of each color tree planted.", 
+        "Now guess the number green trees that should be planted in the right corner in bottom? "
+        ],
+        game: "TableCompletionActivityTrees",
+        image: "/io_book/trees_1.png",
+        props: {image: "/io_book/trees_1.png"},
       }
     ]
   },
