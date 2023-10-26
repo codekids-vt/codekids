@@ -558,11 +558,10 @@ export const books: Book[] = [
         image: "/io_book/park.png",
       },
       {
-        content: ["Welcome to Hand-in-Hand Park!",
-          "This is a place where you can play with your friends and have fun.",
-          "You can also learn about the different types of trees that grow here.",
-          "Let's get started!"],
-        image: "/io_book/intro.png"
+        content: [
+         "Hello, My name is Sarah! Today we will learn about Input/Output.",
+         "Let’s chat with the computer and explore the park!"],
+        image: "/io_book/def.png"
       },
       {
         content: ["Let's start by trying to count the number of slides in the park.", "How many slides are there in the park?"],
@@ -586,10 +585,28 @@ export const books: Book[] = [
       },
       {
         content: [
-          "In every row there are certain number of yellow and pink flowers planted. Observe the pattern in the number of each color flower planted.",
-          "Now guess the number pink flowers that should be planted in the last row? "
+          "Hey! Let's hop on to the next activity.",
+          "Observe the pattern in the number of each color flower planted."
         ],
         image: "/io_book/def.png",
+      },
+      {
+        content: [
+          "In every row there are certain number of yellow and pink flowers planted.", 
+        "Now guess the number of pink flowers that should be planted in the last row?"
+        ],
+        game: "TableCompletionActivity",
+        image: "/io_book/flowers_1.png",
+        props: {image: "/io_book/flowers_1.png"},
+      },
+      {
+        content: [
+          "Each corner of the park has certain number of green and yellow trees.  Observe the pattern in the number of each color tree planted.", 
+        "Now guess the number green trees that should be planted in the right corner in bottom? "
+        ],
+        game: "TableCompletionActivityTrees",
+        image: "/io_book/trees_1.png",
+        props: {image: "/io_book/trees_1.png"},
       }
     ]
   },
