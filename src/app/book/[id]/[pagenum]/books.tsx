@@ -141,7 +141,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
-          image: "Maze2.png",
+          image: "Maze2.jpg",
           pageNum: 3,
           bookID: 3,
           ans: {
@@ -169,7 +169,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
-          image: "Maze4.png",
+          image: "Maze4.jpg",
           pageNum: 5,
           bookID: 3,
           ans: {
@@ -197,7 +197,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
-          image: "Maze6.png",
+          image: "Maze6.jpg",
           pageNum: 7,
           bookID: 3,
           ans: {
@@ -225,7 +225,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
-          image: "Maze8.png",
+          image: "Maze8.jpg",
           pageNum: 9,
           bookID: 3,
           ans: {
@@ -253,7 +253,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
-          image: "Maze10.png",
+          image: "Maze10.jpg",
           pageNum: 11,
           bookID: 3,
           ans: {
@@ -281,7 +281,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
-          image: "Maze12.png",
+          image: "Maze12.jpg",
           pageNum: 13,
           bookID: 3,
           ans: {
@@ -368,7 +368,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           type: true,
-          image: "Maze2.png",
+          image: "Maze2.jpg",
           pageNum: 3,
           bookID: 4,
           ans: {
@@ -396,7 +396,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           type: true,
-          image: "Maze4.png",
+          image: "Maze4.jpg",
           pageNum: 5,
           bookID: 4,
           ans: {
@@ -424,7 +424,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           type: true,
-          image: "Maze6.png",
+          image: "Maze6.jpg",
           pageNum: 7,
           bookID: 4,
           ans: {
@@ -452,7 +452,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           type: true,
-          image: "Maze8.png",
+          image: "Maze8.jpg",
           pageNum: 9,
           bookID: 4,
           ans: {
@@ -480,7 +480,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           type: true,
-          image: "Maze10.png",
+          image: "Maze10.jpg",
           pageNum: 11,
           bookID: 4,
           ans: {
@@ -508,7 +508,7 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           type: true,
-          image: "Maze12.png",
+          image: "Maze12.jpg",
           pageNum: 13,
           bookID: 4,
           ans: {
@@ -772,9 +772,9 @@ export const books: Book[] = [
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
-            statements: ["bend sideways", "back kick", "butt twist", "wave arm", "rotate"],
+            statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_make_the_action1",
-            ans: "bend sideways",
+            ans: "bend_sideways",
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action1.gif",
           }
@@ -786,9 +786,9 @@ export const books: Book[] = [
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
-            statements: ["bend sideways", "back kick", "butt twist", "wave arm", "rotate"],
+            statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_make_the_action4",
-            ans: "wave arm",
+            ans: "wave_arm",
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action4.gif",
           }
@@ -800,9 +800,9 @@ export const books: Book[] = [
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
-            statements: ["bend sideways", "back kick", "butt twist", "wave arm", "rotate"],
+            statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_make_the_action3",
-            ans: "butt twist",
+            ans: "butt_twist",
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action3.gif",
           }
@@ -814,7 +814,7 @@ export const books: Book[] = [
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
-            statements: ["bend sideways", "back kick", "butt twist", "wave arm", "rotate"],
+            statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_make_the_action5",
             ans: "rotate",
             image: "/if_condition/ready.gif",
@@ -828,9 +828,9 @@ export const books: Book[] = [
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
-            statements: ["bend sideways", "back kick", "butt twist", "wave arm", "rotate"],
+            statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_make_the_action2",
-            ans: "back kick",
+            ans: "back_kick",
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action2.gif",
           }
