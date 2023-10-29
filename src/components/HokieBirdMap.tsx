@@ -52,13 +52,9 @@ export function HokieBirdMap({ props }: { props: any }) {
             temp
         }
         setGame(newColors);
-<<<<<<< HEAD
         setGood(newColors.statement === props.ans.statement);
-=======
-        setGood(newColors.condition === props.ans.condition && newColors.statement === props.ans.statement);
         setCurrentImage(newColors.statement === props.ans ? props.ans_image : props.image)
         setWrong(newColors.statement !== props.ans)
->>>>>>> if-condition
 
     }
 
@@ -92,12 +88,7 @@ export function HokieBirdMap({ props }: { props: any }) {
             condition: game.condition,
             statement: val
         });
-<<<<<<< HEAD
         setGood(val === props.ans?.statement);
-=======
-        setGood(game.condition === props.ans?.condition && val === props.ans?.statement);
-        
->>>>>>> if-condition
     }
 
     function checkAnswers() {
@@ -112,7 +103,6 @@ export function HokieBirdMap({ props }: { props: any }) {
                     <div>
                         {/*
                         <div className="flex flex-col" onDrop={(e) => handleOnDropCondition(e, "condition")} onDragOver={(e) => handleDragOver(e)}>
-<<<<<<< HEAD
                             <label htmlFor="ifCondition" className="flex flex-grow"> <p style={{ backgroundColor:"rgb(240,240,240)" }} className="mr-4">If</p>
                                 <input key={"ifCondition"} type="text" className="rounded" style={{ backgroundColor:"rgb(240,240,240)" }} placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={game.condition} onChange={(e) => handleInputChangeCondition(e)} />
 
@@ -122,16 +112,6 @@ export function HokieBirdMap({ props }: { props: any }) {
                         <div className="flex flex-col" style={{background:"rgb(220,220,220)", padding:"10px"}} onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
                             <label htmlFor="ifConditionStatement1" className="flex flex-grow ml-5 mt-5" style={{background:"rgb(220,220,220)"}}>
                                 <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
-=======
-                            <label htmlFor="ifCondition" className="flex flex-grow"> <p className="mr-4"><strong>If</strong></p>
-                                <input key={"ifCondition"} type="text" className="outline-black rounded-2xl outline-dotted text-center" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={game.condition} onChange={(e) => handleInputChangeCondition(e)} />
-
-                            </label>
-                        </div>
-                        <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
-                            <label htmlFor="ifConditionStatement1" className="flex flex-grow ml-5 mt-5">
-                                <input key={"ifConditionStatement1"} type="text" className="outline-black rounded-2xl outline-dotted text-center" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
->>>>>>> if-condition
                             </label>
                         </div>
                         {/* <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement2")} onDragOver={(e) => handleDragOver(e)}>
