@@ -100,15 +100,15 @@ export const books: Book[] = [
         content: ["The game is about to start, and HokieBird is very worried when he got lost. ",
           "We will use If conditions to help the Hokie bird make it to Lane Stadium",
           "If Conditions have two outcomes, they are either true or false",
-          "If a value is true the 'code' that immediatley follows is taken.",
-          "If the value is false then the 'code' that follows is ignored",
+          "If a value is true, the code that immediately follows is taken.",
+          "If the value is false then the code that follows is ignored",
           "For the next few examples we will use the commands move to move the bird forward",
           "To make the Hokiebird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
         ],
         image: "/Maze/SadHokieBird.png",
       },
       {
-        content: ["Since we now know how to move the hokeiBird around, we need to determine what actions we should do.",
+        content: ["Since we now know how to move the HokieBird around, we need to determine what actions we should do.",
           "This is where the If statement comes in, we know that if there is a square infront of the bird then we can move",
           "We also know that if the road turns right or left we can move the hokie bird",
           "We will check multiple conditions",
@@ -121,7 +121,7 @@ export const books: Book[] = [
       },
       {
         content: ["Lets try moving the Hokie Bird forward!",
-          "The Statements are in red and conditions are in blue",
+          "Drag the purple commands into the statement box!",
           "When you are ready to test, click the Run button"
         ],
         image: "HokieBirdMazeActivity",
@@ -131,13 +131,13 @@ export const books: Book[] = [
           pageNum: 2,
           bookID: 3,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            //condition: "can_move_forward",
+            statement: "move_3"
           }
         }
       },
       {
-        content: ["Good Work! Now we need to turn the hokieBird", "The Statements are in red and conditions are in blue"],
+        content: ["Good Work! Now we need to turn the hokieBird", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -145,13 +145,13 @@ export const books: Book[] = [
           pageNum: 3,
           bookID: 3,
           ans: {
-            condition: "can_turn_right",
+            //condition: "can_turn_right",
             statement: "turn_right"
           }
         }
       },
       {
-        content: ["Nicely done! Keep Going!", "The Statements are in red and conditions are in blue"],
+        content: ["Nicely done! Keep Going!", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -159,13 +159,13 @@ export const books: Book[] = [
           pageNum: 4,
           bookID: 3,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            //condition: "can_move_forward",
+            statement: "move_2"
           }
         }
       },
       {
-        content: ["Good Work! Now we need to turn the HokieBird", "The Statements are in red and conditions are in blue"],
+        content: ["Good Work! Now we need to turn the HokieBird", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -173,13 +173,13 @@ export const books: Book[] = [
           pageNum: 5,
           bookID: 3,
           ans: {
-            condition: "can_turn_left",
+            //condition: "can_turn_left",
             statement: "turn_left"
           }
         }
       },
       {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+        content: ["Good Work!", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -187,13 +187,13 @@ export const books: Book[] = [
           pageNum: 6,
           bookID: 3,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            //condition: "can_move_forward",
+            statement: "move_2"
           }
         }
       },
       {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+        content: ["Good Work!", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -201,13 +201,13 @@ export const books: Book[] = [
           pageNum: 7,
           bookID: 3,
           ans: {
-            condition: "can_turn_left",
+            //condition: "can_turn_left",
             statement: "turn_left"
           }
         }
       },
       {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+        content: ["Good Work!", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -215,13 +215,13 @@ export const books: Book[] = [
           pageNum: 8,
           bookID: 3,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            //condition: "can_move_forward",
+            statement: "move_2"
           }
         }
       },
       {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+        content: ["Good Work!", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -229,13 +229,13 @@ export const books: Book[] = [
           pageNum: 9,
           bookID: 3,
           ans: {
-            condition: "can_turn_right",
+            //condition: "can_turn_right",
             statement: "turn_right"
           }
         }
       },
       {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+        content: ["Good Work!", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -243,13 +243,13 @@ export const books: Book[] = [
           pageNum: 10,
           bookID: 3,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            //condition: "can_move_forward",
+            statement: "move_3"
           }
         }
       },
       {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+        content: ["Good Work!", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -257,13 +257,13 @@ export const books: Book[] = [
           pageNum: 11,
           bookID: 3,
           ans: {
-            condition: "can_turn_right",
+            //condition: "can_turn_right",
             statement: "turn_right"
           }
         }
       },
       {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+        content: ["Good Work!", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -271,13 +271,13 @@ export const books: Book[] = [
           pageNum: 12,
           bookID: 3,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            //condition: "can_move_forward",
+            statement: "move_4"
           }
         }
       },
       {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+        content: ["Good Work!", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -285,13 +285,13 @@ export const books: Book[] = [
           pageNum: 13,
           bookID: 3,
           ans: {
-            condition: "can_turn_left",
-            statement: "hokieBird.turnLeft()"
+            //condition: "can_turn_left",
+            statement: "turn_left"
           }
         }
       },
       {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
+        content: ["Good Work!", "Drag the purple commands into the statement box!"],
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
@@ -299,8 +299,8 @@ export const books: Book[] = [
           pageNum: 14,
           bookID: 3,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            //condition: "can_move_forward",
+            statement: "move_2"
           }
         }
       },
@@ -401,7 +401,7 @@ export const books: Book[] = [
           bookID: 4,
           ans: {
             condition: "can_turn_left",
-            statement: "hokieBird.turnLeft()"
+            statement: "turn_left"
           }
         }
       },
@@ -429,7 +429,7 @@ export const books: Book[] = [
           bookID: 4,
           ans: {
             condition: "can_turn_left",
-            statement: "hokieBird.turnLeft()"
+            statement: "turn_left"
           }
         }
       },
@@ -513,7 +513,7 @@ export const books: Book[] = [
           bookID: 4,
           ans: {
             condition: "can_turn_left",
-            statement: "hokieBird.turnLeft()"
+            statement: "turn_left"
           }
         }
       },

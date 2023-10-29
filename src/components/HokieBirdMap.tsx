@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface HokieBirdColorState {
-    condition: string,
+    //condition: string,
     statement: string,
     // statement2: string
 }
@@ -21,23 +21,26 @@ export function HokieBirdMap({ props }: { props: any }) {
         e.dataTransfer.setData("statement", statement);
     }
 
+    {/*
     function handleOnDragCondition(e: React.DragEvent, condition: string) {
         e.dataTransfer.setData("condition", condition);
     }
+    */}
 
     function handleDragOver(e: React.DragEvent) {
         e.preventDefault()
     }
 
-
+    {/*
     function handleOnDropCondition(e: React.DragEvent, part: string) {
         const condition = e.dataTransfer.getData("condition") as string;
         setGame({
             ...game,
             condition: condition
         })
-        setGood(condition === props.ans?.condition && game.statement === props.ans?.statement);
+        setGood(game.statement === props.ans?.statement);
     }
+    */}
 
     function handleOnDropStatement(e: React.DragEvent, statementNumber: string) {
         const statement = e.dataTransfer.getData("statement") as string;
@@ -47,7 +50,7 @@ export function HokieBirdMap({ props }: { props: any }) {
             temp
         }
         setGame(newColors);
-        setGood(newColors.condition === props.ans.condition && newColors.statement === props.ans.statement);
+        setGood(newColors.statement === props.ans.statement);
 
     }
 
@@ -59,6 +62,7 @@ export function HokieBirdMap({ props }: { props: any }) {
         })
     }
 
+    {/*
     function handleInputChangeCondition(e: ChangeEvent<HTMLInputElement>) {
         e.preventDefault();
         const val = e.currentTarget.value as string
@@ -66,8 +70,9 @@ export function HokieBirdMap({ props }: { props: any }) {
             condition: val,
             statement: game.statement
         });
-        setGood(val === props.ans?.condition && game.statement === props.ans?.statement);
+        setGood(game.statement === props.ans?.statement);
     }
+    */}
 
     function handleInputChangeStatement(e: ChangeEvent<HTMLInputElement>) {
         e.preventDefault();
@@ -76,11 +81,11 @@ export function HokieBirdMap({ props }: { props: any }) {
             condition: game.condition,
             statement: val
         });
-        setGood(game.condition === props.ans?.condition && val === props.ans?.statement);
+        setGood(val === props.ans?.statement);
     }
 
     function checkAnswers() {
-        setGood(game.condition === props.ans?.condition && game.statement === props.ans?.statement);
+        setGood(game.statement === props.ans?.statement);
     }
 
     return (
@@ -89,14 +94,16 @@ export function HokieBirdMap({ props }: { props: any }) {
             {!props.finished &&
                 <div className="flex flex-row">
                     <div>
+                        {/*
                         <div className="flex flex-col" onDrop={(e) => handleOnDropCondition(e, "condition")} onDragOver={(e) => handleDragOver(e)}>
-                            <label htmlFor="ifCondition" className="flex flex-grow"> <p className="mr-4">If</p>
-                                <input key={"ifCondition"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={game.condition} onChange={(e) => handleInputChangeCondition(e)} />
+                            <label htmlFor="ifCondition" className="flex flex-grow"> <p style={{ backgroundColor:"rgb(240,240,240)" }} className="mr-4">If</p>
+                                <input key={"ifCondition"} type="text" className="rounded" style={{ backgroundColor:"rgb(240,240,240)" }} placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={game.condition} onChange={(e) => handleInputChangeCondition(e)} />
 
                             </label>
                         </div>
-                        <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
-                            <label htmlFor="ifConditionStatement1" className="flex flex-grow ml-5 mt-5">
+                        */}
+                        <div className="flex flex-col" style={{background:"rgb(220,220,220)", padding:"10px"}} onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
+                            <label htmlFor="ifConditionStatement1" className="flex flex-grow ml-5 mt-5" style={{background:"rgb(220,220,220)"}}>
                                 <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
                             </label>
                         </div>
@@ -110,16 +117,20 @@ export function HokieBirdMap({ props }: { props: any }) {
             {!props.finished &&
                 <div className="mb-36 mt-10">
                     <div className="flex flex-col flex-grow">
-                        <div className="flex flex-row flex-grow justify-around">
-                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "turn_left")}>turn_left</div>
-                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "move")}>move</div>
-                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "turn_right")}>turn_right</div>
+                        <div className="flex flex-row flex-grow justify-around ">
+                            <div draggable={props.draggable} className="flex text-red-600" style={{ color:"white" , cursor: "pointer", borderRadius: "3px", padding: "3px 5px" , background: "rgb(160, 160, 220)"}} onDragStart={(e) => handleOnDragStatement(e, "turn_left")}>turn left</div>
+                            <div draggable={props.draggable} className="flex text-red-600" style={{ color:"white" , cursor: "pointer", borderRadius: "3px", padding: "3px 5px" , background: "rgb(160, 160, 220)"}} onDragStart={(e) => handleOnDragStatement(e, "turn_right")}>turn right</div>
+                            <div draggable={props.draggable} className="flex text-red-600" style={{ color:"white" , cursor: "pointer", borderRadius: "3px", padding: "3px 5px" , background: "rgb(160, 160, 220)"}} onDragStart={(e) => handleOnDragStatement(e, "move_2")}>move 2</div>
+                            <div draggable={props.draggable} className="flex text-red-600" style={{ color:"white" , cursor: "pointer", borderRadius: "3px", padding: "3px 5px" , background: "rgb(160, 160, 220)"}} onDragStart={(e) => handleOnDragStatement(e, "move_3")}>move 3</div>
+                            <div draggable={props.draggable} className="flex text-red-600" style={{ color:"white" , cursor: "pointer", borderRadius: "3px", padding: "3px 5px" , background: "rgb(160, 160, 220)"}} onDragStart={(e) => handleOnDragStatement(e, "move_4")}>move 4</div>
                         </div>
-                        <div className="flex flex-row flex-grow justify-around">
+                        {/*
+                        <div className="flex flex-row flex-grow justify-around style={{font-color: green}}">
                             <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_turn_right")}>can_turn_right</div>
                             <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_turn_left")}>can_turn_left</div>
                             <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_move_forward")}>can_move_forward</div>
                         </div>
+                        */}
                     </div>
                     <div className="flex flex-col flex-grow justify-between ml-4">
                         {good ?
