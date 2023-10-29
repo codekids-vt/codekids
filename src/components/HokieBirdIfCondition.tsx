@@ -97,13 +97,13 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
                 <div className="p-2">
                     <div className="flex flex-col" onDrop={(e) => handleOnDropCondition(e, "condition")} onDragOver={(e) => handleDragOver(e)}>
                         <label htmlFor="ifCondition" className="flex flex-grow">
-                            <p className="px-2">If</p>
-                            <input key={"ifCondition"} type="text" className="rounded-xl p-2" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={props.condition} onChange={(e) => handleInputChangeCondition(e)} />
+                            <p className="px-2"><strong>If</strong></p>
+                            <input key={"ifCondition"} type="text" className="outline-black rounded-2xl outline-dotted text-center" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={props.condition} onChange={(e) => handleInputChangeCondition(e)} />
                         </label>
                     </div>
                     <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
                         <label htmlFor="ifConditionStatement1" className="flex flex-grow p-2" />
-                        <input key={"ifConditionStatement1"} type="text" className="rounded-xl p-2" placeholder={props?.type ? "Type Here" : "Drag appropriate action here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
+                        <input key={"ifConditionStatement1"} type="text" className="outline-black rounded-2xl outline-dotted text-center" placeholder={props?.type ? "Type Here" : "Drag appropriate action here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
                     </div>
                 </div>
                 <div className="grid grid-cols-2 flex-grow justify-between p-2">
