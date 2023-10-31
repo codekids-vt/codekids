@@ -34,11 +34,16 @@ export function HokieBirdColoring({ props }: { props: any }) {
                 const updatedParts = [...part];
                 updatedParts[index] = val;
                 setPart(updatedParts);
+            } else if (availableColors.includes(val)) {
+                alert('This value is a color, not a body part!');
             }
         }
 
         const handleColorChange = (part: string, value: string) => {
             const val = value.toLowerCase();
+            if (availableParts.includes(val)) {
+                alert('This value is a body part, not a color!');
+            }
             if (value.startsWith('"') && value.endsWith('"')) {
                 const strippedValue = val.substring(1, val.length - 1);
                 if (availableColors.includes(strippedValue) && part != '') {
@@ -46,6 +51,8 @@ export function HokieBirdColoring({ props }: { props: any }) {
                         ...prevColors,
                         [part]: strippedValue,
                     }));
+                } else if (availableParts.includes(strippedValue)) {
+                    alert('This value is a body part, not a color!');
                 }
             }
         }        
@@ -155,7 +162,6 @@ export function HokieBirdColoring({ props }: { props: any }) {
             </div>
         )
     }
-
     return (
         <div className="flex flex-col">
             <HokieBird></HokieBird>
