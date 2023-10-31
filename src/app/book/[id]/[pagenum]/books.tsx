@@ -760,9 +760,10 @@ export const books: Book[] = [
   },
   {
     BookId: 8,
-    title: "If-conditon with HokieBird Dance",
+    title: "If-condition with HokieBird Dance",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
+    cover: "/if_condition/HokieBirdIf.png",
     pages:
       [
         {
@@ -847,6 +848,7 @@ export const books: Book[] = [
     title: "Python Tutor",
     blurb: "Learn programming with a visualizer",
     author: "Dev",
+    cover: "/Python-logo-notext.png",
     pages:
       [{
         content: ["Python Tutor is a visualizer that allows you to see how your code is executed step by step.",
