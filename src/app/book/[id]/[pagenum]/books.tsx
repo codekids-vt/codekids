@@ -760,7 +760,7 @@ export const books: Book[] = [
   },
   {
     BookId: 8,
-    title: "If-conditon with HokieBird Dance",
+    title: "If-condition with HokieBird Dance",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     cover: "/if_condition/HokieBirdIf.png",

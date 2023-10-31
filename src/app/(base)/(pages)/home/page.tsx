@@ -19,7 +19,7 @@ export default function Home() {
             </h1>
           </div>
         </div>
-        <ActivityBookList></ActivityBookList>
+        <ActivityBookList />
       </div>
     </>
   );
