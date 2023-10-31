@@ -67,21 +67,17 @@ export function HokieBirdMap({ props }: { props: any }) {
     }
 
     return (
-        <div className="flex flex-col flex-grow justify-between overflow-hidden">
+        <div className="flex flex-col">
             <Image src={`/Maze/${props?.image}`} width={700} height={500} alt="Hokie Bird Maze Image"></Image>
             {!props.finished &&
-                <div className="flex flex-row">
-                    <div>
-                        <div className="flex flex-col" style={{ background: "rgb(220,220,220)", padding: "10px" }} onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
-                            <label htmlFor="ifConditionStatement1" className="flex flex-grow ml-5 mt-5 items-center" style={{ background: "rgb(220,220,220)" }}>
-                                <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
-                            </label>
-                        </div>
+                <div className="p-4 object-center place-self-center">
+                    <div className="flex flex-col p-6 rounded-full" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
+                        <input type="text" className="rounded-2xl p-4 bg-gray-300 text-center" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
                     </div>
                 </div>
             }
             {!props.finished &&
-                <div className="mb-36 mt-10">
+                <div className="py-2">
                     <div className="flex flex-col flex-grow">
                         <div className="flex flex-row flex-grow justify-around ">
                             {
@@ -93,7 +89,7 @@ export function HokieBirdMap({ props }: { props: any }) {
                     </div>
                     <div className="flex flex-col flex-grow justify-between ml-4">
                         {good ?
-                            <Link href={`/book/${props.bookID}/${props.pageNum + 1}`} className="rounded bg-green-500 text-center mx-5 mb-5 mt-5 hover:-translate-y-1">
+                            <Link href={`/book/${props.bookID}/${props.pageNum + 1}`} className="rounded bg-green-500 text-center mx-5 mb-5 mt-5">
                                 <button onClick={e => checkAnswers()} >Run</button>
                                 <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                                     <span className="block sm:inline">Correct! click Run button to continue</span>
@@ -111,7 +107,7 @@ export function HokieBirdMap({ props }: { props: any }) {
                                 </Link> :
                                 <button className="rounded bg-green-500 text-center mx-5 mb-5 mt-5" onClick={e => checkAnswers()}>Run</button>
                         }
-                        <button className="rounded bg-red-500 mx-5 hover:-translate-y-1" onClick={e => handleResetMaze(e)}>Reset</button>
+                        <button className="rounded bg-red-500 mx-5 hover:shadow-2xl" onClick={e => handleResetMaze(e)}>Reset</button>
                     </div>
 
                 </div>
