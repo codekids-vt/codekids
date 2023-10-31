@@ -39,6 +39,12 @@ export function HokieBirdColoring({ props }: { props: any }) {
             }
         }
 
+        const handleValueOnBlur = (value: string) => {
+            if (!availableColors.includes(value) && !availableParts.includes(value)) {
+                alert("That isn't quite one of the options. Try again.");
+            }
+        }
+
         const handleColorChange = (part: string, value: string) => {
             const val = value.toLowerCase();
             if (availableParts.includes(val)) {
@@ -95,6 +101,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                             className={`rounded w-36 animate-pulse bg-yellow-50`}
                                             type="text"
                                             placeholder="Type a body part"
+                                            onBlur={(e) => handleValueOnBlur(e.target.value)}
                                             onChange={(e) => handlePart(index, e.target.value)}
                                             defaultValue={part[index]}
                                             disabled={!props.type}
@@ -108,6 +115,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                         type="text"
                                         className={`rounded w-36 animate-pulse bg-yellow-50`}
                                         placeholder={props?.type ? "Type a color here" : "Drag a color here"}
+                                        onBlur={(e) => handleValueOnBlur(e.target.value)}
                                         onChange={(e) => handleColorChange(props?.typeVariable ? part[index] : availablePart, e.target.value)}
                                         defaultValue={
                                             props?.typeVariable ? 
