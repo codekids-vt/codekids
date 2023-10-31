@@ -143,7 +143,7 @@ export function HokieBirdMap({ props }: { props: any }) {
                         {good ?
                             <Link href={`/book/${props.bookID}/${props.pageNum + 1}`} className="rounded bg-green-500 text-center mx-5 mb-5 mt-5">
                                 <button onClick={e => checkAnswers()}>Run</button>
-                                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                                <div className="bg-green-100 border border-green-400 text-green-700 px-10 py-3 rounded relative" role="alert">
                                 <span className="block sm:inline">Correct! click 'Run' button to continue</span>
                 </div>
                             </Link> :
