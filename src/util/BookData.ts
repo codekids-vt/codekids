@@ -11,4 +11,5 @@ export interface Book {
     title: string,
     blurb: string,
     pages: Page[],
+    cover?: string
 }
