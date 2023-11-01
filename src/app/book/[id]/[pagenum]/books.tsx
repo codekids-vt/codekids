@@ -83,8 +83,8 @@ export const books: Book[] = [
   },
   {
     BookId: 3,
-    title: "Navigate around Blacksburg by Dragging commands",
-    blurb: "Learn about if-condition and for-loop with the Hokie Bird Maze!",
+    title: "Hokie Bird is Lost!",
+    blurb: "Learn how to communicate specific instructions to the Hokie Bird to help them find their way!",
     author: "Dev",
     pages: [
       {
@@ -94,17 +94,17 @@ export const books: Book[] = [
           "If a value is true, the code that immediately follows is taken.",
           "If the value is false then the code that follows is ignored",
           "For the next few examples we will use the commands move to move the bird forward",
-          "To make the Hokiebird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
+          "To make the HokieBird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
         ],
         image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Since we now know how to move the HokieBird around, we need to determine what actions we should do.",
-          "This is where the If statement comes in, we know that if there is a square infront of the bird then we can move",
+          "This is where the If statement comes in, we know that if there is a square in front of the bird then we can move",
           "We also know that if the road turns right or left we can move the hokie bird",
           "We will check multiple conditions",
           "The first condition will be can_move_forward, this is used to move the bird forward",
-          "Turning left and right is similar with the functions can_turn_left and can_turn_right",
+          "Turning left and right is similar with the functions can_turn_left() and can_turn_right()",
           "Placing any of these commands in the if statement will either make it true or false",
           "If the condition is false then the statement in the else block will be used instead"
         ],
@@ -118,399 +118,104 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
-          image: "Maze1.png",
+          images: [
+            "Maze1.png",
+            "Maze2.jpg",
+            "Maze3.png",
+            "Maze4.jpg",
+            "Maze5.png",
+            "Maze6.jpg",
+            "Maze7.png",
+            "Maze8.jpg",
+            "Maze9.png",
+            "Maze10.jpg",
+            "Maze11.png",
+            "Maze12.jpg",
+            "Maze13.png",
+            "Maze14.png",
+          ],
           pageNum: 2,
           bookID: 3,
-          ans: {
-            statement: "move_3"
-          }
-        }
-      },
-      {
-        content: ["Good Work! Now we need to turn the hokieBird", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze2.jpg",
-          pageNum: 3,
-          bookID: 3,
-          ans: {
-            statement: "turn_right"
-          }
-        }
-      },
-      {
-        content: ["Nicely done! Keep Going!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze3.png",
-          pageNum: 4,
-          bookID: 3,
-          ans: {
-            statement: "move_2"
-          }
-        }
-      },
-      {
-        content: ["Good Work! Now we need to turn the HokieBird", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze4.jpg",
-          pageNum: 5,
-          bookID: 3,
-          ans: {
-            statement: "turn_left"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze5.png",
-          pageNum: 6,
-          bookID: 3,
-          ans: {
-            statement: "move_2"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze6.jpg",
-          pageNum: 7,
-          bookID: 3,
-          ans: {
-            statement: "turn_left"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze7.png",
-          pageNum: 8,
-          bookID: 3,
-          ans: {
-            statement: "move_2"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze8.jpg",
-          pageNum: 9,
-          bookID: 3,
-          ans: {
-            statement: "turn_right"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze9.png",
-          pageNum: 10,
-          bookID: 3,
-          ans: {
-            statement: "move_3"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze10.jpg",
-          pageNum: 11,
-          bookID: 3,
-          ans: {
-            statement: "turn_right"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze11.png",
-          pageNum: 12,
-          bookID: 3,
-          ans: {
-            statement: "move_4"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze12.jpg",
-          pageNum: 13,
-          bookID: 3,
-          ans: {
-            statement: "turn_left"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze13.png",
-          pageNum: 14,
-          bookID: 3,
-          ans: {
-            statement: "move_2"
-          }
+          ans: [
+            "move(3)",
+            "turn_right()",
+            "move(2)",
+            "turn_left()",
+            "move(2)",
+            "turn_left()",
+            "move(2)",
+            "turn_right()",
+            "move(3)",
+            "turn_right()",
+            "move(4)",
+            "turn_left()",
+            "move(2)",
+          ]
         }
       },
       {
         content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: false,
-          image: "Maze14.png",
-          pageNum: 15,
-          bookID: 3,
-          finished: true
-        }
-      },
-    ]
-  },
-  {
-    BookId: 4,
-    title: "Navigate around Blacksburg by typing in commands",
-    blurb: "Learn about if-condition and for-loop with the Hokie Bird Maze!",
-    author: "Dev",
-    pages: [
-      {
-        content: ["The game is about to start, and HokieBird is very worried when he got lost. ",
-          "We will use If conditions to help the Hokie bird make it to Lane Stadium",
-          "If Conditions have two outcomes, they are either true or false",
-          "If a value is true the 'code' that immediatley follows is taken.",
-          "If the value is false then the 'code' that follows is ignored",
-          "For the next few examples we will use the commands move to move the bird forward",
-          "To make the Hokiebird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
-        ],
-        image: "/Maze/SadHokieBird.png",
+        image: "/Maze/Maze14.png",
       },
       {
-        content: ["Since we now know how to move the hokeiBird around, we need to determine what actions we should do.",
-          "This is where the If statement comes in, we know that if there is a square infront of the bird then we can move",
-          "We also know that if the road turns right or left we can move the hokie bird",
-          "We will check multiple conditions",
-          "The first condition will be can_move_forward, this is used to move the bird forward",
-          "Turning left and right is similar with the functions can_turn_left and can_turn_right",
-          "Placing any of these commands in the if statement will either make it true or false",
-          "If the condition is false then the statement in the else block will be used instead"
+        content: [
+          "Oh no now the hokie bird is lost somewhere else <need to fill new place with images and map>",
+          "this will be non draggable",
         ],
         image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Lets try moving the Hokie Bird forward!",
-          "The Statements are in red and conditions are in blue",
+          "Drag the purple commands into the statement box!",
           "When you are ready to test, click the Run button"
         ],
         image: "HokieBirdMazeActivity",
         props: {
           type: true,
-          image: "Maze1.png",
+          draggable: false,
+          images: [
+            "Maze1.png",
+            "Maze2.jpg",
+            "Maze3.png",
+            "Maze4.jpg",
+            "Maze5.png",
+            "Maze6.jpg",
+            "Maze7.png",
+            "Maze8.jpg",
+            "Maze9.png",
+            "Maze10.jpg",
+            "Maze11.png",
+            "Maze12.jpg",
+            "Maze13.png",
+            "Maze14.png",
+          ],
           pageNum: 2,
-          bookID: 4,
-          ans: {
-            statement: "move_3"
-          }
-        }
-      },
-      {
-        content: ["Good Work! Now we need to turn the hokieBird", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze2.jpg",
-          pageNum: 3,
-          bookID: 4,
-          ans: {
-            statement: "turn_right"
-          }
-        }
-      },
-      {
-        content: ["Nicely done! Keep Going!", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze3.png",
-          pageNum: 4,
-          bookID: 4,
-          ans: {
-            statement: "move_2"
-          }
-        }
-      },
-      {
-        content: ["Good Work! Now we need to turn the HokieBird", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze4.jpg",
-          pageNum: 5,
-          bookID: 4,
-          ans: {
-            statement: "turn_left"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze5.png",
-          pageNum: 6,
-          bookID: 4,
-          ans: {
-            statement: "move_2"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze6.jpg",
-          pageNum: 7,
-          bookID: 4,
-          ans: {
-            statement: "turn_left"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze7.png",
-          pageNum: 8,
-          bookID: 4,
-          ans: {
-            statement: "move_2"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze8.jpg",
-          pageNum: 9,
-          bookID: 4,
-          ans: {
-            statement: "turn_right"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze9.png",
-          pageNum: 10,
-          bookID: 4,
-          ans: {
-            statement: "move_3"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze10.jpg",
-          pageNum: 11,
-          bookID: 4,
-          ans: {
-            statement: "turn_right"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze11.png",
-          pageNum: 12,
-          bookID: 4,
-          ans: {
-            statement: "move_4"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze12.jpg",
-          pageNum: 13,
-          bookID: 4,
-          ans: {
-            statement: "turn_left"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "The Statements are in red and conditions are in blue"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: true,
-          image: "Maze13.png",
-          pageNum: 14,
-          bookID: 4,
-          ans: {
-            statement: "move_2"
-          }
+          bookID: 3,
+          ans: [
+            "move(3)",
+            "turn_right()",
+            "move(2)",
+            "turn_left()",
+            "move(2)",
+            "turn_left()",
+            "move(2)",
+            "turn_right()",
+            "move(3)",
+            "turn_right()",
+            "move(4)",
+            "turn_left()",
+            "move(2)",
+          ]
         }
       },
       {
         content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          type: false,
-          image: "Maze14.png",
-          pageNum: 15,
-          bookID: 4,
-          finished: true
-        }
-      }
+        image: "/Maze/Maze14.png",
+      },
     ]
   },
   {
-    BookId: 5,
+    BookId: 4,
     title: "IO Hand In Hand",
     blurb: "Learn about how a computer can compute patterns!",
     author: "Prapti",
@@ -576,7 +281,7 @@ export const books: Book[] = [
     ]
   },
   {
-    BookId: 6,
+    BookId: 5,
     title: "If-condition with HokieBird Weathers",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
@@ -659,7 +364,7 @@ export const books: Book[] = [
     ]
   },
   {
-    BookId: 7,
+    BookId: 6,
     title: "If-conditon with HokieBird Mood",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
@@ -724,7 +429,7 @@ export const books: Book[] = [
     ]
   },
   {
-    BookId: 8,
+    BookId: 7,
     title: "If-condition with HokieBird Dance",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
@@ -809,7 +514,7 @@ export const books: Book[] = [
       ],
   },
   {
-    BookId: 9,
+    BookId: 8,
     title: "Python Tutor",
     blurb: "Learn programming with a visualizer",
     author: "Dev",
