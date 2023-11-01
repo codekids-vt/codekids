@@ -154,7 +154,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
 
     function HokieBird() {
         return (
-            <div className="flex flex-col flex-grow justify-center items-center mx-10">
+            <div className="flex flex-col flex-grow justify-center items-center mx-10 relative">
                 <Image src="/HokieBird.png" alt="book image" className={'center-left'} width={220} height={500} />
                 <Image src="/HokieHead.png" alt="book image" className={`absolute center-left img-${colors.head} `} width={220} height={500} />
                 <Image src="/HokieBody.png" alt="book image" className={`absolute center-left img-${colors.body} `} width={220} height={500} />
