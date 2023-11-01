@@ -66,7 +66,6 @@ export function HokieBirdMap({ props }: { props: any }) {
         setMessage(null);
         setErrorProcedure(null);
         setCurrentImage(props.images[0]);
-        router.push(`/book/${props.bookID}/${2}`);
     }
 
     return (
