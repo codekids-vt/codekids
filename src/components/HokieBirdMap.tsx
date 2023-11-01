@@ -82,7 +82,7 @@ export function HokieBirdMap({ props }: { props: any }) {
                 <div className="py-2">
                     <div className="flex flex-row justify-center">
                         {actions.map((action: string, i: number) => (
-                            <div className="p-2">
+                            <div key={`mapActivity-${i}`} className="p-2">
                                 <div key={`mapActivity-${i}`} draggable={props.draggable} className="text-black bg-primary-green hover:shadow-2xl rounded-2xl p-3" onDragStart={(e) => handleOnDragStatement(e, action)}>
                                     {action}
                                 </div>
