@@ -9,6 +9,7 @@ interface HokieBirdColorState {
     // statement2: string
 }
 
+const actions = ["turn_left", "turn_right", "move_2", "move_3", "move_4"]
 
 export function HokieBirdMap({ props }: { props: any }) {
     const [good, setGood] = useState(false)
@@ -23,26 +24,9 @@ export function HokieBirdMap({ props }: { props: any }) {
         e.dataTransfer.setData("statement", statement);
     }
 
-    {/*
-    function handleOnDragCondition(e: React.DragEvent, condition: string) {
-        e.dataTransfer.setData("condition", condition);
-    }
-    */}
-
     function handleDragOver(e: React.DragEvent) {
         e.preventDefault()
     }
-
-    {/*
-    function handleOnDropCondition(e: React.DragEvent, part: string) {
-        const condition = e.dataTransfer.getData("condition") as string;
-        setGame({
-            ...game,
-            condition: condition
-        })
-        setGood(game.statement === props.ans?.statement);
-    }
-    */}
 
     function handleOnDropStatement(e: React.DragEvent, statementNumber: string) {
         const statement = e.dataTransfer.getData("statement") as string;
@@ -58,7 +42,6 @@ export function HokieBirdMap({ props }: { props: any }) {
 
     }
 
-
     function handleResetMaze(e: any) {
         setGame({
             condition: "",
@@ -68,18 +51,6 @@ export function HokieBirdMap({ props }: { props: any }) {
         setWrong(false);
         setGood(false);
     }
-
-    {/*
-    function handleInputChangeCondition(e: ChangeEvent<HTMLInputElement>) {
-        e.preventDefault();
-        const val = e.currentTarget.value as string
-        setGame({
-            condition: val,
-            statement: game.statement
-        });
-        setGood(game.statement === props.ans?.statement);
-    }
-    */}
 
     function handleInputChangeStatement(e: ChangeEvent<HTMLInputElement>) {
         e.preventDefault();
@@ -95,71 +66,49 @@ export function HokieBirdMap({ props }: { props: any }) {
         setGood(game.statement === props.ans?.statement);
     }
 
-    return (
-        <div className="flex flex-col flex-grow justify-between">
-            <Image src={`/Maze/${props?.image}`} width={500} height={500} alt="Hokie Bird Maze Image"></Image>
-            {!props.finished &&
-                <div className="flex flex-row">
-                    <div>
-                        {/*
-                        <div className="flex flex-col" onDrop={(e) => handleOnDropCondition(e, "condition")} onDragOver={(e) => handleDragOver(e)}>
-                            <label htmlFor="ifCondition" className="flex flex-grow"> <p style={{ backgroundColor:"rgb(240,240,240)" }} className="mr-4">If</p>
-                                <input key={"ifCondition"} type="text" className="rounded" style={{ backgroundColor:"rgb(240,240,240)" }} placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={game.condition} onChange={(e) => handleInputChangeCondition(e)} />
+    const runButton = <button className="rounded-2xl bg-primary-green text-center p-3 hover:shadow-2xl" onClick={e => checkAnswers()}>Run</button>
 
-                            </label>
-                        </div>
-                        */}
-                        <div className="flex flex-col" style={{background:"rgb(220,220,220)", padding:"10px"}} onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
-                            <label htmlFor="ifConditionStatement1" className="flex flex-grow ml-5 mt-5" style={{background:"rgb(220,220,220)"}}>
-                                <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
-                            </label>
-                        </div>
-                        {/* <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement2")} onDragOver={(e) => handleDragOver(e)}>
-                        <label htmlFor="ifConditionStatement2" className="flex flex-grow mt-5"/>else: 
-                        <input key={"ifConditionStatement2"} type="text" className="rounded ml-5" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement2}/> 
-                    </div> */}
+    return (
+        <div className="flex flex-col items-center">
+            <Image className="" src={`/Maze/${props?.image}`} width={400} height={400} alt="Hokie Bird Maze Image" />
+            {!props.finished &&
+                <div className="p-4 object-center place-self-center">
+                    <div className="flex flex-col p-6 rounded-full" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
+                        <input type="text" className="rounded-2xl p-4 bg-gray-300 text-center" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
                     </div>
                 </div>
             }
             {!props.finished &&
-                <div className="mb-36 mt-10">
-                    <div className="flex flex-col flex-grow">
-                        <div className="flex flex-row flex-grow justify-around ">
-                            <div draggable={props.draggable} className="flex text-red-600" style={{ color:"white" , cursor: "pointer", borderRadius: "3px", padding: "3px 5px" , background: "rgb(160, 160, 220)"}} onDragStart={(e) => handleOnDragStatement(e, "turn_left")}>turn left</div>
-                            <div draggable={props.draggable} className="flex text-red-600" style={{ color:"white" , cursor: "pointer", borderRadius: "3px", padding: "3px 5px" , background: "rgb(160, 160, 220)"}} onDragStart={(e) => handleOnDragStatement(e, "turn_right")}>turn right</div>
-                            <div draggable={props.draggable} className="flex text-red-600" style={{ color:"white" , cursor: "pointer", borderRadius: "3px", padding: "3px 5px" , background: "rgb(160, 160, 220)"}} onDragStart={(e) => handleOnDragStatement(e, "move_2")}>move 2</div>
-                            <div draggable={props.draggable} className="flex text-red-600" style={{ color:"white" , cursor: "pointer", borderRadius: "3px", padding: "3px 5px" , background: "rgb(160, 160, 220)"}} onDragStart={(e) => handleOnDragStatement(e, "move_3")}>move 3</div>
-                            <div draggable={props.draggable} className="flex text-red-600" style={{ color:"white" , cursor: "pointer", borderRadius: "3px", padding: "3px 5px" , background: "rgb(160, 160, 220)"}} onDragStart={(e) => handleOnDragStatement(e, "move_4")}>move 4</div>
-                        </div>
-                        {/*
-                        <div className="flex flex-row flex-grow justify-around style={{font-color: green}}">
-                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_turn_right")}>can_turn_right</div>
-                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_turn_left")}>can_turn_left</div>
-                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_move_forward")}>can_move_forward</div>
-                        </div>
-                        */}
-                    </div>
-                    <div className="flex flex-col flex-grow justify-between ml-4">
-                        {good ?
-                            <Link href={`/book/${props.bookID}/${props.pageNum + 1}`} className="rounded bg-green-500 text-center mx-5 mb-5 mt-5">
-                                <button onClick={e => checkAnswers()}>Run</button>
-                                <div className="bg-green-100 border border-green-400 text-green-700 px-10 py-3 rounded relative" role="alert">
-                                <span className="block sm:inline">Correct! click 'Run' button to continue</span>
-                </div>
-                            </Link> :
-                        wrong ?
-                            <Link href={`/book/${props.bookID}/${props.pageNum}`} className="rounded bg-green-500 text-center mx-5 mb-5 mt-5">
-                            <button onClick={e => checkAnswers()}>Run</button>
-                            <div className="bg-red-100 border border-red-400 text-red-700 px-10 py-3 rounded relative" role="alert">
-                                <span className="block sm:inline">That is not quite correct, click the 'Reset' button to try again!</span>
-                                <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
-                                    <button onClick={e => handleResetMaze(e)}><svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg></button>
-                                </span>
+                <div className="py-2">
+                    <div className="flex flex-row justify-center">
+                        {actions.map((action: string, i: number) => (
+                            <div className="p-2">
+                                <div key={`mapActivity-${i}`} draggable={props.draggable} className="text-black bg-primary-green hover:shadow-2xl rounded-2xl p-3" onDragStart={(e) => handleOnDragStatement(e, action)}>
+                                    {action}
+                                </div>
                             </div>
+                        ))}
+                    </div>
+                    <div className="flex flex-col items-center space-y-4">
+                        {good ?
+                            <Link href={`/book/${props.bookID}/${props.pageNum + 1}`} className="rounded bg-primary-green text-center">
+                                {runButton}
+                                <div className="bg-green-100 border border-primary-green text-primary-green px-4 py-3 rounded relative" role="alert">
+                                    <span className="block sm:inline">Correct! click Run button to continue</span>
+                                </div>
                             </Link> :
-                            <button className="rounded bg-green-500 text-center mx-5 mb-5 mt-5" onClick={e => checkAnswers()}>Run</button>
+                            wrong ?
+                                <Link href={`/book/${props.bookID}/${props.pageNum}`} className="rounded-2xl p-2 bg-primary-green text-center">
+                                    {runButton}
+                                    <div className="bg-red-100 border border-red-400 text-red-700 px-10 py-3 rounded relative" role="alert">
+                                        <span className="block sm:inline">That is not quite correct, click the Reset button to try again!</span>
+                                        <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+                                            <button onClick={e => handleResetMaze(e)}><svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg></button>
+                                        </span>
+                                    </div>
+                                </Link> : runButton
                         }
-                        <button className="rounded bg-red-500 mx-5" onClick={e => handleResetMaze(e)}>Reset</button>
+                        <button className="rounded-2xl p-3 bg-red-500 hover:shadow-2xl" onClick={e => handleResetMaze(e)}>Reset</button>
                     </div>
 
                 </div>

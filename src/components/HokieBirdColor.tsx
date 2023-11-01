@@ -19,13 +19,12 @@ const availableColorsTailwind: { [key: string]: string } = {
 const availableParts = ["head", "body", "legs"]
 
 export function HokieBirdColoring({ props }: { props: any }) {
+    const [part, setPart] = useState(["", "", ""]);
     const [colors, setColors] = useState({
         head: "",
         body: "",
         legs: ""
     });
-
-    const [part, setPart] = useState(["", "", ""]);
 
     function HokieBirdColors() {
 
@@ -35,18 +34,28 @@ export function HokieBirdColoring({ props }: { props: any }) {
                 const updatedParts = [...part];
                 updatedParts[index] = val;
                 setPart(updatedParts);
+            } else if (availableColors.includes(val)) {
+                alert('This value is a color, not a body part!');
             }
         }
 
         const handleColorChange = (part: string, value: string) => {
             const val = value.toLowerCase();
-            if (availableColors.includes(val) && part != '') {
-                setColors((prevColors) => ({
-                    ...prevColors,
-                    [part]: val,
-                }));
+            if (availableParts.includes(val)) {
+                alert('This value is a body part, not a color!');
             }
-        }
+            if (value.startsWith('"') && value.endsWith('"')) {
+                const strippedValue = val.substring(1, val.length - 1);
+                if (availableColors.includes(strippedValue) && part != '') {
+                    setColors((prevColors) => ({
+                        ...prevColors,
+                        [part]: strippedValue,
+                    }));
+                } else if (availableParts.includes(strippedValue)) {
+                    alert('This value is a body part, not a color!');
+                }
+            }
+        }        
 
         function handleOnDrop(e: React.DragEvent, part: string) {
             const color = e.dataTransfer.getData("Color") as string;
@@ -69,7 +78,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
 
         return (
             <div className="flex flex-col p-5 bg-gray-200 rounded-2xl">
-                <h1 className="font-bold">{props.command}</h1>
+                <h1 className="font-bold text-center">{props.command}</h1>
                 <div className="flex flex-row p-4">
                     <div className="flex flex-col p-2 space-y-2">
                         {availableParts.map((availablePart, index) => (
@@ -100,7 +109,10 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                         className={`rounded w-36 animate-pulse bg-yellow-50`}
                                         placeholder={props?.type ? "Type a color here" : "Drag a color here"}
                                         onChange={(e) => handleColorChange(props?.typeVariable ? part[index] : availablePart, e.target.value)}
-                                        defaultValue={props?.typeVariable ? colors[part[index] as keyof HokieBirdColorState] : colors[availablePart as keyof HokieBirdColorState]}
+                                        defaultValue={
+                                            props?.typeVariable ? 
+                                                (colors[part[index] as keyof HokieBirdColorState] ? `"${colors[part[index] as keyof HokieBirdColorState]}"` : '') 
+                                                : (colors[availablePart as keyof HokieBirdColorState] ? `"${colors[availablePart as keyof HokieBirdColorState]}"` : '')}
                                         disabled={!props.type}
                                     />
                                 </label>
@@ -108,18 +120,29 @@ export function HokieBirdColoring({ props }: { props: any }) {
                         ))}
                     </div>
                     <div className="flex flex-col px-2">
-                        <h1 className="font-bold">Options</h1>
-                        <div className="grid grid-cols-2 gap-2">
+                        <h1 className="font-bold text-center">Options:</h1>
+                        <div className={`${props?.typeVariable ? "grid-cols-2" : "grid-cols-1"} grid gap-x-4 gap-y-4`}>
                             {props?.typeVariable && (
                                 <div className="flex flex-col flex-grow space-y-2">
                                     {availableParts.map((part, index) => (
-                                        <div key={`option${index}`} className="p-1 rounded-2xl bg-gray-300 text-center">{part}</div>
+                                        <div 
+                                            key={`option${index}`} 
+                                            className="flex p-3 min-w-[70px] place-content-center rounded-2xl bg-gray-300">
+                                                {part}
+                                        </div>
                                     ))}
                                 </div>
                             )}
                             <div className="flex flex-col flex-grow space-y-2">
                                 {availableColors.map((color, index) => (
-                                    <div key={index} draggable={props.draggable} className={`flex ${availableColorsTailwind[color]} p-1 place-content-center rounded-2xl shadow-2xl`} onDragStart={(e) => handleOnDrag(e, color)}>{color}</div>
+                                    <div 
+                                        key={index} 
+                                        draggable={props.draggable} 
+                                        className={`flex ${availableColorsTailwind[color]} p-3 min-w-[70px] place-content-center rounded-2xl shadow-2xl`} 
+                                        onDragStart={(e) => handleOnDrag(e, color)}
+                                    >
+                                        <q className="text-white">{color}</q>
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -139,7 +162,6 @@ export function HokieBirdColoring({ props }: { props: any }) {
             </div>
         )
     }
-
     return (
         <div className="flex flex-col">
             <HokieBird></HokieBird>

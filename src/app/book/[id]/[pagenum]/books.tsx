@@ -83,19 +83,10 @@ export const books: Book[] = [
   },
   {
     BookId: 3,
-    title: "If-condition and For-loop with HokieBird Maze",
+    title: "Navigate around Blacksburg by Dragging commands",
     blurb: "Learn about if-condition and for-loop with the Hokie Bird Maze!",
     author: "Dev",
     pages: [
-      // {
-      //   content: ["There will be a football game at Virginia Tech this afternoon,",
-      //     "and HokieBird is one of the participants.",
-      //     "Unfortunately, HokieBird does not know where Lane Stadium is",
-      //     "If you would like to help HokieBird, please click the Next button.",
-      //     "Go to the next page and enter the game.",
-      //   ],
-      //   image: "/SadHokieBird.png",
-      // },
       {
         content: ["The game is about to start, and HokieBird is very worried when he got lost. ",
           "We will use If conditions to help the Hokie bird make it to Lane Stadium",
@@ -131,7 +122,6 @@ export const books: Book[] = [
           pageNum: 2,
           bookID: 3,
           ans: {
-            //condition: "can_move_forward",
             statement: "move_3"
           }
         }
@@ -145,7 +135,6 @@ export const books: Book[] = [
           pageNum: 3,
           bookID: 3,
           ans: {
-            //condition: "can_turn_right",
             statement: "turn_right"
           }
         }
@@ -159,7 +148,6 @@ export const books: Book[] = [
           pageNum: 4,
           bookID: 3,
           ans: {
-            //condition: "can_move_forward",
             statement: "move_2"
           }
         }
@@ -173,7 +161,6 @@ export const books: Book[] = [
           pageNum: 5,
           bookID: 3,
           ans: {
-            //condition: "can_turn_left",
             statement: "turn_left"
           }
         }
@@ -187,7 +174,6 @@ export const books: Book[] = [
           pageNum: 6,
           bookID: 3,
           ans: {
-            //condition: "can_move_forward",
             statement: "move_2"
           }
         }
@@ -201,7 +187,6 @@ export const books: Book[] = [
           pageNum: 7,
           bookID: 3,
           ans: {
-            //condition: "can_turn_left",
             statement: "turn_left"
           }
         }
@@ -215,7 +200,6 @@ export const books: Book[] = [
           pageNum: 8,
           bookID: 3,
           ans: {
-            //condition: "can_move_forward",
             statement: "move_2"
           }
         }
@@ -229,7 +213,6 @@ export const books: Book[] = [
           pageNum: 9,
           bookID: 3,
           ans: {
-            //condition: "can_turn_right",
             statement: "turn_right"
           }
         }
@@ -243,7 +226,6 @@ export const books: Book[] = [
           pageNum: 10,
           bookID: 3,
           ans: {
-            //condition: "can_move_forward",
             statement: "move_3"
           }
         }
@@ -257,7 +239,6 @@ export const books: Book[] = [
           pageNum: 11,
           bookID: 3,
           ans: {
-            //condition: "can_turn_right",
             statement: "turn_right"
           }
         }
@@ -271,7 +252,6 @@ export const books: Book[] = [
           pageNum: 12,
           bookID: 3,
           ans: {
-            //condition: "can_move_forward",
             statement: "move_4"
           }
         }
@@ -285,7 +265,6 @@ export const books: Book[] = [
           pageNum: 13,
           bookID: 3,
           ans: {
-            //condition: "can_turn_left",
             statement: "turn_left"
           }
         }
@@ -299,7 +278,6 @@ export const books: Book[] = [
           pageNum: 14,
           bookID: 3,
           ans: {
-            //condition: "can_move_forward",
             statement: "move_2"
           }
         }
@@ -319,7 +297,7 @@ export const books: Book[] = [
   },
   {
     BookId: 4,
-    title: "If-condition and For-loop with HokieBird Maze",
+    title: "Navigate around Blacksburg by typing in commands",
     blurb: "Learn about if-condition and for-loop with the Hokie Bird Maze!",
     author: "Dev",
     pages: [
@@ -358,8 +336,7 @@ export const books: Book[] = [
           pageNum: 2,
           bookID: 4,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            statement: "move_3"
           }
         }
       },
@@ -372,7 +349,6 @@ export const books: Book[] = [
           pageNum: 3,
           bookID: 4,
           ans: {
-            condition: "can_turn_right",
             statement: "turn_right"
           }
         }
@@ -386,8 +362,7 @@ export const books: Book[] = [
           pageNum: 4,
           bookID: 4,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            statement: "move_2"
           }
         }
       },
@@ -400,7 +375,6 @@ export const books: Book[] = [
           pageNum: 5,
           bookID: 4,
           ans: {
-            condition: "can_turn_left",
             statement: "turn_left"
           }
         }
@@ -414,8 +388,7 @@ export const books: Book[] = [
           pageNum: 6,
           bookID: 4,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            statement: "move_2"
           }
         }
       },
@@ -428,7 +401,6 @@ export const books: Book[] = [
           pageNum: 7,
           bookID: 4,
           ans: {
-            condition: "can_turn_left",
             statement: "turn_left"
           }
         }
@@ -442,8 +414,7 @@ export const books: Book[] = [
           pageNum: 8,
           bookID: 4,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            statement: "move_2"
           }
         }
       },
@@ -456,7 +427,6 @@ export const books: Book[] = [
           pageNum: 9,
           bookID: 4,
           ans: {
-            condition: "can_turn_right",
             statement: "turn_right"
           }
         }
@@ -470,8 +440,7 @@ export const books: Book[] = [
           pageNum: 10,
           bookID: 4,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            statement: "move_3"
           }
         }
       },
@@ -484,7 +453,6 @@ export const books: Book[] = [
           pageNum: 11,
           bookID: 4,
           ans: {
-            condition: "can_turn_right",
             statement: "turn_right"
           }
         }
@@ -498,8 +466,7 @@ export const books: Book[] = [
           pageNum: 12,
           bookID: 4,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            statement: "move_4"
           }
         }
       },
@@ -512,7 +479,6 @@ export const books: Book[] = [
           pageNum: 13,
           bookID: 4,
           ans: {
-            condition: "can_turn_left",
             statement: "turn_left"
           }
         }
@@ -526,8 +492,7 @@ export const books: Book[] = [
           pageNum: 14,
           bookID: 4,
           ans: {
-            condition: "can_move_forward",
-            statement: "move"
+            statement: "move_2"
           }
         }
       },
@@ -559,8 +524,8 @@ export const books: Book[] = [
       },
       {
         content: [
-         "Hello, My name is Sarah! Today we will learn about Input/Output.",
-         "Let’s chat with the computer and explore the park!"],
+          "Hello, My name is Sarah! Today we will learn about Input/Output.",
+          "Let’s chat with the computer and explore the park!"],
         image: "/io_book/def.png"
       },
       {
@@ -592,21 +557,21 @@ export const books: Book[] = [
       },
       {
         content: [
-          "In every row there are certain number of yellow and pink flowers planted.", 
-        "Now guess the number of pink flowers that should be planted in the last row?"
+          "In every row there are certain number of yellow and pink flowers planted.",
+          "Now guess the number of pink flowers that should be planted in the last row?"
         ],
         game: "TableCompletionActivity",
         image: "/io_book/flowers_1.png",
-        props: {image: "/io_book/flowers_1.png"},
+        props: { image: "/io_book/flowers_1.png" },
       },
       {
         content: [
-          "Each corner of the park has certain number of green and yellow trees.  Observe the pattern in the number of each color tree planted.", 
-        "Now guess the number green trees that should be planted in the right corner in bottom? "
+          "Each corner of the park has certain number of green and yellow trees.  Observe the pattern in the number of each color tree planted.",
+          "Now guess the number green trees that should be planted in the right corner in bottom? "
         ],
         game: "TableCompletionActivityTrees",
         image: "/io_book/trees_1.png",
-        props: {image: "/io_book/trees_1.png"},
+        props: { image: "/io_book/trees_1.png" },
       }
     ]
   },
@@ -760,9 +725,10 @@ export const books: Book[] = [
   },
   {
     BookId: 8,
-    title: "If-conditon with HokieBird Dance",
+    title: "If-condition with HokieBird Dance",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
+    cover: "/if_condition/HokieBirdIf.png",
     pages:
       [
         {
@@ -859,6 +825,7 @@ export const books: Book[] = [
     title: "Python Tutor",
     blurb: "Learn programming with a visualizer",
     author: "Dev",
+    cover: "/Python-logo-notext.png",
     pages:
       [{
         content: ["Python Tutor is a visualizer that allows you to see how your code is executed step by step.",
