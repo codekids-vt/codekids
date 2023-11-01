@@ -447,7 +447,7 @@ export const books: Book[] = [
           content: ["Let's assist him in repeatedly practicing the moves!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1(bend sideways), action2(back kick), action3(butt twist),action4(wave arm), action5(rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -462,7 +462,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize another move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1(bend sideways), action2(back kick), action3(butt twist),action4(wave arm), action5(rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -477,7 +477,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize another move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1(bend sideways), action2(back kick), action3(butt twist),action4(wave arm), action5(rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -492,7 +492,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize another move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1(bend sideways), action2(back kick), action3(butt twist),action4(wave arm), action5(rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -507,7 +507,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize the final move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1(bend sideways), action2(back kick), action3(butt twist),action4(wave arm), action5(rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
