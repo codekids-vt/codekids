@@ -94,13 +94,13 @@ export const books: Book[] = [
           "If a value is true, the code that immediately follows is taken.",
           "If the value is false then the code that follows is ignored",
           "For the next few examples we will use the commands move to move the bird forward",
-          "To make the Hokiebird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
+          "To make the HokieBird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
         ],
         image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Since we now know how to move the HokieBird around, we need to determine what actions we should do.",
-          "This is where the If statement comes in, we know that if there is a square infront of the bird then we can move",
+          "This is where the If statement comes in, we know that if there is a square in front of the bird then we can move",
           "We also know that if the road turns right or left we can move the hokie bird",
           "We will check multiple conditions",
           "The first condition will be can_move_forward, this is used to move the bird forward",
@@ -118,180 +118,44 @@ export const books: Book[] = [
         image: "HokieBirdMazeActivity",
         props: {
           draggable: true,
-          image: "Maze1.png",
+          images: [
+            "Maze1.png",
+            "Maze2.jpg",
+            "Maze3.png",
+            "Maze4.jpg",
+            "Maze5.png",
+            "Maze6.jpg",
+            "Maze7.png",
+            "Maze8.jpg",
+            "Maze9.png",
+            "Maze10.jpg",
+            "Maze11.png",
+            "Maze12.jpg",
+            "Maze13.png",
+            "Maze14.png",
+          ],
           pageNum: 2,
           bookID: 3,
-          ans: {
-            statement: "move_3"
-          }
-        }
-      },
-      {
-        content: ["Good Work! Now we need to turn the hokieBird", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze2.jpg",
-          pageNum: 3,
-          bookID: 3,
-          ans: {
-            statement: "turn_right"
-          }
-        }
-      },
-      {
-        content: ["Nicely done! Keep Going!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze3.png",
-          pageNum: 4,
-          bookID: 3,
-          ans: {
-            statement: "move_2"
-          }
-        }
-      },
-      {
-        content: ["Good Work! Now we need to turn the HokieBird", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze4.jpg",
-          pageNum: 5,
-          bookID: 3,
-          ans: {
-            statement: "turn_left"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze5.png",
-          pageNum: 6,
-          bookID: 3,
-          ans: {
-            statement: "move_2"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze6.jpg",
-          pageNum: 7,
-          bookID: 3,
-          ans: {
-            statement: "turn_left"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze7.png",
-          pageNum: 8,
-          bookID: 3,
-          ans: {
-            statement: "move_2"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze8.jpg",
-          pageNum: 9,
-          bookID: 3,
-          ans: {
-            statement: "turn_right"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze9.png",
-          pageNum: 10,
-          bookID: 3,
-          ans: {
-            statement: "move_3"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze10.jpg",
-          pageNum: 11,
-          bookID: 3,
-          ans: {
-            statement: "turn_right"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze11.png",
-          pageNum: 12,
-          bookID: 3,
-          ans: {
-            statement: "move_4"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze12.jpg",
-          pageNum: 13,
-          bookID: 3,
-          ans: {
-            statement: "turn_left"
-          }
-        }
-      },
-      {
-        content: ["Good Work!", "Drag the purple commands into the statement box!"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: true,
-          image: "Maze13.png",
-          pageNum: 14,
-          bookID: 3,
-          ans: {
-            statement: "move_2"
-          }
+          ans: [
+            "move_3",
+            "turn_right",
+            "move_2",
+            "turn_left",
+            "move_2",
+            "turn_left",
+            "move_2",
+            "turn_right",
+            "move_3",
+            "turn_right",
+            "move_4",
+            "turn_left",
+            "move_2",
+          ]
         }
       },
       {
         content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
-        image: "HokieBirdMazeActivity",
-        props: {
-          draggable: false,
-          image: "Maze14.png",
-          pageNum: 15,
-          bookID: 3,
-          finished: true
-        }
+        image: "/Maze/Maze14.png",
       },
     ]
   },
