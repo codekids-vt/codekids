@@ -18,6 +18,7 @@ import { PythonTutor } from "@/components/PythonTutor";
 import { NumberInputActivity } from "@/components/NumberInputActivity";
 import { TableCompletionActivity } from "@/components/TableCompletionActivity";
 import { TableCompletionActivityTrees } from "@/components/TableCompletionActivityTrees";
+import { FlowerInputActivity } from "@/components/FlowerInputActivity";
 
 const numericalProps = {
   pattern: [2, 4, 6, 8, '__', '__', '__'],
@@ -25,8 +26,7 @@ const numericalProps = {
 }
 
 function BookImage({ image, page }: { image: string, page: Page }) {
-
-  const [isImage] = useState(image.includes("."));
+  const isImage = image && image.includes(".");
 
   return (
     <div className="h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
@@ -34,10 +34,11 @@ function BookImage({ image, page }: { image: string, page: Page }) {
       {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} />}
-      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}
+      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}  
     </div>
   );
 }
+// {image === "park_1" && <NumberInputActivity question={page?.props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} imageUrl={page?.props.imageUrl}/>}
 
 function BookContent({ content, game, props }: { content: string[], game: string | null, props: any }) {
   return (
@@ -53,9 +54,10 @@ function BookContent({ content, game, props }: { content: string[], game: string
       {game && game === "color" && <ColorPattern />}
       {game && game === "number" && <NumericalPattern pattern={numericalProps.pattern} answer={numericalProps.answer} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
-      {game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}
+      {game && game === "FlowerInputActivity" && <FlowerInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}
       {game && game === "TableCompletionActivity" && <TableCompletionActivity options={props.options} answer={props.answer} />}
-      {game && game === "TableCompletionActivityTrees" && <TableCompletionActivityTrees options={props.options} answer={props.answer} />}    
+      {game && game === "TableCompletionActivityTrees" && <TableCompletionActivityTrees options={props.options} answer={props.answer} />} 
+      {game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}   
     </div>
   );
 }

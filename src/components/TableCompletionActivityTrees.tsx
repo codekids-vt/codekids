@@ -10,7 +10,7 @@ export function TableCompletionActivityTrees(props: ITableCompletionActivityTree
   const [result, setResult] = useState('');
 
   const correctAnswer = 1;
-  const options = [correctAnswer, 2, 3, 4]; 
+  const options = [correctAnswer, 2, 3, 4];
 
   const handleOptionClick = (choice: number) => {
     setSelectedAnswer(choice);
@@ -20,13 +20,13 @@ export function TableCompletionActivityTrees(props: ITableCompletionActivityTree
   const renderTable = () => {
     const rows = [];
     const cellContents = ['Yellow Trees', 'Green Trees', '1', '4', '2', '3', '3', '2', '4', '?'];
-  
+
     for (let i = 0; i < 5; i++) {
       const cells = [];
       for (let j = 0; j < 2; j++) {
-        const index = i * 2 + j; 
+        const index = i * 2 + j;
         cells.push(
-          <td key={j}>
+          <td key={j} className="border border-black"> {/* Added border class to <td> */}
             <div className="flex flex-wrap justify-center space-x-4">
               <div className="text-white p-2 rounded-md shadow-sm">
                 {index < cellContents.length ? cellContents[index] : '?'}
@@ -37,14 +37,13 @@ export function TableCompletionActivityTrees(props: ITableCompletionActivityTree
       }
       rows.push(<tr key={i}>{cells}</tr>);
     }
-  
+
     return (
       <table className="border-collapse border bg-primary-green border-black">
         <tbody>{rows}</tbody>
       </table>
     );
   };
-  
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">

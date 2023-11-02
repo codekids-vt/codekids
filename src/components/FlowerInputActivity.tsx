@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-export interface INumberInputActivityProps {
+export interface IFlowerInputActivityProps {
   showIOLabels: boolean
   question: string | undefined
   options: number[]
   answer: number
 }
 
-export function NumberInputActivity(props: INumberInputActivityProps) {
+export function FlowerInputActivity(props: IFlowerInputActivityProps) {
   const { question, options, answer, showIOLabels } = props;
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [result, setResult] = useState('');
