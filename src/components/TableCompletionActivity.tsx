@@ -19,14 +19,14 @@ export function TableCompletionActivity(props: ITableCompletionActivityProps) {
 
   const renderTable = () => {
     const rows = [];
-    const cellContents = ['Yellow Flowers', 'Pink FLowers', '1', '2', '2', '3', '3', '4', '4', '?'];
+    const cellContents = ['Yellow Flowers', 'Pink Flowers', '1', '2', '2', '3', '3', '4', '4', '?'];
   
     for (let i = 0; i < 5; i++) {
       const cells = [];
       for (let j = 0; j < 2; j++) {
         const index = i * 2 + j; 
         cells.push(
-          <td key={j}>
+          <td key={j} className="border border-black">
             <div className="flex flex-wrap justify-center space-x-4">
               <div className="text-white p-2 rounded-md shadow-sm">
                 {index < cellContents.length ? cellContents[index] : '?'}

@@ -225,7 +225,7 @@ export const books: Book[] = [
           "You'll find swings to play on, make new friends, and enjoy the shade of big trees.",
           "It's a fun and friendly place for everyone.",
           "Take a break from the hustle and bustle and unwind in this peaceful oasis."],
-        image: "/io_book/park.png",
+        image: "/io_book/hand-in-hand.png",
       },
       {
         content: [
@@ -256,18 +256,108 @@ export const books: Book[] = [
       {
         content: [
           "Hey! Let's hop on to the next activity.",
-          "Observe the pattern in the number of each color flower planted."
+          "Now, we will play with the flowers in the park."
         ],
         image: "/io_book/def.png",
       },
       {
+        content: ["Look at each corner of the park", "How many yellow flowers are there in total in all the corners?"],
+        image: "/io_book/flowers_0.png",
+        game: "FlowerInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [9, 10, 11, 12],
+          answer: 10,
+        }
+      },
+      {
+        content: ["How many pink flowers are there in total in all the corners?"],
+        image: "/io_book/flowers_0.png",
+        game: "FlowerInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [9, 10, 11, 12],
+          answer: 9,
+        }
+      },
+      {
+        content: ["What is the total number of flowers in all the corners right now?"],
+        image: "/io_book/flowers_0.png",
+        game: "FlowerInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [19, 20, 21, 22],
+          answer: 19,
+        }
+      },
+      {
         content: [
-          "In every row there are certain number of yellow and pink flowers planted.",
+          "Observe the pattern in the number of yellow and pink flowers in every corner",
           "Now guess the number of pink flowers that should be planted in the last row?"
         ],
         game: "TableCompletionActivity",
         image: "/io_book/flowers_1.png",
         props: { image: "/io_book/flowers_1.png" },
+      },
+      {
+        content: ["Look at each corner of the park", "How many yellow trees are there in total in all the corners?"],
+        image: "/io_book/trees_0.png",
+        game: "FlowerInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [10, 11, 12, 13],
+          answer: 10,
+        }
+      },
+      {
+        content: ["How many green trees are there in total in all the corners?"],
+        image: "/io_book/trees_0.png",
+        game: "FlowerInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [7, 8, 9, 10],
+          answer: 9,
+        }
+      },
+      {
+        content: ["What is the total number of trees in all the corners right now?"],
+        image: "/io_book/trees_0.png",
+        game: "FlowerInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [16, 17, 18, 19],
+          answer: 19,
+        }
+      },
+      {
+        content: ["Look at each corner of the park", "How many yellow trees are there in total in all the corners?"],
+        image: "/io_book/trees_0.png",
+        game: "FlowerInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [10, 11, 12, 13],
+          answer: 10,
+        }
+      },
+      {
+        content: ["How many green trees are there in total in all the corners?"],
+        image: "/io_book/trees_0.png",
+        game: "FlowerInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [7, 8, 9, 10],
+          answer: 9,
+        }
+      },
+      {
+        content: ["What is the total number of trees in all the corners right now?"],
+        image: "/io_book/trees_0.png",
+        game: "FlowerInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [16, 17, 18, 19],
+          answer: 19,
+        }
       },
       {
         content: [
