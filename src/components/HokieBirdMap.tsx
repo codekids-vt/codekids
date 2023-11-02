@@ -61,6 +61,13 @@ export function HokieBirdMap({ props }: { props: any }) {
         setProcedures(newProcedures)
     }
 
+    function resetAll() {
+        setProcedures(blankProcedures);
+        setMessage(null);
+        setErrorProcedure(null);
+        setCurrentImage(props.images[0]);
+    }
+
     return (
         <div className="flex flex-col items-center">
             <Image className="" src={`/Maze/${currentImage}`} width={400} height={400} alt="Hokie Bird Maze Image" />
@@ -68,7 +75,7 @@ export function HokieBirdMap({ props }: { props: any }) {
                 <div>
                     {procedures.map((statement, index) => {
                         return (
-                            <div key={index} className="flex flex-row items-center space-x-1">
+                            <div key={index} className="flex flex-row items-center space-x-1 p-0.5">
                                 <div className="w-10 px-2">{index + 1}.</div>
                                 <div className="flex flex-col rounded-full" onDrop={(e) => handleOnDropStatement(e, index)} onDragOver={(e) => handleDragOver(e)}>
                                     <input type="text" className={`rounded-2xl text-center  border-2 ${errorProcedure === index ? "border-red-500" : ""} ${procedures[index] !== "" ? "bg-blue-200" : ""}`}
@@ -97,10 +104,7 @@ export function HokieBirdMap({ props }: { props: any }) {
                         <button className="p-4 bg-green-200 rounded-2xl hover:shadow-2xl" onClick={() => {
                             runProcedure()
                         }}>Run</button>
-                        <button className="p-4 bg-red-200 rounded-2xl hover:shadow-2xl" onClick={() => {
-                            setProcedures(blankProcedures)
-                        }}>Reset All</button>
-
+                        <button className="p-4 bg-red-200 rounded-2xl hover:shadow-2xl" onClick={() => resetAll()}>Reset All</button>
                     </div>
                     <div className="p-4">
                         {message && <div className={`p-4 bg-blue-200 rounded-2xl`}>{message}</div>}
