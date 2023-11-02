@@ -81,6 +81,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                 temp
             }
             setColors(newColors);
+            setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!"});
         }
 
         function handleDragOver(e: React.DragEvent) {
@@ -175,7 +176,8 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                         key={index} 
                                         draggable={props.draggable} 
                                         className={`flex ${availableColorsTailwind[color]} p-3 min-w-[70px] place-content-center rounded-2xl shadow-2xl`} 
-                                        onDragStart={(e) => handleOnDrag(e, color)}
+                                        onDragStart={(e) => {handleOnDrag(e, color)}}
+                                        onMouseDown={() => setCurrentAlert({ type: AlertType.NONE, message: "" })}
                                     >
                                         <q className="text-white">{color}</q>
                                     </div>
