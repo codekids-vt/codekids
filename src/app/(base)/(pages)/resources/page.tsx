@@ -84,20 +84,6 @@ export default async function ResourcesPage() {
             controls={true}
           />
         </section>
-
-        <section>
-          <ResourceDetails
-            title="Sorting Game"
-            blurb="Take a look at our in-progress game, where you try to sort squares in ascending order in the smallest amount of steps."
-            author="by Yash"
-          />
-
-          <video
-            className="rounded-lg"
-            src="/game-video.mp4"
-            controls={true}
-          />
-        </section>
       </div>
     </div>
   )

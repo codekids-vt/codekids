@@ -22,16 +22,8 @@ const navbarLinks: readonly NavLinkRoute[] = [
     href: "/activities/1"
   },
   {
-    text: "Blockly Demo",
-    href: "/blockly/name"
-  },
-  {
     text: "Resources",
     href: "/resources"
-  },
-  {
-    text: "Books",
-    href: "/books/1"
   },
 ];
 
