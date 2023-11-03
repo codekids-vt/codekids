@@ -377,7 +377,14 @@ export const books: Book[] = [
     author: "Dev",
     pages: [
       {
-        content: ["If-condition is to see if the conditions is satistfied or not to determine which situation to reach.",
+        content: ["We will use If conditions to help the Hokie bird make it to Lane Stadium",
+          "If Conditions have two outcomes, they are either true or false",
+          "If a value is true the 'code' that immediatley follows is taken.",
+          "If the value is false then the 'code' that follows is ignored",],
+        image: "/if_condition/HokieBirdIf.png",
+      },
+      {
+        content: [
           "If-statement diagram is a very common strategy to solve if-condition problems.",
           "You can try the following question with the if-statement diagram on the left.",
           "Example:",
@@ -385,13 +392,6 @@ export const books: Book[] = [
           "If it is a chilly day, then HokieBird need to wear a Winter-jacket.",
         ],
         image: "/if_condition/if-statement.png",
-      },
-      {
-        content: ["We will use If conditions to help the Hokie bird make it to Lane Stadium",
-          "If Conditions have two outcomes, they are either true or false",
-          "If a value is true the 'code' that immediatley follows is taken.",
-          "If the value is false then the 'code' that follows is ignored",],
-        image: "/if_condition/HokieBirdIf.png",
       },
       {
         content: ["Lets start with dragging and drop statements that should happen if the condition is true!",
@@ -410,7 +410,9 @@ export const books: Book[] = [
       },
       {
         content: ["Awesome work!",
-          "Now lets give the hokie bird some warmer clothes as its a lot colder out...brrrrr"],
+          "Now, it's snowing and it's really cold! What do we wear when it's cold?", 
+          "That's right, warm clothes! ",
+          "Let's dress HokieBird in warm clothes!"],
         image: "HokieBirdIfConditionActivity",
         props: {
           draggable: true,
@@ -424,7 +426,7 @@ export const books: Book[] = [
       },
       {
         content: ["Awesome work!",
-          "Now lets give the hokie bird some warmer clothes as its a lot colder out...brrrrr"],
+          "It's raining now. Does HokieBird need sunglasses or an umbrella? Help HokieBird choose!"],
         image: "HokieBirdIfConditionActivity",
         props: {
           draggable: true,
@@ -439,7 +441,7 @@ export const books: Book[] = [
       },
       {
         content: ["Awesome work!",
-          "Now lets give the hokie bird some warmer clothes as its a lot colder out...brrrrr"],
+          "Oops! It's raining and HokieBird forgot his umbrella! How is he supposed to be feeling?"],
         image: "HokieBirdIfConditionActivity",
         props: {
           draggable: true,
@@ -447,7 +449,7 @@ export const books: Book[] = [
           condition: "rains_without_an_umbrella",
           ans: "cry",
           image: "/if_condition/HokieBirdIf.png",
-          ans_image: "/if_condition/HokieBirdSad.jpg",
+          ans_image: "/if_condition/HokieBirdCry.png",
           effect: "/if_condition/rain.gif"
         }
       },
@@ -531,7 +533,7 @@ export const books: Book[] = [
             "using the outdoor space to improve his fitness. ",
             "But there's a dance exam coming up and HokieBird needs to go and memorize the order of all the dance steps.",
             " Let's help HokieBird! Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers."],
-          image: "/if_condition/dance.png",
+          image: "/if_condition/dance.jpg",
         },
         {
           content: ["Let's assist him in repeatedly practicing the moves!",
