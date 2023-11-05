@@ -21,9 +21,11 @@
     "eslint-config-next": "13.4.6",
     "next": "13.4.6",
     "postcss": "8.4.24",
+    "prismjs": "^1.29.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.0",
+    "react-simple-code-editor": "^0.13.1",
     "rehype-stringify": "^9.0.3",
     "remark-parse": "^10.0.2",
     "remark-rehype": "^10.1.0",
@@ -34,6 +36,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@types/prismjs": "^1.26.2",
     "gray-matter": "^4.0.3",
     "prisma": "^5.0.0",
     "ts-node": "^10.9.1"

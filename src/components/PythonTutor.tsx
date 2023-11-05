@@ -1,5 +1,12 @@
 import { useState } from "react";
 
+import Editor from 'react-simple-code-editor';
+import { highlight, languages } from 'prismjs/components/prism-core';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/themes/prism.css';
+
+
 export interface IPythonTutorProps {
   code: string
   cumulative?: boolean,
@@ -16,7 +23,6 @@ export function PythonTutor({ props }: { props: any | IPythonTutorProps }) {
   const height = props.height ?? 400;
   const cumulative = props.cumulative ?? false;
 
-
   return (
     <div className="flex flex-col flex-grow items-center w-full">
       {!editing &&
@@ -25,12 +31,18 @@ export function PythonTutor({ props }: { props: any | IPythonTutorProps }) {
         </iframe>
       }
       {editing &&
-        <textarea className="w-10/12 flex-grow h-[calc(100vh-22rem)] overflow-y-scroll border-2 border-gray-300 p-2 shadow-2xl bg-gray-800 text-green-500 rounded-2xl"
-          value={code} onChange={(e) => setCode(e.target.value)} />
+        <Editor
+          value={code}
+          onValueChange={code => setCode(code)}
+          highlight={code => highlight(code, languages.js)}
+          padding={10}
+          style={{ fontFamily: '"Fira code", "Fira Mono", monospace', }}
+          className="w-10/12 text-md h-[calc(100vh-22rem)] overflow-y-scroll border-2 p-10 shadow-2xl rounded-xl"
+        />
       }
       <div className="p-4">
-        <button onClick={() => setEditing(!editing)} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
-          {editing ? "Run" : "Show Editor"}
+        <button onClick={() => setEditing(!editing)} className="bg-primary-green hover:bg-hover-green hover:-translate-y-1 hover:shadow-2xl text-white font-bold py-2 px-4 rounded-full">
+          {editing ? "Run Code" : "Edit Code"}
         </button>
       </div>
     </div>
