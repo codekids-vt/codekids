@@ -617,8 +617,8 @@ export const books: Book[] = [
   },
   {
     BookId: 8,
-    title: "Python Tutor",
-    blurb: "Learn programming with a visualizer",
+    title: "Variables",
+    blurb: "Learn about Python variables",
     author: "Dev",
     cover: "/Python-logo-notext.png",
     pages:
@@ -631,6 +631,68 @@ export const books: Book[] = [
         props: {
           code: "def add(a, b):\n\treturn a + b\n\nx = 1\ny = 2\nz = add(x, y)",
         }
-      }],
+      },
+      { // Variables intro
+        image: "/variables_intro.png",
+        content: ["Variables are places where you can store data.",
+          "You can think about a variable as a 'Box' with a name.",
+          "Suppose we name a box therapy_dog, then this 'box' can store data related to therapy dog.",
+          "Lets use Epcot as an example. Epcot is Virginia Tech's newest therapy dog!",
+          "The variable's name is therapy_dog, and the data will be 'Epcot'.",
+          "In Python, you can't have spaces in variable names. We use underscores instead like in therapy_dog."]
+      },
+      { // Variables intro 2
+        image: "/variables_intro2.png",
+        content: ["When you see a variable in code, the name of the variable will always be to the left of the '=' sign.",
+                  "Everything to the right of the '=' sign is what you setting as the variables value.",
+                  "The box is to the left of the '=' and what you want to put in the box is to the right of the '='",
+                  "For this example, the code would by therapy_dog='Epcot'"]
+      },
+      { // Variables intro in python tutor
+        content: ["Look at the example to the right.",
+                  "therapy_dog is the name of the variable 'Epcot' is the value of the variable",
+                  "The value of therapy_dog is then printed."],
+        image: "tutor",
+        props:{
+          code: "therapy_dog = 'Epcot'\nprint(therapy_dog)"
+        }
+      },
+      { // Variable Assignment
+        content: ["Variables can be assigned different values throughout a program.",
+                  "When a variable that already has a value is assigned a new value, the olde value is lost.",
+                  "Think of your age as a variable. If you are 8 now years old now, on your birthday your old age will be lost and your new age will be 9!",
+                  "Try out the examples and exercises."]
+      },
+      { // Data types intro
+        content: ["When assigning a variable a value, it's also important to consider what type of value you are assigning.",
+                  "This is known as a data type. We'll only use 3 data types for now.",
+                  "1. Integer - this is any whole number like 9.",
+                  "2. String - this is text like \"Hello\".",
+                  "3. Boolean - Logical value indicating True or False.",
+                  "We will look closer at these data types in the following pages."]
+      },
+      { // Ints and Bools Intro
+        content: ["This page will focus on Integers and Booleans.",
+                  "Recall:\nInteger - this is any whole number like 9.\nBoolean - a logical value indicating True or False.",
+                  "For example, 2 < 4 has a boolean value of True since 2 is less than 4."]
+      },
+      { // Ints and Bools Intro Python Tutor
+        image: "tutor",
+        content: ["Take a loot at the variables to the right.",
+                  "The variable num is assigned the whole number 9, which means it's a Integer.",
+                  "The variable sky_is_blue is assigned True, which means it's a Boolean."],
+        props: {
+          code: "# Here num is an Integer\nnum = 9\n\n# Here sky_is_blue is a Boolean\nsky_is_blue  = True"
+        }
+      },
+      { // Strings
+        content: ["This page will focus on Strings!",
+                  "You have noticed the previous pages that 'Epcot' is an example of a String! Let's try more practice.",
+                  "String - this is text like \"Hello\". You can also of it like a sequence of different characters.",
+                  "When the data type is String, then the characters will ALWAYS be surrouded by double or single quotation marks.",
+                  "For example, \"Hello\" and \'Hello\' are both strings since they're surrounded by double or single quotation marks.",
+                  "What do you think '9' is? You may initally think Integer, but notice it's surround in single quotation marks. So, it's a string."]
+      },
+    ],
   },
 ] as Book[]
