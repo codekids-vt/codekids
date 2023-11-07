@@ -12,4 +12,5 @@ export interface Book {
     blurb: string,
     pages: Page[],
     cover?: string
+    bookCover: string
 }
