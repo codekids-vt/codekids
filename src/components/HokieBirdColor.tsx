@@ -4,8 +4,13 @@ import Image from "next/image";
 
 interface HokieBirdColorState {
     head: string,
+    nose: string,
+    neck: string
     body: string,
-    legs: string
+    left_leg: string,
+    right_leg: string,
+    left_foot: string,
+    right_foot: string,
 }
 
 const availableColors = ["red", "orange", "green", "maroon", "gold"]
@@ -16,14 +21,19 @@ const availableColorsTailwind: { [key: string]: string } = {
     maroon: "bg-maroon",
     gold: "bg-yellow-500"
 }
-const availableParts = ["head", "body", "legs"]
+const availableParts = ["head", "nose", "neck", "body", "left_leg", "right_leg", "left_foot", "right_foot"]
 
 export function HokieBirdColoring({ props }: { props: any }) {
     const [part, setPart] = useState(["", "", ""]);
     const [colors, setColors] = useState({
         head: "",
+        nose: "",
+        neck: "",
         body: "",
-        legs: ""
+        left_leg: "",
+        right_leg: "",
+        left_foot: "",
+        right_foot: "",
     });
 
     enum AlertType {
@@ -195,8 +205,13 @@ export function HokieBirdColoring({ props }: { props: any }) {
             <div className="flex flex-col flex-grow justify-center items-center mx-10 relative">
                 <Image src="/HokieBird.png" alt="book image" className={'center-left'} width={220} height={500} />
                 <Image src="/HokieHead.png" alt="book image" className={`absolute center-left img-${colors.head} `} width={220} height={500} />
+                <Image src="/HokieNose.png" alt="book image" className={`absolute center-left img-${colors.nose} `} width={220} height={500} />
+                <Image src="/HokieNeck.png" alt="book image" className={`absolute center-left img-${colors.neck} `} width={220} height={500} />
                 <Image src="/HokieBody.png" alt="book image" className={`absolute center-left img-${colors.body} `} width={220} height={500} />
-                <Image src="/HokieLegs.png" alt="book image" className={`absolute center-left img-${colors.legs} `} width={220} height={500} />
+                <Image src="/HokieLeftLeg.png" alt="book image" className={`absolute center-left img-${colors.left_leg} `} width={220} height={500} />
+                <Image src="/HokieRightLeg.png" alt="book image" className={`absolute center-left img-${colors.right_leg} `} width={220} height={500} />
+                <Image src="/HokieLeftFoot.png" alt="book image" className={`absolute center-left img-${colors.left_foot} `} width={220} height={500} />
+                <Image src="/HokieRightFoot.png" alt="book image" className={`absolute center-left img-${colors.right_foot} `} width={220} height={500} />
             </div>
         )
     }
