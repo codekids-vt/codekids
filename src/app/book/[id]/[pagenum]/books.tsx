@@ -150,8 +150,9 @@ export const books: Book[] = [
             "move(4)",
             "turn_left()",
             "move(2)",
-          ]
-        }
+          ],
+        },
+        showHelp: true
       },
       {
         content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
@@ -206,7 +207,8 @@ export const books: Book[] = [
             "turn_left()",
             "move(2)",
           ]
-        }
+        },
+        showHelp: true
       },
       {
         content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
@@ -240,8 +242,9 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [1, 2, 3, 4],
-          answer: 3,
-        }
+          ans: [3],
+        },
+        showHelp: true
       },
       {
         content: [
@@ -267,8 +270,9 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [9, 10, 11, 12],
-          answer: 10,
-        }
+          ans: [10],
+        },
+        showHelp: true
       },
       {
         content: ["How many pink flowers are there in total in all the corners?"],
@@ -277,8 +281,9 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [9, 10, 11, 12],
-          answer: 9,
-        }
+          ans: [9],
+        },
+        showHelp: true
       },
       {
         content: ["What is the total number of flowers in all the corners right now?"],
@@ -287,8 +292,9 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [19, 20, 21, 22],
-          answer: 19,
-        }
+          ans: [19],
+        },
+        showHelp: true
       },
       {
         content: [
@@ -297,7 +303,11 @@ export const books: Book[] = [
         ],
         game: "TableCompletionActivity",
         image: "/io_book/flowers_1.png",
-        props: { image: "/io_book/flowers_1.png" },
+        props: { 
+          image: "/io_book/flowers_1.png",
+          ans: [5]
+        },
+        showHelp: true
       },
       {
         content: ["Look at each corner of the park", "How many yellow trees are there in total in all the corners?"],
@@ -306,8 +316,9 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [10, 11, 12, 13],
-          answer: 10,
-        }
+          ans: [10],
+        },
+        showHelp: true
       },
       {
         content: ["How many green trees are there in total in all the corners?"],
@@ -316,8 +327,9 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [7, 8, 9, 10],
-          answer: 9,
-        }
+          ans: [9],
+        },
+        showHelp: true
       },
       {
         content: ["What is the total number of trees in all the corners right now?"],
@@ -326,8 +338,9 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [16, 17, 18, 19],
-          answer: 19,
-        }
+          ans: [19],
+        },
+        showHelp: true
       },
       {
         content: ["Look at each corner of the park", "How many yellow trees are there in total in all the corners?"],
@@ -336,8 +349,9 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [10, 11, 12, 13],
-          answer: 10,
-        }
+          ans: [10],
+        },
+        showHelp: true
       },
       {
         content: ["How many green trees are there in total in all the corners?"],
@@ -346,8 +360,9 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [7, 8, 9, 10],
-          answer: 9,
-        }
+          ans: [9],
+        },
+        showHelp: true
       },
       {
         content: ["What is the total number of trees in all the corners right now?"],
@@ -356,8 +371,9 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [16, 17, 18, 19],
-          answer: 19,
-        }
+          ans: [19],
+        },
+        showHelp: true
       },
       {
         content: [
@@ -366,7 +382,11 @@ export const books: Book[] = [
         ],
         game: "TableCompletionActivityTrees",
         image: "/io_book/trees_1.png",
-        props: { image: "/io_book/trees_1.png" },
+        props: { 
+          image: "/io_book/trees_1.png",
+          ans: [1]
+         },
+         showHelp: true
       }
     ]
   },
@@ -403,10 +423,11 @@ export const books: Book[] = [
           draggable: true,
           statements: ["tshirt", "winter_jacket"],
           condition: "weather_is_hot",
-          ans: "tshirt",
+          ans: ["tshirt"],
           image: "/if_condition/sun.gif",
           ans_image: "/if_condition/HokieBirdSun.gif"
-        }
+        },
+        showHelp: true
       },
       {
         content: ["Awesome work!",
@@ -416,11 +437,12 @@ export const books: Book[] = [
           draggable: true,
           statements: ["tshirt", "winter_jacket"],
           condition: "weather_is_cold",
-          ans: "winter_jacket",
+          ans: ["winter_jacket"],
           image: "/if_condition/HokieBirdIf.png",
           ans_image: "/if_condition/HokieBirdJacket.png",
           effect: "/if_condition/snow.gif"
-        }
+        },
+        showHelp: true
       },
       {
         content: ["Awesome work!",
@@ -430,11 +452,12 @@ export const books: Book[] = [
           draggable: true,
           statements: ["sunglasses", "umbrella"],
           condition: "weather_is_raining",
-          ans: "umbrella",
+          ans: ["umbrella"],
           image: "/if_condition/HokieBirdIf.png",
           ans_image: "/if_condition/Umbrella2.png",
           effect: "/if_condition/rain.gif"
-        }
+        },
+        showHelp: true
 
       },
       {
@@ -445,11 +468,12 @@ export const books: Book[] = [
           draggable: true,
           statements: ["cry", "laugh"],
           condition: "rains_without_an_umbrella",
-          ans: "cry",
+          ans: ["cry"],
           image: "/if_condition/HokieBirdIf.png",
           ans_image: "/if_condition/HokieBirdSad.jpg",
           effect: "/if_condition/rain.gif"
-        }
+        },
+        showHelp: true
       },
     ]
   },
@@ -472,10 +496,11 @@ export const books: Book[] = [
           draggable: true,
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie_feels_sad",
-          ans: "cry",
+          ans: ["cry"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/sad.png",
-        }
+        },
+        showHelp: true
       },
       {
         content: ["We all make different facial expressions based on different emotions. ",
@@ -485,10 +510,11 @@ export const books: Book[] = [
           draggable: true,
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie_feels_happy",
-          ans: "laugh",
+          ans: ["laugh"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/happy.png",
-        }
+        },
+        showHelp: true
       },
       {
         content: ["We all make different facial expressions based on different emotions. ",
@@ -498,10 +524,11 @@ export const books: Book[] = [
           draggable: true,
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie_feels_angry",
-          ans: "angry",
+          ans: ["angry"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/angry.png",
-        }
+        },
+        showHelp: true
       },
       {
         content: ["We all make different facial expressions based on different emotions. ",
@@ -511,10 +538,11 @@ export const books: Book[] = [
           draggable: true,
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie_feels_surprised",
-          ans: "surprised",
+          ans: ["surprised"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/surprise.png",
-        }
+        },
+        showHelp: true
       },
     ]
   },
@@ -543,7 +571,7 @@ export const books: Book[] = [
             draggable: true,
             statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_makes_action1",
-            ans: "bend_sideways",
+            ans: ["bend_sideways"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action1.gif",
           }
@@ -558,7 +586,7 @@ export const books: Book[] = [
             draggable: true,
             statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_makes_action4",
-            ans: "wave_arm",
+            ans: ["wave_arm"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action4.gif",
           }
@@ -573,7 +601,7 @@ export const books: Book[] = [
             draggable: true,
             statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_makes_action3",
-            ans: "butt_twist",
+            ans: ["butt_twist"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action3.gif",
           }
@@ -588,7 +616,7 @@ export const books: Book[] = [
             draggable: true,
             statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_makes_action5",
-            ans: "rotate",
+            ans: ["rotate"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action5.gif",
           }
@@ -603,7 +631,7 @@ export const books: Book[] = [
             draggable: true,
             statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_makes_action2",
-            ans: "back_kick",
+            ans: ["back_kick"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action2.gif",
           }
