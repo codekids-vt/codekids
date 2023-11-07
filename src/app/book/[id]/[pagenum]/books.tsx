@@ -51,7 +51,7 @@ export const books: Book[] = [
   },
   {
     BookId: 2,
-    bookCover: "/VTColorBook2.png",
+    bookCover: "/VTColorBook.png",
     title: "Hokie Bird is Lost!",
     blurb: "Learn how to communicate specific instructions to the Hokie Bird to help them find their way!",
     author: "Dev",
@@ -186,7 +186,7 @@ export const books: Book[] = [
   {
     BookId: 3,
     title: "IO Hand In Hand",
-    bookCover: "/VTColorBook3.png",
+    bookCover: "/VTColorBook.png",
     blurb: "Learn about how a computer can compute patterns!",
     author: "Prapti",
     pages: [
@@ -427,7 +427,7 @@ export const books: Book[] = [
   {
     BookId: 5,
     title: "If-condition with HokieBird Mood",
-    bookCover: "/VTColorBook2.png",
+    bookCover: "/VTColorBook.png",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     pages: [
@@ -493,7 +493,7 @@ export const books: Book[] = [
   {
     BookId: 6,
     title: "If-condition with HokieBird Dance",
-    bookCover: "/VTColorBook3.png",
+    bookCover: "/VTColorBook.png",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     cover: "/if_condition/HokieBirdIf.png",
@@ -591,7 +591,7 @@ export const books: Book[] = [
   {
     BookId: 7,
     title: "Python Tutor",
-    bookCover: "/VTColorBook.png",
+    bookCover: "/VTColorBook2.png",
     blurb: "Learn programming with a visualizer",
     author: "Dev",
     cover: "/Python-logo-notext.png",
