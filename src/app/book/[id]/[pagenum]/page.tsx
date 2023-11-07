@@ -19,6 +19,11 @@ import { NumberInputActivity } from "@/components/NumberInputActivity";
 import { TableCompletionActivity } from "@/components/TableCompletionActivity";
 import { TableCompletionActivityTrees } from "@/components/TableCompletionActivityTrees";
 import { FlowerInputActivity } from "@/components/FlowerInputActivity";
+import { DataTypesIntro } from "@/components/DataTypesIntro";
+import { IntsAndBools } from "@/components/IntsAndBools";
+import { VariableAssignment } from "@/components/VariableAssignment";
+import { Strings } from "@/components/Strings";
+import { Sequencing } from "@/components/Sequencing";
 
 const numericalProps = {
   pattern: [2, 4, 6, 8, '__', '__', '__'],
@@ -35,6 +40,11 @@ function BookImage({ image, page }: { image: string, page: Page }) {
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} />}
       {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}  
+      {image === "DataTypesIntro" && <DataTypesIntro/>}
+      {image === "IntsAndBools" && <IntsAndBools/>}
+      {image === "VariableAssingment" && <VariableAssignment/>}
+      {image === "Strings" && <Strings props={page?.props}/>}
+      {image === "Sequencing" && <Sequencing/>}
     </div>
   );
 }

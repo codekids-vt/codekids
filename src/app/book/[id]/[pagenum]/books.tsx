@@ -658,22 +658,26 @@ export const books: Book[] = [
         }
       },
       { // Variable Assignment
+        image: "VariableAssingment",
         content: ["Variables can be assigned different values throughout a program.",
                   "When a variable that already has a value is assigned a new value, the olde value is lost.",
                   "Think of your age as a variable. If you are 8 now years old now, on your birthday your old age will be lost and your new age will be 9!",
                   "Try out the examples and exercises."]
       },
       { // Data types intro
+        image: "DataTypesIntro",
         content: ["When assigning a variable a value, it's also important to consider what type of value you are assigning.",
                   "This is known as a data type. We'll only use 3 data types for now.",
                   "1. Integer - this is any whole number like 9.",
                   "2. String - this is text like \"Hello\".",
-                  "3. Boolean - Logical value indicating True or False.",
+                  "3. Boolean - this is a logical value indicating True or False.",
                   "We will look closer at these data types in the following pages."]
       },
       { // Ints and Bools Intro
+        image: "IntsAndBools",
         content: ["This page will focus on Integers and Booleans.",
-                  "Recall:\nInteger - this is any whole number like 9.\nBoolean - a logical value indicating True or False.",
+                  "Integer - this is any whole number like 9.",
+                  "Boolean - a logical value indicating True or False.",
                   "For example, 2 < 4 has a boolean value of True since 2 is less than 4."]
       },
       { // Ints and Bools Intro Python Tutor
@@ -685,7 +689,19 @@ export const books: Book[] = [
           code: "# Here num is an Integer\nnum = 9\n\n# Here sky_is_blue is a Boolean\nsky_is_blue  = True"
         }
       },
+      {
+        image: "Sequencing",
+        content: ["Let's use the football game for another question!",
+                  "A very important concept to understand while programming is that each line is executed from top to bottom.",
+                  "This means every line's execution is dependent on the lines above it.",
+                  "Think of each line as it's own step with the very beginning line being step 1.",
+                  "Each step will be executed one after another until the program is over."]
+      },
       { // Strings
+        image: "Strings",
+        props: {
+          stringsPage: 1
+        },
         content: ["This page will focus on Strings!",
                   "You have noticed the previous pages that 'Epcot' is an example of a String! Let's try more practice.",
                   "String - this is text like \"Hello\". You can also of it like a sequence of different characters.",
@@ -693,6 +709,14 @@ export const books: Book[] = [
                   "For example, \"Hello\" and \'Hello\' are both strings since they're surrounded by double or single quotation marks.",
                   "What do you think '9' is? You may initally think Integer, but notice it's surround in single quotation marks. So, it's a string."]
       },
+      {
+        image: "Strings",
+        props: {
+          stringsPage: 2
+        },
+        content :["Try out these exercises on Strings.",
+                  "Remeber that anything that's in single or double quotation marks are Strings"]
+      }
     ],
   },
 ] as Book[]
