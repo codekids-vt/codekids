@@ -5,7 +5,7 @@
  * Each page can have an image, this is what u want to change to an activity name
  * 
  * Any activity that requires an answer should be set in an array, even if it is just one answer, this is the only way to 'normalize' answers for the 
- * help me butoon.
+ * help me butoon. If an answer is detected the showHelp button will show automatically.
  * 
  */
 
@@ -14,7 +14,6 @@ export interface Page {
     image: string, // Change me to activity like HokieBirdIFConditionActivity to display activity
     game: string | null
     props: PageProps, // any data you need to pass to the activity is set here
-    showHelp?: boolean // only enable this if you have a props.ans and props.ans is an array with at least one vlaue!
 }
 
 export interface Book {
@@ -35,8 +34,8 @@ export interface PageProps {
     draggable?: boolean,
     images?: string[],
     pageNum?: number,
-    bookId? : number,
-    ans?: string[],
+    bookId?: number,
+    ans?: string[], // If answers are detected the showHelp button will show automatically
     statements?: string[],
     condition?: string,
     image?: string,

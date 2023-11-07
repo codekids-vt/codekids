@@ -120,7 +120,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                     <BookImage image={page.image} page={page} />
                   </div>
                   <div className="flex flex-row justify-start p-2">{backButton}</div>
-                  {page?.showHelp &&
+                  {page?.props.ans?.length &&
                     <button onClick={() => setHelp(!help)} className="block w-full md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                       Help me
                     </button>}
@@ -135,7 +135,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                   <div className="flex flex-row justify-end p-2">{forwardButton}</div>
                 </div>
               </div>
-              {page?.showHelp &&
+              {page?.props.ans?.length &&
                 <div id="help-modal" className={`fixed top-0 left-0 right-0 z-50 ${help ? '' : 'hidden'} w-full p-4 md:inset-0 h-[calc(100%-1rem)] max-h-full`}>
                   <div className="relative w-full max-w-2xl max-h-full">
                     <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -152,21 +152,21 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                       </div>
                       <div className="p-6 space-y-6">
                         <ul className="flex flex-col items-center">
-                        {
-                          page.props?.ans &&
-                          page.props?.ans.map((answer: string, index: number) => (
-                            <li className="inline-block font-semibold text-white " key={`answerTag-${index}`}>
-                              {` ${index+1}. The Correct answer is:  ${answer}`}
-                            </li>
-                          ))
-                        }
+                          {
+                            page.props?.ans &&
+                            page.props?.ans.map((answer: string, index: number) => (
+                              <li className="inline-block font-semibold text-white " key={`answerTag-${index}`}>
+                                {` ${index + 1}. The Correct answer is:  ${answer}`}
+                              </li>
+                            ))
+                          }
                         </ul>
                       </div>
                       <div>
                         <button onClick={() => setHelp(!help)} type="button" className="text-white bg-red-600 hover:bg-red-800 dark:focus:ring-red-800 font-medium rounded-lg text-sm items-center px-5 py-2.5 text-center mr-2">
                           Close help
-                        </button>                     
-                         </div>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
