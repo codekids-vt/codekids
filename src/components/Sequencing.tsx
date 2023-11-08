@@ -1,8 +1,11 @@
 "use client"
 import React, { useState } from 'react';
 import { Reader } from './Reader';
+import { GetWindowScale } from './GetWindowScale';
 
 export function Sequencing() {
+
+    const windowScale = GetWindowScale()
 
     const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
 
@@ -26,7 +29,7 @@ export function Sequencing() {
     }
 
     return (
-        <div style={{textAlign: "center", width: "100%"}}>
+        <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
             <img style={image_style} src="/vt_syracuse_score.png" alt="Image of football score between Virginia Tech and Syracuse" />
             <div style={text_style}><Reader text='We always read the code from top to bottom. The line numbers have been provided. (Leftmost column of numbers)'/></div>
             <div style={code_box_style}>

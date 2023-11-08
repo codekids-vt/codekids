@@ -1,12 +1,15 @@
 "use client"
 import React, { useState } from 'react';
 import { Reader } from './Reader';
+import { GetWindowScale } from './GetWindowScale';
 
 export interface IStringsProps {
     stringsPage: number
   }
 
 export function Strings({ props }: { props: any | IStringsProps }) {
+
+    const windowScale = GetWindowScale()
 
     const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
     const [q2AnswerExplanation, setQ2AnswerExplanation] = useState("Choose an answer above!")
@@ -115,7 +118,7 @@ export function Strings({ props }: { props: any | IStringsProps }) {
     function getPage1()
     {
         return (
-            <div style={{textAlign: "center", width: "100%"}}>
+            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
                 <img style={image_style} src="/therapy_dogs.png" alt="Image of Virginia Tech therapy dogs."/>
                 <div style={text_style}><Reader text='What is the data type of the following?'/></div>
                 <div style={code_box_style}>
@@ -154,7 +157,7 @@ export function Strings({ props }: { props: any | IStringsProps }) {
 
     function getPage2() {
         return (
-            <div style={{textAlign: "center", width: "100%"}}>
+            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
                 <div style={horizontal_div_style}>
                     <img style={image_style} src="/hokie-bird-148.png" alt="Image of Hokie Bird holding 148th birthday sign." />
                     <div style={{...code_box_style, ...{transform:"scale(1.5,1.5)"}}}>

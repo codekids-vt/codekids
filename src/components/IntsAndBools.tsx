@@ -1,8 +1,11 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Reader } from './Reader';
+import { GetWindowScale } from './GetWindowScale';
 
 export function IntsAndBools() {
+
+    const windowScale = GetWindowScale()
 
     const [q1ChosenAnswer, setQ1ChosenAnswer] = useState("?")
     const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
@@ -63,7 +66,7 @@ export function IntsAndBools() {
 
 
     return (
-        <div style={{textAlign: "center", width: "100%"}}>
+        <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
             <img style={image_style} src="/vt_syracuse_score.png" alt="Image of football score between Virginia Tech and Syracuse" />
             <span style={text_style}><Reader text='What is the correct integer value of the following?'/></span>
             <p style={code_style}>hokies_score = <span style={dataTypeStyle}>{q1ChosenAnswer}</span></p>

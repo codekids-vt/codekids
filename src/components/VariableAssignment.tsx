@@ -1,8 +1,11 @@
 "use client"
 import React, { useState } from 'react';
 import { Reader } from './Reader';
+import { GetWindowScale } from './GetWindowScale';
 
 export function VariableAssignment() {
+
+    const windowScale = GetWindowScale()
 
     const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
     const [q2AnswerExplanation, setQ2AnswerExplanation] = useState("Choose an answer above!")
@@ -40,7 +43,7 @@ export function VariableAssignment() {
     }
 
     return (
-        <div style={{textAlign: "center", width: "100%"}}>
+        <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
             <div style={horizontal_div_style}>
                 <img style={image_style} src="/hokie-bird-148.png" alt="Image of Hokie Bird holding 148th birthday sign." />
                 <div style={{...code_box_style, ...{transform:"scale(1.5,1.5)"}}}>
