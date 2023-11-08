@@ -34,7 +34,7 @@ function BookImage({ image, page }: { image: string, page: Page }) {
       {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} />}
-      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}  
+      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}
     </div>
   );
 }
@@ -54,16 +54,18 @@ function BookContent({ content, game, props }: { content: string[], game: string
       {game && game === "color" && <ColorPattern />}
       {game && game === "number" && <NumericalPattern pattern={numericalProps.pattern} answer={numericalProps.answer} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
-      {game && game === "FlowerInputActivity" && <FlowerInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}
-      {game && game === "TableCompletionActivity" && <TableCompletionActivity options={props.options} answer={props.answer} />}
-      {game && game === "TableCompletionActivityTrees" && <TableCompletionActivityTrees options={props.options} answer={props.answer} />} 
-      {game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}   
+      {game && game === "FlowerInputActivity" && <FlowerInputActivity question={props.question} options={props.options} answer={props.ans[0]} showIOLabels={props.showIOLabels} />}
+      {game && game === "TableCompletionActivity" && <TableCompletionActivity options={props.options} answer={props.ans[0]} />}
+      {game && game === "TableCompletionActivityTrees" && <TableCompletionActivityTrees options={props.options} answer={props.ans[0]} />}
+      {game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.ans[0]} showIOLabels={props.showIOLabels} />}
     </div>
   );
 }
 
 
-export default async function ActivityPage({ params }: { params: { id: string, pagenum: string } }) {
+export default function ActivityPage({ params }: { params: { id: string, pagenum: string } }) {
+
+  const [help, setHelp] = useState(false);
 
   const bookNum = parseInt(params.id) - 1
   const pageNum = parseInt(params.pagenum)
@@ -99,6 +101,12 @@ export default async function ActivityPage({ params }: { params: { id: string, p
         </button>
       </Link>
   )
+
+  function handleHelp() {
+    console.log(help)
+    setHelp(help ? false : true)
+  }
+
   return (
     <div>
       <Navbar />
@@ -111,7 +119,18 @@ export default async function ActivityPage({ params }: { params: { id: string, p
                   <div className="flex flex-col flex-grow items-center justify-center">
                     <BookImage image={page.image} page={page} />
                   </div>
-                  <div className="flex flex-row justify-start p-2">{backButton}</div>
+                  <div className="flex flex-row justify-start p-2 space-x-2">
+                    {backButton}
+                    {page?.props?.ans?.length &&
+                      <button onClick={() => setHelp(!help)}
+                        className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold flex flex-row items-center p-4 text-2xl rounded-full">
+                        Help me
+                        <div className="p-2">
+                          <Image src={"/help-icon.png"} alt="help icon" width={25} height={25} className="" />
+                        </div>
+                      </button>
+                    }
+                  </div>
                 </div>
               </div>
               <div className="flex flex-col items-center justify-center bg-gray-100 rounded-2xl">
@@ -122,9 +141,70 @@ export default async function ActivityPage({ params }: { params: { id: string, p
                   <div className="flex flex-row justify-end p-2">{forwardButton}</div>
                 </div>
               </div>
+              {page?.props?.ans?.length && (
+                <div
+                  id="help-modal"
+                  className={`fixed top-0 left-0 right-0 z-50 ${help ? "" : "hidden"
+                    } w-full h-full bg-gray-900 bg-opacity-50`}
+                >
+                  <div className="flex items-center justify-center h-full">
+                    <div className="bg-white rounded-lg shadow-lg w-full md:w-1/2">
+                      <div className="flex items-center justify-between p-5 border-b rounded-t">
+                        <h3 className="text-xl font-medium text-gray-900">
+                          Help for {books[bookNum].title}
+                        </h3>
+                        <button
+                          onClick={() => setHelp(!help)}
+                          type="button"
+                          className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
+                          data-modal-hide="bottom-right-modal"
+                        >
+                          <svg
+                            className="w-3 h-3"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 14 14"
+                          >
+                            <path
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                            />
+                          </svg>
+                          <span className="sr-only">Close modal</span>
+                        </button>
+                      </div>
+                      <div className="p-6 space-y-6">
+                        <ul className="flex flex-col items-center">
+                          {page.props?.ans &&
+                            page.props?.ans.map((answer: string, index: number) => (
+                              <li
+                                className="inline-block font-semibold text-gray-900"
+                                key={`answerTag-${index}`}
+                              >
+                                {`${index + 1}. The correct answer is: ${answer}`}
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                      <div className="flex justify-end p-5 border-t rounded-b">
+                        <button
+                          onClick={() => setHelp(!help)}
+                          type="button"
+                          className="text-white bg-red-600 hover:bg-red-800 font-medium rounded-lg text-sm items-center px-5 py-2.5 text-center mr-2"
+                        >
+                          Close help
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-          )
-          }
+          )}
           {!page &&
             <div className="flex flex-col flex-grow items-center justify-center">
               <h1 className="text-center text-lg font-medium">
@@ -135,5 +215,7 @@ export default async function ActivityPage({ params }: { params: { id: string, p
         </div >
       </div>
     </div>
+
   )
 }
+

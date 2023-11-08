@@ -11,6 +11,7 @@ interface HokieBirdColorState {
 
 
 export function HokieBirdIfCondition({ props }: { props: any }) {
+    const answer = props.ans[0]
     const [wrong, setWrong] = useState(false)
     const [good, setGood] = useState(false)
     const [currentImage, setCurrentImage] = useState(props.image);
@@ -38,7 +39,7 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
             ...game,
             condition: condition
         })
-        setGood(condition === props.ans?.condition && game.statement === props.ans?.statement);
+        setGood(condition === props.ans?.condition && game.statement === answer);
     }
 
     function handleOnDropStatement(e: React.DragEvent, statementNumber: string) {
@@ -49,9 +50,9 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
             temp
         }
         setGame(newColors);
-        setGood(newColors.statement === props.ans);
-        setCurrentImage(newColors.statement === props.ans ? props.ans_image : props.image)
-        setWrong(newColors.statement !== props.ans)
+        setGood(newColors.statement === answer);
+        setCurrentImage(newColors.statement === answer ? props.ans_image : props.image)
+        setWrong(newColors.statement !== answer)
     }
 
 
@@ -72,7 +73,7 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
             condition: val,
             statement: game.statement
         });
-        setGood(val === props.ans?.condition && game.statement === props.ans?.statement);
+        setGood(val === answer);
     }
 
     function handleInputChangeStatement(e: ChangeEvent<HTMLInputElement>) {
@@ -82,7 +83,7 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
             condition: game.condition,
             statement: val
         });
-        setGood(game.condition === props.ans?.condition && val === props.ans?.statement);
+        setGood(val === answer);
     }
 
     return (
