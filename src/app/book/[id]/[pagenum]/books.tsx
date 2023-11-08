@@ -3,51 +3,18 @@ import { Book } from "@/util/BookData";
 export const books: Book[] = [
   {
     BookId: 1,
-    title: "Book 1 test",
-    blurb: "some blurb",
-    author: "Dev",
-    pages: [
-      {
-        content: ["In this activity well go over different patterns and how to identify them.",
-          "What is a pattern?",
-          "Patterns and functions can be represented in many ways and described using words, tables, graphs, and symbols."
-        ],
-        image: "/lego-sort-example-clumping.png",
-        game: null
-      },
-      {
-        content: ["This is the first activity",
-          "Lets try creating the pattern: Red, Red, Blue, Blue"],
-        image: "/lego-sort-example-clumping.png",
-        game: "color"
-      },
-      {
-        content: ["Ok that wasn't too bad lets see how we do with numerical patterns.",
-          "Lets try completing the pattern now!"],
-        image: "/lego-sort-example-clumping.png",
-        game: "number"
-      },
-      {
-        content: ["Try completing this code snippet!"],
-        image: "/lego-sort-example-clumping.png",
-        game: "code"
-      },
-    ],
-  },
-  {
-    BookId: 2,
     title: "Variables With Coloring",
     blurb: "Learn about different variables types, coloring the Hokie Bird!",
     author: "Dev",
     pages: [
       {
         content: ["In this book we will discover how to drag and drop different colors into variables",
-          "We will also learn how to manually complete vairables!",
+          "We will also learn how to manually complete variables!",
         ],
         image: "/HokieBird.png",
       },
       {
-        content: ["Here you are able to drag and drop the different colors into the three differnt parts of the Hokie Bird.",
+        content: ["Here you are able to drag and drop the different colors into the three different parts of the Hokie Bird.",
           "The Hokie Bird is split into three parts; a head, a body, and the legs.",
           "Try dragging different colors and see the changes happen live!",
           "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable"
@@ -82,7 +49,7 @@ export const books: Book[] = [
     ],
   },
   {
-    BookId: 3,
+    BookId: 2,
     title: "Hokie Bird is Lost!",
     blurb: "Learn how to communicate specific instructions to the Hokie Bird to help them find their way!",
     author: "Dev",
@@ -135,7 +102,7 @@ export const books: Book[] = [
             "Maze14.png",
           ],
           pageNum: 2,
-          bookID: 3,
+          bookID: 2,
           ans: [
             "move(3)",
             "turn_right()",
@@ -190,7 +157,7 @@ export const books: Book[] = [
             "Maze14.png",
           ],
           pageNum: 2,
-          bookID: 3,
+          bookID: 2,
           ans: [
             "move(3)",
             "turn_right()",
@@ -215,7 +182,7 @@ export const books: Book[] = [
     ]
   },
   {
-    BookId: 4,
+    BookId: 3,
     title: "IO Hand In Hand",
     blurb: "Learn about how a computer can compute patterns!",
     author: "Prapti",
@@ -371,13 +338,13 @@ export const books: Book[] = [
     ]
   },
   {
-    BookId: 5,
+    BookId: 4,
     title: "If-condition with HokieBird Weathers",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     pages: [
       {
-        content: ["If-condition is to see if the conditions is satistfied or not to determine which situation to reach.",
+        content: ["If-condition is to see if the conditions is satisfied or not to determine which situation to reach.",
           "If-statement diagram is a very common strategy to solve if-condition problems.",
           "You can try the following question with the if-statement diagram on the left.",
           "Example:",
@@ -389,15 +356,15 @@ export const books: Book[] = [
       {
         content: ["We will use If conditions to help the Hokie bird make it to Lane Stadium",
           "If Conditions have two outcomes, they are either true or false",
-          "If a value is true the 'code' that immediatley follows is taken.",
+          "If a value is true the 'code' that immediately follows is taken.",
           "If the value is false then the 'code' that follows is ignored",],
         image: "/if_condition/HokieBirdIf.png",
       },
       {
         content: ["Lets start with dragging and drop statements that should happen if the condition is true!",
-          "This means that whatever the if conditon, what is inside the '()', is true the statement will happen!",
+          "This means that whatever the if condition, what is inside the '()', is true the statement will happen!",
           "Here the HokieBird is outside and the temperature is around 70 degrees, not too cold, not too hot, lets dress him!",
-          "When youre done move onto the next page with the next button"],
+          "When you're done move onto the next page with the next button"],
         image: "HokieBirdIfConditionActivity",
         props: {
           draggable: true,
@@ -454,8 +421,8 @@ export const books: Book[] = [
     ]
   },
   {
-    BookId: 6,
-    title: "If-conditon with HokieBird Mood",
+    BookId: 5,
+    title: "If-condition with HokieBird Mood",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     pages: [
@@ -519,7 +486,7 @@ export const books: Book[] = [
     ]
   },
   {
-    BookId: 7,
+    BookId: 6,
     title: "If-condition with HokieBird Dance",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
@@ -616,7 +583,7 @@ export const books: Book[] = [
       ],
   },
   {
-    BookId: 8,
+    BookId: 7,
     title: "Python Tutor",
     blurb: "Learn programming with a visualizer",
     author: "Dev",
