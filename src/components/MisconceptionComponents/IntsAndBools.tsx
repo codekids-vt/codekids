@@ -51,13 +51,13 @@ export function IntsAndBools() {
         } else {
             switch(answer) {
                 case "False":
-                    setQ2AnswerExplanation("Incorrect. Is hokie_score greater than syracuse_score? Try again!")
+                    setQ2AnswerExplanation("Incorrect. Is hokies_score greater than syracuse_score? Try again!")
                     break;
                 case "22":
-                    setQ2AnswerExplanation("Incorrect. Remember 22 is an Integer. The result of hokie_score > syracuse_score will be a Boolean.")
+                    setQ2AnswerExplanation("Incorrect. Remember 22 is an Integer. The result of hokies_score > syracuse_score will be a Boolean.")
                     break;
                 case "10":
-                    setQ2AnswerExplanation("Incorrect. Remember 10 is an Integer. The result of hokie_score > syracuse_score will be a Boolean.")
+                    setQ2AnswerExplanation("Incorrect. Remember 10 is an Integer. The result of hokies_score > syracuse_score will be a Boolean.")
                     break;
                 default:
             }

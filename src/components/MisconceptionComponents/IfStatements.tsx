@@ -22,7 +22,7 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
         } else {
             switch (incorrect) {
                 case "TF":
-                    setQ1AnswerExplanation("Inocrrect. Remember that the else isn't executed when the If-statement is True. Try again!")
+                    setQ1AnswerExplanation("Incorrect. Remember that the else isn't executed when the If-statement is True. Try again!")
                     break;
                 case "False":
                     setQ1AnswerExplanation("Incorrect. When the condition for the If-Statement is True, everything indented under the If-"
@@ -56,14 +56,14 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
 
     function handleQ3(correct: boolean, incorrect : string = "" ) {
         if(correct) {
-            setQ3AnswerExplanation("Correct! The condition in the If-statment is false, so the If-statment will be skipped and the program will continue and print \"False\".")
+            setQ3AnswerExplanation("Correct! The condition in the If-statment is false, so the If-statement will be skipped and the program will continue and print \"False\".")
         } else {
             switch (incorrect) {
                 case "TF":
                     setQ3AnswerExplanation("Incorrect. Is the condition in the If-statement true? Try again!")
                     break;
                 case "True":
-                    setQ3AnswerExplanation("Inocrrect. Is the condition in the If-statement true? Also the program will coninue to execute after an If-statment. Try again!")
+                    setQ3AnswerExplanation("Incorrect. Is the condition in the If-statement true? Also the program will continue to execute after an If-statment. Try again!")
                     break;
                 case "N":
                     setQ3AnswerExplanation("Incorrect. A program will continue to execute even if a If-statment's condition is False." 

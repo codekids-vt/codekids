@@ -23,7 +23,7 @@ export function Strings({ props }: { props: any | IStringsProps }) {
         } else {
             switch (incorrect) {
                 case "Integer":
-                    setQ1AnswerExplanation("Incorrect. Notice that all of the values are surrounded by single or double quotation marks. Also remember a integer is a whole number. Try again!")
+                    setQ1AnswerExplanation("Incorrect. Notice that all of the values are surrounded by single or double quotation marks. Also remember an integer is a whole number. Try again!")
                     break;
                 case "Boolean":
                     setQ1AnswerExplanation("Incorrect. Notice that all of the values are surrounded by single or double quotation marks. Also remember a Boolean is always True or False. Try again!")
@@ -99,10 +99,10 @@ export function Strings({ props }: { props: any | IStringsProps }) {
         } else {
             switch (incorrect) {
                 case "148":
-                    setQ5AnswerExplanation("Incorrect. Pay close attention to what's in the final print statment. Try again!")
+                    setQ5AnswerExplanation("Incorrect. Pay close attention to what's in the final print statement. Try again!")
                     break;
                 case "\"148\"":
-                    setQ5AnswerExplanation("Incorrect. Pay close attention to what's in the final print statment and remember printing a string doesn't include the quotation marks. Try again!")
+                    setQ5AnswerExplanation("Incorrect. Pay close attention to what's in the final print statement and remember printing a string doesn't include the quotation marks. Try again!")
                     break;
             }
         }

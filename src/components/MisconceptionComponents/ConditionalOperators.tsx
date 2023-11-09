@@ -46,7 +46,7 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
             switch (incorrect) {
                 case "False":
                     setQ2ChosenAnswer("False")
-                    setQ2AnswerExplanation("Incorrect. Are the values of derek_color and josie_color equal. Try again!")
+                    setQ2AnswerExplanation("Incorrect. Are the values of derek_color and josie_color equal? Try again!")
                     break;
                 case "None":
                     setQ2ChosenAnswer("None")
@@ -89,7 +89,7 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
                     break;
                 case "False":
                     setQ4ChosenAnswer("False")
-                    setQ4AnswerExplanation("Incorrec. What are the data types of total_number and cream_number? Try again!")
+                    setQ4AnswerExplanation("Incorrect. What are the data types of total_number and cream_number? Try again!")
                     break;
                 default:
             }

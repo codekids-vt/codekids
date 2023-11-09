@@ -36,10 +36,10 @@ export function LogicalOperators() {
     function handleQ3(correct: boolean, incorrect : string = "" ) {
         if(correct) {
             setQ3ChosenAnswer("False")
-            setQ3AnswerExplanation("Correct! derek_color is equal to 'cream' so the NOT of that is False")
+            setQ3AnswerExplanation("Correct! derek_color is equal to 'cream', which means derek_color == 'cream' is True, so the NOT of that is False")
         } else {
             setQ3ChosenAnswer("True")
-            setQ3AnswerExplanation("Incorrect. derek_color is equal to cream, but we want ot get the NOT of that. Try again!")
+            setQ3AnswerExplanation("Incorrect. derek_color is equal to 'cream', whitch means derek_color == 'cream' is True, but we want to get the NOT of that. Try again!")
         }
     }
 

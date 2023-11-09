@@ -12,14 +12,14 @@ export function VariableAssignment() {
 
     function handleQ1(correct: boolean, incorrect: number = 0) {
         if(correct) {
-            setQ1AnswerExplanation("Correct! anniversary is orginaly 147 and is then changed to 148.")
+            setQ1AnswerExplanation("Correct! anniversary is originally 147 and is then changed to 148.")
         } else {
             switch (incorrect) {
                 case 1:
                     setQ1AnswerExplanation("Incorrect. Remember the old value of a variable is lost when it's assigned a new value. Try again!")
                     break;
                 case 2:
-                    setQ1AnswerExplanation("Incorrect. Assining a variable a new value DOES NOT add it with the old value. The variable is simply assigned the new value. Try again!")
+                    setQ1AnswerExplanation("Incorrect. Assigning a variable a new value DOES NOT add it with the old value. The variable is simply assigned the new value. Try again!")
                     break;
                 default:
             }
@@ -35,7 +35,7 @@ export function VariableAssignment() {
                     setQ2AnswerExplanation("Incorrect. anniversary is being set to it's previous value + 1 (anniversary + 1). Not the expression itself.")
                     break;
                 case 2:
-                    setQ2AnswerExplanation("Incorrect. Notice that anniversary is being reassigned after a years has passed to anniversary + 1")
+                    setQ2AnswerExplanation("Incorrect. Notice that anniversary is being reassigned after a year has passed to anniversary + 1")
                     break;
                 default:
             }
