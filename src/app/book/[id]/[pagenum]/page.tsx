@@ -34,7 +34,8 @@ function BookImage({ image, page }: { image: string, page: Page }) {
       {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} />}
-      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}  
+      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />} 
+      {image === "park_1" && <NumberInputActivity props={page?.props} />} 
     </div>
   );
 }
@@ -57,10 +58,10 @@ function BookContent({ content, game, props }: { content: string[], game: string
       {game && game === "FlowerInputActivity" && <FlowerInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}
       {game && game === "TableCompletionActivity" && <TableCompletionActivity options={props.options} answer={props.answer} />}
       {game && game === "TableCompletionActivityTrees" && <TableCompletionActivityTrees options={props.options} answer={props.answer} />} 
-      {game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}   
-    </div>
+      </div>
   );
 }
+//{game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}   
 
 
 export default async function ActivityPage({ params }: { params: { id: string, pagenum: string } }) {

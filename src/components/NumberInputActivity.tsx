@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 export interface INumberInputActivityProps {
   showIOLabels: boolean
   question: string | undefined
@@ -7,7 +8,7 @@ export interface INumberInputActivityProps {
   answer: number
 }
 
-export function NumberInputActivity(props: INumberInputActivityProps) {
+export function NumberInputActivity({ props }: { props: any |  INumberInputActivityProps}) {
   const { question, options, answer, showIOLabels } = props;
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [result, setResult] = useState('');
@@ -32,7 +33,7 @@ export function NumberInputActivity(props: INumberInputActivityProps) {
         </div>)
       }
       <div className="flex flex-wrap justify-center space-x-4">
-        {options.map((option, index) => (
+        {options.map((option: number, index:number) => (
           <button
             key={index}
             className={`px-4 py-2 text-lg font-medium ${selectedOption === option
