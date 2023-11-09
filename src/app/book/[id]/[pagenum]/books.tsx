@@ -685,7 +685,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [1, 2, 3, 4],
-          answer: 19,
+          answer: 2,
         }
       },
       {
