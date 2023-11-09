@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Book } from "@/util/BookData";
-import { books } from "@/app/book/[id]/[pagenum]/books";
+import { books } from "../../../../book/[id]/[pagenum]/books";
 
 function BookPreview({ BookData }: { BookData: Book }) {
   return (

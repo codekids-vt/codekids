@@ -19,11 +19,15 @@ import { NumberInputActivity } from "@/components/NumberInputActivity";
 import { TableCompletionActivity } from "@/components/TableCompletionActivity";
 import { TableCompletionActivityTrees } from "@/components/TableCompletionActivityTrees";
 import { FlowerInputActivity } from "@/components/FlowerInputActivity";
-import { DataTypesIntro } from "@/components/DataTypesIntro";
-import { IntsAndBools } from "@/components/IntsAndBools";
-import { VariableAssignment } from "@/components/VariableAssignment";
-import { Strings } from "@/components/Strings";
-import { Sequencing } from "@/components/Sequencing";
+import { DataTypesIntro } from "@/components/MisconceptionComponents/DataTypesIntro";
+import { IntsAndBools } from "@/components/MisconceptionComponents/IntsAndBools";
+import { VariableAssignment } from "@/components/MisconceptionComponents/VariableAssignment";
+import { Strings } from "@/components/MisconceptionComponents/Strings";
+import { Sequencing } from "@/components/MisconceptionComponents/Sequencing";
+import { IfStatementIntro } from "@/components/MisconceptionComponents/IfStatementIntro";
+import { ConditionalOperators } from "@/components/MisconceptionComponents/ConditionalOperators";
+import { LogicalOperators } from "@/components/MisconceptionComponents/LogicalOperators";
+import { IfStatements } from "@/components/MisconceptionComponents/IfStatements";
 
 const numericalProps = {
   pattern: [2, 4, 6, 8, '__', '__', '__'],
@@ -45,6 +49,10 @@ function BookImage({ image, page }: { image: string, page: Page }) {
       {image === "VariableAssingment" && <VariableAssignment/>}
       {image === "Strings" && <Strings props={page?.props}/>}
       {image === "Sequencing" && <Sequencing/>}
+      {image === "IfStatementIntro" && <IfStatementIntro/>}
+      {image === "ConditionalOperators" && <ConditionalOperators props={page?.props}/>}
+      {image === "LogicalOperators" && <LogicalOperators/>}
+      {image === "IfStatements" && <IfStatements props={page?.props}/>}
     </div>
   );
 }
