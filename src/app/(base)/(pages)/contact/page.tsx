@@ -18,7 +18,7 @@ export default function ContactPage() {
             Let us know! You can fill out the email form below, or manually send an email to us at&nbsp;
             <a href="mailto:shamouda@vt.edu">
               <span className="text-blue-500 underline">
-                shamouda@vt.edu
+                shamouda at vt dot edu
               </span>
             </a>
             .

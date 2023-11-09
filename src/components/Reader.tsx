@@ -7,7 +7,7 @@ export interface IReaderProps {
 
 export function Reader(props: IReaderProps) {
 
-  // use effect to preemtively load voices
+  // use effect to preemptively load voices
   React.useEffect(() => {
     speechSynthesis.getVoices();
   }, []);

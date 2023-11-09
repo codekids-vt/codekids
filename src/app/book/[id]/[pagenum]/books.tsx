@@ -3,51 +3,19 @@ import { Book } from "@/util/BookData";
 export const books: Book[] = [
   {
     BookId: 1,
-    title: "Book 1 test",
-    blurb: "some blurb",
-    author: "Dev",
-    pages: [
-      {
-        content: ["In this activity well go over different patterns and how to identify them.",
-          "What is a pattern?",
-          "Patterns and functions can be represented in many ways and described using words, tables, graphs, and symbols."
-        ],
-        image: "/lego-sort-example-clumping.png",
-        game: null
-      },
-      {
-        content: ["This is the first activity",
-          "Lets try creating the pattern: Red, Red, Blue, Blue"],
-        image: "/lego-sort-example-clumping.png",
-        game: "color"
-      },
-      {
-        content: ["Ok that wasn't too bad lets see how we do with numerical patterns.",
-          "Lets try completing the pattern now!"],
-        image: "/lego-sort-example-clumping.png",
-        game: "number"
-      },
-      {
-        content: ["Try completing this code snippet!"],
-        image: "/lego-sort-example-clumping.png",
-        game: "code"
-      },
-    ],
-  },
-  {
-    BookId: 2,
+    bookCover: "/VTColorBook.png",
     title: "Variables With Coloring",
     blurb: "Learn about different variables types, coloring the Hokie Bird!",
     author: "Dev",
     pages: [
       {
         content: ["In this book we will discover how to drag and drop different colors into variables",
-          "We will also learn how to manually complete vairables!",
+          "We will also learn how to manually complete variables!",
         ],
         image: "/HokieBird.png",
       },
       {
-        content: ["Here you are able to drag and drop the different colors into the three differnt parts of the Hokie Bird.",
+        content: ["Here you are able to drag and drop the different colors into the three different parts of the Hokie Bird.",
           "The Hokie Bird is split into three parts; a head, a body, and the legs.",
           "Try dragging different colors and see the changes happen live!",
           "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable"
@@ -82,7 +50,8 @@ export const books: Book[] = [
     ],
   },
   {
-    BookId: 3,
+    BookId: 2,
+    bookCover: "/VTColorBook.png",
     title: "Hokie Bird is Lost!",
     blurb: "Learn how to communicate specific instructions to the Hokie Bird to help them find their way!",
     author: "Dev",
@@ -135,7 +104,7 @@ export const books: Book[] = [
             "Maze14.png",
           ],
           pageNum: 2,
-          bookID: 3,
+          bookID: 2,
           ans: [
             "move(3)",
             "turn_right()",
@@ -150,8 +119,8 @@ export const books: Book[] = [
             "move(4)",
             "turn_left()",
             "move(2)",
-          ]
-        }
+          ],
+        },
       },
       {
         content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
@@ -190,7 +159,7 @@ export const books: Book[] = [
             "Maze14.png",
           ],
           pageNum: 2,
-          bookID: 3,
+          bookID: 2,
           ans: [
             "move(3)",
             "turn_right()",
@@ -206,7 +175,7 @@ export const books: Book[] = [
             "turn_left()",
             "move(2)",
           ]
-        }
+        },
       },
       {
         content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
@@ -215,8 +184,9 @@ export const books: Book[] = [
     ]
   },
   {
-    BookId: 4,
+    BookId: 3,
     title: "IO Hand In Hand",
+    bookCover: "/VTColorBook.png",
     blurb: "Learn about how a computer can compute patterns!",
     author: "Prapti",
     pages: [
@@ -240,8 +210,8 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [1, 2, 3, 4],
-          answer: 3,
-        }
+          ans: [3],
+        },
       },
       {
         content: [
@@ -267,8 +237,8 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [9, 10, 11, 12],
-          answer: 10,
-        }
+          ans: [10],
+        },
       },
       {
         content: ["How many pink flowers are there in total in all the corners?"],
@@ -277,8 +247,8 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [9, 10, 11, 12],
-          answer: 9,
-        }
+          ans: [9],
+        },
       },
       {
         content: ["What is the total number of flowers in all the corners right now?"],
@@ -287,8 +257,8 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [19, 20, 21, 22],
-          answer: 19,
-        }
+          ans: [19],
+        },
       },
       {
         content: [
@@ -297,7 +267,10 @@ export const books: Book[] = [
         ],
         game: "TableCompletionActivity",
         image: "/io_book/flowers_1.png",
-        props: { image: "/io_book/flowers_1.png" },
+        props: {
+          image: "/io_book/flowers_1.png",
+          ans: [5]
+        },
       },
       {
         content: ["Look at each corner of the park", "How many yellow trees are there in total in all the corners?"],
@@ -306,8 +279,8 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [10, 11, 12, 13],
-          answer: 10,
-        }
+          ans: [10],
+        },
       },
       {
         content: ["How many green trees are there in total in all the corners?"],
@@ -316,8 +289,8 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [7, 8, 9, 10],
-          answer: 9,
-        }
+          ans: [9],
+        },
       },
       {
         content: ["What is the total number of trees in all the corners right now?"],
@@ -326,8 +299,8 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [16, 17, 18, 19],
-          answer: 19,
-        }
+          ans: [19],
+        },
       },
       {
         content: ["Look at each corner of the park", "How many yellow trees are there in total in all the corners?"],
@@ -336,8 +309,8 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [10, 11, 12, 13],
-          answer: 10,
-        }
+          ans: [10],
+        },
       },
       {
         content: ["How many green trees are there in total in all the corners?"],
@@ -346,8 +319,8 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [7, 8, 9, 10],
-          answer: 9,
-        }
+          ans: [9],
+        },
       },
       {
         content: ["What is the total number of trees in all the corners right now?"],
@@ -356,8 +329,8 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [16, 17, 18, 19],
-          answer: 19,
-        }
+          ans: [19],
+        },
       },
       {
         content: [
@@ -366,18 +339,30 @@ export const books: Book[] = [
         ],
         game: "TableCompletionActivityTrees",
         image: "/io_book/trees_1.png",
-        props: { image: "/io_book/trees_1.png" },
+        props: {
+          image: "/io_book/trees_1.png",
+          ans: [1]
+        },
+
       }
     ]
   },
   {
-    BookId: 5,
+    BookId: 4,
+    bookCover: "/VTColorBook.png",
     title: "If-condition with HokieBird Weathers",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     pages: [
       {
-        content: ["If-condition is to see if the conditions is satistfied or not to determine which situation to reach.",
+        content: ["We will use If conditions to help the Hokie bird make it to Lane Stadium",
+          "If Conditions have two outcomes, they are either true or false",
+          "If a value is true the 'code' that immediatley follows is taken.",
+          "If the value is false then the 'code' that follows is ignored",],
+        image: "/if_condition/HokieBirdIf.png",
+      },
+      {
+        content: [
           "If-statement diagram is a very common strategy to solve if-condition problems.",
           "You can try the following question with the if-statement diagram on the left.",
           "Example:",
@@ -387,75 +372,71 @@ export const books: Book[] = [
         image: "/if_condition/if-statement.png",
       },
       {
-        content: ["We will use If conditions to help the Hokie bird make it to Lane Stadium",
-          "If Conditions have two outcomes, they are either true or false",
-          "If a value is true the 'code' that immediatley follows is taken.",
-          "If the value is false then the 'code' that follows is ignored",],
-        image: "/if_condition/HokieBirdIf.png",
-      },
-      {
         content: ["Lets start with dragging and drop statements that should happen if the condition is true!",
-          "This means that whatever the if conditon, what is inside the '()', is true the statement will happen!",
+          "This means that whatever the if condition, what is inside the '()', is true the statement will happen!",
           "Here the HokieBird is outside and the temperature is around 70 degrees, not too cold, not too hot, lets dress him!",
-          "When youre done move onto the next page with the next button"],
+          "When you're done move onto the next page with the next button"],
         image: "HokieBirdIfConditionActivity",
         props: {
           draggable: true,
           statements: ["tshirt", "winter_jacket"],
           condition: "weather_is_hot",
-          ans: "tshirt",
+          ans: ["tshirt"],
           image: "/if_condition/sun.gif",
           ans_image: "/if_condition/HokieBirdSun.gif"
-        }
+        },
       },
       {
         content: ["Awesome work!",
-          "Now lets give the hokie bird some warmer clothes as its a lot colder out...brrrrr"],
+          "Now, it's snowing and it's really cold! What do we wear when it's cold?", 
+          "That's right, warm clothes! ",
+          "Let's dress HokieBird in warm clothes!"],
         image: "HokieBirdIfConditionActivity",
         props: {
           draggable: true,
           statements: ["tshirt", "winter_jacket"],
           condition: "weather_is_cold",
-          ans: "winter_jacket",
+          ans: ["winter_jacket"],
           image: "/if_condition/HokieBirdIf.png",
           ans_image: "/if_condition/HokieBirdJacket.png",
           effect: "/if_condition/snow.gif"
-        }
+        },
       },
       {
         content: ["Awesome work!",
-          "Now lets give the hokie bird some warmer clothes as its a lot colder out...brrrrr"],
+          "It's raining now. Does HokieBird need sunglasses or an umbrella? Help HokieBird choose!"],
         image: "HokieBirdIfConditionActivity",
         props: {
           draggable: true,
           statements: ["sunglasses", "umbrella"],
           condition: "weather_is_raining",
-          ans: "umbrella",
+          ans: ["umbrella"],
           image: "/if_condition/HokieBirdIf.png",
           ans_image: "/if_condition/Umbrella2.png",
           effect: "/if_condition/rain.gif"
-        }
+        },
 
       },
       {
         content: ["Awesome work!",
-          "Now lets give the hokie bird some warmer clothes as its a lot colder out...brrrrr"],
+          "Oops! It's raining and HokieBird forgot his umbrella! How is he supposed to be feeling?"],
         image: "HokieBirdIfConditionActivity",
         props: {
           draggable: true,
           statements: ["cry", "laugh"],
           condition: "rains_without_an_umbrella",
-          ans: "cry",
+          ans: ["cry"],
           image: "/if_condition/HokieBirdIf.png",
-          ans_image: "/if_condition/HokieBirdSad.jpg",
+          ans_image: "/if_condition/HokieBirdCry.png",
           effect: "/if_condition/rain.gif"
-        }
+        },
       },
     ]
   },
   {
-    BookId: 6,
-    title: "If-conditon with HokieBird Mood",
+    BookId: 5,
+    title: "If-condition with HokieBird Mood",
+    bookCover: "/VTColorBook.png",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     pages: [
@@ -472,10 +453,10 @@ export const books: Book[] = [
           draggable: true,
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie_feels_sad",
-          ans: "cry",
+          ans: ["cry"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/sad.png",
-        }
+        },
       },
       {
         content: ["We all make different facial expressions based on different emotions. ",
@@ -485,10 +466,10 @@ export const books: Book[] = [
           draggable: true,
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie_feels_happy",
-          ans: "laugh",
+          ans: ["laugh"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/happy.png",
-        }
+        },
       },
       {
         content: ["We all make different facial expressions based on different emotions. ",
@@ -498,10 +479,10 @@ export const books: Book[] = [
           draggable: true,
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie_feels_angry",
-          ans: "angry",
+          ans: ["angry"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/angry.png",
-        }
+        },
       },
       {
         content: ["We all make different facial expressions based on different emotions. ",
@@ -511,16 +492,17 @@ export const books: Book[] = [
           draggable: true,
           statements: ["cry", "laugh", "surprised", "angry"],
           condition: "Hokie_feels_surprised",
-          ans: "surprised",
+          ans: ["surprised"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/surprise.png",
-        }
+        },
       },
     ]
   },
   {
-    BookId: 7,
+    BookId: 6,
     title: "If-condition with HokieBird Dance",
+    bookCover: "/VTColorBook.png",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     cover: "/if_condition/HokieBirdIf.png",
@@ -531,7 +513,7 @@ export const books: Book[] = [
             "using the outdoor space to improve his fitness. ",
             "But there's a dance exam coming up and HokieBird needs to go and memorize the order of all the dance steps.",
             " Let's help HokieBird! Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers."],
-          image: "/if_condition/dance.png",
+          image: "/if_condition/dance.jpg",
         },
         {
           content: ["Let's assist him in repeatedly practicing the moves!",
@@ -543,7 +525,7 @@ export const books: Book[] = [
             draggable: true,
             statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_makes_action1",
-            ans: "bend_sideways",
+            ans: ["bend_sideways"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action1.gif",
           }
@@ -558,7 +540,7 @@ export const books: Book[] = [
             draggable: true,
             statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_makes_action4",
-            ans: "wave_arm",
+            ans: ["wave_arm"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action4.gif",
           }
@@ -573,7 +555,7 @@ export const books: Book[] = [
             draggable: true,
             statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_makes_action3",
-            ans: "butt_twist",
+            ans: ["butt_twist"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action3.gif",
           }
@@ -588,7 +570,7 @@ export const books: Book[] = [
             draggable: true,
             statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_makes_action5",
-            ans: "rotate",
+            ans: ["rotate"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action5.gif",
           }
@@ -603,7 +585,7 @@ export const books: Book[] = [
             draggable: true,
             statements: ["bend_sideways", "back_kick", "butt_twist", "wave_arm", "rotate"],
             condition: "HokieBird_makes_action2",
-            ans: "back_kick",
+            ans: ["back_kick"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action2.gif",
           }
@@ -616,9 +598,10 @@ export const books: Book[] = [
       ],
   },
   {
-    BookId: 8,
-    title: "Variables",
-    blurb: "Learn about Python variables",
+    BookId: 7,
+    title: "Python Tutor",
+    bookCover: "/VTColorBook2.png",
+    blurb: "Learn programming with a visualizer",
     author: "Dev",
     cover: "/Python-logo-notext.png",
     pages:
