@@ -71,19 +71,16 @@ export function HokieBirdMap({ props }: { props: any }) {
     return (
         <div className="flex flex-col items-center">
             <Image className="" src={`/Maze/${currentImage}`} width={400} height={400} alt="Hokie Bird Maze Image" />
-            <div className="grid grid-cols-2 gap-4 px-4">
+            <div className="flex flex-row gap-4 px-4">
                 <div>
                     {procedures.map((statement, index) => {
                         return (
-                            <div key={index} className="flex flex-row items-center space-x-1 p-0.5">
+                            <div key={index} className="flex flex-wrap items-center space-x-1 p-0.5">
                                 <div className="w-10 px-2">{index + 1}.</div>
                                 <div className="flex flex-col rounded-full" onDrop={(e) => handleOnDropStatement(e, index)} onDragOver={(e) => handleDragOver(e)}>
                                     <input type="text" className={`rounded-2xl text-center  border-2 ${errorProcedure === index ? "border-red-500" : ""} ${procedures[index] !== "" ? "bg-blue-200" : ""}`}
                                         placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={statement} onChange={(e) => setProcedure(index, e.target.value)} />
                                 </div>
-                                <button className="bg-red-200 rounded-2xl hover:shadow-2xl px-1" onClick={() => {
-                                    setProcedure(index, "")
-                                }}>Reset</button>
                                 {errorProcedure === index && <div className="text-red-500">x</div>}
 
                             </div>
@@ -91,7 +88,7 @@ export function HokieBirdMap({ props }: { props: any }) {
                     })}
                 </div>
                 <div className="flex flex-col items-center">
-                    <div className="flex flex-wrap p-2">
+                    <div className="flex flex-col p-2">
                         {actions.map((action: string, i: number) => (
                             <div key={i} className="p-1 hover:shadow-2xl">
                                 <div draggable={props.draggable} className="text-black bg-blue-200 rounded-2xl px-2" onDragStart={(e) => handleOnDragStatement(e, action)}>
@@ -100,11 +97,11 @@ export function HokieBirdMap({ props }: { props: any }) {
                             </div>
                         ))}
                     </div>
-                    <div className="flex flex-row space-x-2">
-                        <button className="p-4 bg-green-200 rounded-2xl hover:shadow-2xl" onClick={() => {
+                    <div className="flex flex-wrap space-x-1 space-y-1">
+                        <button className="p-2 bg-green-200 rounded-2xl hover:shadow-2xl" onClick={() => {
                             runProcedure()
                         }}>Run</button>
-                        <button className="p-4 bg-red-200 rounded-2xl hover:shadow-2xl" onClick={() => resetAll()}>Reset All</button>
+                        <button className="p-2 bg-red-200 rounded-2xl hover:shadow-2xl" onClick={() => resetAll()}>Reset All</button>
                     </div>
                     <div className="p-4">
                         {message && <div className={`p-4 bg-blue-200 rounded-2xl`}>{message}</div>}

@@ -1,7 +1,6 @@
 "use client"
 import Link from "next/link";
 
-// import { GET as routeHandler } from "../../../../api/activity/[id]/route";
 import { Page } from "@/util/BookData";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -20,16 +19,11 @@ import { TableCompletionActivity } from "@/components/TableCompletionActivity";
 import { TableCompletionActivityTrees } from "@/components/TableCompletionActivityTrees";
 import { FlowerInputActivity } from "@/components/FlowerInputActivity";
 
-const numericalProps = {
-  pattern: [2, 4, 6, 8, '__', '__', '__'],
-  answer: ["10", "12", "14"]
-}
-
 function BookImage({ image, page }: { image: string, page: Page }) {
   const isImage = image && image.includes(".");
 
   return (
-    <div className="h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
+    <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
       {isImage && <Image src={image} alt="book image" width={500} height={500} className="object-contain max-w-full max-h-full" />}
       {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
@@ -38,21 +32,20 @@ function BookImage({ image, page }: { image: string, page: Page }) {
     </div>
   );
 }
-// {image === "park_1" && <NumberInputActivity question={page?.props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} imageUrl={page?.props.imageUrl}/>}
 
 function BookContent({ content, game, props }: { content: string[], game: string | null, props: any }) {
   return (
-    <div className="h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
-      <ul className="flex flex-col p-4 space-y-4">
+    <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
+      <ul className="flex flex-col p-4 md:space-y-1 xl:space-y-4">
         {content.map((line, i) => (
-          <li className="text-center text-2xl py-3 font-semibold " key={i}>
+          <li className="text-center text-xs md:text-md xl:text-2xl xl:py-3 md:font-semibold " key={i}>
             <Reader text={line} />
           </li>
         ))
         }
       </ul>
       {game && game === "color" && <ColorPattern />}
-      {game && game === "number" && <NumericalPattern pattern={numericalProps.pattern} answer={numericalProps.answer} />}
+      {game && game === "number" && <NumericalPattern pattern={props.pattern} answer={props.ans[0]} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
       {game && game === "FlowerInputActivity" && <FlowerInputActivity question={props.question} options={props.options} answer={props.ans[0]} showIOLabels={props.showIOLabels} />}
       {game && game === "TableCompletionActivity" && <TableCompletionActivity options={props.options} answer={props.ans[0]} />}
@@ -79,67 +72,56 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
     return pageNum - 1 >= 0 ? pageNum - 1 : pageNum;
   }
 
-  const backButton = (
-    <Link href={`/book/${params.id}/${getPrevPageNum()}`}>
-      <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-6 rounded-full text-2xl">
-        Back
-      </button>
-    </Link>
-  )
-
   const forwardButton = (
     getNextPageNum() ?
       <Link href={`/book/${params.id}/${getNextPageNum()}`}>
-        <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-6 rounded-full text-2xl">
+        <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
           Next
         </button>
       </Link>
       :
       <Link href={`/books/1`}>
-        <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-6 rounded-full text-2xl">
+        <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
           Home
         </button>
       </Link>
   )
 
-  function handleHelp() {
-    console.log(help)
-    setHelp(help ? false : true)
-  }
-
   return (
     <div>
       <Navbar />
       <div className="mx-auto">
-        <div className="md:px-24 py-2 h-[calc(100vh-5rem)] flex">
+        <div className="px-2 xl:px-24 py-2 h-[calc(100vh-4rem)] flex">
           {page && (
-            <div className="grid grid-cols-2 bg-white rounded-2xl shadow-xl p-2 flex-grow">
-              <div className="flex flex-col flex-grow items-center">
+            <div className="flex flex-row bg-white rounded-2xl shadow-xl p-2 flex-grow">
+              <div className="basis-4/6 flex flex-col  flex-grow items-center">
                 <div className="flex flex-col justify-between flex-grow w-full">
                   <div className="flex flex-col flex-grow items-center justify-center">
                     <BookImage image={page.image} page={page} />
                   </div>
-                  <div className="flex flex-row justify-start p-2 space-x-2">
-                    {backButton}
+                  <div className="flex flex-row justify-start items-center xl:p-2 space-x-2">
+                    <Link href={`/book/${params.id}/${getPrevPageNum()}`}>
+                      <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 rounded-full xl:text-2xl">
+                        Back
+                      </button>
+                    </Link>
                     {page?.props?.ans?.length &&
                       <button onClick={() => setHelp(!help)}
-                        className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold flex flex-row items-center p-4 text-2xl rounded-full">
+                        className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold flex flex-row items-center p-1 xl:p-6 xl:text-2xl rounded-full">
                         Help me
-                        <div className="p-2">
-                          <Image src={"/help-icon.png"} alt="help icon" width={25} height={25} className="" />
+                        <div className="px-1">
+                          <Image src={"/help-icon.png"} alt="help icon" width={25} height={25} />
                         </div>
                       </button>
                     }
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-center bg-gray-100 rounded-2xl">
-                <div className="flex flex-col justify-between w-full">
-                  <div className="flex flex-col items-center justify-center">
-                    <BookContent content={page.content} game={page.game} props={page.props} />
-                  </div>
-                  <div className="flex flex-row justify-end p-2">{forwardButton}</div>
+              <div className="flex flex-col items-center justify-between bg-gray-100 rounded-2xl">
+                <div className="flex flex-col items-center justify-center">
+                  <BookContent content={page.content} game={page.game} props={page.props} />
                 </div>
+                <div className="flex flex-row w-full justify-end p-2">{forwardButton}</div>
               </div>
               {page?.props?.ans?.length && (
                 <div
@@ -215,7 +197,6 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
         </div >
       </div>
     </div>
-
   )
 }
 

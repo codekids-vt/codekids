@@ -107,19 +107,17 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
                         <input key={"ifConditionStatement1"} type="text" className="outline-black rounded-2xl outline-dotted text-center" placeholder={props?.type ? "Type Here" : "Drag appropriate action here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
                     </div>
                 </div>
-                <div className="grid grid-cols-2 flex-grow justify-between p-2">
-                    {
-                        props.statements.map((statement: string, i: number) => (
-                            <div className="p-2" key={`ifActivity-${i}`}>
-                                <div draggable={props.draggable}
-                                    className="flex p-2 bg-gray-300  rounded-xl text-blue-600 shadow-xl hover:shadow-2xl hover:bg-gray-400 hover:text-white"
-                                    onDragStart={(e) => handleOnDragStatement(e, statement)}>{statement}
-                                </div>
+                <div className="flex flex-col flex-grow justify-between p-1">
+                    {props.statements.map((statement: string, i: number) => (
+                        <div className="p-2" key={`ifActivity-${i}`}>
+                            <div draggable={props.draggable}
+                                className="flex p-1 bg-gray-300  rounded-xl text-blue-600 shadow-xl hover:shadow-2xl hover:bg-gray-400 hover:text-white"
+                                onDragStart={(e) => handleOnDragStatement(e, statement)}>{statement}
                             </div>
-                        ))
-                    }
+                        </div>
+                    ))}
                     <div className="flex flex-row flex-grow justify-around p-1">
-                        <button className="p-2 rounded-full bg-red-500" onClick={e => handleReset(e)}>Reset</button>
+                        <button className="p-1 rounded-full bg-red-500" onClick={e => handleReset(e)}>Reset</button>
                     </div>
                 </div>
             </div>
