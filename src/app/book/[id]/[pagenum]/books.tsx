@@ -667,6 +667,35 @@ export const books: Book[] = [
         game: "TableCompletionActivityTrees",
         image: "/io_book/trees_1.png",
         props: {image: "/io_book/trees_1.png"},
+      },
+      {
+        content: ["What is the total number of trees in all the corners right now?"],
+        image: "/io_book/multiplication_0.png",
+        game: "FlowerInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [4, 5, 6, 7],
+          answer: 6,
+        }
+      },
+      {
+        content: ["What is the number of flowers along side each tree?"],
+        image: "/io_book/multiplication_1.png",
+        game: "FlowerInputActivity",
+        props: {
+          showIOLabels: true,
+          options: [1, 2, 3, 4],
+          answer: 19,
+        }
+      },
+      {
+        content: [
+          "Each corner of the park has certain number of green and yellow trees.  Observe the pattern in the number of each color tree planted.", 
+        "Now guess the number green trees that should be planted in the right corner in bottom? "
+        ],
+        game: "MultiplicationActivity",
+        image: "/io_book/multiplication_2.png",
+        props: {image: "/io_book/multiplication_2.png"},
       }
     ]
   },

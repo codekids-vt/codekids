@@ -19,6 +19,7 @@ import { NumberInputActivity } from "@/components/NumberInputActivity";
 import { TableCompletionActivity } from "@/components/TableCompletionActivity";
 import { TableCompletionActivityTrees } from "@/components/TableCompletionActivityTrees";
 import { FlowerInputActivity } from "@/components/FlowerInputActivity";
+import { MultiplicationActivity } from "@/components/MultiplicationActivity";
 
 const numericalProps = {
   pattern: [2, 4, 6, 8, '__', '__', '__'],
@@ -39,7 +40,6 @@ function BookImage({ image, page }: { image: string, page: Page }) {
     </div>
   );
 }
-// {image === "park_1" && <NumberInputActivity question={page?.props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} imageUrl={page?.props.imageUrl}/>}
 
 function BookContent({ content, game, props }: { content: string[], game: string | null, props: any }) {
   return (
@@ -58,10 +58,11 @@ function BookContent({ content, game, props }: { content: string[], game: string
       {game && game === "FlowerInputActivity" && <FlowerInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}
       {game && game === "TableCompletionActivity" && <TableCompletionActivity options={props.options} answer={props.answer} />}
       {game && game === "TableCompletionActivityTrees" && <TableCompletionActivityTrees options={props.options} answer={props.answer} />} 
+      {game && game === "MultiplicationActivity" && <MultiplicationActivity options={props.options} answer={props.answer} />}   
+
       </div>
   );
 }
-//{game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.answer} showIOLabels={props.showIOLabels} />}   
 
 
 export default async function ActivityPage({ params }: { params: { id: string, pagenum: string } }) {
