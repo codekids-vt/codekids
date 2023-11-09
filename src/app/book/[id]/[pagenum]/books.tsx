@@ -15,8 +15,8 @@ export const books: Book[] = [
         image: "/HokieBird.png",
       },
       {
-        content: ["Here you are able to drag and drop the different colors into the three different parts of the Hokie Bird.",
-          "The Hokie Bird is split into three parts; a head, a body, and the legs.",
+        content: ["Here you are able to drag and drop the different colors into the seven different parts of the Hokie Bird.",
+          "The Hokie Bird is split into seven parts; the head, the neck, the body, the left leg, the right leg, the left foot and the right foot.",
           "Try dragging different colors and see the changes happen live!",
           "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable"
         ],
