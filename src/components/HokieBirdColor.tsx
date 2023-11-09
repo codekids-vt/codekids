@@ -4,8 +4,13 @@ import Image from "next/image";
 
 interface HokieBirdColorState {
     head: string,
+    nose: string,
+    neck: string
     body: string,
-    legs: string
+    left_leg: string,
+    right_leg: string,
+    left_foot: string,
+    right_foot: string,
 }
 
 const availableColors = ["red", "orange", "green", "maroon", "gold"]
@@ -16,14 +21,19 @@ const availableColorsTailwind: { [key: string]: string } = {
     maroon: "bg-maroon",
     gold: "bg-yellow-500"
 }
-const availableParts = ["head", "body", "legs"]
+const availableParts = ["head", "nose", "neck", "body", "left_leg", "right_leg", "left_foot", "right_foot"]
 
 export function HokieBirdColoring({ props }: { props: any }) {
     const [part, setPart] = useState(["", "", ""]);
     const [colors, setColors] = useState({
         head: "",
+        nose: "",
+        neck: "",
         body: "",
-        legs: ""
+        left_leg: "",
+        right_leg: "",
+        left_foot: "",
+        right_foot: "",
     });
 
     enum AlertType {
@@ -31,7 +41,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
         SUCCESS,
         FAILURE
     }
-    
+
     const [currentAlert, setCurrentAlert] = useState<{ type: AlertType, message: string }>({ type: AlertType.NONE, message: "" });
 
 
@@ -62,7 +72,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
             if (value.startsWith('"') && value.endsWith('"')) {
                 const strippedValue = val.substring(1, val.length - 1);
                 if (availableColors.includes(strippedValue) && part != '') {
-                    setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!"});
+                    setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
                     setColors((prevColors) => ({
                         ...prevColors,
                         [part]: strippedValue,
@@ -71,7 +81,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                     setCurrentAlert({ type: AlertType.FAILURE, message: "This value is a color, not a body part!" });
                 }
             }
-        }        
+        }
 
         function handleOnDrop(e: React.DragEvent, part: string) {
             const color = e.dataTransfer.getData("Color") as string;
@@ -81,7 +91,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                 temp
             }
             setColors(newColors);
-            setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!"});
+            setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
         }
 
         function handleDragOver(e: React.DragEvent) {
@@ -96,10 +106,8 @@ export function HokieBirdColoring({ props }: { props: any }) {
         return (
             <div className="flex flex-col p-5 bg-gray-200 rounded-2xl">
                 {currentAlert.type !== AlertType.NONE && (
-                    <div 
-                        className={`bg-${currentAlert.type === AlertType.SUCCESS ? "green" : "red"}-100 border border-${currentAlert.type === AlertType.SUCCESS ? "green" : "red"}-400 text-${currentAlert.type === AlertType.SUCCESS ? "green" : "red"}-700 px-10 py-3 rounded relative`} 
-                        role="alert"
-                    >
+                    <div className={`bg-${currentAlert.type === AlertType.SUCCESS ? "green" : "red"}-100 border border-${currentAlert.type === AlertType.SUCCESS ? "green" : "red"}-400 text-${currentAlert.type === AlertType.SUCCESS ? "green" : "red"}-700 py-1 rounded-full text-center`}
+                        role="alert">
                         <span className="block sm:inline">{currentAlert.message}</span>
                         {currentAlert.type === AlertType.FAILURE && (
                             <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
@@ -121,13 +129,13 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                 key={`partText${index}`}
                                 onDrop={(e) => handleOnDrop(e, availablePart)}
                                 onDragOver={(e) => handleDragOver(e)}
-                                className="outline-black p-2 rounded-2xl outline-dotted text-center"
+                                className="outline-black rounded-2xl outline-dotted text-center"
                             >
                                 <label htmlFor={`${part}Text`}>
                                     {props?.typeVariable ? (
                                         <input
                                             key={`${part}Text1`}
-                                            className={`rounded w-36 animate-pulse bg-yellow-50`}
+                                            className={`rounded w-36`}
                                             type="text"
                                             placeholder="Type a body part"
                                             onBlur={(e) => handleValueOnBlur(e.target.value)}
@@ -136,19 +144,19 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                             disabled={!props.type}
                                         />
                                     ) : (
-                                    `${availablePart}`
+                                            `${availablePart}`
                                     )}
                                     {' = '}
                                     <input
                                         key={`${part}Text2`}
                                         type="text"
-                                        className={`rounded w-36 animate-pulse bg-yellow-50`}
+                                        className={`rounded w-36`}
                                         placeholder={props?.type ? "Type a color here" : "Drag a color here"}
                                         onBlur={(e) => handleValueOnBlur(e.target.value)}
                                         onChange={(e) => handleColorChange(props?.typeVariable ? part[index] : availablePart, e.target.value)}
                                         defaultValue={
-                                            props?.typeVariable ? 
-                                                (colors[part[index] as keyof HokieBirdColorState] ? `"${colors[part[index] as keyof HokieBirdColorState]}"` : '') 
+                                            props?.typeVariable ?
+                                                (colors[part[index] as keyof HokieBirdColorState] ? `"${colors[part[index] as keyof HokieBirdColorState]}"` : '')
                                                 : (colors[availablePart as keyof HokieBirdColorState] ? `"${colors[availablePart as keyof HokieBirdColorState]}"` : '')}
                                         disabled={!props.type}
                                     />
@@ -160,24 +168,23 @@ export function HokieBirdColoring({ props }: { props: any }) {
                         <h1 className="font-bold text-center">Options:</h1>
                         <div className={`${props?.typeVariable ? "grid-cols-2" : "grid-cols-1"} grid gap-x-4 gap-y-4`}>
                             {props?.typeVariable && (
-                                <div className="flex flex-col flex-grow space-y-2">
+                                <div className="flex flex-col flex-grow space-y-1">
                                     {availableParts.map((part, index) => (
-                                        <div 
-                                            key={`option${index}`} 
-                                            className="flex p-3 min-w-[70px] place-content-center rounded-2xl bg-gray-300">
-                                                {part}
+                                        <div
+                                            key={`option${index}`}
+                                            className="flex min-w-[70px] place-content-center rounded-2xl bg-gray-300">
+                                            {part}
                                         </div>
                                     ))}
                                 </div>
                             )}
-                            <div className="flex flex-col flex-grow space-y-2">
+                            <div className="flex flex-col flex-grow space-y-1">
                                 {availableColors.map((color, index) => (
-                                    <div 
-                                        key={index} 
-                                        draggable={props.draggable} 
-                                        className={`flex ${availableColorsTailwind[color]} p-3 min-w-[70px] place-content-center rounded-2xl shadow-2xl`} 
-                                        onDragStart={(e) => {handleOnDrag(e, color)}}
-                                        onMouseDown={() => setCurrentAlert({ type: AlertType.NONE, message: "" })}
+                                    <div
+                                        key={index}
+                                        draggable={props.draggable}
+                                        className={`flex ${availableColorsTailwind[color]} min-w-[70px] place-content-center rounded-2xl shadow-2xl`}
+                                        onDragStart={(e) => { handleOnDrag(e, color) }}
                                     >
                                         <q className="text-white">{color}</q>
                                     </div>
@@ -195,8 +202,13 @@ export function HokieBirdColoring({ props }: { props: any }) {
             <div className="flex flex-col flex-grow justify-center items-center mx-10 relative">
                 <Image src="/HokieBird.png" alt="book image" className={'center-left'} width={220} height={500} />
                 <Image src="/HokieHead.png" alt="book image" className={`absolute center-left img-${colors.head} `} width={220} height={500} />
+                <Image src="/HokieNose.png" alt="book image" className={`absolute center-left img-${colors.nose} `} width={220} height={500} />
+                <Image src="/HokieNeck.png" alt="book image" className={`absolute center-left img-${colors.neck} `} width={220} height={500} />
                 <Image src="/HokieBody.png" alt="book image" className={`absolute center-left img-${colors.body} `} width={220} height={500} />
-                <Image src="/HokieLegs.png" alt="book image" className={`absolute center-left img-${colors.legs} `} width={220} height={500} />
+                <Image src="/HokieLeftLeg.png" alt="book image" className={`absolute center-left img-${colors.left_leg} `} width={220} height={500} />
+                <Image src="/HokieRightLeg.png" alt="book image" className={`absolute center-left img-${colors.right_leg} `} width={220} height={500} />
+                <Image src="/HokieLeftFoot.png" alt="book image" className={`absolute center-left img-${colors.left_foot} `} width={220} height={500} />
+                <Image src="/HokieRightFoot.png" alt="book image" className={`absolute center-left img-${colors.right_foot} `} width={220} height={500} />
             </div>
         )
     }
