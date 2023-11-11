@@ -2,6 +2,7 @@
 author: John Doe
 title: Lego I/O
 blurb: An input/output exercise using Legos.
+postId: 1
 tags:
 - Groupwork
 - I/O
