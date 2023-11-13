@@ -2,136 +2,112 @@
 import React, { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 interface HokieBirdColorState {
-    condition: string,
-    statement: string,
-    // statement2: string
+    images: string[]
+    ans: string[]
 }
 
+const actions = ["turn_left()", "turn_right()", "move(2)", "move(3)", "move(4)"]
 
 export function HokieBirdMap({ props }: { props: any }) {
-    const [good, setGood] = useState(false)
-    const [game, setGame] = useState({
-        condition: "",
-        statement: "",
-    });
+    const blankProcedures = props.ans.map((statement: string) => { return "" })
+
+    const [errorProcedure, setErrorProcedure] = useState<number | null>(null)
+    const [message, setMessage] = useState<string | null>(null)
+    const [currentImage, setCurrentImage] = useState(props.images[0]);
+    const [procedures, setProcedures] = useState<string[]>(blankProcedures)
+
+    const router = useRouter()
 
     function handleOnDragStatement(e: React.DragEvent, statement: string) {
         e.dataTransfer.setData("statement", statement);
-    }
-
-    function handleOnDragCondition(e: React.DragEvent, condition: string) {
-        e.dataTransfer.setData("condition", condition);
     }
 
     function handleDragOver(e: React.DragEvent) {
         e.preventDefault()
     }
 
-
-    function handleOnDropCondition(e: React.DragEvent, part: string) {
-        const condition = e.dataTransfer.getData("condition") as string;
-        setGame({
-            ...game,
-            condition: condition
-        })
-        setGood(condition === props.ans?.condition && game.statement === props.ans?.statement);
-    }
-
-    function handleOnDropStatement(e: React.DragEvent, statementNumber: string) {
+    function handleOnDropStatement(e: React.DragEvent, statementNumber: number) {
         const statement = e.dataTransfer.getData("statement") as string;
-        const temp = game[statementNumber as keyof HokieBirdColorState] = statement
-        const newColors = {
-            ...game,
-            temp
+        console.log(statementNumber)
+        setProcedure(statementNumber, statement)
+
+    }
+
+    function runProcedure() {
+        setMessage("So far so good! Keep going!")
+        for (let i = 0; i < procedures.length; i++) {
+            if (procedures[i] !== props.ans[i]) {
+                console.log(`Error at ${i} ${procedures[i]} ${props.ans[i]}`)
+                if (procedures[i] == "") { setMessage(`Keep going! Your're almost there!`) } else { setMessage(`Almost! Try again, ${procedures[i]} is not the right statement.`) }
+                setCurrentImage(props.images[i])
+                setErrorProcedure(i)
+                break
+            }
+            if (i === procedures.length - 1) {
+                setMessage("You did it!")
+                setCurrentImage(props.images[procedures.length])
+                router.push(`/book/${props.bookID}/${props.pageNum + 1}`)
+            }
         }
-        setGame(newColors);
-        setGood(newColors.condition === props.ans.condition && newColors.statement === props.ans.statement);
-
     }
 
-
-    function handleResetMaze() {
-        setGame({
-            condition: "",
-            statement: "",
-        })
+    function setProcedure(index: number, statement: string) {
+        const newProcedures = [...procedures]
+        newProcedures[index] = statement
+        setProcedures(newProcedures)
     }
 
-    function handleInputChangeCondition(e: ChangeEvent<HTMLInputElement>) {
-        e.preventDefault();
-        const val = e.currentTarget.value as string
-        setGame({
-            condition: val,
-            statement: game.statement
-        });
-        setGood(val === props.ans?.condition && game.statement === props.ans?.statement);
-    }
-
-    function handleInputChangeStatement(e: ChangeEvent<HTMLInputElement>) {
-        e.preventDefault();
-        const val = e.currentTarget.value as string
-        setGame({
-            condition: game.condition,
-            statement: val
-        });
-        setGood(game.condition === props.ans?.condition && val === props.ans?.statement);
-    }
-
-    function checkAnswers() {
-        setGood(game.condition === props.ans?.condition && game.statement === props.ans?.statement);
+    function resetAll() {
+        setProcedures(blankProcedures);
+        setMessage(null);
+        setErrorProcedure(null);
+        setCurrentImage(props.images[0]);
     }
 
     return (
-        <div className="flex flex-col flex-grow justify-between">
-            <Image src={`/Maze/${props?.image}`} width={400} height={500} alt="Hokie Bird Maze Image"></Image>
-            {!props.finished &&
-                <div className="flex flex-row">
-                    <div>
-                        <div className="flex flex-col" onDrop={(e) => handleOnDropCondition(e, "condition")} onDragOver={(e) => handleDragOver(e)}>
-                            <label htmlFor="ifCondition" className="flex flex-grow"> <p className="mr-4">If</p>
-                                <input key={"ifCondition"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={game.condition} onChange={(e) => handleInputChangeCondition(e)} />
+        <div className="flex flex-col items-center">
+            <Image className="" src={`/Maze/${currentImage}`} width={400} height={400} alt="Hokie Bird Maze Image" />
+            <div className="flex flex-row gap-4 px-4">
+                <div>
+                    {procedures.map((statement, index) => {
+                        return (
+                            <div key={index} className="flex flex-wrap items-center space-x-1 p-0.5">
+                                <div className="w-10 px-2">{index + 1}.</div>
+                                <div className="flex flex-col rounded-full" onDrop={(e) => handleOnDropStatement(e, index)} onDragOver={(e) => handleDragOver(e)}>
+                                    <input type="text" className={`rounded-2xl text-center  border-2 ${errorProcedure === index ? "border-red-500" : ""} ${procedures[index] !== "" ? "bg-blue-200" : ""}`}
+                                        placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={statement} onChange={(e) => setProcedure(index, e.target.value)} />
+                                </div>
+                                {errorProcedure === index && <div className="text-red-500">x</div>}
 
-                            </label>
-                        </div>
-                        <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
-                            <label htmlFor="ifConditionStatement1" className="flex flex-grow ml-5 mt-5">
-                                <input key={"ifConditionStatement1"} type="text" className="rounded" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
-                            </label>
-                        </div>
-                        {/* <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement2")} onDragOver={(e) => handleDragOver(e)}>
-                        <label htmlFor="ifConditionStatement2" className="flex flex-grow mt-5"/>else: 
-                        <input key={"ifConditionStatement2"} type="text" className="rounded ml-5" placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={game.statement2}/> 
-                    </div> */}
+                            </div>
+                        )
+                    })}
+                </div>
+                <div className="flex flex-col items-center">
+                    <div className="flex flex-col p-2">
+                        {actions.map((action: string, i: number) => (
+                            <div key={i} className="p-1 hover:shadow-2xl">
+                                <div draggable={props.draggable} className="text-black bg-blue-200 rounded-2xl px-2" onDragStart={(e) => handleOnDragStatement(e, action)}>
+                                    {action}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="flex flex-wrap space-x-1 space-y-1">
+                        <button className="p-2 bg-green-200 rounded-2xl hover:shadow-2xl" onClick={() => {
+                            runProcedure()
+                        }}>Run</button>
+                        <button className="p-2 bg-red-200 rounded-2xl hover:shadow-2xl" onClick={() => resetAll()}>Reset All</button>
+                    </div>
+                    <div className="p-4">
+                        {message && <div className={`p-4 bg-blue-200 rounded-2xl`}>{message}</div>}
                     </div>
                 </div>
-            }
-            {!props.finished &&
-                <div className="mb-36 mt-10">
-                    <div className="flex flex-col flex-grow">
-                        <div className="flex flex-row flex-grow justify-around">
-                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "turn_left")}>turn_left</div>
-                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "move")}>move</div>
-                            <div draggable={props.draggable} className="flex text-red-600" onDragStart={(e) => handleOnDragStatement(e, "turn_right")}>turn_right</div>
-                        </div>
-                        <div className="flex flex-row flex-grow justify-around">
-                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_turn_right")}>can_turn_right</div>
-                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_turn_left")}>can_turn_left</div>
-                            <div draggable={props.draggable} className="flex text-blue-600 ml-2" onDragStart={(e) => handleOnDragCondition(e, "can_move_forward")}>can_move_forward</div>
-                        </div>
-                    </div>
-                    <div className="flex flex-col flex-grow justify-between ml-4">
-                        {good ?
-                            <Link href={`/book/${props.bookID}/${props.pageNum + 1}`} className="rounded bg-green-500 text-center mx-5 mb-5 mt-5">
-                                <button onClick={e => checkAnswers()}>Run</button>
-                            </Link> :
-                            <button className="rounded bg-green-500 text-center mx-5 mb-5 mt-5" onClick={e => checkAnswers()}>Run</button>
-                        }
-                        <button className="rounded bg-red-500 mx-5" onClick={e => handleResetMaze()}>Reset</button>
-                    </div>
-                </div>
-            }
+            </div>
         </div>
     )
 }
