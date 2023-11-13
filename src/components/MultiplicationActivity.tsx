@@ -19,7 +19,7 @@ export function MultiplicationActivity(props: IMultiplicationActivityProps) {
 
   const renderTable = () => {
     const rows = [];
-    const cellContents = ['Yellow Trees', 'Green Trees', '1', '4', '2', '3', '3', '2', '4', '?'];
+    const cellContents = ['Yellow Trees', 'Pink Flowers', '1', '2', '2', '4', '3', '6', '4', '?'];
 
     for (let i = 0; i < 5; i++) {
       const cells = [];
