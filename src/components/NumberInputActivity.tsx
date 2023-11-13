@@ -8,7 +8,7 @@ export interface INumberInputActivityProps {
   answer: number
 }
 
-export function NumberInputActivity({ props }: { props: any |  INumberInputActivityProps}) {
+export function NumberInputActivity({ props }: { props: any | INumberInputActivityProps}) {
   const { question, options, answer, showIOLabels } = props;
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [result, setResult] = useState('');

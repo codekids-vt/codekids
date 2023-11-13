@@ -54,7 +54,7 @@ function BookContent({ content, game, props }: { content: string[], game: string
       {game && game === "FlowerInputActivity" && <FlowerInputActivity question={props.question} options={props.options} answer={props.ans[0]} showIOLabels={props.showIOLabels} />}
       {game && game === "TableCompletionActivity" && <TableCompletionActivity options={props.options} answer={props.ans[0]} />}
       {game && game === "TableCompletionActivityTrees" && <TableCompletionActivityTrees options={props.options} answer={props.ans[0]} />}
-      {game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.ans[0]} showIOLabels={props.showIOLabels} />}
+      {game && game === "NumberInputActivity" && <NumberInputActivity props={props} />}
       {game && game === "MultiplicationActivity" && <MultiplicationActivity options={props.options} answer={props.ans[0]} />}   
     
     </div>
