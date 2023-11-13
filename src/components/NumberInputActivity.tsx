@@ -5,17 +5,17 @@ export interface INumberInputActivityProps {
   showIOLabels: boolean
   question: string | undefined
   options: number[]
-  answer: number
+  ans: number[]
 }
 
 export function NumberInputActivity({ props }: { props: any | INumberInputActivityProps}) {
-  const { question, options, answer, showIOLabels } = props;
+  const { question, options, ans, showIOLabels } = props;
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [result, setResult] = useState('');
 
   const handleOptionClick = (choice: number) => {
     setSelectedOption(choice);
-    setResult(choice === answer ? 'Correct!' : 'Incorrect! Try again.');
+    setResult(choice === ans[0] ? 'Correct!' : 'Incorrect! Try again.');
   };
 
   return (
