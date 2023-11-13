@@ -203,10 +203,10 @@ export function HokieBirdColoring({ props }: { props: any }) {
         return (
             <div className="flex flex-col flex-grow justify-center items-center mx-10 relative">
                 <Image src="/HokieBird.png" alt="book image" className={'center-left'} width={220} height={500} />
-                <Image src="/HokieHeads.png" alt="book image" className={`absolute center-left img-${colors.head} `} width={220} height={500} />
+                <Image src="/HokieHead.png" alt="book image" className={`absolute center-left img-${colors.head} `} width={220} height={500} />
                 <Image src="/HokieNose.png" alt="book image" className={`absolute center-left img-${colors.nose} `} width={220} height={500} />
                 <Image src="/HokieNeck.png" alt="book image" className={`absolute center-left img-${colors.neck} `} width={220} height={500} />
-                <Image src="/HokieBodies.png" alt="book image" className={`absolute center-left img-${colors.body} `} width={220} height={500} />
+                <Image src="/HokieBody.png" alt="book image" className={`absolute center-left img-${colors.body} `} width={220} height={500} />
                 <Image src="/HokieTail.png" alt="book image" className={`absolute center-left img-${colors.tail} `} width={220} height={500} />
                 <Image src="/HokieLeftLeg.png" alt="book image" className={`absolute center-left img-${colors.left_leg} `} width={220} height={500} />
                 <Image src="/HokieRightLeg.png" alt="book image" className={`absolute center-left img-${colors.right_leg} `} width={220} height={500} />
