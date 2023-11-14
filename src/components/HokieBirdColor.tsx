@@ -7,6 +7,7 @@ interface HokieBirdColorState {
     nose: string,
     neck: string
     body: string,
+    tail: string,
     left_leg: string,
     right_leg: string,
     left_foot: string,
@@ -21,7 +22,7 @@ const availableColorsTailwind: { [key: string]: string } = {
     maroon: "bg-maroon",
     gold: "bg-yellow-500"
 }
-const availableParts = ["head", "nose", "neck", "body", "left_leg", "right_leg", "left_foot", "right_foot"]
+const availableParts = ["head", "nose", "neck", "body", "tail", "left_leg", "right_leg", "left_foot", "right_foot"]
 
 export function HokieBirdColoring({ props }: { props: any }) {
     const [part, setPart] = useState(["", "", ""]);
@@ -30,6 +31,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
         nose: "",
         neck: "",
         body: "",
+        tail: "",
         left_leg: "",
         right_leg: "",
         left_foot: "",
@@ -205,6 +207,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                 <Image src="/HokieNose.png" alt="book image" className={`absolute center-left img-${colors.nose} `} width={220} height={500} />
                 <Image src="/HokieNeck.png" alt="book image" className={`absolute center-left img-${colors.neck} `} width={220} height={500} />
                 <Image src="/HokieBody.png" alt="book image" className={`absolute center-left img-${colors.body} `} width={220} height={500} />
+                <Image src="/HokieTail.png" alt="book image" className={`absolute center-left img-${colors.tail} `} width={220} height={500} />
                 <Image src="/HokieLeftLeg.png" alt="book image" className={`absolute center-left img-${colors.left_leg} `} width={220} height={500} />
                 <Image src="/HokieRightLeg.png" alt="book image" className={`absolute center-left img-${colors.right_leg} `} width={220} height={500} />
                 <Image src="/HokieLeftFoot.png" alt="book image" className={`absolute center-left img-${colors.left_foot} `} width={220} height={500} />
