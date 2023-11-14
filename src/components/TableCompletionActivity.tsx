@@ -1,35 +1,26 @@
 import React, { useState } from 'react';
+import { NumberInputActivity } from './NumberInputActivity';
+
 
 export interface ITableCompletionActivityProps {
   options: number[];
-  answer: number;
+  ans: number;
+  tableItems: string[][];
 }
 
-export function TableCompletionActivity(props: ITableCompletionActivityProps) {
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [result, setResult] = useState('');
-
-  const correctAnswer = 5;
-  const options = [4, correctAnswer, 6, 7]; 
-
-  const handleOptionClick = (choice: number) => {
-    setSelectedAnswer(choice);
-    setResult(choice === correctAnswer ? 'Correct!' : 'Incorrect! Try again.');
-  };
-
+export function TableCompletionActivity({ props }: { props: any | ITableCompletionActivityProps }) {
   const renderTable = () => {
     const rows = [];
-    const cellContents = ['Yellow Flowers', 'Pink Flowers', '1', '2', '2', '3', '3', '4', '4', '?'];
-  
-    for (let i = 0; i < 5; i++) {
+    const tableItems = props.tableItems;
+
+    for (let i = 0; i < tableItems.length; i++) {
       const cells = [];
-      for (let j = 0; j < 2; j++) {
-        const index = i * 2 + j; 
+      for (let j = 0; j < tableItems[i].length; j++) {
         cells.push(
           <td key={j} className="border border-black">
             <div className="flex flex-wrap justify-center space-x-4">
               <div className="text-white p-2 rounded-md shadow-sm">
-                {index < cellContents.length ? cellContents[index] : '?'}
+                {tableItems[i][j]}
               </div>
             </div>
           </td>
@@ -37,38 +28,26 @@ export function TableCompletionActivity(props: ITableCompletionActivityProps) {
       }
       rows.push(<tr key={i}>{cells}</tr>);
     }
-  
+
     return (
       <table className="border-collapse border bg-primary-green border-black">
         <tbody>{rows}</tbody>
       </table>
     );
   };
-  
+
+  const INumberInputActivityProps = {
+    ans: props.ans,
+    options: props.options,
+    showIOLabels: false,
+  };
+
+  console.log(INumberInputActivityProps);
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
       {renderTable()}
-      <div className="flex flex-wrap justify-center space-x-4">
-        {options.map((option, index) => (
-          <button
-            key={index}
-            className={`px-4 py-2 text-lg font-medium ${
-              selectedAnswer === option
-                ? 'bg-primary-green text-white'
-                : 'bg-gray-100 text-gray-800'
-            } border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-primary-green`}
-            onClick={() => handleOptionClick(option)}
-          >
-            {option}
-          </button>
-        ))}
-      </div>
-      {result && (
-        <div className={`border border-gray-300 rounded-md p-4`}>
-          <p className="text-lg font-medium">{result}</p>
-        </div>
-      )}
+      <NumberInputActivity props={INumberInputActivityProps} />
     </div>
   );
 }

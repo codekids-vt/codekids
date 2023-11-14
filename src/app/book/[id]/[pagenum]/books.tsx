@@ -233,7 +233,7 @@ export const books: Book[] = [
       {
         content: ["Look at each corner of the park", "How many yellow flowers are there in total in all the corners?"],
         image: "/io_book/flowers_0.png",
-        game: "FlowerInputActivity",
+        game: "NumberInputActivity",
         props: {
           showIOLabels: true,
           options: [9, 10, 11, 12],
@@ -243,7 +243,7 @@ export const books: Book[] = [
       {
         content: ["How many pink flowers are there in total in all the corners?"],
         image: "/io_book/flowers_0.png",
-        game: "FlowerInputActivity",
+        game: "NumberInputActivity",
         props: {
           showIOLabels: true,
           options: [9, 10, 11, 12],
@@ -253,7 +253,7 @@ export const books: Book[] = [
       {
         content: ["What is the total number of flowers in all the corners right now?"],
         image: "/io_book/flowers_0.png",
-        game: "FlowerInputActivity",
+        game: "NumberInputActivity",
         props: {
           showIOLabels: true,
           options: [19, 20, 21, 22],
@@ -269,13 +269,21 @@ export const books: Book[] = [
         image: "/io_book/flowers_1.png",
         props: {
           image: "/io_book/flowers_1.png",
+          tableItems: [
+            ["Yellow Flowers", "Pink Flowers"],
+            ["1", "2"],
+            ["2", "3"],
+            ["3", "4"],
+            ["4", "?"]
+          ],
+          options: [3, 4, 5, 6],
           ans: [5]
         },
       },
       {
         content: ["Look at each corner of the park", "How many yellow trees are there in total in all the corners?"],
         image: "/io_book/trees_0.png",
-        game: "FlowerInputActivity",
+        game: "NumberInputActivity",
         props: {
           showIOLabels: true,
           options: [10, 11, 12, 13],
@@ -285,7 +293,7 @@ export const books: Book[] = [
       {
         content: ["How many green trees are there in total in all the corners?"],
         image: "/io_book/trees_0.png",
-        game: "FlowerInputActivity",
+        game: "NumberInputActivity",
         props: {
           showIOLabels: true,
           options: [7, 8, 9, 10],
@@ -295,7 +303,7 @@ export const books: Book[] = [
       {
         content: ["What is the total number of trees in all the corners right now?"],
         image: "/io_book/trees_0.png",
-        game: "FlowerInputActivity",
+        game: "NumberInputActivity",
         props: {
           showIOLabels: true,
           options: [16, 17, 18, 19],
@@ -305,7 +313,7 @@ export const books: Book[] = [
       {
         content: ["Look at each corner of the park", "How many yellow trees are there in total in all the corners?"],
         image: "/io_book/trees_0.png",
-        game: "FlowerInputActivity",
+        game: "NumberInputActivity",
         props: {
           showIOLabels: true,
           options: [10, 11, 12, 13],
@@ -315,7 +323,7 @@ export const books: Book[] = [
       {
         content: ["How many green trees are there in total in all the corners?"],
         image: "/io_book/trees_0.png",
-        game: "FlowerInputActivity",
+        game: "NumberInputActivity",
         props: {
           showIOLabels: true,
           options: [7, 8, 9, 10],
@@ -325,7 +333,7 @@ export const books: Book[] = [
       {
         content: ["What is the total number of trees in all the corners right now?"],
         image: "/io_book/trees_0.png",
-        game: "FlowerInputActivity",
+        game: "NumberInputActivity",
         props: {
           showIOLabels: true,
           options: [16, 17, 18, 19],
@@ -337,17 +345,25 @@ export const books: Book[] = [
           "Each corner of the park has certain number of green and yellow trees.  Observe the pattern in the number of each color tree planted.",
           "Now guess the number green trees that should be planted in the right corner in bottom? "
         ],
-        game: "TableCompletionActivityTrees",
+        game: "TableCompletionActivity",
         image: "/io_book/trees_1.png",
         props: {
           image: "/io_book/trees_1.png",
-          ans: [1]
+          ans: [1],
+          tableItems: [
+            ["Yellow Trees", "Green Trees"],
+            ["1", "2"],
+            ["2", "3"],
+            ["3", "4"],
+            ["4", "?"]
+          ],
+          options: [1, 2, 3, 4],
         },
       },
       {
         content: ["What is the total number of trees in all the corners right now?"],
         image: "/io_book/multiplication_0.png",
-        game: "FlowerInputActivity",
+        game: "NumberInputActivity",
         props: {
           showIOLabels: true,
           options: [4, 5, 6, 7],
@@ -357,7 +373,7 @@ export const books: Book[] = [
       {
         content: ["What is the number of flowers along side each tree?"],
         image: "/io_book/multiplication_1.png",
-        game: "FlowerInputActivity",
+        game: "NumberInputActivity",
         props: {
           showIOLabels: true,
           options: [1, 2, 3, 4],
@@ -371,8 +387,7 @@ export const books: Book[] = [
         ],
         game: "MultiplicationActivity",
         image: "/io_book/multiplication_2.png",
-        props: {image: "/io_book/multiplication_2.png"},
-
+        props: { image: "/io_book/multiplication_2.png" },
       }
     ]
   },
