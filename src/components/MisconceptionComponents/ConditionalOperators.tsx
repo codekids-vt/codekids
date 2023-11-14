@@ -66,7 +66,7 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
             switch (incorrect) {
                 case "True":
                     setQ3ChosenAnswer("True")
-                    setQ3AnswerExplanation("Incorrect. Notice that total_nuber is a string. Try again!")
+                    setQ3AnswerExplanation("Incorrect. Notice that total_number is a string. Try again!")
                     break;
                 case "None":
                     setQ3ChosenAnswer("None")

@@ -8,7 +8,7 @@ export function IfStatementIntro() {
 
     return (
         <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-            <span style={text_style}><Reader text='Example of if-statment'/></span>
+            <span style={text_style}><Reader text='Example of if-statement'/></span>
             <img style={{...image_style, width: "60%", height: "auto"}} src="/IfStatementsBook/cloudy.jpg" alt="Image of construction" />
             <div style={{...code_box_style, width: "60%"}}>
                 <p style={code_style}>

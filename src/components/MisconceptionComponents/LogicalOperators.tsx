@@ -39,14 +39,14 @@ export function LogicalOperators() {
             setQ3AnswerExplanation("Correct! derek_color is equal to 'cream', which means derek_color == 'cream' is True, so the NOT of that is False")
         } else {
             setQ3ChosenAnswer("True")
-            setQ3AnswerExplanation("Incorrect. derek_color is equal to 'cream', whitch means derek_color == 'cream' is True, but we want to get the NOT of that. Try again!")
+            setQ3AnswerExplanation("Incorrect. derek_color is equal to 'cream', which means derek_color == 'cream' is True, but we want to get the NOT of that. Try again!")
         }
     }
 
     return (
         <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
             <div style={horizontal_div_style}>
-                <img style={{...image_style, width: "30%", height: "auto"}} src="/IfStatementsBook/therapy_dog_1.png" alt="Image of therarpy dogs with their names." />
+                <img style={{...image_style, width: "30%", height: "auto"}} src="/IfStatementsBook/therapy_dog_1.png" alt="Image of therapy dogs with their names." />
                 <div>
                     <span style={text_style}><Reader text='Use the code snippet below to answer the questions.'/></span>
                     <div style={{...code_box_style, transform: "scale(1.3)"}}>

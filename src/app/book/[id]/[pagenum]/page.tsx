@@ -27,6 +27,11 @@ import { IfStatementIntro } from "@/components/MisconceptionComponents/IfStateme
 import { ConditionalOperators } from "@/components/MisconceptionComponents/ConditionalOperators";
 import { LogicalOperators } from "@/components/MisconceptionComponents/LogicalOperators";
 import { IfStatements } from "@/components/MisconceptionComponents/IfStatements";
+import { LifeOfMoose } from "@/components/MisconceptionComponents/LifeOfMoose";
+import { MooseMilestone } from "@/components/MisconceptionComponents/MooseMilestone";
+import { MooseDr } from "@/components/MisconceptionComponents/MooseDr";
+import { MooseChallengingYear } from "@/components/MisconceptionComponents/MooseChallengingYear";
+import { MooseThankYou } from "@/components/MisconceptionComponents/MooseThankYou";
 
 function BookImage({ image, page }: { image: string, page: Page }) {
   const isImage = image && image.includes(".");
@@ -40,13 +45,18 @@ function BookImage({ image, page }: { image: string, page: Page }) {
       {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}  
       {image === "DataTypesIntro" && <DataTypesIntro/>}
       {image === "IntsAndBools" && <IntsAndBools/>}
-      {image === "VariableAssingment" && <VariableAssignment/>}
+      {image === "VariableAssignment" && <VariableAssignment/>}
       {image === "Strings" && <Strings props={page?.props}/>}
       {image === "Sequencing" && <Sequencing/>}
       {image === "IfStatementIntro" && <IfStatementIntro/>}
       {image === "ConditionalOperators" && <ConditionalOperators props={page?.props}/>}
       {image === "LogicalOperators" && <LogicalOperators/>}
       {image === "IfStatements" && <IfStatements props={page?.props}/>}
+      {image === "LifeOfMoose" && <LifeOfMoose props={page?.props}/>}
+      {image === "MooseMilestone" && <MooseMilestone props={page?.props}/>}
+      {image === "MooseDr" && <MooseDr props={page.props}/>}
+      {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props}/>}
+      {image === "MooseThankYou" && <MooseThankYou/>}
     </div>
   );
 }

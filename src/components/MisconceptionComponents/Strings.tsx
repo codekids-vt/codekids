@@ -57,7 +57,7 @@ export function Strings({ props }: { props: any | IStringsProps }) {
 
     function handleQ3(correct: boolean, incorrect: string = "") {
         if(correct) {
-            setQ3AnswerExplanation("Correct! aniversary is assigned 147 which is an integer.")
+            setQ3AnswerExplanation("Correct! anniversary is assigned 147 which is an integer.")
         } else {
             switch (incorrect) {
                 case "Boolean":
@@ -95,7 +95,7 @@ export function Strings({ props }: { props: any | IStringsProps }) {
 
     function handleQ5(correct: boolean, incorrect: string = "") {
         if(correct) {
-            setQ5AnswerExplanation("Correct! In the last print statment, it prints 'anniversary_2' which is a string. Not the variable anniversary_2")
+            setQ5AnswerExplanation("Correct! In the last print statement, it prints 'anniversary_2' which is a string. Not the variable anniversary_2")
         } else {
             switch (incorrect) {
                 case "148":

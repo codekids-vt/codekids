@@ -17,7 +17,7 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
 
     function handleQ1(correct: boolean, incorrect : string = "" ) {
         if(correct) {
-            setQ1AnswerExplanation("Correct! derek_is_happy is True so everything indented under the If-statment will be excauted"
+            setQ1AnswerExplanation("Correct! derek_is_happy is True so everything indented under the If-statement will be executed"
                                     + "and the else will be skipped.")
         } else {
             switch (incorrect) {
@@ -29,7 +29,7 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
                     + "statement will be executed. Try again!")
                     break;
                 case "N":
-                    setQ1AnswerExplanation("Incorrect. If the condition of the If-statment is True, everyhting indented under the If-statement"
+                    setQ1AnswerExplanation("Incorrect. If the condition of the If-statement is True, everything indented under the If-statement"
                                             + " will be executed. If the condition is false, the else will be executed. Try again!")
                     break;
                 default:
@@ -46,7 +46,7 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
                     setQ2AnswerExplanation("Incorrect. Is the condition in the If-statement True? Try again!")
                     break;
                 case "2":
-                    setQ2AnswerExplanation("Inocrrect. Pay attention to the final print. Is it part of either the If-statement or else? Try again!")
+                    setQ2AnswerExplanation("Incorrect. Pay attention to the final print. Is it part of either the If-statement or else? Try again!")
                     break;
                 case "3":
                     setQ2AnswerExplanation("Incorrect. Is the condition in the If-statement True? Also is the final print part of the If-statement or else? Try again!")
@@ -56,18 +56,18 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
 
     function handleQ3(correct: boolean, incorrect : string = "" ) {
         if(correct) {
-            setQ3AnswerExplanation("Correct! The condition in the If-statment is false, so the If-statement will be skipped and the program will continue and print \"False\".")
+            setQ3AnswerExplanation("Correct! The condition in the If-statement is false, so the If-statement will be skipped and the program will continue and print \"False\".")
         } else {
             switch (incorrect) {
                 case "TF":
                     setQ3AnswerExplanation("Incorrect. Is the condition in the If-statement true? Try again!")
                     break;
                 case "True":
-                    setQ3AnswerExplanation("Incorrect. Is the condition in the If-statement true? Also the program will continue to execute after an If-statment. Try again!")
+                    setQ3AnswerExplanation("Incorrect. Is the condition in the If-statement true? Also the program will continue to execute after an If-statement. Try again!")
                     break;
                 case "N":
-                    setQ3AnswerExplanation("Incorrect. A program will continue to execute even if a If-statment's condition is False." 
-                                            + " Also, the final print is not indented, so it's not part of the If-statment. Try again!")
+                    setQ3AnswerExplanation("Incorrect. A program will continue to execute even if a If-statement's condition is False." 
+                                            + " Also, the final print is not indented, so it's not part of the If-statement. Try again!")
                     break;
             }
         }
@@ -79,13 +79,13 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
         } else {
             switch (incorrect) {
                 case "1":
-                    setQ4AnswerExplanation("Incorrect. Notice the OR logical operator is being used in the If-Statment. So, if either of the conditions are True the whole statement is True. Try again!")
+                    setQ4AnswerExplanation("Incorrect. Notice the OR logical operator is being used in the If-Statement. So, if either of the conditions are True the whole statement is True. Try again!")
                     break;
                 case "2":
-                    setQ4AnswerExplanation("Incorrect. Remember that the program continues to execute after an If-statment. Try again!")
+                    setQ4AnswerExplanation("Incorrect. Remember that the program continues to execute after an If-statement. Try again!")
                     break;
                 case "3":
-                    setQ4AnswerExplanation("Incorrect. Notice the OR logical operator is being used in the If-statment. Also the final print is not part of the If-statment. Try again!")
+                    setQ4AnswerExplanation("Incorrect. Notice the OR logical operator is being used in the If-statement. Also the final print is not part of the If-statement. Try again!")
                     break;
                 default:
             }

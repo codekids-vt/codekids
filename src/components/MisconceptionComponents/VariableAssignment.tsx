@@ -75,7 +75,7 @@ export function VariableAssignment() {
             <div style={text_style}><Reader text='What is printed when this program runs?'/></div>
             <div style={horizontal_div_style}>
                 <button style={answer_button_style} onClick={() => handleQ2(true)}>{"147\nA year has passed!\n148"}</button>
-                <button style={answer_button_style} onClick={() => handleQ2(false, 1)}>{"147\nA year has passed!\naniversary + 1"}</button>
+                <button style={answer_button_style} onClick={() => handleQ2(false, 1)}>{"147\nA year has passed!\anniversary + 1"}</button>
                 <button style={answer_button_style} onClick={() => handleQ2(false, 2)}>{"147\nA year has passed!\n147"}</button>
             </div>
             <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>

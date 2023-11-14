@@ -9,10 +9,10 @@ export function DataTypesIntro() {
 
     return(
         <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-            <span style={text_style}><Reader text="The Variable name jersery_number is of type Integer"/></span>
+            <span style={text_style}><Reader text="The Variable name jersey_number is of type Integer"/></span>
             
             <div style={horizontal_div_style}>
-                <p style={code_style}>jersery_number = <span style={code_integer_style}>25</span></p>
+                <p style={code_style}>jersey_number = <span style={code_integer_style}>25</span></p>
                 <img src="/jersey-25.png" alt="Football jersey with number 25" />
             </div>
 

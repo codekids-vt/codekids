@@ -25,10 +25,10 @@ export function PythonTutor({ props }: { props: any | IPythonTutorProps }) {
   const cumulative = props.cumulative ?? false;
 
   return (
-    <div className="flex flex-col flex-grow items-center w-full">
+    <div className="flex flex-col flex-grow items-center w-full h-full">
       {!editing &&
-        <div className="overflow-scroll flex-grow shadow-2xl rounded-2xl w-full h-full">
-          <iframe className="w-full h-full" style={{ scale: scale, transformOrigin: "top left" }}
+        <div className="overflow-scroll flex-grow shadow-2xl rounded-2xl w-full">
+          <iframe id="pyTutorFrame" className="w-full h-full" style={{ scale: scale, transformOrigin: "top left"}}
             src={`https://pythontutor.com/iframe-embed.html#code=${encodeURIComponent(code)}&cumulative=${cumulative}&py=2`}>
           </iframe>
         </div>

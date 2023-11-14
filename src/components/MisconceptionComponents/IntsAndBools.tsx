@@ -37,7 +37,7 @@ export function IntsAndBools() {
                     setDataTypeStyle(code_integer_style)
                     break;
                 case "'38'":
-                    setQ1AnswerExplanation("Incorrect. '38' is a string since it's surrouned by single quotations. Try again!")
+                    setQ1AnswerExplanation("Incorrect. '38' is a string since it's surrounded by single quotations. Try again!")
                     setDataTypeStyle(code_string_style)
                     break;
                 default:

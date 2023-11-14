@@ -599,9 +599,9 @@ export const books: Book[] = [
   },
   {
     BookId: 7,
-    title: "Python Tutor",
-    bookCover: "/VTColorBook2.png",
-    blurb: "Learn programming with a visualizer",
+    title: "Variables",
+    bookCover: "/VTColorBook.png",
+    blurb: "Learn about variables in Python",
     author: "Dev",
     cover: "/Python-logo-notext.png",
     pages:
@@ -616,7 +616,7 @@ export const books: Book[] = [
         }
       },
       { // Variables intro
-        image: "/variables_intro.png",
+        image: "/VariablesBook/variables_intro.png",
         content: ["Variables are places where you can store data.",
           "You can think about a variable as a 'Box' with a name.",
           "Suppose we name a box therapy_dog, then this 'box' can store data related to therapy dog.",
@@ -625,7 +625,7 @@ export const books: Book[] = [
           "In Python, you can't have spaces in variable names. We use underscores instead like in therapy_dog."]
       },
       { // Variables intro 2
-        image: "/variables_intro2.png",
+        image: "/VariablesBook/variables_intro2.png",
         content: ["When you see a variable in code, the name of the variable will always be to the left of the '=' sign.",
                   "Everything to the right of the '=' sign is what you setting as the variables value.",
                   "The box is to the left of the '=' and what you want to put in the box is to the right of the '='",
@@ -633,15 +633,16 @@ export const books: Book[] = [
       },
       { // Variables intro in python tutor
         content: ["Look at the example to the left.",
-                  "therapy_dog is the name of the variable 'Epcot' is the value of the variable",
-                  "The value of therapy_dog is then printed."],
+                  "therapy_dog is the name of the variable and 'Epcot' is the value of the variable",
+                  "The value of therapy_dog is then printed.",
+                  "Note: print() will be used a lot throughout this book. All print() does is print the value in it's parenthesis."],
         image: "tutor",
         props:{
           code: "therapy_dog = 'Epcot'\nprint(therapy_dog)"
         }
       },
       { // Variable Assignment
-        image: "VariableAssingment",
+        image: "VariableAssignment",
         content: ["Variables can be assigned different values throughout a program.",
                   "When a variable that already has a value is assigned a new value, the old value is lost.",
                   "Think of your age as a variable. If you are 8 years old now, on your birthday your old age will be lost and your new age will be 9!",
@@ -652,7 +653,7 @@ export const books: Book[] = [
         content: ["Remember that when variables that already stores a value are reassigned, the old value is lost.",
                   "Run through the code to the left to see this!"],
         props: {
-          code: "# Here, number is initally assigned to 10\nnumber = 10\nprint(number)\n\n# Here, number is reassigned to 20\nnumber = 20\n\n" +
+          code: "# Here, number is initially assigned to 10\nnumber = 10\nprint(number)\n\n# Here, number is reassigned to 20\nnumber = 20\n\n" +
                 "# Since number was reassigned, the first value of 10 is lost\n# and number is now 20\nprint(number)"
         }
       },
@@ -680,7 +681,7 @@ export const books: Book[] = [
                   "Pay close attention to what is actually in the print statement.",
                   "What will be printed at the end of the program?"],
         props: {
-          code: "virginia_tech_age = 151\n\n# Pay close attenetion to what's in the print statment.\n# Is it actually the variable virginia_tech_age?\nprint(\"virginia_tech_age\")"
+          code: "virginia_tech_age = 151\n\n# Pay close attention to what's in the print statement.\n# Is it actually the variable virginia_tech_age?\nprint(\"virginia_tech_age\")"
         }
       },
       { // Ints and Bools Intro
@@ -724,9 +725,9 @@ export const books: Book[] = [
         content: ["This page will focus on Strings!",
                   "You may have noticed in the previous pages that 'Epcot' is an example of a String! Let's try more practice.",
                   "String - this is text like \"Hello\". You can also think of it like a sequence of different characters.",
-                  "When the data type is String, then the characters will ALWAYS be surrouded by double or single quotation marks.",
+                  "When the data type is String, then the characters will ALWAYS be surrounded by double or single quotation marks.",
                   "For example, \"Hello\" and \'Hello\' are both strings since they're surrounded by double or single quotation marks.",
-                  "What do you think '9' is? You may initally think Integer, but notice it's surround in single quotation marks. So, it's a string."]
+                  "What do you think '9' is? You may initially think Integer, but notice it's surround in single quotation marks. So, it's a string."]
       },
       {
         image: "Strings",
@@ -734,9 +735,9 @@ export const books: Book[] = [
           stringsPage: 2
         },
         content: ["Try out these exercises on Strings.",
-                  "Remeber that anything that's in single or double quotation marks are Strings.",
+                  "Remember that anything that's in single or double quotation marks are Strings.",
                   "Also, notice in the code we have two variables called anniversary and anniversary_2.",
-                  "These are two seperate variables, but since they hold similar data, they have been given similar names."]
+                  "These are two separate variables, but since they hold similar data, they have been given similar names."]
       },
       {
         image: "/if_condition/action5.gif",
@@ -747,28 +748,29 @@ export const books: Book[] = [
                   "The values of a variable are always of a data type: Integer, Boolean, or String.",
                   "An Integer is a whole number.",
                   "A Boolean is alway True or False.",
-                  "A String is any data surrouned about single or double quotation marks."]
+                  "A String is any data surrounded about single or double quotation marks."]
       }
     ],
   },
   {
-    BookId: 9,
+    BookId: 8,
     title: "If Statements",
-    blurb: "Learn about Python If Statments",
+    blurb: "Learn about Python If Statements",
     author: "Dev",
+    bookCover: "/VTColorBook.png",
     cover: "/Python-logo-notext.png",
     pages:
     [
       { // If statement intro
         image: "IfStatementIntro",
         content: ["In programs, there are ways for you to control the flow of execution.",
-                  "In this book you'll learn about If statments in Python!",
+                  "In this book you'll learn about If statements in Python!",
                   "If-statements simply allow you to execute code only if a certain condition is true."]
       },
       { // Conditional operators
         image: "ConditionalOperators",
-        content: ["Let's learn a very important concept for if-statments: Conditional Operators.",
-                  "A conditional operator is similar to a mathematical operator(+, -). However, a condtional operator's result is always True or False -- a Boolean!",
+        content: ["Let's learn a very important concept for if-statements: Conditional Operators.",
+                  "A conditional operator is similar to a mathematical operator(+, -). However, a conditional operator's result is always True or False -- a Boolean!",
                   "Remember we learned about Booleans in the previous book about variables.",
                   "Here are some common conditional operators:",
                   "1. Use \"==\" to check if two values are equal or the same.",
@@ -782,7 +784,7 @@ export const books: Book[] = [
           pageNumber: 1
         }
       },
-      { // Conditonal operators
+      { // Conditional operators
         image: "ConditionalOperators",
         content: ["It's also important to pay attention to the data types of the values you are comparing.",
                   "It's best to never use conditional operators on variables with different data types.",
@@ -808,10 +810,10 @@ export const books: Book[] = [
         content: ["Now that we know about conditional and logical operators, let's see how they can be used in If-statements.", 
                   "If statements allow you to control the flow of execution based on a condition.",
                   "A condition can only ever be True or False.",
-                  "This means Booleans, conitional operators, and logical operators can be used to create a condition for an If-statement.",
-                  "When the condition is True, everything that is under the if statment and indented will be executed.",
+                  "This means Booleans, conditional operators, and logical operators can be used to create a condition for an If-statement.",
+                  "When the condition is True, everything that is under the if statement and indented will be executed.",
                   "On this page, the indents will be highlighted yellow so you can easily see what is part of the If-statement.",
-                  "If-statements also often have an 'else'. The 'else' is executed when the If-statment fails.",
+                  "If-statements also often have an 'else'. The 'else' is executed when the If-statement fails.",
                   "The 'else' isn't required but is helpful when you want to execute code when the If-statement fails."],
         props: {
           pageNumber: 1
@@ -838,7 +840,7 @@ export const books: Book[] = [
       {
         image: "tutor",
         content: ["Here is an example of a Python program with multiple If-statements.",
-                  "Notice how the first If-statement is skipped becasue x is not equal to 2",
+                  "Notice how the first If-statement is skipped because x is not equal to 2",
                   "It then proceeds to execute the rest of the program."],
         props: {
           code: "x = 1\nif x == 2:\n\tprint(\"x is 2!\")\n\n# Notice the program continues to execute even though the If-statement above failed.\n"
@@ -855,6 +857,98 @@ export const books: Book[] = [
                   "The logical operators we learned about are AND, OR, and NOT.",
                   "Conditional and logical operators can be used with If-statements to control how a program executes.",
                   "In the next book, we'll learn how you can further control how a program executes by using loops!"]
+      }
+    ]
+  },
+  {
+    BookId: 9,
+    title: "Life of Moose",
+    blurb: "Learn coding through the life of Moose",
+    author: "Dev",
+    bookCover: "/VTColorBook.png",
+    cover: "/LifeOfMoose/moose_milestone.png",
+    pages:
+    [
+      {
+        image: "/LifeOfMoose/life_of_moose_intro.png",
+        content: ["This is a picture of Moose, who was Virginia Tech's first therapy dog and a remarkable being.",
+                  "Moose was born in New York and trained to be a guide dog for the blind and eventually became a therapy dog.",
+                  "In October 2013, this intelligent Labrador Retriever joined forces the Trent Davis who is an animal-assisted therapy consultant.",
+                  "Moose began providing valuable services to the university and surrounding community. Bringing comfort and support to many."]
+      },
+      {
+        image: "LifeOfMoose",
+        content: ["Moose's breed is 'Labrador Retriever' and his fur has a cream color.",
+                  "He was born on February 13, 2012.",
+                  "Lets use Python Tutor on the left to print out Moose's birthday, breed, and color!"],
+        props: {
+          pageNumber: 1
+        }
+      },
+      {
+        image: "LifeOfMoose",
+        content: ["Try out the exercises following along with the code!"],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "MooseMilestone",
+        content: ["By 2019, Moose had done something amazing!",
+                  "He had helped people in 5,000 meetings and spent lots of time making others happy!",
+                  "He had become a beloved dog at Virginia Tech and the community.",
+                  "Lets figure out how old Moose was when he reached this amazing milestone using Python."],
+        props: {
+          pageNumber: 1
+        }
+      },
+      {
+        image: "MooseMilestone",
+        content: ["Try out the exercises following along with the code!"],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "MooseDr",
+        content: ["In 2020, Moose got a very special award.",
+                  "He was awarded with an honorary Doctor of Veterinary Medicine for being such a good boy!",
+                  "unfortunately, that same year, Moose was also diagnosed with"],
+        props: {
+          pageNumber: 1
+        }
+      },
+      {
+        image: "MooseDr",
+        content: ["Try out the exercises following along with the code!"],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "MooseChallengingYear",
+        content: ["Unfortunately, in 2020 Moose was diagnosed with cancer.",
+                  "The nurses and doctors at Blacksburg Veterinary Teaching Hospital and the Animal Care center took good care him during this time.",
+                  "On December 2, 2020, Moose passed away peacefully.",
+                  "Lets use Python to figure out how old Moose was and how many years he helped our community."],
+        props: {
+          pageNumber: 1
+        }
+      },
+      {
+        image: "MooseChallengingYear",
+        content: ["Try out the exercises following along with the code!"],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "MooseThankYou",
+        content: ["Moose was the first superhero therapy dog at Virginia Tech.",
+                  "Therapy dogs and their teams are very important because they help people who going through difficult times.",
+                  "Sometimes they even go as far as saving someones life!",
+                  "Let's say thank you to Moose and all of the other therapy dogs for helping our community!",
+                  "Click the Edit Code button to fill out the code template then run though your code!"]
       }
     ]
   }
