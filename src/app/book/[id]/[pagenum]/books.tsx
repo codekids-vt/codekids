@@ -359,7 +359,7 @@ export const books: Book[] = [
           "If Conditions have two outcomes, they are either true or false",
           "If a value is true the 'code' that immediatley follows is taken.",
           "If the value is false then the 'code' that follows is ignored",],
-        image: "/if_condition/HokieBirdIf.png",
+        image: "/if_condition/weather.jpg",
       },
       {
         content: [
@@ -436,7 +436,7 @@ export const books: Book[] = [
   {
     BookId: 5,
     title: "If-condition with HokieBird Mood",
-    bookCover: "/lighter_maroon.png",
+    bookCover: "/color_7.png",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     pages: [
@@ -502,7 +502,7 @@ export const books: Book[] = [
   {
     BookId: 6,
     title: "If-condition with HokieBird Dance",
-    bookCover: "/lighter_maroon.png",
+    bookCover: "/color_4.png",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     cover: "/if_condition/HokieBirdIf.png",
