@@ -161,13 +161,14 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                       </div>
                       <div className="p-6 space-y-6">
                         <ul className="flex flex-col items-center">
+                          <h3>The correct answer(s) is:</h3>
                           {page.props?.ans &&
                             page.props?.ans.map((answer: string, index: number) => (
                               <li
                                 className="inline-block font-semibold text-gray-900"
                                 key={`answerTag-${index}`}
                               >
-                                {`${index + 1}. The correct answer is: ${answer}`}
+                                {`${index + 1}.  ${answer}`}
                               </li>
                             ))}
                         </ul>
