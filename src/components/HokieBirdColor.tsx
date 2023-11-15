@@ -38,6 +38,8 @@ export function HokieBirdColoring({ props }: { props: any }) {
         right_foot: "",
     });
 
+    const [selectedColor, setSelectedColor] = useState("");
+
     enum AlertType {
         NONE,
         SUCCESS,
@@ -79,6 +81,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                         ...prevColors,
                         [part]: strippedValue,
                     }));
+                    setSelectedColor("");
                 } else if (availableParts.includes(strippedValue)) {
                     setCurrentAlert({ type: AlertType.FAILURE, message: "This value is a color, not a body part!" });
                 }
@@ -156,11 +159,12 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                         placeholder={props?.type ? "Type a color here" : "Drag a color here"}
                                         onBlur={(e) => handleValueOnBlur(e.target.value)}
                                         onChange={(e) => handleColorChange(props?.typeVariable ? part[index] : availablePart, e.target.value)}
+                                        onClick={() => !props.type && selectedColor && handleColorChange(availablePart, selectedColor)}
                                         defaultValue={
                                             props?.typeVariable ?
                                                 (colors[part[index] as keyof HokieBirdColorState] ? `"${colors[part[index] as keyof HokieBirdColorState]}"` : '')
                                                 : (colors[availablePart as keyof HokieBirdColorState] ? `"${colors[availablePart as keyof HokieBirdColorState]}"` : '')}
-                                        disabled={!props.type}
+                                        readOnly={!props.type}
                                     />
                                 </label>
                             </div>
@@ -187,6 +191,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                         draggable={props.draggable}
                                         className={`flex ${availableColorsTailwind[color]} min-w-[70px] place-content-center rounded-2xl shadow-2xl`}
                                         onDragStart={(e) => { handleOnDrag(e, color) }}
+                                        onClick={() => setSelectedColor(`"${color}"`)}
                                     >
                                         <q className="text-white">{color}</q>
                                     </div>
