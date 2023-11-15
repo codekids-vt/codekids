@@ -15,12 +15,11 @@ export default function ContactPage() {
             See something you did or didn&apos;t like about CodeKids?
           </h1>
           <p>
-            Let us know! You can fill out the email form below, or manually send an email to us at&nbsp;
-            <a href="mailto:shamouda@vt.edu">
-              <span className="text-blue-500 underline">
+            Let us know! You can fill out the email form below, or manually send an email to us at: &nbsp;
+            <br/>
+              <span className="font-bold">
                 shamouda at vt dot edu
               </span>
-            </a>
             .
           </p>
         </div>
