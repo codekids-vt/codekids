@@ -1,28 +1,28 @@
-// generator client {
-//   provider = "prisma-client-js"
-//   binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
-// }
+generator client {
+  provider = "prisma-client-js"
+    binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
 
-// datasource db {
-//   provider          = "postgresql"
-//   url               = env("DATABASE_PRISMA_URL") // uses connection pooling
-//   directUrl         = env("DATABASE_URL_NON_POOLING") // uses a direct connection
-//   shadowDatabaseUrl = env("DATABASE_URL_NON_POOLING") // used for migrations
-// }
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_PRISMA_URL") // uses connection pooling
+  directUrl         = env("DATABASE_URL_NON_POOLING") // uses a direct connection
+  shadowDatabaseUrl = env("DATABASE_URL_NON_POOLING") // used for migrations
+}
 
-// model Post {
-//   postId    Int      @id @default(autoincrement())
-//   author    String
-//   title     String   @unique
-//   blurb     String?
-//   tags      Tag[]
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @default(now()) @updatedAt
-//   content   String
-// }
+model Post {
+  postId    Int      @id @default(autoincrement())
+  author    String
+  title     String   @unique
+  blurb     String?
+  tags      Tag[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  content   String
+}
 
-// model Tag {
-//   name  String  @id @unique
-//   color String?
-//   posts Post[]
-// }
+model Tag {
+  name  String  @id @unique
+  color String?
+  posts Post[]
+}
