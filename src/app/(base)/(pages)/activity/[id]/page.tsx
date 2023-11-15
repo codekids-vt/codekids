@@ -1,11 +1,16 @@
 import Link from "next/link";
+import fs from "fs";
+import matter from "gray-matter";
 
-import { GET as routeHandler } from "../../../../api/activity/[id]/route";
-
-import ActivityTag from "@/components/ActivityTag";
 import MarkdownView from "@/components/MarkdownView";
 
-import PostData from "@/util/PostData";
+interface PostData {
+  postId: string,
+  title: string,
+  author: string,
+  blurb: string,
+  content: string,
+}
 
 function ActivityPostDisplay({
   postData, id
@@ -14,28 +19,16 @@ function ActivityPostDisplay({
   id: string
 }) {
   return (
-    <div className="mx-auto max-w-6xl">
-      <section className="card p-2 mb-2">
-        <section className="mb-2">
-          <h1 className="text-3xl font-medium">{postData.title}</h1>
+    <div className="mx-auto max-w-6xl gap-2">
+      <section className="px-2 py-1.5 card shadow shadow-transparent hover:shadow-black/20 transition-shadow">
+        <Link href={`/activity/${postData.postId}`}>
+          <h1 className="text-2xl font-medium">{postData.title}</h1>
           <h2 className="text-sm">{`by ${postData.author}`}</h2>
-        </section>
-
-        <ul className="[&>*:not(:last-child)]:mr-1">
-          {
-            postData.tags.map((
-              { name, color }: { name: string, color: string | undefined }, 
-              i: number
-            ) => (
-              <li className="inline-block" key={`tag-${i}`}>
-                <ActivityTag name={name} color={color} />
-              </li>
-            ))
-          }
-        </ul>
+          <p className="mt-1 text-sm">{postData.blurb}</p>
+        </Link>
       </section>
 
-      <section className="card">
+      <section className="p-2 mb-2 card shadow shadow-transparent hover:shadow-black/20 transition-shadow">
         <MarkdownView content={postData.content} />
         <Link href={`/activity-raw/${id}`}>
           <p className="p-2 text-center text-blue-500 underline underline-offset-1">
@@ -43,41 +36,48 @@ function ActivityPostDisplay({
           </p>
         </Link>
       </section>
-
-      {/*
-      <section className="card px-2 py-1.5">
-        <h1 className="text-lg font-medium">{postData.author} provided resources:</h1>
-
-        <ul className="list-disc [&>*]:ml-8">
-          <li>
-            <Link href="">
-              <p className="text-blue-500 underline underline-offset-1">
-                Student Packet
-              </p>
-            </Link>
-          </li>
-        </ul>
-      </section>
-      */}
     </div>
   );
 }
 
-export default async function ActivityPage({ params }: { params: { id: string } }) {
-  const response = await routeHandler(null, { params });
-  const postData = await response.json();
+function getActivity(id: string): PostData | undefined {
+  let mdFiles = fs.readdirSync("public/activities").map((fileName) => {
+    const fileNameId = fileName.replace(/\.md$/, "");
+    const fullPath = `public/activities/${fileName}`;
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const matterResult = matter(fileContents);
+
+    return {
+      fileNameId,
+      ...(matterResult.data as {
+        postId: string,
+        title: string,
+        author: string,
+        blurb: string,
+      }),
+      content: matterResult.content,
+    };
+  })
+
+  // double equals because they might be different types
+  let postData = mdFiles.find((post) => post.postId == id);
+  return postData;
+}
+
+export default function ActivityPage({ params }: { params: { id: string } }) {
+
+  const postData = getActivity(params.id);
 
   return (
     <div className="p-2">
-      {
-        postData
-          ? <ActivityPostDisplay postData={postData} id={params.id} />
-          : (
-            <h1 className="text-center text-lg font-medium">
-              We couldn&apos;t find anything for activity {params.id} here!
-            </h1>
-          )
+      {postData &&
+        <ActivityPostDisplay postData={postData} id={params.id} />
       }
+      {!postData && (
+        <h1 className="text-center text-lg font-medium">
+          We couldn&apos;t find anything for activity {params.id} here!
+        </h1>
+      )}
     </div>
   )
 }
