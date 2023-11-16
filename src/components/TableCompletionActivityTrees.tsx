@@ -5,7 +5,7 @@ export interface ITableCompletionActivityTreesProps {
   answer: number;
 }
 
-export function TableCompletionActivityTrees(props: ITableCompletionActivityTreesProps) {
+export function TableCompletionActivityTrees({ props }: { props: any | ITableCompletionActivityTreesProps }) {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [result, setResult] = useState('');
 
