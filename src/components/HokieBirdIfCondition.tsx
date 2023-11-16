@@ -1,5 +1,5 @@
 "use client"
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -10,7 +10,7 @@ interface HokieBirdColorState {
 }
 
 
-export function HokieBirdIfCondition({ props }: { props: any }) {
+export function HokieBirdIfCondition({ props, setAllowNext }: { props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
     const answer = props.ans[0]
     const [wrong, setWrong] = useState(false)
     const [good, setGood] = useState(false)
@@ -19,6 +19,10 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
         condition: "",
         statement: "",
     });
+
+    React.useEffect(() => {
+        setAllowNext(good)
+    }, [good])
 
     function handleOnDragStatement(e: React.DragEvent, statement: string) {
         e.dataTransfer.setData("statement", statement);

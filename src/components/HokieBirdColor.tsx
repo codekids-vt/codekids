@@ -46,6 +46,9 @@ export function HokieBirdColoring({ props, setAllowNext }: { props: any, setAllo
 
     const [currentAlert, setCurrentAlert] = useState<{ type: AlertType, message: string }>({ type: AlertType.NONE, message: "" });
 
+    React.useEffect(() => {
+        setAllowNext(currentAlert.type === AlertType.SUCCESS)
+    }, [currentAlert])
 
     function HokieBirdColors() {
 

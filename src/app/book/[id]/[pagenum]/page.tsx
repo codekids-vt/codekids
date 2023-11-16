@@ -19,7 +19,7 @@ import { TableCompletionActivity } from "@/components/TableCompletionActivity";
 
 
 
-function BookImage({ image, page }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
+function BookImage({ image, page, setAllowNext }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
 
   return (
@@ -27,14 +27,13 @@ function BookImage({ image, page }: { image: string, page: Page, setAllowNext: D
       {isImage && <Image src={image} alt="book image" width={800} height={800} className="object-contain max-w-full max-h-full" />}
       {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
-      {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} />}
-      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}
-      {image === "park_1" && <NumberInputActivity props={page?.props} />}
+      {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} setAllowNext={setAllowNext} />}
+      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} setAllowNext={setAllowNext} />}
     </div>
   );
 }
 
-function BookContent({ content, game, props }: { content: string[], game: string | null, props: any }) {
+function BookContent({ content, game, props, setAllowNext }: { content: string[], game: string | null, props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   return (
     <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
       <ul className="flex flex-col p-4 md:space-y-1 xl:space-y-4">
@@ -48,8 +47,8 @@ function BookContent({ content, game, props }: { content: string[], game: string
       {game && game === "color" && <ColorPattern />}
       {game && game === "number" && <NumericalPattern pattern={props.pattern} answer={props.ans[0]} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
-      {game && game === "TableCompletionActivity" && <TableCompletionActivity props={props} />}
-      {game && game === "NumberInputActivity" && <NumberInputActivity props={props} />}
+      {game && game === "TableCompletionActivity" && <TableCompletionActivity props={props} setAllowNext={setAllowNext} />}
+      {game && game === "NumberInputActivity" && <NumberInputActivity props={props} setAllowNext={setAllowNext} />}
 
     </div>
   );
@@ -59,6 +58,7 @@ function BookContent({ content, game, props }: { content: string[], game: string
 export default function ActivityPage({ params }: { params: { id: string, pagenum: string } }) {
 
   const [help, setHelp] = useState(false);
+  const [allowNext, setAllowNext] = useState(true);
 
   const bookNum = parseInt(params.id) - 1
   const pageNum = parseInt(params.pagenum)
@@ -115,7 +115,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
               <div className="basis-4/6 flex flex-col  flex-grow items-center">
                 <div className="flex flex-col justify-between flex-grow w-full">
                   <div className="flex flex-col flex-grow items-center justify-center">
-                    <BookImage image={page.image} page={page} />
+                    <BookImage image={page.image} page={page} setAllowNext={setAllowNext} />
                   </div>
                   <div className="flex flex-row justify-start items-center xl:p-2 space-x-2">
                     {backButton}
@@ -133,9 +133,14 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
               </div>
               <div className="flex flex-col items-center justify-between bg-gray-100 rounded-2xl">
                 <div className="flex flex-col items-center justify-center">
-                  <BookContent content={page.content} game={page.game} props={page.props} />
+                  <BookContent content={page.content} game={page.game} props={page.props} setAllowNext={setAllowNext} />
                 </div>
-                <div className="flex flex-row w-full justify-end p-2">{forwardButton}</div>
+                <div className="flex flex-row w-full justify-end p-2">
+                  {allowNext && forwardButton}
+                  {!allowNext && <div className="bg-red-400 text-white font-bold p-1 xl:p-4 xl:text-xl rounded-full">
+                    Complete the activity to continue
+                  </div>}
+                </div>
               </div>
               {page?.props?.ans?.length && (
                 <div

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { NumberInputActivity } from './NumberInputActivity';
 
 
@@ -8,7 +8,7 @@ export interface ITableCompletionActivityProps {
   tableItems: string[][];
 }
 
-export function TableCompletionActivity({ props }: { props: any | ITableCompletionActivityProps }) {
+export function TableCompletionActivity({ props, setAllowNext }: { props: any | ITableCompletionActivityProps, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const renderTable = () => {
     const rows = [];
     const tableItems = props.tableItems;
@@ -47,7 +47,7 @@ export function TableCompletionActivity({ props }: { props: any | ITableCompleti
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
       {renderTable()}
-      <NumberInputActivity props={INumberInputActivityProps} />
+      <NumberInputActivity props={INumberInputActivityProps} setAllowNext={setAllowNext} />
     </div>
   );
 }

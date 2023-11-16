@@ -1,5 +1,5 @@
 "use client"
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -12,7 +12,7 @@ interface HokieBirdColorState {
 
 const actions = ["turn_left()", "turn_right()", "move(2)", "move(3)", "move(4)"]
 
-export function HokieBirdMap({ props }: { props: any }) {
+export function HokieBirdMap({ props, setAllowNext }: { props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
     const blankProcedures = props.ans.map((statement: string) => { return "" })
 
     const [errorProcedure, setErrorProcedure] = useState<number | null>(null)
@@ -21,6 +21,10 @@ export function HokieBirdMap({ props }: { props: any }) {
     const [procedures, setProcedures] = useState<string[]>(blankProcedures)
 
     const router = useRouter()
+
+    React.useEffect(() => {
+        setAllowNext(false)
+    }, [])
 
     function handleOnDragStatement(e: React.DragEvent, statement: string) {
         e.dataTransfer.setData("statement", statement);
