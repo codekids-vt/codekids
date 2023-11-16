@@ -16,8 +16,8 @@ import Navbar from "@/components/Navbar";
 import { PythonTutor } from "@/components/PythonTutor";
 import { NumberInputActivity } from "@/components/NumberInputActivity";
 import { TableCompletionActivity } from "@/components/TableCompletionActivity";
-import { TableCompletionActivityTrees } from "@/components/TableCompletionActivityTrees";
-import { FlowerInputActivity } from "@/components/FlowerInputActivity";
+
+
 
 function BookImage({ image, page }: { image: string, page: Page }) {
   const isImage = image && image.includes(".");
@@ -28,7 +28,8 @@ function BookImage({ image, page }: { image: string, page: Page }) {
       {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} />}
-      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}
+      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />} 
+      {image === "park_1" && <NumberInputActivity props={page?.props} />} 
     </div>
   );
 }
@@ -47,10 +48,9 @@ function BookContent({ content, game, props }: { content: string[], game: string
       {game && game === "color" && <ColorPattern />}
       {game && game === "number" && <NumericalPattern pattern={props.pattern} answer={props.ans[0]} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
-      {game && game === "FlowerInputActivity" && <FlowerInputActivity question={props.question} options={props.options} answer={props.ans[0]} showIOLabels={props.showIOLabels} />}
-      {game && game === "TableCompletionActivity" && <TableCompletionActivity options={props.options} answer={props.ans[0]} />}
-      {game && game === "TableCompletionActivityTrees" && <TableCompletionActivityTrees options={props.options} answer={props.ans[0]} />}
-      {game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.ans[0]} showIOLabels={props.showIOLabels} />}
+      {game && game === "TableCompletionActivity" && <TableCompletionActivity props={props} />}
+      {game && game === "NumberInputActivity" && <NumberInputActivity props={props} />}
+    
     </div>
   );
 }
