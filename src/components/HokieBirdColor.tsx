@@ -38,7 +38,17 @@ export function HokieBirdColoring({ props }: { props: any }) {
         right_foot: "",
     });
 
-    const [selectedColor, setSelectedColor] = useState("");
+    const [currentColorIndex, setCurrentColorIndex] = useState(0);
+    const colorNextPart = (color: string) => {
+        if (currentColorIndex < availableParts.length) {
+            const partToColor = availableParts[currentColorIndex];
+            setColors((prevColors) => ({
+                ...prevColors,
+                [partToColor]: color,
+            }));
+            setCurrentColorIndex(currentColorIndex + 1);
+        }
+    };
 
     enum AlertType {
         NONE,
@@ -81,7 +91,6 @@ export function HokieBirdColoring({ props }: { props: any }) {
                         ...prevColors,
                         [part]: strippedValue,
                     }));
-                    setSelectedColor("");
                 } else if (availableParts.includes(strippedValue)) {
                     setCurrentAlert({ type: AlertType.FAILURE, message: "This value is a color, not a body part!" });
                 }
@@ -149,7 +158,7 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                             disabled={!props.type}
                                         />
                                     ) : (
-                                            `${availablePart}`
+                                        `${availablePart}`
                                     )}
                                     {' = '}
                                     <input
@@ -159,12 +168,11 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                         placeholder={props?.type ? "Type a color here" : "Drag a color here"}
                                         onBlur={(e) => handleValueOnBlur(e.target.value)}
                                         onChange={(e) => handleColorChange(props?.typeVariable ? part[index] : availablePart, e.target.value)}
-                                        onClick={() => !props.type && selectedColor && handleColorChange(availablePart, selectedColor)}
                                         defaultValue={
                                             props?.typeVariable ?
                                                 (colors[part[index] as keyof HokieBirdColorState] ? `"${colors[part[index] as keyof HokieBirdColorState]}"` : '')
                                                 : (colors[availablePart as keyof HokieBirdColorState] ? `"${colors[availablePart as keyof HokieBirdColorState]}"` : '')}
-                                        readOnly={!props.type}
+                                        disabled={!props.type}
                                     />
                                 </label>
                             </div>
@@ -189,12 +197,11 @@ export function HokieBirdColoring({ props }: { props: any }) {
                                     <div
                                         key={index}
                                         draggable={props.draggable}
-                                        className={`flex ${availableColorsTailwind[color]} min-w-[70px] place-content-center rounded-2xl shadow-2xl ${
-                                            selectedColor === `"${color}"` ? 'border-2 border-white' : ''}`}
+                                        className={`flex ${availableColorsTailwind[color]} min-w-[70px] place-content-center rounded-2xl shadow-2xl`}
                                         onDragStart={(e) => { handleOnDrag(e, color) }}
-                                        onClick={() => setSelectedColor(`"${color}"`)}
+                                        onClick={() => colorNextPart(color)}
                                     >
-                                        <q className={`text-white ${selectedColor === color ? 'font-bold' : ''}`}>{color}</q>
+                                        <q className={`text-white`}>{color}</q>
                                     </div>
                                 ))}
                             </div>
