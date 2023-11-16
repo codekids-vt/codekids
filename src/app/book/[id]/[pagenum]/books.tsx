@@ -607,6 +607,7 @@ export const books: Book[] = [
     pages:
       [{
         content: ["Python Tutor is a visualizer that allows you to see how your code is executed step by step.",
+          "We'll be using this throughout several books as you learn about programming in Python!",
           "You can see the values of variables and how they change as your code is executed.",
           "You can also see the call stack and how functions are called and returned.",
           "Let's try it out!"],
@@ -627,18 +628,20 @@ export const books: Book[] = [
       { // Variables intro 2
         image: "/VariablesBook/variables_intro2.png",
         content: ["When you see a variable in code, the name of the variable will always be to the left of the '=' sign.",
-                  "Everything to the right of the '=' sign is what you setting as the variables value.",
+                  "Everything to the right of the '=' sign is what you are setting as the variables value.",
                   "The box is to the left of the '=' and what you want to put in the box is to the right of the '='",
                   "For this example, the code would by therapy_dog='Epcot'"]
       },
       { // Variables intro in python tutor
-        content: ["Look at the example to the left.",
-                  "therapy_dog is the name of the variable and 'Epcot' is the value of the variable",
-                  "The value of therapy_dog is then printed.",
-                  "Note: print() will be used a lot throughout this book. All print() does is print the value in it's parenthesis."],
+        content: ["Here is an example of how variables would be assigned in Python.",
+                  "For the first variable, therapy_dog is the name of the variable (left of '=' sign) and 'Epcot' is the value of the variable (right of '=' sign).",
+                  "For the second variable, year is the name of the variable (left of '=' sign) and 2023 is the value of the variable (right of '=' sign).",
+                  "Note: print() will be used a lot throughout this book. All print() does is print the value in it's parenthesis.",
+                  "Click the Next button in Python Tutor to see the variable be created.",
+                  "You'll see a gray box be created that has the variable names and their values (similar to our box analogy!)."],
         image: "tutor",
         props:{
-          code: "therapy_dog = 'Epcot'\nprint(therapy_dog)"
+          code: "therapy_dog = 'Epcot'\nprint(therapy_dog)\n\nyear = 2023\nprint(year)"
         }
       },
       { // Variable Assignment
@@ -650,8 +653,9 @@ export const books: Book[] = [
       },
       {
         image: "tutor",
-        content: ["Remember that when variables that already stores a value are reassigned, the old value is lost.",
-                  "Run through the code to the left to see this!"],
+        content: ["Remember that when a variable that already stores a value is reassigned, the old value is lost.",
+                  "Run through the code to the left to see this!",
+                  "number is created on line two and assigned the value 10. It is the reassigned on line 6."],
         props: {
           code: "# Here, number is initially assigned to 10\nnumber = 10\nprint(number)\n\n# Here, number is reassigned to 20\nnumber = 20\n\n" +
                 "# Since number was reassigned, the first value of 10 is lost\n# and number is now 20\nprint(number)"
@@ -660,7 +664,7 @@ export const books: Book[] = [
       {
         image: "tutor",
         content: ["Here is another example of variable assignment.",
-                  "Walk through the program and notice how first is reassigned.",
+                  "Walk through the program and notice how first is reassigned to the value of second.",
                   "What do you think will be printed at the end of the program?"],
         props: {
           code: "first = 100\nsecond = 1\n\n# Here, first is reassigned to the value of second.\nfirst = second\n\n# What do think will be printed?\nprint(first)"
@@ -688,7 +692,7 @@ export const books: Book[] = [
         image: "IntsAndBools",
         content: ["This page will focus on Integers and Booleans.",
                   "Integer - this is any whole number like 9.",
-                  "Boolean - a logical value indicating True or False.",
+                  "Boolean - this is a logical value indicating True or False.",
                   "For example, 2 < 4 has a Boolean value of True since 2 is less than 4."]
       },
       { // Ints and Bools Intro Python Tutor
@@ -767,6 +771,42 @@ export const books: Book[] = [
                   "In this book you'll learn about If statements in Python!",
                   "If-statements simply allow you to execute code only if a certain condition is true."]
       },
+      {
+        image: "tutor",
+        content: ["Look at this quick example of an If-Statement!",
+                  "Click the Next button in Python Tutor and run through the code.",
+                  "Notice how lines 6 and 7 are skipped but the rest of the program executes.",
+                  "This is because on line 3 we are saying \"If sky_is_blue is True, then execute lines 4 and 5. Otherwise, execute line 7\".",
+                  "Line 9 isn't part of the If-statement, so it get's executed regardless."],
+        props: {
+          code: 'sky_is_blue = True\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\nelse:\n\tprint("It\'s raining. Lets stay inside")\n\nprint("Hopefully it\'s sunny tomorrow!")'
+        }
+      },
+      {
+        image: "tutor",
+        content: ["Here is the same code as the previous page except this time sky_is_blue is False",
+                  "Now notice lines 4 and 5 get skipped and line 7 is executed.",
+                  "Line 7 is part of the 'else'. The 'else' part of an If-statement get's executed when the If-statement is false.",
+                  "In this example, sky_is_blue is False. So the 'else' part is executed.",
+                  "If-statements let you choose what to execute.",
+                  "This is how you can control the flow of execution!"],
+        props: {
+          code: 'sky_is_blue = False\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\nelse:\n\tprint("It\'s raining. Lets stay inside")\n\nprint("Hopefully it\'s sunny tomorrow!")'
+        }
+      },
+      {
+        image: "tutor",
+        content: ["It's also important to recognize what is part of an If-statement.",
+                  "Python uses indentation to convey this.",
+                  "Notice that lines 4 and 5 are indented under the If-statement on line 3.",
+                  "This means they are part of the If-statement and will be executed if sky_is_blue is True",
+                  "Also notice line 7 is NOT indented, so it's not part of the If-Statement and will be executed regardless.",
+                  "Run through the code to see this!",
+                  "As a quick exercise, click the Edit Code button and change sky_is_blue to True and run it again!"],
+        props: {
+          code: 'sky_is_blue = False\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\n\nprint("Hopefully it\'s sunny tomorrow!")'
+        }
+      },
       { // Conditional operators
         image: "ConditionalOperators",
         content: ["Let's learn a very important concept for if-statements: Conditional Operators.",
@@ -795,6 +835,29 @@ export const books: Book[] = [
           pageNumber: 2
         }
       },
+      {
+        image: "tutor",
+        content: ["Here is an example using '==' to check if two values are equal.",
+                  "Run through the code and pay attention to what gets printed on lines 5 and 6.",
+                  "derek_color is NOT equal to wager_color so False is printed.",
+                  "derek_color is equal to josie_color so True is Printed."],
+        props: {
+          code: "derek_color = 'cream'\nwagner_color = 'black'\njosie_color = 'cream'\n\nprint(derek_color == wagner_color)\nprint(derek_color == josie_color)"
+        }
+      },
+      {
+        image: "tutor",
+        content: ["Take a loot at this example.",
+                  "Notice how we are now combining conditional operators and If-statements.",
+                  "Since conditional operators always evaluate to True or False, they are perfect for using in If-statements.",
+                  "Run through this code and notice what happens at line 5.",
+                  "black_number < cream_number will evaluate to True, so line 6 will be executed.",
+                  "Now pay close attention to the variable data types on line 8. Notice that total_number is a String.",
+                  "Since total_number is a String, the expression will evaluate to False."],
+        props: {
+          code: "black_number = 1\ncream_number = 2\ntotal_number = '3'\n\nif black_number < cream_number:\n\tprint('1 is less than 2')\n\nprint(total_number == (black_number + cream_number))"
+        }
+      },
       { // Logical operators
         image: "LogicalOperators",
         content: ["Another kind of operator are logical operators.",
@@ -806,14 +869,35 @@ export const books: Book[] = [
                   "Take a look at the examples!"]
       },
       {
+        image: "tutor",
+        content: ["Run through the code to see logical operators in action!",
+                  "Lines 4 and 5 are using 'and'. Notice that only line 4 prints True and line 5 prints False. This is because for 'and', both values must be True.",
+                  "Line 7-9 are using 'or'. Notice that lines 7 and 8 print True while line 9 prints False. This is because only one value needs to be True.",
+                  "Lastly, lines 11 and 12 are using 'not'. Line 11 prints False because the opposite of True is False. Line 12 prints True because the opposite of False is True."],
+        props: {
+          code: "true = True\nfalse = False\n\nprint(true and true)\nprint(true and false)\n\nprint(true or true)\nprint(true or false)\nprint(false or false)\n\nprint(not true)\nprint(not false)"
+        }
+      },
+      {
+        image: "tutor",
+        content: ["Run through the code to see logical operators in action and pay attention to what each variable is assigned!",
+                  "On line 5, both derek_color and josie_color are 'cream', so using 'and' will evaluate to True.",
+                  "On line 7, derek_color is cream but wagner_color is NOT cream. However, it is using 'or' so it will evaluate to True.",
+                  "On line 9, derek_color is cream and we are using 'not'. So, it will evaluate to False."],
+        props: {
+          code: "derek_color = 'cream'\nwagner_color = 'black'\njosie_color = 'cream'\n\nderek_and_josie = (derek_color == 'cream') and (josie_color == 'cream')\n\n" +
+                "derek_and_wagner = (derek_color == 'cream') or (wagner_color == 'cream')\n\nderek_opposite = not(derek_color == 'cream')"
+        }
+      },
+      {
         image: "IfStatements",
         content: ["Now that we know about conditional and logical operators, let's see how they can be used in If-statements.", 
-                  "If statements allow you to control the flow of execution based on a condition.",
+                  "As we have seen, if statements allow you to control the flow of execution based on a condition.",
                   "A condition can only ever be True or False.",
                   "This means Booleans, conditional operators, and logical operators can be used to create a condition for an If-statement.",
                   "When the condition is True, everything that is under the if statement and indented will be executed.",
                   "On this page, the indents will be highlighted yellow so you can easily see what is part of the If-statement.",
-                  "If-statements also often have an 'else'. The 'else' is executed when the If-statement fails.",
+                  "Also, remember the 'else' will be executed if the If-statement fails.",
                   "The 'else' isn't required but is helpful when you want to execute code when the If-statement fails."],
         props: {
           pageNumber: 1

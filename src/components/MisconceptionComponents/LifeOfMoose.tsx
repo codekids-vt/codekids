@@ -61,7 +61,7 @@ export function LifeOfMoose({ props }: { props: any | ILifeOfMooseProps }) {
 
     function getPage1() {
         return (
-            <div style={{textAlign: "center", width: "100%", height:"40vh", zoom: windowScale}}>
+            <div style={whole_container_style}>
                 <img style={image_style} src="/LifeOfMoose/moose_2.png" alt="Image of Moose" />
                 <PythonTutor props={{code: code}}/>
                 <span style={text_style}><Reader text='First look over the code and then answer the following questions!'/></span>
@@ -71,7 +71,7 @@ export function LifeOfMoose({ props }: { props: any | ILifeOfMooseProps }) {
 
     function getPage2() {
         return (
-            <div style={{textAlign: "center", width: "100%", height:"40vh", zoom: windowScale}}>
+            <div style={whole_container_style}>
                 <PythonTutor props={{code: code}}/>
                 <div style={quarter_div_container}>
                     <div style={{...quarter_div_elements, top: "0"}}>
@@ -112,6 +112,15 @@ export function LifeOfMoose({ props }: { props: any | ILifeOfMooseProps }) {
     }
     
 
+}
+
+const whole_container_style = {
+    display: "flex",
+    flexDirection: "column" as "column",
+    textAlign: "center" as "center",
+    width: "100%",
+    height: "100%",
+    justifyContent: "space-around"
 }
 
 const horizontal_div_style = {

@@ -106,7 +106,7 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
                 <span style={text_style}><Reader text='Test you knowledge about conditional operators!'/></span>
-                <img style={{...image_style, width: "35%", height: "auto"}} src="/IfStatementsBook/therapy_dog_1.png" alt="Image of therarpy dogs with their names." />
+                <img style={{...image_style, width: "35%", height: "auto"}} src="/IfStatementsBook/therapy_dog_1.png" alt="Image of therapy dogs with their names." />
                 <div style={code_box_style}>
                     <p style={code_style}>
                         derek_color = <span style={code_string_style}>'cream'</span><br/>
@@ -114,6 +114,7 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
                         derek_color == wagner_color = <span style={code_boolean_style}>{q1ChosenAnswer}</span>
                     </p>
                 </div>
+                <div style={answer_explanation_style}><Reader text='What does derek_color == wagner_color evaluate to?'/></div>
                 <div style={horizontal_div_style}>
                     <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "True")}>True</button>
                     <button style={answer_button_style} type='button' onClick={() => handleQ1(true)}>False</button>
@@ -126,6 +127,7 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
                         derek_color == josie_color = <span style={code_boolean_style}>{q2ChosenAnswer}</span>
                     </p>
                 </div>
+                <div style={answer_explanation_style}><Reader text='What does derek_color == josie_color evaluate to?'/></div>
                 <div style={horizontal_div_style}>
                     <button style={answer_button_style} type='button' onClick={() => handleQ2(true)}>True</button>
                     <button style={answer_button_style} type='button' onClick={() => handleQ2(false, "False")}>False</button>
@@ -139,7 +141,7 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
     function getPage2() {
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <img style={{...image_style, width: "35%", height: "auto"}} src="/IfStatementsBook/therapy_dog_1.png" alt="Image of therarpy dogs with their names." />
+                <img style={{...image_style, width: "25%", height: "auto"}} src="/IfStatementsBook/therapy_dog_1.png" alt="Image of therapy dogs with their names." />
                 <div style={code_box_style}>
                     <p style={code_style}>
                         black_number = <span style={code_integer_style}>1</span><br/>
@@ -148,6 +150,7 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
                         total_number == (black_number + cream_number) = <span style={code_boolean_style}>{q3ChosenAnswer}</span>
                     </p>
                 </div>
+                <div style={answer_explanation_style}><Reader text='What does total_number == (black_number + cream_number) evaluate to?'/></div>
                 <div style={horizontal_div_style}>
                     <button style={answer_button_style} type='button' onClick={() => handleQ3(false, "True")}>True</button>
                     <button style={answer_button_style} type='button' onClick={() => handleQ3(true)}>False</button>
@@ -159,6 +162,7 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
                         total_number {">"} cream_number = <span style={code_boolean_style}>{q4ChosenAnswer}</span>
                     </p>
                 </div>
+                <div style={answer_explanation_style}><Reader text='What does total_number > cream_number evaluate to?'/></div>
                 <div style={horizontal_div_style}>
                     <button style={answer_button_style} type='button' onClick={() => handleQ4(false, "True")}>True</button>
                     <button style={answer_button_style} type='button' onClick={() => handleQ4(false, "False")}>False</button>

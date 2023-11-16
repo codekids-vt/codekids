@@ -44,7 +44,7 @@ export function LogicalOperators() {
     }
 
     return (
-        <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
+        <div style={{textAlign: "center", width: "100%", height: "100%", zoom: windowScale}}>
             <div style={horizontal_div_style}>
                 <img style={{...image_style, width: "30%", height: "auto"}} src="/IfStatementsBook/therapy_dog_1.png" alt="Image of therapy dogs with their names." />
                 <div>
@@ -58,34 +58,57 @@ export function LogicalOperators() {
                     </div>
                 </div>
             </div>
-            
-            <span style={answer_explanation_style}><Reader text='AND Operator'/></span>
-            <span style={answer_explanation_style}><Reader text='Simply ask "are both of these true?"'/></span>
-            <div style={{...code_style, width: "100%"}}>(derek_color == <span style={code_string_style}>'cream'</span>) <span style={code_logical_operator_style}>and</span> (josie_color == <span style={code_string_style}>'cream'</span>) = <span style={code_boolean_style}>{q1ChosenAnswer}</span></div>
-            <div style={horizontal_div_style}>
-                <button style={answer_button_style} type='button' onClick={() => handleQ1(true)}>True</button>
-                <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "False")}>False</button>
+            <div style={quarter_div_container}>
+                <div style={{...quarter_div_elements, top: "0"}}>
+                    <div style={answer_explanation_style}><Reader text='AND Operator'/></div>
+                    <div style={answer_explanation_style}><Reader text='Simply ask "are both of these true?"'/></div>
+                    <div style={{...code_style, width: "100%"}}>(derek_color == <span style={code_string_style}>'cream'</span>) <span style={code_logical_operator_style}>and</span> (josie_color == <span style={code_string_style}>'cream'</span>) = <span style={code_boolean_style}>{q1ChosenAnswer}</span></div>
+                    <div style={horizontal_div_style}>
+                        <button style={answer_button_style} type='button' onClick={() => handleQ1(true)}>True</button>
+                        <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "False")}>False</button>
+                    </div>
+                    <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
+                </div>
+                <div style={{...quarter_div_elements, top: "0", right: "0"}}>
+                    <div style={answer_explanation_style}><Reader text='OR Operator'/></div>
+                    <div style={answer_explanation_style}><Reader text='Simply ask "are either of these true?"'/></div>
+                    <div style={{...code_style, width: "100%"}}>(derek_color == <span style={code_string_style}>'cream'</span>) <span style={code_logical_operator_style}>or</span> (wagner_color == <span style={code_string_style}>'cream'</span>) = <span style={code_boolean_style}>{q2ChosenAnswer}</span></div>
+                    <div style={horizontal_div_style}>
+                        <button style={answer_button_style} type='button' onClick={() => handleQ2(true)}>True</button>
+                        <button style={answer_button_style} type='button' onClick={() => handleQ2(false, "False")}>False</button>
+                    </div>
+                    <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>
+                </div>
+                <div style={{...quarter_div_elements, bottom: "0", width: "100%"}}>
+                    <div style={answer_explanation_style}><Reader text='NOT Operator'/></div>
+                    <div style={answer_explanation_style}><Reader text='Simply ask "what is the opposite?"'/></div>
+                    <div style={{...code_style, width: "100%"}}> <span style={code_logical_operator_style}>not</span>(derek_color == <span style={code_string_style}>'cream'</span>) = <span style={code_boolean_style}>{q3ChosenAnswer}</span></div>
+                    <div style={horizontal_div_style}>
+                        <button style={answer_button_style} type='button' onClick={() => handleQ3(false, "True")}>True</button>
+                        <button style={answer_button_style} type='button' onClick={() => handleQ3(true)}>False</button>
+                    </div>
+                    <div style={answer_explanation_style}><Reader text={q3AnswerExplanation}/></div>
+                </div>
             </div>
-            <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
-            <span style={answer_explanation_style}><Reader text='OR Operator'/></span>
-            <span style={answer_explanation_style}><Reader text='Simply ask "are either of these true?"'/></span>
-            <div style={{...code_style, width: "100%"}}>(derek_color == <span style={code_string_style}>'cream'</span>) <span style={code_logical_operator_style}>or</span> (wanger_color == <span style={code_string_style}>'cream'</span>) = <span style={code_boolean_style}>{q2ChosenAnswer}</span></div>
-            <div style={horizontal_div_style}>
-                <button style={answer_button_style} type='button' onClick={() => handleQ2(true)}>True</button>
-                <button style={answer_button_style} type='button' onClick={() => handleQ2(false, "False")}>False</button>
-            </div>
-            <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>
-            <span style={answer_explanation_style}><Reader text='NOT Operator'/></span>
-            <span style={answer_explanation_style}><Reader text='Simply ask "what is the opposite?"'/></span>
-            <div style={{...code_style, width: "100%"}}> <span style={code_logical_operator_style}>not</span>(derek_color == <span style={code_string_style}>'cream'</span>) = <span style={code_boolean_style}>{q3ChosenAnswer}</span></div>
-            <div style={horizontal_div_style}>
-                <button style={answer_button_style} type='button' onClick={() => handleQ3(false, "True")}>True</button>
-                <button style={answer_button_style} type='button' onClick={() => handleQ3(true)}>False</button>
-            </div>
-            <div style={answer_explanation_style}><Reader text={q3AnswerExplanation}/></div>
         </div>
     );
     
+}
+
+const quarter_div_container = {
+    position: "relative" as "relative",
+    height: "60vh",
+    width: "100%",
+}
+
+const quarter_div_elements = {
+    position: "absolute" as "absolute", 
+    width: "50%",
+    height: "50%",
+    border: "2px solid gray",
+    display: "flex",
+    flexDirection: "column" as "column",
+    justifyContent: "center"
 }
 
 const horizontal_div_style = {
@@ -94,7 +117,7 @@ const horizontal_div_style = {
     alignItems: "center",
     justifyContent: "center",
     columnGap: "5%",
-    margin: "3%",
+    margin: "1%",
 }
 
 const text_style = {
@@ -148,6 +171,6 @@ const answer_button_style = {
 }
 
 const answer_explanation_style = {
-    marginBottom: "3%",
+    marginBottom: "1%",
     fontSize: "1.2rem",
 }

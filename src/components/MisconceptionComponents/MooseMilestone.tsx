@@ -83,18 +83,18 @@ export function MooseMilestone({ props }: { props: any | IMooseMilestoneProps })
 
     function getPage1() {
         return (
-            <div style={{textAlign: "center", width: "100%", height: "30vh", zoom: windowScale}}>
+            <div style={whole_container_style}>
                 <div style={text_style}><Reader text='Remarkable milestones for Moose!'/></div>
                 <img style={image_style} src="/LifeOfMoose/moose_milestone.png" alt="Image of Moose"/>
                 <PythonTutor props={{code: code}}/>
-                <div style={text_style}><Reader text='Take a look at the code. What do you will be printed at the end? We will trace the code in the next page.'/></div>
+                <div style={text_style}><Reader text='Take a look at the code. What do you think will be printed at the end? We will trace the code in the next page.'/></div>
             </div>
         );
     }
 
     function getPage2() {
         return (
-            <div style={{textAlign: "center", width: "100%", height: "40vh", zoom: windowScale}}>
+            <div style={whole_container_style}>
                 <PythonTutor props={{code: code}}/>
                 <div style={quarter_div_container}>
                     <div style={{...quarter_div_elements, top: "0"}}>
@@ -137,6 +137,15 @@ export function MooseMilestone({ props }: { props: any | IMooseMilestoneProps })
         );
     }
 
+}
+
+const whole_container_style = {
+    display: "flex",
+    flexDirection: "column" as "column",
+    textAlign: "center" as "center",
+    width: "100%",
+    height: "100%",
+    justifyContent: "space-around"
 }
 
 const horizontal_div_style = {

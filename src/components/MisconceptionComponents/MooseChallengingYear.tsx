@@ -59,7 +59,7 @@ export function MooseChallengingYear({ props }: { props: any | IMooseChallenging
 
     function getPage1() {
         return (
-            <div style={{textAlign: "center", width: "100%", height:"40vh", zoom: windowScale}}>
+            <div style={whole_container_style}>
                 <div style={text_style}><Reader text='A challenging year for Moose.'/></div>
                 <img style={image_style} src='/LifeOfMoose/moose_with_hokie_bird.png' alt='Image of Moose graduating'></img>
                 <PythonTutor props={{code: code}}/>
@@ -70,7 +70,7 @@ export function MooseChallengingYear({ props }: { props: any | IMooseChallenging
 
     function getPage2() {
         return (
-            <div style={{textAlign: "center", width: "100%", height:"40vh", zoom: windowScale}}>
+            <div style={whole_container_style}>
                 <PythonTutor props={{code: code}}/>
                 <div style={quarter_div_container}>
                     <div style={{...quarter_div_elements, top: "0"}}>
@@ -109,6 +109,15 @@ export function MooseChallengingYear({ props }: { props: any | IMooseChallenging
             </div>
         );
     }
+}
+
+const whole_container_style = {
+    display: "flex",
+    flexDirection: "column" as "column",
+    textAlign: "center" as "center",
+    width: "100%",
+    height: "100%",
+    justifyContent: "space-around"
 }
 
 const horizontal_div_style = {
