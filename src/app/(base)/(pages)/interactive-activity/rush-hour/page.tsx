@@ -58,48 +58,48 @@ export default function ActivityPage() {
   const [render, setRender] = React.useState<boolean>(false)
   const [message, setMessage] = React.useState<string | null>(null)
 
-  React.useEffect(() => {
-    ws.current = new WebSocket('ws://localhost:8000/ws');
+  // React.useEffect(() => {
+  //   ws.current = new WebSocket('ws://localhost:8000/ws');
 
-    ws.current.onmessage = (message) => {
-      let data = JSON.parse(message.data);
-      let oldCarsId = carsToId(cars.current);
-      let newCarsId = carsToId(data.cars);
+  //   ws.current.onmessage = (message) => {
+  //     let data = JSON.parse(message.data);
+  //     let oldCarsId = carsToId(cars.current);
+  //     let newCarsId = carsToId(data.cars);
 
-      // Update states
-      // if it is a new state
-      if (isLegalMove(cars.current, data.cars)) {
-        if (!states.current.includes(newCarsId)) {
-          // check if a new transition is needed
-          states.current.push(newCarsId)
-          // very first time, we don't have a old state
-          if (oldCarsId !== 0) {
-            stateTransitions.current.push([oldCarsId, newCarsId])
-          }
-        } else if (oldCarsId !== newCarsId) {
-          // if it is not a new state, check if a new transition is needed by checking if we have been here before
-          if (!states.current.includes(oldCarsId)) {
-            states.current.push(oldCarsId)
-          }
-        }
+  //     // Update states
+  //     // if it is a new state
+  //     if (isLegalMove(cars.current, data.cars)) {
+  //       if (!states.current.includes(newCarsId)) {
+  //         // check if a new transition is needed
+  //         states.current.push(newCarsId)
+  //         // very first time, we don't have a old state
+  //         if (oldCarsId !== 0) {
+  //           stateTransitions.current.push([oldCarsId, newCarsId])
+  //         }
+  //       } else if (oldCarsId !== newCarsId) {
+  //         // if it is not a new state, check if a new transition is needed by checking if we have been here before
+  //         if (!states.current.includes(oldCarsId)) {
+  //           states.current.push(oldCarsId)
+  //         }
+  //       }
 
-        cars.current = data.cars;
-        setMessage(null)
-      } else {
-        setMessage("Illegal move, please put it back to the last position")
-      }
+  //       cars.current = data.cars;
+  //       setMessage(null)
+  //     } else {
+  //       setMessage("Illegal move, please put it back to the last position")
+  //     }
 
-      setRender(render => !render);
-    };
+  //     setRender(render => !render);
+  //   };
 
-    ws.current.onopen = () => {
-      ws.current?.send(JSON.stringify({ event: 'connected' }));
-    };
+  //   ws.current.onopen = () => {
+  //     ws.current?.send(JSON.stringify({ event: 'connected' }));
+  //   };
 
-    return () => {
-      ws.current?.close();
-    };
-  }, []);
+  //   return () => {
+  //     ws.current?.close();
+  //   };
+  // }, []);
 
   let state = carsToId(cars.current)
   let grid = carsToGrid(cars.current)
