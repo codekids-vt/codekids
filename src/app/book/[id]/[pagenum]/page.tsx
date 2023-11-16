@@ -24,7 +24,7 @@ function BookImage({ image, page }: { image: string, page: Page }) {
 
   return (
     <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
-      {isImage && <Image src={image} alt="book image" width={500} height={500} className="object-contain max-w-full max-h-full" />}
+      {isImage && <Image src={image} alt="book image" width={800} height={800} className="object-contain max-w-full max-h-full" />}
       {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} />}

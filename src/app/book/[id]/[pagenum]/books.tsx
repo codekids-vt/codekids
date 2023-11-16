@@ -413,7 +413,7 @@ export const books: Book[] = [
           "If it is a hot day, then HokieBird need to wear a T-shirt.",
           "If it is a chilly day, then HokieBird need to wear a Winter-jacket.",
         ],
-        image: "/if_condition/if-statement.png",
+        image: "/if_condition/if-else-diagram.png",
       },
       {
         content: ["Lets start with dragging and drop statements that should happen if the condition is true!",
