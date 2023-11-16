@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import Image from "next/image";
 
 interface HokieBirdColorState {
@@ -24,7 +24,7 @@ const availableColorsTailwind: { [key: string]: string } = {
 }
 const availableParts = ["head", "nose", "neck", "body", "tail", "left_leg", "right_leg", "left_foot", "right_foot"]
 
-export function HokieBirdColoring({ props }: { props: any }) {
+export function HokieBirdColoring({ props, setAllowNext }: { props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
     const [part, setPart] = useState(["", "", ""]);
     const [colors, setColors] = useState({
         head: "",

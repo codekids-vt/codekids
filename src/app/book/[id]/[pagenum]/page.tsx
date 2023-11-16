@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Page } from "@/util/BookData";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { ColorPattern } from "@/components/ColorPattern";
 import NumericalPattern from "@/components/NumericalPatter";
 import { CodeComplete } from "@/components/CodeComplete";
@@ -19,17 +19,17 @@ import { TableCompletionActivity } from "@/components/TableCompletionActivity";
 
 
 
-function BookImage({ image, page }: { image: string, page: Page }) {
+function BookImage({ image, page }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
 
   return (
     <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
       {isImage && <Image src={image} alt="book image" width={800} height={800} className="object-contain max-w-full max-h-full" />}
-      {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} />}
+      {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} />}
-      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />} 
-      {image === "park_1" && <NumberInputActivity props={page?.props} />} 
+      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}
+      {image === "park_1" && <NumberInputActivity props={page?.props} />}
     </div>
   );
 }
@@ -50,7 +50,7 @@ function BookContent({ content, game, props }: { content: string[], game: string
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
       {game && game === "TableCompletionActivity" && <TableCompletionActivity props={props} />}
       {game && game === "NumberInputActivity" && <NumberInputActivity props={props} />}
-    
+
     </div>
   );
 }
@@ -206,7 +206,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
             <div className="flex flex-col flex-grow items-center justify-center">
               <h1 className="text-center text-lg font-medium">
                 We could not find anything for this page.
-              </h1 >
+              </h1>
             </div>
           }
         </div >
