@@ -26,7 +26,13 @@ export function Strings({ props, setAllowNext }: { props: any | IStringsProps, s
     const [q5Correct, setQ5Correct] = useState(false)
 
     React.useEffect(() => {
-        setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct && q5Correct)
+        if (props.stringsPage === 1) {
+            setAllowNext(q1Correct && q2Correct)
+        }
+        else if (props.stringsPage === 2) {
+            setAllowNext(q3Correct && q4Correct && q5Correct)
+        }
+
     }, [q1Correct, q2Correct, q3Correct, q4Correct, q5Correct])
 
     function handleQ1(correct: boolean, incorrect: string = "") {

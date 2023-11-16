@@ -10,7 +10,7 @@ export interface IMooseChallengingYearProps {
 
 const code = "moose_birth = 2012\npassed_away = 2020\nmoose_age = passed_away - moose_birth\nprint(moose_age)\nmoose_started = 2014\nyears_worked = passed_away - moose_started\nprint(years_worked)"
 
-export function MooseChallengingYear({ props }: { props: any | IMooseChallengingYearProps }) {
+export function MooseChallengingYear({ props, setAllowNext }: { props: any | IMooseChallengingYearProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const windowScale = GetWindowScale()
 
@@ -25,7 +25,9 @@ export function MooseChallengingYear({ props }: { props: any | IMooseChallenging
     const [q4Correct, setQ4Correct] = useState(false)
 
     React.useEffect(() => {
-        props.setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+        if (props.pageNumber === 2) {
+            setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+        }
     }, [q1Correct, q2Correct, q3Correct, q4Correct])
 
     function handleQ1(correct: boolean) {

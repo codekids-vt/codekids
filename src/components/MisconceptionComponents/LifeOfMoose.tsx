@@ -28,7 +28,9 @@ export function LifeOfMoose({ props, setAllowNext }: { props: any | ILifeOfMoose
     const [q4Correct, setQ4Correct] = useState(false)
 
     React.useEffect(() => {
-        props.setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+        if (props.pageNumber === 2) {
+            setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+        }
     }, [q1Correct, q2Correct, q3Correct, q4Correct])
 
     function handleQ1(correct: boolean) {

@@ -53,7 +53,7 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "LifeOfMoose" && <LifeOfMoose props={page?.props} setAllowNext={setAllowNext} />}
       {image === "MooseMilestone" && <MooseMilestone props={page?.props} setAllowNext={setAllowNext} />}
       {image === "MooseDr" && <MooseDr props={page.props} setAllowNext={setAllowNext} />}
-      {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props} />}
+      {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseThankYou" && <MooseThankYou />}
     </div>
   );

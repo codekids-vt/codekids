@@ -22,7 +22,15 @@ export function IfStatements({ props, setAllowNext }: { props: any | IIfStatemen
     const [q4Correct, setQ4Correct] = useState(false)
 
     React.useEffect(() => {
-        setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+        if (props.pageNumber === 1) {
+            setAllowNext(q1Correct)
+        }
+        if (props.pageNumber === 2) {
+            setAllowNext(q2Correct)
+        }
+        if (props.pageNumber === 3) {
+            setAllowNext(q3Correct && q4Correct)
+        }
     }, [q1Correct, q2Correct, q3Correct, q4Correct])
 
     function handleQ1(correct: boolean, incorrect : string = "" ) {

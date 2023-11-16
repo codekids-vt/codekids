@@ -26,7 +26,13 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
     const [q4Correct, setQ4Correct] = useState(false)
 
     React.useEffect(() => {
-        setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+        if (props.pageNumber === 1) {
+            setAllowNext(q1Correct && q2Correct)
+        }
+        if (props.pageNumber === 2) {
+            setAllowNext(q3Correct && q4Correct)
+        }
+
     }, [q1Correct, q2Correct, q3Correct, q4Correct])
 
     function handleQ1(correct: boolean, incorrect : string = "" ) {
