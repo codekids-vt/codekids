@@ -36,7 +36,7 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
 
   return (
     <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
-      {isImage && <Image src={image} alt="book image" width={800} height={800} className="object-contain max-w-full max-h-full" />}
+      {isImage && <Image src={image} alt="book image" width={600} height={600} className="object-contain max-w-full max-h-full" />}
       {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} setAllowNext={setAllowNext} />}
@@ -61,10 +61,10 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
 
 function BookContent({ content, game, props, setAllowNext }: { content: string[], game: string | null, props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   return (
-    <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
-      <ul className="flex flex-col p-4 md:space-y-1 xl:space-y-4">
+    <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col gap-1 items-center w-full">
+      <ul className="flex flex-col justify-center py-2 md:space-y-1 xl:space-y-4">
         {content.map((line, i) => (
-          <li className="text-center text-xs md:text-md xl:text-2xl xl:py-3 md:font-semibold " key={i}>
+          <li className="text-xs" key={i}>
             <Reader text={line} />
           </li>
         ))
@@ -129,13 +129,13 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
   )
 
   return (
-    <div>
+    <div className="text-xs">
       <Navbar />
       <div className="mx-auto">
-        <div className="px-2 xl:px-24 py-2 h-[calc(100vh-4rem)] flex">
+        <div className="px-2 py-2 h-[calc(100vh-4rem)] flex">
           {page && (
-            <div className="flex flex-row bg-white rounded-2xl shadow-xl p-2 flex-grow">
-              <div className="basis-4/6 flex flex-col  flex-grow items-center">
+            <div className="flex flex-row justify-between bg-white rounded-2xl shadow-xl p-2 flex-grow">
+              <div className="flex flex-col flex-grow items-center">
                 <div className="flex flex-col justify-between flex-grow w-full">
                   <div className="flex flex-col flex-grow items-center justify-center">
                     <BookImage image={page.image} page={page} setAllowNext={setAllowNext} />
@@ -154,7 +154,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-between bg-gray-100 rounded-2xl">
+              <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-2xl">
                 <div className="flex flex-col items-center justify-center">
                   <BookContent content={page.content} game={page.game} props={page.props} setAllowNext={setAllowNext} />
                 </div>

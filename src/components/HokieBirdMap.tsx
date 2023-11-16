@@ -78,24 +78,23 @@ export function HokieBirdMap({ props, setAllowNext }: { props: any, setAllowNext
     }
 
     return (
-        <div className="flex flex-col items-center">
-            <Image className="" src={`/Maze/${currentImage}`} width={400} height={400} alt="Hokie Bird Maze Image" />
-            <div className="flex flex-row gap-4 px-4">
+        <div className="flex flex-row items-center text-xs xl:text-lg">
+            <Image className="w-[200px] xl:w-[400px]" src={`/Maze/${currentImage}`} width={400} height={400} alt="Hokie Bird Maze Image" />
+            <div className="flex flex-row ">
                 <div>
                     {procedures.map((statement, index) => {
                         return (
-                            <div key={index} className="flex flex-row items-center space-x-1 p-0.5">
-                                <div className="w-10 px-2">{index + 1}.</div>
+                            <div key={index} className="flex flex-row items-center">
                                 <div className="flex flex-col rounded-full" onDrop={(e) => handleOnDropStatement(e, index)} onDragOver={(e) => handleDragOver(e)}>
                                     <input
                                         type="text"
-                                        className={`rounded-2xl text-center  border-2 ${errorProcedure === index ? "border-red-500" : ""} ${procedures[index] !== "" ? "bg-blue-200" : ""}`}
-                                        placeholder={props?.type ? "Type Here" : "Drag Statement Here"}
+                                        className={`rounded-2xl text-center w-min ${errorProcedure === index ? "border-red-500" : ""} ${procedures[index] !== "" ? "bg-blue-200" : "bg-gray-200"}`}
+                                        placeholder={props?.type ? "Type Here" : "Drag Here"}
                                         disabled={!props.type}
                                         value={statement}
                                         onChange={(e) => setProcedure(index, e.target.value)} />
                                 </div>
-                                {errorProcedure === index && <div className="text-red-500">x</div>}
+                                {errorProcedure === index && <div className="pl-1 text-red-500">x</div>}
                             </div>
                         )
                     })}
@@ -121,8 +120,8 @@ export function HokieBirdMap({ props, setAllowNext }: { props: any, setAllowNext
                         }}>Run</button>
                         <button className="p-2 bg-red-200 rounded-2xl hover:shadow-2xl" onClick={() => resetAll()}>Reset All</button>
                     </div>
-                    <div className="p-4">
-                        {message && <div className={`p-4 bg-blue-200 rounded-2xl`}>{message}</div>}
+                    <div className="p-1">
+                        {message && <div className={`p-1 bg-blue-200 rounded-2xl break-words`}>{message}</div>}
                     </div>
                 </div>
             </div>
