@@ -24,6 +24,18 @@ export function HokieBirdIfCondition({ props, setAllowNext }: { props: any, setA
         setAllowNext(good)
     }, [good])
 
+    function handleOptionSelect(option: string) {
+        const isCorrectAnswer = Array.isArray(props.ans) && props.ans.includes(option);
+        setGame(prevGame => ({
+            ...prevGame,
+            statement: option
+        }));
+        setGood(isCorrectAnswer);
+        setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);
+        setWrong(!isCorrectAnswer);
+    }
+
+
     function handleOnDragStatement(e: React.DragEvent, statement: string) {
         e.dataTransfer.setData("statement", statement);
     }
@@ -103,20 +115,24 @@ export function HokieBirdIfCondition({ props, setAllowNext }: { props: any, setA
                     <div className="flex flex-col" onDrop={(e) => handleOnDropCondition(e, "condition")} onDragOver={(e) => handleDragOver(e)}>
                         <label htmlFor="ifCondition" className="flex flex-grow">
                             <p className="px-2"><strong>If</strong></p>
-                            <input key={"ifCondition"} type="text" className="outline-black rounded-2xl outline-dotted text-center px-8" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={props.condition} onChange={(e) => handleInputChangeCondition(e)} />
+                            <input key={"ifCondition"} type="text" className="w-80 outline-black rounded-2xl outline-dotted text-center px-8" placeholder={props?.type ? "Type Here" : "Drag Condition Here"} disabled={!props.type} defaultValue={props.condition} onChange={(e) => handleInputChangeCondition(e)} />
                         </label>
                     </div>
                     <div className="flex flex-col" onDrop={(e) => handleOnDropStatement(e, "statement")} onDragOver={(e) => handleDragOver(e)}>
                         <label htmlFor="ifConditionStatement1" className="flex flex-grow p-2" />
-                        <input key={"ifConditionStatement1"} type="text" className="outline-black rounded-2xl outline-dotted text-center" placeholder={props?.type ? "Type Here" : "Drag appropriate action here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
+                        <input key={"ifConditionStatement1"} type="text" className="w-80 outline-black rounded-2xl outline-dotted text-center" placeholder={props?.type ? "Type Here" : "Drag appropriate action here"} disabled={!props.type} defaultValue={game.statement} onChange={(e) => handleInputChangeStatement(e)} />
                     </div>
                 </div>
                 <div className="flex flex-col flex-grow justify-between p-1">
                     {props.statements.map((statement: string, i: number) => (
                         <div className="p-2" key={`ifActivity-${i}`}>
-                            <div draggable={props.draggable}
+                            <div
+                                draggable={props.draggable}
                                 className="flex p-1 bg-gray-300  rounded-xl text-blue-600 shadow-xl hover:shadow-2xl hover:bg-gray-400 hover:text-white"
-                                onDragStart={(e) => handleOnDragStatement(e, statement)}>{statement}
+                                onDragStart={(e) => handleOnDragStatement(e, statement)}
+                                onClick={() => handleOptionSelect(statement)}
+                            >
+                                {statement}
                             </div>
                         </div>
                     ))}

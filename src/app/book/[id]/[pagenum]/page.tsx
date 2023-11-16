@@ -95,9 +95,6 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
   }
 
   function getPrevPageNum(): number | null {
-    console.log(`pageNum: ${pageNum} and bookNum: ${bookNum} and books[bookNum].pages.length: ${books[bookNum].pages.length} and pageNum - 1: ${pageNum - 1}`)
-    console.log(`pageNum - 1 < 0: ${pageNum - 1 < 0} and pageNum - 1: ${pageNum - 1}`)
-    console.log(`pageNum - 1 < 0 ? false : pageNum - 1: ${pageNum - 1 < 0 ? false : pageNum - 1}`)
     return pageNum - 1 < 0 ? null : pageNum - 1;
   }
 
