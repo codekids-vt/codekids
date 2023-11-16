@@ -10,7 +10,7 @@ export interface IMooseDrProps {
 
 const code = "year = 2019\nmoose_title = 'Mr.'\nprint('A year has passed!')\nyear = 2020\nmoose_title = 'Dr.'\nprint(year)\nprint(moose_title)"
 
-export function MooseDr({ props }: { props: any | IMooseDrProps }) {
+export function MooseDr({ props, setAllowNext }: { props: any | IMooseDrProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
     const windowScale = GetWindowScale()
 
     const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Select an answer above!")
@@ -18,9 +18,19 @@ export function MooseDr({ props }: { props: any | IMooseDrProps }) {
     const [q3AnswerExplanation, setQ3AnswerExplanation] = useState("Select an answer above!")
     const [q4AnswerExplanation, setQ4AnswerExplanation] = useState("Select an answer above!")
 
+    const [q1Correct, setQ1Correct] = useState(false)
+    const [q2Correct, setQ2Correct] = useState(false)
+    const [q3Correct, setQ3Correct] = useState(false)
+    const [q4Correct, setQ4Correct] = useState(false)
+
+    React.useEffect(() => {
+        setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+    }, [q1Correct, q2Correct, q3Correct, q4Correct])
+
     function handleQ1(correct: boolean) {
         if(correct) {
             setQ1AnswerExplanation("Correct! year is reassigned to 2020 and loses it's old value 2019. Click next again and watch as year is changed to 2020.")
+            setQ1Correct(true)
         } else {
             setQ1AnswerExplanation("Incorrect. Remember that when a variable is reassigned, it loses it's old value. Click next again and watch as year is changed to 2020.")
         }
@@ -29,6 +39,7 @@ export function MooseDr({ props }: { props: any | IMooseDrProps }) {
     function handleQ2(correct: boolean) {
         if(correct) {
             setQ2AnswerExplanation("Correct! moose_title is reassigned to the String 'Dr.'")
+            setQ2Correct(true)
         } else {
             setQ2AnswerExplanation("Incorrect. Remember that when a variable is reassigned, it loses it's old value. Click next again and watch as moose_title is changed to 'Dr.'")
         }
@@ -37,6 +48,7 @@ export function MooseDr({ props }: { props: any | IMooseDrProps }) {
     function handleQ3(correct: boolean,  incorrect: string = "") {
         if(correct) {
             setQ3AnswerExplanation("Correct! year contains the value 2020. Click the Next button to see it print!")
+            setQ3Correct(true)
         } else {
             switch (incorrect) {
                 case "2019":
@@ -53,6 +65,7 @@ export function MooseDr({ props }: { props: any | IMooseDrProps }) {
     function handleQ4(correct: boolean,  incorrect: string = "") {
         if(correct) {
             setQ4AnswerExplanation("Correct! moose_title contains the value 'Dr.'. Click the next button to see it print!")
+            setQ4Correct(true)
         } else {
             switch (incorrect) {
                 case "Mr":

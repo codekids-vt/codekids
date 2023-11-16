@@ -7,7 +7,7 @@ export interface IConditionalOperatorsProps {
     pageNumber: number
 }
 
-export function ConditionalOperators({ props }: { props: any | IConditionalOperatorsProps }) {
+export function ConditionalOperators({ props, setAllowNext }: { props: any | IConditionalOperatorsProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const windowScale = GetWindowScale()
 
@@ -20,10 +20,20 @@ export function ConditionalOperators({ props }: { props: any | IConditionalOpera
     const [q4ChosenAnswer, setQ4ChosenAnswer] = useState("?")
     const [q4AnswerExplanation, setQ4AnswerExplanation] = useState("Choose an answer above!")
 
+    const [q1Correct, setQ1Correct] = useState(false)
+    const [q2Correct, setQ2Correct] = useState(false)
+    const [q3Correct, setQ3Correct] = useState(false)
+    const [q4Correct, setQ4Correct] = useState(false)
+
+    React.useEffect(() => {
+        setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+    }, [q1Correct, q2Correct, q3Correct, q4Correct])
+
     function handleQ1(correct: boolean, incorrect : string = "" ) {
         if(correct) {
             setQ1ChosenAnswer("False")
             setQ1AnswerExplanation("Correct! 'black' is not equal to 'cream'.")
+            setQ1Correct(true)
         } else {
             switch (incorrect) {
                 case "True":
@@ -43,6 +53,7 @@ export function ConditionalOperators({ props }: { props: any | IConditionalOpera
         if(correct) {
             setQ2ChosenAnswer("True")
             setQ2AnswerExplanation("Correct! 'cream' is equal to 'cream'!")
+            setQ2Correct(true)
         } else {
             switch (incorrect) {
                 case "False":
@@ -63,6 +74,7 @@ export function ConditionalOperators({ props }: { props: any | IConditionalOpera
         if(correct) {
             setQ3ChosenAnswer("False")
             setQ3AnswerExplanation("Correct! total_number is a string while black_number and yellow_number are Integers. So it will be false.")
+            setQ3Correct(true)
         } else {
             switch (incorrect) {
                 case "True":
@@ -82,6 +94,7 @@ export function ConditionalOperators({ props }: { props: any | IConditionalOpera
         if(correct) {
             setQ4ChosenAnswer("None")
             setQ4AnswerExplanation("Correct! This is using > one a string and integer which can't be done.")
+            setQ4Correct(true)
         } else {
             switch (incorrect) {
                 case "True":

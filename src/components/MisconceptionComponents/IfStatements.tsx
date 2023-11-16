@@ -7,7 +7,7 @@ export interface IIfStatementsProps {
     pageNumber: number
 }
 
-export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
+export function IfStatements({ props, setAllowNext }: { props: any | IIfStatementsProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const windowScale = GetWindowScale()
 
@@ -16,10 +16,20 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
     const [q3AnswerExplanation, setQ3AnswerExplanation] = useState("Choose an answer above!")
     const [q4AnswerExplanation, setQ4AnswerExplanation] = useState("Choose an answer above!")
 
+    const [q1Correct, setQ1Correct] = useState(false)
+    const [q2Correct, setQ2Correct] = useState(false)
+    const [q3Correct, setQ3Correct] = useState(false)
+    const [q4Correct, setQ4Correct] = useState(false)
+
+    React.useEffect(() => {
+        setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+    }, [q1Correct, q2Correct, q3Correct, q4Correct])
+
     function handleQ1(correct: boolean, incorrect : string = "" ) {
         if(correct) {
             setQ1AnswerExplanation("Correct! derek_is_happy is True so everything indented under the If-statement will be executed"
                                     + "and the else will be skipped.")
+            setQ1Correct(true)
         } else {
             switch (incorrect) {
                 case "TF":
@@ -41,6 +51,7 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
     function handleQ2(correct: boolean, incorrect : string = "" ) {
         if(correct) {
             setQ2AnswerExplanation("Correct! The If-statement will execute. Also, the final print is not part of either the if-statement or else, so it is also printed.")
+            setQ2Correct(true)
         } else {
             switch (incorrect) {
                 case "1":
@@ -58,6 +69,7 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
     function handleQ3(correct: boolean, incorrect : string = "" ) {
         if(correct) {
             setQ3AnswerExplanation("Correct! The condition in the If-statement is false, so the If-statement will be skipped and the program will continue and print \"False\".")
+            setQ3Correct(true)
         } else {
             switch (incorrect) {
                 case "TF":
@@ -77,6 +89,7 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
     function handleQ4(correct: boolean, incorrect : string = "" ) {
         if(correct) {
             setQ4AnswerExplanation("Correct! hokie_bird_is_happy is True so the If-statement will pass since the OR logical operator was used.")
+            setQ4Correct(true)
         } else {
             switch (incorrect) {
                 case "1":

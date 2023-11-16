@@ -42,17 +42,17 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} setAllowNext={setAllowNext} />}
       {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} setAllowNext={setAllowNext} />}
       {image === "DataTypesIntro" && <DataTypesIntro />}
-      {image === "IntsAndBools" && <IntsAndBools />}
-      {image === "VariableAssignment" && <VariableAssignment />}
-      {image === "Strings" && <Strings props={page?.props} />}
-      {image === "Sequencing" && <Sequencing />}
+      {image === "IntsAndBools" && <IntsAndBools props={page?.props} setAllowNext={setAllowNext} />}
+      {image === "VariableAssignment" && <VariableAssignment props={1} setAllowNext={setAllowNext} />}
+      {image === "Strings" && <Strings props={page?.props} setAllowNext={setAllowNext} />}
+      {image === "Sequencing" && <Sequencing props={page?.props} setAllowNext={setAllowNext} />}
       {image === "IfStatementIntro" && <IfStatementIntro />}
-      {image === "ConditionalOperators" && <ConditionalOperators props={page?.props} />}
-      {image === "LogicalOperators" && <LogicalOperators />}
-      {image === "IfStatements" && <IfStatements props={page?.props} />}
-      {image === "LifeOfMoose" && <LifeOfMoose props={page?.props} />}
-      {image === "MooseMilestone" && <MooseMilestone props={page?.props} />}
-      {image === "MooseDr" && <MooseDr props={page.props} />}
+      {image === "ConditionalOperators" && <ConditionalOperators props={page?.props} setAllowNext={setAllowNext} />}
+      {image === "LogicalOperators" && <LogicalOperators props={page?.props} setAllowNext={setAllowNext} />}
+      {image === "IfStatements" && <IfStatements props={page?.props} setAllowNext={setAllowNext} />}
+      {image === "LifeOfMoose" && <LifeOfMoose props={page?.props} setAllowNext={setAllowNext} />}
+      {image === "MooseMilestone" && <MooseMilestone props={page?.props} setAllowNext={setAllowNext} />}
+      {image === "MooseDr" && <MooseDr props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props} />}
       {image === "MooseThankYou" && <MooseThankYou />}
     </div>

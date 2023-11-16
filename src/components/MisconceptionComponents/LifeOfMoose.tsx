@@ -13,7 +13,7 @@ const code = "moose_name = 'Moose'\nprint(moose_name)\nmoose_birthday = '02/13/2
                 + "moose_breed = 'Labrador Retriever'\nprint(moose_breed)"
 
 
-export function LifeOfMoose({ props }: { props: any | ILifeOfMooseProps }) {
+export function LifeOfMoose({ props, setAllowNext }: { props: any | ILifeOfMooseProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const windowScale = GetWindowScale()
 
@@ -22,9 +22,19 @@ export function LifeOfMoose({ props }: { props: any | ILifeOfMooseProps }) {
     const [q3AnswerExplanation, setQ3AnswerExplanation] = useState("Select an answer above!")
     const [q4AnswerExplanation, setQ4AnswerExplanation] = useState("Select an answer above!")
 
+    const [q1Correct, setQ1Correct] = useState(false)
+    const [q2Correct, setQ2Correct] = useState(false)
+    const [q3Correct, setQ3Correct] = useState(false)
+    const [q4Correct, setQ4Correct] = useState(false)
+
+    React.useEffect(() => {
+        props.setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+    }, [q1Correct, q2Correct, q3Correct, q4Correct])
+
     function handleQ1(correct: boolean) {
         if(correct) {
             setQ1AnswerExplanation("Correct! Press the next button again to see the value printed!")
+            setQ1Correct(true)
         } else {
             setQ1AnswerExplanation("Incorrect. Remember that moose_name is variable which has a value. print() will print out that value.")
         }
@@ -33,6 +43,7 @@ export function LifeOfMoose({ props }: { props: any | ILifeOfMooseProps }) {
     function handleQ2(correct: boolean) {
         if(correct) {
             setQ2AnswerExplanation("Correct! Press the next button again to see the value printed!")
+            setQ2Correct(true)
         } else {
             setQ2AnswerExplanation("Incorrect. Notice the variable being printed next is moose_birthday.")
         }
@@ -41,6 +52,7 @@ export function LifeOfMoose({ props }: { props: any | ILifeOfMooseProps }) {
     function handleQ3(correct: boolean) {
         if(correct) {
             setQ3AnswerExplanation("Correct! Press the next button again to see the value printed!")
+            setQ3Correct(true)
         } else {
             setQ3AnswerExplanation("Incorrect. Remember the quotation marks aren't included when printing a String")
         }
@@ -49,6 +61,7 @@ export function LifeOfMoose({ props }: { props: any | ILifeOfMooseProps }) {
     function handleQ4(correct: boolean) {
         if(correct) {
             setQ4AnswerExplanation("Correct! Press the next button again to see the value printed!")
+            setQ4Correct(true)
         } else {
             setQ4AnswerExplanation("Incorrect. Remember that moose_breed is variable which has a value. print() will print out that value.")
         }

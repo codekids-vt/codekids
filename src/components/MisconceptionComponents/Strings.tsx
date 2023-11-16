@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import { Reader } from '../Reader'
 import { GetWindowScale } from './GetWindowScale'
 import Image from 'next/image'
@@ -9,7 +9,7 @@ export interface IStringsProps {
     stringsPage: number
 }
 
-export function Strings({ props }: { props: any | IStringsProps }) {
+export function Strings({ props, setAllowNext }: { props: any | IStringsProps, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
 
     const windowScale = GetWindowScale()
 
@@ -19,9 +19,20 @@ export function Strings({ props }: { props: any | IStringsProps }) {
     const [q4AnswerExplanation, setQ4AnswerExplanation] = useState("Choose an answer above!")
     const [q5AnswerExplanation, setQ5AnswerExplanation] = useState("Choose an answer above!")
 
+    const [q1Correct, setQ1Correct] = useState(false)
+    const [q2Correct, setQ2Correct] = useState(false)
+    const [q3Correct, setQ3Correct] = useState(false)
+    const [q4Correct, setQ4Correct] = useState(false)
+    const [q5Correct, setQ5Correct] = useState(false)
+
+    React.useEffect(() => {
+        setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct && q5Correct)
+    }, [q1Correct, q2Correct, q3Correct, q4Correct, q5Correct])
+
     function handleQ1(correct: boolean, incorrect: string = "") {
         if(correct) {
             setQ1AnswerExplanation("Correct! All the values are surrounded by single or double quotation marks. This means they are Strings!")
+            setQ1Correct(true)
         } else {
             switch (incorrect) {
                 case "Integer":
@@ -41,6 +52,7 @@ export function Strings({ props }: { props: any | IStringsProps }) {
     function handleQ2(correct: boolean, incorrect: string = "") {
         if(correct) {
             setQ2AnswerExplanation("Correct! The quotation marks are not printed when printing a String.")
+            setQ2Correct(true)
         } else {
             switch (incorrect) {
                 case "Derek":
@@ -60,6 +72,7 @@ export function Strings({ props }: { props: any | IStringsProps }) {
     function handleQ3(correct: boolean, incorrect: string = "") {
         if(correct) {
             setQ3AnswerExplanation("Correct! anniversary is assigned 147 which is an integer.")
+            setQ3Correct(true)
         } else {
             switch (incorrect) {
                 case "Boolean":
@@ -79,6 +92,7 @@ export function Strings({ props }: { props: any | IStringsProps }) {
     function handleQ4(correct: boolean, incorrect: string = "") {
         if(correct) {
             setQ4AnswerExplanation("Correct! Even though 148 is a number, it's surrounded by double quotation marks. So, it's a String!")
+            setQ4Correct(true)
         } else {
             switch (incorrect) {
                 case "Boolean":
@@ -98,6 +112,7 @@ export function Strings({ props }: { props: any | IStringsProps }) {
     function handleQ5(correct: boolean, incorrect: string = "") {
         if(correct) {
             setQ5AnswerExplanation("Correct! In the last print statement, it prints 'anniversary_2' which is a string. Not the variable anniversary_2")
+            setQ5Correct(true)
         } else {
             switch (incorrect) {
                 case "148":

@@ -1,20 +1,27 @@
 "use client"
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import { Reader } from '../Reader'
 import { GetWindowScale } from './GetWindowScale'
 import Image from 'next/image'
 
 
-export function VariableAssignment() {
-
+export function VariableAssignment({ props, setAllowNext }: { props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
     const windowScale = GetWindowScale()
 
     const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
     const [q2AnswerExplanation, setQ2AnswerExplanation] = useState("Choose an answer above!")
 
+    const [q1Correct, setQ1Correct] = useState(false)
+    const [q2Correct, setQ2Correct] = useState(false)
+
+    React.useEffect(() => {
+        setAllowNext(q1Correct && q2Correct)
+    }, [q1Correct, q2Correct])
+
     function handleQ1(correct: boolean, incorrect: number = 0) {
         if(correct) {
             setQ1AnswerExplanation("Correct! anniversary is originally 147 and is then changed to 148.")
+            setQ1Correct(true)
         } else {
             switch (incorrect) {
                 case 1:
@@ -31,6 +38,7 @@ export function VariableAssignment() {
     function handleQ2(correct: boolean, incorrect: number = 0) {
         if(correct) {
             setQ2AnswerExplanation("Correct! anniversary is reassigned to its previous value + 1 which is 148.")
+            setQ2Correct(true)
         } else {
             switch (incorrect) {
                 case 1:
