@@ -75,7 +75,7 @@ export function HokieBirdMap({ props }: { props: any }) {
                 <div>
                     {procedures.map((statement, index) => {
                         return (
-                            <div key={index} className="flex flex-wrap items-center space-x-1 p-0.5">
+                            <div key={index} className="flex flex-row items-center space-x-1 p-0.5">
                                 <div className="w-10 px-2">{index + 1}.</div>
                                 <div className="flex flex-col rounded-full" onDrop={(e) => handleOnDropStatement(e, index)} onDragOver={(e) => handleDragOver(e)}>
                                     <input type="text" className={`rounded-2xl text-center  border-2 ${errorProcedure === index ? "border-red-500" : ""} ${procedures[index] !== "" ? "bg-blue-200" : ""}`}
