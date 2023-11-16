@@ -44,24 +44,7 @@ function BookImage({ image, page }: { image: string, page: Page }) {
       {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} />}
-      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}   
-      {image === "DataTypesIntro" && <DataTypesIntro/>}
-      {image === "IntsAndBools" && <IntsAndBools/>}
-      {image === "VariableAssignment" && <VariableAssignment/>}
-      {image === "Strings" && <Strings props={page?.props}/>}
-      {image === "Sequencing" && <Sequencing/>}
-      {image === "IfStatementIntro" && <IfStatementIntro/>}
-      {image === "ConditionalOperators" && <ConditionalOperators props={page?.props}/>}
-      {image === "LogicalOperators" && <LogicalOperators/>}
-      {image === "IfStatements" && <IfStatements props={page?.props}/>}
-      {image === "LifeOfMoose" && <LifeOfMoose props={page?.props}/>}
-      {image === "MooseMilestone" && <MooseMilestone props={page?.props}/>}
-      {image === "MooseDr" && <MooseDr props={page.props}/>}
-      {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props}/>}
-      {image === "MooseThankYou" && <MooseThankYou/>}
-      {image === "park_1" && <NumberInputActivity props={page?.props} />} 
       {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}
-      {image === "InputActivity" && <InputActivity props={page?.props} />}
     </div>
   );
 }
@@ -80,10 +63,11 @@ function BookContent({ content, game, props }: { content: string[], game: string
       {game && game === "color" && <ColorPattern />}
       {game && game === "number" && <NumericalPattern pattern={props.pattern} answer={props.ans[0]} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
-      {game && game === "TableFlowers" && <TableFlowers />}
-      {game && game === "TableTrees" && <TableTrees />}
-      {game && game === "TableMultiplication" && <TableMultiplication />}
-        </div>
+      {game && game === "FlowerInputActivity" && <FlowerInputActivity question={props.question} options={props.options} answer={props.ans[0]} showIOLabels={props.showIOLabels} />}
+      {game && game === "TableCompletionActivity" && <TableCompletionActivity options={props.options} answer={props.ans[0]} />}
+      {game && game === "TableCompletionActivityTrees" && <TableCompletionActivityTrees options={props.options} answer={props.ans[0]} />}
+      {game && game === "NumberInputActivity" && <NumberInputActivity question={props.question} options={props.options} answer={props.ans[0]} showIOLabels={props.showIOLabels} />}
+    </div>
   );
 
 }
