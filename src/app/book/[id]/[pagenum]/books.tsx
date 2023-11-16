@@ -643,14 +643,15 @@ export const books: Book[] = [
   },
   {
     BookId: 7,
-    title: "Python Tutor",
-    bookCover: "/color_1.png",
-    blurb: "Learn programming with a visualizer",
+    title: "Variables",
+    bookCover: "/lighter_orange.png",
+    blurb: "Learn about variables in Python",
     author: "Dev",
     cover: "/Python-logo-notext.png",
     pages:
       [{
         content: ["Python Tutor is a visualizer that allows you to see how your code is executed step by step.",
+          "We'll be using this throughout several books as you learn about programming in Python!",
           "You can see the values of variables and how they change as your code is executed.",
           "You can also see the call stack and how functions are called and returned.",
           "Let's try it out!"],
@@ -658,6 +659,425 @@ export const books: Book[] = [
         props: {
           code: "def add(a, b):\n\treturn a + b\n\nx = 1\ny = 2\nz = add(x, y)",
         }
-      }],
+      },
+      { // Variables intro
+        image: "/VariablesBook/variables_intro.png",
+        content: ["Variables are places where you can store data.",
+          "You can think about a variable as a 'Box' with a name.",
+          "Suppose we name a box therapy_dog, then this 'box' can store data related to therapy dog.",
+          "Lets use Epcot as an example. Epcot is Virginia Tech's newest therapy dog!",
+          "The variable's name is therapy_dog, and the data will be 'Epcot'.",
+          "In Python, you can't have spaces in variable names. We use underscores instead like in therapy_dog."]
+      },
+      { // Variables intro 2
+        image: "/VariablesBook/variables_intro2.png",
+        content: ["When you see a variable in code, the name of the variable will always be to the left of the '=' sign.",
+                  "Everything to the right of the '=' sign is what you are setting as the variables value.",
+                  "The box is to the left of the '=' and what you want to put in the box is to the right of the '='",
+                  "For this example, the code would by therapy_dog='Epcot'"]
+      },
+      { // Variables intro in python tutor
+        content: ["Here is an example of how variables would be assigned in Python.",
+                  "For the first variable, therapy_dog is the name of the variable (left of '=' sign) and 'Epcot' is the value of the variable (right of '=' sign).",
+                  "For the second variable, year is the name of the variable (left of '=' sign) and 2023 is the value of the variable (right of '=' sign).",
+                  "Note: print() will be used a lot throughout this book. All print() does is print the value in it's parenthesis.",
+                  "Click the Next button in Python Tutor to see the variable be created.",
+                  "You'll see a gray box be created that has the variable names and their values (similar to our box analogy!)."],
+        image: "tutor",
+        props:{
+          code: "therapy_dog = 'Epcot'\nprint(therapy_dog)\n\nyear = 2023\nprint(year)"
+        }
+      },
+      { // Variable Assignment
+        image: "VariableAssignment",
+        content: ["Variables can be assigned different values throughout a program.",
+                  "When a variable that already has a value is assigned a new value, the old value is lost.",
+                  "Think of your age as a variable. If you are 8 years old now, on your birthday your old age will be lost and your new age will be 9!",
+                  "Try out the examples and exercises."]
+      },
+      {
+        image: "tutor",
+        content: ["Remember that when a variable that already stores a value is reassigned, the old value is lost.",
+                  "Run through the code to the left to see this!",
+                  "number is created on line two and assigned the value 10. It is the reassigned on line 6."],
+        props: {
+          code: "# Here, number is initially assigned to 10\nnumber = 10\nprint(number)\n\n# Here, number is reassigned to 20\nnumber = 20\n\n" +
+                "# Since number was reassigned, the first value of 10 is lost\n# and number is now 20\nprint(number)"
+        }
+      },
+      {
+        image: "tutor",
+        content: ["Here is another example of variable assignment.",
+                  "Walk through the program and notice how first is reassigned to the value of second.",
+                  "What do you think will be printed at the end of the program?"],
+        props: {
+          code: "first = 100\nsecond = 1\n\n# Here, first is reassigned to the value of second.\nfirst = second\n\n# What do think will be printed?\nprint(first)"
+        }
+      },
+      { // Data types intro
+        image: "DataTypesIntro",
+        content: ["When assigning a variable a value, it's also important to consider what type of value you are assigning.",
+                  "This is known as a data type. We'll only use 3 data types for now.",
+                  "1. Integer - this is any whole number like 9.",
+                  "2. String - this is text like \"Hello\".",
+                  "3. Boolean - this is a logical value indicating True or False.",
+                  "We will look closer at these data types in the following pages."]
+      },
+      {
+        image: "tutor",
+        content: ["Look that the code to the left.",
+                  "Pay close attention to what is actually in the print statement.",
+                  "What will be printed at the end of the program?"],
+        props: {
+          code: "virginia_tech_age = 151\n\n# Pay close attention to what's in the print statement.\n# Is it actually the variable virginia_tech_age?\nprint(\"virginia_tech_age\")"
+        }
+      },
+      { // Ints and Bools Intro
+        image: "IntsAndBools",
+        content: ["This page will focus on Integers and Booleans.",
+                  "Integer - this is any whole number like 9.",
+                  "Boolean - this is a logical value indicating True or False.",
+                  "For example, 2 < 4 has a Boolean value of True since 2 is less than 4."]
+      },
+      { // Ints and Bools Intro Python Tutor
+        image: "tutor",
+        content: ["Take a look at the variables to the left.",
+                  "The variable num is assigned the whole number 9, which means it's a Integer.",
+                  "The variable sky_is_blue is assigned True, which means it's a Boolean."],
+        props: {
+          code: "# Here num is an Integer\nnum = 9\n\n# Here sky_is_blue is a Boolean\nsky_is_blue  = True"
+        }
+      },
+      {
+        image: "Sequencing",
+        content: ["Let's use the football game for another question!",
+                  "A very important concept to understand while programming is that each line is executed from top to bottom.",
+                  "This means every line's execution is dependent on the lines above it.",
+                  "Think of each line as it's own step with the very beginning line being step 1.",
+                  "Each step will be executed one after another until the program is over."]
+      },
+      {
+        image: "tutor",
+        content: ["Click through the code to the left and think about how the code is executed from top to bottom.",
+                  "Even though first is reassigned to 5 and second is reassigned to 10, total was calculated before hand."],
+        props: {
+          code: "first = 0\nsecond = 0\n\n#What is total set to here?\ntotal = first + second\n\n#first and second are reassigned after total has been assigned.\nfirst = 5\nsecond = 10\n\n" +
+                "# total is still printed as 0.\nprint(total)"
+        }
+      },
+      { // Strings
+        image: "Strings",
+        props: {
+          stringsPage: 1
+        },
+        content: ["This page will focus on Strings!",
+                  "You may have noticed in the previous pages that 'Epcot' is an example of a String! Let's try more practice.",
+                  "String - this is text like \"Hello\". You can also think of it like a sequence of different characters.",
+                  "When the data type is String, then the characters will ALWAYS be surrounded by double or single quotation marks.",
+                  "For example, \"Hello\" and \'Hello\' are both strings since they're surrounded by double or single quotation marks.",
+                  "What do you think '9' is? You may initially think Integer, but notice it's surround in single quotation marks. So, it's a string."]
+      },
+      {
+        image: "Strings",
+        props: {
+          stringsPage: 2
+        },
+        content: ["Try out these exercises on Strings.",
+                  "Remember that anything that's in single or double quotation marks are Strings.",
+                  "Also, notice in the code we have two variables called anniversary and anniversary_2.",
+                  "These are two separate variables, but since they hold similar data, they have been given similar names."]
+      },
+      {
+        image: "/if_condition/action5.gif",
+        content: ["Congratulations! You have completed this book about variables!",
+                  "Here is a quick recap of what we learned.",
+                  "Variables are places where you store data throughout a program.",
+                  "Every variable has a name and can be assigned a value. When a variable is assigned a value, any old value it had is lost.",
+                  "The values of a variable are always of a data type: Integer, Boolean, or String.",
+                  "An Integer is a whole number.",
+                  "A Boolean is alway True or False.",
+                  "A String is any data surrounded about single or double quotation marks."]
+      }
+    ],
   },
+  {
+    BookId: 8,
+    title: "If Statements",
+    blurb: "Learn about Python If Statements",
+    author: "Dev",
+    bookCover: "/color_4.png",
+    cover: "/Python-logo-notext.png",
+    pages:
+    [
+      { // If statement intro
+        image: "IfStatementIntro",
+        content: ["In programs, there are ways for you to control the flow of execution.",
+                  "In this book you'll learn about If statements in Python!",
+                  "If-statements simply allow you to execute code only if a certain condition is true."]
+      },
+      {
+        image: "tutor",
+        content: ["Look at this quick example of an If-Statement!",
+                  "Click the Next button in Python Tutor and run through the code.",
+                  "Notice how lines 6 and 7 are skipped but the rest of the program executes.",
+                  "This is because on line 3 we are saying \"If sky_is_blue is True, then execute lines 4 and 5. Otherwise, execute line 7\".",
+                  "Line 9 isn't part of the If-statement, so it get's executed regardless."],
+        props: {
+          code: 'sky_is_blue = True\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\nelse:\n\tprint("It\'s raining. Lets stay inside")\n\nprint("Hopefully it\'s sunny tomorrow!")'
+        }
+      },
+      {
+        image: "tutor",
+        content: ["Here is the same code as the previous page except this time sky_is_blue is False",
+                  "Now notice lines 4 and 5 get skipped and line 7 is executed.",
+                  "Line 7 is part of the 'else'. The 'else' part of an If-statement get's executed when the If-statement is false.",
+                  "In this example, sky_is_blue is False. So the 'else' part is executed.",
+                  "If-statements let you choose what to execute.",
+                  "This is how you can control the flow of execution!"],
+        props: {
+          code: 'sky_is_blue = False\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\nelse:\n\tprint("It\'s raining. Lets stay inside")\n\nprint("Hopefully it\'s sunny tomorrow!")'
+        }
+      },
+      {
+        image: "tutor",
+        content: ["It's also important to recognize what is part of an If-statement.",
+                  "Python uses indentation to convey this.",
+                  "Notice that lines 4 and 5 are indented under the If-statement on line 3.",
+                  "This means they are part of the If-statement and will be executed if sky_is_blue is True",
+                  "Also notice line 7 is NOT indented, so it's not part of the If-Statement and will be executed regardless.",
+                  "Run through the code to see this!",
+                  "As a quick exercise, click the Edit Code button and change sky_is_blue to True and run it again!"],
+        props: {
+          code: 'sky_is_blue = False\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\n\nprint("Hopefully it\'s sunny tomorrow!")'
+        }
+      },
+      { // Conditional operators
+        image: "ConditionalOperators",
+        content: ["Let's learn a very important concept for if-statements: Conditional Operators.",
+                  "A conditional operator is similar to a mathematical operator(+, -). However, a conditional operator's result is always True or False -- a Boolean!",
+                  "Remember we learned about Booleans in the previous book about variables.",
+                  "Here are some common conditional operators:",
+                  "1. Use \"==\" to check if two values are equal or the same.",
+                  "2. Use \"<\" to check if one value is less than another.",
+                  "3. use \">\" to check of one value is greater than another.",
+                  "Here are some examples:",
+                  "5 == 5 will be True",
+                  "5 + 5 == 10 will be True",
+                  "5 < 5 will be False"],
+        props: {
+          pageNumber: 1
+        }
+      },
+      { // Conditional operators
+        image: "ConditionalOperators",
+        content: ["It's also important to pay attention to the data types of the values you are comparing.",
+                  "It's best to never use conditional operators on variables with different data types.",
+                  "Technically, == can be used on different data types and it will always return false.",
+                  "However, using the conditional operators > and < will cause an error.",
+                  "Try out the exercises to the left!"],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "tutor",
+        content: ["Here is an example using '==' to check if two values are equal.",
+                  "Run through the code and pay attention to what gets printed on lines 5 and 6.",
+                  "derek_color is NOT equal to wager_color so False is printed.",
+                  "derek_color is equal to josie_color so True is Printed."],
+        props: {
+          code: "derek_color = 'cream'\nwagner_color = 'black'\njosie_color = 'cream'\n\nprint(derek_color == wagner_color)\nprint(derek_color == josie_color)"
+        }
+      },
+      {
+        image: "tutor",
+        content: ["Take a loot at this example.",
+                  "Notice how we are now combining conditional operators and If-statements.",
+                  "Since conditional operators always evaluate to True or False, they are perfect for using in If-statements.",
+                  "Run through this code and notice what happens at line 5.",
+                  "black_number < cream_number will evaluate to True, so line 6 will be executed.",
+                  "Now pay close attention to the variable data types on line 8. Notice that total_number is a String.",
+                  "Since total_number is a String, the expression will evaluate to False."],
+        props: {
+          code: "black_number = 1\ncream_number = 2\ntotal_number = '3'\n\nif black_number < cream_number:\n\tprint('1 is less than 2')\n\nprint(total_number == (black_number + cream_number))"
+        }
+      },
+      { // Logical operators
+        image: "LogicalOperators",
+        content: ["Another kind of operator are logical operators.",
+                  "Logical operators help us make decisions based on multiple Booleans.",
+                  "Here are the logical operators we'll use.",
+                  "1. and operator. All Booleans must be true.",
+                  "2. or operator. At least one Boolean is true, the rest can be false.",
+                  "2. not operator. True becomes false, and false becomes true.",
+                  "Take a look at the examples!"]
+      },
+      {
+        image: "tutor",
+        content: ["Run through the code to see logical operators in action!",
+                  "Lines 4 and 5 are using 'and'. Notice that only line 4 prints True and line 5 prints False. This is because for 'and', both values must be True.",
+                  "Line 7-9 are using 'or'. Notice that lines 7 and 8 print True while line 9 prints False. This is because only one value needs to be True.",
+                  "Lastly, lines 11 and 12 are using 'not'. Line 11 prints False because the opposite of True is False. Line 12 prints True because the opposite of False is True."],
+        props: {
+          code: "true = True\nfalse = False\n\nprint(true and true)\nprint(true and false)\n\nprint(true or true)\nprint(true or false)\nprint(false or false)\n\nprint(not true)\nprint(not false)"
+        }
+      },
+      {
+        image: "tutor",
+        content: ["Run through the code to see logical operators in action and pay attention to what each variable is assigned!",
+                  "On line 5, both derek_color and josie_color are 'cream', so using 'and' will evaluate to True.",
+                  "On line 7, derek_color is cream but wagner_color is NOT cream. However, it is using 'or' so it will evaluate to True.",
+                  "On line 9, derek_color is cream and we are using 'not'. So, it will evaluate to False."],
+        props: {
+          code: "derek_color = 'cream'\nwagner_color = 'black'\njosie_color = 'cream'\n\nderek_and_josie = (derek_color == 'cream') and (josie_color == 'cream')\n\n" +
+                "derek_and_wagner = (derek_color == 'cream') or (wagner_color == 'cream')\n\nderek_opposite = not(derek_color == 'cream')"
+        }
+      },
+      {
+        image: "IfStatements",
+        content: ["Now that we know about conditional and logical operators, let's see how they can be used in If-statements.", 
+                  "As we have seen, if statements allow you to control the flow of execution based on a condition.",
+                  "A condition can only ever be True or False.",
+                  "This means Booleans, conditional operators, and logical operators can be used to create a condition for an If-statement.",
+                  "When the condition is True, everything that is under the if statement and indented will be executed.",
+                  "On this page, the indents will be highlighted yellow so you can easily see what is part of the If-statement.",
+                  "Also, remember the 'else' will be executed if the If-statement fails.",
+                  "The 'else' isn't required but is helpful when you want to execute code when the If-statement fails."],
+        props: {
+          pageNumber: 1
+        }
+      },
+      {
+        image: "IfStatements",
+        content: ["Try the If-statement exercise to the left!",
+                  "Pay close attention to what is actually part of the If-statement and else.",
+                  "Anything that is not part of the If-statement or else will executed normally."],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "IfStatements",
+        content: ["Remember that we can use conditional and logical operators in If-statements.",
+                  "Also, the yellow highlight has been removed from the If-statements, so it's up to you now to notice the indents!",
+                  "Try out the exercises to the left!"],
+        props: {
+          pageNumber: 3
+        }
+      },
+      {
+        image: "tutor",
+        content: ["Here is an example of a Python program with multiple If-statements.",
+                  "Notice how the first If-statement is skipped because x is not equal to 2",
+                  "It then proceeds to execute the rest of the program."],
+        props: {
+          code: "x = 1\nif x == 2:\n\tprint(\"x is 2!\")\n\n# Notice the program continues to execute even though the If-statement above failed.\n"
+                + "print(\"x is not 2!\")\n\nif x == 1:\n\tprint(\"x is 1!\")"
+        },
+      },
+      {
+        image: "/if_condition/action5.gif",
+        content: ["Congratulations! You now know how If-statements work in Python!",
+                  "Lets do a quick recap of what we learned!",
+                  "Conditional operators are used to compare values and always returns a Boolean (True or False).",
+                  "The conditional operators we learned about are ++, >, and <.",
+                  "Logical operators are used to make a decision based on multiple Booleans.",
+                  "The logical operators we learned about are AND, OR, and NOT.",
+                  "Conditional and logical operators can be used with If-statements to control how a program executes.",
+                  "In the next book, we'll learn how you can further control how a program executes by using loops!"]
+      }
+    ]
+  },
+  {
+    BookId: 9,
+    title: "Life of Moose",
+    blurb: "Learn coding through the life of Moose",
+    author: "Dev",
+    bookCover: "/color_8.png",
+    cover: "/LifeOfMoose/moose_milestone.png",
+    pages:
+    [
+      {
+        image: "/LifeOfMoose/life_of_moose_intro.png",
+        content: ["This is a picture of Moose, who was Virginia Tech's first therapy dog and a remarkable being.",
+                  "Moose was born in New York and trained to be a guide dog for the blind and eventually became a therapy dog.",
+                  "In October 2013, this intelligent Labrador Retriever joined forces the Trent Davis who is an animal-assisted therapy consultant.",
+                  "Moose began providing valuable services to the university and surrounding community. Bringing comfort and support to many."]
+      },
+      {
+        image: "LifeOfMoose",
+        content: ["Moose's breed is 'Labrador Retriever' and his fur has a cream color.",
+                  "He was born on February 13, 2012.",
+                  "Lets use Python Tutor on the left to print out Moose's birthday, breed, and color!"],
+        props: {
+          pageNumber: 1
+        }
+      },
+      {
+        image: "LifeOfMoose",
+        content: ["Try out the exercises following along with the code!"],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "MooseMilestone",
+        content: ["By 2019, Moose had done something amazing!",
+                  "He had helped people in 5,000 meetings and spent lots of time making others happy!",
+                  "He had become a beloved dog at Virginia Tech and the community.",
+                  "Lets figure out how old Moose was when he reached this amazing milestone using Python."],
+        props: {
+          pageNumber: 1
+        }
+      },
+      {
+        image: "MooseMilestone",
+        content: ["Try out the exercises following along with the code!"],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "MooseDr",
+        content: ["In 2020, Moose got a very special award.",
+                  "He was awarded with an honorary Doctor of Veterinary Medicine for being such a good boy!",
+                  "unfortunately, that same year, Moose was also diagnosed with"],
+        props: {
+          pageNumber: 1
+        }
+      },
+      {
+        image: "MooseDr",
+        content: ["Try out the exercises following along with the code!"],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "MooseChallengingYear",
+        content: ["Unfortunately, in 2020 Moose was diagnosed with cancer.",
+                  "The nurses and doctors at Blacksburg Veterinary Teaching Hospital and the Animal Care center took good care him during this time.",
+                  "On December 2, 2020, Moose passed away peacefully.",
+                  "Lets use Python to figure out how old Moose was and how many years he helped our community."],
+        props: {
+          pageNumber: 1
+        }
+      },
+      {
+        image: "MooseChallengingYear",
+        content: ["Try out the exercises following along with the code!"],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "MooseThankYou",
+        content: ["Moose was the first superhero therapy dog at Virginia Tech.",
+                  "Therapy dogs and their teams are very important because they help people who going through difficult times.",
+                  "Sometimes they even go as far as saving someones life!",
+                  "Let's say thank you to Moose and all of the other therapy dogs for helping our community!",
+                  "Click the Edit Code button to fill out the code template then run though your code!"]
+      }
+    ]
+  }
 ] as Book[]
