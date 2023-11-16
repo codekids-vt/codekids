@@ -1,18 +1,25 @@
 "use client"
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
 import Image from 'next/image'
 
-export function Sequencing() {
+export function Sequencing({ props, setAllowNext }: { props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
 
     const windowScale = GetWindowScale()
 
     const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
 
+    const [q1Correct, setQ1Correct] = useState(false)
+
+    React.useEffect(() => {
+        setAllowNext(q1Correct)
+    }, [q1Correct])
+
     function handleQ1(correct : boolean, incorrect : string = "") {
         if(correct) {
             setQ1AnswerExplanation("Correct! different is assigned before hokies_score and syracuse_score were reassigned. So different is assigned 28.")
+            setQ1Correct(true)
         } else {
             switch (incorrect) {
                 case "15":

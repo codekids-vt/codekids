@@ -84,6 +84,20 @@ export default async function ResourcesPage() {
             controls={true}
           />
         </section>
+
+        <section>
+          <ResourceDetails
+            title="Codekids Teacher Survey"
+            blurb="Survey to help us improve our program!"
+            author="CodeKids Team"
+          />
+
+          <Link href={`https://forms.gle/zBKvsawuamKYZ5b88`}>
+            <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-4 xl:text-xl rounded-full">
+              Take the survey!
+            </button>
+          </Link>
+        </section>
       </div>
     </div>
   )

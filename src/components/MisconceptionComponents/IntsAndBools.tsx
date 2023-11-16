@@ -4,7 +4,7 @@ import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
 import Image from 'next/image'
 
-export function IntsAndBools() {
+export function IntsAndBools({ props, setAllowNext }: { props: any, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const windowScale = GetWindowScale()
 
@@ -13,12 +13,21 @@ export function IntsAndBools() {
     const [q2AnswerExplanation, setQ2AnswerExplanation] = useState("Choose an answer above!")
     const [dataTypeStyle, setDataTypeStyle] = useState(code_integer_style)
 
+    const [q1Correct, setQ1Correct] = useState(false)
+    const [q2Correct, setQ2Correct] = useState(false)
+
+    useEffect(() => {
+        setAllowNext(q1Correct && q2Correct)
+    }, [q1Correct, q2Correct])
+
     function answerButtonClick(answer: string, questionNumber: number, correct: boolean = false)
     {
         if(questionNumber === 1) {
             handleQ1(answer, correct)
+            setQ1Correct(correct)
         } else if(questionNumber === 2) {
             handleQ2(answer, correct)
+            setQ2Correct(correct)
         }
     }
 
