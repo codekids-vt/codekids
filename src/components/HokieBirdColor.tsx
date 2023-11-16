@@ -2,6 +2,8 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import Image from "next/image";
 
+var isFireFox = navigator.userAgent.indexOf("Firefox") != -1
+
 interface HokieBirdColorState {
     head: string,
     nose: string,
@@ -167,7 +169,7 @@ export function HokieBirdColoring({ props, setAllowNext }: { props: any, setAllo
                                     <input
                                         key={`${part}Text2`}
                                         type="text"
-                                        className={`rounded w-36`}
+                                        className={`rounded w-36 bg-gray-200`}
                                         placeholder={props?.type ? "Type a color here" : "Drag a color here"}
                                         onBlur={(e) => handleValueOnBlur(e.target.value)}
                                         onChange={(e) => handleColorChange(props?.typeVariable ? part[index] : availablePart, e.target.value)}
@@ -175,7 +177,7 @@ export function HokieBirdColoring({ props, setAllowNext }: { props: any, setAllo
                                             props?.typeVariable ?
                                                 (colors[part[index] as keyof HokieBirdColorState] ? `"${colors[part[index] as keyof HokieBirdColorState]}"` : '')
                                                 : (colors[availablePart as keyof HokieBirdColorState] ? `"${colors[availablePart as keyof HokieBirdColorState]}"` : '')}
-                                        disabled={!props.type}
+                                        disabled={!props.type && !isFireFox}
                                     />
                                 </label>
                             </div>
