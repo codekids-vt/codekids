@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
 import { PythonTutor } from '../PythonTutor';
@@ -11,7 +11,7 @@ export interface IMooseMilestoneProps {
 
 const code = "moose_birth = 2012\nmilestone_year = 2019\nmoose_age = milestone_year - moose_birth\nprint(moose_age)"
 
-export function MooseMilestone({ props }: { props: any | IMooseMilestoneProps }) {
+export function MooseMilestone({ props, setAllowNext }: { props: any | IMooseMilestoneProps, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
     const windowScale = GetWindowScale()
 
     
@@ -20,9 +20,22 @@ export function MooseMilestone({ props }: { props: any | IMooseMilestoneProps })
     const [q3AnswerExplanation, setQ3AnswerExplanation] = useState("Select an answer above!")
     const [q4AnswerExplanation, setQ4AnswerExplanation] = useState("Select an answer above!")
 
+    const [q1Correct, setQ1Correct] = useState(false)
+    const [q2Correct, setQ2Correct] = useState(false)
+    const [q3Correct, setQ3Correct] = useState(false)
+    const [q4Correct, setQ4Correct] = useState(false)
+
+    React.useEffect(() => {
+        if (props.pageNumber === 2) {
+            setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+        }
+    }, [q1Correct, q2Correct, q3Correct, q4Correct])
+
+
     function handleQ1(correct: boolean, incorrect: string = "") {
         if(correct) {
             setQ1AnswerExplanation("Correct! moose_birth and milestone_year are both Integers")
+            setQ1Correct(true)
         } else {
             switch (incorrect) {
                 case "String":
@@ -39,6 +52,7 @@ export function MooseMilestone({ props }: { props: any | IMooseMilestoneProps })
     function handleQ2(correct: boolean) {
         if(correct) {
             setQ2AnswerExplanation("Correct! Press the next button again to see the variable get created!")
+            setQ2Correct(true)
         } else {
             setQ2AnswerExplanation("Incorrect. The program is evaluating (milestone-year - moose-birth) and setting that as the value of moose_age.")
         }
@@ -47,6 +61,7 @@ export function MooseMilestone({ props }: { props: any | IMooseMilestoneProps })
     function handleQ3(correct: boolean,  incorrect: string = "") {
         if(correct) {
             setQ3AnswerExplanation("Correct! Press the next button again to see the value printed!")
+            setQ3Correct(true)
         } else {
             switch (incorrect) {
                 case "m-m":
@@ -63,6 +78,7 @@ export function MooseMilestone({ props }: { props: any | IMooseMilestoneProps })
     function handleQ4(correct: boolean,  incorrect: string = "") {
         if(correct) {
             setQ4AnswerExplanation("Correct! print(\"moose_age\") will print the literal string \"moose_age\", not the variable!")
+            setQ4Correct(true)
         } else {
             switch (incorrect) {
                 case "m-m":

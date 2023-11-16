@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 
 export interface INumberInputActivityProps {
@@ -8,7 +8,7 @@ export interface INumberInputActivityProps {
   ans: number[]
 }
 
-export function NumberInputActivity({ props }: { props: any | INumberInputActivityProps}) {
+export function NumberInputActivity({ props, setAllowNext }: { props: any | INumberInputActivityProps, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const { question, options, ans, showIOLabels } = props;
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [result, setResult] = useState('');
@@ -17,6 +17,10 @@ export function NumberInputActivity({ props }: { props: any | INumberInputActivi
     setSelectedOption(choice);
     setResult(choice === ans[0] ? 'Correct!' : 'Incorrect! Try again.');
   };
+
+  React.useEffect(() => {
+    setAllowNext(selectedOption === ans[0])
+  }, [selectedOption])
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">

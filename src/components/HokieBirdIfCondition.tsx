@@ -1,5 +1,5 @@
 "use client"
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -10,7 +10,7 @@ interface HokieBirdColorState {
 }
 
 
-export function HokieBirdIfCondition({ props }: { props: any }) {
+export function HokieBirdIfCondition({ props, setAllowNext }: { props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
     const answer = props.ans[0]
     const [wrong, setWrong] = useState(false)
     const [good, setGood] = useState(false)
@@ -19,6 +19,10 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
         condition: "",
         statement: "",
     });
+
+    React.useEffect(() => {
+        setAllowNext(good)
+    }, [good])
 
     function handleOptionSelect(option: string) {
         const isCorrectAnswer = Array.isArray(props.ans) && props.ans.includes(option);
@@ -30,6 +34,7 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
         setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);
         setWrong(!isCorrectAnswer);
     }
+
 
     function handleOnDragStatement(e: React.DragEvent, statement: string) {
         e.dataTransfer.setData("statement", statement);
@@ -121,7 +126,7 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
                 <div className="flex flex-col flex-grow justify-between p-1">
                     {props.statements.map((statement: string, i: number) => (
                         <div className="p-2" key={`ifActivity-${i}`}>
-                            <div 
+                            <div
                                 draggable={props.draggable}
                                 className="flex p-1 bg-gray-300  rounded-xl text-blue-600 shadow-xl hover:shadow-2xl hover:bg-gray-400 hover:text-white"
                                 onDragStart={(e) => handleOnDragStatement(e, statement)}

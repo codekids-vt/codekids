@@ -10,7 +10,7 @@ export interface IMooseChallengingYearProps {
 
 const code = "moose_birth = 2012\npassed_away = 2020\nmoose_age = passed_away - moose_birth\nprint(moose_age)\nmoose_started = 2014\nyears_worked = passed_away - moose_started\nprint(years_worked)"
 
-export function MooseChallengingYear({ props }: { props: any | IMooseChallengingYearProps }) {
+export function MooseChallengingYear({ props, setAllowNext }: { props: any | IMooseChallengingYearProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const windowScale = GetWindowScale()
 
@@ -19,9 +19,21 @@ export function MooseChallengingYear({ props }: { props: any | IMooseChallenging
     const [q3AnswerExplanation, setQ3AnswerExplanation] = useState("Select an answer above!")
     const [q4AnswerExplanation, setQ4AnswerExplanation] = useState("Select an answer above!")
 
+    const [q1Correct, setQ1Correct] = useState(false)
+    const [q2Correct, setQ2Correct] = useState(false)
+    const [q3Correct, setQ3Correct] = useState(false)
+    const [q4Correct, setQ4Correct] = useState(false)
+
+    React.useEffect(() => {
+        if (props.pageNumber === 2) {
+            setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
+        }
+    }, [q1Correct, q2Correct, q3Correct, q4Correct])
+
     function handleQ1(correct: boolean) {
         if(correct) {
             setQ1AnswerExplanation("Correct! moose_age is assigned to (passed_away - moose_birth). Click the next button.")
+            setQ1Correct(true)
         } else {
             setQ1AnswerExplanation("Incorrect. moose_age will be assigned to what (passed_away - moose_birth) evaluates to. Click next to see this!")
         }
@@ -30,6 +42,7 @@ export function MooseChallengingYear({ props }: { props: any | IMooseChallenging
     function handleQ2(correct: boolean) {
         if(correct) {
             setQ2AnswerExplanation("Correct. Moose was 8 years old when he passed away.")
+            setQ2Correct(true)
         } else {
             setQ2AnswerExplanation("Incorrect. moose_age will be assigned to what (passed_away - moose_birth) evaluates to.")
         }
@@ -38,6 +51,7 @@ export function MooseChallengingYear({ props }: { props: any | IMooseChallenging
     function handleQ3(correct: boolean) {
         if(correct) {
             setQ3AnswerExplanation("Correct. years_worked is assigned to (passed_away - moose_started). Click the next button.")
+            setQ3Correct(true)
         } else {
             setQ3AnswerExplanation("Incorrect. years_worked will be assigned to what (passed_away - moose_started) evaluates to.")
         }
@@ -46,6 +60,7 @@ export function MooseChallengingYear({ props }: { props: any | IMooseChallenging
     function handleQ4(correct: boolean) {
         if(correct) {
             setQ4AnswerExplanation("Correct. Moose worked as a therapy dog for 6 years.")
+            setQ4Correct(true)
         } else {
             setQ4AnswerExplanation("Incorrect. Remember print() will print the value of a variable.")
         }
