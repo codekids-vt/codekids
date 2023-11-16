@@ -26,8 +26,8 @@ function BookPreviewList({ pageBookData }: { pageBookData: Book[] }) {
     <ul className="[&>*:not(:last-child)]:mb-2 flex-wrap flex items-center justify-center">
       {
         pageBookData.map((BookData: Book, i: number) => (
-          <li className="pl-3">
-            <BookPreview BookData={BookData} key={`BookData-${i}`} />
+          <li  key={`BookData-${i}`} className="pl-3">
+            <BookPreview BookData={BookData}/>
           </li>
 
         ))
