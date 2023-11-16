@@ -20,6 +20,17 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
         statement: "",
     });
 
+    function handleOptionSelect(option: string) {
+        const isCorrectAnswer = Array.isArray(props.ans) && props.ans.includes(option);
+        setGame(prevGame => ({
+            ...prevGame,
+            statement: option
+        }));
+        setGood(isCorrectAnswer);
+        setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);
+        setWrong(!isCorrectAnswer);
+    }
+
     function handleOnDragStatement(e: React.DragEvent, statement: string) {
         e.dataTransfer.setData("statement", statement);
     }
@@ -110,9 +121,13 @@ export function HokieBirdIfCondition({ props }: { props: any }) {
                 <div className="flex flex-col flex-grow justify-between p-1">
                     {props.statements.map((statement: string, i: number) => (
                         <div className="p-2" key={`ifActivity-${i}`}>
-                            <div draggable={props.draggable}
+                            <div 
+                                draggable={props.draggable}
                                 className="flex p-1 bg-gray-300  rounded-xl text-blue-600 shadow-xl hover:shadow-2xl hover:bg-gray-400 hover:text-white"
-                                onDragStart={(e) => handleOnDragStatement(e, statement)}>{statement}
+                                onDragStart={(e) => handleOnDragStatement(e, statement)}
+                                onClick={() => handleOptionSelect(statement)}
+                            >
+                                {statement}
                             </div>
                         </div>
                     ))}
