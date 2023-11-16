@@ -8,7 +8,7 @@ export interface IGraphProps {
   stateTransitions: number[][];
 }
 
-export function Graph(props: IGraphProps) {
+export default function Graph(props: IGraphProps) {
 
   const nodes: GraphNode[] = props.states.map((state, index) => {
     const isCurrentState = props.state === state;
@@ -36,4 +36,6 @@ export function Graph(props: IGraphProps) {
       />
     </div>
   );
+
+
 }

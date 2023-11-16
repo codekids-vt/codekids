@@ -57,7 +57,7 @@ export default function ActivityPostList({ params }: { params: { page: string } 
     title: "Interactive Rush Hour",
     author: "Namita & Noah",
     blurb: "Rush Hour is a puzzle game where you have to get the red car out of the parking lot.",
-    link: "/activity/rush-hour",
+    link: "/interactive-activity/rush-hour",
   }
 
   return (

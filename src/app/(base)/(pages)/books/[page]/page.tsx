@@ -7,7 +7,7 @@ function BookPreview({ BookData }: { BookData: Book }) {
   return (
     <div className="h-[400px] w-[350px] relative">
       <Link href={`/book/${BookData.BookId}/0`}>
-        <div className="h-[380px] w-[325px] hover:shadow-2xl rounded-2xl hover:-translate-y-1">
+        <div className="h-[380px] w-[325px] shadow-md hover:shadow-2xl rounded-2xl hover:-translate-y-1">
           <Image src={BookData.bookCover} width={325} height={300} alt={`Book Image-Background`} className="absolute" />
           <div className="relative top-24 left-8 w-60 h-72 flex-col flex items-center p-2 text-center">
             <Image src={BookData.cover ? BookData.cover : BookData.pages[0].image} width={125} height={125} alt={`Book Image-${BookData.title}`} className="rounded-2xl" />

@@ -1,8 +1,8 @@
 "use client"
 import React from "react";
-import { Graph } from "./Graph";
 import { Grid } from "./Grid";
 import { isLegalMove } from "./legalMove/legalMove";
+import dynamic from "next/dynamic";
 
 function carsToGrid(cars: Record<string, number[][]>): string[][] {
   let grid: string[][] = []
@@ -104,13 +104,15 @@ export default function ActivityPage() {
   let state = carsToId(cars.current)
   let grid = carsToGrid(cars.current)
 
+  const DynamicGraph = dynamic(() => import('./Graph'), { ssr: false })
+
   return (
     <div className="flex flex-row flex-grow items-center px-2 gap-4 h-[calc(100vh-8rem)] ">
       {/* column of buttons for options */}
       <div className="flex flex-col items-center rounded-2xl h-full bg-white border-2 border-gray-400">
         <div className="flex flex-col p-4 gap-4">
           <button
-            className="px-4 py-2 bg-cardGreen rounded-full text-white"
+            className="px-4 py-2 bg-primary-green rounded-full text-white"
             onClick={() => {
               ws.current?.send(JSON.stringify({ event: 'reset' }));
               cars.current = initialCars;
@@ -122,7 +124,7 @@ export default function ActivityPage() {
             Reset
           </button>
           <button
-            className="px-4 py-2 bg-cardGreen rounded-full text-white"
+            className="px-4 py-2 bg-primary-green rounded-full text-white"
             onClick={() => {
               ws.current?.send(JSON.stringify({ event: 'undo' }));
               cars.current = initialCars;
@@ -139,7 +141,8 @@ export default function ActivityPage() {
         <Grid grid={grid} />
         <div className="flex flex-col items-center bg-white">
           <div className="text-2xl text-center h-12">{message}</div>
-          <Graph state={state} states={states.current} stateTransitions={stateTransitions.current} />
+
+          <DynamicGraph state={state} states={states.current} stateTransitions={stateTransitions.current} />
         </div>
       </div>
     </div>
