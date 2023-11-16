@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 
+
 export interface INumberInputActivityProps {
   showIOLabels: boolean
   question: string | undefined
   options: number[]
-  answer: number
+  ans: number[]
 }
 
-export function NumberInputActivity(props: INumberInputActivityProps) {
-  const { question, options, answer, showIOLabels } = props;
+export function NumberInputActivity({ props }: { props: any | INumberInputActivityProps}) {
+  const { question, options, ans, showIOLabels } = props;
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [result, setResult] = useState('');
 
   const handleOptionClick = (choice: number) => {
     setSelectedOption(choice);
-    setResult(choice === answer ? 'Correct!' : 'Incorrect! Try again.');
+    setResult(choice === ans[0] ? 'Correct!' : 'Incorrect! Try again.');
   };
 
   return (
@@ -32,7 +33,7 @@ export function NumberInputActivity(props: INumberInputActivityProps) {
         </div>)
       }
       <div className="flex flex-wrap justify-center space-x-4">
-        {options.map((option, index) => (
+        {options.map((option: number, index:number) => (
           <button
             key={index}
             className={`px-4 py-2 text-lg font-medium ${selectedOption === option
