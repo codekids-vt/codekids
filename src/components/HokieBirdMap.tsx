@@ -20,6 +20,8 @@ export function HokieBirdMap({ props }: { props: any }) {
     const [currentImage, setCurrentImage] = useState(props.images[0]);
     const [procedures, setProcedures] = useState<string[]>(blankProcedures)
 
+    const [selectedAction, setSelectedAction] = useState<string | null>(null);
+
     const router = useRouter()
 
     function handleOnDragStatement(e: React.DragEvent, statement: string) {
@@ -32,9 +34,17 @@ export function HokieBirdMap({ props }: { props: any }) {
 
     function handleOnDropStatement(e: React.DragEvent, statementNumber: number) {
         const statement = e.dataTransfer.getData("statement") as string;
-        console.log(statementNumber)
-        setProcedure(statementNumber, statement)
+        setProcedure(statementNumber, statement);
+    }
 
+    function handleActionSelect(action: string) {
+        setSelectedAction(action);
+    }
+
+    function handleProcedureSelect(index: number) {
+        if (selectedAction !== null) {
+            setProcedure(index, selectedAction);
+        }
     }
 
     function runProcedure() {
@@ -78,8 +88,14 @@ export function HokieBirdMap({ props }: { props: any }) {
                             <div key={index} className="flex flex-wrap items-center space-x-1 p-0.5">
                                 <div className="w-10 px-2">{index + 1}.</div>
                                 <div className="flex flex-col rounded-full" onDrop={(e) => handleOnDropStatement(e, index)} onDragOver={(e) => handleDragOver(e)}>
-                                    <input type="text" className={`rounded-2xl text-center  border-2 ${errorProcedure === index ? "border-red-500" : ""} ${procedures[index] !== "" ? "bg-blue-200" : ""}`}
-                                        placeholder={props?.type ? "Type Here" : "Drag Statement Here"} disabled={!props.type} defaultValue={statement} onChange={(e) => setProcedure(index, e.target.value)} />
+                                    <input 
+                                        type="text" 
+                                        className={`rounded-2xl text-center  border-2 ${errorProcedure === index ? "border-red-500" : ""} ${procedures[index] !== "" ? "bg-blue-200" : ""}`}
+                                        placeholder={props?.type ? "Type Here" : "Drag Statement Here"} 
+                                        readOnly={!props.type}
+                                        value={statement} 
+                                        // onChange={(e) => setProcedure(index, e.target.value)} />
+                                        onClick={() => handleProcedureSelect(index)} />
                                 </div>
                                 {errorProcedure === index && <div className="text-red-500">x</div>}
 
@@ -91,7 +107,12 @@ export function HokieBirdMap({ props }: { props: any }) {
                     <div className="flex flex-col p-2">
                         {actions.map((action: string, i: number) => (
                             <div key={i} className="p-1 hover:shadow-2xl">
-                                <div draggable={props.draggable} className="text-black bg-blue-200 rounded-2xl px-2" onDragStart={(e) => handleOnDragStatement(e, action)}>
+                                <div 
+                                    draggable={props.draggable} 
+                                    className={`text-black bg-blue-200 rounded-2xl px-2 cursor-pointer ${selectedAction === action ? "bg-blue-400" : ""}`}
+                                    onDragStart={(e) => handleOnDragStatement(e, action)}
+                                    onClick={() => handleActionSelect(action)}
+                                >
                                     {action}
                                 </div>
                             </div>
