@@ -14,6 +14,22 @@ import { HokieBirdIfCondition } from "@/components/HokieBirdIfCondition";
 import { books } from "./books"
 import Navbar from "@/components/Navbar";
 import { PythonTutor } from "@/components/PythonTutor";
+import { NumberInputActivity } from "@/components/NumberInputActivity";
+import { TableCompletionActivity } from "@/components/TableCompletionActivity";
+import { DataTypesIntro } from "@/components/MisconceptionComponents/DataTypesIntro";
+import { IntsAndBools } from "@/components/MisconceptionComponents/IntsAndBools";
+import { VariableAssignment } from "@/components/MisconceptionComponents/VariableAssignment";
+import { Strings } from "@/components/MisconceptionComponents/Strings";
+import { Sequencing } from "@/components/MisconceptionComponents/Sequencing";
+import { IfStatementIntro } from "@/components/MisconceptionComponents/IfStatementIntro";
+import { ConditionalOperators } from "@/components/MisconceptionComponents/ConditionalOperators";
+import { LogicalOperators } from "@/components/MisconceptionComponents/LogicalOperators";
+import { IfStatements } from "@/components/MisconceptionComponents/IfStatements";
+import { LifeOfMoose } from "@/components/MisconceptionComponents/LifeOfMoose";
+import { MooseMilestone } from "@/components/MisconceptionComponents/MooseMilestone";
+import { MooseDr } from "@/components/MisconceptionComponents/MooseDr";
+import { MooseChallengingYear } from "@/components/MisconceptionComponents/MooseChallengingYear";
+import { MooseThankYou } from "@/components/MisconceptionComponents/MooseThankYou";
 import { InputActivity } from "@/components/InputActivity";
 import { TableFlowers } from "@/components/TableFlowers";
 import { TableTrees } from "@/components/TableTrees";
@@ -24,10 +40,26 @@ function BookImage({ image, page }: { image: string, page: Page }) {
 
   return (
     <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
-      {isImage && <Image src={image} alt="book image" width={500} height={500} className="object-contain max-w-full max-h-full" />}
+      {isImage && <Image src={image} alt="book image" width={800} height={800} className="object-contain max-w-full max-h-full" />}
       {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} />}
+      {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}   
+      {image === "DataTypesIntro" && <DataTypesIntro/>}
+      {image === "IntsAndBools" && <IntsAndBools/>}
+      {image === "VariableAssignment" && <VariableAssignment/>}
+      {image === "Strings" && <Strings props={page?.props}/>}
+      {image === "Sequencing" && <Sequencing/>}
+      {image === "IfStatementIntro" && <IfStatementIntro/>}
+      {image === "ConditionalOperators" && <ConditionalOperators props={page?.props}/>}
+      {image === "LogicalOperators" && <LogicalOperators/>}
+      {image === "IfStatements" && <IfStatements props={page?.props}/>}
+      {image === "LifeOfMoose" && <LifeOfMoose props={page?.props}/>}
+      {image === "MooseMilestone" && <MooseMilestone props={page?.props}/>}
+      {image === "MooseDr" && <MooseDr props={page.props}/>}
+      {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props}/>}
+      {image === "MooseThankYou" && <MooseThankYou/>}
+      {image === "park_1" && <NumberInputActivity props={page?.props} />} 
       {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} />}
       {image === "InputActivity" && <InputActivity props={page?.props} />}
     </div>
@@ -64,19 +96,37 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
   const pageNum = parseInt(params.pagenum)
   const page = books[bookNum].pages[pageNum]
 
-  function getNextPageNum() {
-    return pageNum + 1 > books[bookNum].pages.length - 1 ? false : pageNum + 1;
+  function getNextPageNum(): number | null {
+    return pageNum + 1 > books[bookNum].pages.length - 1 ? null : pageNum + 1;
   }
 
-  function getPrevPageNum() {
-    return pageNum - 1 >= 0 ? pageNum - 1 : pageNum;
+  function getPrevPageNum(): number | null {
+    console.log(`pageNum: ${pageNum} and bookNum: ${bookNum} and books[bookNum].pages.length: ${books[bookNum].pages.length} and pageNum - 1: ${pageNum - 1}`)
+    console.log(`pageNum - 1 < 0: ${pageNum - 1 < 0} and pageNum - 1: ${pageNum - 1}`)
+    console.log(`pageNum - 1 < 0 ? false : pageNum - 1: ${pageNum - 1 < 0 ? false : pageNum - 1}`)
+    return pageNum - 1 < 0 ? null : pageNum - 1;
   }
 
   const forwardButton = (
-    getNextPageNum() ?
+    getNextPageNum() !== null ?
       <Link href={`/book/${params.id}/${getNextPageNum()}`}>
         <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
           Next
+        </button>
+      </Link>
+      :
+      <Link href={`/books/1`}>
+        <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
+          Home
+        </button>
+      </Link>
+  )
+
+  const backButton = (
+    getPrevPageNum() !== null ?
+      <Link href={`/book/${params.id}/${getPrevPageNum()}`}>
+        <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
+          Back
         </button>
       </Link>
       :
@@ -100,11 +150,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                     <BookImage image={page.image} page={page} />
                   </div>
                   <div className="flex flex-row justify-start items-center xl:p-2 space-x-2">
-                    <Link href={`/book/${params.id}/${getPrevPageNum()}`}>
-                      <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 rounded-full xl:text-2xl">
-                        Back
-                      </button>
-                    </Link>
+                    {backButton}
                     {page?.props?.ans?.length &&
                       <button onClick={() => setHelp(!help)}
                         className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold flex flex-row items-center p-1 xl:p-6 xl:text-2xl rounded-full">
@@ -161,13 +207,14 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                       </div>
                       <div className="p-6 space-y-6">
                         <ul className="flex flex-col items-center">
+                          <h3>The correct answer(s) is:</h3>
                           {page.props?.ans &&
                             page.props?.ans.map((answer: string, index: number) => (
                               <li
                                 className="inline-block font-semibold text-gray-900"
                                 key={`answerTag-${index}`}
                               >
-                                {`${index + 1}. The correct answer is: ${answer}`}
+                                {`${index + 1}.  ${answer}`}
                               </li>
                             ))}
                         </ul>

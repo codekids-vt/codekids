@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { NumberInputActivity } from './NumberInputActivity';
+
 
 export interface ITableCompletionActivityProps {
   showIOLabels: boolean;
@@ -33,17 +35,16 @@ export function TableCompletionActivity({ props }: { props: any | ITableCompleti
 
   const renderTable = () => {
     const rows = [];
-    const cellContents = ['Yellow Flowers', 'Pink Flowers', '1', '2', '2', '3', '3', '4', '4', '?'];
-  
-    for (let i = 0; i < 5; i++) {
+    const tableItems = props.tableItems;
+
+    for (let i = 0; i < tableItems.length; i++) {
       const cells = [];
-      for (let j = 0; j < 2; j++) {
-        const index = i * 2 + j; 
+      for (let j = 0; j < tableItems[i].length; j++) {
         cells.push(
           <td key={j} className="border border-black">
             <div className="flex flex-wrap justify-center space-x-4">
               <div className="text-white p-2 rounded-md shadow-sm">
-                {index < cellContents.length ? cellContents[index] : '?'}
+                {tableItems[i][j]}
               </div>
             </div>
           </td>
@@ -51,14 +52,21 @@ export function TableCompletionActivity({ props }: { props: any | ITableCompleti
       }
       rows.push(<tr key={i}>{cells}</tr>);
     }
-  
+
     return (
       <table className="border-collapse border bg-primary-green border-black">
         <tbody>{rows}</tbody>
       </table>
     );
   };
-  
+
+  const INumberInputActivityProps = {
+    ans: props.ans,
+    options: props.options,
+    showIOLabels: false,
+  };
+
+  console.log(INumberInputActivityProps);
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
