@@ -103,7 +103,7 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
     function getPage1() {
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <img style={{...image_style, marginBottom: "1%"}} src="/IfStatementsBook/derek_happy.png" alt="Image of Derek the therapy dog." />
+                <img style={{...image_style, marginBottom: "1%", height: "50%", width: "auto"}} src="/IfStatementsBook/derek_happy.png" alt="Image of Derek the therapy dog." />
                 <div style={text_style}><Reader text='What is printed in the program?'/></div>
                 <div style={code_box_style}>
                     <p style={code_style}>

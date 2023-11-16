@@ -3,7 +3,7 @@ import { Book } from "@/util/BookData";
 export const books: Book[] = [
   {
     BookId: 1,
-    bookCover: "/VTColorBook.png",
+    bookCover: "/color_2.png",
     title: "Variables With Coloring",
     blurb: "Learn about different variables types, coloring the Hokie Bird!",
     author: "Dev",
@@ -15,8 +15,8 @@ export const books: Book[] = [
         image: "/HokieBird.png",
       },
       {
-        content: ["Here you are able to drag and drop the different colors into the three different parts of the Hokie Bird.",
-          "The Hokie Bird is split into three parts; a head, a body, and the legs.",
+        content: ["Here you are able to drag and drop the different colors into the eight different parts of the Hokie Bird.",
+          "The Hokie Bird is split into eight parts; the head, the neck, the body, the tail, the left leg, the right leg, the left foot and the right foot.",
           "Try dragging different colors and see the changes happen live!",
           "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable"
         ],
@@ -51,7 +51,7 @@ export const books: Book[] = [
   },
   {
     BookId: 2,
-    bookCover: "/VTColorBook.png",
+    bookCover: "/color_3.png",
     title: "Hokie Bird is Lost!",
     blurb: "Learn how to communicate specific instructions to the Hokie Bird to help them find their way!",
     author: "Dev",
@@ -186,7 +186,7 @@ export const books: Book[] = [
   {
     BookId: 3,
     title: "IO Hand In Hand",
-    bookCover: "/VTColorBook.png",
+    bookCover: "/lighter_orange.png",
     blurb: "Learn about how a computer can compute patterns!",
     author: "Prapti",
     pages: [
@@ -349,7 +349,7 @@ export const books: Book[] = [
   },
   {
     BookId: 4,
-    bookCover: "/VTColorBook.png",
+    bookCover: "/lighter_maroon.png",
     title: "If-condition with HokieBird Weathers",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
@@ -359,7 +359,7 @@ export const books: Book[] = [
           "If Conditions have two outcomes, they are either true or false",
           "If a value is true the 'code' that immediatley follows is taken.",
           "If the value is false then the 'code' that follows is ignored",],
-        image: "/if_condition/HokieBirdIf.png",
+        image: "/if_condition/weather.jpg",
       },
       {
         content: [
@@ -436,7 +436,7 @@ export const books: Book[] = [
   {
     BookId: 5,
     title: "If-condition with HokieBird Mood",
-    bookCover: "/VTColorBook.png",
+    bookCover: "/color_7.png",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     pages: [
@@ -502,7 +502,7 @@ export const books: Book[] = [
   {
     BookId: 6,
     title: "If-condition with HokieBird Dance",
-    bookCover: "/VTColorBook.png",
+    bookCover: "/color_4.png",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     cover: "/if_condition/HokieBirdIf.png",
@@ -600,7 +600,7 @@ export const books: Book[] = [
   {
     BookId: 7,
     title: "Variables",
-    bookCover: "/VTColorBook.png",
+    bookCover: "/lighter_orange.png",
     blurb: "Learn about variables in Python",
     author: "Dev",
     cover: "/Python-logo-notext.png",
@@ -761,7 +761,7 @@ export const books: Book[] = [
     title: "If Statements",
     blurb: "Learn about Python If Statements",
     author: "Dev",
-    bookCover: "/VTColorBook.png",
+    bookCover: "/color_4.png",
     cover: "/Python-logo-notext.png",
     pages:
     [
@@ -949,7 +949,7 @@ export const books: Book[] = [
     title: "Life of Moose",
     blurb: "Learn coding through the life of Moose",
     author: "Dev",
-    bookCover: "/VTColorBook.png",
+    bookCover: "/color_8.png",
     cover: "/LifeOfMoose/moose_milestone.png",
     pages:
     [

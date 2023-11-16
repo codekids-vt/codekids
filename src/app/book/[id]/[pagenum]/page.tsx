@@ -92,19 +92,37 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
   const pageNum = parseInt(params.pagenum)
   const page = books[bookNum].pages[pageNum]
 
-  function getNextPageNum() {
-    return pageNum + 1 > books[bookNum].pages.length - 1 ? false : pageNum + 1;
+  function getNextPageNum(): number | null {
+    return pageNum + 1 > books[bookNum].pages.length - 1 ? null : pageNum + 1;
   }
 
-  function getPrevPageNum() {
-    return pageNum - 1 >= 0 ? pageNum - 1 : pageNum;
+  function getPrevPageNum(): number | null {
+    console.log(`pageNum: ${pageNum} and bookNum: ${bookNum} and books[bookNum].pages.length: ${books[bookNum].pages.length} and pageNum - 1: ${pageNum - 1}`)
+    console.log(`pageNum - 1 < 0: ${pageNum - 1 < 0} and pageNum - 1: ${pageNum - 1}`)
+    console.log(`pageNum - 1 < 0 ? false : pageNum - 1: ${pageNum - 1 < 0 ? false : pageNum - 1}`)
+    return pageNum - 1 < 0 ? null : pageNum - 1;
   }
 
   const forwardButton = (
-    getNextPageNum() ?
+    getNextPageNum() !== null ?
       <Link href={`/book/${params.id}/${getNextPageNum()}`}>
         <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
           Next
+        </button>
+      </Link>
+      :
+      <Link href={`/books/1`}>
+        <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
+          Home
+        </button>
+      </Link>
+  )
+
+  const backButton = (
+    getPrevPageNum() !== null ?
+      <Link href={`/book/${params.id}/${getPrevPageNum()}`}>
+        <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
+          Back
         </button>
       </Link>
       :
@@ -128,11 +146,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                     <BookImage image={page.image} page={page} />
                   </div>
                   <div className="flex flex-row justify-start items-center xl:p-2 space-x-2">
-                    <Link href={`/book/${params.id}/${getPrevPageNum()}`}>
-                      <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 rounded-full xl:text-2xl">
-                        Back
-                      </button>
-                    </Link>
+                    {backButton}
                     {page?.props?.ans?.length &&
                       <button onClick={() => setHelp(!help)}
                         className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold flex flex-row items-center p-1 xl:p-6 xl:text-2xl rounded-full">
@@ -189,13 +203,14 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                       </div>
                       <div className="p-6 space-y-6">
                         <ul className="flex flex-col items-center">
+                          <h3>The correct answer(s) is:</h3>
                           {page.props?.ans &&
                             page.props?.ans.map((answer: string, index: number) => (
                               <li
                                 className="inline-block font-semibold text-gray-900"
                                 key={`answerTag-${index}`}
                               >
-                                {`${index + 1}. The correct answer is: ${answer}`}
+                                {`${index + 1}.  ${answer}`}
                               </li>
                             ))}
                         </ul>

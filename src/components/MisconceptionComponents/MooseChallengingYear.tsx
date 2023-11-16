@@ -61,7 +61,7 @@ export function MooseChallengingYear({ props }: { props: any | IMooseChallenging
         return (
             <div style={whole_container_style}>
                 <div style={text_style}><Reader text='A challenging year for Moose.'/></div>
-                <img style={image_style} src='/LifeOfMoose/moose_with_hokie_bird.png' alt='Image of Moose graduating'></img>
+                <img style={{...image_style, width: "35%", height: "auto"}} src='/LifeOfMoose/moose_with_hokie_bird.jpg' alt='Image of Moose graduating'></img>
                 <PythonTutor props={{code: code}}/>
                 <div style={text_style}><Reader text='Take a look at the code! What do you think will printed throughout the program?'/></div>
             </div>
