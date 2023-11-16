@@ -16,8 +16,20 @@ import Navbar from "@/components/Navbar";
 import { PythonTutor } from "@/components/PythonTutor";
 import { NumberInputActivity } from "@/components/NumberInputActivity";
 import { TableCompletionActivity } from "@/components/TableCompletionActivity";
-
-
+import { DataTypesIntro } from "@/components/MisconceptionComponents/DataTypesIntro";
+import { IntsAndBools } from "@/components/MisconceptionComponents/IntsAndBools";
+import { VariableAssignment } from "@/components/MisconceptionComponents/VariableAssignment";
+import { Strings } from "@/components/MisconceptionComponents/Strings";
+import { Sequencing } from "@/components/MisconceptionComponents/Sequencing";
+import { IfStatementIntro } from "@/components/MisconceptionComponents/IfStatementIntro";
+import { ConditionalOperators } from "@/components/MisconceptionComponents/ConditionalOperators";
+import { LogicalOperators } from "@/components/MisconceptionComponents/LogicalOperators";
+import { IfStatements } from "@/components/MisconceptionComponents/IfStatements";
+import { LifeOfMoose } from "@/components/MisconceptionComponents/LifeOfMoose";
+import { MooseMilestone } from "@/components/MisconceptionComponents/MooseMilestone";
+import { MooseDr } from "@/components/MisconceptionComponents/MooseDr";
+import { MooseChallengingYear } from "@/components/MisconceptionComponents/MooseChallengingYear";
+import { MooseThankYou } from "@/components/MisconceptionComponents/MooseThankYou";
 
 function BookImage({ image, page, setAllowNext }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
@@ -29,6 +41,20 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} setAllowNext={setAllowNext} />}
       {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} setAllowNext={setAllowNext} />}
+      {image === "DataTypesIntro" && <DataTypesIntro />}
+      {image === "IntsAndBools" && <IntsAndBools />}
+      {image === "VariableAssignment" && <VariableAssignment />}
+      {image === "Strings" && <Strings props={page?.props} />}
+      {image === "Sequencing" && <Sequencing />}
+      {image === "IfStatementIntro" && <IfStatementIntro />}
+      {image === "ConditionalOperators" && <ConditionalOperators props={page?.props} />}
+      {image === "LogicalOperators" && <LogicalOperators />}
+      {image === "IfStatements" && <IfStatements props={page?.props} />}
+      {image === "LifeOfMoose" && <LifeOfMoose props={page?.props} />}
+      {image === "MooseMilestone" && <MooseMilestone props={page?.props} />}
+      {image === "MooseDr" && <MooseDr props={page.props} />}
+      {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props} />}
+      {image === "MooseThankYou" && <MooseThankYou />}
     </div>
   );
 }
