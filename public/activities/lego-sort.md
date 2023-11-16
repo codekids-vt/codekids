@@ -3,6 +3,7 @@ author: John Doe
 title: Lego I/O
 blurb: An input/output exercise using Legos.
 postId: 1
+image: /lego-sort-example-clumping.png
 tags:
 - Groupwork
 - I/O
