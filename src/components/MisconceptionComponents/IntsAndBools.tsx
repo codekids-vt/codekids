@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
+import Image from 'next/image'
 
 export function IntsAndBools() {
 
@@ -67,17 +68,17 @@ export function IntsAndBools() {
 
     return (
         <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-            <img style={image_style} src="/VariablesBook/vt_syracuse_score.png" alt="Image of football score between Virginia Tech and Syracuse" />
+            <Image style={image_style} width={400} height={400} src={"/VariablesBook/vt_syracuse_score.png"} alt='Image of football score between Virginia Tech and Syracuse'/>
             <span style={text_style}><Reader text='What is the correct integer value of the following?'/></span>
             <p style={code_style}>hokies_score = <span style={dataTypeStyle}>{q1ChosenAnswer}</span></p>
             <div style={horizontal_div_style}>
                 <button style={answer_button_style} type='button' onClick={() => answerButtonClick("False", 1)}>False</button>
                 <button style={answer_button_style} type='button' onClick={() => answerButtonClick("38", 1, true)}>38</button>
                 <button style={answer_button_style} type='button' onClick={() => answerButtonClick("10", 1)}>10</button>
-                <button style={answer_button_style} type='button' onClick={() => answerButtonClick("'38'", 1)}>'38'</button>
+                <button style={answer_button_style} type='button' onClick={() => answerButtonClick("'38'", 1)}>{"'38'"}</button>
             </div>
             <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
-            <span style={text_style}><Reader text="What is the variable 'win' evaluted to?"/></span>
+            <span style={text_style}><Reader text="What is the variable 'win' evaluated to?"/></span>
             <div style={code_box_style}>
                 <p>syracuse_score = <span style={code_integer_style}>10</span><br/>win = hokies_score &gt; syracuse_score</p>
             </div>
@@ -99,7 +100,7 @@ const horizontal_div_style = {
     alignItems: "center",
     justifyContent: "center",
     columnGap: "5%",
-    margin: "3%",
+    margin: "1.5%",
 }
 
 const text_style = {
@@ -153,6 +154,6 @@ const code_box_style = {
 }
 
 const answer_explanation_style = {
-    marginBottom: "3%",
+    marginBottom: "1.5%",
     fontSize: "1.2rem",
 }

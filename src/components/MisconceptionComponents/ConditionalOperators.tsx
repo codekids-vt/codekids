@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
+import Image from 'next/image'
 
-export interface ICondtionalOperatorsProps {
+export interface IConditionalOperatorsProps {
     pageNumber: number
 }
 
-export function ConditionalOperators({ props }: { props: any | ICondtionalOperatorsProps }) {
+export function ConditionalOperators({ props }: { props: any | IConditionalOperatorsProps }) {
 
     const windowScale = GetWindowScale()
 
@@ -106,11 +107,11 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
                 <span style={text_style}><Reader text='Test you knowledge about conditional operators!'/></span>
-                <img style={{...image_style, width: "35%", height: "auto"}} src="/IfStatementsBook/therapy_dog_1.png" alt="Image of therapy dogs with their names." />
+                <Image style={image_style} width={500} height={500} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
                 <div style={code_box_style}>
                     <p style={code_style}>
-                        derek_color = <span style={code_string_style}>'cream'</span><br/>
-                        wagner_color = <span style={code_string_style}>'black'</span><br/>
+                        derek_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
+                        wagner_color = <span style={code_string_style}>{'\'black\''}</span><br/>
                         derek_color == wagner_color = <span style={code_boolean_style}>{q1ChosenAnswer}</span>
                     </p>
                 </div>
@@ -123,7 +124,7 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
                 <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
                 <div style={code_box_style}>
                     <p style={code_style}>
-                        josie_color = <span style={code_string_style}>'cream'</span><br/>
+                        josie_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
                         derek_color == josie_color = <span style={code_boolean_style}>{q2ChosenAnswer}</span>
                     </p>
                 </div>
@@ -141,12 +142,12 @@ export function ConditionalOperators({ props }: { props: any | ICondtionalOperat
     function getPage2() {
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <img style={{...image_style, width: "25%", height: "auto"}} src="/IfStatementsBook/therapy_dog_1.png" alt="Image of therapy dogs with their names." />
+                <Image style={image_style} width={500} height={500} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
                 <div style={code_box_style}>
                     <p style={code_style}>
                         black_number = <span style={code_integer_style}>1</span><br/>
                         cream_number = <span style={code_integer_style}>2</span><br/>
-                        total_number == <span style={code_string_style}>'3'</span><br/>
+                        total_number == <span style={code_string_style}>{'\'3\''}</span><br/>
                         total_number == (black_number + cream_number) = <span style={code_boolean_style}>{q3ChosenAnswer}</span>
                     </p>
                 </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
 import { PythonTutor } from '../PythonTutor';
+import Image from 'next/image'
 
 export interface IMooseMilestoneProps {
     pageNumber: number
@@ -85,7 +86,7 @@ export function MooseMilestone({ props }: { props: any | IMooseMilestoneProps })
         return (
             <div style={whole_container_style}>
                 <div style={text_style}><Reader text='Remarkable milestones for Moose!'/></div>
-                <img style={image_style} src="/LifeOfMoose/moose_milestone.png" alt="Image of Moose"/>
+                <Image style={image_style} width={500} height={500} src={"/LifeOfMoose/moose_milestone.png"} alt='Image of Moose'/>
                 <PythonTutor props={{code: code}}/>
                 <div style={text_style}><Reader text='Take a look at the code. What do you think will be printed at the end? We will trace the code in the next page.'/></div>
             </div>

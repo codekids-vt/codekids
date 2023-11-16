@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
+import Image from 'next/image'
 
 export function Sequencing() {
 
@@ -30,7 +31,7 @@ export function Sequencing() {
 
     return (
         <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-            <img style={image_style} src="/VariablesBook/vt_syracuse_score.png" alt="Image of football score between Virginia Tech and Syracuse" />
+            <Image style={image_style} width={400} height={400} src='/VariablesBook/vt_syracuse_score.png' alt="Image of therapy dogs with their names."/>
             <div style={text_style}><Reader text='We always read the code from top to bottom. The line numbers have been provided. (Leftmost column of numbers)'/></div>
             <div style={code_box_style}>
                 <p style={code_style}>

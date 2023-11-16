@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
 import { PythonTutor } from '../PythonTutor';
+import Image from 'next/image'
 
 const code = '# Fill in your name as a String\nyour_name = ""\n\n# Fill in your age as an Integer\nyour_age = 0\n\n# Type a thank you message!\nyour_message = ""\n\n' +
             '# Don\'t worry about the complicated line, it\'s just creating your message.\n' +
@@ -15,7 +16,7 @@ export function MooseThankYou() {
     return (
         <div style={whole_container_style}>
             <div style={text_style}><Reader text='Fill out the code template to write you thank you message!'/></div>
-            <img style={image_style} src='/LifeOfMoose/moose_with_hokie_bird.png' alt='Image of Moose graduating'></img>
+            <Image style={image_style} width={500} height={500} src={"/LifeOfMoose/moose_with_hokie_bird.jpg"} alt='Image of Moose with Hokie Bird'/>
             <PythonTutor props={{code: code}}/>
         </div>
     );

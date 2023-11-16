@@ -1,7 +1,9 @@
 "use client"
-import React, { useState } from 'react';
-import { Reader } from '../Reader';
-import { GetWindowScale } from './GetWindowScale';
+import React, { useState } from 'react'
+import { Reader } from '../Reader'
+import { GetWindowScale } from './GetWindowScale'
+import Image from 'next/image'
+
 
 export interface IStringsProps {
     stringsPage: number
@@ -119,13 +121,13 @@ export function Strings({ props }: { props: any | IStringsProps }) {
     {
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <img style={image_style} src="/VariablesBook/therapy_dogs.png" alt="Image of Virginia Tech therapy dogs."/>
+                <Image style={image_style} width={500} height={500} src={"/VariablesBook/therapy_dogs.png"} alt='Image of Virginia Tech therapy dogs.'/>
                 <div style={text_style}><Reader text='What is the data type of the following?'/></div>
                 <div style={code_box_style}>
                     <p style={code_style}>
-                        therapy_dog_left = <span style={code_string_style}>"Derek"</span><br/>
-                        therapy_dog_middle = <span style={code_string_style}>'Epcot'</span><br/>
-                        therapy_dog_right = <span style={code_string_style}>"Josie"</span>
+                        therapy_dog_left = <span style={code_string_style}>{'"Derek"'}</span><br/>
+                        therapy_dog_middle = <span style={code_string_style}>{"'Epcot'"}</span><br/>
+                        therapy_dog_right = <span style={code_string_style}>{'"Josie"'}</span>
                     </p>
                 </div>
                 <div style={horizontal_div_style}>
@@ -138,14 +140,14 @@ export function Strings({ props }: { props: any | IStringsProps }) {
                 <div style={text_style}><Reader text='What is printed at the end of this program?'/></div>
                 <div style={code_box_style}>
                     <p style={code_style}>
-                        therapy_dog_left = <span style={code_string_style}>"Derek"</span><br/>
-                        therapy_dog_middle = <span style={code_string_style}>'Epcot'</span><br/>
-                        therapy_dog_right = <span style={code_string_style}>"Josie"</span><br/>
+                        therapy_dog_left = <span style={code_string_style}>{'"Derek"'}</span><br/>
+                        therapy_dog_middle = <span style={code_string_style}>{"'Epcot'"}</span><br/>
+                        therapy_dog_right = <span style={code_string_style}>{'"Josie"'}</span><br/>
                         print(therapy_dog_left)
                     </p>
                 </div>
                 <div style={horizontal_div_style}>
-                    <button style={answer_button_style} onClick={() => handleQ2(false, "Derek")}>"Derek"</button>
+                    <button style={answer_button_style} onClick={() => handleQ2(false, "Derek")}>{'"Derek"'}</button>
                     <button style={answer_button_style} onClick={() => handleQ2(false, "Epcot")}>Epcot</button>
                     <button style={answer_button_style} onClick={() => handleQ2(false, "Josie")}>Josie</button>
                     <button style={answer_button_style} onClick={() => handleQ2(true)}>Derek</button>
@@ -159,13 +161,13 @@ export function Strings({ props }: { props: any | IStringsProps }) {
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
                 <div style={horizontal_div_style}>
-                    <img style={image_style} src="/VariablesBook/hokie-bird-148.png" alt="Image of Hokie Bird holding 148th birthday sign." />
+                    <Image style={image_style} width={300} height={300} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
                     <div style={{...code_box_style, ...{transform:"scale(1.5,1.5)"}}}>
                         <p style={code_style}>
                             anniversary = <span style={code_integer_style}>147</span><br/>
-                            print("A year has passed!")<br/>
-                            anniversary_2 = <span style={code_string_style}>"148"</span><br/>
-                            print(<span style={code_string_style}>'anniversary_2'</span>)
+                            {'print("A year has passed!")'}<br/>
+                            anniversary_2 = <span style={code_string_style}>{'"148"'}</span><br/>
+                            print(<span style={code_string_style}>{"'anniversary_2'"}</span>)
                         </p>
                     </div>
                 </div>

@@ -4,9 +4,9 @@ export const GetWindowScale = () => {
     const widthBaseline : number = 2560
     if(typeof window !== "undefined")
     {
-        const windowWidth = useRef(window.innerWidth)
+        const windowWidth = window.innerWidth
 
-        const zoomScale = windowWidth.current / widthBaseline
+        const zoomScale = windowWidth / widthBaseline
 
         return zoomScale
     }

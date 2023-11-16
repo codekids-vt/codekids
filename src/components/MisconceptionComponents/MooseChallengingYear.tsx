@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
 import { PythonTutor } from '../PythonTutor';
+import Image from 'next/image'
 
 export interface IMooseChallengingYearProps {
     pageNumber: number
@@ -61,7 +62,7 @@ export function MooseChallengingYear({ props }: { props: any | IMooseChallenging
         return (
             <div style={whole_container_style}>
                 <div style={text_style}><Reader text='A challenging year for Moose.'/></div>
-                <img style={{...image_style, width: "35%", height: "auto"}} src='/LifeOfMoose/moose_with_hokie_bird.jpg' alt='Image of Moose graduating'></img>
+                <Image style={image_style} width={400} height={400} src={"/LifeOfMoose/moose_with_hokie_bird.jpg"} alt='Image of Moose graduating'/>
                 <PythonTutor props={{code: code}}/>
                 <div style={text_style}><Reader text='Take a look at the code! What do you think will printed throughout the program?'/></div>
             </div>

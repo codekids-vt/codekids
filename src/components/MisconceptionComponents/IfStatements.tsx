@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
+import Image from 'next/image'
 
 export interface IIfStatementsProps {
     pageNumber: number
@@ -103,18 +104,18 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
     function getPage1() {
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <img style={{...image_style, marginBottom: "1%", height: "50%", width: "auto"}} src="/IfStatementsBook/derek_happy.png" alt="Image of Derek the therapy dog." />
+                <Image style={image_style} width={700} height={700} src={"/IfStatementsBook/derek_happy.png"} alt='Image of Derek the therapy dog.'/>
                 <div style={text_style}><Reader text='What is printed in the program?'/></div>
                 <div style={code_box_style}>
                     <p style={code_style}>
                         derek_is_happy = <span style={code_boolean_style}>True</span><br/>
                         if derek_is_happy:<br/>
-                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>"True"</span>)<br/>
+                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>{'"True"'}</span>)<br/>
                         else:<br/>
-                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>"False"</span>)
+                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>{'"False"'}</span>)
                     </p>
                 </div>
-                <div style={text_style}><Reader text='Notice that only the print("True") is part of the If-statment. The print("False") is part of the else.'/></div>
+                <div style={text_style}><Reader text='Notice that only the print("True") is part of the If-statement. The print("False") is part of the else.'/></div>
                 <div style={horizontal_div_style}>
                     <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "TF")}>{"True\nFalse"}</button>
                     <button style={answer_button_style} type='button' onClick={() => handleQ1(true)}>True</button>
@@ -129,18 +130,18 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
     function getPage2() {
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <img style={{...image_style, marginBottom: "1%", width: "40%", height: "auto"}} src="/IfStatementsBook/bad_weather.png" alt="Image of storm over Lane Stadium." />
+                <Image style={image_style} width={600} height={600} src={"/IfStatementsBook/bad_weather.png"} alt='Image of storm over Lane Stadium.'/>
                 <div style={text_style}><Reader text='What is printed in the program?'/></div>
                 <div style={code_box_style}>
                     <p style={code_style}>
                         the_weather_is_bad = <span style={code_boolean_style}>True</span><br/>
                         if the_weather_is_bad:<br/>
-                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>"Gosh, it looks like a rainstorm!"</span>)<br/>
-                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>"We have to cancel the game."</span>)<br/>
+                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>{'"Gosh, it looks like a rainstorm!"'}</span>)<br/>
+                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>{'"We have to cancel the game."'}</span>)<br/>
                         else:<br/>
-                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>"Wow, it's a beautiful day!"</span>)<br/>
-                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>"Let's enjoy the rest of the game!"</span>)<br/><br/>
-                        print(<span style={code_string_style}>"Hopefully it's sunny tomorrow!"</span>)
+                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>{'"Wow, it\'s a beautiful day!"'}</span>)<br/>
+                        <span style={{backgroundColor: "yellow", opacity: "0.6"}}>{"\t"}</span>print(<span style={code_string_style}>{'"Let\'s enjoy the rest of the game!"'}</span>)<br/><br/>
+                        print(<span style={code_string_style}>{'"Hopefully it\'s sunny tomorrow!"'}</span>)
                     </p>
                 </div>
                 <div style={horizontal_div_style}>
@@ -167,14 +168,14 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
     function getPage3() {
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <img style={{...image_style, marginBottom: "1%", width:"20%", height: "auto"}} src="/VariablesBook/hokie-bird-148.png" alt="Image of storm over Lane Stadium." />
+                <Image style={image_style} width={250} height={250} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of storm over Lane Stadium.'/>
                 <div style={text_style}><Reader text='What is printed in the programs below?'/></div>
                 <div style={code_box_style}>
                     <p style={code_style}>
                         anniversary = <span style={code_integer_style}>148</span><br/>
                         if anniversary == <span style={code_integer_style}>200</span>:<br/>
-                        {"\t"}print(<span style={code_string_style}>"True"</span>)<br/><br/>
-                        print(<span style={code_string_style}>"False"</span>)
+                        {"\t"}print(<span style={code_string_style}>{'"True"'}</span>)<br/><br/>
+                        print(<span style={code_string_style}>{'"False"'}</span>)
                     </p>
                 </div>
                 <div style={horizontal_div_style}>
@@ -190,8 +191,8 @@ export function IfStatements({ props }: { props: any | IIfStatementsProps }) {
                         hokie_bird_is_happy = <span style={code_boolean_style}>True</span><br/>
                         if anniversary == <span style={code_integer_style}>200</span>
                         <span style={code_logical_operator_style}> or </span>hokie_bird_is_happy:<br/>
-                        {"\t"}print(<span style={code_string_style}>"The Hokie Bird is happy!"</span>)<br/><br/>
-                        print(<span style={code_string_style}>"Let's celebrate!"</span>)
+                        {"\t"}print(<span style={code_string_style}>{'"The Hokie Bird is happy!"'}</span>)<br/><br/>
+                        print(<span style={code_string_style}>{'"Let\'s celebrate!"'}</span>)
                     </p>
                 </div>
                 <div style={horizontal_div_style}>

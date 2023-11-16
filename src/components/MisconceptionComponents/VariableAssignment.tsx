@@ -1,7 +1,9 @@
 "use client"
-import React, { useState } from 'react';
-import { Reader } from '../Reader';
-import { GetWindowScale } from './GetWindowScale';
+import React, { useState } from 'react'
+import { Reader } from '../Reader'
+import { GetWindowScale } from './GetWindowScale'
+import Image from 'next/image'
+
 
 export function VariableAssignment() {
 
@@ -45,12 +47,12 @@ export function VariableAssignment() {
     return (
         <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
             <div style={horizontal_div_style}>
-                <img style={image_style} src="/VariablesBook/hokie-bird-148.png" alt="Image of Hokie Bird holding 148th birthday sign." />
+                <Image style={image_style} width={300} height={300} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
                 <div style={{...code_box_style, ...{transform:"scale(1.5,1.5)"}}}>
                     <p style={code_style}>
                         anniversary = <span style={code_integer_style}>147</span><br/>
                         print(anniversary)<br/>
-                        print("A year has passed!")<br/>
+                        {'print("A year has passed!")'}<br/>
                         anniversary = <span style={code_integer_style}>148</span><br/>
                         print(anniversary)<br/>
                     </p>
@@ -67,7 +69,7 @@ export function VariableAssignment() {
                 <p>
                     anniversary = <span style={code_integer_style}>147</span><br/>
                     print(anniversary)<br/>
-                    print("A year has passed!")<br/>
+                    {'print("A year has passed!")'}<br/>
                     anniversary = anniversary + <span style={code_integer_style}>1</span><br/>
                     print(anniversary)<br/>
                 </p>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
+import Image from 'next/image'
 
 export function IfStatementIntro() {
 
@@ -9,13 +10,13 @@ export function IfStatementIntro() {
     return (
         <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
             <span style={text_style}><Reader text='Example of if-statement'/></span>
-            <img style={{...image_style, width: "60%", height: "auto"}} src="/IfStatementsBook/cloudy.jpg" alt="Image of construction" />
+            <Image style={image_style} width={800} height={800} src={"/IfStatementsBook/cloudy.jpg"} alt='Image of construction'/>
             <div style={{...code_box_style, width: "60%"}}>
                 <p style={code_style}>
                     if it_is_raining:<br/>
-                    {"\t"}print(<span style={code_string_style}>"Stop construction"</span>)<br/>
+                    {"\t"}print(<span style={code_string_style}>{'"Stop construction"'}</span>)<br/>
                     else:<br/>
-                    {"\t"}print(<span style={code_string_style}>"Continue construction"</span>)
+                    {"\t"}print(<span style={code_string_style}>{'"Continue construction"'}</span>)
                 </p>
             </div>
         </div>

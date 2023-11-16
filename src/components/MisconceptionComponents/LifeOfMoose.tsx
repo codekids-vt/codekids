@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react'
 import { Reader } from '../Reader';
-import { GetWindowScale } from './GetWindowScale';
-import { PythonTutor } from '../PythonTutor';
+import { GetWindowScale } from './GetWindowScale'
+import { PythonTutor } from '../PythonTutor'
+import Image from 'next/image'
 
 export interface ILifeOfMooseProps {
     pageNumber: number
@@ -62,7 +63,7 @@ export function LifeOfMoose({ props }: { props: any | ILifeOfMooseProps }) {
     function getPage1() {
         return (
             <div style={whole_container_style}>
-                <img style={image_style} src="/LifeOfMoose/moose_2.png" alt="Image of Moose" />
+                <Image style={image_style} width={600} height={600} src={"/LifeOfMoose/moose_2.png"} alt='Image of Moose'/>
                 <PythonTutor props={{code: code}}/>
                 <span style={text_style}><Reader text='First look over the code and then answer the following questions!'/></span>
             </div>

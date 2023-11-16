@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
 import { PythonTutor } from '../PythonTutor';
+import Image from 'next/image'
 
 export interface IMooseDrProps {
     pageNumber: number
@@ -75,7 +76,7 @@ export function MooseDr({ props }: { props: any | IMooseDrProps }) {
         return (
             <div style={whole_container_style}>
                 <div style={text_style}><Reader text='Moose becomes a Doctor of Veterinary Medicine!'/></div>
-                <img style={{...image_style, width: "50%", height: "auto"}} src='/LifeOfMoose/moose_dr.png' alt='Image of Moose graduating'></img>
+                <Image style={image_style} width={600} height={600} src={"/LifeOfMoose/moose_dr.png"} alt='Image of Moose graduating'/>
                 <PythonTutor props={{code: code}}/>
                 <div style={text_style}><Reader text='Take a look at the code! What do you think will printed at the end?'/></div>
             </div>
