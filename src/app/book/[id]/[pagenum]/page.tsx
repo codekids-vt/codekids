@@ -61,7 +61,7 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
 
 function BookContent({ content, game, props, setAllowNext }: { content: string[], game: string | null, props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   return (
-    <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col gap-1 items-center w-full">
+    <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col justify-center gap-1 items-center w-full">
       <ul className="flex flex-col justify-center py-2 md:space-y-1 xl:space-y-4">
         {content.map((line, i) => (
           <li key={i}>
