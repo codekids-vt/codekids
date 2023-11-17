@@ -64,7 +64,7 @@ function BookContent({ content, game, props, setAllowNext }: { content: string[]
     <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col gap-1 items-center w-full">
       <ul className="flex flex-col justify-center py-2 md:space-y-1 xl:space-y-4">
         {content.map((line, i) => (
-          <li className="text-xs" key={i}>
+          <li key={i}>
             <Reader text={line} />
           </li>
         ))
@@ -129,7 +129,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
   )
 
   return (
-    <div className="text-xs">
+    <div className="text-xs xl:text-lg 2xl:text-xl">
       <Navbar />
       <div className="mx-auto">
         <div className="px-2 py-2 h-[calc(100vh-4rem)] flex">
