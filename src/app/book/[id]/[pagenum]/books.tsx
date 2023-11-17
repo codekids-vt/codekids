@@ -402,24 +402,38 @@ export const books: Book[] = [
         content: ["We will use If conditions to help the Hokie bird make it to Lane Stadium",
           "If Conditions have two outcomes, they are either true or false",
           "If a value is true the 'code' that immediatley follows is taken.",
-          "If the value is false then the 'code' that follows is ignored",],
+          "If the value is false then the 'code' that follows is ignored.",],
         image: "/if_condition/weather.jpg",
       },
       {
         content: [
           "If-statement diagram is a very common strategy to solve if-condition problems.",
           "You can try the following question with the if-statement diagram on the left.",
+          "On the left is a very basic if-statement flow chart, since there is only one condition.",
+          "You can learn more about flow charts in the Python flow chart book on the homepage!",
           "Example:",
           "If it is a hot day, then HokieBird need to wear a T-shirt.",
           "If it is a chilly day, then HokieBird need to wear a Winter-jacket.",
         ],
-        image: "/if_condition/if-else-diagram.png",
+        image: "/if_condition/if-else-1.png",
+      },
+      {
+        content: [
+          "You can try the following question with the if-statement diagram on the left as well.",
+          "On the left is a slightly more complex if-statement flow chart, as there are multiple conditions.", 
+          "You can learn more about flow charts in the Python flow chart book on the homepage!",
+          "Example:",
+          "If it is a hot day, then HokieBird need to wear a T-shirt.",
+          "else if it is a chilly day, then HokieBird need to wear a Winter-jacket.",
+          "else the weather is not too cold or hot, Hokie Bird can wear a sweatshirt."
+        ],
+        image: "/if_condition/if-else-2.png",
       },
       {
         content: ["Lets start with dragging and drop statements that should happen if the condition is true!",
           "This means that whatever the if condition, what is inside the '()', is true the statement will happen!",
           "Here the HokieBird is outside and the temperature is around 70 degrees, not too cold, not too hot, lets dress him!",
-          "When you're done move onto the next page with the next button"],
+          "When you're done move onto the next page with the next button."],
         image: "HokieBirdIfConditionActivity",
         props: {
           draggable: true,
@@ -563,7 +577,7 @@ export const books: Book[] = [
           content: ["Let's assist him in repeatedly practicing the moves!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)."],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -578,7 +592,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize another move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)."],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -593,7 +607,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize another move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)."],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -608,7 +622,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize another move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)."],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -623,7 +637,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize the final move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)."],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
