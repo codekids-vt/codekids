@@ -30,9 +30,9 @@ function PostPreview({ postData }: { postData: PostData }) {
 
 function getActivitiesHeaders(): PostData[] {
   console.log(process.cwd())
-  return fs.readdirSync(path.join("activities")).map((fileName, idx) => {
+  return fs.readdirSync(path.join(process.cwd(), "_activities")).map((fileName, idx) => {
     const id = fileName.replace(/\.md$/, "");
-    const fullPath = path.join("activities", fileName);
+    const fullPath = path.join(process.cwd(), "_activities", fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const matterResult = matter(fileContents);
 
