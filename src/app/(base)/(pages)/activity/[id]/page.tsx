@@ -42,9 +42,9 @@ function ActivityPostDisplay({
 }
 
 function getActivity(id: string): PostData | undefined {
-  let mdFiles = fs.readdirSync(path.join("activities")).map((fileName) => {
+  let mdFiles = fs.readdirSync(path.join("_activities")).map((fileName) => {
     const fileNameId = fileName.replace(/\.md$/, "");
-    const fullPath = path.join("activities", fileName);
+    const fullPath = path.join("_activities", fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const matterResult = matter(fileContents);
 
