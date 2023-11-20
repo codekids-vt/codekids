@@ -2,6 +2,7 @@ import Link from "next/link";
 import fs from "fs";
 import matter from "gray-matter";
 import Image from "next/image";
+import path from 'path';
 
 interface PostData {
   image: string,
@@ -28,9 +29,10 @@ function PostPreview({ postData }: { postData: PostData }) {
 }
 
 function getActivitiesHeaders(): PostData[] {
-  return fs.readdirSync("public/activities").map((fileName, idx) => {
+  console.log(process.cwd())
+  return fs.readdirSync(path.join("activities")).map((fileName, idx) => {
     const id = fileName.replace(/\.md$/, "");
-    const fullPath = `public/activities/${fileName}`;
+    const fullPath = path.join("activities", fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const matterResult = matter(fileContents);
 
