@@ -4,8 +4,12 @@ import { Reader } from '../Reader'
 import { GetWindowScale } from './GetWindowScale'
 import Image from 'next/image'
 
+export interface IVariableAssignmentProps {
+    pageNumber: number
+}
 
-export function VariableAssignment({ props, setAllowNext }: { props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
+
+export function VariableAssignment({ props, setAllowNext }: { props: any | IVariableAssignmentProps, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
     const windowScale = GetWindowScale()
 
     const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
@@ -15,7 +19,11 @@ export function VariableAssignment({ props, setAllowNext }: { props: any, setAll
     const [q2Correct, setQ2Correct] = useState(false)
 
     React.useEffect(() => {
-        setAllowNext(q1Correct && q2Correct)
+        if(props.pageNumber == 1){
+            setAllowNext(q1Correct)
+        } else if(props.pageNumber === 2) {
+            setAllowNext(q2Correct)
+        }
     }, [q1Correct, q2Correct])
 
     function handleQ1(correct: boolean, incorrect: number = 0) {
@@ -52,45 +60,64 @@ export function VariableAssignment({ props, setAllowNext }: { props: any, setAll
         }
     }
 
-    return (
-        <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-            <div style={horizontal_div_style}>
-                <Image style={image_style} width={300} height={300} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
-                <div style={{...code_box_style, ...{transform:"scale(1.5,1.5)"}}}>
-                    <p style={code_style}>
-                        anniversary = <span style={code_integer_style}>147</span><br/>
-                        print(anniversary)<br/>
-                        {'print("A year has passed!")'}<br/>
-                        anniversary = <span style={code_integer_style}>148</span><br/>
-                        print(anniversary)<br/>
-                    </p>
+    if(props.pageNumber === 1) {
+        return getPage1()
+    } else if (props.pageNumber === 2) {
+        return getPage2()
+    }
+
+    function getPage1() {
+        return (
+            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
+                <div style={horizontal_div_style}>
+                    <Image style={image_style} width={300} height={300} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
+                    <div style={{...code_box_style, ...{transform:"scale(1.5,1.5)"}}}>
+                        <p style={code_style}>
+                            anniversary = <span style={code_integer_style}>147</span><br/>
+                            print(anniversary)<br/>
+                            {'print("A year has passed!")'}<br/>
+                            anniversary = <span style={code_integer_style}>148</span><br/>
+                            print(anniversary)<br/>
+                        </p>
+                    </div>
                 </div>
+                <div style={text_style}><Reader text='What is printed when this program runs?'/></div>
+                <div style={horizontal_div_style}>
+                    <button style={answer_button_style} onClick={() => handleQ1(true)}>{"147\nA year has passed!\n148"}</button>
+                    <button style={answer_button_style} onClick={() => handleQ1(false, 1)}>{"147\nA year has passed!\n147"}</button>
+                    <button style={answer_button_style} onClick={() => handleQ1(false, 2)}>{"147\nA year has passed!\n295"}</button>
+                </div>
+                <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
             </div>
-            <div style={text_style}><Reader text='What is printed when this program runs?'/></div>
-            <div style={horizontal_div_style}>
-                <button style={answer_button_style} onClick={() => handleQ1(true)}>{"147\nA year has passed!\n148"}</button>
-                <button style={answer_button_style} onClick={() => handleQ1(false, 1)}>{"147\nA year has passed!\n147"}</button>
-                <button style={answer_button_style} onClick={() => handleQ1(false, 2)}>{"147\nA year has passed!\n295"}</button>
+        );
+    }
+
+    function getPage2() {
+        return( 
+            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
+                <div style={horizontal_div_style}>
+                    <Image style={image_style} width={300} height={300} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
+                    <div style={{...code_box_style, ...{transform:"scale(1.5,1.5)"}}}>
+                        <p>
+                            anniversary = <span style={code_integer_style}>147</span><br/>
+                            print(anniversary)<br/>
+                            {'print("A year has passed!")'}<br/>
+                            anniversary = anniversary + <span style={code_integer_style}>1</span><br/>
+                            print(anniversary)<br/>
+                        </p>
+                    </div>
+                </div>                
+                <div style={text_style}><Reader text='What is printed when this program runs?'/></div>
+                <div style={horizontal_div_style}>
+                    <button style={answer_button_style} onClick={() => handleQ2(true)}>{"147\nA year has passed!\n148"}</button>
+                    <button style={answer_button_style} onClick={() => handleQ2(false, 1)}>{"147\nA year has passed!\nanniversary + 1"}</button>
+                    <button style={answer_button_style} onClick={() => handleQ2(false, 2)}>{"147\nA year has passed!\n147"}</button>
+                </div>
+                <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>
             </div>
-            <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
-            <div style={{...code_box_style, ...{transform:"scale(1.2,1.2)"}}}>
-                <p>
-                    anniversary = <span style={code_integer_style}>147</span><br/>
-                    print(anniversary)<br/>
-                    {'print("A year has passed!")'}<br/>
-                    anniversary = anniversary + <span style={code_integer_style}>1</span><br/>
-                    print(anniversary)<br/>
-                </p>
-            </div>
-            <div style={text_style}><Reader text='What is printed when this program runs?'/></div>
-            <div style={horizontal_div_style}>
-                <button style={answer_button_style} onClick={() => handleQ2(true)}>{"147\nA year has passed!\n148"}</button>
-                <button style={answer_button_style} onClick={() => handleQ2(false, 1)}>{"147\nA year has passed!\nanniversary + 1"}</button>
-                <button style={answer_button_style} onClick={() => handleQ2(false, 2)}>{"147\nA year has passed!\n147"}</button>
-            </div>
-            <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>
-        </div>
-    );
+        );
+    }
+
 }
 
 

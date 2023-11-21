@@ -187,5 +187,6 @@ const quarter_div_elements = {
     border: "3px solid #A7BB01",
     display: "flex",
     flexDirection: "column" as "column",
-    justifyContent: "center"
+    justifyContent: "center",
+    overflow: "scroll"
 }

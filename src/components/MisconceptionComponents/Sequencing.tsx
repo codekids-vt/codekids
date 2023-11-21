@@ -39,20 +39,25 @@ export function Sequencing({ props, setAllowNext }: { props: any, setAllowNext: 
     return (
         <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
             <Image style={image_style} width={400} height={400} src='/VariablesBook/vt_syracuse_score.png' alt="Image of therapy dogs with their names."/>
-            <div style={text_style}><Reader text='We always read the code from top to bottom. The line numbers have been provided. (Leftmost column of numbers)'/></div>
-            <div style={code_box_style}>
-                <p style={code_style}>
-                    {
-                        "1\tsyracuse_score = 10\n" +
-                        "2\thokies_score = 38\n" +
-                        "3\tdifferent = hokies_score - syracuse_score\n" +
-                        "4\thokies_score = 23\n" +
-                        "5\tsyracuse_score = 22\n" +
-                        "6\tprint(different)"
-                    }
-                </p>
+            <div style={text_style}><Reader text='We always read the code from top to bottom. The line numbers have been provided. (Yellow column).'/></div>
+            <div style={{display: "flex", justifyContent: "center"}}>
+                <div style={{...code_style, padding: "3% .5%", background: "yellow", border: "1px solid black"}}>
+                    1<br/>2<br/>3<br/>4<br/>5<br/>6
+                </div>
+                <div style={code_box_style}>
+                    <p style={code_style}>
+                        {
+                            "syracuse_score = 10\n" +
+                            "hokies_score = 38\n" +
+                            "different = hokies_score - syracuse_score\n" +
+                            "hokies_score = 23\n" +
+                            "syracuse_score = 22\n" +
+                            "print(different)"
+                        }
+                    </p>
+                </div>
             </div>
-            <div><Reader text='What is printed when print(different) is called at the end?'/></div>
+            <div style={text_style}><Reader text='What is printed when print(different) is called at the end?'/></div>
             <div style={horizontal_div_style}>
                 <button style={answer_button_style} onClick={() => handleQ1(false, "15")}>15</button>
                 <button style={answer_button_style} onClick={() => handleQ1(false, "0")}>0</button>
@@ -93,18 +98,6 @@ const image_style = {
     display: "block"
 }
 
-const code_string_style = {
-    color: "#b87554"
-}
-
-const code_boolean_style = {
-    color: "#669955"
-}
-
-const code_integer_style = {
-    color: "#ff6371"
-}
-
 const answer_button_style = {
     backgroundColor: "#D1D5DB",
     color: "black",
@@ -120,7 +113,7 @@ const code_box_style = {
     textAlign: "left" as "left", 
     backgroundColor: "#E8E8E8",
     width: "fit-content",
-    margin: "5% auto",
+    // margin: "5% auto",
     padding: "3%",
     whiteSpace: "pre-wrap" as "pre-wrap"
 }

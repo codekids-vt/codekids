@@ -4,7 +4,11 @@ import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
 import Image from 'next/image'
 
-export function IntsAndBools({ props, setAllowNext }: { props: any, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
+export interface IIntsAndBoolsProps {
+    pageNumber: number
+}
+
+export function IntsAndBools({ props, setAllowNext }: { props: any | IIntsAndBoolsProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const windowScale = GetWindowScale()
 
@@ -17,7 +21,11 @@ export function IntsAndBools({ props, setAllowNext }: { props: any, setAllowNext
     const [q2Correct, setQ2Correct] = useState(false)
 
     useEffect(() => {
-        setAllowNext(q1Correct && q2Correct)
+        if(props.pageNumber === 1) {
+            setAllowNext(q1Correct)
+        } else if(props.pageNumber === 2) {
+            setAllowNext(q2Correct)
+        }
     }, [q1Correct, q2Correct])
 
     function answerButtonClick(answer: string, questionNumber: number, correct: boolean = false)
@@ -74,32 +82,47 @@ export function IntsAndBools({ props, setAllowNext }: { props: any, setAllowNext
         }
     }
 
+    if(props.pageNumber === 1) {
+        return getPage1()
+    } else if(props.pageNumber === 2) {
+        return getPage2()
+    }
 
-    return (
-        <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-            <Image style={image_style} width={400} height={400} src={"/VariablesBook/vt_syracuse_score.png"} alt='Image of football score between Virginia Tech and Syracuse'/>
-            <span style={text_style}><Reader text='What is the correct integer value of the following?'/></span>
-            <p style={code_style}>hokies_score = <span style={dataTypeStyle}>{q1ChosenAnswer}</span></p>
-            <div style={horizontal_div_style}>
-                <button style={answer_button_style} type='button' onClick={() => answerButtonClick("False", 1)}>False</button>
-                <button style={answer_button_style} type='button' onClick={() => answerButtonClick("38", 1, true)}>38</button>
-                <button style={answer_button_style} type='button' onClick={() => answerButtonClick("10", 1)}>10</button>
-                <button style={answer_button_style} type='button' onClick={() => answerButtonClick("'38'", 1)}>{"'38'"}</button>
+    function getPage1() {
+        return(
+            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
+                <Image style={image_style} width={500} height={500} src={"/VariablesBook/vt_syracuse_score.png"} alt='Image of football score between Virginia Tech and Syracuse'/>
+                <span style={text_style}><Reader text='What is the correct integer value of the following?'/></span>
+                <p style={code_style}>hokies_score = <span style={dataTypeStyle}>{q1ChosenAnswer}</span></p>
+                <div style={horizontal_div_style}>
+                    <button style={answer_button_style} type='button' onClick={() => answerButtonClick("False", 1)}>False</button>
+                    <button style={answer_button_style} type='button' onClick={() => answerButtonClick("38", 1, true)}>38</button>
+                    <button style={answer_button_style} type='button' onClick={() => answerButtonClick("10", 1)}>10</button>
+                    <button style={answer_button_style} type='button' onClick={() => answerButtonClick("'38'", 1)}>{"'38'"}</button>
+                </div>
+                <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
             </div>
-            <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
-            <span style={text_style}><Reader text="What is the variable 'win' evaluated to?"/></span>
-            <div style={code_box_style}>
-                <p>syracuse_score = <span style={code_integer_style}>10</span><br/>win = hokies_score &gt; syracuse_score</p>
+        );
+    }
+
+    function getPage2() {
+        return(
+            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
+                <Image style={image_style} width={500} height={500} src={"/VariablesBook/vt_syracuse_score.png"} alt='Image of football score between Virginia Tech and Syracuse'/>
+                <span style={text_style}><Reader text="What is the variable 'win' evaluated to?"/></span>
+                <div style={code_box_style}>
+                    <p>hokies_score = <span style={code_integer_style}>38</span><br/>syracuse_score = <span style={code_integer_style}>10</span><br/>win = hokies_score &gt; syracuse_score</p>
+                </div>
+                <div style={horizontal_div_style}>
+                    <button style={answer_button_style} type='button' onClick={() => answerButtonClick("False", 2)}>False</button>
+                    <button style={answer_button_style} type='button' onClick={() => answerButtonClick("22", 2)}>22</button>
+                    <button style={answer_button_style} type='button' onClick={() => answerButtonClick("10", 2)}>10</button>
+                    <button style={answer_button_style} type='button' onClick={() => answerButtonClick("True", 2, true)}>True</button>
+                </div>
+                <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>
             </div>
-            <div style={horizontal_div_style}>
-                <button style={answer_button_style} type='button' onClick={() => answerButtonClick("False", 2)}>False</button>
-                <button style={answer_button_style} type='button' onClick={() => answerButtonClick("22", 2)}>22</button>
-                <button style={answer_button_style} type='button' onClick={() => answerButtonClick("10", 2)}>10</button>
-                <button style={answer_button_style} type='button' onClick={() => answerButtonClick("True", 2, true)}>True</button>
-            </div>
-            <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>
-        </div>
-    );
+        );
+    }
 
 }
 
@@ -158,8 +181,8 @@ const code_box_style = {
     textAlign: "left" as "left", 
     backgroundColor: "#E8E8E8",
     width: "fit-content",
-    margin: "5% auto",
-    padding: "3%"
+    margin: "1% auto",
+    padding: "2%"
 }
 
 const answer_explanation_style = {

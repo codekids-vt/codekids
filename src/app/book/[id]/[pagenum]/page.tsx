@@ -43,7 +43,7 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} setAllowNext={setAllowNext} />}
       {image === "DataTypesIntro" && <DataTypesIntro />}
       {image === "IntsAndBools" && <IntsAndBools props={page?.props} setAllowNext={setAllowNext} />}
-      {image === "VariableAssignment" && <VariableAssignment props={1} setAllowNext={setAllowNext} />}
+      {image === "VariableAssignment" && <VariableAssignment props={page?.props} setAllowNext={setAllowNext} />}
       {image === "Strings" && <Strings props={page?.props} setAllowNext={setAllowNext} />}
       {image === "Sequencing" && <Sequencing props={page?.props} setAllowNext={setAllowNext} />}
       {image === "IfStatementIntro" && <IfStatementIntro />}

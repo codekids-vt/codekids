@@ -24,12 +24,12 @@ export function IfStatements({ props, setAllowNext }: { props: any | IIfStatemen
     React.useEffect(() => {
         if (props.pageNumber === 1) {
             setAllowNext(q1Correct)
-        }
-        if (props.pageNumber === 2) {
+        } else if (props.pageNumber === 2) {
             setAllowNext(q2Correct)
-        }
-        if (props.pageNumber === 3) {
-            setAllowNext(q3Correct && q4Correct)
+        } else if (props.pageNumber === 3) {
+            setAllowNext(q3Correct)
+        } else if (props.pageNumber === 4) {
+            setAllowNext(q4Correct)
         }
     }, [q1Correct, q2Correct, q3Correct, q4Correct])
 
@@ -120,6 +120,8 @@ export function IfStatements({ props, setAllowNext }: { props: any | IIfStatemen
         return getPage2()
     } else if (props.pageNumber === 3) {
         return getPage3()
+    } else if (props.pageNumber === 4) {
+        return getPage4()
     }
 
     function getPage1() {
@@ -190,7 +192,7 @@ export function IfStatements({ props, setAllowNext }: { props: any | IIfStatemen
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
                 <Image style={image_style} width={250} height={250} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of storm over Lane Stadium.'/>
-                <div style={text_style}><Reader text='What is printed in the programs below?'/></div>
+                <div style={text_style}><Reader text='What is printed in the program below?'/></div>
                 <div style={code_box_style}>
                     <p style={code_style}>
                         anniversary = <span style={code_integer_style}>148</span><br/>
@@ -206,6 +208,14 @@ export function IfStatements({ props, setAllowNext }: { props: any | IIfStatemen
                     <button style={answer_button_style} type='button' onClick={() => handleQ3(false, "N")}>{"Nothing will\nbe printed."}</button>
                 </div>
                 <div style={answer_explanation_style}><Reader text={q3AnswerExplanation}/></div>
+            </div>
+        );
+    }
+
+    function getPage4() {
+        return(
+            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
+                <Image style={image_style} width={250} height={250} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of storm over Lane Stadium.'/>
                 <div style={code_box_style}>
                     <p style={code_style}>
                         anniversary = <span style={code_integer_style}>148</span><br/>
