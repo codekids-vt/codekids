@@ -26,7 +26,7 @@ export function LogicalOperators({ props, setAllowNext }: { props: any, setAllow
         } else if (props.pageNumber === 4) {
             setAllowNext(q3Correct)
         }
-    }, [q1Correct, q2Correct, q3Correct])
+    }, [q1Correct, q2Correct, q3Correct, props.pageNumber, setAllowNext])
 
 
     function handleQ1(correct: boolean, incorrect : string = "" ) {

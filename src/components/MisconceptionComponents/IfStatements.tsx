@@ -31,7 +31,7 @@ export function IfStatements({ props, setAllowNext }: { props: any | IIfStatemen
         } else if (props.pageNumber === 4) {
             setAllowNext(q4Correct)
         }
-    }, [q1Correct, q2Correct, q3Correct, q4Correct])
+    }, [q1Correct, q2Correct, q3Correct, q4Correct, props.pageNumber, setAllowNext])
 
     function handleQ1(correct: boolean, incorrect : string = "" ) {
         if(correct) {

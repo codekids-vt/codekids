@@ -36,7 +36,7 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
             setAllowNext(q4Correct)
         }
 
-    }, [q1Correct, q2Correct, q3Correct, q4Correct])
+    }, [q1Correct, q2Correct, q3Correct, q4Correct, props.pageNumber, setAllowNext])
 
     function handleQ1(correct: boolean, incorrect : string = "" ) {
         if(correct) {

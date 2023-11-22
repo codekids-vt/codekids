@@ -14,7 +14,7 @@ export function Sequencing({ props, setAllowNext }: { props: any, setAllowNext: 
 
     React.useEffect(() => {
         setAllowNext(q1Correct)
-    }, [q1Correct])
+    }, [q1Correct, setAllowNext])
 
     function handleQ1(correct : boolean, incorrect : string = "") {
         if(correct) {

@@ -29,7 +29,7 @@ export function MooseMilestone({ props, setAllowNext }: { props: any | IMooseMil
         if (props.pageNumber === 2) {
             setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
         }
-    }, [q1Correct, q2Correct, q3Correct, q4Correct])
+    }, [q1Correct, q2Correct, q3Correct, q4Correct, props.pageNumber, setAllowNext])
 
 
     function handleQ1(correct: boolean, incorrect: string = "") {
@@ -217,5 +217,5 @@ const quarter_div_elements = {
     display: "flex",
     flexDirection: "column" as "column",
     justifyContent: "center",
-    overflow: "scroll"
+    overflow: "auto"
 }

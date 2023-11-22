@@ -28,7 +28,7 @@ export function MooseChallengingYear({ props, setAllowNext }: { props: any | IMo
         if (props.pageNumber === 2) {
             setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct)
         }
-    }, [q1Correct, q2Correct, q3Correct, q4Correct])
+    }, [q1Correct, q2Correct, q3Correct, q4Correct, props.pageNumber, setAllowNext])
 
     function handleQ1(correct: boolean) {
         if(correct) {
@@ -188,5 +188,5 @@ const quarter_div_elements = {
     display: "flex",
     flexDirection: "column" as "column",
     justifyContent: "center",
-    overflow: "scroll"
+    overflow: "auto"
 }

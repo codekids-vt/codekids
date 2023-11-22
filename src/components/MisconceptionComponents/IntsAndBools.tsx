@@ -26,7 +26,7 @@ export function IntsAndBools({ props, setAllowNext }: { props: any | IIntsAndBoo
         } else if(props.pageNumber === 2) {
             setAllowNext(q2Correct)
         }
-    }, [q1Correct, q2Correct])
+    }, [q1Correct, q2Correct, props.pageNumber, setAllowNext])
 
     function answerButtonClick(answer: string, questionNumber: number, correct: boolean = false)
     {

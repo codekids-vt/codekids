@@ -805,7 +805,7 @@ export const books: Book[] = [
       { // Strings
         image: "Strings",
         props: {
-          stringsPage: 1,
+          pageNumber: 1,
           ans: ["Option 3. Make sure to read the explanation!"]
         },
         content: ["This page will focus on Strings!",
@@ -813,12 +813,12 @@ export const books: Book[] = [
                   "A String is text like \"Hello\". You can also think of it like a sequence of different characters.",
                   "When the data type is String, then the characters will ALWAYS be surrounded by double or single quotation marks.",
                   "For example, \"Hello\" and \'Hello\' are both strings since they're surrounded by double or single quotation marks.",
-                  "What do you think '9' is? You may initially think Integer, but notice it's surround in single quotation marks. So, it's a string."],
+                  "What do you think '9' is? You may initially think Integer, but notice it's surrounded in single quotation marks. So, it's a string."],
       },
       { // Strings
         image: "Strings",
         props: {
-          stringsPage: 2,
+          pageNumber: 2,
           ans: ["Option 4. Make sure to read the explanation!"]
         },
         content: ["When a String is printed, the quotation marks are not included.",
@@ -827,7 +827,7 @@ export const books: Book[] = [
       {
         image: "Strings",
         props: {
-          stringsPage: 3,
+          pageNumber: 3,
           ans: ["Option 3. Make sure to read the explanation!", "Option 2. Make sure to read the explanation!"]
         },
         content: ["Try out these exercises on Strings.",
@@ -838,7 +838,7 @@ export const books: Book[] = [
       {
         image: "Strings",
         props: {
-          stringsPage: 4,
+          pageNumber: 4,
           ans: ["Option 2. Make sure to read the explanation!"]
         },
         content: ["Take a moment to think about his question.",

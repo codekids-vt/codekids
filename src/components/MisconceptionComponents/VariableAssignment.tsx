@@ -24,7 +24,7 @@ export function VariableAssignment({ props, setAllowNext }: { props: any | IVari
         } else if(props.pageNumber === 2) {
             setAllowNext(q2Correct)
         }
-    }, [q1Correct, q2Correct])
+    }, [q1Correct, q2Correct, props.pageNumber, setAllowNext])
 
     function handleQ1(correct: boolean, incorrect: number = 0) {
         if(correct) {

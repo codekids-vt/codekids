@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 
 export interface IStringsProps {
-    stringsPage: number
+    pageNumber: number
 }
 
 export function Strings({ props, setAllowNext }: { props: any | IStringsProps, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
@@ -26,17 +26,17 @@ export function Strings({ props, setAllowNext }: { props: any | IStringsProps, s
     const [q5Correct, setQ5Correct] = useState(false)
 
     React.useEffect(() => {
-        if (props.stringsPage === 1) {
+        if (props.pageNumber === 1) {
             setAllowNext(q1Correct)
-        } else if (props.stringsPage === 2) {
+        } else if (props.pageNumber === 2) {
             setAllowNext(q2Correct)
-        } else if (props.stringsPage === 3) {
+        } else if (props.pageNumber === 3) {
             setAllowNext(q3Correct && q4Correct)
-        } else if (props.stringsPage === 4) {
+        } else if (props.pageNumber === 4) {
             setAllowNext(q5Correct)
         }
 
-    }, [q1Correct, q2Correct, q3Correct, q4Correct, q5Correct])
+    }, [q1Correct, q2Correct, q3Correct, q4Correct, q5Correct, props.pageNumber, setAllowNext])
 
     function handleQ1(correct: boolean, incorrect: string = "") {
         if(correct) {
@@ -134,13 +134,13 @@ export function Strings({ props, setAllowNext }: { props: any | IStringsProps, s
         }
     }
 
-    if(props.stringsPage === 1) {
+    if(props.pageNumber === 1) {
         return getPage1()
-    } else if (props.stringsPage === 2) {
+    } else if (props.pageNumber === 2) {
         return getPage2()
-    } else if( props.stringsPage == 3) {
+    } else if( props.pageNumber == 3) {
         return getPage3()
-    } else if (props.stringsPage === 4) {
+    } else if (props.pageNumber === 4) {
         return getPage4()
     }
 
