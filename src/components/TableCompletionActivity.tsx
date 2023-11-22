@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NumberInputActivity } from './NumberInputActivity';
+import { InputActivity } from './InputActivity';
 
 
 export interface ITableCompletionActivityProps {
