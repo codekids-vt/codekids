@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        'xs': '.5rem',
+      },  
       screens: {
         tablet: { max: "640px" },
       },
