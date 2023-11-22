@@ -3,7 +3,7 @@ import { Reader } from '../Reader';
 import { GetWindowScale } from './GetWindowScale';
 import Image from 'next/image'
 
-export function LogicalOperators() {
+export function LogicalOperators({ props, setAllowNext }: { props: any, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const windowScale = GetWindowScale()
 
@@ -14,10 +14,20 @@ export function LogicalOperators() {
     const [q3ChosenAnswer, setQ3ChosenAnswer] = useState("?")
     const [q3AnswerExplanation, setQ3AnswerExplanation] = useState("Choose an answer above!")
 
+    const [q1Correct, setQ1Correct] = useState(false)
+    const [q2Correct, setQ2Correct] = useState(false)
+    const [q3Correct, setQ3Correct] = useState(false)
+
+    React.useEffect(() => {
+        setAllowNext(q1Correct && q2Correct && q3Correct)
+    }, [q1Correct, q2Correct, q3Correct])
+
+
     function handleQ1(correct: boolean, incorrect : string = "" ) {
         if(correct) {
             setQ1ChosenAnswer("True")
             setQ1AnswerExplanation("Correct! derek_color is equal to cream and josie_color is equal to cream.")
+            setQ1Correct(true)
         } else {
             setQ1ChosenAnswer("False")
             setQ1AnswerExplanation("Incorrect. Is derek_color equal to cream and josie_color equal to cream? Try again!")
@@ -28,6 +38,7 @@ export function LogicalOperators() {
         if(correct) {
             setQ2ChosenAnswer("True")
             setQ2AnswerExplanation("Correct! Because derek_color is equal to cream, it doesn't matter that wagner_color is not equal to cream. OR only cares that one of them is True.")
+            setQ2Correct(true)
         } else {
             setQ2ChosenAnswer("False")
             setQ2AnswerExplanation("Incorrect. Remember OR gives True as long as at least one of the Booleans is True. Are either of the Booleans true? Try again!")
@@ -38,6 +49,7 @@ export function LogicalOperators() {
         if(correct) {
             setQ3ChosenAnswer("False")
             setQ3AnswerExplanation("Correct! derek_color is equal to 'cream', which means derek_color == 'cream' is True, so the NOT of that is False")
+            setQ3Correct(true)
         } else {
             setQ3ChosenAnswer("True")
             setQ3AnswerExplanation("Incorrect. derek_color is equal to 'cream', which means derek_color == 'cream' is True, but we want to get the NOT of that. Try again!")
