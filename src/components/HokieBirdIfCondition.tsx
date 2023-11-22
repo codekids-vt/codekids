@@ -1,12 +1,10 @@
 "use client"
 import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 
 interface HokieBirdColorState {
     condition: string,
     statement: string,
-    // statement2: string
 }
 
 
@@ -103,11 +101,11 @@ export function HokieBirdIfCondition({ props, setAllowNext }: { props: any, setA
     }
 
     return (
-        <div className="flex flex-row items-center justify-between text-xs xl:text-lg">
-            <div className="flex flex-col items-center h-[200px] w-[200px] relative">
-                <Image src={currentImage} width={250} height={250} alt="Hokie Bird Image" className="absolute  w-[200px] lx:w-[400px] rounded-2xl"></Image>
+        <div className="flex flex-row items-start justify-between text-xs xl:text-lg">
+            <div className="w-[200px] xl:w-[450px] relative">
+                <Image src={currentImage} width={400} height={400} alt="Hokie Bird Image" className="absolute  w-[200px] xl:w-[450px] rounded-2xl"></Image>
                 {props?.effect &&
-                    <Image src={props.effect} width={400} height={500} alt="Hokie Bird Image Effect" className="absolute w-[200px] lx:w-[400px]"></Image>
+                    <Image src={props.effect} width={400} height={400} alt="Hokie Bird Image Effect" className="absolute  w-[200px] xl:w-[450px]"></Image>
                 }
             </div>
             <div className="flex flex-col">
