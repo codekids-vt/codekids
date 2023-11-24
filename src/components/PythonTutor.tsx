@@ -28,7 +28,9 @@ export function PythonTutor({ props }: { props: any | IPythonTutorProps }) {
     <div className="flex flex-col flex-grow items-center w-full h-full">
       {!editing &&
         <div className="overflow-scroll flex-grow shadow-2xl rounded-2xl w-full">
-          <iframe id="pyTutorFrame" className="w-full h-full" style={{ scale: scale, transformOrigin: "top left"}}
+          <iframe
+            id="pyTutorFrame" className="w-[1000px] h-[1000px]"
+            style={{ transform: `scale(${scale})`, transformOrigin: "top left" }}
             src={`https://pythontutor.com/iframe-embed.html#code=${encodeURIComponent(code)}&cumulative=${cumulative}&py=2`}>
           </iframe>
         </div>
@@ -43,7 +45,7 @@ export function PythonTutor({ props }: { props: any | IPythonTutorProps }) {
           className="w-10/12 text-md h-[calc(100vh-22rem)] overflow-y-scroll border-2 p-10 shadow-2xl rounded-xl"
         />
       }
-      <div className="p-4 flex flex-row justify-center items-center space-x-4">
+      <div className="p-2 flex flex-row justify-center items-center space-x-4">
         <button onClick={() => setEditing(!editing)} className="bg-primary-green text-white font-bold py-2 px-4 rounded-full">
           {editing ? "Run Code" : "Edit Code"}
         </button>

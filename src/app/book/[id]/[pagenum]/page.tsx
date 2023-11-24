@@ -35,7 +35,7 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
   const isImage = image && image.includes(".");
 
   return (
-    <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
+    <div className="h-[calc(100vh-8rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
       {isImage && <Image src={image} alt="book image" width={600} height={600} className="object-contain max-w-full max-h-full" />}
       {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
@@ -61,7 +61,7 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
 
 function BookContent({ content, game, props, setAllowNext }: { content: string[], game: string | null, props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   return (
-    <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col justify-center gap-1 items-center w-full">
+    <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)]  overflow-y-scroll flex flex-col justify-center gap-1 items-center w-full p-1">
       <ul className="flex flex-col justify-center py-2 md:space-y-1 xl:space-y-4">
         {content.map((line, i) => (
           <li key={i}>
@@ -132,38 +132,34 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
     <div className="text-xs xl:text-lg 2xl:text-xl">
       <Navbar />
       <div className="mx-auto">
-        <div className="px-2 py-2 h-[calc(100vh-4rem)] flex">
+        <div className="px-2 py-2 h-[calc(100vh-4rem)] flex p-1">
           {page && (
-            <div className="flex flex-row justify-between bg-white rounded-2xl shadow-xl p-2 flex-grow">
-              <div className="flex flex-col flex-grow items-center">
-                <div className="flex flex-col justify-between flex-grow w-full">
-                  <div className="flex flex-col flex-grow items-center justify-center">
-                    <BookImage image={page.image} page={page} setAllowNext={setAllowNext} />
-                  </div>
-                  <div className="flex flex-row justify-start items-center xl:p-2 space-x-2">
-                    {backButton}
-                    {page?.props?.ans?.length &&
-                      <button onClick={() => setHelp(!help)}
-                        className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold flex flex-row items-center p-1 xl:p-6 xl:text-2xl rounded-full">
-                        Help me
-                        <div className="px-1">
-                          <Image src={"/help-icon.png"} alt="help icon" width={25} height={25} />
-                        </div>
-                      </button>
-                    }
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-2xl">
-                <div className="flex flex-col items-center justify-center">
-                  <BookContent content={page.content} game={page.game} props={page.props} setAllowNext={setAllowNext} />
-                </div>
-                <div className="flex flex-row w-full justify-end p-2">
-                  {allowNext && forwardButton}
-                  {!allowNext && <div className="bg-red-400 text-white font-bold p-1 xl:p-4 xl:text-xl rounded-full">
-                    Complete the activity to continue
+            <div className="flex flex-col justify-between rounded-2xl shadow-2xl p-1 w-full h-full">
+              <div className="flex flex-row h-full">
+                <BookImage image={page.image} page={page} setAllowNext={setAllowNext} />
+                {page.content.length > 0 &&
+                  <div className="flex flex-col w-1/3 items-center justify-between bg-gray-300 rounded-2xl">
+                    <BookContent content={page.content} game={page.game} props={page.props} setAllowNext={setAllowNext} />
                   </div>}
+              </div>
+              {/* This is the bottom bar for the next and back buttons */}
+              <div className="flex flex-row w-full justify-between p-1">
+                <div className="flex flex-row space-x-2">
+                  {backButton}
+                  {page?.props?.ans?.length &&
+                    <button onClick={() => setHelp(!help)}
+                      className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold flex flex-row items-center p-1 xl:p-6 xl:text-2xl rounded-full">
+                      Help me
+                      <div className="px-1">
+                        <Image src={"/help-icon.png"} alt="help icon" width={25} height={25} />
+                      </div>
+                    </button>
+                  }
                 </div>
+                {allowNext && forwardButton}
+                {!allowNext && <button className="bg-red-400 text-white font-bold p-1 xl:p-4 xl:text-xl rounded-full">
+                  Complete the activity to continue
+                </button>}
               </div>
               {page?.props?.ans?.length && (
                 <div
