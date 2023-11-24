@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 
 export interface IStringsProps {
-    stringsPage: number
+    pageNumber: number
 }
 
 export function Strings({ props, setAllowNext }: { props: any | IStringsProps, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
@@ -26,14 +26,17 @@ export function Strings({ props, setAllowNext }: { props: any | IStringsProps, s
     const [q5Correct, setQ5Correct] = useState(false)
 
     React.useEffect(() => {
-        if (props.stringsPage === 1) {
-            setAllowNext(q1Correct && q2Correct)
-        }
-        else if (props.stringsPage === 2) {
-            setAllowNext(q3Correct && q4Correct && q5Correct)
+        if (props.pageNumber === 1) {
+            setAllowNext(q1Correct)
+        } else if (props.pageNumber === 2) {
+            setAllowNext(q2Correct)
+        } else if (props.pageNumber === 3) {
+            setAllowNext(q3Correct && q4Correct)
+        } else if (props.pageNumber === 4) {
+            setAllowNext(q5Correct)
         }
 
-    }, [q1Correct, q2Correct, q3Correct, q4Correct, q5Correct])
+    }, [q1Correct, q2Correct, q3Correct, q4Correct, q5Correct, props.pageNumber, setAllowNext])
 
     function handleQ1(correct: boolean, incorrect: string = "") {
         if(correct) {
@@ -131,10 +134,14 @@ export function Strings({ props, setAllowNext }: { props: any | IStringsProps, s
         }
     }
 
-    if(props.stringsPage === 1) {
+    if(props.pageNumber === 1) {
         return getPage1()
-    } else if (props.stringsPage === 2) {
+    } else if (props.pageNumber === 2) {
         return getPage2()
+    } else if( props.pageNumber == 3) {
+        return getPage3()
+    } else if (props.pageNumber === 4) {
+        return getPage4()
     }
 
 
@@ -158,6 +165,14 @@ export function Strings({ props, setAllowNext }: { props: any | IStringsProps, s
                     <button style={answer_button_style} onClick={() => handleQ1(false, "None")}>None</button>
                 </div>
                 <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
+            </div>
+        );
+    }
+
+    function getPage2() {
+        return (
+            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
+                <Image style={image_style} width={500} height={500} src={"/VariablesBook/therapy_dogs.png"} alt='Image of Virginia Tech therapy dogs.'/>
                 <div style={text_style}><Reader text='What is printed at the end of this program?'/></div>
                 <div style={code_box_style}>
                     <p style={code_style}>
@@ -178,7 +193,7 @@ export function Strings({ props, setAllowNext }: { props: any | IStringsProps, s
         );
     }
 
-    function getPage2() {
+    function getPage3() {
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
                 <div style={horizontal_div_style}>
@@ -208,12 +223,30 @@ export function Strings({ props, setAllowNext }: { props: any | IStringsProps, s
                     <button style={answer_button_style} onClick={() => handleQ4(false, "None")}>None</button>
                 </div>
                 <div style={answer_explanation_style}><Reader text={q4AnswerExplanation}/></div>
-                <div style={text_style}><Reader text="What is printed during this program?"/></div>
+            </div>
+        );
+    }
+
+    function getPage4() {
+        return (
+            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
                 <div style={horizontal_div_style}>
-                    <button style={answer_button_style} onClick={() => handleQ5(false, "148")}>{"A year has passed!\n148"}</button>
-                    <button style={answer_button_style} onClick={() => handleQ5(true)}>{"A year has passed!\nanniversary_2"}</button>
-                    <button style={answer_button_style} onClick={() => handleQ5(false, "\"148\"")}>{"A year has passed!\n\"148\""}</button>
+                        <Image style={image_style} width={300} height={300} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
+                        <div style={{...code_box_style, ...{transform:"scale(1.5,1.5)"}}}>
+                            <p style={code_style}>
+                                anniversary = <span style={code_integer_style}>147</span><br/>
+                                {'print("A year has passed!")'}<br/>
+                                anniversary_2 = <span style={code_string_style}>{'"148"'}</span><br/>
+                                print(<span style={code_string_style}>{"'anniversary_2'"}</span>)
+                            </p>
+                        </div>
                 </div>
+                <div style={text_style}><Reader text="What is printed during this program?"/></div>
+                    <div style={horizontal_div_style}>
+                        <button style={answer_button_style} onClick={() => handleQ5(false, "148")}>{"A year has passed!\n148"}</button>
+                        <button style={answer_button_style} onClick={() => handleQ5(true)}>{"A year has passed!\nanniversary_2"}</button>
+                        <button style={answer_button_style} onClick={() => handleQ5(false, "\"148\"")}>{"A year has passed!\n\"148\""}</button>
+                    </div>
                 <div style={answer_explanation_style}><Reader text={q5AnswerExplanation}/></div>
             </div>
         );
