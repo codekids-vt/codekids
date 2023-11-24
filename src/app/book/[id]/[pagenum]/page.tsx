@@ -14,7 +14,6 @@ import { HokieBirdIfCondition } from "@/components/HokieBirdIfCondition";
 import { books } from "./books"
 import Navbar from "@/components/Navbar";
 import { PythonTutor } from "@/components/PythonTutor";
-import { TableCompletionActivity } from "@/components/TableCompletionActivity";
 import { DataTypesIntro } from "@/components/MisconceptionComponents/DataTypesIntro";
 import { IntsAndBools } from "@/components/MisconceptionComponents/IntsAndBools";
 import { VariableAssignment } from "@/components/MisconceptionComponents/VariableAssignment";
@@ -30,9 +29,7 @@ import { MooseDr } from "@/components/MisconceptionComponents/MooseDr";
 import { MooseChallengingYear } from "@/components/MisconceptionComponents/MooseChallengingYear";
 import { MooseThankYou } from "@/components/MisconceptionComponents/MooseThankYou";
 import { InputActivity } from "@/components/InputActivity";
-import { TableFlowers } from "@/components/TableFlowers";
-import { TableTrees } from "@/components/TableTrees";
-import { TableMultiplication } from "@/components/TableMultiplication";
+import { TableComponent } from "@/components/TableComponent";
 
 function BookImage({ image, page, setAllowNext }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
@@ -78,9 +75,7 @@ function BookContent({ content, game, props, setAllowNext }: { content: string[]
       {game && game === "color" && <ColorPattern />}
       {game && game === "number" && <NumericalPattern pattern={props.pattern} answer={props.ans[0]} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
-      {game && game === "TableFlowers" && <TableFlowers />}
-      {game && game === "TableTrees" && <TableTrees />}
-      {game && game === "TableMultiplication" && <TableMultiplication />}
+      {game && game === "TableComponent" && <TableComponent cellContents={props.cellContents} />}
         </div>
   );
 

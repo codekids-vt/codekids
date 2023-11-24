@@ -277,13 +277,14 @@ export const books: Book[] = [
           "Now guess the number of pink flowers that should be planted in the right corner in bottom?"
         ],
         image: "InputActivity",
-        game: "TableFlowers",
+        game: "TableComponent",
         props: {
           showIOLabels: true,
           options: [4, 5, 6, 7],
           answer: 5,
           initialImage: "/io_book/flowers_1.png", 
           correctImage: "/io_book/flowers_2.png",
+          cellComponents: ['Yellow Flowers', 'Pink Flowers', '1', '2', '2', '3', '3', '4', '4', '?'],
         },
       },
       {
@@ -329,13 +330,14 @@ export const books: Book[] = [
           "Now guess the number green trees that should be planted in the right corner in bottom? "
         ],
         image: "InputActivity",
-        game: "TableTrees",
+        game: "TableComponent",
         props: {
           showIOLabels: true,
           options: [1, 2, 3, 4],
           answer: 1,
           initialImage: "/io_book/trees_1.png", 
           correctImage: "/io_book/trees_2.png",
+          cellContents: ['Yellow Trees', 'Green Trees', '1', '4', '2', '3', '3', '2', '4', '?'],
         },
       },
       {
@@ -356,13 +358,14 @@ export const books: Book[] = [
           "Now, guess pink flowers will be planted if there are four trees together?"
         ],
         image: "InputActivity",
-        game: "TableMultiplication",
+        game: "TableComponent",
         props: {
           showIOLabels: true,
           options: [6, 7, 8, 9],
           answer: 8,
           initialImage: "/io_book/multiplication_1.png", 
           correctImage: "/io_book/multiplication_2.png",
+          cellContents: ['Yellow Trees', 'Pink Flowers', '1', '2', '2', '4', '3', '6', '4', '?'],
         },
       }
     ]
