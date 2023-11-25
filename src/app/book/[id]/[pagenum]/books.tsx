@@ -201,7 +201,7 @@ export const books: Book[] = [
         content: [
           "Hello, My name is Sarah! Today we will learn about Input/Output.",
           "Let’s chat with the computer and explore the park!"],
-        image: "/io_book/def.png"
+        image: "/io_book/intro_io.png"
       },
       {
         content: [
@@ -226,14 +226,14 @@ export const books: Book[] = [
           "Output",
           "It is what the computer gives back to you after it does something with the input. It's the computer's answer."
         ],
-        image: "/io_book/def.png",
+        image: "/io_book/def_io.png",
       },
       {
         content: [
           "Hey! Let's hop on to the next activity.",
           "Now, we will play with the flowers in the park."
         ],
-        image: "/io_book/def.png",
+        image: "/io_book/next_io.png",
       },
       {
         content: ["Look at each corner of the park", "How many yellow flowers are there in total in all the corners?"],
@@ -284,7 +284,7 @@ export const books: Book[] = [
           answer: 5,
           initialImage: "/io_book/flowers_1.png", 
           correctImage: "/io_book/flowers_2.png",
-          cellComponents: ['Yellow Flowers', 'Pink Flowers', '1', '2', '2', '3', '3', '4', '4', '?'],
+          cellContents: ['Yellow Flowers', 'Pink Flowers', '1', '2', '2', '3', '3', '4', '4', '?'],
         },
       },
       {
