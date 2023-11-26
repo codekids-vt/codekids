@@ -1221,5 +1221,48 @@ export const books: Book[] = [
                   "Click the Edit Code button to fill out the code template then run though your code!"]
       }
     ]
+  },
+  {
+    BookId: 10,
+    title: "Flow Charts",
+    blurb: "Learn how to read flow charts",
+    author: "Dev",
+    bookCover: "/color_8.png",
+    cover: "/FlowchartsBook/example_1.png",
+    pages: [
+      {
+        image: "/FlowchartsBook/example_1.png",
+        content: ["In this book, we are going to learn how to read flowcharts.",
+                  "Flowcharts are a visual aid to help you when you need to make a decision.",
+                  "Flowcharts naturally work very well with If-statements since you make decisions based on a condition.",
+                  "The left page has an example of a flowchart.",
+                  "The yellow rhombus is the condition and the arrows point to what to do if the condition is True or False."]
+      },
+      {
+        image: "/FlowchartsBook/Kids_Menu.jpg",
+        content: ["In October, Virginia Tech held a celebration at Dietrick Lawn for the fall Harvest Festival.",
+                  "This event offered delicious meals for everyone to enjoy and a chance to meet people the College of Agriculture and Life Sciences.",
+                  "At he VT Meat Lab, visitors could also buy snacks, listen to music, play games, and more.",
+                  "For the event, a special kids menu was in introduced (as shown on the left)."]
+      },
+      {
+        image: "/FlowchartsBook/menu_and_flowchart.png",
+        content: ["Imagine you have a 2 dollars in your pocket, and really want a yummy donut.",
+                  "If the donut costs $2 or less, great news! You can buy a donut.",
+                  "But if the donut is more than $2, like $2.50 or $3, then you can't buy it because you don't have enough money.",
+                  "Look at the menu and the flow-chart next to it. Can you figure out what the flow chart is telling use?",
+                  "It's like solving a puzzle - see if you can do it! After thinking about it, click on \"Next\"."]
+      },
+      {
+        image: "BuyDonut",
+        content: ["Review the code snippet and watch the flowchart get constructed as you press Next.",
+                  "Pay close attention to how the flowchart relates to the code.",
+                  "Also, you'll notice we're using a conditional operator you haven't seen before '<='.",
+                  "'<=' is less than or equal too and is the same as '<' except now the two values can be equal."]
+      },
+      {
+        content: ["Test"]
+      }
+    ]
   }
 ] as Book[]

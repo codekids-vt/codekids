@@ -25,11 +25,12 @@ import { IfStatementIntro } from "@/components/MisconceptionComponents/IfStateme
 import { ConditionalOperators } from "@/components/MisconceptionComponents/ConditionalOperators";
 import { LogicalOperators } from "@/components/MisconceptionComponents/LogicalOperators";
 import { IfStatements } from "@/components/MisconceptionComponents/IfStatements";
-import { LifeOfMoose } from "@/components/MisconceptionComponents/LifeOfMoose";
-import { MooseMilestone } from "@/components/MisconceptionComponents/MooseMilestone";
-import { MooseDr } from "@/components/MisconceptionComponents/MooseDr";
-import { MooseChallengingYear } from "@/components/MisconceptionComponents/MooseChallengingYear";
-import { MooseThankYou } from "@/components/MisconceptionComponents/MooseThankYou";
+import { LifeOfMoose } from "@/components/MisconceptionComponents/LifeOfMoose/LifeOfMoose";
+import { MooseMilestone } from "@/components/MisconceptionComponents/LifeOfMoose/MooseMilestone";
+import { MooseDr } from "@/components/MisconceptionComponents/LifeOfMoose/MooseDr";
+import { MooseChallengingYear } from "@/components/MisconceptionComponents/LifeOfMoose/MooseChallengingYear";
+import { MooseThankYou } from "@/components/MisconceptionComponents/LifeOfMoose/MooseThankYou";
+import { BuyDonut } from "@/components/MisconceptionComponents/FlowchartsBook/BuyDonut";
 
 function BookImage({ image, page, setAllowNext }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
@@ -55,6 +56,7 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "MooseDr" && <MooseDr props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseThankYou" && <MooseThankYou />}
+      {image === "BuyDonut" && <BuyDonut setAllowNext={setAllowNext}/>}
     </div>
   );
 }
