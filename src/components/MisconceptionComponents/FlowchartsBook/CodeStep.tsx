@@ -12,7 +12,8 @@ import { GetWindowScale } from '.././GetWindowScale';
 export interface ICodeStepProps {
     code: string,
     skipLines: number[],
-    enableNext: boolean
+    enableNext: boolean,
+    getLine: () => {}
 }
 
 

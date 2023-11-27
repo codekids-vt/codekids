@@ -1,6 +1,5 @@
 "use client"
 import Link from "next/link";
-
 import { Page } from "@/util/BookData";
 import Image from "next/image";
 import React, { Dispatch, SetStateAction, useState } from "react";
@@ -31,6 +30,10 @@ import { MooseDr } from "@/components/MisconceptionComponents/LifeOfMoose/MooseD
 import { MooseChallengingYear } from "@/components/MisconceptionComponents/LifeOfMoose/MooseChallengingYear";
 import { MooseThankYou } from "@/components/MisconceptionComponents/LifeOfMoose/MooseThankYou";
 import { BuyDonut } from "@/components/MisconceptionComponents/FlowchartsBook/BuyDonut";
+import { BuyMultiple } from "@/components/MisconceptionComponents/FlowchartsBook/BuyMultiple";
+import { MultipleConditions } from "@/components/MisconceptionComponents/FlowchartsBook/MultipleConditions";
+import { set } from "react-hook-form";
+import { ChangingCondition } from "@/components/MisconceptionComponents/FlowchartsBook/ChangingCondition";
 
 function BookImage({ image, page, setAllowNext }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
@@ -57,6 +60,9 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseThankYou" && <MooseThankYou />}
       {image === "BuyDonut" && <BuyDonut setAllowNext={setAllowNext}/>}
+      {image === "BuyMultiple" && <BuyMultiple props={page.props} setAllowNext={setAllowNext}/>}
+      {image === "MultipleConditions" && <MultipleConditions props={page.props} setAllowNext={setAllowNext}/>}
+      {image === "ChangingCondition" && <ChangingCondition props={page.props} setAllowNext={setAllowNext}/>}
     </div>
   );
 }

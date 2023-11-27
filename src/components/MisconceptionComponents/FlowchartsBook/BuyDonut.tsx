@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Reader } from '../../Reader';
-import { GetWindowScale } from '.././GetWindowScale';
 import Image from 'next/image'
 import { CodeStep } from './CodeStep';
 
@@ -26,15 +25,15 @@ export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.S
             setCurrentImage("")
             setShowQuestion(false)
         } else if(lineNumber === 1) {
-            setCurrentImage("/FlowchartsBook/BuyDonut/example_1_1.png")
+            setCurrentImage("/FlowchartsBook/BuyDonut/example1_1.svg")
             setShowQuestion(false)
             setEnableNext(true)
         } else if((lineNumber === 2 )|| (lineNumber === 3)) {
-            setCurrentImage("/FlowchartsBook/BuyDonut/example_1_3.png")
+            setCurrentImage("/FlowchartsBook/BuyDonut/example1_2.svg")
             setShowQuestion(true)
             setEnableNext(q1Correct)
         } else if(lineNumber === 7) {
-            setCurrentImage("/FlowchartsBook/example_1.png")
+            setCurrentImage("/FlowchartsBook/example_1.svg")
             setShowQuestion(false)
         }
     }
@@ -52,13 +51,13 @@ export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.S
     return(
         <React.Fragment>
             <CodeStep props={{code: code, getLine: getLine, skipLines: [4, 5, 6], enableNext: enableNext}}/>
-            {currentImage !== "" && <Image className='mb-5' height={600} width={600} src={currentImage} alt='Partial image of flowchart'/>}
+            {currentImage !== "" && <Image className="object-contain max-w-full max-h-full h-fit" height={1000} width={1000} src={currentImage} alt='Partial image of flowchart'/>}
             {showQuestion &&
-                <React.Fragment >
+                <React.Fragment>
                     <div style={text_style}><Reader text='What will be printed based on the flowchart?'/></div>
-                    <div className='inline-flex rounded-md gap-10 m-5'>
-                        <button style={answer_button_style} onClick={() => handleQ1(true)}>{"print(\"Yes, you can buy a donut!\")"}</button>
-                        <button style={answer_button_style} onClick={() => handleQ1(false)}>{"print(\"Sorry, you don't have enough money to buy a yummy donut.\")"}</button>
+                    <div className='flex flex-col-2 gap-10 m-5'>
+                        <button style={answer_button_style} onClick={() => handleQ1(true)}>{"Yes, you can buy a donut!"}</button>
+                        <button style={answer_button_style} onClick={() => handleQ1(false)}>{"Sorry, you don't have enough money to buy a yummy donut."}</button>
                     </div>
                     <Reader text={q1AnswerExplanation}/>
                 </React.Fragment>
@@ -68,13 +67,12 @@ export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.S
 }
 
 const answer_button_style = {
-    backgroundColor: "#90D6AB",
+    backgroundColor: "#D1D5DB",
     color: "black",
     fontSize: "20px",
     border: "1px solid grey",
     borderRadius: "30px",
-    padding: "5px 20px",
-    margin: ".5%",
+    padding: "15px 50px",
     cursor: "pointer",
     whiteSpace: "pre-wrap" as "pre-wrap"
 }

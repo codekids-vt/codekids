@@ -1228,7 +1228,7 @@ export const books: Book[] = [
     blurb: "Learn how to read flow charts",
     author: "Dev",
     bookCover: "/color_8.png",
-    cover: "/FlowchartsBook/example_1.png",
+    cover: "/FlowchartsBook/example_1.svg",
     pages: [
       {
         image: "/FlowchartsBook/example_1.png",
@@ -1261,7 +1261,82 @@ export const books: Book[] = [
                   "'<=' is less than or equal too and is the same as '<' except now the two values can be equal."]
       },
       {
-        content: ["Test"]
+        image: "BuyMultiple",
+        content: ["Now imagine you have $9 in your pocket.",
+                  "You find out that spaghetti costs $3, a yummy burger is $5, and a scoop of ice cream is $3.",
+                  "Do you think you can buy all three with your $9.",
+                  "Let's use the flowchart to answer the question!"],
+        props: {
+          pageNumber: 1
+        },
+      },
+      {
+        image: "BuyMultiple",
+        content: ["Let's run through the code and see how it relates to the flowchart!",
+                  "The flowchart will be constructed as you go through the code."],
+        props: {
+          pageNumber: 2
+        },
+      },
+      {
+        image: "MultipleConditions",
+        content: ["Lets explore how we can use flowcharts to figure out problems when there's more than one thing to consider!",
+                  "Imagine you have $7, and there's a choice of green salads, pepperoni pizza, and bacon and beef burgers for sale.",
+                  "Which one will you be able to buy to buy in the end?",
+                  "Or maybe you can't afford any of them?",
+                  "Try using the flowchart on the left to find out!"],
+        props: {
+          pageNumber: 1
+        }
+      },
+      {
+        image: "MultipleConditions",
+        content: ["Please think carefully first and follow the flowchart to answer the question.",
+                  "If you can't figure out the answer, don't worry! We'll walk through this one on the next page."],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "MultipleConditions",
+        content: ["Let's run through the code and see how it relates to the flowchart!",
+                  "The flowchart will be constructed as you go through the code."],
+        props: {
+          pageNumber: 3
+        }
+      },
+      {
+        image: "/FlowchartsBook/ChangingCondition/multiple_buys.png",
+        content: ["Imagine you have 16 dollars and then you buy a pepperoni pizza.",
+                  "Will you have enough money to buy a strawberry cake and a donut afterwards?",
+                  "Try drawing a flowchart yourself and then go to the next page!"],
+      },
+      {
+        image: "/FlowchartsBook/ChangingCondition/multiple_buys_flowchart.png",
+        content: ["Compare the flowchart you drew with the one on the left to see if they're similar.",
+                  "Don't worry if they're a little different as this is a little challenging.",
+                  "Next, let's turn to the next page and answer a question about the flowchart!"],
+      },
+      {
+        image: "ChangingCondition",
+        content: ["Use the flowchart to help you answer the question on the left.",
+                  "On the next page, we'll run through the code!"],
+        props: {
+          pageNumber: 1
+        }
+      },
+      {
+        image: "ChangingCondition",
+        content: ["Let's run through the code and see how it relates to the flowchart!",
+                  "The flowchart will be constructed as you go through the code."],
+        props: {
+          pageNumber: 2
+        }
+      },
+      {
+        image: "/FlowchartsBook/Kids_Menu.jpg",
+        content: ["Congratulations! You now know how to read flowcharts!",
+                  "You also know how they relate to code and If-statements"]
       }
     ]
   }
