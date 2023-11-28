@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 
+var isFireFox = navigator.userAgent.indexOf("Firefox") != -1
+
 interface HokieBirdColorState {
     images: string[]
     ans: string[]
@@ -91,7 +93,7 @@ export function HokieBirdMap({ props, setAllowNext }: { props: any, setAllowNext
                                         type="text"
                                         className={`rounded-2xl text-center  border-2 ${errorProcedure === index ? "border-red-500" : ""} ${procedures[index] !== "" ? "bg-blue-200" : ""}`}
                                         placeholder={props?.type ? "Type Here" : "Drag Statement Here"}
-                                        disabled={!props.type}
+                                        disabled={!props.type && !isFireFox}
                                         value={statement}
                                         onChange={(e) => setProcedure(index, e.target.value)} />
                                 </div>
