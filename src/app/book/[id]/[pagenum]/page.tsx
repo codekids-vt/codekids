@@ -210,7 +210,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                                 className="inline-block font-semibold text-gray-900"
                                 key={`answerTag-${index}`}
                               >
-                                {`${index + 1}.  ${answer}`}
+                                {answer}
                               </li>
                             ))}
                         </ul>
