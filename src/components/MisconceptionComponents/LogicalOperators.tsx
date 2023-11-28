@@ -19,8 +19,14 @@ export function LogicalOperators({ props, setAllowNext }: { props: any, setAllow
     const [q3Correct, setQ3Correct] = useState(false)
 
     React.useEffect(() => {
-        setAllowNext(q1Correct && q2Correct && q3Correct)
-    }, [q1Correct, q2Correct, q3Correct])
+        if (props.pageNumber === 2) {
+            setAllowNext(q1Correct)
+        } else if (props.pageNumber === 3) {
+            setAllowNext(q2Correct)
+        } else if (props.pageNumber === 4) {
+            setAllowNext(q3Correct)
+        }
+    }, [q1Correct, q2Correct, q3Correct, props.pageNumber, setAllowNext])
 
 
     function handleQ1(correct: boolean, incorrect : string = "" ) {
@@ -55,13 +61,23 @@ export function LogicalOperators({ props, setAllowNext }: { props: any, setAllow
             setQ3AnswerExplanation("Incorrect. derek_color is equal to 'cream', which means derek_color == 'cream' is True, but we want to get the NOT of that. Try again!")
         }
     }
+    
+    if(props.pageNumber === 1) {
+        return getPage1()
+    } else if (props.pageNumber === 2) {
+        return getPage2()
+    } else if (props.pageNumber === 3) {
+        return getPage3()
+    } else if (props.pageNumber === 4) {
+        return getPage4()
+    }
 
-    return (
-        <div style={{textAlign: "center", width: "100%", height: "100%", zoom: windowScale}}>
+    function codeSnippet() {
+        return (
             <div style={horizontal_div_style}>
                 <Image style={image_style} width={450} height={450} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
                 <div>
-                    <span style={text_style}><Reader text='Use the code snippet below to answer the questions.'/></span>
+                    <span style={text_style}><Reader text='Use the code snippet below to answer the question.'/></span>
                     <div style={{...code_box_style, transform: "scale(1.3)"}}>
                         <p style={code_style}>
                             derek_color = <span style={code_string_style}>{"'cream'"}</span><br/>
@@ -71,29 +87,55 @@ export function LogicalOperators({ props, setAllowNext }: { props: any, setAllow
                     </div>
                 </div>
             </div>
-            <div style={quarter_div_container}>
-                <div style={{...quarter_div_elements, top: "0"}}>
-                    <div style={answer_explanation_style}><Reader text='AND Operator'/></div>
+        );
+    }
+
+    function getPage1() {
+        return (
+            <div style={{textAlign: "center", width: "100%", height: "100%", zoom: windowScale}}>
+                {codeSnippet()}
+                <div style={text_style}><Reader text='The next few pages will have questions about the code above and logical operators.'/></div>
+            </div>
+        );
+    }
+
+    function getPage2() {
+        return(
+            <div style={{textAlign: "center", width: "100%", height: "100%", zoom: windowScale}}>
+                {codeSnippet()}                    
+                <div style={answer_explanation_style}><Reader text='AND Operator'/></div>
                     <div style={answer_explanation_style}><Reader text='Simply ask "are both of these true?"'/></div>
                     <div style={{...code_style, width: "100%"}}>(derek_color == <span style={code_string_style}>{"'cream'"}</span>) <span style={code_logical_operator_style}>and</span> (josie_color == <span style={code_string_style}>{"'cream'"}</span>) = <span style={code_boolean_style}>{q1ChosenAnswer}</span></div>
                     <div style={horizontal_div_style}>
                         <button style={answer_button_style} type='button' onClick={() => handleQ1(true)}>True</button>
                         <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "False")}>False</button>
                     </div>
-                    <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
-                </div>
-                <div style={{...quarter_div_elements, top: "0", right: "0"}}>
-                    <div style={answer_explanation_style}><Reader text='OR Operator'/></div>
+                <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
+            </div>
+        );
+    }
+
+    function getPage3() {
+        return(
+            <div style={{textAlign: "center", width: "100%", height: "100%", zoom: windowScale}}>
+                {codeSnippet()}
+                <div style={answer_explanation_style}><Reader text='OR Operator'/></div>
                     <div style={answer_explanation_style}><Reader text='Simply ask "are either of these true?"'/></div>
                     <div style={{...code_style, width: "100%"}}>(derek_color == <span style={code_string_style}>{"'cream'"}</span>) <span style={code_logical_operator_style}>or</span> (wagner_color == <span style={code_string_style}>{"'cream'"}</span>) = <span style={code_boolean_style}>{q2ChosenAnswer}</span></div>
                     <div style={horizontal_div_style}>
                         <button style={answer_button_style} type='button' onClick={() => handleQ2(true)}>True</button>
                         <button style={answer_button_style} type='button' onClick={() => handleQ2(false, "False")}>False</button>
                     </div>
-                    <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>
-                </div>
-                <div style={{...quarter_div_elements, bottom: "0", width: "100%"}}>
-                    <div style={answer_explanation_style}><Reader text='NOT Operator'/></div>
+                <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>
+            </div>
+        );
+    }
+
+    function getPage4() {
+        return(
+            <div style={{textAlign: "center", width: "100%", height: "100%", zoom: windowScale}}>
+                {codeSnippet()}
+                <div style={answer_explanation_style}><Reader text='NOT Operator'/></div>
                     <div style={answer_explanation_style}><Reader text='Simply ask "what is the opposite?"'/></div>
                     <div style={{...code_style, width: "100%"}}> <span style={code_logical_operator_style}>not</span>(derek_color == <span style={code_string_style}>{"'cream'"}</span>) = <span style={code_boolean_style}>{q3ChosenAnswer}</span></div>
                     <div style={horizontal_div_style}>
@@ -101,10 +143,9 @@ export function LogicalOperators({ props, setAllowNext }: { props: any, setAllow
                         <button style={answer_button_style} type='button' onClick={() => handleQ3(true)}>False</button>
                     </div>
                     <div style={answer_explanation_style}><Reader text={q3AnswerExplanation}/></div>
-                </div>
             </div>
-        </div>
-    );
+        );   
+    }
     
 }
 

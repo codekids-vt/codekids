@@ -27,13 +27,16 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
 
     React.useEffect(() => {
         if (props.pageNumber === 1) {
-            setAllowNext(q1Correct && q2Correct)
-        }
-        if (props.pageNumber === 2) {
-            setAllowNext(q3Correct && q4Correct)
+            setAllowNext(q1Correct)
+        } else if (props.pageNumber == 2) {
+            setAllowNext(q2Correct)
+        } else if (props.pageNumber === 3) {
+            setAllowNext(q3Correct)
+        } else if (props.pageNumber === 4) {
+            setAllowNext(q4Correct)
         }
 
-    }, [q1Correct, q2Correct, q3Correct, q4Correct])
+    }, [q1Correct, q2Correct, q3Correct, q4Correct, props.pageNumber, setAllowNext])
 
     function handleQ1(correct: boolean, incorrect : string = "" ) {
         if(correct) {
@@ -120,6 +123,10 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
         return getPage1()
     } else if (props.pageNumber === 2) {
         return getPage2()
+    } else if (props.pageNumber === 3) {
+        return getPage3()
+    } else if (props.pageNumber === 4) {
+        return getPage4()
     }
 
     function getPage1() {
@@ -131,6 +138,7 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
                     <p style={code_style}>
                         derek_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
                         wagner_color = <span style={code_string_style}>{'\'black\''}</span><br/>
+                        josie_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
                         derek_color == wagner_color = <span style={code_boolean_style}>{q1ChosenAnswer}</span>
                     </p>
                 </div>
@@ -141,10 +149,20 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
                     <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "None")}>None</button>
                 </div>
                 <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
+            </div>
+        );
+    }
+
+    function getPage2() {
+        return (
+            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
+                <Image style={image_style} width={500} height={500} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
                 <div style={code_box_style}>
                     <p style={code_style}>
-                        josie_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
-                        derek_color == josie_color = <span style={code_boolean_style}>{q2ChosenAnswer}</span>
+                            derek_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
+                            wagner_color = <span style={code_string_style}>{'\'black\''}</span><br/>
+                            josie_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
+                            derek_color == wagner_color = <span style={code_boolean_style}>{q2ChosenAnswer}</span>
                     </p>
                 </div>
                 <div style={answer_explanation_style}><Reader text='What does derek_color == josie_color evaluate to?'/></div>
@@ -158,7 +176,7 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
         );
     }
 
-    function getPage2() {
+    function getPage3() {
         return (
             <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
                 <Image style={image_style} width={500} height={500} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
@@ -177,8 +195,19 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
                     <button style={answer_button_style} type='button' onClick={() => handleQ3(false, "None")}>None</button>
                 </div>
                 <div style={answer_explanation_style}><Reader text={q3AnswerExplanation}/></div>
+            </div>
+        );
+    }
+
+    function getPage4() {
+        return (
+            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
+                <Image style={image_style} width={500} height={500} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
                 <div style={code_box_style}>
                     <p style={code_style}>
+                        black_number = <span style={code_integer_style}>1</span><br/>
+                        cream_number = <span style={code_integer_style}>2</span><br/>
+                        total_number == <span style={code_string_style}>{'\'3\''}</span><br/>
                         total_number {">"} cream_number = <span style={code_boolean_style}>{q4ChosenAnswer}</span>
                     </p>
                 </div>
@@ -240,8 +269,8 @@ const code_box_style = {
     textAlign: "left" as "left", 
     backgroundColor: "#E8E8E8",
     width: "fit-content",
-    margin: "3% auto",
-    padding: "3%"
+    margin: "1.5% auto",
+    padding: "1%"
 }
 
 const answer_button_style = {

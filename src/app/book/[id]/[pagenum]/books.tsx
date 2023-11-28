@@ -18,7 +18,7 @@ export const books: Book[] = [
         content: ["Here you are able to drag and drop the different colors into the eight different parts of the Hokie Bird.",
           "The Hokie Bird is split into eight parts; the head, the neck, the body, the tail, the left leg, the right leg, the left foot and the right foot.",
           "Try dragging different colors and see the changes happen live!",
-          "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable"
+          "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable."
         ],
         image: "HokieBirdActivity",
         props: {
@@ -38,7 +38,7 @@ export const books: Book[] = [
         }
       },
       {
-        content: ["now, you know how to set color for each part, you can type body part with corresponding color"
+        content: ["now, you know how to set color for each part, you can type body part with corresponding color."
         ],
         image: "HokieBirdActivity",
         props: {
@@ -53,36 +53,30 @@ export const books: Book[] = [
     BookId: 2,
     bookCover: "/color_3.png",
     title: "Hokie Bird is Lost!",
-    blurb: "Learn how to communicate specific instructions to the Hokie Bird to help them find their way!",
+    blurb: "Learn how to communicate specific instructions to the Hokie Bird to help him find his way!",
     author: "Dev",
     pages: [
       {
-        content: ["The game is about to start, and HokieBird is very worried when he got lost. ",
-          "We will use If conditions to help the Hokie bird make it to Lane Stadium",
-          "If Conditions have two outcomes, they are either true or false",
-          "If a value is true, the code that immediately follows is taken.",
-          "If the value is false then the code that follows is ignored",
-          "For the next few examples we will use the commands move to move the bird forward",
-          "To make the HokieBird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
+        content: ["The football game is about to start, and HokieBird is very worried because he is lost and doesn't know how to get to Lane Stadium.",
+          "You will drag and drop commands to help HokieBird make it to lane stadium!",
+          "Direct the HokieBird across campus with the following commands in blue!"
         ],
         image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Since we now know how to move the HokieBird around, we need to determine what actions we should do.",
-          "This is where the If statement comes in, we know that if there is a square in front of the bird then we can move",
-          "We also know that if the road turns right or left we can move the hokie bird",
-          "We will check multiple conditions",
-          "The first condition will be can_move_forward, this is used to move the bird forward",
-          "Turning left and right is similar with the functions can_turn_left() and can_turn_right()",
-          "Placing any of these commands in the if statement will either make it true or false",
-          "If the condition is false then the statement in the else block will be used instead"
+          "This where the commands come in. We know that if there is a square in front of the bird then we can move.",
+          "We also know that if the road turns right or left we can make the HokieBird turn in that direction.",
+          "The first condition will be move(3). This is used to move the bird forward by 3 squares.",
+          "Turning left and right is similar with the move_left() and move_right() commands.",
+          "Placing any of these commands in the command boxes will move the HokieBird in order of the commands, if they are valid.",
         ],
         image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Lets try moving the Hokie Bird forward!",
-          "Drag the purple commands into the statement box!",
-          "When you are ready to test, click the Run button"
+          "Drag the blue commands into the statement boxes!",
+          "When you are ready to test, click the Run button."
         ],
         image: "HokieBirdMazeActivity",
         props: {
@@ -123,20 +117,20 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
+        content: ["Awesome, the Hokie Bird made it to Lane Stadium!"],
         image: "/Maze/Maze14.png",
       },
       {
         content: [
-          "Oh no now the hokie bird is lost somewhere else <need to fill new place with images and map>",
+          "Oh no, now the HokieBird is lost somewhere else <need to fill new place with images and map>",
           "this will be non draggable",
         ],
         image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Lets try moving the Hokie Bird forward!",
-          "Drag the purple commands into the statement box!",
-          "When you are ready to test, click the Run button"
+          "Drag the blue commands into the statement boxes!",
+          "When you are ready to test, click the Run button."
         ],
         image: "HokieBirdMazeActivity",
         props: {
@@ -178,7 +172,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
+        content: ["Awesome, the Hokie Bird made it to Lane Stadium!"],
         image: "/Maze/Maze14.png",
       },
     ]
@@ -402,24 +396,38 @@ export const books: Book[] = [
         content: ["We will use If conditions to help the Hokie bird make it to Lane Stadium",
           "If Conditions have two outcomes, they are either true or false",
           "If a value is true the 'code' that immediatley follows is taken.",
-          "If the value is false then the 'code' that follows is ignored",],
+          "If the value is false then the 'code' that follows is ignored.",],
         image: "/if_condition/weather.jpg",
       },
       {
         content: [
           "If-statement diagram is a very common strategy to solve if-condition problems.",
           "You can try the following question with the if-statement diagram on the left.",
+          "On the left is a very basic if-statement flow chart, since there is only one condition.",
+          "You can learn more about flow charts in the Python flow chart book on the homepage!",
           "Example:",
           "If it is a hot day, then HokieBird need to wear a T-shirt.",
           "If it is a chilly day, then HokieBird need to wear a Winter-jacket.",
         ],
-        image: "/if_condition/if-else-diagram.png",
+        image: "/if_condition/if-else-1.png",
+      },
+      {
+        content: [
+          "You can try the following question with the if-statement diagram on the left as well.",
+          "On the left is a slightly more complex if-statement flow chart, as there are multiple conditions.", 
+          "You can learn more about flow charts in the Python flow chart book on the homepage!",
+          "Example:",
+          "If it is a hot day, then HokieBird need to wear a T-shirt.",
+          "else if it is a chilly day, then HokieBird need to wear a Winter-jacket.",
+          "else the weather is not too cold or hot, Hokie Bird can wear a sweatshirt."
+        ],
+        image: "/if_condition/if-else-2.png",
       },
       {
         content: ["Lets start with dragging and drop statements that should happen if the condition is true!",
           "This means that whatever the if condition, what is inside the '()', is true the statement will happen!",
           "Here the HokieBird is outside and the temperature is around 70 degrees, not too cold, not too hot, lets dress him!",
-          "When you're done move onto the next page with the next button"],
+          "When you're done move onto the next page with the next button."],
         image: "HokieBirdIfConditionActivity",
         props: {
           draggable: true,
@@ -485,12 +493,12 @@ export const books: Book[] = [
     author: "Dev",
     pages: [
       {
-        content: ["We all make different facial expressions based on different emotions. ",
+        content: ["We all make different facial expressions based on different emotions.",
           "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
         image: "/if_condition/mood.gif",
       },
       {
-        content: ["We all make different facial expressions based on different emotions. ",
+        content: ["We all make different facial expressions based on different emotions.",
           "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
         image: "HokieBirdIfConditionActivity",
         props: {
@@ -503,7 +511,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["We all make different facial expressions based on different emotions. ",
+        content: ["We all make different facial expressions based on different emotions.",
           "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
         image: "HokieBirdIfConditionActivity",
         props: {
@@ -516,7 +524,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["We all make different facial expressions based on different emotions. ",
+        content: ["We all make different facial expressions based on different emotions.",
           "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
         image: "HokieBirdIfConditionActivity",
         props: {
@@ -529,7 +537,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["We all make different facial expressions based on different emotions. ",
+        content: ["We all make different facial expressions based on different emotions.",
           "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
         image: "HokieBirdIfConditionActivity",
         props: {
@@ -554,7 +562,7 @@ export const books: Book[] = [
       [
         {
           content: ["HokieBird took an introductory dance technique class this semester,",
-            "using the outdoor space to improve his fitness. ",
+            "using the outdoor space to improve his fitness.",
             "But there's a dance exam coming up and HokieBird needs to go and memorize the order of all the dance steps.",
             " Let's help HokieBird! Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers."],
           image: "/if_condition/dance.jpg",
@@ -563,7 +571,7 @@ export const books: Book[] = [
           content: ["Let's assist him in repeatedly practicing the moves!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)."],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -578,7 +586,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize another move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)."],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -593,7 +601,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize another move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)."],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -608,7 +616,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize another move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)."],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -623,7 +631,7 @@ export const books: Book[] = [
           content: ["Nice work! Let's help him memorize the final move!",
             "Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers.",
             "The appropriate dance steps are:",
-            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)"],
+            "action1 (bend sideways)", "action2 (back kick)", "action3 (butt twist)", "action4 (wave arm)", "action5 (rotate)."],
           image: "HokieBirdIfConditionActivity",
           props: {
             draggable: true,
@@ -653,11 +661,11 @@ export const books: Book[] = [
         content: ["Python Tutor is a visualizer that allows you to see how your code is executed step by step.",
           "We'll be using this throughout several books as you learn about programming in Python!",
           "You can see the values of variables and how they change as your code is executed.",
-          "You can also see the call stack and how functions are called and returned.",
+          "Just prest the Next button and the visualizer and watch as the variables are created and printed.",
           "Let's try it out!"],
         image: "tutor",
         props: {
-          code: "def add(a, b):\n\treturn a + b\n\nx = 1\ny = 2\nz = add(x, y)",
+          code: "number = 23\n\ncollege = \"Virginia Tech\"\n\nsecond_number = number + 10\n\nprint(college)\nprint(second_number)",
         }
       },
       { // Variables intro
@@ -678,14 +686,14 @@ export const books: Book[] = [
       },
       { // Variables intro in python tutor
         content: ["Here is an example of how variables would be assigned in Python.",
-                  "For the first variable, therapy_dog is the name of the variable (left of '=' sign) and 'Epcot' is the value of the variable (right of '=' sign).",
-                  "For the second variable, year is the name of the variable (left of '=' sign) and 2023 is the value of the variable (right of '=' sign).",
                   "Note: print() will be used a lot throughout this book. All print() does is print the value in it's parenthesis.",
                   "Click the Next button in Python Tutor to see the variable be created.",
                   "You'll see a gray box be created that has the variable names and their values (similar to our box analogy!)."],
         image: "tutor",
         props:{
-          code: "therapy_dog = 'Epcot'\nprint(therapy_dog)\n\nyear = 2023\nprint(year)"
+          code: "# therapy_dog is the name of the variable (left of '=' sign)\n# and 'Epcot' is the value of the variable (right of '=' sign)\n" +
+                "therapy_dog = 'Epcot'\nprint(therapy_dog)\n\n" + 
+                "# year is the name of the variable (left of '=' sign)\n# and 2023 is the value of the variable (right of '=' sign).\nyear = 2023\nprint(year)"
         }
       },
       { // Variable Assignment
@@ -693,7 +701,21 @@ export const books: Book[] = [
         content: ["Variables can be assigned different values throughout a program.",
                   "When a variable that already has a value is assigned a new value, the old value is lost.",
                   "Think of your age as a variable. If you are 8 years old now, on your birthday your old age will be lost and your new age will be 9!",
-                  "Try out the examples and exercises."]
+                  "Try out the examples and exercises."],
+        props: {
+          pageNumber: 1,
+          ans: ["Option 1. Make sure to read the explanation!"]
+        }
+      },
+      { // Variable Assignment
+        image: "VariableAssignment",
+        content: ["We can also use a variable's old value to assign itself a new value.",
+                  "In this example, we are reassigning anniversary to be it's old value plus 1.",
+                  "Read through the code and answer the question!"],
+        props: {
+          pageNumber: 2,
+          ans: ["Option 1. Make sure to read the explanation!"]
+        }
       },
       {
         image: "tutor",
@@ -723,13 +745,15 @@ export const books: Book[] = [
                   "3. Boolean - this is a logical value indicating True or False.",
                   "We will look closer at these data types in the following pages."]
       },
-      {
-        image: "tutor",
-        content: ["Look that the code to the left.",
-                  "Pay close attention to what is actually in the print statement.",
-                  "What will be printed at the end of the program?"],
+      { // Ints and Bools Intro
+        image: "IntsAndBools",
+        content: ["This page will focus on Integers and Booleans.",
+                  "Integer - this is any whole number like 9.",
+                  "Boolean - this is a logical value indicating True or False.",
+                  "For example, 2 < 4 has a Boolean value of True since 2 is less than 4."],
         props: {
-          code: "virginia_tech_age = 151\n\n# Pay close attention to what's in the print statement.\n# Is it actually the variable virginia_tech_age?\nprint(\"virginia_tech_age\")"
+          pageNumber: 1,
+          ans: ["Option 2. Make sure to read the explanation!"]
         }
       },
       { // Ints and Bools Intro
@@ -737,7 +761,11 @@ export const books: Book[] = [
         content: ["This page will focus on Integers and Booleans.",
                   "Integer - this is any whole number like 9.",
                   "Boolean - this is a logical value indicating True or False.",
-                  "For example, 2 < 4 has a Boolean value of True since 2 is less than 4."]
+                  "For example, 2 < 4 has a Boolean value of True since 2 is less than 4."],
+        props: {
+          pageNumber: 2,
+          ans: ["Option 4. Make sure to read the explanation!"]
+        }
       },
       { // Ints and Bools Intro Python Tutor
         image: "tutor",
@@ -754,7 +782,10 @@ export const books: Book[] = [
                   "A very important concept to understand while programming is that each line is executed from top to bottom.",
                   "This means every line's execution is dependent on the lines above it.",
                   "Think of each line as it's own step with the very beginning line being step 1.",
-                  "Each step will be executed one after another until the program is over."]
+                  "Each step will be executed one after another until the program is over."],
+        props: {
+          ans: ["Option 3. Make sure to read the explanation!"]
+        }
       },
       {
         image: "tutor",
@@ -768,24 +799,57 @@ export const books: Book[] = [
       { // Strings
         image: "Strings",
         props: {
-          stringsPage: 1
+          pageNumber: 1,
+          ans: ["Option 3. Make sure to read the explanation!"]
         },
         content: ["This page will focus on Strings!",
                   "You may have noticed in the previous pages that 'Epcot' is an example of a String! Let's try more practice.",
-                  "String - this is text like \"Hello\". You can also think of it like a sequence of different characters.",
+                  "A String is text like \"Hello\". You can also think of it like a sequence of different characters.",
                   "When the data type is String, then the characters will ALWAYS be surrounded by double or single quotation marks.",
                   "For example, \"Hello\" and \'Hello\' are both strings since they're surrounded by double or single quotation marks.",
-                  "What do you think '9' is? You may initially think Integer, but notice it's surround in single quotation marks. So, it's a string."]
+                  "What do you think '9' is? You may initially think Integer, but notice it's surrounded in single quotation marks. So, it's a string."],
+      },
+      { // Strings
+        image: "Strings",
+        props: {
+          pageNumber: 2,
+          ans: ["Option 4. Make sure to read the explanation!"]
+        },
+        content: ["When a String is printed, the quotation marks are not included.",
+                  "So, print(\"Hello\") will print Hello."]
       },
       {
         image: "Strings",
         props: {
-          stringsPage: 2
+          pageNumber: 3,
+          ans: ["Option 3. Make sure to read the explanation!", "Option 2. Make sure to read the explanation!"]
         },
         content: ["Try out these exercises on Strings.",
                   "Remember that anything that's in single or double quotation marks are Strings.",
                   "Also, notice in the code we have two variables called anniversary and anniversary_2.",
                   "These are two separate variables, but since they hold similar data, they have been given similar names."]
+      },
+      {
+        image: "Strings",
+        props: {
+          pageNumber: 4,
+          ans: ["Option 2. Make sure to read the explanation!"]
+        },
+        content: ["Take a moment to think about his question.",
+                  "Pay close attention to what's in the print at the end.",
+                  "Remember that anything surrounded by single or double quotation marks are Strings."]
+      },
+      {
+        image: "tutor",
+        content: ["Look that the code to the left.",
+                  "Pay close attention to what is actually in the print statement.",
+                  "What will be printed at the end of the program?",
+                  "At first, you may think it will be 151 since that is the value of virginia_tech_age.",
+                  "However, notice that what is actually inside the print statement is the String \"virginia_tech_age\".",
+                  "So, the String value \"virginia_tech_age\" is actually in the print statement, not the variable virginia_tech_age."],
+        props: {
+          code: "virginia_tech_age = 151\n\n# Pay close attention to what's in the print statement.\n# Is it actually the variable virginia_tech_age?\nprint(\"virginia_tech_age\")"
+        }
       },
       {
         image: "/if_condition/action5.gif",
@@ -865,7 +929,17 @@ export const books: Book[] = [
                   "5 + 5 == 10 will be True",
                   "5 < 5 will be False"],
         props: {
-          pageNumber: 1
+          pageNumber: 1,
+          ans: ["Option 2. Make sure to read the explanation!"]
+        }
+      },
+      { // Conditional operators
+        image: "ConditionalOperators",
+        content: ["Here is another question using the '==' operator.",
+                  "Remember '==' checks is two values are equal."],
+        props: {
+          pageNumber: 2,
+          ans: ["Option 1. Make sure to read the explanation!"]
         }
       },
       { // Conditional operators
@@ -873,10 +947,20 @@ export const books: Book[] = [
         content: ["It's also important to pay attention to the data types of the values you are comparing.",
                   "It's best to never use conditional operators on variables with different data types.",
                   "Technically, == can be used on different data types and it will always return false.",
-                  "However, using the conditional operators > and < will cause an error.",
-                  "Try out the exercises to the left!"],
+                  "However, using the conditional operators > and < will cause an error."],
         props: {
-          pageNumber: 2
+          pageNumber: 3,
+          ans: ["Option 2. Make sure to read the explanation!"]
+        }
+      },
+      { // Conditional operators
+        image: "ConditionalOperators",
+        content: ["Remember that x < y will evaluate to True if x is less than y.",
+                  "So, 5 < 10 will evaluate to True.",
+                  "However, if the values being compared aren't the same data type, there will be an error."],
+        props: {
+          pageNumber: 4,
+          ans: ["Option 3. Make sure to read the explanation!"]
         }
       },
       {
@@ -891,7 +975,7 @@ export const books: Book[] = [
       },
       {
         image: "tutor",
-        content: ["Take a loot at this example.",
+        content: ["Take a look at this example.",
                   "Notice how we are now combining conditional operators and If-statements.",
                   "Since conditional operators always evaluate to True or False, they are perfect for using in If-statements.",
                   "Run through this code and notice what happens at line 5.",
@@ -910,7 +994,48 @@ export const books: Book[] = [
                   "1. and operator. All Booleans must be true.",
                   "2. or operator. At least one Boolean is true, the rest can be false.",
                   "2. not operator. True becomes false, and false becomes true.",
-                  "Take a look at the examples!"]
+                  "Take a look at the examples!"],
+        props: {
+          pageNumber: 1
+        }
+      },
+      { // Logical operators AND operator
+        image: "LogicalOperators",
+        content: ["For the and operator, all values must be True.",
+                  "Simply ask \"are all of these True\"?",
+                  "True and True = True. True and False = False",
+                  "2 < 5 and 3 < 5 = True",
+                  "5 == 4 and 5 == 5 = False"],
+        props: {
+          pageNumber: 2,
+          ans: ["Option 1. Make sure to read the explanation!"]
+        }
+      },
+      { // Logical operators OR operator
+        image: "LogicalOperators",
+        content: ["For the or operator, at least one value must be True.",
+                  "Simply ask \"is at least one of these True\"?",
+                  "True or True = True. True or False = True. False or False = False",
+                  "2 < 5 or 3 < 5 = True",
+                  "5 == 4 or 5 == 5 = True",
+                  "5 == 4 or 5 == 6 = False"],
+        props: {
+          pageNumber: 3,
+          ans: ["Option 1. Make sure to read the explanation!"]
+        }
+      },
+      { // Logical operators OR operator
+        image: "LogicalOperators",
+        content: ["For the not operator, it's the opposite.",
+                  "Simply ask \"what is the opposite\"?",
+                  "not True = False. not False = True",
+                  "not (2 < 5) = True",
+                  "not (5 == 5) = False",
+                  "not (5 == 5 and 2 < 5) = False"],
+        props: {
+          pageNumber: 4,
+          ans: ["Option 2. Make sure to read the explanation!"]
+        }
       },
       {
         image: "tutor",
@@ -944,7 +1069,8 @@ export const books: Book[] = [
                   "Also, remember the 'else' will be executed if the If-statement fails.",
                   "The 'else' isn't required but is helpful when you want to execute code when the If-statement fails."],
         props: {
-          pageNumber: 1
+          pageNumber: 1,
+          ans: ["Option 2. Make sure to read the explanation!"]
         }
       },
       {
@@ -953,16 +1079,26 @@ export const books: Book[] = [
                   "Pay close attention to what is actually part of the If-statement and else.",
                   "Anything that is not part of the If-statement or else will executed normally."],
         props: {
-          pageNumber: 2
+          pageNumber: 2,
+          ans: ["Option 2. Make sure to read the explanation!"]
+        }
+      },
+      {
+        image: "IfStatements",
+        content: ["The yellow highlight has been removed from the If-statements, so it's up to you now to notice the indents!",
+                  "Try out the exercise to the left!"],
+        props: {
+          pageNumber: 3,
+          ans: ["Option 3. Make sure to read the explanation!"]
         }
       },
       {
         image: "IfStatements",
         content: ["Remember that we can use conditional and logical operators in If-statements.",
-                  "Also, the yellow highlight has been removed from the If-statements, so it's up to you now to notice the indents!",
                   "Try out the exercises to the left!"],
         props: {
-          pageNumber: 3
+          pageNumber: 4,
+          ans: ["Option 3. Make sure to read the explanation!"]
         }
       },
       {
@@ -1015,7 +1151,7 @@ export const books: Book[] = [
       },
       {
         image: "LifeOfMoose",
-        content: ["Try out the exercises following along with the code!"],
+        content: [],
         props: {
           pageNumber: 2
         }
@@ -1032,7 +1168,7 @@ export const books: Book[] = [
       },
       {
         image: "MooseMilestone",
-        content: ["Try out the exercises following along with the code!"],
+        content: [],
         props: {
           pageNumber: 2
         }
@@ -1048,7 +1184,7 @@ export const books: Book[] = [
       },
       {
         image: "MooseDr",
-        content: ["Try out the exercises following along with the code!"],
+        content: [],
         props: {
           pageNumber: 2
         }
@@ -1065,7 +1201,7 @@ export const books: Book[] = [
       },
       {
         image: "MooseChallengingYear",
-        content: ["Try out the exercises following along with the code!"],
+        content: [],
         props: {
           pageNumber: 2
         }
