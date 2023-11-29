@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
 import { CodeStep } from './CodeStep';
+import { GetWindowScale } from '../GetWindowScale';
 
 export interface IMultipleConditionsProps {
     pageNumber: number
@@ -9,6 +10,8 @@ export interface IMultipleConditionsProps {
 
 export function MultipleConditions({ props, setAllowNext }: { props: any | IMultipleConditionsProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
+    const windowScale = GetWindowScale()
+    
     const [currentImage, setCurrentImage] = useState("")
     const [imageDim, setImageDim] = useState([600, 600])
 
@@ -48,7 +51,7 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
             setP2Text("my_money is less than salad_price, so we'll follow the False arrow.")
         } else if (lineNumber === 8 || lineNumber === 9) {
             setCurrentImage("/FlowchartsBook/MultipleConditions/example3_4.svg")
-            setP2Text("my_money greater than burger_price, so we'll follow the True arrow!")
+            setP2Text("my_money is greater than burger_price, so we'll follow the True arrow!")
         } else if (lineNumber === 13) {
             setP2Text("We then follow the arrow to the end of the program!")
         }
@@ -82,17 +85,17 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
 
     function getPage1() {
         return(
-            <React.Fragment>
+            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
                 <Image width={800} height={800} src={"/FlowchartsBook/MultipleConditions/food.png"} alt='Image of food.'/>
                 <Image width={800} height={800} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.'/>
-            </React.Fragment>
+            </div>
         );
     }
 
 
     function getPage2() {
         return(
-            <React.Fragment>
+            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
                 <div className='grid grid-cols-2 col-span-2'>
                     <Image className='m-auto col-span-1' width={150} height={150} src={"/FlowchartsBook/MultipleConditions/food2.png"} alt='Image of food.'/>
                     <div className='flex flex-col col-span-1 gap-5 m-auto p-10'>
@@ -105,20 +108,20 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
                     </div>
                 </div>
                 <Image width={800} height={800} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.'/>
-            </React.Fragment>
+            </div>
         );
     }
 
 
     function getPage3() {
         return(
-            <React.Fragment>
+            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
                 <CodeStep props={{code: code, skipLines: [5, 7, 10, 11, 12], enableNext: true, getLine: getLine}}/>
                 <div className='flex flex-col text-center mt-5'>
                     {p2Text !== "" && <Reader text={p2Text}/>}
                     {currentImage !== "" && <Image height={imageDim[0]} width={imageDim[1]} src={currentImage} alt='Image of flow chart'/>}
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 

@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
 import { CodeStep } from './CodeStep';
+import { GetWindowScale } from '../GetWindowScale';
 
 export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
+
+    const windowScale = GetWindowScale()
 
     const [currentLine, setCurrentLine] = useState(0)
     const [currentImage, setCurrentImage] = useState("")
@@ -47,9 +50,9 @@ export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.S
             setQ1AnswerExplanation("Incorrect. Do you have enough money to buy a donut? Follow the True or False arrow.")
         }
     }
-
+    console.log(windowScale)
     return(
-        <React.Fragment>
+        <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
             <CodeStep props={{code: code, getLine: getLine, skipLines: [4, 5, 6], enableNext: enableNext}}/>
             {currentImage !== "" && <Image className="object-contain max-w-full max-h-full h-fit" height={1000} width={1000} src={currentImage} alt='Partial image of flowchart'/>}
             {showQuestion &&
@@ -62,7 +65,7 @@ export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.S
                     <Reader text={q1AnswerExplanation}/>
                 </React.Fragment>
             }
-        </React.Fragment>
+        </div>
     );
 }
 

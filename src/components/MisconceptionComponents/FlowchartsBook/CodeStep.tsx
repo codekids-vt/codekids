@@ -3,8 +3,6 @@
 */
 
 import React, { useState } from 'react';
-import { Reader } from '../../Reader';
-import { GetWindowScale } from '.././GetWindowScale';
 
 /*
     Code is delimited by \n 
@@ -56,10 +54,10 @@ export function CodeStep({ props }: { props: any | ICodeStepProps,}) {
 
     return(
         <React.Fragment>
-            <div className='m-10 px-10 py-5 w-fit bg-zinc-200'>
-                {code.map((line, index) => <div className='px-5 whitespace-pre-wrap' key={index} style={{background: checkCurrentLine(index, currentLine)}}>{line}</div>)}
+            <div className=' flex flex-col ml-auto mr-auto px-10 py-5 w-fit bg-zinc-200'>
+                {code.map((line, index) => <div className='px-5 whitespace-pre-wrap text-left' key={index} style={{background: checkCurrentLine(index, currentLine)}}>{line}</div>)}
             </div>
-            <div className='inline-flex rounded-md gap-10'>
+            <div className='inline-flex mt-5 rounded-md gap-10 justify-center'>
                 <button style={button_style} type='button' onClick={() => backButton()}>Back</button>
                 <button style={getButtonStyle()} disabled={!props.enableNext} type='button' onClick={() => nextButton()}>Next</button>
             </div>

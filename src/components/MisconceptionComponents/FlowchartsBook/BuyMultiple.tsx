@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
 import { CodeStep } from './CodeStep';
+import { GetWindowScale } from '../GetWindowScale';
 
 export interface IBuyMultipleProps {
     pageNumber: number
@@ -9,6 +10,8 @@ export interface IBuyMultipleProps {
 
 export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultipleProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
+    const windowScale = GetWindowScale()
+    
     const [currentImage, setCurrentImage] = useState("")
     const [imageDim, setImageDim] = useState([600, 600])
 
@@ -45,7 +48,7 @@ export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultiple
             setImageDim([1000, 1000])
         } else if (lineNumber === 7 || lineNumber === 8) {
             setCurrentImage("/FlowchartsBook/BuyMultiple/example2_2.svg")
-            setP2Text("The program follows the False arrow since total <= your_money. This is the same as the 'else' in the code.")
+            setP2Text("The program follows the False arrow since total is greater than your_money. This is the same as the 'else' in the code.")
             setImageDim([1000, 1000])
         } else if (lineNumber === 10) {
             setCurrentImage("/FlowchartsBook/example_2.svg")
@@ -72,7 +75,7 @@ export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultiple
     function getPage1()
     {
         return (
-            <React.Fragment>
+            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
                 <Image width={600} height={600} src={"/FlowchartsBook/BuyMultiple/buy_multiple.png"} alt='Image of flowchart and food.'/>
                 <div className='flex flex-col gap-5 w-full'>
                     <div style={text_style}><Reader text='What is the final result that the flowchart above will print?'/></div>
@@ -80,19 +83,19 @@ export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultiple
                     <button className='w-1/2 mx-auto' style={answer_button_style} type='button' onClick={() => handleQ1(true)}>{"Sorry, you don't have enough money to buy pasta, a burger, and an ice-cream."}</button>
                     <div className='flex justify-center'><Reader text={q1AnswerExplanation}/></div>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 
     function getPage2() {
         return (
-            <React.Fragment>
+            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
                 <CodeStep props={{code: code, skipLines: [6, 9], enableNext: true, getLine: getLine}}/>
                 <div className='flex flex-col text-center mt-5'>
                     {p2Text !== "" && <Reader text={p2Text}/>}
                     {currentImage !== "" && <Image height={imageDim[0]} width={imageDim[1]} src={currentImage} alt='Image of flow chart'/>}
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 
