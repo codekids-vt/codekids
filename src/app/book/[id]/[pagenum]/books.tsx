@@ -18,7 +18,7 @@ export const books: Book[] = [
         content: ["Here you are able to drag and drop the different colors into the eight different parts of the Hokie Bird.",
           "The Hokie Bird is split into eight parts; the head, the neck, the body, the tail, the left leg, the right leg, the left foot and the right foot.",
           "Try dragging different colors and see the changes happen live!",
-          "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable"
+          "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable."
         ],
         image: "HokieBirdActivity",
         props: {
@@ -38,7 +38,7 @@ export const books: Book[] = [
         }
       },
       {
-        content: ["now, you know how to set color for each part, you can type body part with corresponding color"
+        content: ["now, you know how to set color for each part, you can type body part with corresponding color."
         ],
         image: "HokieBirdActivity",
         props: {
@@ -53,36 +53,30 @@ export const books: Book[] = [
     BookId: 2,
     bookCover: "/color_3.png",
     title: "Hokie Bird is Lost!",
-    blurb: "Learn how to communicate specific instructions to the Hokie Bird to help them find their way!",
+    blurb: "Learn how to communicate specific instructions to the Hokie Bird to help him find his way!",
     author: "Dev",
     pages: [
       {
-        content: ["The game is about to start, and HokieBird is very worried when he got lost. ",
-          "We will use If conditions to help the Hokie bird make it to Lane Stadium",
-          "If Conditions have two outcomes, they are either true or false",
-          "If a value is true, the code that immediately follows is taken.",
-          "If the value is false then the code that follows is ignored",
-          "For the next few examples we will use the commands move to move the bird forward",
-          "To make the HokieBird turn right or left we will use hokeBird.turnRight() or hokieBird.turnLeft()"
+        content: ["The football game is about to start, and HokieBird is very worried because he is lost and doesn't know how to get to Lane Stadium.",
+          "You will drag and drop commands to help HokieBird make it to lane stadium!",
+          "Direct the HokieBird across campus with the following commands in blue!"
         ],
         image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Since we now know how to move the HokieBird around, we need to determine what actions we should do.",
-          "This is where the If statement comes in, we know that if there is a square in front of the bird then we can move",
-          "We also know that if the road turns right or left we can move the hokie bird",
-          "We will check multiple conditions",
-          "The first condition will be can_move_forward, this is used to move the bird forward",
-          "Turning left and right is similar with the functions can_turn_left() and can_turn_right()",
-          "Placing any of these commands in the if statement will either make it true or false",
-          "If the condition is false then the statement in the else block will be used instead"
+          "This where the commands come in. We know that if there is a square in front of the bird then we can move.",
+          "We also know that if the road turns right or left we can make the HokieBird turn in that direction.",
+          "The first condition will be move(3). This is used to move the bird forward by 3 squares.",
+          "Turning left and right is similar with the move_left() and move_right() commands.",
+          "Placing any of these commands in the command boxes will move the HokieBird in order of the commands, if they are valid.",
         ],
         image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Lets try moving the Hokie Bird forward!",
-          "Drag the purple commands into the statement box!",
-          "When you are ready to test, click the Run button"
+          "Drag the blue commands into the statement boxes!",
+          "When you are ready to test, click the Run button."
         ],
         image: "HokieBirdMazeActivity",
         props: {
@@ -123,20 +117,20 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
+        content: ["Awesome, the Hokie Bird made it to Lane Stadium!"],
         image: "/Maze/Maze14.png",
       },
       {
         content: [
-          "Oh no now the hokie bird is lost somewhere else <need to fill new place with images and map>",
+          "Oh no, now the HokieBird is lost somewhere else <need to fill new place with images and map>",
           "this will be non draggable",
         ],
         image: "/Maze/SadHokieBird.png",
       },
       {
         content: ["Lets try moving the Hokie Bird forward!",
-          "Drag the purple commands into the statement box!",
-          "When you are ready to test, click the Run button"
+          "Drag the blue commands into the statement boxes!",
+          "When you are ready to test, click the Run button."
         ],
         image: "HokieBirdMazeActivity",
         props: {
@@ -178,7 +172,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["Awesome, the Hokie Bird made it to Lane Stadium"],
+        content: ["Awesome, the Hokie Bird made it to Lane Stadium!"],
         image: "/Maze/Maze14.png",
       },
     ]
@@ -499,12 +493,12 @@ export const books: Book[] = [
     author: "Dev",
     pages: [
       {
-        content: ["We all make different facial expressions based on different emotions. ",
+        content: ["We all make different facial expressions based on different emotions.",
           "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
         image: "/if_condition/mood.gif",
       },
       {
-        content: ["We all make different facial expressions based on different emotions. ",
+        content: ["We all make different facial expressions based on different emotions.",
           "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
         image: "HokieBirdIfConditionActivity",
         props: {
@@ -517,7 +511,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["We all make different facial expressions based on different emotions. ",
+        content: ["We all make different facial expressions based on different emotions.",
           "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
         image: "HokieBirdIfConditionActivity",
         props: {
@@ -530,7 +524,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["We all make different facial expressions based on different emotions. ",
+        content: ["We all make different facial expressions based on different emotions.",
           "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
         image: "HokieBirdIfConditionActivity",
         props: {
@@ -543,7 +537,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["We all make different facial expressions based on different emotions. ",
+        content: ["We all make different facial expressions based on different emotions.",
           "Let's use if-condition to find the facial expressions that correspond to the different emotions of HokieBird."],
         image: "HokieBirdIfConditionActivity",
         props: {
@@ -568,7 +562,7 @@ export const books: Book[] = [
       [
         {
           content: ["HokieBird took an introductory dance technique class this semester,",
-            "using the outdoor space to improve his fitness. ",
+            "using the outdoor space to improve his fitness.",
             "But there's a dance exam coming up and HokieBird needs to go and memorize the order of all the dance steps.",
             " Let's help HokieBird! Based on the action numbers you said, HokieBird should make the dance steps that correspond to the numbers."],
           image: "/if_condition/dance.jpg",
@@ -981,7 +975,7 @@ export const books: Book[] = [
       },
       {
         image: "tutor",
-        content: ["Take a loot at this example.",
+        content: ["Take a look at this example.",
                   "Notice how we are now combining conditional operators and If-statements.",
                   "Since conditional operators always evaluate to True or False, they are perfect for using in If-statements.",
                   "Run through this code and notice what happens at line 5.",
