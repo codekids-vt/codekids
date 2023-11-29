@@ -32,7 +32,7 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
         } else if (props.pageNumber === 3) {
             setAllowNext(currentLineNumber === 13)
         }
-    }, [q1Correct, currentLineNumber, setAllowNext])
+    }, [q1Correct, currentLineNumber, props.pageNumber, setAllowNext])
 
     const getLine = (lineNumber: number) => {
         setLineNumber(lineNumber)

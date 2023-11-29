@@ -32,7 +32,7 @@ export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultiple
             setAllowNext(currentLineNumber === 10)
         }
         
-    }, [q1Correct, currentLineNumber, setAllowNext])
+    }, [q1Correct, currentLineNumber, props.pageNumber, setAllowNext])
 
     const getLine = (lineNumber: number) => {
         setLineNumber(lineNumber)

@@ -33,7 +33,7 @@ export function ChangingCondition({ props, setAllowNext }: { props: any | IChang
         } else if (props.pageNumber === 2) {
             setAllowNext(currentLineNumber === 14)
         }
-    }, [q1Correct, currentLineNumber, setAllowNext])
+    }, [q1Correct, currentLineNumber, props.pageNumber, setAllowNext])
 
     const getLine = (lineNumber: number) => {
         setLineNumber(lineNumber)
