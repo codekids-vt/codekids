@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
 import { CodeStep } from './CodeStep';
+import { GetWindowScale } from '../GetWindowScale';
 
 export interface IChangingConditionProps {
     pageNumber: number
@@ -9,6 +10,8 @@ export interface IChangingConditionProps {
 
 export function ChangingCondition({ props, setAllowNext }: { props: any | IChangingConditionProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
     
+    const windowScale = GetWindowScale()
+
     const [currentImage, setCurrentImage] = useState("")
     const [imageDim, setImageDim] = useState([600, 600])
     
@@ -73,7 +76,7 @@ export function ChangingCondition({ props, setAllowNext }: { props: any | IChang
 
     function getPage1() {
         return (
-            <React.Fragment>
+            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
                 <Image height={1300} width={1300} src={"/FlowchartsBook/example_4.svg"} alt='Image of flow chart.'/>
                 <div className='flex flex-col gap-5'>
                     <div style={text_style}><Reader text='What is the final result that the flowchart above will print.'/></div>
@@ -85,19 +88,19 @@ export function ChangingCondition({ props, setAllowNext }: { props: any | IChang
                     </button>
                     <div className='flex justify-center'><Reader text={q1AnswerExplanation}/></div>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 
     function getPage2() {
         return (
-            <React.Fragment>
+            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
                 <CodeStep props={{code: code, skipLines: [9, 10, 11, 12, 13], enableNext: true, getLine: getLine}}/>
                 <div className='flex flex-col text-center mt-5'>
                     {p3Text !== "" && <Reader text={p3Text}/>}
                     {currentImage !== "" && <Image height={imageDim[0]} width={imageDim[1]} src={currentImage} alt='Image of flow chart'/>}
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }

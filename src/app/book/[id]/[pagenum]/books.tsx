@@ -661,7 +661,7 @@ export const books: Book[] = [
         content: ["Python Tutor is a visualizer that allows you to see how your code is executed step by step.",
           "We'll be using this throughout several books as you learn about programming in Python!",
           "You can see the values of variables and how they change as your code is executed.",
-          "Just prest the Next button and the visualizer and watch as the variables are created and printed.",
+          "Just press the Next button and the visualizer and watch as the variables are created and printed.",
           "Let's try it out!"],
         image: "tutor",
         props: {
@@ -770,7 +770,7 @@ export const books: Book[] = [
       { // Ints and Bools Intro Python Tutor
         image: "tutor",
         content: ["Take a look at the variables to the left.",
-                  "The variable num is assigned the whole number 9, which means it's a Integer.",
+                  "The variable num is assigned the whole number 9, which means it's an Integer.",
                   "The variable sky_is_blue is assigned True, which means it's a Boolean."],
         props: {
           code: "# Here num is an Integer\nnum = 9\n\n# Here sky_is_blue is a Boolean\nsky_is_blue  = True"
@@ -781,7 +781,7 @@ export const books: Book[] = [
         content: ["Let's use the football game for another question!",
                   "A very important concept to understand while programming is that each line is executed from top to bottom.",
                   "This means every line's execution is dependent on the lines above it.",
-                  "Think of each line as it's own step with the very beginning line being step 1.",
+                  "Think of each line as its own step with the very beginning line being step 1.",
                   "Each step will be executed one after another until the program is over."],
         props: {
           ans: ["Option 3. Make sure to read the explanation!"]
@@ -790,7 +790,7 @@ export const books: Book[] = [
       {
         image: "tutor",
         content: ["Click through the code to the left and think about how the code is executed from top to bottom.",
-                  "Even though first is reassigned to 5 and second is reassigned to 10, total was calculated before hand."],
+                  "Even though first is reassigned to 5 and second is reassigned to 10, total was calculated beforehand."],
         props: {
           code: "first = 0\nsecond = 0\n\n#What is total set to here?\ntotal = first + second\n\n#first and second are reassigned after total has been assigned.\nfirst = 5\nsecond = 10\n\n" +
                 "# total is still printed as 0.\nprint(total)"
@@ -859,8 +859,8 @@ export const books: Book[] = [
                   "Every variable has a name and can be assigned a value. When a variable is assigned a value, any old value it had is lost.",
                   "The values of a variable are always of a data type: Integer, Boolean, or String.",
                   "An Integer is a whole number.",
-                  "A Boolean is alway True or False.",
-                  "A String is any data surrounded about single or double quotation marks."]
+                  "A Boolean is always True or False.",
+                  "A String is any data surrounded by single or double quotation marks."]
       }
     ],
   },
@@ -876,7 +876,7 @@ export const books: Book[] = [
       { // If statement intro
         image: "IfStatementIntro",
         content: ["In programs, there are ways for you to control the flow of execution.",
-                  "In this book you'll learn about If statements in Python!",
+                  "In this book, you'll learn about If statements in Python!",
                   "If-statements simply allow you to execute code only if a certain condition is true."]
       },
       {
@@ -885,7 +885,7 @@ export const books: Book[] = [
                   "Click the Next button in Python Tutor and run through the code.",
                   "Notice how lines 6 and 7 are skipped but the rest of the program executes.",
                   "This is because on line 3 we are saying \"If sky_is_blue is True, then execute lines 4 and 5. Otherwise, execute line 7\".",
-                  "Line 9 isn't part of the If-statement, so it get's executed regardless."],
+                  "Line 9 isn't part of the If-statement, so it gets executed regardless."],
         props: {
           code: 'sky_is_blue = True\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\nelse:\n\tprint("It\'s raining. Lets stay inside")\n\nprint("Hopefully it\'s sunny tomorrow!")'
         }
@@ -894,7 +894,7 @@ export const books: Book[] = [
         image: "tutor",
         content: ["Here is the same code as the previous page except this time sky_is_blue is False",
                   "Now notice lines 4 and 5 get skipped and line 7 is executed.",
-                  "Line 7 is part of the 'else'. The 'else' part of an If-statement get's executed when the If-statement is false.",
+                  "Line 7 is part of the 'else'. The 'else' part of an If-statement gets executed when the If-statement is false.",
                   "In this example, sky_is_blue is False. So the 'else' part is executed.",
                   "If-statements let you choose what to execute.",
                   "This is how you can control the flow of execution!"],
@@ -923,7 +923,7 @@ export const books: Book[] = [
                   "Here are some common conditional operators:",
                   "1. Use \"==\" to check if two values are equal or the same.",
                   "2. Use \"<\" to check if one value is less than another.",
-                  "3. use \">\" to check of one value is greater than another.",
+                  "3. use \">\" to check if one value is greater than another.",
                   "Here are some examples:",
                   "5 == 5 will be True",
                   "5 + 5 == 10 will be True",
@@ -1077,7 +1077,7 @@ export const books: Book[] = [
         image: "IfStatements",
         content: ["Try the If-statement exercise to the left!",
                   "Pay close attention to what is actually part of the If-statement and else.",
-                  "Anything that is not part of the If-statement or else will executed normally."],
+                  "Anything that is not part of the If-statement or else will execute normally."],
         props: {
           pageNumber: 2,
           ans: ["Option 2. Make sure to read the explanation!"]
@@ -1114,7 +1114,7 @@ export const books: Book[] = [
       {
         image: "/if_condition/action5.gif",
         content: ["Congratulations! You now know how If-statements work in Python!",
-                  "Lets do a quick recap of what we learned!",
+                  "Let's do a quick recap of what we learned!",
                   "Conditional operators are used to compare values and always returns a Boolean (True or False).",
                   "The conditional operators we learned about are ++, >, and <.",
                   "Logical operators are used to make a decision based on multiple Booleans.",
@@ -1144,7 +1144,7 @@ export const books: Book[] = [
         image: "LifeOfMoose",
         content: ["Moose's breed is 'Labrador Retriever' and his fur has a cream color.",
                   "He was born on February 13, 2012.",
-                  "Lets use Python Tutor on the left to print out Moose's birthday, breed, and color!"],
+                  "Let's use Python Tutor on the left to print out Moose's birthday, breed, and color!"],
         props: {
           pageNumber: 1
         }
@@ -1161,7 +1161,7 @@ export const books: Book[] = [
         content: ["By 2019, Moose had done something amazing!",
                   "He had helped people in 5,000 meetings and spent lots of time making others happy!",
                   "He had become a beloved dog at Virginia Tech and the community.",
-                  "Lets figure out how old Moose was when he reached this amazing milestone using Python."],
+                  "Let's figure out how old Moose was when he reached this amazing milestone using Python."],
         props: {
           pageNumber: 1
         }
@@ -1176,8 +1176,8 @@ export const books: Book[] = [
       {
         image: "MooseDr",
         content: ["In 2020, Moose got a very special award.",
-                  "He was awarded with an honorary Doctor of Veterinary Medicine for being such a good boy!",
-                  "unfortunately, that same year, Moose was also diagnosed with"],
+                  "He was awarded an honorary Doctor of Veterinary Medicine for being such a good boy!",
+                  "Unfortunately, that same year, Moose was also diagnosed with"],
         props: {
           pageNumber: 1
         }
@@ -1192,9 +1192,9 @@ export const books: Book[] = [
       {
         image: "MooseChallengingYear",
         content: ["Unfortunately, in 2020 Moose was diagnosed with cancer.",
-                  "The nurses and doctors at Blacksburg Veterinary Teaching Hospital and the Animal Care center took good care him during this time.",
+                  "The nurses and doctors at Blacksburg Veterinary Teaching Hospital and the Animal Care Center took good care of him during this time.",
                   "On December 2, 2020, Moose passed away peacefully.",
-                  "Lets use Python to figure out how old Moose was and how many years he helped our community."],
+                  "Let's use Python to figure out how old Moose was and how many years he helped our community."],
         props: {
           pageNumber: 1
         }
@@ -1210,9 +1210,9 @@ export const books: Book[] = [
         image: "MooseThankYou",
         content: ["Moose was the first superhero therapy dog at Virginia Tech.",
                   "Therapy dogs and their teams are very important because they help people who going through difficult times.",
-                  "Sometimes they even go as far as saving someones life!",
+                  "Sometimes they even go as far as saving someone's life!",
                   "Let's say thank you to Moose and all of the other therapy dogs for helping our community!",
-                  "Click the Edit Code button to fill out the code template then run though your code!"]
+                  "Click the Edit Code button to fill out the code template then run through your code!"]
       }
     ]
   },
@@ -1235,16 +1235,16 @@ export const books: Book[] = [
       {
         image: "/FlowchartsBook/Kids_Menu.jpg",
         content: ["In October, Virginia Tech held a celebration at Dietrick Lawn for the fall Harvest Festival.",
-                  "This event offered delicious meals for everyone to enjoy and a chance to meet people the College of Agriculture and Life Sciences.",
-                  "At he VT Meat Lab, visitors could also buy snacks, listen to music, play games, and more.",
-                  "For the event, a special kids menu was in introduced (as shown on the left)."]
+                  "This event offered delicious meals for everyone to enjoy and a chance to meet people in the College of Agriculture and Life Sciences.",
+                  "At the VT Meat Lab, visitors could also buy snacks, listen to music, play games, and more.",
+                  "For the event, a special kids menu was introduced (as shown on the left)."]
       },
       {
         image: "/FlowchartsBook/menu_and_flowchart.png",
-        content: ["Imagine you have a 2 dollars in your pocket, and really want a yummy donut.",
+        content: ["Imagine you have 2 dollars in your pocket, and really want a yummy donut.",
                   "If the donut costs $2 or less, great news! You can buy a donut.",
                   "But if the donut is more than $2, like $2.50 or $3, then you can't buy it because you don't have enough money.",
-                  "Look at the menu and the flow-chart next to it. Can you figure out what the flow chart is telling use?",
+                  "Look at the menu and the flowchart. Can you figure out what the flow chart is telling us?",
                   "It's like solving a puzzle - see if you can do it! After thinking about it, click on \"Next\"."]
       },
       {
@@ -1274,7 +1274,7 @@ export const books: Book[] = [
       },
       {
         image: "MultipleConditions",
-        content: ["Lets explore how we can use flowcharts to figure out problems when there's more than one thing to consider!",
+        content: ["Let's explore how we can use flowcharts to figure out problems when there's more than one thing to consider!",
                   "Imagine you have $7, and there's a choice of green salads, pepperoni pizza, and bacon and beef burgers for sale.",
                   "Which one will you be able to buy to buy in the end?",
                   "Or maybe you can't afford any of them?",
@@ -1302,7 +1302,7 @@ export const books: Book[] = [
       {
         image: "/FlowchartsBook/ChangingCondition/multiple_buys.png",
         content: ["Imagine you have 16 dollars and then you buy a pepperoni pizza.",
-                  "Will you have enough money to buy a strawberry cake and a donut afterwards?",
+                  "Will you have enough money to buy a strawberry cake and a donut afterward?",
                   "Try drawing a flowchart yourself and then go to the next page!"],
       },
       {
