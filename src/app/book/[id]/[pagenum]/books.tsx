@@ -201,11 +201,11 @@ export const books: Book[] = [
         content: [
           "Hello, My name is Sarah! Today we will learn about Input/Output.",
           "Let’s chat with the computer and explore the park!"],
-        image: "/io_book/intro_io.png"
+        image: "/io_book/intro.png"
       },
       {
         content: [
-          "Let's start by trying to count the number of slides in the park.",
+          "Let's start by trying to count the total number of slides in the park.",
           "How many slides are there in the park?",
         ],
         component: "InputActivity", 
@@ -226,14 +226,14 @@ export const books: Book[] = [
           "Output",
           "It is what the computer gives back to you after it does something with the input. It's the computer's answer."
         ],
-        image: "/io_book/def_io.png",
+        image: "/io_book/definition.png",
       },
       {
         content: [
           "Hey! Let's hop on to the next activity.",
           "Now, we will play with the flowers in the park."
         ],
-        image: "/io_book/next_io.png",
+        image: "/io_book/next.png",
       },
       {
         content: ["Look at each corner of the park", "How many yellow flowers are there in total in all the corners?"],
@@ -248,7 +248,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["How many pink flowers are there in total in all the corners?"],
+        content: ["How many pink flowers are there combined in all the corners?"],
         image: "InputActivity",
         game: "InputActivity",
         props: {
@@ -260,7 +260,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["What is the total number of flowers in all the corners right now?"],
+        content: ["What is the sum of flowers in all the corners right now?"],
         image: "InputActivity",
         game: "InputActivity",
         props: {
@@ -273,8 +273,8 @@ export const books: Book[] = [
       },
       {
         content: [
-          "Observe the pattern in the number of yellow and pink flowers in every corner",
-          "Now guess the number of pink flowers that should be planted in the right corner in bottom?"
+          "Observe the pattern in the sum of yellow and pink flowers in every corner",
+          "Now guess the total number of pink flowers that should be planted in the right corner in bottom?"
         ],
         image: "InputActivity",
         game: "TableComponent",
@@ -300,7 +300,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["How many green trees are there in total in all the corners?"],
+        content: ["How many green trees are there combined in all the corners?"],
         image: "InputActivity",
         game: "InputActivity",
         props: {
@@ -312,7 +312,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["What is the total number of trees in all the corners right now?"],
+        content: ["What is the sum of trees in all the corners right now?"],
         image: "InputActivity",
         game: "InputActivity",
         props: {
@@ -326,8 +326,8 @@ export const books: Book[] = [
       {
         content: [
           "Each corner of the park has certain number of green and yellow trees." ,
-          "Observe the pattern in the number of each color tree planted.",
-          "Now guess the number green trees that should be planted in the right corner in bottom? "
+          "Observe the pattern in the total number of each color tree planted.",
+          "Now guess the sum of number of green trees that should be planted in the right corner in bottom? "
         ],
         image: "InputActivity",
         game: "TableComponent",
@@ -341,7 +341,7 @@ export const books: Book[] = [
         },
       },
       {
-        content: ["How many pink flowers are there on each side of a single yellow tree?"],
+        content: ["How many pink flowers are there combined on each side of a single yellow tree?"],
         image: "InputActivity",
         game: "InputActivity",
         props: {
@@ -354,8 +354,8 @@ export const books: Book[] = [
       },
       {
         content: [
-          "Observe the pattern in the number of pink flowers beside each yellow tree." ,
-          "Now, guess pink flowers will be planted if there are four trees together?"
+          "Observe the pattern in the total number of pink flowers beside each yellow tree." ,
+          "Now, guess sum of pink flowers that should be planted if there are four trees together?"
         ],
         image: "InputActivity",
         game: "TableComponent",
