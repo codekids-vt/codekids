@@ -207,7 +207,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [1, 2, 3, 4],
-          answer: 3, 
+          ans: [3], 
           initialImage: "/io_book/park_1.png", 
           correctImage: "/io_book/park_2.png", 
         },
@@ -236,7 +236,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [9, 10, 11, 12],
-          answer: 10,
+          ans: [10],
           initialImage: "/io_book/flowers_0.png", 
           correctImage: "/io_book/flowers_0.png",
         },
@@ -248,7 +248,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [9, 10, 11, 12],
-          answer: 9,
+          ans: [9],
           initialImage: "/io_book/flowers_0.png", 
           correctImage: "/io_book/flowers_0.png",
         },
@@ -260,7 +260,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [19, 20, 21, 22],
-          answer: 19,
+          ans: [19],
           initialImage: "/io_book/flowers_0.png", 
           correctImage: "/io_book/flowers_0.png",
         },
@@ -275,7 +275,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [4, 5, 6, 7],
-          answer: 5,
+          ans: [5],
           initialImage: "/io_book/flowers_1.png", 
           correctImage: "/io_book/flowers_2.png",
           cellContents: ['Yellow Flowers', 'Pink Flowers', '1', '2', '2', '3', '3', '4', '4', '?'],
@@ -288,7 +288,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [7, 8, 9, 10],
-          answer: 10,
+          ans: [10],
           initialImage: "/io_book/trees_0.png", 
           correctImage: "/io_book/trees_0.png",
         },
@@ -300,7 +300,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [7, 8, 9, 10],
-          answer: 9,
+          ans: [9],
           initialImage: "/io_book/trees_0.png", 
           correctImage: "/io_book/trees_0.png",
         },
@@ -312,7 +312,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [16, 17, 18, 19],
-          answer: 19,
+          ans: [19],
           initialImage: "/io_book/trees_0.png", 
           correctImage: "/io_book/trees_0.png",
         },
@@ -328,7 +328,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [1, 2, 3, 4],
-          answer: 1,
+          ans: [1],
           initialImage: "/io_book/trees_1.png", 
           correctImage: "/io_book/trees_2.png",
           cellContents: ['Yellow Trees', 'Green Trees', '1', '4', '2', '3', '3', '2', '4', '?'],
@@ -341,7 +341,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [1, 2, 3, 4],
-          answer: 2,
+          ans: [2],
           initialImage: "/io_book/multiplication_0.png", 
           correctImage: "/io_book/multiplication_0.png",
         },
@@ -356,7 +356,7 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [6, 7, 8, 9],
-          answer: 8,
+          ans: [8],
           initialImage: "/io_book/multiplication_1.png", 
           correctImage: "/io_book/multiplication_2.png",
           cellContents: ['Yellow Trees', 'Pink Flowers', '1', '2', '2', '4', '3', '6', '4', '?'],
