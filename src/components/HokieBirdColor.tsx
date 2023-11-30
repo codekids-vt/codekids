@@ -46,6 +46,7 @@ export function HokieBirdColoring({ props, setAllowNext }: { props: any, setAllo
                 ...prevColors,
                 [partToColor]: color,
             }));
+            setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
             setCurrentColorIndex(currentColorIndex + 1);
         }
     };
