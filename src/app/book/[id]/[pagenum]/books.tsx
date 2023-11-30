@@ -1218,10 +1218,10 @@ export const books: Book[] = [
   },
   {
     BookId: 10,
-    title: "Flow Charts",
+    title: "Flowcharts",
     blurb: "Learn how to read flow charts",
     author: "Dev",
-    bookCover: "/color_8.png",
+    bookCover: "/color_6.png",
     cover: "/FlowchartsBook/example_1.svg",
     pages: [
       {
