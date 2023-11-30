@@ -195,18 +195,23 @@ export const books: Book[] = [
         content: [
           "Hello, My name is Sarah! Today we will learn about Input/Output.",
           "Let’s chat with the computer and explore the park!"],
-        image: "/io_book/def.png"
+        image: "/io_book/intro.png"
       },
       {
-        content: ["Let's start by trying to count the number of slides in the park.", "How many slides are there in the park?"],
-        image: "/io_book/park_1.png",
-        game: "NumberInputActivity",
+        content: [
+          "Let's start by trying to count the total number of slides in the park.",
+          "How many slides are there in the park?",
+        ],
+        component: "InputActivity", 
+        image: "InputActivity",
         props: {
           showIOLabels: true,
           options: [1, 2, 3, 4],
-          ans: [3],
+          ans: [3], 
+          initialImage: "/io_book/park_1.png", 
+          correctImage: "/io_book/park_2.png", 
         },
-      },
+      },      
       {
         content: [
           "Hope you had fun. Let's see what the definition for input and output is before we move forward!",
@@ -215,173 +220,147 @@ export const books: Book[] = [
           "Output",
           "It is what the computer gives back to you after it does something with the input. It's the computer's answer."
         ],
-        image: "/io_book/def.png",
+        image: "/io_book/definition.png",
       },
       {
         content: [
           "Hey! Let's hop on to the next activity.",
           "Now, we will play with the flowers in the park."
         ],
-        image: "/io_book/def.png",
+        image: "/io_book/next.png",
       },
       {
         content: ["Look at each corner of the park", "How many yellow flowers are there in total in all the corners?"],
-        image: "/io_book/flowers_0.png",
-        game: "NumberInputActivity",
+        image: "InputActivity",
+        game: "InputActivity",
         props: {
           showIOLabels: true,
           options: [9, 10, 11, 12],
           ans: [10],
+          initialImage: "/io_book/flowers_0.png", 
+          correctImage: "/io_book/flowers_0.png",
         },
       },
       {
-        content: ["How many pink flowers are there in total in all the corners?"],
-        image: "/io_book/flowers_0.png",
-        game: "NumberInputActivity",
+        content: ["How many pink flowers are there combined in all the corners?"],
+        image: "InputActivity",
+        game: "InputActivity",
         props: {
           showIOLabels: true,
           options: [9, 10, 11, 12],
           ans: [9],
+          initialImage: "/io_book/flowers_0.png", 
+          correctImage: "/io_book/flowers_0.png",
         },
       },
       {
-        content: ["What is the total number of flowers in all the corners right now?"],
-        image: "/io_book/flowers_0.png",
-        game: "NumberInputActivity",
+        content: ["What is the sum of flowers in all the corners right now?"],
+        image: "InputActivity",
+        game: "InputActivity",
         props: {
           showIOLabels: true,
           options: [19, 20, 21, 22],
           ans: [19],
+          initialImage: "/io_book/flowers_0.png", 
+          correctImage: "/io_book/flowers_0.png",
         },
       },
       {
         content: [
-          "Observe the pattern in the number of yellow and pink flowers in every corner",
-          "Now guess the number of pink flowers that should be planted in the last row?"
+          "Observe the pattern in the sum of yellow and pink flowers in every corner",
+          "Now guess the total number of pink flowers that should be planted in the right corner in bottom?"
         ],
-        game: "TableCompletionActivity",
-        image: "/io_book/flowers_1.png",
-        props: {
-          image: "/io_book/flowers_1.png",
-          tableItems: [
-            ["Yellow Flowers", "Pink Flowers"],
-            ["1", "2"],
-            ["2", "3"],
-            ["3", "4"],
-            ["4", "?"]
-          ],
-          options: [3, 4, 5, 6],
-          ans: [5]
-        },
-      },
-      {
-        content: ["Look at each corner of the park", "How many yellow trees are there in total in all the corners?"],
-        image: "/io_book/trees_0.png",
-        game: "NumberInputActivity",
-        props: {
-          showIOLabels: true,
-          options: [10, 11, 12, 13],
-          ans: [10],
-        },
-      },
-      {
-        content: ["How many green trees are there in total in all the corners?"],
-        image: "/io_book/trees_0.png",
-        game: "NumberInputActivity",
-        props: {
-          showIOLabels: true,
-          options: [7, 8, 9, 10],
-          ans: [9],
-        },
-      },
-      {
-        content: ["What is the total number of trees in all the corners right now?"],
-        image: "/io_book/trees_0.png",
-        game: "NumberInputActivity",
-        props: {
-          showIOLabels: true,
-          options: [16, 17, 18, 19],
-          ans: [19],
-        },
-      },
-      {
-        content: ["Look at each corner of the park", "How many yellow trees are there in total in all the corners?"],
-        image: "/io_book/trees_0.png",
-        game: "NumberInputActivity",
-        props: {
-          showIOLabels: true,
-          options: [10, 11, 12, 13],
-          ans: [10],
-        },
-      },
-      {
-        content: ["How many green trees are there in total in all the corners?"],
-        image: "/io_book/trees_0.png",
-        game: "NumberInputActivity",
-        props: {
-          showIOLabels: true,
-          options: [7, 8, 9, 10],
-          ans: [9],
-        },
-      },
-      {
-        content: ["What is the total number of trees in all the corners right now?"],
-        image: "/io_book/trees_0.png",
-        game: "NumberInputActivity",
-        props: {
-          showIOLabels: true,
-          options: [16, 17, 18, 19],
-          ans: [19],
-        },
-      },
-      {
-        content: [
-          "Each corner of the park has certain number of green and yellow trees.  Observe the pattern in the number of each color tree planted.",
-          "Now guess the number green trees that should be planted in the right corner in bottom? "
-        ],
-        game: "TableCompletionActivity",
-        image: "/io_book/trees_1.png",
-        props: {
-          image: "/io_book/trees_1.png",
-          ans: [1],
-          tableItems: [
-            ["Yellow Trees", "Green Trees"],
-            ["1", "2"],
-            ["2", "3"],
-            ["3", "4"],
-            ["4", "?"]
-          ],
-          options: [1, 2, 3, 4],
-        },
-      },
-      {
-        content: ["What is the total number of trees in all the corners right now?"],
-        image: "/io_book/multiplication_0.png",
-        game: "NumberInputActivity",
+        image: "InputActivity",
+        game: "TableComponent",
         props: {
           showIOLabels: true,
           options: [4, 5, 6, 7],
-          answer: [6],
-        }
+          ans: [5],
+          initialImage: "/io_book/flowers_1.png", 
+          correctImage: "/io_book/flowers_2.png",
+          cellContents: ['Yellow Flowers', 'Pink Flowers', '1', '2', '2', '3', '3', '4', '4', '?'],
+        },
       },
       {
-        content: ["What is the number of flowers along side each tree?"],
-        image: "/io_book/multiplication_1.png",
-        game: "NumberInputActivity",
+        content: ["Look at each corner of the park", "How many yellow trees are there in total in all the corners?"],
+        image: "InputActivity",
+        game: "InputActivity",
         props: {
           showIOLabels: true,
-          options: [1, 2, 3, 4],
-          answer: [2],
-        }
+          options: [7, 8, 9, 10],
+          ans: [10],
+          initialImage: "/io_book/trees_0.png", 
+          correctImage: "/io_book/trees_0.png",
+        },
+      },
+      {
+        content: ["How many green trees are there combined in all the corners?"],
+        image: "InputActivity",
+        game: "InputActivity",
+        props: {
+          showIOLabels: true,
+          options: [7, 8, 9, 10],
+          ans: [9],
+          initialImage: "/io_book/trees_0.png", 
+          correctImage: "/io_book/trees_0.png",
+        },
+      },
+      {
+        content: ["What is the sum of trees in all the corners right now?"],
+        image: "InputActivity",
+        game: "InputActivity",
+        props: {
+          showIOLabels: true,
+          options: [16, 17, 18, 19],
+          ans: [19],
+          initialImage: "/io_book/trees_0.png", 
+          correctImage: "/io_book/trees_0.png",
+        },
       },
       {
         content: [
-          "Each corner of the park has certain number of green and yellow trees.  Observe the pattern in the number of each color tree planted.", 
-        "Now guess the number green trees that should be planted in the right corner in bottom? "
+          "Each corner of the park has certain number of green and yellow trees." ,
+          "Observe the pattern in the total number of each color tree planted.",
+          "Now guess the sum of number of green trees that should be planted in the right corner in bottom? "
         ],
-        game: "MultiplicationActivity",
-        image: "/io_book/multiplication_2.png",
-        props: { image: "/io_book/multiplication_2.png" },
+        image: "InputActivity",
+        game: "TableComponent",
+        props: {
+          showIOLabels: true,
+          options: [1, 2, 3, 4],
+          ans: [1],
+          initialImage: "/io_book/trees_1.png", 
+          correctImage: "/io_book/trees_2.png",
+          cellContents: ['Yellow Trees', 'Green Trees', '1', '4', '2', '3', '3', '2', '4', '?'],
+        },
+      },
+      {
+        content: ["How many pink flowers are there combined on each side of a single yellow tree?"],
+        image: "InputActivity",
+        game: "InputActivity",
+        props: {
+          showIOLabels: true,
+          options: [1, 2, 3, 4],
+          ans: [2],
+          initialImage: "/io_book/multiplication_0.png", 
+          correctImage: "/io_book/multiplication_0.png",
+        },
+      },
+      {
+        content: [
+          "Observe the pattern in the total number of pink flowers beside each yellow tree." ,
+          "Now, guess sum of pink flowers that should be planted if there are four trees together?"
+        ],
+        image: "InputActivity",
+        game: "TableComponent",
+        props: {
+          showIOLabels: true,
+          options: [6, 7, 8, 9],
+          ans: [8],
+          initialImage: "/io_book/multiplication_1.png", 
+          correctImage: "/io_book/multiplication_2.png",
+          cellContents: ['Yellow Trees', 'Pink Flowers', '1', '2', '2', '4', '3', '6', '4', '?'],
+        },
       }
     ]
   },
