@@ -46,7 +46,7 @@ export function CodeStep({ props }: { props: any | ICodeStepProps,}) {
     function backButton() {
         if(currentLine === 0) return
         var nextLine = currentLine - 1
-        while (props.skipLines.includes(nextLine) && nextLine !== code.length - 1)
+        while (props.skipLines.includes(nextLine) && nextLine !== 0)
             nextLine--
         setCurrentLine(nextLine)
         props.getLine(nextLine)

@@ -115,11 +115,19 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
 
     function getPage3() {
         return(
-            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
-                <CodeStep props={{code: code, skipLines: [5, 7, 10, 11, 12], enableNext: true, getLine: getLine}}/>
-                <div className='flex flex-col text-center mt-5'>
-                    {p2Text !== "" && <Reader text={p2Text}/>}
-                    {currentImage !== "" && <Image height={imageDim[0]} width={imageDim[1]} src={currentImage} alt='Image of flow chart'/>}
+            <div className='flex flex-col gap-5 w-full h-screen' style={{zoom: windowScale}}>
+                <div className='flex flex-col gap-5 mb-10'>
+                    <div style={text_style}><Reader text="Let's run through the code and see how it relates to the flowchart!"/></div>
+                    <div style={text_style}><Reader text="The flowchart will be constructed as you go through the code."/></div>
+                </div>
+                <div className='flex flex-col-2 items-start text-center w-full h-100'>
+                    <div className='w-1/2'>
+                        <CodeStep props={{code: code, skipLines: [5, 7, 10, 11, 12], enableNext: true, getLine: getLine}}/>
+                    </div>
+                    <div className='flex flex-col text-center w-1/2'>
+                        {p2Text !== "" && <Reader text={p2Text}/>}
+                        {currentImage !== "" && <Image height={imageDim[0]} width={imageDim[1]} src={currentImage} alt='Image of flow chart'/>}
+                    </div>
                 </div>
             </div>
         );

@@ -52,19 +52,23 @@ export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.S
     }
     console.log(windowScale)
     return(
-        <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
-            <CodeStep props={{code: code, getLine: getLine, skipLines: [4, 5, 6], enableNext: enableNext}}/>
-            {currentImage !== "" && <Image className="object-contain max-w-full max-h-full h-fit" height={1000} width={1000} src={currentImage} alt='Partial image of flowchart'/>}
-            {showQuestion &&
-                <React.Fragment>
-                    <div style={text_style}><Reader text='What will be printed based on the flowchart?'/></div>
-                    <div className='flex flex-col-2 gap-10 m-5'>
-                        <button style={answer_button_style} onClick={() => handleQ1(true)}>{"Yes, you can buy a donut!"}</button>
-                        <button style={answer_button_style} onClick={() => handleQ1(false)}>{"Sorry, you don't have enough money to buy a yummy donut."}</button>
-                    </div>
-                    <Reader text={q1AnswerExplanation}/>
-                </React.Fragment>
-            }
+        <div className='flex flex-col-2 items-center text-center w-full h-screen' style={{zoom: windowScale}}>
+            <div className='flex flex-col w-1/2 justify-center'>
+                <CodeStep props={{code: code, getLine: getLine, skipLines: [4, 5, 6], enableNext: enableNext}}/>
+            </div>
+            <div className='w-1/2'>
+                {currentImage !== "" && <Image className="object-contain max-w-full max-h-full h-fit" height={1000} width={1000} src={currentImage} alt='Partial image of flowchart'/>}
+                {showQuestion &&
+                    <React.Fragment>
+                        <div style={text_style}><Reader text='What will be printed based on the flowchart?'/></div>
+                        <div className='flex flex-col mx-auto w-fit gap-5 m-5'>
+                            <button style={answer_button_style} onClick={() => handleQ1(true)}>{"Yes, you can buy a donut!"}</button>
+                            <button style={answer_button_style} onClick={() => handleQ1(false)}>{"Sorry, you don't have enough money to buy a yummy donut."}</button>
+                        </div>
+                        <Reader text={q1AnswerExplanation}/>
+                    </React.Fragment>
+                }
+            </div>
         </div>
     );
 }
