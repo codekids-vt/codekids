@@ -46,6 +46,7 @@ export function HokieBirdColoring({ props, setAllowNext }: { props: any, setAllo
                 ...prevColors,
                 [partToColor]: color,
             }));
+            setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
             setCurrentColorIndex(currentColorIndex + 1);
         }
     };
@@ -202,7 +203,7 @@ export function HokieBirdColoring({ props, setAllowNext }: { props: any, setAllo
                                         draggable={props.draggable}
                                         className={`flex ${availableColorsTailwind[color]} px-1 place-content-center rounded-2xl shadow-2xl`}
                                         onDragStart={(e) => { handleOnDrag(e, color) }}
-                                        onClick={() => colorNextPart(color)}
+                                        onClick={() => { if (!props?.type) colorNextPart(color); }}
                                     >
                                         <q className={`text-white`}>{color}</q>
                                     </div>
