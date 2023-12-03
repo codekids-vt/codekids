@@ -142,7 +142,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                   </div>
                   <div className="flex flex-row justify-start items-center xl:p-2 space-x-2">
                     {backButton}
-                    {page?.props?.ans?.length &&
+                    {(page?.props?.ans?.length || page?.props?.helpImage) &&
                       <button onClick={() => setHelp(!help)}
                         className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold flex flex-row items-center p-1 xl:p-6 xl:text-2xl rounded-full">
                         Help me
@@ -165,7 +165,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                   </div>}
                 </div>
               </div>
-              {page?.props?.ans?.length && (
+              {(page?.props?.ans?.length || page?.props?.helpImage) && (
                 <div
                   id="help-modal"
                   className={`fixed top-0 left-0 right-0 z-50 ${help ? "" : "hidden"
@@ -215,6 +215,9 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                             ))}
                         </ul>
                       </div>
+                      {page.props.helpImage &&
+                        <Image src={page.props.helpImage} alt="Help image" width={750} height={250}></Image>
+                      }
                       <div className="flex justify-end p-5 border-t rounded-b">
                         <button
                           onClick={() => setHelp(!help)}
