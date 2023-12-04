@@ -46,4 +46,5 @@ export interface PageProps {
     code?: string,
     showIOLabels?: boolean,
     options?: number[],
+    helpImage?: string
 }

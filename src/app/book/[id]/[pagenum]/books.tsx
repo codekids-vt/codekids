@@ -25,6 +25,7 @@ export const books: Book[] = [
         props: {
           draggable: true,
           command: "Drag the Colors over these boxes",
+          helpImage: "/help/HokieBirdColoring_Help.png"
         }
       },
       {
@@ -36,6 +37,7 @@ export const books: Book[] = [
         props: {
           type: true,
           command: "Type the Colors over these boxes",
+          helpImage: "/help/HokieBirdColoring_Help.png"
         }
       },
       {
@@ -46,6 +48,7 @@ export const books: Book[] = [
           type: true,
           typeVariable: true,
           command: "Type the Body Part and Colors over these boxes",
+          helpImage: "/help/HokieBirdColoring_Help.png"
         }
       },
     ],
@@ -84,20 +87,11 @@ export const books: Book[] = [
         props: {
           draggable: true,
           images: [
-            "Maze1.png",
+            "Maze1.jpg",
             "Maze2.jpg",
-            "Maze3.png",
+            "Maze3.jpg",
             "Maze4.jpg",
-            "Maze5.png",
-            "Maze6.jpg",
-            "Maze7.png",
-            "Maze8.jpg",
-            "Maze9.png",
-            "Maze10.jpg",
-            "Maze11.png",
-            "Maze12.jpg",
-            "Maze13.png",
-            "Maze14.png",
+            "Maze5.jpg"
           ],
           pageNum: 2,
           bookID: 2,
@@ -106,28 +100,21 @@ export const books: Book[] = [
             "turn_right()",
             "move(2)",
             "turn_left()",
-            "move(2)",
-            "turn_left()",
-            "move(2)",
-            "turn_right()",
-            "move(3)",
-            "turn_right()",
-            "move(4)",
-            "turn_left()",
-            "move(2)",
+            "move(2)"
           ],
+          helpImage: "/help/Maze_Help_1.png"
         },
       },
       {
         content: ["Awesome, the Hokie Bird made it to Lane Stadium!"],
-        image: "/Maze/Maze14.png",
+        image: "/Maze/Maze6.jpg",
       },
       {
         content: [
           "Oh no, now the HokieBird is lost somewhere else <need to fill new place with images and map>",
           "this will be non draggable",
         ],
-        image: "/Maze/SadHokieBird.png",
+        image: "/Maze/Maze6.jpg",
       },
       {
         content: ["Lets try moving the Hokie Bird forward!",
@@ -139,43 +126,27 @@ export const books: Book[] = [
           type: true,
           draggable: false,
           images: [
-            "Maze1.png",
+            "Maze1.jpg",
             "Maze2.jpg",
-            "Maze3.png",
+            "Maze3.jpg",
             "Maze4.jpg",
-            "Maze5.png",
-            "Maze6.jpg",
-            "Maze7.png",
-            "Maze8.jpg",
-            "Maze9.png",
-            "Maze10.jpg",
-            "Maze11.png",
-            "Maze12.jpg",
-            "Maze13.png",
-            "Maze14.png",
+            "Maze5.jpg"
           ],
-          pageNum: 2,
+          pageNum: 5,
           bookID: 2,
           ans: [
             "move(3)",
             "turn_right()",
             "move(2)",
             "turn_left()",
-            "move(2)",
-            "turn_left()",
-            "move(2)",
-            "turn_right()",
-            "move(3)",
-            "turn_right()",
-            "move(4)",
-            "turn_left()",
-            "move(2)",
-          ]
+            "move(2)"
+          ],
+          helpImage: "/help/Maze_Help_1.png"
         },
       },
       {
         content: ["Awesome, the Hokie Bird made it to Lane Stadium!"],
-        image: "/Maze/Maze14.png",
+        image: "/Maze/Maze6.jpg",
       },
     ]
   },
@@ -205,16 +176,17 @@ export const books: Book[] = [
           "Let's start by trying to count the total number of slides in the park.",
           "How many slides are there in the park?",
         ],
-        component: "InputActivity", 
+        component: "InputActivity",
         image: "InputActivity",
         props: {
           showIOLabels: true,
           options: [1, 2, 3, 4],
-          ans: [3], 
-          initialImage: "/io_book/park_1.png", 
-          correctImage: "/io_book/park_2.png", 
+          ans: [3],
+          initialImage: "/io_book/park_1.png",
+          correctImage: "/io_book/park_2.png",
+          helpImage: "/help/IO_Help_1.png"
         },
-      },      
+      },
       {
         content: [
           "Hope you had fun. Let's see what the definition for input and output is before we move forward!",
@@ -240,8 +212,9 @@ export const books: Book[] = [
           showIOLabels: true,
           options: [9, 10, 11, 12],
           ans: [10],
-          initialImage: "/io_book/flowers_0.png", 
+          initialImage: "/io_book/flowers_0.png",
           correctImage: "/io_book/flowers_0.png",
+          helpImage: "/help/IO_Help_2.png"
         },
       },
       {
@@ -252,8 +225,9 @@ export const books: Book[] = [
           showIOLabels: true,
           options: [9, 10, 11, 12],
           ans: [9],
-          initialImage: "/io_book/flowers_0.png", 
+          initialImage: "/io_book/flowers_0.png",
           correctImage: "/io_book/flowers_0.png",
+          helpImage: "/help/IO_Help_3.png"
         },
       },
       {
@@ -264,8 +238,9 @@ export const books: Book[] = [
           showIOLabels: true,
           options: [19, 20, 21, 22],
           ans: [19],
-          initialImage: "/io_book/flowers_0.png", 
+          initialImage: "/io_book/flowers_0.png",
           correctImage: "/io_book/flowers_0.png",
+          helpImage: "/help/IO_Help_4.png"
         },
       },
       {
@@ -279,9 +254,10 @@ export const books: Book[] = [
           showIOLabels: true,
           options: [4, 5, 6, 7],
           ans: [5],
-          initialImage: "/io_book/flowers_1.png", 
+          initialImage: "/io_book/flowers_1.png",
           correctImage: "/io_book/flowers_2.png",
           cellContents: ['Yellow Flowers', 'Pink Flowers', '1', '2', '2', '3', '3', '4', '4', '?'],
+          helpImage: "/help/IO_Help_5.png"
         },
       },
       {
@@ -292,8 +268,9 @@ export const books: Book[] = [
           showIOLabels: true,
           options: [7, 8, 9, 10],
           ans: [10],
-          initialImage: "/io_book/trees_0.png", 
+          initialImage: "/io_book/trees_0.png",
           correctImage: "/io_book/trees_0.png",
+          helpImage: "/help/IO_Help_6.png"
         },
       },
       {
@@ -304,8 +281,9 @@ export const books: Book[] = [
           showIOLabels: true,
           options: [7, 8, 9, 10],
           ans: [9],
-          initialImage: "/io_book/trees_0.png", 
+          initialImage: "/io_book/trees_0.png",
           correctImage: "/io_book/trees_0.png",
+          helpImage: "/help/IO_Help_7.png"
         },
       },
       {
@@ -316,13 +294,14 @@ export const books: Book[] = [
           showIOLabels: true,
           options: [16, 17, 18, 19],
           ans: [19],
-          initialImage: "/io_book/trees_0.png", 
+          initialImage: "/io_book/trees_0.png",
           correctImage: "/io_book/trees_0.png",
+          helpImage: "/help/IO_Help_8.png"
         },
       },
       {
         content: [
-          "Each corner of the park has certain number of green and yellow trees." ,
+          "Each corner of the park has certain number of green and yellow trees.",
           "Observe the pattern in the total number of each color tree planted.",
           "Now guess the sum of number of green trees that should be planted in the right corner in bottom? "
         ],
@@ -332,9 +311,10 @@ export const books: Book[] = [
           showIOLabels: true,
           options: [1, 2, 3, 4],
           ans: [1],
-          initialImage: "/io_book/trees_1.png", 
+          initialImage: "/io_book/trees_1.png",
           correctImage: "/io_book/trees_2.png",
           cellContents: ['Yellow Trees', 'Green Trees', '1', '4', '2', '3', '3', '2', '4', '?'],
+          helpImage: "/help/IO_Help_9.png"
         },
       },
       {
@@ -345,13 +325,14 @@ export const books: Book[] = [
           showIOLabels: true,
           options: [1, 2, 3, 4],
           ans: [2],
-          initialImage: "/io_book/multiplication_0.png", 
+          initialImage: "/io_book/multiplication_0.png",
           correctImage: "/io_book/multiplication_0.png",
+          helpImage: "/help/IO_Help_10.png"
         },
       },
       {
         content: [
-          "Observe the pattern in the total number of pink flowers beside each yellow tree." ,
+          "Observe the pattern in the total number of pink flowers beside each yellow tree.",
           "Now, guess sum of pink flowers that should be planted if there are four trees together?"
         ],
         image: "InputActivity",
@@ -360,9 +341,10 @@ export const books: Book[] = [
           showIOLabels: true,
           options: [6, 7, 8, 9],
           ans: [8],
-          initialImage: "/io_book/multiplication_1.png", 
+          initialImage: "/io_book/multiplication_1.png",
           correctImage: "/io_book/multiplication_2.png",
           cellContents: ['Yellow Trees', 'Pink Flowers', '1', '2', '2', '4', '3', '6', '4', '?'],
+          helpImage: "/help/IO_Help_11.png"
         },
       }
     ]
@@ -417,6 +399,7 @@ export const books: Book[] = [
           statements: ["tshirt", "winter_jacket"],
           condition: "weather_is_hot",
           ans: ["tshirt"],
+          helpImage: "/help/IfConditionBook1_Help_1.png",
           image: "/if_condition/sun.gif",
           ans_image: "/if_condition/HokieBirdSun.gif"
         },
@@ -434,7 +417,8 @@ export const books: Book[] = [
           ans: ["winter_jacket"],
           image: "/if_condition/HokieBirdIf.png",
           ans_image: "/if_condition/HokieBirdJacket.png",
-          effect: "/if_condition/snow.gif"
+          effect: "/if_condition/snow.gif",
+          helpImage: "/help/IfConditionBook1_Help_2.png"
         },
       },
       {
@@ -448,7 +432,8 @@ export const books: Book[] = [
           ans: ["umbrella"],
           image: "/if_condition/HokieBirdIf.png",
           ans_image: "/if_condition/Umbrella2.png",
-          effect: "/if_condition/rain.gif"
+          effect: "/if_condition/rain.gif",
+          helpImage: "/help/IfConditionBook1_Help_3.png"
         },
 
       },
@@ -463,7 +448,8 @@ export const books: Book[] = [
           ans: ["cry"],
           image: "/if_condition/HokieBirdIf.png",
           ans_image: "/if_condition/HokieBirdCry.png",
-          effect: "/if_condition/rain.gif"
+          effect: "/if_condition/rain.gif",
+          helpImage: "/help/IfConditionBook1_Help_4.png"
         },
       },
     ]
@@ -492,6 +478,7 @@ export const books: Book[] = [
           ans: ["cry"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/sad.png",
+          helpImage: "/help/IfConditionBook2_Help_1.png"
         },
       },
       {
@@ -505,6 +492,7 @@ export const books: Book[] = [
           ans: ["laugh"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/happy.png",
+          helpImage: "/help/IfConditionBook2_Help_2.png"
         },
       },
       {
@@ -518,6 +506,7 @@ export const books: Book[] = [
           ans: ["angry"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/angry.png",
+          helpImage: "/help/IfConditionBook2_Help_3.png"
         },
       },
       {
@@ -531,6 +520,7 @@ export const books: Book[] = [
           ans: ["surprised"],
           image: "/if_condition/mood.gif",
           ans_image: "/if_condition/surprise.png",
+          helpImage: "/help/IfConditionBook2_Help_4.png"
         },
       },
     ]
@@ -565,6 +555,7 @@ export const books: Book[] = [
             ans: ["bend_sideways"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action1.gif",
+            helpImage: "/help/IfConditionBook3_Help_1.png"
           }
         },
         {
@@ -580,6 +571,7 @@ export const books: Book[] = [
             ans: ["wave_arm"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action4.gif",
+            helpImage: "/help/IfConditionBook3_Help_2.png"
           }
         },
         {
@@ -595,6 +587,7 @@ export const books: Book[] = [
             ans: ["butt_twist"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action3.gif",
+            helpImage: "/help/IfConditionBook3_Help_3.png"
           }
         },
         {
@@ -610,6 +603,7 @@ export const books: Book[] = [
             ans: ["rotate"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action5.gif",
+            helpImage: "/help/IfConditionBook3_Help_4.png"
           }
         },
         {
@@ -625,6 +619,7 @@ export const books: Book[] = [
             ans: ["back_kick"],
             image: "/if_condition/ready.gif",
             ans_image: "/if_condition/action2.gif",
+            helpImage: "/help/IfConditionBook3_Help_5.png"
           }
         },
         {
@@ -690,7 +685,8 @@ export const books: Book[] = [
           "Try out the examples and exercises."],
         props: {
           pageNumber: 1,
-          ans: ["Option 1. Make sure to read the explanation!"]
+          ans: ["Option 1. Make sure to read the explanation!"],
+          helpImage: "/help/Variables_Help_1.png"
         }
       },
       { // Variable Assignment
@@ -739,7 +735,8 @@ export const books: Book[] = [
           "For example, 2 < 4 has a Boolean value of True since 2 is less than 4."],
         props: {
           pageNumber: 1,
-          ans: ["Option 2. Make sure to read the explanation!"]
+          ans: ["Option 2. Make sure to read the explanation!"],
+          helpImage: "/help/Variables_Help_2.png"
         }
       },
       { // Ints and Bools Intro
@@ -750,7 +747,8 @@ export const books: Book[] = [
           "For example, 2 < 4 has a Boolean value of True since 2 is less than 4."],
         props: {
           pageNumber: 2,
-          ans: ["Option 4. Make sure to read the explanation!"]
+          ans: ["Option 4. Make sure to read the explanation!"],
+          helpImage: "/help/Variables_Help_3.png"
         }
       },
       { // Ints and Bools Intro Python Tutor
@@ -770,7 +768,8 @@ export const books: Book[] = [
           "Think of each line as it's own step with the very beginning line being step 1.",
           "Each step will be executed one after another until the program is over."],
         props: {
-          ans: ["Option 3. Make sure to read the explanation!"]
+          ans: ["Option 3. Make sure to read the explanation!"],
+          helpImage: "/help/Variables_Help_4.png"
         }
       },
       {
@@ -786,7 +785,8 @@ export const books: Book[] = [
         image: "Strings",
         props: {
           pageNumber: 1,
-          ans: ["Option 3. Make sure to read the explanation!"]
+          ans: ["Option 3. Make sure to read the explanation!"],
+          helpImage: "/help/Variables_Help_5.png"
         },
         content: ["This page will focus on Strings!",
           "You may have noticed in the previous pages that 'Epcot' is an example of a String! Let's try more practice.",
@@ -799,7 +799,8 @@ export const books: Book[] = [
         image: "Strings",
         props: {
           pageNumber: 2,
-          ans: ["Option 4. Make sure to read the explanation!"]
+          ans: ["Option 4. Make sure to read the explanation!"],
+          helpImage: "/help/Variables_Help_6.png"
         },
         content: ["When a String is printed, the quotation marks are not included.",
           "So, print(\"Hello\") will print Hello."]
@@ -808,7 +809,8 @@ export const books: Book[] = [
         image: "Strings",
         props: {
           pageNumber: 3,
-          ans: ["Option 3. Make sure to read the explanation!", "Option 2. Make sure to read the explanation!"]
+          ans: ["Option 3. Make sure to read the explanation!", "Option 2. Make sure to read the explanation!"],
+          helpImage: "/help/Variables_Help_7.png"
         },
         content: ["Try out these exercises on Strings.",
           "Remember that anything that's in single or double quotation marks are Strings.",
@@ -819,7 +821,8 @@ export const books: Book[] = [
         image: "Strings",
         props: {
           pageNumber: 4,
-          ans: ["Option 2. Make sure to read the explanation!"]
+          ans: ["Option 2. Make sure to read the explanation!"],
+          helpImage: "/help/Variables_Help_8.png"
         },
         content: ["Take a moment to think about his question.",
           "Pay close attention to what's in the print at the end.",
@@ -917,7 +920,8 @@ export const books: Book[] = [
             "5 < 5 will be False"],
           props: {
             pageNumber: 1,
-            ans: ["Option 2. Make sure to read the explanation!"]
+            ans: ["Option 2. Make sure to read the explanation!"],
+            helpImage: "/help/PythonIf_Help_1.png"
           }
         },
         { // Conditional operators
@@ -926,7 +930,8 @@ export const books: Book[] = [
             "Remember '==' checks is two values are equal."],
           props: {
             pageNumber: 2,
-            ans: ["Option 1. Make sure to read the explanation!"]
+            ans: ["Option 1. Make sure to read the explanation!"],
+            helpImage: "/help/PythonIf_Help_2.png"
           }
         },
         { // Conditional operators
@@ -937,7 +942,8 @@ export const books: Book[] = [
             "However, using the conditional operators > and < will cause an error."],
           props: {
             pageNumber: 3,
-            ans: ["Option 2. Make sure to read the explanation!"]
+            ans: ["Option 2. Make sure to read the explanation!"],
+            helpImage: "/help/PythonIf_Help_3.png"
           }
         },
         { // Conditional operators
@@ -947,7 +953,8 @@ export const books: Book[] = [
             "However, if the values being compared aren't the same data type, there will be an error."],
           props: {
             pageNumber: 4,
-            ans: ["Option 3. Make sure to read the explanation!"]
+            ans: ["Option 3. Make sure to read the explanation!"],
+            helpImage: "/help/PythonIf_Help_4.png"
           }
         },
         {
@@ -995,7 +1002,8 @@ export const books: Book[] = [
             "5 == 4 and 5 == 5 = False"],
           props: {
             pageNumber: 2,
-            ans: ["Option 1. Make sure to read the explanation!"]
+            ans: ["Option 1. Make sure to read the explanation!"],
+            helpImage: "/help/PythonIf_Help_5.png"
           }
         },
         { // Logical operators OR operator
@@ -1008,7 +1016,8 @@ export const books: Book[] = [
             "5 == 4 or 5 == 6 = False"],
           props: {
             pageNumber: 3,
-            ans: ["Option 1. Make sure to read the explanation!"]
+            ans: ["Option 1. Make sure to read the explanation!"],
+            helpImage: "/help/PythonIf_Help_6.png"
           }
         },
         { // Logical operators OR operator
@@ -1021,7 +1030,8 @@ export const books: Book[] = [
             "not (5 == 5 and 2 < 5) = False"],
           props: {
             pageNumber: 4,
-            ans: ["Option 2. Make sure to read the explanation!"]
+            ans: ["Option 2. Make sure to read the explanation!"],
+            helpImage: "/help/PythonIf_Help_7.png"
           }
         },
         {
@@ -1057,7 +1067,8 @@ export const books: Book[] = [
             "The 'else' isn't required but is helpful when you want to execute code when the If-statement fails."],
           props: {
             pageNumber: 1,
-            ans: ["Option 2. Make sure to read the explanation!"]
+            ans: ["Option 2. Make sure to read the explanation!"],
+            helpImage: "/help/PythonIf_Help_8.png"
           }
         },
         {
@@ -1067,7 +1078,8 @@ export const books: Book[] = [
             "Anything that is not part of the If-statement or else will executed normally."],
           props: {
             pageNumber: 2,
-            ans: ["Option 2. Make sure to read the explanation!"]
+            ans: ["Option 2. Make sure to read the explanation!"],
+            helpImage: "/help/PythonIf_Help_9.png"
           }
         },
         {
@@ -1076,7 +1088,8 @@ export const books: Book[] = [
             "Try out the exercise to the left!"],
           props: {
             pageNumber: 3,
-            ans: ["Option 3. Make sure to read the explanation!"]
+            ans: ["Option 3. Make sure to read the explanation!"],
+            helpImage: "/help/PythonIf_Help_10.png"
           }
         },
         {
@@ -1085,7 +1098,8 @@ export const books: Book[] = [
             "Try out the exercises to the left!"],
           props: {
             pageNumber: 4,
-            ans: ["Option 3. Make sure to read the explanation!"]
+            ans: ["Option 3. Make sure to read the explanation!"],
+            helpImage: "/help/PythonIf_Help_11.png"
           }
         },
         {
