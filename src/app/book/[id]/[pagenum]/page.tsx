@@ -106,7 +106,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
         </button>
       </Link>
       :
-      <Link href={`/books/1`}>
+      <Link href={`/`}>
         <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
           Home
         </button>
@@ -121,7 +121,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
         </button>
       </Link>
       :
-      <Link href={`/books/1`}>
+      <Link href={`/`}>
         <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
           Home
         </button>
