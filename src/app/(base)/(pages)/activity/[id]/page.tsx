@@ -3,6 +3,7 @@ import fs from "fs";
 import matter from "gray-matter";
 
 import MarkdownView from "@/components/MarkdownView";
+import path from "path";
 
 interface PostData {
   postId: string,
@@ -41,9 +42,9 @@ function ActivityPostDisplay({
 }
 
 function getActivity(id: string): PostData | undefined {
-  let mdFiles = fs.readdirSync("public/activities").map((fileName) => {
+  let mdFiles = fs.readdirSync(path.join(process.cwd(), "_activities")).map((fileName) => {
     const fileNameId = fileName.replace(/\.md$/, "");
-    const fullPath = `public/activities/${fileName}`;
+    const fullPath = path.join(process.cwd(), "_activities", fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const matterResult = matter(fileContents);
 

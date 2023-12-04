@@ -14,8 +14,6 @@ import { HokieBirdIfCondition } from "@/components/HokieBirdIfCondition";
 import { books } from "./books"
 import Navbar from "@/components/Navbar";
 import { PythonTutor } from "@/components/PythonTutor";
-import { NumberInputActivity } from "@/components/NumberInputActivity";
-import { TableCompletionActivity } from "@/components/TableCompletionActivity";
 import { DataTypesIntro } from "@/components/MisconceptionComponents/DataTypesIntro";
 import { IntsAndBools } from "@/components/MisconceptionComponents/IntsAndBools";
 import { VariableAssignment } from "@/components/MisconceptionComponents/VariableAssignment";
@@ -30,6 +28,8 @@ import { MooseMilestone } from "@/components/MisconceptionComponents/MooseMilest
 import { MooseDr } from "@/components/MisconceptionComponents/MooseDr";
 import { MooseChallengingYear } from "@/components/MisconceptionComponents/MooseChallengingYear";
 import { MooseThankYou } from "@/components/MisconceptionComponents/MooseThankYou";
+import { InputActivity } from "@/components/InputActivity";
+import { TableComponent } from "@/components/TableComponent";
 
 function BookImage({ image, page, setAllowNext }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
@@ -55,6 +55,8 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "MooseDr" && <MooseDr props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseThankYou" && <MooseThankYou />}
+      {image === "InputActivity" && <InputActivity props={page?.props} setAllowNext={setAllowNext}/>}
+
     </div>
   );
 }
@@ -73,13 +75,11 @@ function BookContent({ content, game, props, setAllowNext }: { content: string[]
       {game && game === "color" && <ColorPattern />}
       {game && game === "number" && <NumericalPattern pattern={props.pattern} answer={props.ans[0]} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
-      {game && game === "TableCompletionActivity" && <TableCompletionActivity props={props} setAllowNext={setAllowNext} />}
-      {game && game === "NumberInputActivity" && <NumberInputActivity props={props} setAllowNext={setAllowNext} />}
-
-    </div>
+      {game && game === "TableComponent" && <TableComponent cellContents={props.cellContents} />}
+        </div>
   );
-}
 
+}
 
 export default function ActivityPage({ params }: { params: { id: string, pagenum: string } }) {
 
@@ -210,7 +210,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                                 className="inline-block font-semibold text-gray-900"
                                 key={`answerTag-${index}`}
                               >
-                                {`${index + 1}.  ${answer}`}
+                                {answer}
                               </li>
                             ))}
                         </ul>
