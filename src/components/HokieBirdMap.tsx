@@ -9,7 +9,7 @@ interface HokieBirdColorState {
     ans: string[]
 }
 
-const actions = ["turn_left()", "turn_right()", "move(2)", "move(3)", "move(4)"]
+const actions = ["turn_left()", "turn_right()", "move(2)", "move(3)"]
 
 export function HokieBirdMap({ props, setAllowNext }: { props: any, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
     const blankProcedures = props.ans.map((statement: string) => { return "" })

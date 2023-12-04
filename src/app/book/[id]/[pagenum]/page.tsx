@@ -55,7 +55,7 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "MooseDr" && <MooseDr props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseThankYou" && <MooseThankYou />}
-      {image === "InputActivity" && <InputActivity props={page?.props} setAllowNext={setAllowNext}/>}
+      {image === "InputActivity" && <InputActivity props={page?.props} setAllowNext={setAllowNext} />}
 
     </div>
   );
@@ -76,7 +76,7 @@ function BookContent({ content, game, props, setAllowNext }: { content: string[]
       {game && game === "number" && <NumericalPattern pattern={props.pattern} answer={props.ans[0]} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
       {game && game === "TableComponent" && <TableComponent cellContents={props.cellContents} />}
-        </div>
+    </div>
   );
 
 }
