@@ -1225,6 +1225,7 @@ export const books: Book[] = [
     bookCover: "/lighter_orange.png",
     blurb: "Learn about Input and ouput!",
     author: "Prapti",
+    gradeRange: "K-2",
     pages: [
       {
         content: ["Welcome to Foodie Adventures!",
