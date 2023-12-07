@@ -7,6 +7,7 @@ export const books: Book[] = [
     title: "Variables With Coloring",
     blurb: "Learn about different variables types, coloring the Hokie Bird!",
     author: "Dev",
+    gradeRange: "K-2",
     pages: [
       {
         content: ["In this book we will discover how to drag and drop different colors into variables",
@@ -58,6 +59,7 @@ export const books: Book[] = [
     title: "Hokie Bird is Lost!",
     blurb: "Learn how to communicate specific instructions to the Hokie Bird to help him find his way!",
     author: "Dev",
+    gradeRange: "2-4",
     pages: [
       {
         content: ["The football game is about to start, and HokieBird is very worried because he is lost and doesn't know how to get to Lane Stadium.",
@@ -154,6 +156,7 @@ export const books: Book[] = [
     bookCover: "/lighter_orange.png",
     blurb: "Learn about how a computer can compute patterns!",
     author: "Prapti",
+    gradeRange: "2-4",
     pages: [
       {
         content: ["Come to Hand-in-Hand Park in Blacksburg, Virginia.",
@@ -352,6 +355,7 @@ export const books: Book[] = [
     title: "If-condition with HokieBird Weathers",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
+    gradeRange: "2-4",
     pages: [
       {
         content: ["We will use If conditions to help the Hokie bird make it to Lane Stadium",
@@ -456,6 +460,7 @@ export const books: Book[] = [
     bookCover: "/color_7.png",
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
+    gradeRange: "2-4",
     pages: [
       {
         content: ["We all make different facial expressions based on different emotions.",
@@ -524,9 +529,10 @@ export const books: Book[] = [
     BookId: 6,
     title: "If-condition with HokieBird Dance",
     bookCover: "/color_4.png",
-    blurb: "Learn when and when not a command will run with HokieBird!",
+    blurb: "Help the Hokie Bird Dance!",
     author: "Dev",
     cover: "/if_condition/HokieBirdIf.png",
+    gradeRange: "4-6",
     pages:
       [
         {
@@ -630,6 +636,7 @@ export const books: Book[] = [
     blurb: "Learn about variables in Python",
     author: "Dev",
     cover: "/Python-logo-notext.png",
+    gradeRange: "4-6",
     pages:
       [{
         content: ["Python Tutor is a visualizer that allows you to see how your code is executed step by step.",
@@ -853,6 +860,7 @@ export const books: Book[] = [
     author: "Dev",
     bookCover: "/color_4.png",
     cover: "/Python-logo-notext.png",
+    gradeRange: "4-6",
     pages:
       [
         { // If statement intro
@@ -1124,6 +1132,7 @@ export const books: Book[] = [
     author: "Dev",
     bookCover: "/color_8.png",
     cover: "/LifeOfMoose/moose_milestone.png",
+    gradeRange: "4-6",
     pages:
       [
         {

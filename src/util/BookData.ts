@@ -21,6 +21,7 @@ export interface Book {
     author: string,
     title: string,
     blurb: string,
+    gradeRange: string,
     pages: Page[],
     cover?: string
     bookCover: string
