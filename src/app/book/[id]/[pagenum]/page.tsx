@@ -30,6 +30,7 @@ import { MooseChallengingYear } from "@/components/MisconceptionComponents/Moose
 import { MooseThankYou } from "@/components/MisconceptionComponents/MooseThankYou";
 import { InputActivity } from "@/components/InputActivity";
 import { TableComponent } from "@/components/TableComponent";
+import { FoodTruckActivity } from "@/components/FoodTruckActivity";
 
 function BookImage({ image, page, setAllowNext }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
@@ -55,7 +56,8 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "MooseDr" && <MooseDr props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseThankYou" && <MooseThankYou />}
-      {image === "InputActivity" && <InputActivity props={page?.props} setAllowNext={setAllowNext} />}
+      {image === "InputActivity" && <InputActivity props={page?.props} setAllowNext={setAllowNext}/>}
+      {image === "FoodTruckActivity" && <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext}/>}
 
     </div>
   );
