@@ -34,6 +34,7 @@ import { set } from "react-hook-form";
 import { ChangingCondition } from "@/components/MisconceptionComponents/FlowchartsBook/ChangingCondition";
 import { InputActivity } from "@/components/InputActivity";
 import { TableComponent } from "@/components/TableComponent";
+import { FoodTruckActivity } from "@/components/FoodTruckActivity";
 
 function BookImage({ image, page, setAllowNext }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
@@ -64,6 +65,7 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "MultipleConditions" && <MultipleConditions props={page.props} setAllowNext={setAllowNext}/>}
       {image === "ChangingCondition" && <ChangingCondition props={page.props} setAllowNext={setAllowNext}/>}
       {image === "InputActivity" && <InputActivity props={page?.props} setAllowNext={setAllowNext}/>}
+      {image === "FoodTruckActivity" && <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext}/>}
 
     </div>
   );
@@ -84,7 +86,7 @@ function BookContent({ content, game, props, setAllowNext }: { content: string[]
       {game && game === "number" && <NumericalPattern pattern={props.pattern} answer={props.ans[0]} />}
       {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
       {game && game === "TableComponent" && <TableComponent cellContents={props.cellContents} />}
-        </div>
+    </div>
   );
 
 }
@@ -114,7 +116,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
         </button>
       </Link>
       :
-      <Link href={`/books/1`}>
+      <Link href={`/`}>
         <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
           Home
         </button>
@@ -129,7 +131,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
         </button>
       </Link>
       :
-      <Link href={`/books/1`}>
+      <Link href={`/`}>
         <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
           Home
         </button>
@@ -150,7 +152,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                   </div>
                   <div className="flex flex-row justify-start items-center xl:p-2 space-x-2">
                     {backButton}
-                    {page?.props?.ans?.length &&
+                    {(page?.props?.ans?.length || page?.props?.helpImage) &&
                       <button onClick={() => setHelp(!help)}
                         className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold flex flex-row items-center p-1 xl:p-6 xl:text-2xl rounded-full">
                         Help me
@@ -173,7 +175,7 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                   </div>}
                 </div>
               </div>
-              {page?.props?.ans?.length && (
+              {(page?.props?.ans?.length || page?.props?.helpImage) && (
                 <div
                   id="help-modal"
                   className={`fixed top-0 left-0 right-0 z-50 ${help ? "" : "hidden"
@@ -223,6 +225,9 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
                             ))}
                         </ul>
                       </div>
+                      {page.props.helpImage &&
+                        <Image src={page.props.helpImage} alt="Help image" width={750} height={250}></Image>
+                      }
                       <div className="flex justify-end p-5 border-t rounded-b">
                         <button
                           onClick={() => setHelp(!help)}
