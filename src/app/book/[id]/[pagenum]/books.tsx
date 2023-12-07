@@ -155,6 +155,7 @@ export const books: Book[] = [
     title: "Hand in Hand Input/Output",
     bookCover: "/lighter_orange.png",
     blurb: "Learn about how a computer can compute patterns!",
+    cover: "/io_book/hand-in-hand-square.png",
     author: "Prapti",
     gradeRange: "2-4",
     pages: [
@@ -1224,6 +1225,7 @@ export const books: Book[] = [
     bookCover: "/lighter_orange.png",
     blurb: "Learn about Input and ouput!",
     author: "Prapti",
+    gradeRange: "K-2",
     pages: [
       {
         content: ["Welcome to Foodie Adventures!",
