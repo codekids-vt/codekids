@@ -1481,7 +1481,7 @@ export const books: Book[] = [
         content: ["Now click through the code and pay attention to the role cup_number has.",
                   "As the loop executes, cup_number is being updated to the values that range(0, 5) gives.",
                   "The loop will execute when cup_number is 0, 1, 2, 3, and 4. So, it will execute 5 times.",
-                  "You can confirm the loop was executed 5 times by counting the amount of ties 'Fed baby goats a cup!' was printed."],
+                  "You can confirm the loop was executed 5 times by counting the number of ties 'Fed baby goats a cup!' was printed."],
         props: {
           code: "for cup_number in range(0, 5):\n\tprint(\"Fed baby goats a cup!\")\n\n#End of program"
         }
@@ -1493,7 +1493,7 @@ export const books: Book[] = [
       },
       {
         image: "ForLoopStructure",
-        content: ["Next, let's take a closer look at what makes up a For-loop in Python.",
+        content: ["Next, let's take a closer look at what makes up a for loop in Python.",
                   "1. Iterator variable: This is a variable we give it to keep track of where we are in the loop.",
                   "2. Iterable object: this is a list where each item of the list will be assigned to the iterator variable on each execution. range(0, 3) gives the list [0, 1, 2] which is an iterable object.",
                   "3. Execution statement: this is anything tabbed under the for loop. Here, we can act on the iterator variable."],
@@ -1522,8 +1522,8 @@ export const books: Book[] = [
       },
       {
         image: "/LoopsBook/pony_riding_for_loop_flowchart.png",
-        content: ["Let's take a look at how the flowchart looks for this For-loop.",
-                  "Look over it and see if you are able to understand it!",
+        content: ["Let's take a look at how the flowchart looks for this for loop.",
+                  "Look over it and see if you can understand it!",
                   "In the next page, we'll see how the flow-chart relates to Python code!"]
       },
       {
@@ -1545,6 +1545,75 @@ export const books: Book[] = [
           pageNumber: 2,
           ans: ["Iterator Variable: lap_number", "Sequence: range(0, 3)"]
         }
+      },
+      {
+        image: "/LoopsBook/while_loop_intro.png",
+        content: ["The next loop type is called a while loop.",
+                  "In a while loop, you continue to execute the loop while a condition is True.",
+                  "A key difference though is that you are in complete control of the condition and need to ensure it will eventually become false.",
+                  "Let's take a look at the goat example again!",
+                  "As you can see from the flowchart, we need to control cup_number and ensure that it eventually becomes 5 or greater.",
+                  "You can read this as \"while cup_number is less than 5, execute the loop\"."]
+      },
+      {
+        image: "GoatsWhileLoopCodeStep",
+        content: ["Click through the code and watch how the code relates to the flowchart.",
+                  "As long as cup_number is less than 5 the loop will execute."]
+      },
+      {
+        image: "WhileLoopStructure",
+        content: ["Now let's take a closer look at what makes up a while loop in Python.",
+                  "1. Condition: The condition is at the beginning of the loop and tells Python whether or not to execute the loop. Just like an If-statement, if the condition is True the loop will execute. If it's false, the loop will stop.",
+                  "2. Execution Statements: This is everything indented under the while loop. Once the last line is executed, the program will jump back to the beginning of the loop to check the condition.",
+                  "3. Update Step: In every while loop, you must update the condition to guarantee it will eventually become false. Not doing so will make the loop go on forever, which you don't want. In the example to the left, cup_number is being updated on every iteration and will eventually be 5 or greater."],
+        props: {
+          ans: ["cup_number < 5"]
+        },
+      },
+      {
+        image: "tutor",
+        content: ["Look at this example here. Do you notice anything that is missing?",
+                  "The update step is missing where we say cup_number = cup_number + 1",
+                  "Because the update step is missing, this loop will execute forever or until the program crashes (both of which are very bad!!!)."],
+        props: {
+          code: "cup_number = 0\nwhile cup_number < 5:\n\tprint(\"Fed baby goats a cup!\")"
+        }
+      },
+      {
+        image: "tutor",
+        content: ["It also doesn't matter where the update step occurs, so long as it happens.",
+                  "Also notice that the loop will continue the current execution it's on, even if cup_number becomes 5 during the execution!"],
+        props: {
+          code: "cup_number = 0\nwhile cup_number < 5:\n\tcup_number = cup_number + 1\n\tprint(\"Fed baby goats \" + str(cup_number) + \" cup(s)!\")"
+        }
+      },
+      {
+        image: "WhileLoopPonyRiding",
+        content: ["Let's go back to the pony riding!",
+                  "Again, each pony ride takes you on three laps!",
+                  "Every time a lap is completed, it will print 'Completed a lap of pony riding!'.",
+                  "What do you think the update step will be for this activity?"],
+        props: {
+          ans: ["lap_number = lap_number + 1. Make sure to read the explanation!"]
+        }
+      },
+      {
+        image: "/LoopsBook/pony_riding_while_loop_flowchart.png",
+        content: ["Let's check out what the flowchart would look like for the while loop of a pony riding activity!",
+                  "Try to understand it, and then go to the next page to see it the flowchart relates to Python code!"]
+      },
+      {
+        image: "PonyWhileLoopCodeStep",
+        content: ["Click through the code and watch how the code relates to the flowchart.",
+                  "As long as cup_number is less than 3 the loop will execute."]
+      },
+      {
+        image: "/LoopsBook/loop_intro.png",
+        content: ["Congratulations! You have now been introduced to loops in Python.",
+                  "Both for loops and while loops are powerful and give you the ability to control the flow of a program's execution.",
+                  "Choosing which one to use depends on the situation.",
+                  "In general, a while loop is best used when you don't know when the condition will be false.",
+                  "A for loop is best used when you know how many times the loop should execute."]
       }
     ]
   }

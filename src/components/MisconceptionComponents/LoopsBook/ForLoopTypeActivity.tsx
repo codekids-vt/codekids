@@ -89,6 +89,7 @@ export function ForLoopTypeActivity({props, setAllowNext} : {props: IForLoopDrag
     }
 
     function blankPressed(e: EventTarget & HTMLInputElement) {
+        if(answerSelected === "") return
         if(e.id === "it-var") {
             setItVarTyped(answerSelected)
         } else if (e.id === "it-obj") {
@@ -115,7 +116,7 @@ export function ForLoopTypeActivity({props, setAllowNext} : {props: IForLoopDrag
                         <div className='flex gap-10'>
                             <button id='0' className={answerSelectedList[0]} style={answer_button_style} type='button' onClick={(e) => answerPressed(e.currentTarget)}>lap_number</button>
                             <button id='1' className={answerSelectedList[1]} style={answer_button_style} type='button' onClick={(e) => answerPressed(e.currentTarget)}>range(0, 3)</button>
-                            <button id="3" className={answerSelectedList[2]} style={answer_button_style} type='button' onClick={(e) => answerPressed(e.currentTarget)}>range(0, 5)</button>
+                            <button id="2" className={answerSelectedList[2]} style={answer_button_style} type='button' onClick={(e) => answerPressed(e.currentTarget)}>range(0, 5)</button>
                         </div>
                         <div className='flex gap-10'>
                             <button className='bg-red-400 py-3 px-10 border-2 border-gray-500 rounded-md' type='button' onClick={() => resetPressed()}>Reset</button>
@@ -140,7 +141,7 @@ export function ForLoopTypeActivity({props, setAllowNext} : {props: IForLoopDrag
         const varTyped = itVarTyped_p2.replace(/\s/g, "")
         const objTyped = itObjTyped_p2.replace(/\s/g, "")
         if(varTyped === "lap_number" && objTyped === "range(0,3)") {
-            setQ2AnswerExplanation("Correct! The iterator variable is lap_number and iterator object is range(0, 3)")
+            setQ2AnswerExplanation("Correct! The iterator variable is lap_number and the iterator object is range(0, 3)")
             setQ2Correct(true)
         } else if(varTyped === "" && objTyped === "") {
             setQ2AnswerExplanation("Please type in or copy an answer for the iterator variable and iterable object.")
@@ -164,6 +165,7 @@ export function ForLoopTypeActivity({props, setAllowNext} : {props: IForLoopDrag
     }
 
     function blankPressed_p2(e: EventTarget & HTMLInputElement) {
+        if(answerSelected_p2 === "") return
         if(e.id === "it-var_p2") {
             setItVarTyped_p2(answerSelected_p2)
         } else if (e.id === "it-obj_p2") {
@@ -181,7 +183,7 @@ export function ForLoopTypeActivity({props, setAllowNext} : {props: IForLoopDrag
                 <Image width={500} height={500} src={"/LoopsBook/riding_2.jpg"} alt='Image of people riding pony'/>
                 <div className='flex gap-10 items-center w-full'>
                     <div className='flex flex-col gap-5 w-1/2'>
-                        <div style={text_style}><Reader text='Type in what the iterator variable and iterable object is from the given options.'/></div>
+                        <div style={text_style}><Reader text='Type in what the iterator variable and iterable object are from the given options.'/></div>
                         <div style={text_style}><Reader text='You can type the answer or click on an answer choice to copy it into the blank.'/></div>
                     </div>
                     <div className='flex flex-col gap-5 items-center w-1/2'>

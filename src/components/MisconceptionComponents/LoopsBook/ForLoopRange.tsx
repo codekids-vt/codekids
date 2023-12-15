@@ -24,7 +24,7 @@ export function ForLoopRange({setAllowNext} : {setAllowNext: React.Dispatch<Reac
                     setQ1AnswerExplanation("Incorrect. Remember that range(2, 6) would not include 6. Try again!")
                     break
                 case "0":
-                    setQ1AnswerExplanation("Incorrect. Remember range() will give a list of number between the two numbers it's given. Try again!")
+                    setQ1AnswerExplanation("Incorrect. Remember range() will give a list of numbers between the two numbers it's given. Try again!")
                     break
                 default:
             }

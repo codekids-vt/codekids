@@ -106,6 +106,10 @@ export function CodeStep({ props, loop }: { props: ICodeStepProps, loop: ILoop})
                 if(currentLine === 0) return
                 while (props.skipLines.includes(nextLine) && nextLine !== 0)
                     nextLine--
+
+                if(nextLine === loop.lines[loop.lines.length - 1]) {
+                    nextLine = loop.lines[0]
+                }
             } else {
                 if(currentLine === loop.lines[0] && loopIteration > 0) {
                     nextLine = loop.lines[loop.lines.length - 1]

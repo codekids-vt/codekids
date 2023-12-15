@@ -41,6 +41,10 @@ import { ForLoopStructure } from "@/components/MisconceptionComponents/LoopsBook
 import { ForLoopPonyRiding } from "@/components/MisconceptionComponents/LoopsBook/ForLoopPonyRiding";
 import { PonyForLoopCodeStep } from "@/components/MisconceptionComponents/LoopsBook/PonyForLoopCodeStep";
 import { ForLoopTypeActivity } from "@/components/MisconceptionComponents/LoopsBook/ForLoopTypeActivity";
+import { GoatsWhileLoopCodeStep } from "@/components/MisconceptionComponents/LoopsBook/GoatsWhileLoopCodeStep";
+import { WhileLoopStructure } from "@/components/MisconceptionComponents/LoopsBook/WhileLoopStructure";
+import { WhileLoopPonyRiding } from "@/components/MisconceptionComponents/LoopsBook/WhileLoopPonyRiding";
+import { PonyWhileLoopCodeStep } from "@/components/MisconceptionComponents/LoopsBook/PonyWhileLoopCodeStep";
 
 function BookImage({ image, page, setAllowNext }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
@@ -78,6 +82,10 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "ForLoopPonyRiding" && <ForLoopPonyRiding setAllowNext={setAllowNext}/>}
       {image === "PonyForLoopCodeStep" && <PonyForLoopCodeStep setAllowNext={setAllowNext}/>}
       {image === "ForLoopDragActivity" && <ForLoopTypeActivity props={page.props} setAllowNext={setAllowNext}/>}
+      {image === "GoatsWhileLoopCodeStep" && <GoatsWhileLoopCodeStep setAllowNext={setAllowNext}/>}
+      {image === "WhileLoopStructure" && <WhileLoopStructure setAllowNext={setAllowNext}/>}
+      {image === "WhileLoopPonyRiding" && <WhileLoopPonyRiding setAllowNext={setAllowNext}/>}
+      {image === "PonyWhileLoopCodeStep" && <PonyWhileLoopCodeStep setAllowNext={setAllowNext}/>}
     </div>
   );
 }
