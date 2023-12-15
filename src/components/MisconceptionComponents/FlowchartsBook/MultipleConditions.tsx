@@ -122,7 +122,7 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
                 </div>
                 <div className='flex flex-col-2 items-start text-center w-full h-100'>
                     <div className='w-1/2'>
-                        <CodeStep props={{code: code, skipLines: [5, 7, 10, 11, 12], enableNext: true, getLine: getLine}}/>
+                        <CodeStep props={{code: code, skipLines: [5, 7, 10, 11, 12], enableNext: true, getLine: getLine}} loop={{exists: false}}/>
                     </div>
                     <div className='flex flex-col text-center w-1/2'>
                         {p2Text !== "" && <Reader text={p2Text}/>}

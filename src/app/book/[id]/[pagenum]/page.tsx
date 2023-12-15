@@ -35,6 +35,12 @@ import { ChangingCondition } from "@/components/MisconceptionComponents/Flowchar
 import { InputActivity } from "@/components/InputActivity";
 import { TableComponent } from "@/components/TableComponent";
 import { FoodTruckActivity } from "@/components/FoodTruckActivity";
+import { ForLoopRange } from "@/components/MisconceptionComponents/LoopsBook/ForLoopRange";
+import { GoatsForLoopCodeStep } from "@/components/MisconceptionComponents/LoopsBook/GoatsForLoopCodeStep";
+import { ForLoopStructure } from "@/components/MisconceptionComponents/LoopsBook/ForLoopStructure";
+import { ForLoopPonyRiding } from "@/components/MisconceptionComponents/LoopsBook/ForLoopPonyRiding";
+import { PonyForLoopCodeStep } from "@/components/MisconceptionComponents/LoopsBook/PonyForLoopCodeStep";
+import { ForLoopTypeActivity } from "@/components/MisconceptionComponents/LoopsBook/ForLoopTypeActivity";
 
 function BookImage({ image, page, setAllowNext }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
@@ -66,7 +72,12 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "ChangingCondition" && <ChangingCondition props={page.props} setAllowNext={setAllowNext}/>}
       {image === "InputActivity" && <InputActivity props={page?.props} setAllowNext={setAllowNext}/>}
       {image === "FoodTruckActivity" && <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext}/>}
-
+      {image === "ForLoopRange" && <ForLoopRange setAllowNext={setAllowNext}/>}
+      {image === "GoatsForLoopCodeStep" && <GoatsForLoopCodeStep setAllowNext={setAllowNext}/>}
+      {image === "ForLoopStructure" && <ForLoopStructure setAllowNext={setAllowNext}/>}
+      {image === "ForLoopPonyRiding" && <ForLoopPonyRiding setAllowNext={setAllowNext}/>}
+      {image === "PonyForLoopCodeStep" && <PonyForLoopCodeStep setAllowNext={setAllowNext}/>}
+      {image === "ForLoopDragActivity" && <ForLoopTypeActivity props={page.props} setAllowNext={setAllowNext}/>}
     </div>
   );
 }

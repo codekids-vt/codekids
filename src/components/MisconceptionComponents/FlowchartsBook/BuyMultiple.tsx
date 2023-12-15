@@ -96,7 +96,7 @@ export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultiple
                 </div>
                 <div className='flex flex-col-2 items-start text-center h-100'>
                     <div className='w-1/2'>
-                        <CodeStep props={{code: code, skipLines: [6, 9], enableNext: true, getLine: getLine}}/>
+                        <CodeStep props={{code: code, skipLines: [6, 9], enableNext: true, getLine: getLine}} loop={{exists: false}}/>
                     </div>
                     <div className='flex flex-col text-center w-1/2'>
                         {p2Text !== "" && <Reader text={p2Text}/>}

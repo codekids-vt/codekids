@@ -1426,5 +1426,126 @@ export const books: Book[] = [
         image: "/io_book/happy_meal.png",
       }
     ]
+  },
+  {
+    BookId: 12,
+    title: "Loops",
+    blurb: "Learn how to read flow charts",
+    author: "Dev",
+    bookCover: "/color_4.png",
+    cover: "/Python-logo-notext.png",
+    gradeRange: "4-6",
+    pages: [
+      {
+        image: "/LoopsBook/loop_intro.png",
+        content: ["If-Statements are a great way to control the flow of a program, but what if we need to do something many times?",
+                  "It would be annoying to write code multiple times to get the behavior you want.",
+                  "That's when we can use something called a 'loop' in a program to execute code as long as a condition is true!",
+                  "In this book, we're going to learn about two types of loops:",
+                  "1. The Counting Loop, also known the the 'For Loop'.",
+                  "2. The Conditional Loop, also known as the 'While Loop'.",
+                  "Take a look at the flowcharts to see the behavior of a loop.",
+                  "Notice how the execution 'loops' back onto itself."]
+      },
+      {
+        image: "tutor",
+        content: ["Here is code similar to the two flowcharts from the previous page.",
+                  "Click through and pay attention to how the loops work! Especially the weird behavior you might notice with the range(1, 5) call.",
+                  "We'll go into more detail about these loops as you progress through the book."],
+        props: {
+          code: "# Prints out numbers 1 through 5\nfor number in range(1, 6):\n\tprint(number)\n\n# You need to repeat a dance step 5 times\nrepeat_times = 0\nwhile repeat_times < 5:\n\tprint('Dance!')\n\trepeat_times = repeat_times + 1\n\n#End of program"
+        }
+      },
+      {
+        image: "/LoopsBook/sinkland_farm_2.png",
+        content: ["Next, we're going to learn in a fun way!",
+                  "We will use animals and the holiday event at Sinkland Farm near Virginia Tech to learn about loops!"]
+      },
+      {
+        image: "/LoopsBook/for_loop_intro.png",
+        content: ["We'll first learn more about for loops!",
+                  "If each person can feed the baby goats five cups of food, you can write a loop and print 'Fed baby goats a cup!' each time you feed them."]
+      },
+      {
+        image: "ForLoopRange",
+        content: ["You have also probably noticed the usage of range() in all of the for loops you've seen.",
+                  "range() is a programming structure you haven't learned about yet called 'functions'. Don't worry though, you don't need to know about functions to understand how range() works!",
+                  "range() takes two numbers and makes a list of numbers for use between the two we gave it NOT INCLUDING the second number.",
+                  "So range(0, 5) will give us numbers 0 1 2 3 4."],
+        props: {
+          ans: ["Option 2. Make sure to read the explanation!"]
+        }
+      },
+      {
+        image: "tutor",
+        content: ["Now click through the code and pay attention to the role cup_number has.",
+                  "As the loop executes, cup_number is being updated to the values that range(0, 5) gives.",
+                  "The loop will execute when cup_number is 0, 1, 2, 3, and 4. So, it will execute 5 times.",
+                  "You can confirm the loop was executed 5 times by counting the amount of ties 'Fed baby goats a cup!' was printed."],
+        props: {
+          code: "for cup_number in range(0, 5):\n\tprint(\"Fed baby goats a cup!\")\n\n#End of program"
+        }
+      },
+      {
+        image: "GoatsForLoopCodeStep",
+        content: ["Click through the code and watch how the code relates to the flowchart.",
+                  "As long as cup_number is 0, 1, 2, 3, or 4, the loop will execute."],
+      },
+      {
+        image: "ForLoopStructure",
+        content: ["Next, let's take a closer look at what makes up a For-loop in Python.",
+                  "1. Iterator variable: This is a variable we give it to keep track of where we are in the loop.",
+                  "2. Iterable object: this is a list where each item of the list will be assigned to the iterator variable on each execution. range(0, 3) gives the list [0, 1, 2] which is an iterable object.",
+                  "3. Execution statement: this is anything tabbed under the for loop. Here, we can act on the iterator variable."],
+        props: {
+          ans: ["cup_number. Make sure to read the explanation!"]
+        }
+      },
+      {
+        image: "tutor",
+        content: ["In this example, students_list is the iterable object and student is the iterator variable.",
+                  "Notice how on every iteration student becomes the next value in students_list.",
+                  "We can then print something different depending on what student is!",
+                  "This gives us a lot of power to control how a program behaves."],
+        props: {
+          code: "students_list = ['Haley', 'Todd', 'James', 'Jessica', 'Rachel']\n\nfor student in students_list:\n\tprint(student + ' fed the baby goats a cup!')"
+        }
+      },
+      {
+        image: "ForLoopPonyRiding",
+        content: ["Now let's go experience pony rides!",
+                  "You'll go around the lap three times for every ride.",
+                  "Each time you complete a lap, it will print 'Completed a lap of pony riding!'."],
+        props: {
+          ans: ["range(0, 3). Make sure to read the explanation!"]
+        }
+      },
+      {
+        image: "/LoopsBook/pony_riding_for_loop_flowchart.png",
+        content: ["Let's take a look at how the flowchart looks for this For-loop.",
+                  "Look over it and see if you are able to understand it!",
+                  "In the next page, we'll see how the flow-chart relates to Python code!"]
+      },
+      {
+        image: "PonyForLoopCodeStep",
+        content: ["Click through the code and watch how the code relates to the flowchart."]
+      },
+      {
+        image: "ForLoopDragActivity",
+        content: [],
+        props: {
+          pageNumber: 1,
+          ans: ["for lap_number in range(0, 3)"]
+        }
+      },
+      {
+        image: "ForLoopDragActivity",
+        content: [],
+        props: {
+          pageNumber: 2,
+          ans: ["Iterator Variable: lap_number", "Sequence: range(0, 3)"]
+        }
+      }
+    ]
   }
 ] as Book[]

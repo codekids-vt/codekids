@@ -54,7 +54,7 @@ export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.S
     return(
         <div className='flex flex-col-2 items-center text-center w-full h-screen' style={{zoom: windowScale}}>
             <div className='flex flex-col w-1/2 justify-center'>
-                <CodeStep props={{code: code, getLine: getLine, skipLines: [4, 5, 6], enableNext: enableNext}}/>
+                <CodeStep props={{code: code, getLine: getLine, skipLines: [4, 5, 6], enableNext: enableNext}} loop={{exists: false}}/>
             </div>
             <div className='w-1/2'>
                 {currentImage !== "" && <Image className="object-contain max-w-full max-h-full h-fit" height={1000} width={1000} src={currentImage} alt='Partial image of flowchart'/>}
