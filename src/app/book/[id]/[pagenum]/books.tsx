@@ -351,6 +351,91 @@ export const books: Book[] = [
     ]
   },
   {
+    BookId: 10,
+    title: "Food Truck Input/Output ",
+    bookCover: "/lighter_orange.png",
+    blurb: "Learn about Input and ouput!",
+    author: "Prapti",
+    gradeRange: "K-2",
+    pages: [
+      {
+        content: ["Welcome to Foodie Adventures!",
+          "Get ready for a delicious experience where you're in charge of creating your own magical meals!",
+          ],
+        image: "/io_book/burger_food_truck.png",
+      },
+      {
+        content: ["Time to make your meal uniquely yours! ",
+          "Explore the menu and tap on the items you'd like to order",
+          ],
+        image: "/io_book/burger_food_truck.png",
+      },
+      {
+        content: [
+          "Choose a meal!",
+          "Input your choice to get it as output.",
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: 'Hamburger', image: "/io_book/hamburger.png" },
+            { text: 'Cheeseburger', image: "/io_book/cheeseburger.png" },
+          ],
+        },
+      },
+      {
+        content: [
+          "Let's choose a side!",
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: 'French Fries', image: "/io_book/fries.png" },
+            { text: 'Chicken Nuggets', image: "/io_book/nuggets.png" },
+          ],
+        },
+      },
+      {
+        content: [
+          "Let's choose another side!",
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: 'Apple Slices', image: "/io_book/apple_slices.png" },
+            { text: 'Go Gurt', image: "/io_book/go_gurt.png" },
+          ],
+        },
+      },
+      {
+        content: [
+          "Let's choose a drink now!",
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: 'Apple Juice', image: "/io_book/apple_juice.png" },
+            { text: 'Chocolate Milk', image: "/io_book/chocolate_milk.png" },
+          ],
+        },
+      },
+      {
+        content: ["Wohoo!",
+          "Here is your happy meal!", "Hope you enjoyed the outputs to all your inputs."
+          ],
+        image: "/io_book/happy_meal.png",
+      }
+    ]
+  },
+  {
     BookId: 4,
     bookCover: "/lighter_maroon.png",
     title: "If-condition with HokieBird Weathers",
