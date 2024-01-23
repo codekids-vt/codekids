@@ -1219,7 +1219,7 @@ export const books: Book[] = [
     ]
   },
   {
-    BookId: 10,
+    BookId: 11,
     title: "Flowcharts",
     blurb: "Learn how to read flow charts",
     author: "Dev",
@@ -1344,7 +1344,7 @@ export const books: Book[] = [
       ]
   },
   {
-    BookId: 11,
+    BookId: 10,
     title: "Food Truck Input/Output ",
     bookCover: "/lighter_orange.png",
     blurb: "Learn about Input and output!",
