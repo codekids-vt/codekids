@@ -30,7 +30,6 @@ import { MooseThankYou } from "@/components/MisconceptionComponents/LifeOfMoose/
 import { BuyDonut } from "@/components/MisconceptionComponents/FlowchartsBook/BuyDonut";
 import { BuyMultiple } from "@/components/MisconceptionComponents/FlowchartsBook/BuyMultiple";
 import { MultipleConditions } from "@/components/MisconceptionComponents/FlowchartsBook/MultipleConditions";
-import { set } from "react-hook-form";
 import { ChangingCondition } from "@/components/MisconceptionComponents/FlowchartsBook/ChangingCondition";
 import { InputActivity } from "@/components/InputActivity";
 import { TableComponent } from "@/components/TableComponent";
@@ -60,12 +59,12 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "MooseDr" && <MooseDr props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseChallengingYear" && <MooseChallengingYear props={page.props} setAllowNext={setAllowNext} />}
       {image === "MooseThankYou" && <MooseThankYou />}
-      {image === "BuyDonut" && <BuyDonut setAllowNext={setAllowNext}/>}
-      {image === "BuyMultiple" && <BuyMultiple props={page.props} setAllowNext={setAllowNext}/>}
-      {image === "MultipleConditions" && <MultipleConditions props={page.props} setAllowNext={setAllowNext}/>}
-      {image === "ChangingCondition" && <ChangingCondition props={page.props} setAllowNext={setAllowNext}/>}
-      {image === "InputActivity" && <InputActivity props={page?.props} setAllowNext={setAllowNext}/>}
-      {image === "FoodTruckActivity" && <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext}/>}
+      {image === "BuyDonut" && <BuyDonut setAllowNext={setAllowNext} />}
+      {image === "BuyMultiple" && <BuyMultiple props={page.props} setAllowNext={setAllowNext} />}
+      {image === "MultipleConditions" && <MultipleConditions props={page.props} setAllowNext={setAllowNext} />}
+      {image === "ChangingCondition" && <ChangingCondition props={page.props} setAllowNext={setAllowNext} />}
+      {image === "InputActivity" && <InputActivity props={page?.props} setAllowNext={setAllowNext} />}
+      {image === "FoodTruckActivity" && <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext} />}
 
     </div>
   );
@@ -98,10 +97,21 @@ export default function ActivityPage({ params }: { params: { id: string, pagenum
 
   const bookNum = parseInt(params.id) - 1
   const pageNum = parseInt(params.pagenum)
-  const page = books[bookNum].pages[pageNum]
+  const book = books.find(book => book.BookId === bookNum + 1);
+  if (!book) {
+    return (
+      <div className="flex flex-col flex-grow items-center justify-center">
+        <h1 className="text-center text-lg font-medium">
+          We could not find anything for this book.
+        </h1>
+      </div>
+    )
+  }
+
+  const page = book.pages[pageNum]
 
   function getNextPageNum(): number | null {
-    return pageNum + 1 > books[bookNum].pages.length - 1 ? null : pageNum + 1;
+    return book && pageNum + 1 > book.pages.length - 1 ? null : pageNum + 1;
   }
 
   function getPrevPageNum(): number | null {
