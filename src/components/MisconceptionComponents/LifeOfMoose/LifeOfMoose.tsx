@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
-import { Reader } from '../Reader';
-import { GetWindowScale } from './GetWindowScale'
-import { PythonTutor } from '../PythonTutor'
+import { Reader } from '../../Reader';
+import { GetWindowScale } from '../GetWindowScale'
+import { PythonTutor } from '../../PythonTutor'
 import Image from 'next/image'
 
 export interface ILifeOfMooseProps {

@@ -1,0 +1,146 @@
+<svg width="1132"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1132 804"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xlink="http://www.w3.org/1999/xlink" height="0">
+    <defs/>
+    <g transform="translate(5.5,5.5)" id="page1">
+        <rect width="1123" x="0" fill="none" y="0" height="794"/>
+        <path transform="translate(49.391000,414.789900)" id="shape1" fill-rule="nonzero" stroke="#101843" stroke-width="1" fill="#90d6ab" d="M219.5,75.0L219.5,7.0C219.5,3.1,216.4,.0,212.5,.0L7.0,.0C3.1,.0,.0,3.1,.0,7.0L.0,75.0C.0,78.8,3.1,82.0,7.0,82.0L212.5,82.0C216.4,82.0,219.5,78.8,219.5,75.0z"/>
+        <path transform="translate(49.391000,225.856900)" id="shape2" fill-rule="nonzero" stroke="#101843" stroke-width="1" fill="#fdff85" d="M109.8,125.3L219.5,62.6L109.8,.0L.0,62.6L109.8,125.3z"/>
+        <g transform="translate(49.391000,76.000000)" id="shape3">
+            <path fill-rule="nonzero" stroke="#101843" stroke-width="1" fill="#ff9189" d="M.0,56.8C.0,25.4,49.1,.0,109.8,.0C170.4,.0,219.5,25.4,219.5,56.8C219.5,88.1,170.4,113.6,109.8,113.6C49.1,113.6,.0,88.1,.0,56.8z"/>
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:12.00pt">
+                <tspan x="48.0" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="29.8">my_money = 7</tspan>
+                <tspan x="18.7" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="52.8">pepperoni_price = 11</tspan>
+                <tspan x="44.0" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="75.8">salad_price = 8</tspan>
+                <tspan x="39.2" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="98.8">burger_price = 5</tspan>
+            </text>
+        </g>
+        <g transform="translate(922.000000,653.904200)" id="shape4">
+            <path fill-rule="nonzero" stroke="#101843" stroke-width="1" fill="#ff9189" d="M.0,44.2C.0,19.8,32.9,.0,73.4,.0C113.9,.0,146.8,19.8,146.8,44.2C146.8,68.6,113.9,88.4,73.4,88.4C32.9,88.4,.0,68.6,.0,44.2z"/>
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:18.00pt">
+                <tspan x="48.7" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="54.2">End</tspan>
+            </text>
+        </g>
+        <g transform="translate(159.152000,189.568000)" id="shape5">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L.0,30.3" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M3.0,30.3L.0,36.3L-3.0,30.3L3.0,30.3"/>
+        </g>
+        <g transform="translate(159.152000,334.502000)" id="shape6">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L-0.0,74.3" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M3.0,74.3L-0.0,80.3L-3.0,74.3L3.0,74.3"/>
+            <rect width="47.5" x="-22.7" fill="#ffffff" y="26.6" height="27.0"/>
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:14.00pt">
+                <tspan x="-22.7" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="48.6">True</tspan>
+            </text>
+        </g>
+        <g transform="translate(62.620000,242.484200)" id="shape7">
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:12.00pt">
+                <tspan x="25.5" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="42.0">If (my_money >= </tspan>
+                <tspan x="23.6" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="65.0">pepperoni_price)</tspan>
+            </text>
+        </g>
+        <g transform="translate(55.595000,396.688000)" id="shape8">
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:12.00pt">
+                <tspan x="10.7" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="44.0">print("Great! You can </tspan>
+                <tspan x="33.8" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="67.0">buy a pepperoni </tspan>
+                <tspan x="71.6" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="90.0">pizza!")</tspan>
+            </text>
+        </g>
+        <g transform="translate(159.152000,496.754000)" id="shape9">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L.0,201.1L756.8,201.1" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M756.8,198.1L762.8,201.1L756.8,204.1L756.8,198.1"/>
+        </g>
+        <path transform="translate(282.718000,304.630100)" id="shape10" fill-rule="nonzero" stroke="#101843" stroke-width="1" fill="#fdff85" d="M109.8,125.3L219.5,62.6L109.8,.0L.0,62.6L109.8,125.3z"/>
+        <g transform="translate(295.947100,321.257000)" id="shape11">
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:12.00pt">
+                <tspan x="25.5" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="42.0">If (my_money >= </tspan>
+                <tspan x="43.6" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="65.0">salad_price)</tspan>
+            </text>
+        </g>
+        <path transform="translate(279.397000,489.418900)" id="shape12" fill-rule="nonzero" stroke="#101843" stroke-width="1" fill="#90d6ab" d="M219.5,75.0L219.5,7.0C219.5,3.1,216.4,.0,212.5,.0L7.0,.0C3.1,.0,.0,3.1,.0,7.0L.0,75.0C.0,78.8,3.1,82.0,7.0,82.0L212.5,82.0C216.4,82.0,219.5,78.8,219.5,75.0z"/>
+        <path transform="translate(513.411000,548.402900)" id="shape13" fill-rule="nonzero" stroke="#101843" stroke-width="1" fill="#90d6ab" d="M219.5,75.0L219.5,7.0C219.5,3.1,216.4,.0,212.5,.0L7.0,.0C3.1,.0,.0,3.1,.0,7.0L.0,75.0C.0,78.8,3.1,82.0,7.0,82.0L212.5,82.0C216.4,82.0,219.5,78.8,219.5,75.0z"/>
+        <g transform="translate(268.913000,288.493000)" id="shape14">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L123.6,.0L123.6,10.1" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M126.6,10.1L123.6,16.1L120.6,10.1L126.6,10.1"/>
+            <rect width="55.9" x="21.4" fill="#ffffff" y="-13.5" height="27.0"/>
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:14.00pt">
+                <tspan x="21.4" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="8.5">False</tspan>
+            </text>
+        </g>
+        <g transform="translate(276.076000,471.316800)" id="shape15">
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:12.00pt">
+                <tspan x="15.3" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="44.0">print("Great! You have </tspan>
+                <tspan x="11.7" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="67.0">enough money to buy a </tspan>
+                <tspan x="17.1" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="90.0">healthy green salad!")</tspan>
+            </text>
+        </g>
+        <g transform="translate(519.615000,530.300800)" id="shape16">
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:12.00pt">
+                <tspan x="10.7" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="44.0">print("Great! You can </tspan>
+                <tspan x="8.4" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="67.0">buy a delicious bacon </tspan>
+                <tspan x="33.8" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="90.0">&amp; beef burger!")</tspan>
+            </text>
+        </g>
+        <path transform="translate(513.411000,371.483100)" id="shape17" fill-rule="nonzero" stroke="#101843" stroke-width="1" fill="#fdff85" d="M109.8,125.3L219.5,62.6L109.8,.0L.0,62.6L109.8,125.3z"/>
+        <g transform="translate(392.479000,429.902000)" id="shape18">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L.0,55.1L-3.3,55.1" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M-0.3,53.5L-3.3,59.5L-6.3,53.5L-0.3,53.5"/>
+            <rect width="47.5" x="-22.7" fill="#ffffff" y="17.9" height="27.0"/>
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:14.00pt">
+                <tspan x="-22.7" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="39.9">True</tspan>
+            </text>
+        </g>
+        <g transform="translate(502.240000,367.266000)" id="shape19">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L120.2,.0" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M123.2,-1.8L120.2,4.2L117.2,-1.8L123.2,-1.8"/>
+            <rect width="55.9" x="35.2" fill="#ffffff" y="-13.5" height="27.0"/>
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:14.00pt">
+                <tspan x="35.2" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="8.5">False</tspan>
+            </text>
+        </g>
+        <g transform="translate(526.640100,388.110000)" id="shape20">
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:12.00pt">
+                <tspan x="25.5" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="42.0">If (my_money >= </tspan>
+                <tspan x="38.8" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="65.0">burger_price)</tspan>
+            </text>
+        </g>
+        <g transform="translate(623.172000,496.754000)" id="shape21">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L.0,45.6" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M3.0,45.6L.0,51.6L-3.0,45.6L3.0,45.6"/>
+            <rect width="47.5" x="-22.7" fill="#ffffff" y="12.3" height="27.0"/>
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:14.00pt">
+                <tspan x="-22.7" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="34.3">True</tspan>
+            </text>
+        </g>
+        <path transform="translate(763.000000,548.402900)" id="shape22" fill-rule="nonzero" stroke="#101843" stroke-width="1" fill="#90d6ab" d="M219.5,75.0L219.5,7.0C219.5,3.1,216.4,.0,212.5,.0L7.0,.0C3.1,.0,.0,3.1,.0,7.0L.0,75.0C.0,78.8,3.1,82.0,7.0,82.0L212.5,82.0C216.4,82.0,219.5,78.8,219.5,75.0z"/>
+        <g transform="translate(752.262000,524.865500)" id="shape23">
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:10.00pt">
+                <tspan x="22.7" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="41.5">print("Sadly, you don't have </tspan>
+                <tspan x="11.2" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="60.5">enough money to buy, whether </tspan>
+                <tspan x="13.7" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="79.5">it's pepperoni pizza or a green </tspan>
+                <tspan x="52.3" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="98.5">salad or a burger.")</tspan>
+            </text>
+        </g>
+        <g transform="translate(623.172000,631.000000)" id="shape24">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L.0,60.8" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M3.0,60.8L.0,66.8L-3.0,60.8L3.0,60.8"/>
+        </g>
+        <g transform="translate(732.933000,434.119000)" id="shape25">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L139.8,.0L139.8,108.3" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M142.8,108.3L139.8,114.3L136.8,108.3L142.8,108.3"/>
+            <rect width="55.9" x="34.5" fill="#ffffff" y="-13.5" height="27.0"/>
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:14.00pt">
+                <tspan x="34.5" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="8.5">False</tspan>
+            </text>
+        </g>
+        <g transform="translate(872.761000,631.000000)" id="shape26">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L.0,60.8" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M3.0,60.8L.0,66.8L-3.0,60.8L3.0,60.8"/>
+        </g>
+        <g transform="translate(389.158000,572.000000)" id="shape27">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L.0,119.8" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M3.0,119.8L.0,125.8L-3.0,119.8L3.0,119.8"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,20 @@
+<svg width="2255"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2255 804"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xlink="http://www.w3.org/1999/xlink" height="804">
+    <defs/>
+    <g transform="translate(5.5,5.5)" id="page1">
+        <rect width="2245" x="0" fill="none" y="0" height="794"/>
+        <path transform="translate(747.820000,334.696700)" id="shape1" fill-rule="nonzero" stroke="#101843" stroke-width="1" fill="#ff9189" d="M.0,57.1C.0,25.6,72.5,.0,161.9,.0C251.3,.0,323.8,25.6,323.8,57.1C323.8,88.6,251.3,114.1,161.9,114.1C72.5,114.1,.0,88.6,.0,57.1z"/>
+        <g transform="translate(661.557000,302.700500)" id="shape2">
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:18.00pt">
+                <tspan x="146.2" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="82.5">your_money = 2</tspan>
+                <tspan x="147.6" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="116.5">donut_price = 2</tspan>
+            </text>
+        </g>
+        <g transform="translate(909.705000,448.845700)" id="shape3">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L.0,73.9" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M3.0,73.9L.0,79.9L-3.0,73.9L3.0,73.9"/>
+        </g>
+    </g>
+</svg>
