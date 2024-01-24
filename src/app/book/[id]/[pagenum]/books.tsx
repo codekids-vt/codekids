@@ -351,6 +351,91 @@ export const books: Book[] = [
     ]
   },
   {
+    BookId: 10,
+    title: "Food Truck Input/Output ",
+    bookCover: "/lighter_orange.png",
+    blurb: "Learn about Input and ouput!",
+    author: "Prapti",
+    gradeRange: "K-2",
+    pages: [
+      {
+        content: ["Welcome to Foodie Adventures!",
+          "Get ready for a delicious experience where you're in charge of creating your own magical meals!",
+        ],
+        image: "/io_book/burger_food_truck.png",
+      },
+      {
+        content: ["Time to make your meal uniquely yours! ",
+          "Explore the menu and tap on the items you'd like to order",
+        ],
+        image: "/io_book/burger_food_truck.png",
+      },
+      {
+        content: [
+          "Choose a meal!",
+          "Input your choice to get it as output.",
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: 'Hamburger', image: "/io_book/hamburger.png" },
+            { text: 'Cheeseburger', image: "/io_book/cheeseburger.png" },
+          ],
+        },
+      },
+      {
+        content: [
+          "Let's choose a side!",
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: 'French Fries', image: "/io_book/fries.png" },
+            { text: 'Chicken Nuggets', image: "/io_book/nuggets.png" },
+          ],
+        },
+      },
+      {
+        content: [
+          "Let's choose another side!",
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: 'Apple Slices', image: "/io_book/apple_slices.png" },
+            { text: 'Go Gurt', image: "/io_book/go_gurt.png" },
+          ],
+        },
+      },
+      {
+        content: [
+          "Let's choose a drink now!",
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: 'Apple Juice', image: "/io_book/apple_juice.png" },
+            { text: 'Chocolate Milk', image: "/io_book/chocolate_milk.png" },
+          ],
+        },
+      },
+      {
+        content: ["Wohoo!",
+          "Here is your happy meal!", "Hope you enjoyed the outputs to all your inputs."
+        ],
+        image: "/io_book/happy_meal.png",
+      }
+    ]
+  },
+  {
     BookId: 4,
     bookCover: "/lighter_maroon.png",
     title: "If-condition with HokieBird Weathers",
@@ -755,8 +840,8 @@ export const books: Book[] = [
       { // Ints and Bools Intro Python Tutor
         image: "tutor",
         content: ["Take a look at the variables to the left.",
-                  "The variable num is assigned the whole number 9, which means it's an Integer.",
-                  "The variable sky_is_blue is assigned True, which means it's a Boolean."],
+          "The variable num is assigned the whole number 9, which means it's an Integer.",
+          "The variable sky_is_blue is assigned True, which means it's a Boolean."],
         props: {
           code: "# Here num is an Integer\nnum = 9\n\n# Here sky_is_blue is a Boolean\nsky_is_blue  = True"
         }
@@ -764,10 +849,10 @@ export const books: Book[] = [
       {
         image: "Sequencing",
         content: ["Let's use the football game for another question!",
-                  "A very important concept to understand while programming is that each line is executed from top to bottom.",
-                  "This means every line's execution is dependent on the lines above it.",
-                  "Think of each line as its own step with the very beginning line being step 1.",
-                  "Each step will be executed one after another until the program is over."],
+          "A very important concept to understand while programming is that each line is executed from top to bottom.",
+          "This means every line's execution is dependent on the lines above it.",
+          "Think of each line as its own step with the very beginning line being step 1.",
+          "Each step will be executed one after another until the program is over."],
         props: {
           ans: ["Option 3. Make sure to read the explanation!"],
           helpImage: "/help/Variables_Help_4.png"
@@ -776,7 +861,7 @@ export const books: Book[] = [
       {
         image: "tutor",
         content: ["Click through the code to the left and think about how the code is executed from top to bottom.",
-                  "Even though first is reassigned to 5 and second is reassigned to 10, total was calculated beforehand."],
+          "Even though first is reassigned to 5 and second is reassigned to 10, total was calculated beforehand."],
         props: {
           code: "first = 0\nsecond = 0\n\n#What is total set to here?\ntotal = first + second\n\n#first and second are reassigned after total has been assigned.\nfirst = 5\nsecond = 10\n\n" +
             "# total is still printed as 0.\nprint(total)"
@@ -844,13 +929,13 @@ export const books: Book[] = [
       {
         image: "/if_condition/action5.gif",
         content: ["Congratulations! You have completed this book about variables!",
-                  "Here is a quick recap of what we learned.",
-                  "Variables are places where you store data throughout a program.",
-                  "Every variable has a name and can be assigned a value. When a variable is assigned a value, any old value it had is lost.",
-                  "The values of a variable are always of a data type: Integer, Boolean, or String.",
-                  "An Integer is a whole number.",
-                  "A Boolean is always True or False.",
-                  "A String is any data surrounded by single or double quotation marks."]
+          "Here is a quick recap of what we learned.",
+          "Variables are places where you store data throughout a program.",
+          "Every variable has a name and can be assigned a value. When a variable is assigned a value, any old value it had is lost.",
+          "The values of a variable are always of a data type: Integer, Boolean, or String.",
+          "An Integer is a whole number.",
+          "A Boolean is always True or False.",
+          "A String is any data surrounded by single or double quotation marks."]
       }
       ],
   },
@@ -1216,8 +1301,8 @@ export const books: Book[] = [
             "Sometimes they even go as far as saving someone's life!",
             "Let's say thank you to Moose and all of the other therapy dogs for helping our community!",
             "Click the Edit Code button to fill out the code template then run through your code!"]
-      }
-    ]
+        }
+      ]
   },
   {
     BookId: 11,
@@ -1231,32 +1316,32 @@ export const books: Book[] = [
       {
         image: "/FlowchartsBook/example_1.png",
         content: ["In this book, we are going to learn how to read flowcharts.",
-                  "Flowcharts are a visual aid to help you when you need to make a decision.",
-                  "Flowcharts naturally work very well with If-statements since you make decisions based on a condition.",
-                  "The left page has an example of a flowchart.",
-                  "The yellow rhombus is the condition and the arrows point to what to do if the condition is True or False."]
+          "Flowcharts are a visual aid to help you when you need to make a decision.",
+          "Flowcharts naturally work very well with If-statements since you make decisions based on a condition.",
+          "The left page has an example of a flowchart.",
+          "The yellow rhombus is the condition and the arrows point to what to do if the condition is True or False."]
       },
       {
         image: "/FlowchartsBook/Kids_Menu.jpg",
         content: ["In October, Virginia Tech held a celebration at Dietrick Lawn for the fall Harvest Festival.",
-                  "This event offered delicious meals for everyone to enjoy and a chance to meet people in the College of Agriculture and Life Sciences.",
-                  "At the VT Meat Lab, visitors could also buy snacks, listen to music, play games, and more.",
-                  "For the event, a special kids menu was introduced (as shown on the left)."]
+          "This event offered delicious meals for everyone to enjoy and a chance to meet people in the College of Agriculture and Life Sciences.",
+          "At the VT Meat Lab, visitors could also buy snacks, listen to music, play games, and more.",
+          "For the event, a special kids menu was introduced (as shown on the left)."]
       },
       {
         image: "/FlowchartsBook/menu_and_flowchart.png",
         content: ["Imagine you have 2 dollars in your pocket, and really want a yummy donut.",
-                  "If the donut costs $2 or less, great news! You can buy a donut.",
-                  "But if the donut is more than $2, like $2.50 or $3, then you can't buy it because you don't have enough money.",
-                  "Look at the menu and the flowchart. Can you figure out what the flow chart is telling us?",
-                  "It's like solving a puzzle - see if you can do it! After thinking about it, click on \"Next\"."]
+          "If the donut costs $2 or less, great news! You can buy a donut.",
+          "But if the donut is more than $2, like $2.50 or $3, then you can't buy it because you don't have enough money.",
+          "Look at the menu and the flowchart. Can you figure out what the flow chart is telling us?",
+          "It's like solving a puzzle - see if you can do it! After thinking about it, click on \"Next\"."]
       },
       {
         image: "BuyDonut",
         content: ["Review the code snippet and watch the flowchart get constructed as you press Next.",
-                  "Pay close attention to how the flowchart relates to the code.",
-                  "Also, you'll notice we're using a conditional operator you haven't seen before '<='.",
-                  "'<=' is less than or equal too and is the same as '<' except now the two values can be equal."],
+          "Pay close attention to how the flowchart relates to the code.",
+          "Also, you'll notice we're using a conditional operator you haven't seen before '<='.",
+          "'<=' is less than or equal too and is the same as '<' except now the two values can be equal."],
         props: {
           ans: ["Option 1. Make sure to read the explanation!", "Press Next until you reach the end of the code!"]
         }
@@ -1264,9 +1349,9 @@ export const books: Book[] = [
       {
         image: "BuyMultiple",
         content: ["Now imagine you have $9 in your pocket.",
-                  "You find out that spaghetti costs $3, a yummy burger is $5, and a scoop of ice cream is $3.",
-                  "Do you think you can buy all three with your $9.",
-                  "Let's use the flowchart to answer the question!"],
+          "You find out that spaghetti costs $3, a yummy burger is $5, and a scoop of ice cream is $3.",
+          "Do you think you can buy all three with your $9.",
+          "Let's use the flowchart to answer the question!"],
         props: {
           pageNumber: 1,
           ans: ["Option 2. Make sure to read the explanation!"]
@@ -1283,10 +1368,10 @@ export const books: Book[] = [
       {
         image: "MultipleConditions",
         content: ["Let's explore how we can use flowcharts to figure out problems when there's more than one thing to consider!",
-                  "Imagine you have $7, and there's a choice of green salads, pepperoni pizza, and bacon and beef burgers for sale.",
-                  "Which one will you be able to buy to buy in the end?",
-                  "Or maybe you can't afford any of them?",
-                  "Try using the flowchart on the left to find out!"],
+          "Imagine you have $7, and there's a choice of green salads, pepperoni pizza, and bacon and beef burgers for sale.",
+          "Which one will you be able to buy to buy in the end?",
+          "Or maybe you can't afford any of them?",
+          "Try using the flowchart on the left to find out!"],
         props: {
           pageNumber: 1
         }
@@ -1294,7 +1379,7 @@ export const books: Book[] = [
       {
         image: "MultipleConditions",
         content: ["Please think carefully first and follow the flowchart to answer the question.",
-                  "If you can't figure out the answer, don't worry! We'll walk through this one on the next page."],
+          "If you can't figure out the answer, don't worry! We'll walk through this one on the next page."],
         props: {
           pageNumber: 2,
           ans: ["Option 3. Make sure to read the explanation!"]
@@ -1311,19 +1396,19 @@ export const books: Book[] = [
       {
         image: "/FlowchartsBook/ChangingCondition/multiple_buys.png",
         content: ["Imagine you have 16 dollars and then you buy a pepperoni pizza.",
-                  "Will you have enough money to buy a strawberry cake and a donut afterward?",
-                  "Try drawing a flowchart yourself and then go to the next page!"],
+          "Will you have enough money to buy a strawberry cake and a donut afterward?",
+          "Try drawing a flowchart yourself and then go to the next page!"],
       },
       {
         image: "/FlowchartsBook/ChangingCondition/multiple_buys_flowchart.png",
         content: ["Compare the flowchart you drew with the one on the left to see if they're similar.",
-                  "Don't worry if they're a little different as this is a little challenging.",
-                  "Next, let's turn to the next page and answer a question about the flowchart!"],
+          "Don't worry if they're a little different as this is a little challenging.",
+          "Next, let's turn to the next page and answer a question about the flowchart!"],
       },
       {
         image: "ChangingCondition",
         content: ["Use the flowchart to help you answer the question on the left.",
-                  "On the next page, we'll run through the code!"],
+          "On the next page, we'll run through the code!"],
         props: {
           pageNumber: 1,
           ans: ["Option 1. Make sure to read the explanation!"]
@@ -1340,93 +1425,8 @@ export const books: Book[] = [
       {
         image: "/FlowchartsBook/Kids_Menu.jpg",
         content: ["Congratulations! You now know how to read flowcharts!",
-                  "You also know how they relate to code and If-statements"]
-        }
-      ]
-  },
-  {
-    BookId: 10,
-    title: "Food Truck Input/Output ",
-    bookCover: "/lighter_orange.png",
-    blurb: "Learn about Input and output!",
-    author: "Prapti",
-    gradeRange: "K-2",
-    pages: [
-      {
-        content: ["Welcome to Foodie Adventures!",
-          "Get ready for a delicious experience where you're in charge of creating your own magical meals!",
-          ],
-        image: "/io_book/burger_food_truck.png",
-      },
-      {
-        content: ["Time to make your meal uniquely yours! ",
-          "Explore the menu and tap on the items you'd like to order",
-          ],
-        image: "/io_book/burger_food_truck.png",
-      },
-      {
-        content: [
-          "Choose a meal!",
-          "Input your choice to get it as output.",
-        ],
-        image: "FoodTruckActivity",
-        game: "FoodTruckActivity",
-        props: {
-          showIOLabels: true,
-          options: [
-            { text: 'Hamburger', image: "/io_book/hamburger.png" },
-            { text: 'Cheeseburger', image: "/io_book/cheeseburger.png" },
-          ],
-        },
-      },
-      {
-        content: [
-          "Let's choose a side!",
-        ],
-        image: "FoodTruckActivity",
-        game: "FoodTruckActivity",
-        props: {
-          showIOLabels: true,
-          options: [
-            { text: 'French Fries', image: "/io_book/fries.png" },
-            { text: 'Chicken Nuggets', image: "/io_book/nuggets.png" },
-          ],
-        },
-      },
-      {
-        content: [
-          "Let's choose another side!",
-        ],
-        image: "FoodTruckActivity",
-        game: "FoodTruckActivity",
-        props: {
-          showIOLabels: true,
-          options: [
-            { text: 'Apple Slices', image: "/io_book/apple_slices.png" },
-            { text: 'Go Gurt', image: "/io_book/go_gurt.png" },
-          ],
-        },
-      },
-      {
-        content: [
-          "Let's choose a drink now!",
-        ],
-        image: "FoodTruckActivity",
-        game: "FoodTruckActivity",
-        props: {
-          showIOLabels: true,
-          options: [
-            { text: 'Apple Juice', image: "/io_book/apple_juice.png" },
-            { text: 'Chocolate Milk', image: "/io_book/chocolate_milk.png" },
-          ],
-        },
-      },
-      {
-        content: ["Wohoo!",
-          "Here is your happy meal!", "Hope you enjoyed the outputs to all your inputs."
-          ],
-        image: "/io_book/happy_meal.png",
+          "You also know how they relate to code and If-statements"]
       }
     ]
-  }
+  },
 ] as Book[]
