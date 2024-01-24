@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Reader } from '../Reader';
-import { GetWindowScale } from './GetWindowScale';
-import { PythonTutor } from '../PythonTutor';
+import { Reader } from '../../Reader';
+import { GetWindowScale } from '../GetWindowScale';
+import { PythonTutor } from '../../PythonTutor';
 import Image from 'next/image'
 
 const code = '# Fill in your name as a String\nyour_name = ""\n\n# Fill in your age as an Integer\nyour_age = 0\n\n# Type a thank you message!\nyour_message = ""\n\n' +

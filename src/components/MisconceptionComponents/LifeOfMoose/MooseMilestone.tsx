@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import { Reader } from '../Reader';
-import { GetWindowScale } from './GetWindowScale';
-import { PythonTutor } from '../PythonTutor';
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Reader } from '../../Reader';
+import { GetWindowScale } from '../GetWindowScale';
+import { PythonTutor } from '../../PythonTutor';
 import Image from 'next/image'
 
-export interface IMooseDrProps {
+export interface IMooseMilestoneProps {
     pageNumber: number
 }
 
-const code = "year = 2019\nmoose_title = 'Mr.'\nprint('A year has passed!')\nyear = 2020\nmoose_title = 'Dr.'\nprint(year)\nprint(moose_title)"
 
-export function MooseDr({ props, setAllowNext }: { props: any | IMooseDrProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
+const code = "moose_birth = 2012\nmilestone_year = 2019\nmoose_age = milestone_year - moose_birth\nprint(moose_age)"
+
+export function MooseMilestone({ props, setAllowNext }: { props: any | IMooseMilestoneProps, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
     const windowScale = GetWindowScale()
 
+    
     const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Select an answer above!")
     const [q2AnswerExplanation, setQ2AnswerExplanation] = useState("Select an answer above!")
     const [q3AnswerExplanation, setQ3AnswerExplanation] = useState("Select an answer above!")
@@ -29,35 +31,44 @@ export function MooseDr({ props, setAllowNext }: { props: any | IMooseDrProps, s
         }
     }, [q1Correct, q2Correct, q3Correct, q4Correct, props.pageNumber, setAllowNext])
 
-    function handleQ1(correct: boolean) {
+
+    function handleQ1(correct: boolean, incorrect: string = "") {
         if(correct) {
-            setQ1AnswerExplanation("Correct! year is reassigned to 2020 and loses it's old value 2019. Click next again and watch as year is changed to 2020.")
+            setQ1AnswerExplanation("Correct! moose_birth and milestone_year are both Integers")
             setQ1Correct(true)
         } else {
-            setQ1AnswerExplanation("Incorrect. Remember that when a variable is reassigned, it loses it's old value. Click next again and watch as year is changed to 2020.")
+            switch (incorrect) {
+                case "String":
+                    setQ1AnswerExplanation("Incorrect. Remember that Strings are always surrounded by single or double quotation marks. Try again!")
+                    break;
+                case "Boolean":
+                    setQ1AnswerExplanation("Incorrect. Remember that a Boolean can only be True or False. Try again!")
+                    break;
+                default:
+            }
         }
     }
 
     function handleQ2(correct: boolean) {
         if(correct) {
-            setQ2AnswerExplanation("Correct! moose_title is reassigned to the String 'Dr.'")
+            setQ2AnswerExplanation("Correct! Press the next button again to see the variable get created!")
             setQ2Correct(true)
         } else {
-            setQ2AnswerExplanation("Incorrect. Remember that when a variable is reassigned, it loses it's old value. Click next again and watch as moose_title is changed to 'Dr.'")
+            setQ2AnswerExplanation("Incorrect. The program is evaluating (milestone-year - moose-birth) and setting that as the value of moose_age.")
         }
     }
 
     function handleQ3(correct: boolean,  incorrect: string = "") {
         if(correct) {
-            setQ3AnswerExplanation("Correct! year contains the value 2020. Click the Next button to see it print!")
+            setQ3AnswerExplanation("Correct! Press the next button again to see the value printed!")
             setQ3Correct(true)
         } else {
             switch (incorrect) {
-                case "2019":
-                    setQ3AnswerExplanation("Incorrect. What is year assigned to at this point in the program? Hint: Look at the Global frame section. Try again!")
+                case "m-m":
+                    setQ3AnswerExplanation("Incorrect. Remember moose_age is being set to what (milestone_year - moose_birth) evaluates to. Try again!")
                     break;
-                case "4039":
-                    setQ3AnswerExplanation("Incorrect. Remember year was reassigned before and lost it's old value. Hint: Look at the Global frame section. Try again!")
+                case "age":
+                    setQ3AnswerExplanation("Incorrect. Remember that print(moose_age) will print the value of moose_age. Try again!")
                     break;
                 default:
             }
@@ -66,15 +77,15 @@ export function MooseDr({ props, setAllowNext }: { props: any | IMooseDrProps, s
 
     function handleQ4(correct: boolean,  incorrect: string = "") {
         if(correct) {
-            setQ4AnswerExplanation("Correct! moose_title contains the value 'Dr.'. Click the next button to see it print!")
+            setQ4AnswerExplanation("Correct! print(\"moose_age\") will print the literal string \"moose_age\", not the variable!")
             setQ4Correct(true)
         } else {
             switch (incorrect) {
-                case "Mr":
-                    setQ4AnswerExplanation("Incorrect. What is moose_title assigned to at this point in the program? Hint: Look at the Global frame section. Try again!")
+                case "m-m":
+                    setQ4AnswerExplanation("Incorrect. Pay close attention to what's inside the final print(). Try again!")
                     break;
-                case "moose_title":
-                    setQ4AnswerExplanation("Incorrect. Remember that print() will print the value of a variable. Try again!")
+                case "7":
+                    setQ4AnswerExplanation("Incorrect. Notice that print(\"moose_age\") is surrounded by double quotation marks. Try again!")
                     break;
                 default:
             }
@@ -90,10 +101,10 @@ export function MooseDr({ props, setAllowNext }: { props: any | IMooseDrProps, s
     function getPage1() {
         return (
             <div style={whole_container_style}>
-                <div style={text_style}><Reader text='Moose becomes a Doctor of Veterinary Medicine!'/></div>
-                <Image style={image_style} width={600} height={600} src={"/LifeOfMoose/moose_dr.png"} alt='Image of Moose graduating'/>
+                <div style={text_style}><Reader text='Remarkable milestones for Moose!'/></div>
+                <Image style={image_style} width={500} height={500} src={"/LifeOfMoose/moose_milestone.png"} alt='Image of Moose'/>
                 <PythonTutor props={{code: code}}/>
-                <div style={text_style}><Reader text='Take a look at the code! What do you think will printed at the end?'/></div>
+                <div style={text_style}><Reader text='Take a look at the code. What do you think will be printed at the end? We will trace the code in the next page.'/></div>
             </div>
         );
     }
@@ -104,36 +115,37 @@ export function MooseDr({ props, setAllowNext }: { props: any | IMooseDrProps, s
                 <PythonTutor props={{code: code}}/>
                 <div style={quarter_div_container}>
                     <div style={{...quarter_div_elements, top: "0"}}>
-                        <Reader text='Press the next button until the red arrow is on line 4. What will year be reassigned to?'/>
+                        <Reader text='What is the data type of the moose_birth and milestone_year variables'/>
                         <div style={horizontal_div_style}>
-                            <button style={answer_button_style} type='button' onClick={() => handleQ1(false)}>{"4039"}</button>
-                            <button style={answer_button_style} type='button' onClick={() => handleQ1(true)}>{"2020"}</button>
+                            <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "String")}>{"String"}</button>
+                            <button style={answer_button_style} type='button' onClick={() => handleQ1(true)}>{"Integer"}</button>
+                            <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "Boolean")}>{"Boolean"}</button>
                         </div>
                         <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
                     </div>
                     <div style={{...quarter_div_elements, top: "0", right: "0"}}>
-                        <Reader text="With the red arrow on line 5, what will moose_title be reassigned to?"/>
+                        <Reader text="Press the next button twice and watch moose_birth and milestone_year be created. What will moose_age be assigned to when it's created."/>
                         <div style={horizontal_div_style}>
-                            <button style={answer_button_style} type='button' onClick={() => handleQ2(true)}>{"'Dr.'"}</button>
-                            <button style={answer_button_style} type='button' onClick={() => handleQ2(false)}>{"'Mr.Dr.'"}</button>
+                            <button style={answer_button_style} type='button' onClick={() => handleQ2(false)}>{"milestone-year - moose-birth"}</button>
+                            <button style={answer_button_style} type='button' onClick={() => handleQ2(true)}>{"7"}</button>
                         </div>
                         <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>
                     </div>
                     <div style={{...quarter_div_elements, bottom: "0"}}>
-                        <Reader text='What will be printed when line 6 is executed?'/>
+                        <Reader text='What will be printed at the end of the program?'/>
                         <div style={horizontal_div_style}>
-                            <button style={answer_button_style} type='button' onClick={() => handleQ3(false, "2019")}>{"2019"}</button>
-                            <button style={answer_button_style} type='button' onClick={() => handleQ3(false, "4039")}>{"4039"}</button>
-                            <button style={answer_button_style} type='button' onClick={() => handleQ3(true)}>{"2020"}</button>
+                            <button style={answer_button_style} type='button' onClick={() => handleQ3(false, "m-m")}>{"milestone-year - moose-birth"}</button>
+                            <button style={answer_button_style} type='button' onClick={() => handleQ3(true)}>{"7"}</button>
+                            <button style={answer_button_style} type='button' onClick={() => handleQ3(false, "age")}>{"moose_age"}</button>
                         </div>
                         <div style={answer_explanation_style}><Reader text={q3AnswerExplanation}/></div>
                     </div>
                     <div style={{...quarter_div_elements, bottom: "0", right: "0"}}>
-                        <Reader text='What will be printed when line 7 is executed?'/>
+                        <Reader text='What if print(moose_age) was changed to print("moose_age")? What would be printed then? You can also make the change if you press the "Edit Code" button!'/>
                         <div style={horizontal_div_style}>
-                            <button style={answer_button_style} type='button' onClick={() => handleQ4(true)}>{"Dr."}</button>
-                            <button style={answer_button_style} type='button' onClick={() => handleQ4(false, "Mr")}>{"Mr."}</button>
-                            <button style={answer_button_style} type='button' onClick={() => handleQ4(false, "moose_title")}>{"moose_title"}</button>
+                            <button style={answer_button_style} type='button' onClick={() => handleQ4(false, "m-m")}>{"milestone-year - moose-birth"}</button>
+                            <button style={answer_button_style} type='button' onClick={() => handleQ4(false, "7")}>{"7"}</button>
+                            <button style={answer_button_style} type='button' onClick={() => handleQ4(true)}>{"moose_age"}</button>
                         </div>
                         <div style={answer_explanation_style}><Reader text={q4AnswerExplanation}/></div>
                     </div>
@@ -141,6 +153,7 @@ export function MooseDr({ props, setAllowNext }: { props: any | IMooseDrProps, s
             </div>
         );
     }
+
 }
 
 const whole_container_style = {
