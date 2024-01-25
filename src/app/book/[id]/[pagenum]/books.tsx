@@ -1429,4 +1429,23 @@ export const books: Book[] = [
       }
     ]
   },
+  {
+    BookId: 11,
+    title: "Tyler's Dummy Book",
+    blurb: "Working in Progress",
+    author: "Dev",
+    bookCover: "/color_4.png",
+    cover: "/Python-logo-notext.png",
+    gradeRange: "testing",
+    pages: [
+      {
+        image: "/FlowchartsBook/example_1.png",
+        content: ["In this book, we are going to learn how to read flowcharts.",
+          "Flowcharts are a visual aid to help you when you need to make a decision.",
+          "Flowcharts naturally work very well with If-statements since you make decisions based on a condition.",
+          "The left page has an example of a flowchart.",
+          "The yellow rhombus is the condition and the arrows point to what to do if the condition is True or False."]
+      },
+    ]
+  },
 ] as Book[]
