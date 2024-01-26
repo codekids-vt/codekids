@@ -1429,4 +1429,45 @@ export const books: Book[] = [
       }
     ]
   },
+
+  {
+    BookId: 12,
+    title: "Mancala Game",
+    bookCover: "/lighter_maroon.png",
+    blurb: "Learn about Recursion!",
+    author: "Dev",
+    gradeRange: "6-12",
+    pages: [
+      {
+        content: ["Welcome to Mancala Game!",
+          "Try to solve these problems that require recursion!",
+          "If you never have played Mancala before, it is a game where players choose a pit of stones to add to other pits.",
+          "Players adds one stone to each pit moving counter-clockwise until they run out",
+          "If the last rock placed is in an existing pile of stones, the player picks up all the stones and continues placing stones",
+          "Additionally, if the last rock is the player's own Mancala, they get to go again.",
+          ], 
+        image: "/MancalaBook/mancala_board.jpeg",
+      },
+      {
+        content: [
+          "Steve is playing Mancala with his friend and it is his turn.",
+          "They are playing modified version of Mancala where they skip their Mancalas",
+          "Additonally, everytime a player picks up a new pile of stones, they do not add a stone to the existing pile ",
+          "The board contains all pits with 4 stones.",
+          "If steve picked up 4 piles including to start his turn, what pit will Steve choose to place his last stone in if he starts at pit 1?"
+        ],
+        image: "/MancalaBook/numbered_board.png",
+      },
+      {
+        content: [
+          "In a new game, where they continue playing the modified version of Mancala.",
+          "The board contains all pits with 4 stones.",
+          "After 8 turns, what pit will Steve choose to place his stone in if he starts at pit 1?"
+        ],
+        image: "/MancalaBook/numbered_board.png",
+      },
+    ]
+  }
 ] as Book[]
+
+
