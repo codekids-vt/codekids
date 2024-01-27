@@ -60,8 +60,10 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col justify-center">
-          {bookCategorySpines.map((category) => (
-            <CategoryPreview category={category} />
+          {bookCategorySpines.map((category, i) => (
+            <div key={`category-${i}`}>
+              <CategoryPreview category={category} />
+            </div>
           ))}
         </div>
       </div>
