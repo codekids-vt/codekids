@@ -1,4 +1,4 @@
-import { Book } from "@/util/BookData";
+import { Book, BookCategory } from "@/util/BookData";
 
 export const books: Book[] = [
   {
@@ -8,6 +8,7 @@ export const books: Book[] = [
     blurb: "Learn about different variables types, coloring the Hokie Bird!",
     author: "Dev",
     gradeRange: "K-2",
+    category: BookCategory.BEGINNER,
     pages: [
       {
         content: ["In this book we will discover how to drag and drop different colors into variables",
@@ -60,6 +61,7 @@ export const books: Book[] = [
     blurb: "Learn how to communicate specific instructions to the Hokie Bird to help him find his way!",
     author: "Dev",
     gradeRange: "2-4",
+    category: BookCategory.INTERMEDIATE,
     pages: [
       {
         content: ["The football game is about to start, and HokieBird is very worried because he is lost and doesn't know how to get to Lane Stadium.",
@@ -158,6 +160,7 @@ export const books: Book[] = [
     cover: "/io_book/hand-in-hand-square.png",
     author: "Prapti",
     gradeRange: "2-4",
+    category: BookCategory.INTERMEDIATE,
     pages: [
       {
         content: ["Come to Hand-in-Hand Park in Blacksburg, Virginia.",
@@ -177,7 +180,6 @@ export const books: Book[] = [
           "Let's start by trying to count the total number of slides in the park.",
           "How many slides are there in the park?",
         ],
-        component: "InputActivity",
         image: "InputActivity",
         props: {
           showIOLabels: true,
@@ -354,9 +356,10 @@ export const books: Book[] = [
     BookId: 10,
     title: "Food Truck Input/Output ",
     bookCover: "/lighter_orange.png",
-    blurb: "Learn about Input and ouput!",
+    blurb: "Learn about Input and output!",
     author: "Prapti",
     gradeRange: "K-2",
+    category: BookCategory.BEGINNER,
     pages: [
       {
         content: ["Welcome to Foodie Adventures!",
@@ -442,11 +445,12 @@ export const books: Book[] = [
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     gradeRange: "2-4",
+    category: BookCategory.INTERMEDIATE,
     pages: [
       {
         content: ["We will use If conditions to help the Hokie bird make it to Lane Stadium",
           "If Conditions have two outcomes, they are either true or false",
-          "If a value is true the 'code' that immediatley follows is taken.",
+          "If a value is true the 'code' that immediately follows is taken.",
           "If the value is false then the 'code' that follows is ignored.",],
         image: "/if_condition/weather.jpg",
       },
@@ -547,6 +551,7 @@ export const books: Book[] = [
     blurb: "Learn when and when not a command will run with HokieBird!",
     author: "Dev",
     gradeRange: "2-4",
+    category: BookCategory.INTERMEDIATE,
     pages: [
       {
         content: ["We all make different facial expressions based on different emotions.",
@@ -619,6 +624,7 @@ export const books: Book[] = [
     author: "Dev",
     cover: "/if_condition/HokieBirdIf.png",
     gradeRange: "4-6",
+    category: BookCategory.ADVANCED,
     pages:
       [
         {
@@ -723,6 +729,7 @@ export const books: Book[] = [
     author: "Dev",
     cover: "/Python-logo-notext.png",
     gradeRange: "4-6",
+    category: BookCategory.ADVANCED,
     pages:
       [{
         content: ["Python Tutor is a visualizer that allows you to see how your code is executed step by step.",
@@ -947,6 +954,7 @@ export const books: Book[] = [
     bookCover: "/color_4.png",
     cover: "/Python-logo-notext.png",
     gradeRange: "4-6",
+    category: BookCategory.ADVANCED,
     pages:
       [
         { // If statement intro
@@ -1219,6 +1227,7 @@ export const books: Book[] = [
     bookCover: "/color_8.png",
     cover: "/LifeOfMoose/moose_milestone.png",
     gradeRange: "4-6",
+    category: BookCategory.ADVANCED,
     pages:
       [
         {
@@ -1312,6 +1321,7 @@ export const books: Book[] = [
     bookCover: "/color_6.png",
     cover: "/FlowchartsBook/example_1.svg",
     gradeRange: "4-6",
+    category: BookCategory.ADVANCED,
     pages: [
       {
         image: "/FlowchartsBook/example_1.png",
@@ -1429,4 +1439,4 @@ export const books: Book[] = [
       }
     ]
   },
-] as Book[]
+]

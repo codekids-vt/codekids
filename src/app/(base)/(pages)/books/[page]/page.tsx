@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Book } from "@/util/BookData";
+import { Book, BookCategory } from "@/util/BookData";
 import { books } from "../../../../book/[id]/[pagenum]/books";
 
 function BookPreview({ BookData }: { BookData: Book }) {
@@ -37,13 +37,14 @@ function BookPreviewList({ pageBookData }: { pageBookData: Book[] }) {
   );
 }
 
-export default async function ActivityBookList() {
+export default async function ActivityBookList({ category }: { category: BookCategory }) {
   const allBooks: Book[] = books as Book[];
+  const filteredBooks: Book[] = allBooks.filter((book: Book) => book.category === category);
 
   return (
     <>
       <section className="p-2 mx-auto flex flex-wrap">
-        <BookPreviewList pageBookData={allBooks} />
+        <BookPreviewList pageBookData={filteredBooks} />
       </section>
     </>
   )
