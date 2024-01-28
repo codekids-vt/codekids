@@ -12,8 +12,14 @@
 export interface Page {
     content: string[],
     image: string, // Change me to activity like HokieBirdIFConditionActivity to display activity
-    game: string | null
-    props: PageProps, // any data you need to pass to the activity is set here
+    game?: string
+    props?: PageProps | any, // any data you need to pass to the activity is set here
+}
+
+export enum BookCategory {
+    BEGINNER = "beginner",
+    INTERMEDIATE = "intermediate",
+    ADVANCED = "advanced",
 }
 
 export interface Book {
@@ -22,6 +28,7 @@ export interface Book {
     title: string,
     blurb: string,
     gradeRange: string,
+    category: BookCategory,
     pages: Page[],
     cover?: string
     bookCover: string
@@ -47,4 +54,5 @@ export interface PageProps {
     showIOLabels?: boolean,
     options?: number[],
     helpImage?: string
+    command?: string,
 }

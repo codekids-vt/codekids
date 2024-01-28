@@ -1,5 +1,45 @@
 import Image from "next/image";
-import ActivityBookList from "../books/[page]/page";
+import Link from "next/link";
+
+type CategorySpine = {
+  name: string;
+  image: string;
+  link: string;
+};
+
+const bookCategorySpines: CategorySpine[] = [
+  {
+    name: "Beginner",
+    image: "/home_page/green_spine.png",
+    link: "/book_category/beginner",
+  },
+  {
+    name: "Intermediate",
+    image: "/home_page/orange_spine.png",
+    link: "/book_category/intermediate",
+  },
+  {
+    name: "Advanced",
+    image: "/home_page/purple_spine.png",
+    link: "/book_category/advanced",
+  },
+]
+
+function CategoryPreview({ category }: { category: CategorySpine }) {
+  return (
+    <div className="h-[150px] w-[600px] relative">
+      <Link href={category.link}>
+        <div className="h-[150px] w-[600px] hover:shadow-2xl rounded-2xl hover:-translate-y-1">
+          <Image src={category.image} height={150} width={600} alt={`Book Image-Background`} className="absolute" />
+          <div className="relative top-4 left-16 w-9/12 h-3/4 flex-col justify-center flex items-center p-2 text-center">
+            <h1 className="text-black text-4xl font-medium">{category.name}</h1>
+          </div>
+        </div>
+      </Link>
+    </div>
+
+  )
+}
 
 export default function Home() {
   return (
@@ -19,7 +59,13 @@ export default function Home() {
             </h1>
           </div>
         </div>
-        <ActivityBookList />
+        <div className="flex flex-col justify-center">
+          {bookCategorySpines.map((category, i) => (
+            <div key={`category-${i}`}>
+              <CategoryPreview category={category} />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
