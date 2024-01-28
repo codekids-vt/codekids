@@ -1303,5 +1303,19 @@ export const books: Book[] = [
         image: "/io_book/happy_meal.png",
       }
     ]
+  },
+  {
+    BookId: 11,
+    bookCover: "/color_2.png",
+    title: "Test Janna",
+    blurb: "Make sure Janna knows how to publish a book",
+    author: "Dev",
+    gradeRange: "2-4",
+    pages: [
+      {
+        content: ["Janna is now publishing her first book, make sure there are no mistakes!"],
+        image: "/Maze/SadHokieBird.png",
+      }
+    ]
   }
 ] as Book[]
