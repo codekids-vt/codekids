@@ -1439,4 +1439,24 @@ export const books: Book[] = [
       }
     ]
   },
+  {
+    BookId: 12,
+    title: "Ethan Dummy Book",
+    blurb: "Learn how to read flow charts",
+    author: "Dev",
+    bookCover: "/color_6.png",
+    cover: "/FlowchartsBook/example_1.svg",
+    gradeRange: "4-6",
+    category: BookCategory.ADVANCED,
+    pages: [
+      {
+        image: "/FlowchartsBook/example_1.png",
+        content: ["In this book, we are going to learn how to read flowcharts.",
+          "Flowcharts are a visual aid to help you when you need to make a decision.",
+          "Flowcharts naturally work very well with If-statements since you make decisions based on a condition.",
+          "The left page has an example of a flowchart.",
+          "The yellow rhombus is the condition and the arrows point to what to do if the condition is True or False."]
+      },
+    ]
+  },
 ]
