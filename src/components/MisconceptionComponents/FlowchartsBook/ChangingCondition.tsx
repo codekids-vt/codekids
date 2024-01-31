@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
-import { CodeStep } from './CodeStep';
+import { CodeStep } from '../../CodeStep';
 import { GetWindowScale } from '../GetWindowScale';
+import { Answer, Question, Styles } from '@/components/Question';
 
 export interface IChangingConditionProps {
     pageNumber: number
@@ -12,10 +13,22 @@ export function ChangingCondition({ props, setAllowNext }: { props: any | IChang
     
     const windowScale = GetWindowScale()
 
+    const q1Answers : Answer[] = [
+        {
+            answerText: "Yes, you have enough money to buy a peperoni pizza!\nYes, you have rest money to buy a strawberry cake and a donut!",
+            answerExplanation: "Correct! We had enough money to buy the pizza, cake, and donut!",
+            correct: true
+        },
+        {
+            answerText: "Yes, you have enough money to buy a peperoni pizza!\nSorry, there's not enough money left for a strawberry shortcake and a donut.",
+            answerExplanation: "Incorrect. Do we have enough money to buy the pizza, cake, and a donut? Try again!",
+            correct: false
+        }
+    ]
+
     const [currentImage, setCurrentImage] = useState("")
     const [imageDim, setImageDim] = useState([600, 600])
     
-    const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
     const [q1Correct, setQ1Correct] = useState(false)
 
     const [p3Text, setP3Text] = useState("")
@@ -59,15 +72,6 @@ export function ChangingCondition({ props, setAllowNext }: { props: any | IChang
         }
     }
 
-    function handleQ1(correct: boolean) {
-        if(correct) {
-            setQ1AnswerExplanation("Correct! We had enough money to buy the pizza, cake, and donut!")
-            setQ1Correct(true)
-        } else {
-            setQ1AnswerExplanation("Incorrect. Do we have enough money to buy the pizza, cake, and a donut? Try again!")
-        }
-    }
-
     if(props.pageNumber === 1) {
         return getPage1()
     } else if (props.pageNumber === 2) {
@@ -79,14 +83,7 @@ export function ChangingCondition({ props, setAllowNext }: { props: any | IChang
             <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
                 <Image height={1300} width={1300} src={"/FlowchartsBook/example_4.svg"} alt='Image of flow chart.'/>
                 <div className='flex flex-col gap-5'>
-                    <div style={text_style}><Reader text='What is the final result that the flowchart above will print.'/></div>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ1(true)}>
-                        {"Yes, you have enough money to buy a peperoni pizza!\nYes, you have rest money to buy a strawberry cake and a donut!"}
-                    </button>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ1(false)}>
-                        {"Yes, you have enough money to buy a peperoni pizza!\nSorry, there's not enough money left for a strawberry shortcake and a donut."}
-                    </button>
-                    <div className='flex justify-center'><Reader text={q1AnswerExplanation}/></div>
+                    <Question question='What is the final result that the flowchart above will print.' answers={q1Answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/>
                 </div>
             </div>
         );
@@ -118,15 +115,4 @@ const text_style = {
     fontSize: "1.5rem",
     lineHeight: "2rem",
     textAlign: "center" as "center"
-}
-
-const answer_button_style = {
-    backgroundColor: "#D1D5DB",
-    color: "black",
-    fontSize: "20px",
-    border: "1px solid grey",
-    borderRadius: "30px",
-    padding: "15px 50px",
-    cursor: "pointer",
-    whiteSpace: "pre-wrap" as "pre-wrap"
 }

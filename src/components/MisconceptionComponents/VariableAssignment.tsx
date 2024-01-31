@@ -1,8 +1,7 @@
-"use client"
 import React, { Dispatch, SetStateAction, useState } from 'react'
-import { Reader } from '../Reader'
-import { GetWindowScale } from './GetWindowScale'
 import Image from 'next/image'
+import { Answer, Question, Styles } from '../Question'
+import { CodeSnippet } from '../CodeSnippet'
 
 export interface IVariableAssignmentProps {
     pageNumber: number
@@ -10,10 +9,59 @@ export interface IVariableAssignmentProps {
 
 
 export function VariableAssignment({ props, setAllowNext }: { props: any | IVariableAssignmentProps, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
-    const windowScale = GetWindowScale()
 
-    const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
-    const [q2AnswerExplanation, setQ2AnswerExplanation] = useState("Choose an answer above!")
+    const p1Code = <p>
+                        anniversary = <span style={code_integer_style}>147</span><br/>
+                        print(anniversary)<br/>
+                        {'print("A year has passed!")'}<br/>
+                        anniversary = <span style={code_integer_style}>148</span><br/>
+                        print(anniversary)<br/>
+                    </p>
+
+    const p2Code = <p>
+                        anniversary = <span style={code_integer_style}>147</span><br/>
+                        print(anniversary)<br/>
+                        {'print("A year has passed!")'}<br/>
+                        anniversary = anniversary + <span style={code_integer_style}>1</span><br/>
+                        print(anniversary)<br/>
+                    </p>
+
+    const q1Answers : Answer[] = [
+        {
+            answerText: "147\nA year has passed!\n148",
+            answerExplanation: "Correct! anniversary is originally 147 and is then changed to 148.",
+            correct: true
+        },
+        {
+            answerText: "147\nA year has passed!\n147",
+            answerExplanation: "Incorrect. Remember the old value of a variable is lost when it's assigned a new value. Try again!",
+            correct: false
+        },
+        {
+            answerText: "147\nA year has passed!\n295",
+            answerExplanation: "Incorrect. Assigning a variable a new value DOES NOT add it with the old value. The variable is simply assigned the new value. Try again!",
+            correct: false
+        }
+    ]
+
+    const q2Answers : Answer[] = [
+        {
+            answerText: "147\nA year has passed!\n148",
+            answerExplanation: "Correct! anniversary is reassigned to its previous value + 1 which is 148.",
+            correct: true
+        },
+        {
+            answerText: "147\nA year has passed!\nanniversary + 1",
+            answerExplanation: "Incorrect. anniversary is being set to it's previous value + 1 (anniversary + 1). Not the expression itself.",
+            correct: false
+        },
+        {
+            answerText: "147\nA year has passed!\n147",
+            answerExplanation: "Incorrect. Notice that anniversary is being reassigned after a year has passed to anniversary + 1",
+            correct: false
+        }
+    ]
+
 
     const [q1Correct, setQ1Correct] = useState(false)
     const [q2Correct, setQ2Correct] = useState(false)
@@ -26,40 +74,6 @@ export function VariableAssignment({ props, setAllowNext }: { props: any | IVari
         }
     }, [q1Correct, q2Correct, props.pageNumber, setAllowNext])
 
-    function handleQ1(correct: boolean, incorrect: number = 0) {
-        if(correct) {
-            setQ1AnswerExplanation("Correct! anniversary is originally 147 and is then changed to 148.")
-            setQ1Correct(true)
-        } else {
-            switch (incorrect) {
-                case 1:
-                    setQ1AnswerExplanation("Incorrect. Remember the old value of a variable is lost when it's assigned a new value. Try again!")
-                    break;
-                case 2:
-                    setQ1AnswerExplanation("Incorrect. Assigning a variable a new value DOES NOT add it with the old value. The variable is simply assigned the new value. Try again!")
-                    break;
-                default:
-            }
-        }
-    }
-
-    function handleQ2(correct: boolean, incorrect: number = 0) {
-        if(correct) {
-            setQ2AnswerExplanation("Correct! anniversary is reassigned to its previous value + 1 which is 148.")
-            setQ2Correct(true)
-        } else {
-            switch (incorrect) {
-                case 1:
-                    setQ2AnswerExplanation("Incorrect. anniversary is being set to it's previous value + 1 (anniversary + 1). Not the expression itself.")
-                    break;
-                case 2:
-                    setQ2AnswerExplanation("Incorrect. Notice that anniversary is being reassigned after a year has passed to anniversary + 1")
-                    break;
-                default:
-            }
-        }
-    }
-
     if(props.pageNumber === 1) {
         return getPage1()
     } else if (props.pageNumber === 2) {
@@ -68,112 +82,30 @@ export function VariableAssignment({ props, setAllowNext }: { props: any | IVari
 
     function getPage1() {
         return (
-            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <div style={horizontal_div_style}>
-                    <Image style={image_style} width={300} height={300} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
-                    <div style={{...code_box_style, ...{transform:"scale(1.5,1.5)"}}}>
-                        <p style={code_style}>
-                            anniversary = <span style={code_integer_style}>147</span><br/>
-                            print(anniversary)<br/>
-                            {'print("A year has passed!")'}<br/>
-                            anniversary = <span style={code_integer_style}>148</span><br/>
-                            print(anniversary)<br/>
-                        </p>
-                    </div>
+            <div className='flex flex-col w-full text-center items-center'>
+                <div className='flex flex-col-2 m-5 items-center gap-56'>
+                    <Image width={200} height={200} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
+                    <CodeSnippet code={p1Code}/>
                 </div>
-                <div style={text_style}><Reader text='What is printed when this program runs?'/></div>
-                <div style={horizontal_div_style}>
-                    <button style={answer_button_style} onClick={() => handleQ1(true)}>{"147\nA year has passed!\n148"}</button>
-                    <button style={answer_button_style} onClick={() => handleQ1(false, 1)}>{"147\nA year has passed!\n147"}</button>
-                    <button style={answer_button_style} onClick={() => handleQ1(false, 2)}>{"147\nA year has passed!\n295"}</button>
-                </div>
-                <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
+                <Question question='What is printed when this program runs?' answers={q1Answers} style={Styles.HORIZONTAL} setCorrect={setQ1Correct}/>
             </div>
         );
     }
 
     function getPage2() {
         return( 
-            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <div style={horizontal_div_style}>
-                    <Image style={image_style} width={300} height={300} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
-                    <div style={{...code_box_style, ...{transform:"scale(1.5,1.5)"}}}>
-                        <p>
-                            anniversary = <span style={code_integer_style}>147</span><br/>
-                            print(anniversary)<br/>
-                            {'print("A year has passed!")'}<br/>
-                            anniversary = anniversary + <span style={code_integer_style}>1</span><br/>
-                            print(anniversary)<br/>
-                        </p>
-                    </div>
+            <div className='flex flex-col w-full text-center items-center'>
+                <div className='flex flex-col-2 m-5 items-center gap-56'>
+                    <Image width={200} height={200} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
+                    <CodeSnippet code={p2Code}/>
                 </div>                
-                <div style={text_style}><Reader text='What is printed when this program runs?'/></div>
-                <div style={horizontal_div_style}>
-                    <button style={answer_button_style} onClick={() => handleQ2(true)}>{"147\nA year has passed!\n148"}</button>
-                    <button style={answer_button_style} onClick={() => handleQ2(false, 1)}>{"147\nA year has passed!\nanniversary + 1"}</button>
-                    <button style={answer_button_style} onClick={() => handleQ2(false, 2)}>{"147\nA year has passed!\n147"}</button>
-                </div>
-                <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>
+                <Question question='What is printed when this program runs?' answers={q2Answers} style={Styles.HORIZONTAL} setCorrect={setQ2Correct}/>
             </div>
         );
     }
 
 }
 
-
-const horizontal_div_style = {
-    display: "flex",
-    flexDirection: "row" as "row",
-    alignItems: "center",
-    justifyContent: "center",
-    columnGap: "5%",
-    margin: "1% 0",
-    height: "fit-content"
-}
-
-const text_style = {
-    fontWeight: "600",
-    fontSize: "1.5rem",
-    lineHeight: "2rem",
-    textAlign: "center" as "center"
-}
-
-const code_style = {
-    fontWeight: "400",
-    fontSize: "1rem",
-    width: "fit-content"
-}
-
-const image_style = {
-    marginLeft: "auto", 
-    marginRight: "auto",
-    display: "block"
-}
-
 const code_integer_style = {
     color: "#ff6371"
-}
-
-const answer_button_style = {
-    backgroundColor: "#D1D5DB",
-    color: "black",
-    fontSize: "20px",
-    border: "1px solid gray",
-    borderRadius: "30px",
-    padding: "15px 30px",
-    cursor: "pointer",
-    whiteSpace: "pre-wrap" as "pre-wrap"
-}
-
-const code_box_style = {
-    textAlign: "left" as "left", 
-    backgroundColor: "#E8E8E8",
-    width: "fit-content",
-    margin: "3% auto",
-    padding: "3%"
-}
-
-const answer_explanation_style = {
-    marginBottom: "3%",
-    fontSize: "1.2rem",
 }

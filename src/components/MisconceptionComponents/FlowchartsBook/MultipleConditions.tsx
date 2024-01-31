@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
-import { CodeStep } from './CodeStep';
+import { CodeStep } from '../../CodeStep';
 import { GetWindowScale } from '../GetWindowScale';
+import { Question, Answer, Styles } from '@/components/Question';
 
 export interface IMultipleConditionsProps {
     pageNumber: number
@@ -11,11 +12,33 @@ export interface IMultipleConditionsProps {
 export function MultipleConditions({ props, setAllowNext }: { props: any | IMultipleConditionsProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
     const windowScale = GetWindowScale()
+
+    const q1Answers : Answer[] = [
+        {
+            answerText: "Great! You can buy a pepperoni pizza!",
+            answerExplanation: "Incorrect. Do you have enough money to buy a pizza? If not, follow the False arrow. Try again!",
+            correct: false
+        },
+        {
+            answerText: "Great! You have enough money to buy a healthy green salad!",
+            answerExplanation: "Incorrect. Do you have enough money to buy a salad? If not, follow the False arrow. Try again!",
+            correct: false
+        },
+        {
+            answerText: "Great! You can buy a delicious bacon & beef burger!",
+            answerExplanation: "Correct! Following the arrows, you eventually get to the third condition where you compare your money to the burger price. You are able to buy a burger!",
+            correct: true
+        },
+        {
+            answerText: "Sadly, you don't have enough money to buy, whether it's pepperoni pizza or a green salad or a burger.",
+            answerExplanation: "Incorrect. Did you have enough money to buy a burger? If so, follow the True arrow. Try again!",
+            correct: false
+        }
+    ]
     
     const [currentImage, setCurrentImage] = useState("")
     const [imageDim, setImageDim] = useState([600, 600])
 
-    const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
     const [q1Correct, setQ1Correct] = useState(false)
 
     const [p2Text, setP2Text] = useState("")
@@ -57,24 +80,6 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
         }
     }
 
-    function handleQ1(correct: boolean, incorrect: string = "") {
-        if(correct) {
-            setQ1AnswerExplanation("Correct! Following the arrows, you eventually get to the third condition where you compare your money to the burger price. You are able to buy a burger!")
-            setQ1Correct(true)
-        } else {
-            switch (incorrect) {
-                case "pizza":
-                    setQ1AnswerExplanation("Incorrect. Do you have enough money to buy a pizza? If not, follow the False arrow. Try again!")
-                    break;
-                case "salad":
-                    setQ1AnswerExplanation("Incorrect. Do you have enough money to buy a salad? If not, follow the False arrow. Try again!")
-                    break;
-                case "nothing":
-                    setQ1AnswerExplanation("Incorrect. Did you have enough money to buy a burger? If so, follow the True arrow. Try again!")
-            }
-        }
-    }
-
     if(props.pageNumber === 1) {
         return getPage1()
     } else if (props.pageNumber === 2) {
@@ -97,15 +102,8 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
         return(
             <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
                 <div className='grid grid-cols-2 col-span-2'>
-                    <Image className='m-auto col-span-1' width={150} height={150} src={"/FlowchartsBook/MultipleConditions/food2.png"} alt='Image of food.'/>
-                    <div className='flex flex-col col-span-1 gap-5 m-auto p-10'>
-                        <div style={text_style}><Reader text='What is the final result that the flowchart will print?'/></div>
-                        <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "pizza")}>{"Great! You can buy a pepperoni pizza!"}</button>
-                        <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "salad")}>{"Great! You have enough money to buy a healthy green salad!"}</button>
-                        <button style={answer_button_style} type='button' onClick={() => handleQ1(true)}>{"Great! You can buy a delicious bacon & beef burger!"}</button>
-                        <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "nothing")}>{"Unfortunately, you don't have enough money to buy, whether it's pepperoni pizza or a green salad or a burger."}</button>
-                        <div className='flex justify-center text-center'><Reader text={q1AnswerExplanation}/></div>
-                    </div>
+                    <Image className='m-auto col-span-1' width={120} height={120} src={"/FlowchartsBook/MultipleConditions/food2.png"} alt='Image of food.'/>
+                    <div className='w-9/12'><Question question='What is the final result that the flowchart will print?' answers={q1Answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/></div>
                 </div>
                 <Image width={800} height={800} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.'/>
             </div>
@@ -140,15 +138,4 @@ const text_style = {
     fontSize: "1.5rem",
     lineHeight: "2rem",
     textAlign: "center" as "center"
-}
-
-const answer_button_style = {
-    backgroundColor: "#D1D5DB",
-    color: "black",
-    fontSize: "20px",
-    border: "1px solid grey",
-    borderRadius: "30px",
-    padding: "15px 50px",
-    cursor: "pointer",
-    whiteSpace: "pre-wrap" as "pre-wrap"
 }
