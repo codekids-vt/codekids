@@ -12,6 +12,7 @@ export interface IQuestionProps {
 export enum Styles {
     HORIZONTAL,
     VERTICAL,
+    GRID2
 }
 
 export interface Answer {
@@ -39,11 +40,13 @@ export function Question({question, answers, style, setCorrect, buttonPressed} :
         layout = 'flex flex-col mx-auto w-fit gap-5 m-5'
     } else if (style === Styles.HORIZONTAL) {
         layout = 'flex gap-10 justify-center mb-5'
+    } else if (style === Styles.GRID2) {
+        layout = "grid grid-cols-2 gap-5 m-2 w-full"
     }
 
     return (
-        <div>
-            <div className="font-semibold text-lg leading-8 text-center mb-3"><Reader text={question}/></div>
+        <div className="w-full px-36">
+            {question !== '' && <div className="font-semibold text-lg leading-8 text-center mb-3"><Reader text={question}/></div>}
             <div className={layout}>
                 {answers.map((answer, index) => <button className={buttonStyle} key={index} onClick={(e) => handleQuestion(answer.answerExplanation, answer.correct, e.currentTarget)}>{answer.answerText}</button>)}
             </div>

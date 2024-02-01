@@ -91,8 +91,8 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
     function getPage1() {
         return(
             <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
-                <Image width={800} height={800} src={"/FlowchartsBook/MultipleConditions/food.png"} alt='Image of food.'/>
-                <Image width={800} height={800} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.'/>
+                <Image width={400} height={400} src={"/FlowchartsBook/MultipleConditions/food.png"} alt='Image of food.'/>
+                <Image width={500} height={500} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.'/>
             </div>
         );
     }
@@ -105,7 +105,7 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
                     <Image className='m-auto col-span-1' width={120} height={120} src={"/FlowchartsBook/MultipleConditions/food2.png"} alt='Image of food.'/>
                     <div className='w-9/12'><Question question='What is the final result that the flowchart will print?' answers={q1Answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/></div>
                 </div>
-                <Image width={800} height={800} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.'/>
+                <Image width={500} height={500} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.'/>
             </div>
         );
     }
