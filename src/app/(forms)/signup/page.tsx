@@ -1,11 +1,10 @@
 "use client"
 
-import { useForm, SubmitHandler, Resolver } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import Link from 'next/link';
 
-import { FormValues } from "../_forms/formValues";
 import joinClasses from "@/util/joinClasses";
 
 const DEFAULT_FIELD_STYLING = joinClasses(
@@ -17,56 +16,39 @@ function ErrorNote({ message }: { message: string }) {
   return <div className="text-sm py-1 text-red-500">{message}</div>;
 }
 
-type LoginFormValues = { long: boolean | undefined } & FormValues;
+type SignUpFormValues = {
+  username: string;
+  password: string;
+  confirmPassword: string;
+};
 
-const validationSchema = yup
-  .object()
-  .shape({
+const validationSchema = yup.object().shape({
     username: yup.string().required("Username is required"),
-      /*
-      .min(6, "Username must be at least 6 characters")
-      .max(20, "Username must not exceed 20 characters")
-      .matches(
-        /^(?!.*__)[a-zA-Z0-9_]+$/,
-        "Username cannot have two consecutive underscores"
-      )
-      .test(
-        "prefix_suffix",
-        "Username cannot start or end with an underscore",
-        (username) => {
-          return username.charAt(0) !== "_" 
-            && username.charAt(username.length) !== "_";
-        }
-      )
-      .matches(
-        /^(?!_)(?!.*_{2})[a-zA-Z0-9_]+(?<!_)$/,
-        "Username must only contain alphanumeric characters or underscores"
-      ),
-      */
     password: yup.string().required("Password is required"),
-    long: yup.bool()
-  })
-  .required();
+    confirmPassword: yup.string()
+       .oneOf([yup.ref('password')], 'Passwords must match') // Removed null from oneOf
+       .required('Please confirm your password'),
+  }).required();  
 
-// TODO: determine if we should put all of this inside of a "form page" of sorts?
-export default function Login() {
+export default function SignUpPage() {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<LoginFormValues>({ 
+  } = useForm<SignUpFormValues>({ 
     resolver: yupResolver(validationSchema)  
   });
+
   const onSubmit = handleSubmit((data) => {
     console.log(data);
   });
 
   return (
     <div className="container mx-auto flex flex-col justify-center">
-      {/* action is temp. -- need to replace with onSubmit later: */}
       <form onSubmit={onSubmit}>
         <div className="w-80 mx-auto">
           <div className="[&>*]:pb-2">
+            {/* Username Input */}
             <div>
               <p>Username</p>
               <input
@@ -76,12 +58,10 @@ export default function Login() {
                   errors.username && "border border-red-500"
                 )}
               />
-
-              { errors.username?.message &&
-                <ErrorNote message={errors.username.message} /> 
-              }
+              {errors.username?.message && <ErrorNote message={errors.username.message} />}
             </div>
 
+            {/* Password Input */}
             <div>
               <p>Password</p>
               <input
@@ -92,47 +72,39 @@ export default function Login() {
                   errors.password && "border border-red-500"
                 )}
               />
-
-              { errors.password?.message &&
-                <ErrorNote message={errors.password.message} /> 
-              }
+              {errors.password?.message && <ErrorNote message={errors.password.message} />}
             </div>
 
-            <div className="flex">
-              <input 
-                type="checkbox"
-                {...register("long")}
+            {/* Confirm Password Input */}
+            <div>
+              <p>Re-enter Password</p>
+              <input
+                type="password"
+                {...register("confirmPassword")}
                 className={joinClasses(
-                  "my-auto mr-1 drop-shadow-md",
-                  "hover:shadow-lg transition duration-200 ease-out"
+                  DEFAULT_FIELD_STYLING,
+                  errors.confirmPassword && "border border-red-500"
                 )}
               />
-              <span className="text-sm">
-                Remember me for 7 days
-              </span>
+              {errors.confirmPassword?.message && <ErrorNote message={errors.confirmPassword.message} />}
             </div>
           </div>
 
+          {/* Submit Button */}
           <div className="text-center">
             <input 
               type="submit"
-              className={joinClasses(
-                "w-auto py-1 px-12 text-white bg-blue-500 shadow-blue-500/40 shadow-md rounded-md",
-                "hover:cursor-pointer hover:shadow-black/40 hover:drop-shadow-xl",
-                "transition duration-200 ease-out"
-              )}
+              className="w-auto py-1 px-12 text-white bg-blue-500 shadow-blue-500/40 shadow-md rounded-md hover:cursor-pointer hover:shadow-black/40 hover:drop-shadow-xl transition duration-200 ease-out"
             />
-
-            <Link href="/signup" passHref>
+            <Link href="/login" passHref>
               <button 
                 type="button"
                 className="w-auto py-1 px-12 text-white bg-gray-500 shadow-gray-500/40 shadow-md rounded-md hover:cursor-pointer hover:shadow-black/40 hover:drop-shadow-xl transition duration-200 ease-out"
               >
-                Go to Sign Up
+                Go to Login
               </button>
             </Link>
           </div>
-
         </div>
       </form>
     </div>
