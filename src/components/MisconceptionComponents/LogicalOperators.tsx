@@ -75,7 +75,7 @@ export function LogicalOperators({ props, setAllowNext }: { props: any, setAllow
         return (
             <div className='flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-3'>
                 {codeSnippet()}
-                <div className="font-semibold text-lg text-center"><Reader text='The next few pages will have questions about the code above and logical operators.'/></div>
+                <Reader text='The next few pages will have questions about the code above and logical operators.'/>
             </div>
         );
     }

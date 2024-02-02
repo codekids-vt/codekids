@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Reader } from '../../Reader';
-import { GetWindowScale } from '../GetWindowScale';
 import { PythonTutor } from '../../PythonTutor';
 import Image from 'next/image'
 
@@ -11,35 +10,12 @@ const code = '# Fill in your name as a String\nyour_name = ""\n\n# Fill in your 
             'print(thank_you_message)'
 
 export function MooseThankYou() {
-    const windowScale = GetWindowScale()
 
     return (
-        <div style={whole_container_style}>
-            <div style={text_style}><Reader text='Fill out the code template to write you thank you message!'/></div>
-            <Image style={image_style} width={500} height={500} src={"/LifeOfMoose/moose_with_hokie_bird.jpg"} alt='Image of Moose with Hokie Bird'/>
+        <div className='flex flex-col w-full h-full text-center items-center font-semibold text-lg text-center gap-3'>
+            <Reader text='Fill out the code template to write you thank you message!'/>
+            <Image width={300} height={300} src={"/LifeOfMoose/moose_with_hokie_bird.jpg"} alt='Image of Moose with Hokie Bird'/>
             <PythonTutor props={{code: code}}/>
         </div>
     );
-}
-
-const whole_container_style = {
-    display: "flex",
-    flexDirection: "column" as "column",
-    textAlign: "center" as "center",
-    width: "100%",
-    height: "100%",
-    justifyContent: "space-around"
-}
-
-const text_style = {
-    fontWeight: "600",
-    fontSize: "1.5rem",
-    lineHeight: "2rem",
-    textAlign: "center" as "center"
-}
-
-const image_style = {
-    marginLeft: "auto", 
-    marginRight: "auto",
-    display: "block"
 }

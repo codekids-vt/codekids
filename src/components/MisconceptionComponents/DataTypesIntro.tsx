@@ -15,7 +15,7 @@ export function DataTypesIntro() {
 
     return(
         <div className='flex flex-col w-full text-center items-center font-semibold text-lg text-center'>
-            <span className="font-semibold text-lg text-center"><Reader text="The Variable name jersey_number is of type Integer"/></span>
+            <Reader text="The Variable name jersey_number is of type Integer"/>
             <div className='flex flex-col-2 m-5 items-center gap-36'>
                 <CodeSnippet code={<p>jersey_number = <TypeStyle text='25' style={Type.INTEGER}/></p>}/>
                 <Image width={150} height={150} src='/jersey-25.png' alt="Football jersey with number 25"/>
@@ -26,7 +26,7 @@ export function DataTypesIntro() {
                 <Image width={200} height={200} src='/dog_in_box.png' alt="Box in representing variable with name therapy_dog"/>
                 <CodeSnippet code={stringCode}/>
             </div>
-            <span><Reader text="The variable sky_is_blue is a Boolean"/></span>
+            <Reader text="The variable sky_is_blue is a Boolean"/>
             <div className='flex flex-col-2 m-5 items-center gap-36'>
                 <CodeSnippet code={<p>sky_is_blue = <TypeStyle text="True" style={Type.BOOLEAN}/></p>}/>
                 <Image width={200} height={200} src='/VariablesBook/sky-boolean.png' alt="Image of sky show it is True that the sky is blue"/>

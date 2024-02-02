@@ -565,3 +565,274 @@ export const FlowchartQuestions: {[id : string]: IQuestion} = {
         ]
     }
 }
+
+/*===============================================
+Life of Moose Book
+===============================================*/
+export const LifeOfMooseQuestions: {[id: string]: IQuestion} = {
+    "LifeOfMooseQ1": {
+        question: 'Press the next button once and notice moose_name is created and contains the value "Moose". What will be printed?',
+        answers: [
+            {
+                answerText: "Moose",
+                answerExplanation: "Correct! Press the next button again to see the value printed!",
+                correct: true
+            },
+            {
+                answerText: "moose_name",
+                answerExplanation: "Incorrect. Remember that moose_name is variable which has a value. print() will print out that value.",
+                correct: false
+            }
+        ]
+    },
+    "LifeOfMooseQ2": {
+        question: 'Press the next button again and notice moose_birthday is created and contains the value "02/13/2012". What will be printed',
+        answers: [
+            {
+                answerText: "02-13-2012",
+                answerExplanation: "Correct! Press the next button again to see the value printed!",
+                correct: true
+            },
+            {
+                answerText: "Moose",
+                answerExplanation: "Incorrect. Notice the variable being printed next is moose_birthday.",
+                correct: false
+            }
+        ]
+    },
+    "LifeOfMooseQ3": {
+        question: 'Press the next button again and notice moose_color is created and contains the value \'cream\'. What will be printed?',
+        answers: [
+            {
+                answerText: "'cream'",
+                answerExplanation: "Incorrect. Remember the quotation marks aren't included when printing a String",
+                correct: false
+            },
+            {
+                answerText: "cream",
+                answerExplanation: "Correct! Press the next button again to see the value printed!",
+                correct: true
+            }
+        ]
+    },
+    "LifeOfMooseQ4": {
+        question: 'Press the next button again and notice moose_breed is created and contains the value \'Labrador Retriever\' What will be printed?',
+        answers: [
+            {
+                answerText: "Labrador Retriever",
+                answerExplanation: "Correct! Press the next button again to see the value printed!",
+                correct: true
+            },
+            {
+                answerText: "moose_breed",
+                answerExplanation: "Incorrect. Remember that moose_breed is variable which has a value. print() will print out that value.",
+                correct: false
+            }
+        ]
+    },
+    "MooseMilestoneQ1": {
+        question: 'What is the data type of the moose_birth and milestone_year variables',
+        answers: [
+            {
+                answerText: "String",
+                answerExplanation: "Incorrect. Remember that Strings are always surrounded by single or double quotation marks. Try again!",
+                correct: false
+            },
+            {
+                answerText: "Integer",
+                answerExplanation: "Correct! moose_birth and milestone_year are both Integers",
+                correct: true
+            },
+            {
+                answerText: "Boolean",
+                answerExplanation: "Incorrect. Remember that a Boolean can only be True or False. Try again!",
+                correct: false
+            }
+        ]
+    },
+    "MooseMilestoneQ2": {
+        question: "Press the next button twice and watch moose_birth and milestone_year be created. What will moose_age be assigned to when it's created.",
+        answers: [
+            {
+                answerText: "milestone_year - moose_birth",
+                answerExplanation: "Incorrect. The program is evaluating (milestone-year - moose-birth) and setting that as the value of moose_age.",
+                correct: false
+            },
+            {
+                answerText: "7",
+                answerExplanation: "Correct! Press the next button again to see the variable get created!",
+                correct: true
+            }
+        ]
+    },
+    "MooseMilestoneQ3": {
+        question: 'What will be printed at the end of the program?',
+        answers: [
+            {
+                answerText: "milestone_year - moose_birth",
+                answerExplanation: "Incorrect. Remember moose_age is being set to what (milestone_year - moose_birth) evaluates to. Try again!",
+                correct: false
+            },
+            {
+                answerText: "7",
+                answerExplanation: "Correct! Press the next button again to see the value printed!",
+                correct: true
+            },
+            {
+                answerText: "moose_age",
+                answerExplanation: "Incorrect. Remember that print(moose_age) will print the value of moose_age. Try again!",
+                correct: false
+            }
+        ]
+    },
+    "MooseMilestoneQ4": {
+        question: 'What if print(moose_age) was changed to print("moose_age")? What would be printed then? You can also make the change if you press the "Edit Code" button!',
+        answers: [
+            {
+                answerText: "milestone_year - moose_birth",
+                answerExplanation: "Incorrect. Pay close attention to what's inside the final print(). Try again!",
+                correct: false
+            },
+            {
+                answerText: "7",
+                answerExplanation: "Incorrect. Notice that print(\"moose_age\") is surrounded by double quotation marks. Try again!",
+                correct: false
+            },
+            {
+                answerText: "moose_age",
+                answerExplanation: "Correct! print(\"moose_age\") will print the literal string \"moose_age\", not the variable!",
+                correct: true
+            }
+        ]
+    },
+    "MooseDrQ1": {
+        question: 'Press the next button until the red arrow is on line 4. What will year be reassigned to?',
+        answers: [
+            {
+                answerText: "4039",
+                answerExplanation: "Incorrect. Remember that when a variable is reassigned, it loses it's old value. Click next again and watch as year is changed to 2020.",
+                correct: false
+            },
+            {
+                answerText: "2020",
+                answerExplanation: "Correct! year is reassigned to 2020 and loses it's old value 2019. Click next again and watch as year is changed to 2020.",
+                correct: true
+            }
+        ]
+    },
+    "MooseDrQ2": {
+        question: "With the red arrow on line 5, what will moose_title be reassigned to?",
+        answers: [
+            {
+                answerText: "'Dr.'",
+                answerExplanation: "Correct! moose_title is reassigned to the String 'Dr.'",
+                correct: true
+            },
+            {
+                answerText: "'Mr.Dr.'",
+                answerExplanation: "Incorrect. Remember that when a variable is reassigned, it loses it's old value. Click next again and watch as moose_title is changed to 'Dr.'",
+                correct: false
+            }
+        ]
+    },
+    "MooseDrQ3": {
+        question: 'What will be printed when line 6 is executed?',
+        answers: [
+            {
+                answerText: "2019",
+                answerExplanation: "Incorrect. What is year assigned to at this point in the program? Hint: Look at the Global frame section. Try again!",
+                correct: false
+            },
+            {
+                answerText: "4039",
+                answerExplanation: "Incorrect. Remember year was reassigned before and lost it's old value. Hint: Look at the Global frame section. Try again!",
+                correct: false
+            },
+            {
+                answerText: "2020",
+                answerExplanation: "Correct! year contains the value 2020. Click the Next button to see it print!",
+                correct: true
+            }
+        ]
+    },
+    "MooseDrQ4": {
+        question: 'What will be printed when line 7 is executed?',
+        answers: [
+            {
+                answerText: "Dr.",
+                answerExplanation: "Correct! moose_title contains the value 'Dr.'. Click the next button to see it print!",
+                correct: true
+            },
+            {
+                answerText: "Mr.",
+                answerExplanation: "Incorrect. What is moose_title assigned to at this point in the program? Hint: Look at the Global frame section. Try again!",
+                correct: false
+            },
+            {
+                answerText: "moose_title",
+                answerExplanation: "Incorrect. Remember that print() will print the value of a variable. Try again!",
+                correct: false
+            }
+        ]
+    },
+    "MooseChallengingYearQ1": {
+        question: 'Click the next button twice until the red arrow is on line 3. What will moose_age be assigned to?',
+        answers: [
+            {
+                answerText: "8",
+                answerExplanation: "Correct! moose_age is assigned to (passed_away - moose_birth). Click the next button.",
+                correct: true
+            },
+            {
+                answerText: "passed_away - moose_birth",
+                answerExplanation: "Incorrect. moose_age will be assigned to what (passed_away - moose_birth) evaluates to. Click next to see this!",
+                correct: false
+            }
+        ]
+    },
+    "MooseChallengingYearQ2": {
+        question: "What will be printed when line 4 is executed?",
+        answers: [
+            {
+                answerText: "8",
+                answerExplanation: "Correct. Moose was 8 years old when he passed away.",
+                correct: true
+            },
+            {
+                answerText: "passed_away - moose_birth",
+                answerExplanation: "Incorrect. moose_age will be assigned to what (passed_away - moose_birth) evaluates to.",
+                correct: false
+            }
+        ]
+    },
+    "MooseChallengingYearQ3": {
+        question: 'Click next until the red arrow is on line 6. What will years_worked be evaluated to?',
+        answers: [
+            {
+                answerText: "8",
+                answerExplanation: "Incorrect. years_worked will be assigned to what (passed_away - moose_started) evaluates to.",
+                correct: false
+            },
+            {
+                answerText: "6",
+                answerExplanation: "Correct. years_worked is assigned to (passed_away - moose_started). Click the next button.",
+                correct: true
+            }
+        ]
+    },
+    "MooseChallengingYearQ4": {
+        question: 'What will be printed when line 7 is executed?',
+        answers: [
+            {
+                answerText: "years_worked",
+                answerExplanation: "Incorrect. Remember print() will print the value of a variable.",
+                correct: false
+            },
+            {
+                answerText: "6",
+                answerExplanation: "Correct. Moose worked as a therapy dog for 6 years.",
+                correct: true
+            }
+        ]
+    }
+}

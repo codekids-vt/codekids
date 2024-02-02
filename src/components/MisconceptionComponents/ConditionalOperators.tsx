@@ -96,8 +96,8 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
 
     function getPage1() {
         return (
-            <div className='flex flex-col w-full text-center items-center gap-5'>
-                <span className="font-semibold text-lg text-center"><Reader text='Test you knowledge about conditional operators!'/></span>
+            <div className='flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5'>
+                <Reader text='Test you knowledge about conditional operators!'/>
                 <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
                 <CodeSnippet code={p1Code}/>
                 <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.HORIZONTAL} setCorrect={setQ1Correct} buttonPressed={handleQ1}/>
