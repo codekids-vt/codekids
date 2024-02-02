@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
 import { CodeStep } from '../../CodeStep';
-import { GetWindowScale } from '../GetWindowScale';
-import { Question, Answer, Styles } from '@/components/Question';
+import { MultipleChoiceQuestion, Styles } from '@/components/Question';
+import { FlowchartQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
 
 export interface IMultipleConditionsProps {
     pageNumber: number
@@ -11,30 +11,7 @@ export interface IMultipleConditionsProps {
 
 export function MultipleConditions({ props, setAllowNext }: { props: any | IMultipleConditionsProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
-    const windowScale = GetWindowScale()
-
-    const q1Answers : Answer[] = [
-        {
-            answerText: "Great! You can buy a pepperoni pizza!",
-            answerExplanation: "Incorrect. Do you have enough money to buy a pizza? If not, follow the False arrow. Try again!",
-            correct: false
-        },
-        {
-            answerText: "Great! You have enough money to buy a healthy green salad!",
-            answerExplanation: "Incorrect. Do you have enough money to buy a salad? If not, follow the False arrow. Try again!",
-            correct: false
-        },
-        {
-            answerText: "Great! You can buy a delicious bacon & beef burger!",
-            answerExplanation: "Correct! Following the arrows, you eventually get to the third condition where you compare your money to the burger price. You are able to buy a burger!",
-            correct: true
-        },
-        {
-            answerText: "Sadly, you don't have enough money to buy, whether it's pepperoni pizza or a green salad or a burger.",
-            answerExplanation: "Incorrect. Did you have enough money to buy a burger? If so, follow the True arrow. Try again!",
-            correct: false
-        }
-    ]
+    const q1 = FlowchartQuestions["MultipleConditionsQ1"]
     
     const [currentImage, setCurrentImage] = useState("")
     const [imageDim, setImageDim] = useState([600, 600])
@@ -90,7 +67,7 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
 
     function getPage1() {
         return(
-            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
+            <div className='flex flex-col items-center text-center w-full'>
                 <Image width={400} height={400} src={"/FlowchartsBook/MultipleConditions/food.png"} alt='Image of food.'/>
                 <Image width={500} height={500} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.'/>
             </div>
@@ -100,10 +77,10 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
 
     function getPage2() {
         return(
-            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
+            <div className='flex flex-col items-center text-center w-full'>
                 <div className='grid grid-cols-2 col-span-2'>
                     <Image className='m-auto col-span-1' width={120} height={120} src={"/FlowchartsBook/MultipleConditions/food2.png"} alt='Image of food.'/>
-                    <div className='w-9/12'><Question question='What is the final result that the flowchart will print?' answers={q1Answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/></div>
+                    <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/>
                 </div>
                 <Image width={500} height={500} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.'/>
             </div>
@@ -113,10 +90,10 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
 
     function getPage3() {
         return(
-            <div className='flex flex-col gap-5 w-full h-screen' style={{zoom: windowScale}}>
+            <div className='flex flex-col gap-5 w-full h-screen font-semibold text-lg text-center'>
                 <div className='flex flex-col gap-5 mb-10'>
-                    <div style={text_style}><Reader text="Let's run through the code and see how it relates to the flowchart!"/></div>
-                    <div style={text_style}><Reader text="The flowchart will be constructed as you go through the code."/></div>
+                    <Reader text="Let's run through the code and see how it relates to the flowchart!"/>
+                    <Reader text="The flowchart will be constructed as you go through the code."/>
                 </div>
                 <div className='flex flex-col-2 items-start text-center w-full h-100'>
                     <div className='w-1/2'>
@@ -131,11 +108,4 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
         );
     }
 
-}
-
-const text_style = {
-    fontWeight: "600",
-    fontSize: "1.5rem",
-    lineHeight: "2rem",
-    textAlign: "center" as "center"
 }

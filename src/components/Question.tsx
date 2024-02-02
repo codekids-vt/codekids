@@ -1,9 +1,9 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { Reader } from "./Reader";
 
 export interface IQuestionProps {
     question: string,
-    answers: Answer[],
+    answers: IAnswer[],
     style: Styles,
     setCorrect: React.Dispatch<React.SetStateAction<boolean>>,
     buttonPressed? : (button : HTMLButtonElement) => void // Optional function to get the button that was pressed
@@ -15,13 +15,13 @@ export enum Styles {
     GRID2
 }
 
-export interface Answer {
+export interface IAnswer {
     answerText: string,
     answerExplanation: string,
     correct: boolean,
 }
 
-export function Question({question, answers, style, setCorrect, buttonPressed} : IQuestionProps) {
+export function MultipleChoiceQuestion({question, answers, style, setCorrect, buttonPressed} : IQuestionProps) {
 
     var layout : string = ""
     const buttonStyle = "text-base bg-gray-200 text-black border border-solid border-black rounded-3xl py-3.5 px-12 cursor-pointer whitespace-pre-wrap"

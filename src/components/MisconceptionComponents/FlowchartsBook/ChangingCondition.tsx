@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
 import { CodeStep } from '../../CodeStep';
-import { GetWindowScale } from '../GetWindowScale';
-import { Answer, Question, Styles } from '@/components/Question';
+import { MultipleChoiceQuestion, Styles } from '@/components/Question';
+import { FlowchartQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
 
 export interface IChangingConditionProps {
     pageNumber: number
@@ -11,20 +11,7 @@ export interface IChangingConditionProps {
 
 export function ChangingCondition({ props, setAllowNext }: { props: any | IChangingConditionProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
     
-    const windowScale = GetWindowScale()
-
-    const q1Answers : Answer[] = [
-        {
-            answerText: "Yes, you have enough money to buy a peperoni pizza!\nYes, you have rest money to buy a strawberry cake and a donut!",
-            answerExplanation: "Correct! We had enough money to buy the pizza, cake, and donut!",
-            correct: true
-        },
-        {
-            answerText: "Yes, you have enough money to buy a peperoni pizza!\nSorry, there's not enough money left for a strawberry shortcake and a donut.",
-            answerExplanation: "Incorrect. Do we have enough money to buy the pizza, cake, and a donut? Try again!",
-            correct: false
-        }
-    ]
+    const q1 = FlowchartQuestions["ChangingConditionQ1"]
 
     const [currentImage, setCurrentImage] = useState("")
     const [imageDim, setImageDim] = useState([600, 600])
@@ -80,10 +67,10 @@ export function ChangingCondition({ props, setAllowNext }: { props: any | IChang
 
     function getPage1() {
         return (
-            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
+            <div className='flex flex-col items-center text-center w-full'>
                 <Image height={1300} width={1300} src={"/FlowchartsBook/example_4.svg"} alt='Image of flow chart.'/>
                 <div className='flex flex-col gap-5'>
-                    <Question question='What is the final result that the flowchart above will print.' answers={q1Answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/>
+                    <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/>
                 </div>
             </div>
         );
@@ -91,10 +78,10 @@ export function ChangingCondition({ props, setAllowNext }: { props: any | IChang
 
     function getPage2() {
         return (
-            <div className='flex flex-col gap-5 w-full h-screen' style={{zoom: windowScale}}>
+            <div className='flex flex-col gap-5 w-full h-screen font-semibold text-lg text-center'>
                 <div className='flex flex-col gap-5 mb-10'>
-                    <div style={text_style}><Reader text="Let's run through the code and see how it relates to the flowchart!"/></div>
-                    <div style={text_style}><Reader text="The flowchart will be constructed as you go through the code."/></div>
+                    <Reader text="Let's run through the code and see how it relates to the flowchart!"/>
+                    <Reader text="The flowchart will be constructed as you go through the code."/>
                 </div>
                 <div className='flex flex-col-2 items-start text-center h-100'>
                     <div className='w-1/2'>
@@ -108,11 +95,4 @@ export function ChangingCondition({ props, setAllowNext }: { props: any | IChang
             </div>
         );
     }
-}
-
-const text_style = {
-    fontWeight: "600",
-    fontSize: "1.5rem",
-    lineHeight: "2rem",
-    textAlign: "center" as "center"
 }

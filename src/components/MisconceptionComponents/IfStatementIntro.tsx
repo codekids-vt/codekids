@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Reader } from '../Reader';
 import Image from 'next/image'
 import { CodeSnippet } from '../CodeSnippet';
+import { Type, TypeStyle } from '../TypeStyle';
 
 export function IfStatementIntro() {
 
     const p1Code = <p>
                         if it_is_raining:<br/>
-                        {"\t"}print(<span style={code_string_style}>{'"Stop construction"'}</span>)<br/>
+                        {"\t"}print(<TypeStyle text='"Stop Construction"' style={Type.STRING}/>)<br/>
                         else:<br/>
-                        {"\t"}print(<span style={code_string_style}>{'"Continue construction"'}</span>)
+                        {"\t"}print(<TypeStyle text='"Continue Construction"' style={Type.STRING}/>)
                     </p>
 
     return (
-        <div className='flex flex-col w-full text-center items-center'>
-            <span className="font-semibold text-lg text-center"><Reader text='Example of if-statement'/></span>
-            <Image className='mb-2' width={400} height={400} src={"/IfStatementsBook/cloudy.jpg"} alt='Image of construction'/>
+        <div className='flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-3'>
+            <Reader text='Example of if-statement'/>
+            <Image width={400} height={400} src={"/IfStatementsBook/cloudy.jpg"} alt='Image of construction'/>
             <CodeSnippet code={p1Code}/>
         </div>
     );
-}
-
-const code_string_style = {
-    color: "#b87554"
 }

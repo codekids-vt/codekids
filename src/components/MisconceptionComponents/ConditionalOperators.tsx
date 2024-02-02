@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Reader } from '../Reader';
 import Image from 'next/image'
 import { CodeSnippet } from '../CodeSnippet';
-import { Answer, Question, Styles } from '../Question';
+import { MultipleChoiceQuestion, Styles } from '../Question';
+import { TypeStyle, Type } from '../TypeStyle';
+import { IfStatementsQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
 
 export interface IConditionalOperatorsProps {
     pageNumber: number
@@ -10,77 +12,10 @@ export interface IConditionalOperatorsProps {
 
 export function ConditionalOperators({ props, setAllowNext }: { props: any | IConditionalOperatorsProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
-    const q1Answers : Answer[] = [
-        {
-            answerText: "True",
-            answerExplanation: "Incorrect. Are the values of derek_color and wagner_color equal? Try again!",
-            correct: false
-        },
-        {
-            answerText: "False",
-            answerExplanation: "Correct! 'black' is not equal to 'cream'.",
-            correct: true
-        },
-        {
-            answerText: "None",
-            answerExplanation: "Incorrect. Remember the result of == is alway True or False. Try again!",
-            correct: false
-        }
-    ]
-
-    const q2Answers: Answer[] = [
-        {
-            answerText: "True",
-            answerExplanation: "Correct! 'cream' is equal to 'cream'!",
-            correct: true
-        },
-        {
-            answerText: "False",
-            answerExplanation: "Incorrect. Are the values of derek_color and josie_color equal? Try again!",
-            correct: false
-        },
-        {
-            answerText: "None",
-            answerExplanation: "Incorrect. Remember the result of == is alway True or False. Try again!",
-            correct: false
-        }
-    ]
-
-    const q3Answers: Answer[] = [
-        {
-            answerText: "True",
-            answerExplanation: "Incorrect. Notice that total_number is a string. Try again!",
-            correct: false
-        },
-        {
-            answerText: "False",
-            answerExplanation: "Correct! total_number is a string while black_number and yellow_number are Integers. So it will be false.",
-            correct: true
-        },
-        {
-            answerText: "None",
-            answerExplanation: "Incorrect. Remember the result of == is alway True or False. Try again!",
-            correct: false
-        }
-    ]
-
-    const q4Answers: Answer[] = [
-        {
-            answerText: "True",
-            answerExplanation: "Incorrect. What are the data types of total_number and cream_number? Try again!",
-            correct: false
-        },
-        {
-            answerText: "False",
-            answerExplanation: "Incorrect. What are the data types of total_number and cream_number? Try again!",
-            correct: false
-        },
-        {
-            answerText: "None",
-             answerExplanation: "Correct! This is using > one a string and integer which can't be done.",
-             correct: true
-        }
-    ]
+    const q1 = IfStatementsQuestions["ConditionalOperatorsQ1"]
+    const q2 = IfStatementsQuestions["ConditionalOperatorsQ2"]
+    const q3 = IfStatementsQuestions["ConditionalOperatorsQ3"]
+    const q4 = IfStatementsQuestions["ConditionalOperatorsQ4"]
 
     const [q1ChosenAnswer, setQ1ChosenAnswer] = useState("?")
     const [q2ChosenAnswer, setQ2ChosenAnswer] = useState("?")
@@ -93,31 +28,31 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
     const [q4Correct, setQ4Correct] = useState(false)
 
     const p1Code = <p>
-                        derek_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
-                        wagner_color = <span style={code_string_style}>{'\'black\''}</span><br/>
-                        josie_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
-                        derek_color == wagner_color = <span style={code_boolean_style}>{q1ChosenAnswer}</span>
+                        derek_color = <TypeStyle text="'cream'" style={Type.STRING}/><br/>
+                        wagner_color = <TypeStyle text="'black'" style={Type.STRING}/><br/>
+                        josie_color = <TypeStyle text="'cream'" style={Type.STRING}/><br/>
+                        derek_color == wagner_color = <TypeStyle text={q1ChosenAnswer} style={Type.BOOLEAN}/>
                     </p>
 
     const p2Code = <p>
-                        derek_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
-                        wagner_color = <span style={code_string_style}>{'\'black\''}</span><br/>
-                        josie_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
-                        derek_color == josie_color = <span style={code_boolean_style}>{q2ChosenAnswer}</span>
+                        derek_color = <TypeStyle text="'cream'" style={Type.STRING}/><br/>
+                        wagner_color = <TypeStyle text="'black'" style={Type.STRING}/><br/>
+                        josie_color = <TypeStyle text="'cream'" style={Type.STRING}/><br/>
+                        derek_color == josie_color = <TypeStyle text={q2ChosenAnswer} style={Type.BOOLEAN}/>
                     </p>
 
     const p3Code = <p>
-                        black_number = <span style={code_integer_style}>1</span><br/>
-                        cream_number = <span style={code_integer_style}>2</span><br/>
-                        total_number == <span style={code_string_style}>{'\'3\''}</span><br/>
-                        total_number == (black_number + cream_number) = <span style={code_boolean_style}>{q3ChosenAnswer}</span>
+                        black_number = <TypeStyle text='1' style={Type.INTEGER}/><br/>
+                        cream_number = <TypeStyle text='2' style={Type.INTEGER}/><br/>
+                        total_number == <TypeStyle text="'3'" style={Type.STRING}/><br/>
+                        total_number == (black_number + cream_number) = <TypeStyle text={q3ChosenAnswer} style={Type.BOOLEAN}/>
                     </p>
 
     const p4Code = <p>
-                        black_number = <span style={code_integer_style}>1</span><br/>
-                        cream_number = <span style={code_integer_style}>2</span><br/>
-                        total_number == <span style={code_string_style}>{'\'3\''}</span><br/>
-                        total_number {">"} cream_number = <span style={code_boolean_style}>{q4ChosenAnswer}</span>
+                        black_number = <TypeStyle text='1' style={Type.INTEGER}/><br/>
+                        cream_number = <TypeStyle text='2' style={Type.INTEGER}/><br/>
+                        total_number == <TypeStyle text="'3'" style={Type.STRING}/><br/>
+                        total_number {">"} cream_number = <TypeStyle text={q4ChosenAnswer} style={Type.BOOLEAN}/>
                     </p>
 
     React.useEffect(() => {
@@ -165,7 +100,7 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
                 <span className="font-semibold text-lg text-center"><Reader text='Test you knowledge about conditional operators!'/></span>
                 <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
                 <CodeSnippet code={p1Code}/>
-                <Question question='What does derek_color == wagner_color evaluate to?' answers={q1Answers} style={Styles.HORIZONTAL} setCorrect={setQ1Correct} buttonPressed={handleQ1}/>
+                <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.HORIZONTAL} setCorrect={setQ1Correct} buttonPressed={handleQ1}/>
             </div>
         );
     }
@@ -175,7 +110,7 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
             <div className='flex flex-col w-full text-center items-center gap-5'>
                 <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
                 <CodeSnippet code={p2Code}/>
-                <Question question='What does derek_color == josie_color evaluate to?' answers={q2Answers} style={Styles.HORIZONTAL} setCorrect={setQ2Correct} buttonPressed={handleQ2}/>
+                <MultipleChoiceQuestion question={q2.question} answers={q2.answers} style={Styles.HORIZONTAL} setCorrect={setQ2Correct} buttonPressed={handleQ2}/>
             </div>
         );
     }
@@ -185,7 +120,7 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
             <div className='flex flex-col w-full text-center items-center gap-5'>
                 <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
                 <CodeSnippet code={p3Code}/>
-                <Question question='What does total_number == (black_number + cream_number) evaluate to?' answers={q3Answers} style={Styles.HORIZONTAL} setCorrect={setQ3Correct} buttonPressed={handleQ3}/>
+                <MultipleChoiceQuestion question={q3.question} answers={q3.answers} style={Styles.HORIZONTAL} setCorrect={setQ3Correct} buttonPressed={handleQ3}/>
             </div>
         );
     }
@@ -195,21 +130,9 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
             <div className='flex flex-col w-full text-center items-center gap-5'>
                 <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
                 <CodeSnippet code={p4Code}/>
-                <Question question='What does total_number > cream_number evaluate to?' answers={q4Answers} style={Styles.HORIZONTAL} setCorrect={setQ4Correct} buttonPressed={handleQ4}/>
+                <MultipleChoiceQuestion question={q4.question} answers={q4.answers} style={Styles.HORIZONTAL} setCorrect={setQ4Correct} buttonPressed={handleQ4}/>
             </div>
         );
     }
 
-}
-
-const code_string_style = {
-    color: "#b87554"
-}
-
-const code_boolean_style = {
-    color: "#669955"
-}
-
-const code_integer_style = {
-    color: "#ff6371"
 }

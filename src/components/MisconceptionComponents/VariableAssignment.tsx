@@ -1,7 +1,9 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import Image from 'next/image'
-import { Answer, Question, Styles } from '../Question'
+import { MultipleChoiceQuestion, Styles } from '../Question'
 import { CodeSnippet } from '../CodeSnippet'
+import { VariablesQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank'
+import { Type, TypeStyle } from '../TypeStyle'
 
 export interface IVariableAssignmentProps {
     pageNumber: number
@@ -11,56 +13,23 @@ export interface IVariableAssignmentProps {
 export function VariableAssignment({ props, setAllowNext }: { props: any | IVariableAssignmentProps, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
 
     const p1Code = <p>
-                        anniversary = <span style={code_integer_style}>147</span><br/>
+                        anniversary = <TypeStyle text='147' style={Type.INTEGER}/><br/>
                         print(anniversary)<br/>
                         {'print("A year has passed!")'}<br/>
-                        anniversary = <span style={code_integer_style}>148</span><br/>
+                        anniversary = <TypeStyle text='148' style={Type.INTEGER}/><br/>
                         print(anniversary)<br/>
                     </p>
 
     const p2Code = <p>
-                        anniversary = <span style={code_integer_style}>147</span><br/>
+                        anniversary = <TypeStyle text='147' style={Type.INTEGER}/><br/>
                         print(anniversary)<br/>
                         {'print("A year has passed!")'}<br/>
-                        anniversary = anniversary + <span style={code_integer_style}>1</span><br/>
+                        anniversary = anniversary + <TypeStyle text='1' style={Type.INTEGER}/><br/>
                         print(anniversary)<br/>
                     </p>
 
-    const q1Answers : Answer[] = [
-        {
-            answerText: "147\nA year has passed!\n148",
-            answerExplanation: "Correct! anniversary is originally 147 and is then changed to 148.",
-            correct: true
-        },
-        {
-            answerText: "147\nA year has passed!\n147",
-            answerExplanation: "Incorrect. Remember the old value of a variable is lost when it's assigned a new value. Try again!",
-            correct: false
-        },
-        {
-            answerText: "147\nA year has passed!\n295",
-            answerExplanation: "Incorrect. Assigning a variable a new value DOES NOT add it with the old value. The variable is simply assigned the new value. Try again!",
-            correct: false
-        }
-    ]
-
-    const q2Answers : Answer[] = [
-        {
-            answerText: "147\nA year has passed!\n148",
-            answerExplanation: "Correct! anniversary is reassigned to its previous value + 1 which is 148.",
-            correct: true
-        },
-        {
-            answerText: "147\nA year has passed!\nanniversary + 1",
-            answerExplanation: "Incorrect. anniversary is being set to it's previous value + 1 (anniversary + 1). Not the expression itself.",
-            correct: false
-        },
-        {
-            answerText: "147\nA year has passed!\n147",
-            answerExplanation: "Incorrect. Notice that anniversary is being reassigned after a year has passed to anniversary + 1",
-            correct: false
-        }
-    ]
+    const q1 = VariablesQuestions["VariableAssignmentQ1"]
+    const q2 = VariablesQuestions["VariableAssignmentQ2"]
 
 
     const [q1Correct, setQ1Correct] = useState(false)
@@ -87,7 +56,7 @@ export function VariableAssignment({ props, setAllowNext }: { props: any | IVari
                     <Image width={200} height={200} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
                     <CodeSnippet code={p1Code}/>
                 </div>
-                <Question question='What is printed when this program runs?' answers={q1Answers} style={Styles.HORIZONTAL} setCorrect={setQ1Correct}/>
+                <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.HORIZONTAL} setCorrect={setQ1Correct}/>
             </div>
         );
     }
@@ -99,13 +68,8 @@ export function VariableAssignment({ props, setAllowNext }: { props: any | IVari
                     <Image width={200} height={200} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.'/>
                     <CodeSnippet code={p2Code}/>
                 </div>                
-                <Question question='What is printed when this program runs?' answers={q2Answers} style={Styles.HORIZONTAL} setCorrect={setQ2Correct}/>
+                <MultipleChoiceQuestion question={q2.question} answers={q2.answers} style={Styles.HORIZONTAL} setCorrect={setQ2Correct}/>
             </div>
         );
     }
-
-}
-
-const code_integer_style = {
-    color: "#ff6371"
 }

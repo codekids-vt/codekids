@@ -1,26 +1,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image'
 import { CodeStep } from '../../CodeStep';
-import { GetWindowScale } from '../GetWindowScale';
-import { Question, Answer, Styles } from '@/components/Question';
+import { MultipleChoiceQuestion, Styles } from '@/components/Question';
+import { FlowchartQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
 
 
 export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
-    const windowScale = GetWindowScale()
-
-    const q1Answers : Answer[] = [
-        {
-            answerText: "Yes, you can buy a donut!",
-            answerExplanation: "Correct! You have enough money to buy a donut, so it will follow the True arrow. Press the Next button above!",
-            correct: true
-        },
-        {
-            answerText: "Sorry, you don't have enough money to buy a yummy donut.",
-            answerExplanation: "Incorrect. Do you have enough money to buy a donut? Follow the True or False arrow.",
-            correct: false
-        }
-    ]
+    const q1 = FlowchartQuestions["BuyDonutQ1"]
 
     const [currentLine, setCurrentLine] = useState(0)
     const [currentImage, setCurrentImage] = useState("")
@@ -59,7 +46,7 @@ export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.S
 
 
     return(
-        <div className='flex flex-col-2 items-center text-center w-full h-full' style={{zoom: windowScale}}>
+        <div className='flex flex-col-2 items-center text-center w-full h-full'>
             <div className='flex flex-col w-1/2 justify-center'>
                 <CodeStep props={{code: code, getLine: getLine, skipLines: [4, 5, 6], enableNext: enableNext}}/>
             </div>
@@ -67,7 +54,7 @@ export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.S
                 {currentImage !== "" && <Image className="object-contain max-w-full max-h-full h-fit" height={1000} width={1000} src={currentImage} alt='Partial image of flowchart'/>}
                 {showQuestion &&
                     <React.Fragment>
-                        <Question question='What will be printed based on the flowchart?' answers={q1Answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/>
+                        <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/>
                     </React.Fragment>
                 }
             </div>
