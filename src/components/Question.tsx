@@ -25,15 +25,25 @@ export function MultipleChoiceQuestion({question, answers, style, setCorrect, bu
 
     var layout : string = ""
     const buttonStyle = "text-base bg-gray-200 text-black border border-solid border-black rounded-3xl py-3.5 px-12 cursor-pointer whitespace-pre-wrap"
+    const answerWrong = "text-base bg-red-400 text-black border border-solid border-black rounded-3xl py-3.5 px-12 cursor-pointer whitespace-pre-wrap"
+    const answerRight = "text-base bg-green-400 text-black border border-solid border-black rounded-3xl py-3.5 px-12 cursor-pointer whitespace-pre-wrap"
     
     const [answerExplanation, setAnswerExplanation] = useState("Choose an answer above!")
+    const [buttonStyles, setButtonStyles] = useState(Array(answers.length).fill(buttonStyle))
 
-    function handleQuestion(answerExplanation: string, correct: boolean, button: HTMLButtonElement) {
+    function handleQuestion(answerExplanation: string, correct: boolean, button: HTMLButtonElement, index: number) {
         setAnswerExplanation(answerExplanation)
         setCorrect(correct)
+        changeButtonColor(index, correct);
         if(buttonPressed !== undefined) {
             buttonPressed(button)
         }
+    }
+
+    function changeButtonColor(index: number, correct: boolean) {
+        var newButtonStyles = Array(answers.length).fill(buttonStyle);
+        newButtonStyles[index] = correct ? answerRight : answerWrong;
+        setButtonStyles(newButtonStyles);
     }
 
     if(style === Styles.VERTICAL) {
@@ -48,10 +58,13 @@ export function MultipleChoiceQuestion({question, answers, style, setCorrect, bu
         <div className="w-full px-36">
             {question !== '' && <div className="font-semibold text-lg leading-8 text-center mb-3"><Reader text={question}/></div>}
             <div className={layout}>
-                {answers.map((answer, index) => <button className={buttonStyle} key={index} onClick={(e) => handleQuestion(answer.answerExplanation, answer.correct, e.currentTarget)}>{answer.answerText}</button>)}
+                {answers.map((answer, index) => <button className={buttonStyles[index]} key={index} onClick={(e) => handleQuestion(answer.answerExplanation, answer.correct, e.currentTarget, index)}>{answer.answerText}</button>)}
             </div>
             <div className="font-normal text-base text-center"><Reader text={answerExplanation}/></div>
         </div>
     );    
+    
+
+
     
 }
