@@ -54,7 +54,7 @@ export function CodeStep({ props }: { props: any | ICodeStepProps,}) {
 
     return(
         <React.Fragment>
-            <div className=' flex flex-col ml-auto mr-auto px-10 py-5 w-fit bg-zinc-200'>
+            <div className=' flex flex-col ml-auto mr-auto px-10 py-5 w-fit bg-zinc-200 '>
                 {code.map((line, index) => <div className='px-5 whitespace-pre-wrap text-left' key={index} style={{background: checkCurrentLine(index, currentLine)}}>{line}</div>)}
             </div>
             <div className='inline-flex mt-5 rounded-md gap-10 justify-center'>

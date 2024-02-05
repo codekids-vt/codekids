@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
-import { CodeStep } from './CodeStep';
-import { GetWindowScale } from '../GetWindowScale';
+import { CodeStep } from '../../CodeStep';
+import { MultipleChoiceQuestion, Styles } from '@/components/Question';
+import { FlowchartQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
 
 export interface IBuyMultipleProps {
     pageNumber: number
@@ -10,12 +11,11 @@ export interface IBuyMultipleProps {
 
 export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultipleProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
-    const windowScale = GetWindowScale()
+    const q1 = FlowchartQuestions["BuyMultipleQ1"]
     
     const [currentImage, setCurrentImage] = useState("")
     const [imageDim, setImageDim] = useState([600, 600])
 
-    const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
     const [q1Correct, setQ1Correct] = useState(false)
 
     const [p2Text, setP2Text] = useState("")
@@ -31,7 +31,6 @@ export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultiple
         } else if (props.pageNumber === 2) {
             setAllowNext(currentLineNumber === 10)
         }
-        
     }, [q1Correct, currentLineNumber, props.pageNumber, setAllowNext])
 
     const getLine = (lineNumber: number) => {
@@ -57,15 +56,6 @@ export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultiple
         }
     }
 
-    function handleQ1(correct: boolean) {
-        if(correct) {
-            setQ1AnswerExplanation("Correct! total will be 11 which is not less than or equal to 9. So we will follow the False arrow.")
-            setQ1Correct(true)
-        } else {
-            setQ1AnswerExplanation("Incorrect. Is the total cost of the food less than or equal to our money? Try again!")
-        }
-    }
-
     if(props.pageNumber === 1) {
         return getPage1()
     } else if (props.pageNumber === 2) {
@@ -75,24 +65,19 @@ export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultiple
     function getPage1()
     {
         return (
-            <div className='flex flex-col items-center text-center w-full' style={{zoom: windowScale}}>
+            <div className='flex flex-col items-center text-center w-full'>
                 <Image width={600} height={600} src={"/FlowchartsBook/BuyMultiple/buy_multiple.png"} alt='Image of flowchart and food.'/>
-                <div className='flex flex-col gap-5 w-full'>
-                    <div style={text_style}><Reader text='What is the final result that the flowchart above will print?'/></div>
-                    <button className='w-1/2 mx-auto' style={answer_button_style} type='button' onClick={() => handleQ1(false)}>{"Yes, you can buy spaghetti pasta, a burger, and an ice-cream!"}</button>
-                    <button className='w-1/2 mx-auto' style={answer_button_style} type='button' onClick={() => handleQ1(true)}>{"Sorry, you don't have enough money to buy pasta, a burger, and an ice-cream."}</button>
-                    <div className='flex justify-center'><Reader text={q1AnswerExplanation}/></div>
-                </div>
+                <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/>
             </div>
         );
     }
 
     function getPage2() {
         return (
-            <div className='flex flex-col gap-5 w-full h-screen' style={{zoom: windowScale}}>
+            <div className='flex flex-col gap-5 w-full h-screen font-semibold text-lg text-center'>
                 <div className='flex flex-col gap-5 mb-10'>
-                    <div style={text_style}><Reader text="Let's run through the code and see how it relates to the flowchart!"/></div>
-                    <div style={text_style}><Reader text="The flowchart will be constructed as you go through the code."/></div>
+                    <Reader text="Let's run through the code and see how it relates to the flowchart!"/>
+                    <Reader text="The flowchart will be constructed as you go through the code."/>
                 </div>
                 <div className='flex flex-col-2 items-start text-center h-100'>
                     <div className='w-1/2'>
@@ -107,22 +92,4 @@ export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultiple
         );
     }
 
-}
-
-const text_style = {
-    fontWeight: "600",
-    fontSize: "1.5rem",
-    lineHeight: "2rem",
-    textAlign: "center" as "center"
-}
-
-const answer_button_style = {
-    backgroundColor: "#D1D5DB",
-    color: "black",
-    fontSize: "20px",
-    border: "1px solid grey",
-    borderRadius: "30px",
-    padding: "15px 50px",
-    cursor: "pointer",
-    whiteSpace: "pre-wrap" as "pre-wrap"
 }

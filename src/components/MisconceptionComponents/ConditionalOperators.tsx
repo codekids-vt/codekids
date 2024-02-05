@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Reader } from '../Reader';
-import { GetWindowScale } from './GetWindowScale';
 import Image from 'next/image'
+import { CodeSnippet } from '../CodeSnippet';
+import { MultipleChoiceQuestion, Styles } from '../Question';
+import { TypeStyle, Type } from '../TypeStyle';
+import { IfStatementsQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
 
 export interface IConditionalOperatorsProps {
     pageNumber: number
@@ -9,21 +12,48 @@ export interface IConditionalOperatorsProps {
 
 export function ConditionalOperators({ props, setAllowNext }: { props: any | IConditionalOperatorsProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 
-    const windowScale = GetWindowScale()
+    const q1 = IfStatementsQuestions["ConditionalOperatorsQ1"]
+    const q2 = IfStatementsQuestions["ConditionalOperatorsQ2"]
+    const q3 = IfStatementsQuestions["ConditionalOperatorsQ3"]
+    const q4 = IfStatementsQuestions["ConditionalOperatorsQ4"]
 
     const [q1ChosenAnswer, setQ1ChosenAnswer] = useState("?")
-    const [q1AnswerExplanation, setQ1AnswerExplanation] = useState("Choose an answer above!")
     const [q2ChosenAnswer, setQ2ChosenAnswer] = useState("?")
-    const [q2AnswerExplanation, setQ2AnswerExplanation] = useState("Choose an answer above!")
     const [q3ChosenAnswer, setQ3ChosenAnswer] = useState("?")
-    const [q3AnswerExplanation, setQ3AnswerExplanation] = useState("Choose an answer above!")
     const [q4ChosenAnswer, setQ4ChosenAnswer] = useState("?")
-    const [q4AnswerExplanation, setQ4AnswerExplanation] = useState("Choose an answer above!")
 
     const [q1Correct, setQ1Correct] = useState(false)
     const [q2Correct, setQ2Correct] = useState(false)
     const [q3Correct, setQ3Correct] = useState(false)
     const [q4Correct, setQ4Correct] = useState(false)
+
+    const p1Code = <p>
+                        derek_color = <TypeStyle text="'cream'" style={Type.STRING}/><br/>
+                        wagner_color = <TypeStyle text="'black'" style={Type.STRING}/><br/>
+                        josie_color = <TypeStyle text="'cream'" style={Type.STRING}/><br/>
+                        derek_color == wagner_color = <TypeStyle text={q1ChosenAnswer} style={Type.BOOLEAN}/>
+                    </p>
+
+    const p2Code = <p>
+                        derek_color = <TypeStyle text="'cream'" style={Type.STRING}/><br/>
+                        wagner_color = <TypeStyle text="'black'" style={Type.STRING}/><br/>
+                        josie_color = <TypeStyle text="'cream'" style={Type.STRING}/><br/>
+                        derek_color == josie_color = <TypeStyle text={q2ChosenAnswer} style={Type.BOOLEAN}/>
+                    </p>
+
+    const p3Code = <p>
+                        black_number = <TypeStyle text='1' style={Type.INTEGER}/><br/>
+                        cream_number = <TypeStyle text='2' style={Type.INTEGER}/><br/>
+                        total_number == <TypeStyle text="'3'" style={Type.STRING}/><br/>
+                        total_number == (black_number + cream_number) = <TypeStyle text={q3ChosenAnswer} style={Type.BOOLEAN}/>
+                    </p>
+
+    const p4Code = <p>
+                        black_number = <TypeStyle text='1' style={Type.INTEGER}/><br/>
+                        cream_number = <TypeStyle text='2' style={Type.INTEGER}/><br/>
+                        total_number == <TypeStyle text="'3'" style={Type.STRING}/><br/>
+                        total_number {">"} cream_number = <TypeStyle text={q4ChosenAnswer} style={Type.BOOLEAN}/>
+                    </p>
 
     React.useEffect(() => {
         if (props.pageNumber === 1) {
@@ -38,85 +68,20 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
 
     }, [q1Correct, q2Correct, q3Correct, q4Correct, props.pageNumber, setAllowNext])
 
-    function handleQ1(correct: boolean, incorrect : string = "" ) {
-        if(correct) {
-            setQ1ChosenAnswer("False")
-            setQ1AnswerExplanation("Correct! 'black' is not equal to 'cream'.")
-            setQ1Correct(true)
-        } else {
-            switch (incorrect) {
-                case "True":
-                    setQ1ChosenAnswer("True")
-                    setQ1AnswerExplanation("Incorrect. Are the values of derek_color and wagner_color equal? Try again!")
-                    break;
-                case "None":
-                    setQ1ChosenAnswer("None")
-                    setQ1AnswerExplanation("Incorrect. Remember the result of == is alway True or False. Try again!")
-                    break;
-                default:
-            }
-        }
+    function handleQ1(button: HTMLButtonElement) {
+        setQ1ChosenAnswer(button.textContent !== null ? button.textContent : "?")
     }
 
-    function handleQ2(correct: boolean, incorrect : string = "" ) {
-        if(correct) {
-            setQ2ChosenAnswer("True")
-            setQ2AnswerExplanation("Correct! 'cream' is equal to 'cream'!")
-            setQ2Correct(true)
-        } else {
-            switch (incorrect) {
-                case "False":
-                    setQ2ChosenAnswer("False")
-                    setQ2AnswerExplanation("Incorrect. Are the values of derek_color and josie_color equal? Try again!")
-                    break;
-                case "None":
-                    setQ2ChosenAnswer("None")
-                    setQ2AnswerExplanation("Incorrect. Remember the result of == is alway True or False. Try again!")
-                    break;
-                default:
-            }
-
-        }
+    function handleQ2(button: HTMLButtonElement) {
+        setQ2ChosenAnswer(button.textContent !== null ? button.textContent : "?")
     }
 
-    function handleQ3(correct: boolean, incorrect : string = "" ) {
-        if(correct) {
-            setQ3ChosenAnswer("False")
-            setQ3AnswerExplanation("Correct! total_number is a string while black_number and yellow_number are Integers. So it will be false.")
-            setQ3Correct(true)
-        } else {
-            switch (incorrect) {
-                case "True":
-                    setQ3ChosenAnswer("True")
-                    setQ3AnswerExplanation("Incorrect. Notice that total_number is a string. Try again!")
-                    break;
-                case "None":
-                    setQ3ChosenAnswer("None")
-                    setQ3AnswerExplanation("Incorrect. Remember the result of == is alway True or False. Try again!")
-                    break;
-                default:
-            }
-        }
+    function handleQ3(button: HTMLButtonElement) {
+        setQ3ChosenAnswer(button.textContent !== null ? button.textContent : "?")
     }
 
-    function handleQ4(correct: boolean, incorrect : string = "" ) {
-        if(correct) {
-            setQ4ChosenAnswer("None")
-            setQ4AnswerExplanation("Correct! This is using > one a string and integer which can't be done.")
-            setQ4Correct(true)
-        } else {
-            switch (incorrect) {
-                case "True":
-                    setQ4ChosenAnswer("True")
-                    setQ4AnswerExplanation("Incorrect. What are the data types of total_number and cream_number? Try again!")
-                    break;
-                case "False":
-                    setQ4ChosenAnswer("False")
-                    setQ4AnswerExplanation("Incorrect. What are the data types of total_number and cream_number? Try again!")
-                    break;
-                default:
-            }
-        }
+    function handleQ4(button: HTMLButtonElement ) {
+        setQ4ChosenAnswer(button.textContent !== null ? button.textContent : "?")
     }
 
     if(props.pageNumber === 1) {
@@ -131,159 +96,43 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
 
     function getPage1() {
         return (
-            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <span style={text_style}><Reader text='Test you knowledge about conditional operators!'/></span>
-                <Image style={image_style} width={500} height={500} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
-                <div style={code_box_style}>
-                    <p style={code_style}>
-                        derek_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
-                        wagner_color = <span style={code_string_style}>{'\'black\''}</span><br/>
-                        josie_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
-                        derek_color == wagner_color = <span style={code_boolean_style}>{q1ChosenAnswer}</span>
-                    </p>
-                </div>
-                <div style={answer_explanation_style}><Reader text='What does derek_color == wagner_color evaluate to?'/></div>
-                <div style={horizontal_div_style}>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "True")}>True</button>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ1(true)}>False</button>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ1(false, "None")}>None</button>
-                </div>
-                <div style={answer_explanation_style}><Reader text={q1AnswerExplanation}/></div>
+            <div className='flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5'>
+                <Reader text='Test you knowledge about conditional operators!'/>
+                <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
+                <CodeSnippet code={p1Code}/>
+                <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.HORIZONTAL} setCorrect={setQ1Correct} buttonPressed={handleQ1}/>
             </div>
         );
     }
 
     function getPage2() {
         return (
-            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <Image style={image_style} width={500} height={500} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
-                <div style={code_box_style}>
-                    <p style={code_style}>
-                            derek_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
-                            wagner_color = <span style={code_string_style}>{'\'black\''}</span><br/>
-                            josie_color = <span style={code_string_style}>{'\'cream\''}</span><br/>
-                            derek_color == wagner_color = <span style={code_boolean_style}>{q2ChosenAnswer}</span>
-                    </p>
-                </div>
-                <div style={answer_explanation_style}><Reader text='What does derek_color == josie_color evaluate to?'/></div>
-                <div style={horizontal_div_style}>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ2(true)}>True</button>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ2(false, "False")}>False</button>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ2(false, "None")}>None</button>
-                </div>
-                <div style={answer_explanation_style}><Reader text={q2AnswerExplanation}/></div>
+            <div className='flex flex-col w-full text-center items-center gap-5'>
+                <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
+                <CodeSnippet code={p2Code}/>
+                <MultipleChoiceQuestion question={q2.question} answers={q2.answers} style={Styles.HORIZONTAL} setCorrect={setQ2Correct} buttonPressed={handleQ2}/>
             </div>
         );
     }
 
     function getPage3() {
         return (
-            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <Image style={image_style} width={500} height={500} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
-                <div style={code_box_style}>
-                    <p style={code_style}>
-                        black_number = <span style={code_integer_style}>1</span><br/>
-                        cream_number = <span style={code_integer_style}>2</span><br/>
-                        total_number == <span style={code_string_style}>{'\'3\''}</span><br/>
-                        total_number == (black_number + cream_number) = <span style={code_boolean_style}>{q3ChosenAnswer}</span>
-                    </p>
-                </div>
-                <div style={answer_explanation_style}><Reader text='What does total_number == (black_number + cream_number) evaluate to?'/></div>
-                <div style={horizontal_div_style}>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ3(false, "True")}>True</button>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ3(true)}>False</button>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ3(false, "None")}>None</button>
-                </div>
-                <div style={answer_explanation_style}><Reader text={q3AnswerExplanation}/></div>
+            <div className='flex flex-col w-full text-center items-center gap-5'>
+                <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
+                <CodeSnippet code={p3Code}/>
+                <MultipleChoiceQuestion question={q3.question} answers={q3.answers} style={Styles.HORIZONTAL} setCorrect={setQ3Correct} buttonPressed={handleQ3}/>
             </div>
         );
     }
 
     function getPage4() {
         return (
-            <div style={{textAlign: "center", width: "100%", zoom: windowScale}}>
-                <Image style={image_style} width={500} height={500} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
-                <div style={code_box_style}>
-                    <p style={code_style}>
-                        black_number = <span style={code_integer_style}>1</span><br/>
-                        cream_number = <span style={code_integer_style}>2</span><br/>
-                        total_number == <span style={code_string_style}>{'\'3\''}</span><br/>
-                        total_number {">"} cream_number = <span style={code_boolean_style}>{q4ChosenAnswer}</span>
-                    </p>
-                </div>
-                <div style={answer_explanation_style}><Reader text='What does total_number > cream_number evaluate to?'/></div>
-                <div style={horizontal_div_style}>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ4(false, "True")}>True</button>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ4(false, "False")}>False</button>
-                    <button style={answer_button_style} type='button' onClick={() => handleQ4(true)}>None</button>
-                </div>
-                <div style={answer_explanation_style}><Reader text={q4AnswerExplanation}/></div>
+            <div className='flex flex-col w-full text-center items-center gap-5'>
+                <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
+                <CodeSnippet code={p4Code}/>
+                <MultipleChoiceQuestion question={q4.question} answers={q4.answers} style={Styles.HORIZONTAL} setCorrect={setQ4Correct} buttonPressed={handleQ4}/>
             </div>
         );
     }
 
-}
-
-const horizontal_div_style = {
-    display: "flex",
-    flexDirection: "row" as "row",
-    alignItems: "center",
-    justifyContent: "center",
-    columnGap: "5%",
-    margin: "3%",
-}
-
-const text_style = {
-    fontWeight: "600",
-    fontSize: "1.5rem",
-    lineHeight: "2rem",
-    textAlign: "center" as "center"
-}
-
-const code_string_style = {
-    color: "#b87554"
-}
-
-const code_boolean_style = {
-    color: "#669955"
-}
-
-const code_integer_style = {
-    color: "#ff6371"
-}
-
-const code_style = {
-    fontWeight: "400",
-    fontSize: "1rem",
-    width: "fit-content",
-    whiteSpace: "pre-wrap" as "pre-wrap"
-}
-
-const image_style = {
-    marginLeft: "auto", 
-    marginRight: "auto",
-    display: "block"
-}
-
-const code_box_style = {
-    textAlign: "left" as "left", 
-    backgroundColor: "#E8E8E8",
-    width: "fit-content",
-    margin: "1.5% auto",
-    padding: "1%"
-}
-
-const answer_button_style = {
-    backgroundColor: "#D1D5DB",
-    color: "black",
-    fontSize: "20px",
-    border: "1px solid grey",
-    borderRadius: "30px",
-    padding: "15px 50px",
-    cursor: "pointer"
-}
-
-const answer_explanation_style = {
-    marginBottom: "3%",
-    fontSize: "1.2rem",
 }
