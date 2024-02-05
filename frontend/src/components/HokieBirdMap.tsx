@@ -79,7 +79,7 @@ export function HokieBirdMap({ props, setAllowNext }: { props: any, setAllowNext
 
     return (
         <div className="flex flex-row items-center text-xs xl:text-lg">
-            <Image className="w-[200px] xl:w-[400px]" src={`/Maze/${currentImage}`} width={400} height={400} alt="Hokie Bird Maze Image" />
+            <img className="w-[200px] xl:w-[400px]" src={`/Maze/${currentImage}`} width={400} height={400} alt="Hokie Bird Maze Image" />
             <div className="flex flex-row ">
                 <div>
                     {procedures.map((statement, index) => {

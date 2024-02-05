@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Reader } from '../Reader';
-import Image from 'next/image'
 import { CodeSnippet } from '../CodeSnippet';
 import { MultipleChoiceQuestion, Styles } from '../Question';
 import { Type, TypeStyle } from '../TypeStyle';
-import { IfStatementsQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
+import { IfStatementsQuestions } from '../../util/QuestionBank';
 
 export interface IIfStatementsProps {
     pageNumber: number
@@ -83,7 +82,7 @@ export function IfStatements({ props, setAllowNext }: { props: any | IIfStatemen
         return (
             <div className='flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5'>
                 <div className='flex flex-col-2 m-5 items-center gap-36'>
-                    <Image width={400} height={400} src={"/IfStatementsBook/derek_happy.png"} alt='Image of Derek the therapy dog.'/>
+                    <img width={400} height={400} src={"/IfStatementsBook/derek_happy.png"} alt='Image of Derek the therapy dog.' />
                     <div>
                         <Reader text='What is printed in the program?'/>
                         <CodeSnippet code={p1Code}/>
@@ -99,7 +98,7 @@ export function IfStatements({ props, setAllowNext }: { props: any | IIfStatemen
         return (
             <div className='flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5'>
                 <div className='flex flex-col-2 m-5 items-center gap-36'>
-                    <Image width={300} height={300} src={"/IfStatementsBook/bad_weather.png"} alt='Image of storm over Lane Stadium.'/>
+                    <img width={300} height={300} src={"/IfStatementsBook/bad_weather.png"} alt='Image of storm over Lane Stadium.' />
                     <div>
                         <Reader text='What is printed in the program?'/>
                         <CodeSnippet code={p2Code}/>
@@ -114,7 +113,7 @@ export function IfStatements({ props, setAllowNext }: { props: any | IIfStatemen
         return (
             <div className='flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5'>
                 <div className='flex flex-col-2 m-5 items-center gap-36'>
-                    <Image width={250} height={250} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of storm over Lane Stadium.'/>
+                    <img width={250} height={250} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of storm over Lane Stadium.' />
                     <div>
                         <Reader text='What is printed in the program below?'/>
                         <CodeSnippet code={p3Code}/>
@@ -129,7 +128,7 @@ export function IfStatements({ props, setAllowNext }: { props: any | IIfStatemen
         return(
             <div className='flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5'>
                 <div className='flex flex-col-2 m-5 items-center gap-36'>
-                    <Image width={250} height={250} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of storm over Lane Stadium.'/>
+                    <img width={250} height={250} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of storm over Lane Stadium.' />
                     <CodeSnippet code={p4Code}/>
                 </div>
                 <MultipleChoiceQuestion question={q4.question} answers={q4.answers} style={Styles.GRID2} setCorrect={setQ4Correct}/>

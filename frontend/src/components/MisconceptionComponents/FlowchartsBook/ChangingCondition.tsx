@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
 import { CodeStep } from '../../CodeStep';
-import { MultipleChoiceQuestion, Styles } from '@/components/Question';
-import { FlowchartQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
+import { MultipleChoiceQuestion, Styles } from '../../Question';
+import { FlowchartQuestions } from '../../../util/QuestionBank';
 
 export interface IChangingConditionProps {
     pageNumber: number
@@ -68,7 +68,7 @@ export function ChangingCondition({ props, setAllowNext }: { props: any | IChang
     function getPage1() {
         return (
             <div className='flex flex-col items-center text-center w-full'>
-                <Image height={1300} width={1300} src={"/FlowchartsBook/example_4.svg"} alt='Image of flow chart.'/>
+                <img height={1300} width={1300} src={"/FlowchartsBook/example_4.svg"} alt='Image of flow chart.' />
                 <div className='flex flex-col gap-5'>
                     <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/>
                 </div>
@@ -89,7 +89,7 @@ export function ChangingCondition({ props, setAllowNext }: { props: any | IChang
                     </div>
                     <div className='flex flex-col text-center w-1/2'>
                         {p3Text !== "" && <Reader text={p3Text}/>}
-                        {currentImage !== "" && <Image height={imageDim[0]} width={imageDim[1]} src={currentImage} alt='Image of flow chart'/>}
+                        {currentImage !== "" && <img height={imageDim[0]} width={imageDim[1]} src={currentImage} alt='Image of flow chart' />}
                     </div>
                 </div>
             </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Reader } from '../Reader';
-import Image from 'next/image'
 import { CodeSnippet } from '../CodeSnippet';
 import { Type, TypeStyle } from '../TypeStyle';
 
@@ -14,9 +13,9 @@ export function IfStatementIntro() {
                     </p>
 
     return (
-        <div className='flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-3'>
+        <div className='flex flex-col w-full items-center font-semibold text-lg text-center gap-3'>
             <Reader text='Example of if-statement'/>
-            <Image width={400} height={400} src={"/IfStatementsBook/cloudy.jpg"} alt='Image of construction'/>
+            <img width={400} height={400} src={"/IfStatementsBook/cloudy.jpg"} alt='Image of construction' />
             <CodeSnippet code={p1Code}/>
         </div>
     );

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image'
 import { CodeStep } from '../../CodeStep';
-import { MultipleChoiceQuestion, Styles } from '@/components/Question';
-import { FlowchartQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
+import { MultipleChoiceQuestion, Styles } from '../../Question';
+import { FlowchartQuestions } from '../../../util/QuestionBank';
 
 
 export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
@@ -51,7 +51,7 @@ export function BuyDonut({ setAllowNext }: {setAllowNext: React.Dispatch<React.S
                 <CodeStep props={{code: code, getLine: getLine, skipLines: [4, 5, 6], enableNext: enableNext}}/>
             </div>
             <div className='w-1/2'>
-                {currentImage !== "" && <Image className="object-contain max-w-full max-h-full h-fit" height={1000} width={1000} src={currentImage} alt='Partial image of flowchart'/>}
+                {currentImage !== "" && <img className="object-contain max-w-full max-h-full h-fit" height={1000} width={1000} src={currentImage} alt='Partial image of flowchart' />}
                 {showQuestion &&
                     <React.Fragment>
                         <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/>

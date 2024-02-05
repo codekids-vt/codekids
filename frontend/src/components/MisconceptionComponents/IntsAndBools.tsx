@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { MultipleChoiceQuestion, Styles } from '../Question';
 import { CodeSnippet } from '../CodeSnippet';
 import { Type, TypeStyle } from '../TypeStyle';
-import { VariablesQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
+import { VariablesQuestions } from '../../util/QuestionBank';
 
 export interface IIntsAndBoolsProps {
     pageNumber: number
@@ -45,8 +45,8 @@ export function IntsAndBools({ props, setAllowNext }: { props: any | IIntsAndBoo
                 case "'38'":
                     setDataTypeStyle(Type.STRING)
                     break;
-                case "38":
-                    setDataTypeStyle(Type.INTEGER)
+                // case "38":
+                //     setDataTypeStyle(Type.INTEGER)
                 default:
             }
         }
@@ -62,7 +62,7 @@ export function IntsAndBools({ props, setAllowNext }: { props: any | IIntsAndBoo
     function getPage1() {
         return(
             <div className='flex flex-col w-full text-center items-center'>
-                <Image className='m-10' width={350} height={350} src={"/VariablesBook/vt_syracuse_score.png"} alt='Image of football score between Virginia Tech and Syracuse'/>
+                <img className='m-10' width={350} height={350} src={"/VariablesBook/vt_syracuse_score.png"} alt='Image of football score between Virginia Tech and Syracuse' />
                 <div className='mb-5'>
                     <CodeSnippet code={<p>hokies_score = <TypeStyle text={q1ChosenAnswer} style={dataTypeStyle}/></p>}/>
                 </div>
@@ -75,7 +75,7 @@ export function IntsAndBools({ props, setAllowNext }: { props: any | IIntsAndBoo
     function getPage2() {
         return(
             <div className='flex flex-col w-full text-center items-center'>
-                <Image className='m-10' width={350} height={350} src={"/VariablesBook/vt_syracuse_score.png"} alt='Image of football score between Virginia Tech and Syracuse'/>
+                <img className='m-10' width={350} height={350} src={"/VariablesBook/vt_syracuse_score.png"} alt='Image of football score between Virginia Tech and Syracuse' />
                 <div className='mb-5'><CodeSnippet code={p2Code}/></div>
                 <MultipleChoiceQuestion question={q2.question} answers={q2.answers} style={Styles.HORIZONTAL} setCorrect={setQ2Correct}/>
             </div>

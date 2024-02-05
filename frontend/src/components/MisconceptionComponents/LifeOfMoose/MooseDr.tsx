@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import { PythonTutor } from '../../PythonTutor';
 import Image from 'next/image'
-import { LifeOfMooseQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
-import { MultipleChoiceQuestion, Styles } from '@/components/Question';
+import { LifeOfMooseQuestions } from '../../../util/QuestionBank';
+import { MultipleChoiceQuestion, Styles } from '../../Question';
 
 export interface IMooseDrProps {
     pageNumber: number
@@ -42,7 +42,7 @@ export function MooseDr({ props, setAllowNext }: { props: any | IMooseDrProps, s
         return (
             <div className='flex flex-col w-full h-full text-center items-center font-semibold text-lg text-center gap-3'>
                 <Reader text='Moose becomes a Doctor of Veterinary Medicine!'/>
-                <Image width={400} height={400} src={"/LifeOfMoose/moose_dr.png"} alt='Image of Moose graduating'/>
+                <img width={400} height={400} src={"/LifeOfMoose/moose_dr.png"} alt='Image of Moose graduating' />
                 <PythonTutor props={{code: code}}/>
                 <Reader text='Take a look at the code! What do you think will printed at the end?'/>
             </div>

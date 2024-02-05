@@ -1,6 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
-
 function Card({ 
   title, blurb, href 
 }: {
@@ -9,9 +6,9 @@ function Card({
   href: string
 }) {
     return (
-      <Link href={href} className="mx-auto">
+      <a href={href} className="mx-auto">
         <div className="max-w-sm m-2 drop-shadow-md transition-transform hover:-translate-y-1">
-          <Image
+          <img
             src="/GameImage_1.png"
             alt="Game card image"
             width={300}
@@ -27,7 +24,7 @@ function Card({
             </p>
           </div>
         </div>
-      </Link>
+      </a>
     );
   }
   

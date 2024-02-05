@@ -8,9 +8,9 @@ function FooterLink({
 }) {
   return (
     <li className="m-1 p-1 float-right tablet:float-none tablet:inline-block">
-      <Link href={href}>
+      <a href={href}>
         {name}
-      </Link>
+      </a>
     </li>
   )
 }

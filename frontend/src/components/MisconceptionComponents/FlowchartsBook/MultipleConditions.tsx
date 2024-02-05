@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
 import { CodeStep } from '../../CodeStep';
-import { MultipleChoiceQuestion, Styles } from '@/components/Question';
-import { FlowchartQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
+import { MultipleChoiceQuestion, Styles } from '../../Question';
+import { FlowchartQuestions } from '../../../util/QuestionBank';
 
 export interface IMultipleConditionsProps {
     pageNumber: number
@@ -68,8 +68,8 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
     function getPage1() {
         return(
             <div className='flex flex-col items-center text-center w-full'>
-                <Image width={400} height={400} src={"/FlowchartsBook/MultipleConditions/food.png"} alt='Image of food.'/>
-                <Image width={500} height={500} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.'/>
+                <img width={400} height={400} src={"/FlowchartsBook/MultipleConditions/food.png"} alt='Image of food.' />
+                <img width={500} height={500} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.' />
             </div>
         );
     }
@@ -79,10 +79,10 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
         return(
             <div className='flex flex-col items-center text-center w-full'>
                 <div className='grid grid-cols-2 col-span-2'>
-                    <Image className='m-auto col-span-1' width={120} height={120} src={"/FlowchartsBook/MultipleConditions/food2.png"} alt='Image of food.'/>
+                    <img className='m-auto col-span-1' width={120} height={120} src={"/FlowchartsBook/MultipleConditions/food2.png"} alt='Image of food.' />
                     <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/>
                 </div>
-                <Image width={500} height={500} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.'/>
+                <img width={500} height={500} src={"/FlowchartsBook/example_3.svg"} alt='Image of food.' />
             </div>
         );
     }
@@ -101,7 +101,7 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
                     </div>
                     <div className='flex flex-col text-center w-1/2'>
                         {p2Text !== "" && <Reader text={p2Text}/>}
-                        {currentImage !== "" && <Image height={imageDim[0]} width={imageDim[1]} src={currentImage} alt='Image of flow chart'/>}
+                        {currentImage !== "" && <img height={imageDim[0]} width={imageDim[1]} src={currentImage} alt='Image of flow chart' />}
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import joinClasses from "@/util/joinClasses";
+import joinClasses from "../util/joinClasses";
 
 interface ColorMapping {
   [name: string]: string

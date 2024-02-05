@@ -219,16 +219,16 @@ export function HokieBirdColoring({ props, setAllowNext }: { props: any, setAllo
     function HokieBird() {
         return (
             <div className="flex flex-col flex-grow justify-center items-center relative">
-                <Image src="/HokieBird.png" alt="book image" className={'center-left w-[200px] xl:w-[500px]'} width={500} height={500} />
-                <Image src="/HokieHead.png" alt="book image" className={`absolute center-left img-${colors.head} `} width={500} height={500} />
-                <Image src="/HokieNose.png" alt="book image" className={`absolute center-left img-${colors.nose} `} width={500} height={500} />
-                <Image src="/HokieNeck.png" alt="book image" className={`absolute center-left img-${colors.neck} `} width={500} height={500} />
-                <Image src="/HokieBody.png" alt="book image" className={`absolute center-left img-${colors.body} `} width={500} height={500} />
-                <Image src="/HokieTail.png" alt="book image" className={`absolute center-left img-${colors.tail} `} width={500} height={500} />
-                <Image src="/HokieLeftLeg.png" alt="book image" className={`absolute center-left img-${colors.left_leg} `} width={500} height={500} />
-                <Image src="/HokieRightLeg.png" alt="book image" className={`absolute center-left img-${colors.right_leg} `} width={500} height={500} />
-                <Image src="/HokieLeftFoot.png" alt="book image" className={`absolute center-left img-${colors.left_foot} `} width={500} height={500} />
-                <Image src="/HokieRightFoot.png" alt="book image" className={`absolute center-left img-${colors.right_foot} `} width={500} height={500} />
+                <img src="/HokieBird.png" alt="book image" className={'center-left w-[200px] xl:w-[500px]'} width={500} height={500} />
+                <img src="/HokieHead.png" alt="book image" className={`absolute center-left img-${colors.head} `} width={500} height={500} />
+                <img src="/HokieNose.png" alt="book image" className={`absolute center-left img-${colors.nose} `} width={500} height={500} />
+                <img src="/HokieNeck.png" alt="book image" className={`absolute center-left img-${colors.neck} `} width={500} height={500} />
+                <img src="/HokieBody.png" alt="book image" className={`absolute center-left img-${colors.body} `} width={500} height={500} />
+                <img src="/HokieTail.png" alt="book image" className={`absolute center-left img-${colors.tail} `} width={500} height={500} />
+                <img src="/HokieLeftLeg.png" alt="book image" className={`absolute center-left img-${colors.left_leg} `} width={500} height={500} />
+                <img src="/HokieRightLeg.png" alt="book image" className={`absolute center-left img-${colors.right_leg} `} width={500} height={500} />
+                <img src="/HokieLeftFoot.png" alt="book image" className={`absolute center-left img-${colors.left_foot} `} width={500} height={500} />
+                <img src="/HokieRightFoot.png" alt="book image" className={`absolute center-left img-${colors.right_foot} `} width={500} height={500} />
             </div>
         )
     }

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Reader } from '../Reader';
-import Image from 'next/image'
 import { CodeSnippet } from '../CodeSnippet';
 import { MultipleChoiceQuestion, Styles } from '../Question';
 import { TypeStyle, Type } from '../TypeStyle';
-import { IfStatementsQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
+import { IfStatementsQuestions } from '../../util/QuestionBank';
 
 export function LogicalOperators({ props, setAllowNext }: { props: any, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
 

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Reader } from '../../Reader';
-import { GetWindowScale } from '../GetWindowScale';
 import { PythonTutor } from '../../PythonTutor';
-import Image from 'next/image'
-import { LifeOfMooseQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
-import { MultipleChoiceQuestion, Styles } from '@/components/Question';
+import { LifeOfMooseQuestions } from '../../../util/QuestionBank';
+import { MultipleChoiceQuestion, Styles } from '../../Question';
 
 export interface IMooseChallengingYearProps {
     pageNumber: number
@@ -43,7 +41,7 @@ export function MooseChallengingYear({ props, setAllowNext }: { props: any | IMo
         return (
             <div className='flex flex-col w-full h-full text-center items-center font-semibold text-lg text-center gap-3'>
                 <Reader text='A challenging year for Moose.'/>
-                <Image width={300} height={300} src={"/LifeOfMoose/moose_with_hokie_bird.jpg"} alt='Image of Moose graduating'/>
+                <img width={300} height={300} src={"/LifeOfMoose/moose_with_hokie_bird.jpg"} alt='Image of Moose graduating' />
                 <PythonTutor props={{code: code}}/>
                 <Reader text='Take a look at the code! What do you think will printed throughout the program?'/>
             </div>

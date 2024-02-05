@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Reader } from '../../Reader';
 import { PythonTutor } from '../../PythonTutor'
 import Image from 'next/image'
-import { MultipleChoiceQuestion, Styles } from '@/components/Question';
-import { LifeOfMooseQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
+import { MultipleChoiceQuestion, Styles } from '../../Question';
+import { LifeOfMooseQuestions } from '../../../util/QuestionBank';
 
 export interface ILifeOfMooseProps {
     pageNumber: number
@@ -43,7 +43,7 @@ export function LifeOfMoose({ props, setAllowNext }: { props: any | ILifeOfMoose
     function getPage1() {
         return (
             <div className='flex flex-col w-full h-full text-center items-center font-semibold text-lg text-center gap-3'>
-                <Image width={500} height={500} src={"/LifeOfMoose/moose_2.png"} alt='Image of Moose'/>
+                <img width={500} height={500} src={"/LifeOfMoose/moose_2.png"} alt='Image of Moose' />
                 <Reader text='First look over the code and then answer the following questions!'/>
                 <PythonTutor props={{code: code}}/>
             </div>

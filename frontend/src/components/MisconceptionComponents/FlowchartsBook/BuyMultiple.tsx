@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import Image from 'next/image'
 import { CodeStep } from '../../CodeStep';
-import { MultipleChoiceQuestion, Styles } from '@/components/Question';
-import { FlowchartQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
+import { MultipleChoiceQuestion, Styles } from '../../Question';
+import { FlowchartQuestions } from '../../../util/QuestionBank';
 
 export interface IBuyMultipleProps {
     pageNumber: number
@@ -66,7 +66,7 @@ export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultiple
     {
         return (
             <div className='flex flex-col items-center text-center w-full'>
-                <Image width={600} height={600} src={"/FlowchartsBook/BuyMultiple/buy_multiple.png"} alt='Image of flowchart and food.'/>
+                <img width={600} height={600} src={"/FlowchartsBook/BuyMultiple/buy_multiple.png"} alt='Image of flowchart and food.' />
                 <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.VERTICAL} setCorrect={setQ1Correct}/>
             </div>
         );
@@ -85,7 +85,7 @@ export function BuyMultiple({ props, setAllowNext }: { props: any | IBuyMultiple
                     </div>
                     <div className='flex flex-col text-center w-1/2'>
                         {p2Text !== "" && <Reader text={p2Text}/>}
-                        {currentImage !== "" && <Image height={imageDim[0]} width={imageDim[1]} src={currentImage} alt='Image of flow chart'/>}
+                        {currentImage !== "" && <img height={imageDim[0]} width={imageDim[1]} src={currentImage} alt='Image of flow chart' />}
                     </div>
                 </div>
             </div>

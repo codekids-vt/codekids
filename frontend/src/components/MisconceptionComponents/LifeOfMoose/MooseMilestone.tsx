@@ -1,9 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Reader } from '../../Reader';
 import { PythonTutor } from '../../PythonTutor';
-import Image from 'next/image'
-import { LifeOfMooseQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
-import { MultipleChoiceQuestion, Styles } from '@/components/Question';
+import { LifeOfMooseQuestions } from '../../../util/QuestionBank';
+import { MultipleChoiceQuestion, Styles } from '../../Question';
 
 export interface IMooseMilestoneProps {
     pageNumber: number
@@ -42,7 +41,7 @@ export function MooseMilestone({ props, setAllowNext }: { props: any | IMooseMil
         return (
             <div className='flex flex-col w-full h-full text-center items-center font-semibold text-lg text-center gap-3'>
                 <Reader text='Remarkable milestones for Moose!'/>
-                <Image width={400} height={400} src={"/LifeOfMoose/moose_milestone.png"} alt='Image of Moose'/>
+                <img width={400} height={400} src={"/LifeOfMoose/moose_milestone.png"} alt='Image of Moose' />
                 <PythonTutor props={{code: code}}/>
                 <Reader text='Take a look at the code. What do you think will be printed at the end? We will trace the code in the next page.'/>
             </div>

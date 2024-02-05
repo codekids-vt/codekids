@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { CodeSnippet } from '../CodeSnippet';
 import { MultipleChoiceQuestion, Styles } from '../Question';
 import { TypeStyle, Type } from '../TypeStyle';
-import { IfStatementsQuestions } from '@/app/book/[id]/[pagenum]/QuestionBank';
+import { IfStatementsQuestions } from '../../util/QuestionBank';
 
 export interface IConditionalOperatorsProps {
     pageNumber: number
@@ -98,7 +98,7 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
         return (
             <div className='flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5'>
                 <Reader text='Test you knowledge about conditional operators!'/>
-                <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
+                <img width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names." />
                 <CodeSnippet code={p1Code}/>
                 <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.HORIZONTAL} setCorrect={setQ1Correct} buttonPressed={handleQ1}/>
             </div>
@@ -108,7 +108,7 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
     function getPage2() {
         return (
             <div className='flex flex-col w-full text-center items-center gap-5'>
-                <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
+                <img width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names." />
                 <CodeSnippet code={p2Code}/>
                 <MultipleChoiceQuestion question={q2.question} answers={q2.answers} style={Styles.HORIZONTAL} setCorrect={setQ2Correct} buttonPressed={handleQ2}/>
             </div>
@@ -118,7 +118,7 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
     function getPage3() {
         return (
             <div className='flex flex-col w-full text-center items-center gap-5'>
-                <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
+                <img width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names." />
                 <CodeSnippet code={p3Code}/>
                 <MultipleChoiceQuestion question={q3.question} answers={q3.answers} style={Styles.HORIZONTAL} setCorrect={setQ3Correct} buttonPressed={handleQ3}/>
             </div>
@@ -128,7 +128,7 @@ export function ConditionalOperators({ props, setAllowNext }: { props: any | ICo
     function getPage4() {
         return (
             <div className='flex flex-col w-full text-center items-center gap-5'>
-                <Image width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names."/>
+                <img width={300} height={300} src='/IfStatementsBook/therapy_dog_1.png' alt="Image of therapy dogs with their names." />
                 <CodeSnippet code={p4Code}/>
                 <MultipleChoiceQuestion question={q4.question} answers={q4.answers} style={Styles.HORIZONTAL} setCorrect={setQ4Correct} buttonPressed={handleQ4}/>
             </div>
