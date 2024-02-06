@@ -1,0 +1,102 @@
+generator client {
+  provider      = "prisma-client-py"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_PRISMA_URL") // uses connection pooling
+}
+
+model User {
+  id            Int               @id @default(autoincrement())
+  name          String?
+  email         String?           @unique
+  password      String?
+  type          AccountType
+  interactions  Interaction[]
+  courses       Course[]
+  CourseStudent CourseStudent[]
+}
+
+enum AccountType {
+  TEACHER
+  STUDENT
+}
+
+enum InteractionType {
+  QUESTION
+  NEXT_PAGE
+  HELP_ME
+}
+
+model Interaction {
+  id      Int      @id @default(autoincrement())
+  user    User     @relation(fields: [userId], references: [id])
+  interactionType InteractionType
+  userId  Int
+  answer  String?
+  correct Boolean?
+  date    DateTime
+  timeSinceLoad Int
+
+  question   Question? @relation(fields: [questionId], references: [id])
+  questionId Int?
+	@@map("QuestionAttempt")
+}
+
+model Question {
+  id               Int               @id @default(autoincrement())
+  question         String
+  answer           String
+  options          String[]
+  questionAttempts Interaction[]
+  page             Page              @relation(fields: [pageId], references: [id])
+  pageId           Int
+
+}
+
+model Book {
+  id     Int @id @default(autoincrement())
+  number Int
+
+  pages   Page[]
+  courses BookCourse[]
+}
+
+model Page {
+  id     Int @id @default(autoincrement())
+  number Int
+
+  book   Book @relation(fields: [bookId], references: [id])
+  bookId Int
+  questions Question[]
+}
+
+model CourseStudent {
+  id Int @id @default(autoincrement())
+
+  course    Course @relation(fields: [courseId], references: [id])
+  courseId  Int
+  student   User   @relation(fields: [studentId], references: [id])
+  studentId Int
+}
+
+model Course {
+  id    Int    @id @default(autoincrement())
+  title String
+
+  teacher   User            @relation(fields: [teacherId], references: [id])
+  teacherId Int
+  students  CourseStudent[]
+  books     BookCourse[]
+}
+
+model BookCourse {
+  id Int @id @default(autoincrement())
+
+  book     Book   @relation(fields: [bookId], references: [id])
+  bookId   Int
+  course   Course @relation(fields: [courseId], references: [id])
+  courseId Int
+}
