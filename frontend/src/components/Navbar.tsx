@@ -38,7 +38,7 @@ export default function Navbar() {
   return (
     <header className={`top-0 sticky w-full px-2 z-[100]`}>
       <div className="container mx-auto sm:flex justify-between">
-        <div className="flex flex-row items-center justify-between py-2 sm:py-0">
+        <div className="flex flex-row items-center justify-between py-1 sm:py-0">
           <a href='/'>
             <img
               src="/kidata.png"
@@ -66,10 +66,10 @@ export default function Navbar() {
           px-1
           bg-stone-800 text-white
           ${open ? "block" : "hidden"}
-          sm:block my-auto py-0.5 sm:py-0
+          sm:block my-auto  sm:py-0
           rounded-b-md font-semibold
         `}>
-          <ul className="tablet:mx-auto sm:flex sm:items-center text-center text-sm">
+          <ul className="tablet:mx-auto sm:flex sm:items-center text-center text-lg">
             {
               navbarLinks.map((route, i) => (
                 <NavButton {...route} key={`nav-${i}`} />
