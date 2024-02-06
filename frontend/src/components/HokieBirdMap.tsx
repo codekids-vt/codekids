@@ -1,7 +1,5 @@
-"use client"
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 interface HokieBirdColorState {
@@ -19,7 +17,7 @@ export function HokieBirdMap({ props, setAllowNext }: { props: any, setAllowNext
     const [currentImage, setCurrentImage] = useState(props.images[0]);
     const [procedures, setProcedures] = useState<string[]>(blankProcedures)
 
-    const router = useRouter()
+    const navigate = useNavigate()
 
     React.useEffect(() => {
         setAllowNext(false)
@@ -59,7 +57,7 @@ export function HokieBirdMap({ props, setAllowNext }: { props: any, setAllowNext
             if (i === procedures.length - 1) {
                 setMessage("You did it!")
                 setCurrentImage(props.images[procedures.length])
-                router.push(`/book/${props.bookID}/${props.pageNum + 1}`)
+                navigate(`/book/${props.bookID}/${props.pageNum + 1}`)
             }
         }
     }

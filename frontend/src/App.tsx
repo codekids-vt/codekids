@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import HomePage from './pages/HomePage';
 import Login from './pages/Login';
-import { useAuth } from "./context/AuthContext";
+// import { useAuth } from "./context/AuthContext";
 import Signup from "./pages/Signup";
 import BookPage from "./pages/BookPage";
 
 
 function App() {
-  const { token } = useAuth();
+  // const { token } = useAuth();
 
   return (
     <div>

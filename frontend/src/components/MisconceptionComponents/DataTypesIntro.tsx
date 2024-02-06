@@ -1,7 +1,6 @@
 "use client"
 import React from 'react';
 import { Reader } from '../Reader';
-import Image from 'next/image'
 import { CodeSnippet } from '../CodeSnippet';
 import { Type, TypeStyle } from '../TypeStyle';
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Reader } from '../../Reader';
 import { PythonTutor } from '../../PythonTutor';
-import Image from 'next/image'
 import { LifeOfMooseQuestions } from '../../../util/QuestionBank';
 import { MultipleChoiceQuestion, Styles } from '../../Question';
 

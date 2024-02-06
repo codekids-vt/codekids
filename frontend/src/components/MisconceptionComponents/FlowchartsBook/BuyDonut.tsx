@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Image from 'next/image'
 import { CodeStep } from '../../CodeStep';
 import { MultipleChoiceQuestion, Styles } from '../../Question';
 import { FlowchartQuestions } from '../../../util/QuestionBank';

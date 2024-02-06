@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image'
 import { MultipleChoiceQuestion, Styles } from '../Question';
 import { CodeSnippet } from '../CodeSnippet';
 import { Type, TypeStyle } from '../TypeStyle';

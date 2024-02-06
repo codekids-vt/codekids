@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Reader } from '../Reader';
-import Image from 'next/image'
 import { MultipleChoiceQuestion, Styles } from '../Question';
 import { CodeSnippet } from '../CodeSnippet';
 import { TypeStyle, Type } from '../TypeStyle';

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+// import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { DefaultService } from '../api';
+// import { DefaultService } from '../api';
 
 const Signup: React.FC = () => {
-  const { login } = useAuth();
+  // const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
@@ -19,20 +19,20 @@ const Signup: React.FC = () => {
 
   const handleSignup = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (!email || !password || !username || !date) {
-      return;
-    }
-    DefaultService.signupSignupPost({
-      email: email,
-      password: password,
-      username: username,
-      birth_date: date.toISOString().split('T')[0],
-    }).then((response) => {
-      login(response.token);
-      navigate('/dashboard');
-    }).catch((error) => {
-      console.log(error);
-    });
+    // if (!email || !password || !username || !date) {
+    //   return;
+    // }
+    // DefaultService.signupSignupPost({
+    //   email: email,
+    //   password: password,
+    //   username: username,
+    //   birth_date: date.toISOString().split('T')[0],
+    // }).then((response) => {
+    //   login(response.token);
+    //   navigate('/dashboard');
+    // }).catch((error) => {
+    //   console.log(error);
+    // });
   };
 
   return (

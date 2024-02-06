@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-// import { Press_Start_2P } from "next/font/google";
-
 interface NavLinkRoute {
   text: string;
   href: string;
