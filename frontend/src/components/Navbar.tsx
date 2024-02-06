@@ -20,11 +20,6 @@ const navbarLinks: readonly NavLinkRoute[] = [
   },
 ];
 
-// const pressStart2P = Press_Start_2P({
-//   weight: ["400"],
-//   subsets: ["latin"]
-// });
-
 function NavButton(route: NavLinkRoute) {
   const { text, href } = route;
 
@@ -76,9 +71,9 @@ export default function Navbar() {
           bg-stone-800 text-white
           ${open ? "block" : "hidden"}
           sm:block my-auto py-0.5 sm:py-0
-          rounded-b-md
+          rounded-b-md font-semibold
         `}>
-          <ul className="tablet:container tablet:mx-auto sm:flex sm:items-center text-center text-sm">
+          <ul className="tablet:mx-auto sm:flex sm:items-center text-center text-sm">
             {
               navbarLinks.map((route, i) => (
                 <NavButton {...route} key={`nav-${i}`} />

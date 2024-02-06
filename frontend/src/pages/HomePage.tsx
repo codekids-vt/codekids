@@ -1,3 +1,5 @@
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 type CategorySpine = {
   name: string;
@@ -42,6 +44,7 @@ function CategoryPreview({ category }: { category: CategorySpine }) {
 export default function HomePage() {
   return (
     <>
+      <Navbar />
       <div className="flex flex-col items-center container mx-auto z-10">
         <div>
           <img
@@ -65,6 +68,7 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 }
