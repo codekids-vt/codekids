@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/book/:bookId/:pageId" element={<BookPage />} />
+          <Route path="/book/:idString/:pagenumString" element={<BookPage />} />
           <Route path="/book_category/:categoryString" element={<BookCategoryPage />} />
         </Routes>
       </BrowserRouter>

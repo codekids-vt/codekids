@@ -89,25 +89,17 @@ function BookContent({ content, game, props, setAllowNext }: { content: string[]
 }
 
 export default function BookPage() {
-  let params = useParams();
+  let { idString, pagenumString } = useParams();
+  const id = parseInt(idString as string);
+  const pagenum = parseInt(pagenumString as string);
+
   const [help, setHelp] = useState(false);
   const [allowNext, setAllowNext] = useState(true);
 
-  if (!params.id || !params.pagenum) {
-    return (
-      <div className="flex flex-col flex-grow items-center justify-center">
-        <h1 className="text-center text-lg font-medium">
-          We could not find anything for this page.
-        </h1>
-      </div>
-    )
-  }
-
-
-
-  const bookNum = parseInt(params.id) - 1
-  const pageNum = parseInt(params.pagenum)
+  const bookNum = id - 1
+  const pageNum = pagenum
   const book = books.find(book => book.BookId === bookNum + 1);
+  console.log(books)
   if (!book) {
     return (
       <div className="flex flex-col flex-grow items-center justify-center">
@@ -130,7 +122,7 @@ export default function BookPage() {
 
   const forwardButton = (
     getNextPageNum() !== null ?
-      <a href={`/book/${params.id}/${getNextPageNum()}`}>
+      <a href={`/book/${id}/${getNextPageNum()}`}>
         <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
           Next
         </button>
@@ -145,7 +137,7 @@ export default function BookPage() {
 
   const backButton = (
     getPrevPageNum() !== null ?
-      <a href={`/book/${params.id}/${getPrevPageNum()}`}>
+      <a href={`/book/${id}/${getPrevPageNum()}`}>
         <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
           Back
         </button>
