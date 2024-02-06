@@ -44,7 +44,7 @@ export function VariableAssignment({ props, setAllowNext }: { props: any | IVari
 
     if (props.pageNumber === 1) {
         return getPage1()
-    } else if (props.pageNumber === 2) {
+    } else {
         return getPage2()
     }
 
@@ -52,7 +52,7 @@ export function VariableAssignment({ props, setAllowNext }: { props: any | IVari
         return (
             <div className='flex flex-col w-full text-center items-center'>
                 <div className='flex flex-col-2 m-5 items-center gap-56'>
-                    <img width={200} height={200} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.' />
+                    <img width={200} height={200} src={"/VariablesBook/hokie-bird-148.png"} alt='Hokie Bird holding 148th birthday sign.' />
                     <CodeSnippet code={p1Code} />
                 </div>
                 <MultipleChoiceQuestion question={q1.question} answers={q1.answers} style={Styles.HORIZONTAL} setCorrect={setQ1Correct} />
@@ -64,7 +64,7 @@ export function VariableAssignment({ props, setAllowNext }: { props: any | IVari
         return (
             <div className='flex flex-col w-full text-center items-center'>
                 <div className='flex flex-col-2 m-5 items-center gap-56'>
-                    <img width={200} height={200} src={"/VariablesBook/hokie-bird-148.png"} alt='Image of Hokie Bird holding 148th birthday sign.' />
+                    <img width={200} height={200} src={"/VariablesBook/hokie-bird-148.png"} alt='Hokie Bird holding 148th birthday sign.' />
                     <CodeSnippet code={p2Code} />
                 </div>
                 <MultipleChoiceQuestion question={q2.question} answers={q2.answers} style={Styles.HORIZONTAL} setCorrect={setQ2Correct} />

@@ -54,7 +54,7 @@ export function IntsAndBools({ props, setAllowNext }: { props: any | IIntsAndBoo
 
     if(props.pageNumber === 1) {
         return getPage1()
-    } else if(props.pageNumber === 2) {
+    } else {
         return getPage2()
     }
 

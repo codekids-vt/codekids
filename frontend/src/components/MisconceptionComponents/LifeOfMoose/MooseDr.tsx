@@ -34,13 +34,13 @@ export function MooseDr({ props, setAllowNext }: { props: any | IMooseDrProps, s
 
     if(props.pageNumber === 1) {
         return getPage1()
-    } else if (props.pageNumber === 2) {
+    } else {
         return getPage2()
     }
 
     function getPage1() {
         return (
-            <div className='flex flex-col w-full h-full text-center items-center font-semibold text-lg text-center gap-3'>
+            <div className='flex flex-col w-full h-full items-center font-semibold text-lg text-center gap-3'>
                 <Reader text='Moose becomes a Doctor of Veterinary Medicine!'/>
                 <img width={400} height={400} src={"/LifeOfMoose/moose_dr.png"} alt='Image of Moose graduating' />
                 <PythonTutor props={{code: code}}/>

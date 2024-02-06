@@ -74,7 +74,7 @@ export function IfStatements({ props, setAllowNext }: { props: any | IIfStatemen
         return getPage2()
     } else if (props.pageNumber === 3) {
         return getPage3()
-    } else if (props.pageNumber === 4) {
+    } else {
         return getPage4()
     }
 

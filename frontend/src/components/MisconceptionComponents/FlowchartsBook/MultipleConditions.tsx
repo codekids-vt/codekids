@@ -61,7 +61,7 @@ export function MultipleConditions({ props, setAllowNext }: { props: any | IMult
         return getPage1()
     } else if (props.pageNumber === 2) {
         return getPage2()
-    }else if (props.pageNumber === 3) {
+    } else {
         return getPage3()
     }
 

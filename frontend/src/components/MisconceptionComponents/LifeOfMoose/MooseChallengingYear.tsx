@@ -33,13 +33,13 @@ export function MooseChallengingYear({ props, setAllowNext }: { props: any | IMo
 
     if(props.pageNumber === 1) {
         return getPage1()
-    } else if (props.pageNumber === 2) {
+    } else {
         return getPage2()
     }
 
     function getPage1() {
         return (
-            <div className='flex flex-col w-full h-full text-center items-center font-semibold text-lg text-center gap-3'>
+            <div className='flex flex-col w-full h-full items-center font-semibold text-lg text-center gap-3'>
                 <Reader text='A challenging year for Moose.'/>
                 <img width={300} height={300} src={"/LifeOfMoose/moose_with_hokie_bird.jpg"} alt='Image of Moose graduating' />
                 <PythonTutor props={{code: code}}/>

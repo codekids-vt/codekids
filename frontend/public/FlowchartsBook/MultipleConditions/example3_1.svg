@@ -1,0 +1,22 @@
+<svg width="1132"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1132 804"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xlink="http://www.w3.org/1999/xlink" height="0">
+    <defs/>
+    <g transform="translate(5.5,5.5)" id="page1">
+        <rect width="1123" x="0" fill="none" y="0" height="794"/>
+        <g transform="translate(49.391000,76.000000)" id="shape1">
+            <path fill-rule="nonzero" stroke="#101843" stroke-width="1" fill="#ff9189" d="M.0,56.8C.0,25.4,49.1,.0,109.8,.0C170.4,.0,219.5,25.4,219.5,56.8C219.5,88.1,170.4,113.6,109.8,113.6C49.1,113.6,.0,88.1,.0,56.8z"/>
+            <text xml:space="preserve" style="fill:#191919;font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial;font-size:12.00pt">
+                <tspan x="48.0" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="29.8">my_money = 7</tspan>
+                <tspan x="18.7" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="52.8">pepperoni_price = 11</tspan>
+                <tspan x="44.0" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="75.8">salad_price = 8</tspan>
+                <tspan x="39.2" style="font-family:Arial Black,PingFang SC,Mircrosoft YaHei,Arial" y="98.8">burger_price = 5</tspan>
+            </text>
+        </g>
+        <g transform="translate(159.152000,189.568000)" id="shape2">
+            <path stroke="#191919" stroke-width="1" d="M.0,.0L.0,50.4" fill="none"/>
+            <path stroke="#191919" stroke-linecap="round" stroke-width="1" fill="#191919" d="M3.0,50.4L.0,56.4L-3.0,50.4L3.0,50.4"/>
+        </g>
+    </g>
+</svg>

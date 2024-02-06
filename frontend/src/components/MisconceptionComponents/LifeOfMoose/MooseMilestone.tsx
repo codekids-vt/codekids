@@ -33,13 +33,13 @@ export function MooseMilestone({ props, setAllowNext }: { props: any | IMooseMil
 
     if(props.pageNumber === 1) {
         return getPage1()
-    } else if (props.pageNumber === 2) {
+    } else {
         return getPage2()
     }
 
     function getPage1() {
         return (
-            <div className='flex flex-col w-full h-full text-center items-center font-semibold text-lg text-center gap-3'>
+            <div className='flex flex-col w-full h-full items-center font-semibold text-lg text-center gap-3'>
                 <Reader text='Remarkable milestones for Moose!'/>
                 <img width={400} height={400} src={"/LifeOfMoose/moose_milestone.png"} alt='Image of Moose' />
                 <PythonTutor props={{code: code}}/>

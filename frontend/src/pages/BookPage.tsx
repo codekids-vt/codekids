@@ -4,43 +4,42 @@ import { books } from "../util/books"
 import { Page } from "../util/BookData";
 import Navbar from "../components/Navbar";
 import { Reader } from "../components/Reader";
-// import { ColorPattern } from "../components/ColorPattern";
-// import NumericalPattern from "../components/NumericalPatter";
-// import { CodeComplete } from "../components/CodeComplete";
-// import { Reader } from "../components/Reader";
-// import { HokieBirdColoring } from "../components/HokieBirdColor";
-// import { HokieBirdMap } from "../components/HokieBirdMap";
-// import { HokieBirdIfCondition } from "../components/HokieBirdIfCondition";
-// import { PythonTutor } from "../components/PythonTutor";
-// import { DataTypesIntro } from "../components/MisconceptionComponents/DataTypesIntro";
-// import { IntsAndBools } from "../components/MisconceptionComponents/IntsAndBools";
-// import { VariableAssignment } from "../components/MisconceptionComponents/VariableAssignment";
-// import { Strings } from "../components/MisconceptionComponents/Strings";
-// import { Sequencing } from "../components/MisconceptionComponents/Sequencing";
-// import { IfStatementIntro } from "../components/MisconceptionComponents/IfStatementIntro";
-// import { ConditionalOperators } from "../components/MisconceptionComponents/ConditionalOperators";
-// import { LogicalOperators } from "../components/MisconceptionComponents/LogicalOperators";
-// import { IfStatements } from "../components/MisconceptionComponents/IfStatements";
-// import { LifeOfMoose } from "../components/MisconceptionComponents/LifeOfMoose/LifeOfMoose";
-// import { MooseMilestone } from "../components/MisconceptionComponents/LifeOfMoose/MooseMilestone";
-// import { MooseDr } from "../components/MisconceptionComponents/LifeOfMoose/MooseDr";
-// import { MooseChallengingYear } from "../components/MisconceptionComponents/LifeOfMoose/MooseChallengingYear";
-// import { MooseThankYou } from "../components/MisconceptionComponents/LifeOfMoose/MooseThankYou";
-// import { BuyDonut } from "../components/MisconceptionComponents/FlowchartsBook/BuyDonut";
-// import { BuyMultiple } from "../components/MisconceptionComponents/FlowchartsBook/BuyMultiple";
-// import { MultipleConditions } from "../components/MisconceptionComponents/FlowchartsBook/MultipleConditions";
-// import { ChangingCondition } from "../components/MisconceptionComponents/FlowchartsBook/ChangingCondition";
-// import { InputActivity } from "../components/InputActivity";
-// import { TableComponent } from "../components/TableComponent";
-// import { FoodTruckActivity } from "../components/FoodTruckActivity";
+import { ColorPattern } from "../components/ColorPattern";
+import NumericalPattern from "../components/NumericalPatter";
+import { CodeComplete } from "../components/CodeComplete";
+import { HokieBirdColoring } from "../components/HokieBirdColor";
+import { HokieBirdMap } from "../components/HokieBirdMap";
+import { HokieBirdIfCondition } from "../components/HokieBirdIfCondition";
+import { PythonTutor } from "../components/PythonTutor";
+import { DataTypesIntro } from "../components/MisconceptionComponents/DataTypesIntro";
+import { IntsAndBools } from "../components/MisconceptionComponents/IntsAndBools";
+import { VariableAssignment } from "../components/MisconceptionComponents/VariableAssignment";
+import { Strings } from "../components/MisconceptionComponents/Strings";
+import { Sequencing } from "../components/MisconceptionComponents/Sequencing";
+import { IfStatementIntro } from "../components/MisconceptionComponents/IfStatementIntro";
+import { ConditionalOperators } from "../components/MisconceptionComponents/ConditionalOperators";
+import { LogicalOperators } from "../components/MisconceptionComponents/LogicalOperators";
+import { IfStatements } from "../components/MisconceptionComponents/IfStatements";
+import { LifeOfMoose } from "../components/MisconceptionComponents/LifeOfMoose/LifeOfMoose";
+import { MooseMilestone } from "../components/MisconceptionComponents/LifeOfMoose/MooseMilestone";
+import { MooseDr } from "../components/MisconceptionComponents/LifeOfMoose/MooseDr";
+import { MooseChallengingYear } from "../components/MisconceptionComponents/LifeOfMoose/MooseChallengingYear";
+import { MooseThankYou } from "../components/MisconceptionComponents/LifeOfMoose/MooseThankYou";
+import { BuyDonut } from "../components/MisconceptionComponents/FlowchartsBook/BuyDonut";
+import { BuyMultiple } from "../components/MisconceptionComponents/FlowchartsBook/BuyMultiple";
+import { MultipleConditions } from "../components/MisconceptionComponents/FlowchartsBook/MultipleConditions";
+import { ChangingCondition } from "../components/MisconceptionComponents/FlowchartsBook/ChangingCondition";
+import { InputActivity } from "../components/InputActivity";
+import { TableComponent } from "../components/TableComponent";
+import { FoodTruckActivity } from "../components/FoodTruckActivity";
 
 function BookImage({ image, page, setAllowNext }: { image: string, page: Page, setAllowNext: Dispatch<SetStateAction<boolean>> }) {
   const isImage = image && image.includes(".");
 
   return (
     <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
-      {isImage && <img src={image} alt="book image" width={600} height={600} className="object-contain max-w-full max-h-full" />}
-      {/* {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />}
+      {isImage && <img src={image} alt="book" width={600} height={600} className="object-contain max-w-full max-h-full" />}
+      {image === "HokieBirdActivity" && <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && <HokieBirdMap props={page?.props} setAllowNext={setAllowNext} />}
       {image === "HokieBirdIfConditionActivity" && <HokieBirdIfCondition props={page?.props} setAllowNext={setAllowNext} />}
@@ -63,7 +62,7 @@ function BookImage({ image, page, setAllowNext }: { image: string, page: Page, s
       {image === "MultipleConditions" && <MultipleConditions props={page.props} setAllowNext={setAllowNext} />}
       {image === "ChangingCondition" && <ChangingCondition props={page.props} setAllowNext={setAllowNext} />}
       {image === "InputActivity" && <InputActivity props={page?.props} setAllowNext={setAllowNext} />}
-      {image === "FoodTruckActivity" && <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext} />} */}
+      {image === "FoodTruckActivity" && <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext} />}
 
     </div>
   );
@@ -80,10 +79,10 @@ function BookContent({ content, game, props, setAllowNext }: { content: string[]
         ))
         }
       </ul>
-      {/* {game && game === "color" && <ColorPattern />} */}
-      {/* {game && game === "number" && <NumericalPattern pattern={props.pattern} answer={props.ans[0]} />} */}
-      {/* {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />} */}
-      {/* {game && game === "TableComponent" && <TableComponent cellContents={props.cellContents} />} */}
+      {game && game === "color" && <ColorPattern />}
+      {game && game === "number" && <NumericalPattern pattern={props.pattern} answer={props.ans[0]} />}
+      {game && game === "code" && <CodeComplete beforeCode="if (" afterCode=") brushTeeth()" answer="teethDirty" choices={["eating", "teethDirty", "playing"]} />}
+      {game && game === "TableComponent" && <TableComponent cellContents={props.cellContents} />}
     </div>
   );
 
@@ -247,7 +246,7 @@ export default function BookPage() {
                         </ul>
                       </div>
                       {page.props.helpImage &&
-                        <img src={page.props.helpImage} alt="Help image" width={750} height={250}></img>
+                        <img src={page.props.helpImage} alt="Help" width={750} height={250}></img>
                       }
                       <div className="flex justify-end p-5 border-t rounded-b">
                         <button

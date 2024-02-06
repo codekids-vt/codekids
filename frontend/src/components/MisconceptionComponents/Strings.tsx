@@ -71,7 +71,7 @@ export function Strings({ props, setAllowNext }: { props: any | IStringsProps, s
         return getPage2()
     } else if (props.pageNumber == 3) {
         return getPage3()
-    } else if (props.pageNumber === 4) {
+    } else {
         return getPage4()
     }
 
