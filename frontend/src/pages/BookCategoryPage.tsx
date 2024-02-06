@@ -1,6 +1,9 @@
 import { BookCategory } from '../util/BookData'
 import { useParams, useNavigate } from 'react-router-dom'
 import ActivityBookList from '../components/ActivityBookList'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import Background from '../components/Background'
 
 export default function BookCategoryPage() {
   // try to get the category from the params
@@ -14,7 +17,9 @@ export default function BookCategoryPage() {
 
   return (
     <>
-      <div className="flex flex-col items-center container mx-auto z-10">
+      <Navbar />
+      <Background />
+      <div className="flex flex-col items-center container mx-auto z-10 min-h-screen">
         <div>
           <img
             src="/background.png"
@@ -31,6 +36,7 @@ export default function BookCategoryPage() {
         </div>
         <ActivityBookList category={category} />
       </div>
+      <Footer />
     </>
   )
 }

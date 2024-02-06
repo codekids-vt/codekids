@@ -1,3 +1,4 @@
+import Background from "../components/Background";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -44,8 +45,9 @@ function CategoryPreview({ category }: { category: CategorySpine }) {
 export default function HomePage() {
   return (
     <>
+      <Background />
       <Navbar />
-      <div className="flex flex-col items-center container mx-auto z-10">
+      <div className="flex flex-col items-center container mx-auto z-10 min-h-screen">
         <div>
           <img
             src="/background.png"

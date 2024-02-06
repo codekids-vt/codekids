@@ -13,11 +13,7 @@ const navbarLinks: readonly NavLinkRoute[] = [
   {
     text: "Activities",
     href: "/activities/1"
-  },
-  {
-    text: "Resources",
-    href: "/resources"
-  },
+  }
 ];
 
 function NavButton(route: NavLinkRoute) {
@@ -82,14 +78,14 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <a className="my-auto" href="/contact">
+        <a className="my-auto" href="/login">
           <p className={`
             px-3 py-2
             text-neutral-100 text-center text-sm bg-primary-green rounded-md
             transition-shadow duration-200 shadow-black/40 shadow-none
             hover:shadow-black/20 hover:shadow-md
           `}>
-            CONTACT US
+            Log in
           </p>
         </a>
       </div>

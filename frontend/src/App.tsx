@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Signup from "./pages/Signup";
 import BookPage from "./pages/BookPage";
 import BookCategoryPage from "./pages/BookCategoryPage";
+import ActivityPostList from "./pages/Activities";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/book/:idString/:pagenumString" element={<BookPage />} />
           <Route path="/book_category/:categoryString" element={<BookCategoryPage />} />
+          <Route path="/activities/:pageStr" element={<ActivityPostList />} />
         </Routes>
       </BrowserRouter>
     </div>
