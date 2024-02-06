@@ -1,5 +1,6 @@
-# import pymongo
-# from pymongo.database import Database
+from prisma import Prisma
+
+prisma = Prisma()
 
 # myclient = pymongo.MongoClient(
 #     uuidRepresentation="standard",
@@ -10,9 +11,6 @@
 #     myclient[database_name].create_collection("users")
 #     myclient[database_name].create_collection("results")
 
-# db = myclient.get_database(database_name)
 
-
-def get_mongo_db():
-    # return db
-    return "db"
+def get_db():
+    return prisma

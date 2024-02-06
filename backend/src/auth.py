@@ -1,13 +1,13 @@
 from fastapi import Security, HTTPException, status
 from fastapi.security import APIKeyHeader
-from db import get_mongo_db
+from db import get_db
 
 
 api_key_header = APIKeyHeader(name="X-API-Key")
 
 
 def check_api_key(api_key: str):
-    db = get_mongo_db()
+    db = get_db()
     users = db["users"]
     user = users.find_one({"token": api_key}, {"_id": 0})
     if user:
@@ -16,7 +16,7 @@ def check_api_key(api_key: str):
 
 
 def get_user_from_api_key(api_key: str):
-    db = get_mongo_db()
+    db = get_db()
     users = db["users"]
     user = users.find_one({"token": api_key}, {"_id": 0})
     if user:

@@ -1,6 +1,6 @@
 generator client {
   provider      = "prisma-client-py"
-  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+  interface     = "asyncio"
 }
 
 datasource db {
@@ -10,10 +10,11 @@ datasource db {
 
 model User {
   id            Int               @id @default(autoincrement())
+  token         String
+  type          AccountType
   name          String?
   email         String?           @unique
   password      String?
-  type          AccountType
   interactions  Interaction[]
   courses       Course[]
   CourseStudent CourseStudent[]
