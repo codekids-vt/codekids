@@ -12,11 +12,11 @@ from prisma import Prisma
 from prisma.enums import AccountType
 from prisma.models import User
 import dotenv
-from db import db
+from src.db import db
 
 
 dotenv.load_dotenv()
-from auth import get_user
+from src.auth import get_user
 
 
 @contextlib.asynccontextmanager
