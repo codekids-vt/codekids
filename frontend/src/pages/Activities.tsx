@@ -1,6 +1,4 @@
 import { useParams } from "react-router-dom";
-import matter from "gray-matter";
-import path from 'path';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Background from "../components/Background";
@@ -29,31 +27,8 @@ function PostPreview({ postData }: { postData: PostData }) {
   )
 }
 
-// function getActivitiesHeaders(): PostData[] {
-//   console.log(process.cwd())
-//   return fs.readdirSync(path.join(process.cwd(), "_activities")).map((fileName, idx) => {
-//     const id = fileName.replace(/\.md$/, "");
-//     const fullPath = path.join(process.cwd(), "_activities", fileName);
-//     const fileContents = fs.readFileSync(fullPath, "utf8");
-//     const matterResult = matter(fileContents);
-
-//     return {
-//       id,
-//       link: `/activity/${idx + 1}`,
-//       ...(matterResult.data as {
-//         image: string,
-//         postId: string,
-//         title: string,
-//         author: string,
-//         blurb: string,
-//       }),
-//     };
-//   });
-// }
-
 export default function ActivityPostList() {
   let { pageStr } = useParams();
-  // const allActivitiesHeaders = getActivitiesHeaders();
 
   const otherPostsData = [
     {
@@ -86,7 +61,7 @@ export default function ActivityPostList() {
       title: "Codekids Teacher Survey",
       author: "CodeKids Team",
       blurb: "Survey to help us improve our program!",
-      link: "/https://forms.gle/zBKvsawuamKYZ5b88",
+      link: "https://forms.gle/zBKvsawuamKYZ5b88",
     },
   ]
 
@@ -97,11 +72,6 @@ export default function ActivityPostList() {
       <div className="flex flex-col items-center container mx-auto z-10 min-h-screen">
         <section className="p-2 mx-auto max-w-6xl">
           <ul className="flex flex-col gap-2">
-            {/* {allActivitiesHeaders?.length > 0 &&
-            (allActivitiesHeaders.map((postData: PostData, i: number) => (
-              <PostPreview postData={postData} key={`postData-${i}`} />
-            ))
-            )} */}
             {otherPostsData?.length > 0 &&
               (otherPostsData.map((postData: PostData, i: number) => (
                 <PostPreview postData={postData} key={`postData-${i}`} />
