@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
-// import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Background from '../components/Background';
 import Navbar from '../components/Navbar';
-// import { DefaultService } from '../api';
+import { AuthService } from '../api';
 
 const Login: React.FC = () => {
-  // const { login } = useAuth();
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    // DefaultService.loginLoginPost({
-    //   username: email,
-    //   password: password
-    // }).then((response) => {
-    //   login(response.token);
-    //   navigate('/dashboard');
-    // }).catch((error) => {
-    //   console.log(error);
-    // });
+    AuthService.loginLoginPost({
+      username: email,
+      password: password
+    }).then((response) => {
+      login(response.token);
+      navigate('/');
+    }).catch((error) => {
+      console.log(error);
+    });
   };
 
   return (

@@ -1,24 +1,20 @@
 from fastapi import Security, HTTPException, status
 from fastapi.security import APIKeyHeader
-from db import get_db
+from db import db
 
 
 api_key_header = APIKeyHeader(name="X-API-Key")
 
 
-def check_api_key(api_key: str):
-    db = get_db()
-    users = db["users"]
-    user = users.find_one({"token": api_key}, {"_id": 0})
+async def check_api_key(api_key: str):
+    user = await db.user.find_first(where={"token": api_key})
     if user:
         return True
     return False
 
 
-def get_user_from_api_key(api_key: str):
-    db = get_db()
-    users = db["users"]
-    user = users.find_one({"token": api_key}, {"_id": 0})
+async def get_user_from_api_key(api_key: str):
+    user = await db.user.find_first(where={"token": api_key})
     if user:
         return user
     raise HTTPException(
@@ -26,12 +22,11 @@ def get_user_from_api_key(api_key: str):
     )
 
 
-def get_user(
+async def get_user(
     api_key_header: str = Security(api_key_header),
 ):
     if check_api_key(api_key_header):
-        user = get_user_from_api_key(api_key_header)
-        return user
+        return await get_user_from_api_key(api_key_header)
     raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED, detail="Missing or invalid API key"
     )

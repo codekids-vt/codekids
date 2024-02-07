@@ -1,38 +1,31 @@
 import React, { useState } from 'react';
-// import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-// import { DefaultService } from '../api';
+import { AccountType, AuthService } from '../api';
 
-const Signup: React.FC = () => {
-  // const { login } = useAuth();
+const Signup = () => {
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  const [date, setDate] = useState<Date>();
   const navigate = useNavigate();
-
-  React.useEffect(() => {
-    if (localStorage.getItem('token')) {
-      navigate('/dashboard');
-    }
-  }, [navigate]);
 
   const handleSignup = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // if (!email || !password || !username || !date) {
-    //   return;
-    // }
-    // DefaultService.signupSignupPost({
-    //   email: email,
-    //   password: password,
-    //   username: username,
-    //   birth_date: date.toISOString().split('T')[0],
-    // }).then((response) => {
-    //   login(response.token);
-    //   navigate('/dashboard');
-    // }).catch((error) => {
-    //   console.log(error);
-    // });
+    if (!email || !password || !username) {
+      return;
+    }
+    AuthService.signupSignupPost({
+      email: email,
+      password: password,
+      username: username,
+      account_type: AccountType.STUDENT,
+    }).then((response) => {
+      login(response.token);
+      navigate('/');
+    }).catch((error) => {
+      console.log(error);
+    });
   };
 
   return (
