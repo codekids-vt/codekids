@@ -15,7 +15,7 @@ To startup a local database, you can use the following command:
 
 ```bash
 cd backend
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Run frontend
