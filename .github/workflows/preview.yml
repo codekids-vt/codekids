@@ -35,4 +35,4 @@ jobs:
         run: |
           echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ./kubeconfig
           export KUBECONFIG=./kubeconfig
-          kubectl set image deployment/codekids-preview codekids=ghcr.io/${{ github.repository_owner }}/codekids-preview:${{ github.sha }} --namespace codekids-app
+          kubectl set image deployment/codekids-preview codekids-preview=ghcr.io/${{ github.repository_owner }}/codekids-preview:${{ github.sha }} --namespace codekids-app
