@@ -1,6 +1,8 @@
 generator client {
   provider      = "prisma-client-py"
   interface     = "asyncio"
+  binaryTargets = ["native", "darwin-arm64"]
+
 }
 
 datasource db {
