@@ -13,6 +13,7 @@ from prisma.enums import AccountType
 from prisma.models import User
 import dotenv
 from src.db import db
+from src.routers.courses import courses_router
 
 
 dotenv.load_dotenv()
@@ -34,7 +35,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-#app.include_router(courses.courses_router)
+app.include_router(courses_router)
 
 
 class SignupRequest(BaseModel):
@@ -87,4 +88,4 @@ async def login(credentials: HTTPBasicCredentials) -> LoginResponse:
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="localhost", port=8080, reload=True)
+    uvicorn.run("src.main:app", host="localhost", port=8080, reload=True)

@@ -1,6 +1,15 @@
-from fastapi import APIRouter
+from typing import Annotated, Optional, Type
+from fastapi import APIRouter, Depends
 from fastapi import HTTPException
 from src.db import db
+from prisma.models import User
+from prisma.enums import AccountType
+from src.auth import get_user
+from pydantic import BaseModel
+
+class CourseCreate(BaseModel):
+    title: str
+    teacherId: int
 
 courses_router = APIRouter()
 
@@ -14,9 +23,12 @@ async def search_books(limit: int = 0):
     return books
 
 @courses_router.post("/courses")
-async def create_course(course_data):
-    course = await db.course.create(data=course_data.dict())
-    return course
+async def create_course(course_data:CourseCreate):
+    try:
+        course = await db.course.create(data=course_data.dict())
+        return course
+    except:
+        raise HTTPException(status_code=400, detail="Invalid course data")
 
 @courses_router.get("/courses/{course_id}")
 async def get_course(course_id: int):
