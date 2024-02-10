@@ -19,7 +19,7 @@ EXPOSE 8080
 RUN prisma generate
 
 # Define the command to run the application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
 
 
 
