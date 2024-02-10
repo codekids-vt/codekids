@@ -10,4 +10,7 @@ jobs:
       - name: prettier
         run: cd frontend && npx prettier . --check 
       - name: black
-        run: cd backend && black . --check
+        run: |
+          cd backend &&
+          pip install black &&
+          black . --check
