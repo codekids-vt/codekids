@@ -13,7 +13,7 @@ from prisma.enums import AccountType
 from prisma.models import User
 import dotenv
 from src.db import db
-from src.routers.courses import courses_router
+from src.routers import books_router, courses_router
 
 
 dotenv.load_dotenv()
@@ -36,6 +36,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(courses_router)
+app.include_router(books_router)
 
 
 class SignupRequest(BaseModel):
