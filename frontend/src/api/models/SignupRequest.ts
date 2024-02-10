@@ -2,11 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { AccountType } from './AccountType';
+import type { AccountType } from "./AccountType";
 export type SignupRequest = {
-    email: string;
-    username: string;
-    password: string;
-    account_type: AccountType;
+  email: string;
+  username: string;
+  password: string;
+  account_type: AccountType;
 };
-

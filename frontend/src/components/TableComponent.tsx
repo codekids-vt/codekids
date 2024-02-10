@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface TableComponentProps {
   cellContents: number[];
@@ -7,7 +7,7 @@ interface TableComponentProps {
 export function TableComponent({ cellContents }: TableComponentProps) {
   const renderTable = () => {
     const rows = [];
-  
+
     for (let i = 0; i < 5; i++) {
       const cells = [];
       for (let j = 0; j < 2; j++) {
@@ -16,24 +16,25 @@ export function TableComponent({ cellContents }: TableComponentProps) {
           <td key={j} className="border border-black">
             <div className="flex flex-wrap justify-center space-x-4">
               <div className="text-white p-2 rounded-md shadow-sm">
-                {cellContents && Array.isArray(cellContents) && index < cellContents.length
+                {cellContents &&
+                Array.isArray(cellContents) &&
+                index < cellContents.length
                   ? cellContents[index]
-                  : '?'}
+                  : "?"}
               </div>
             </div>
-          </td>
+          </td>,
         );
       }
       rows.push(<tr key={i}>{cells}</tr>);
     }
-  
+
     return (
       <table className="border-collapse border bg-primary-green border-black">
         <tbody>{rows}</tbody>
       </table>
     );
   };
-  
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">

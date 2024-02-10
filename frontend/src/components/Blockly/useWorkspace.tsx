@@ -9,15 +9,15 @@ export default function useWorkspace({
   ref,
   workspaceOptions,
   toolboxDefinition,
-  onWorkspaceChange
+  onWorkspaceChange,
 }: BlocklyHookProps) {
   const [workspace, setWorkspace] = useState<WorkspaceSvg>();
   const workspaceOptionsRef = useRef(workspaceOptions);
 
   useEffect(() => {
     workspaceOptionsRef.current = workspaceOptions;
-  }, [workspaceOptions])
-  
+  }, [workspaceOptions]);
+
   // when either the toolbox or ref change, re-inject:
   useEffect(() => {
     setWorkspace(
@@ -26,9 +26,9 @@ export default function useWorkspace({
         ref.current ?? "",
         {
           ...workspaceOptionsRef.current,
-          toolbox: toolboxDefinition
-        }
-      )
+          toolbox: toolboxDefinition,
+        },
+      ),
     );
   }, [ref, toolboxDefinition]);
 
@@ -37,13 +37,13 @@ export default function useWorkspace({
     if (workspace) {
       workspace.updateToolbox(toolboxDefinition);
     }
-  }, [workspace, toolboxDefinition])
+  }, [workspace, toolboxDefinition]);
 
   const handleWorkspaceChange = useCallback(() => {
     if (onWorkspaceChange && workspace) {
       onWorkspaceChange(workspace);
     }
-  }, [onWorkspaceChange, workspace])
+  }, [onWorkspaceChange, workspace]);
 
   useEffect(() => {
     // check for callback first:

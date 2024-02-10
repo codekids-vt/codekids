@@ -1,17 +1,17 @@
-import { BookCategory } from '../util/BookData'
-import { useParams, useNavigate } from 'react-router-dom'
-import ActivityBookList from '../components/ActivityBookList'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import Background from '../components/Background'
+import { BookCategory } from "../util/BookData";
+import { useParams, useNavigate } from "react-router-dom";
+import ActivityBookList from "../components/ActivityBookList";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import Background from "../components/Background";
 
 export default function BookCategoryPage() {
   // try to get the category from the params
-  const { categoryString } = useParams()
-  const navigate = useNavigate()
+  const { categoryString } = useParams();
+  const navigate = useNavigate();
   // if the category is not valid, redirect to the home page
   if (!Object.values(BookCategory).includes(categoryString as BookCategory)) {
-    navigate('/')
+    navigate("/");
   }
   let category = categoryString as BookCategory;
 
@@ -29,14 +29,12 @@ export default function BookCategoryPage() {
             className="mx-auto"
           />
           <div className="card p-2 mb-2 max-w-lg text-center">
-            <h1 className="text-2xl font-bold">
-              Pick a book!
-            </h1>
+            <h1 className="text-2xl font-bold">Pick a book!</h1>
           </div>
         </div>
         <ActivityBookList category={category} />
       </div>
       <Footer />
     </>
-  )
+  );
 }

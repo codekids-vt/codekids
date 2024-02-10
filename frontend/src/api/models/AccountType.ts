@@ -3,6 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export enum AccountType {
-    TEACHER = 'TEACHER',
-    STUDENT = 'STUDENT',
+  TEACHER = "TEACHER",
+  STUDENT = "STUDENT",
 }
