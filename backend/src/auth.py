@@ -25,7 +25,7 @@ async def get_user_from_api_key(api_key: str):
 async def get_user(
     api_key_header: str = Security(api_key_header),
 ):
-    if check_api_key(api_key_header):
+    if await check_api_key(api_key_header):
         return await get_user_from_api_key(api_key_header)
     raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED, detail="Missing or invalid API key"
