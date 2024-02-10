@@ -8,6 +8,4 @@ export type BlocklyProps = {
   onWorkspaceChange?: (workspace: Workspace) => void;
 };
 
-export type BlocklyHookProps =
-  & BlocklyProps
-  & { ref: RefObject<Element> };
+export type BlocklyHookProps = BlocklyProps & { ref: RefObject<Element> };

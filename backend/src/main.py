@@ -1,14 +1,11 @@
 import contextlib
-from datetime import date, datetime
 import secrets
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBasicCredentials
-import os
-from typing import Annotated, Optional, Type
+from typing import Annotated
 import uvicorn
 from pydantic import BaseModel
-from prisma import Prisma
 from prisma.enums import AccountType
 from prisma.models import User
 import dotenv

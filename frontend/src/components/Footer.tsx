@@ -1,18 +1,11 @@
 import Link from "react-router-dom";
 
-function FooterLink({ 
-  name, href
-}: {
-  name: string, 
-  href: string
-}) {
+function FooterLink({ name, href }: { name: string; href: string }) {
   return (
     <li className="m-1 p-1 float-right tablet:float-none tablet:inline-block">
-      <a href={href}>
-        {name}
-      </a>
+      <a href={href}>{name}</a>
     </li>
-  )
+  );
 }
 
 export default function Footer() {

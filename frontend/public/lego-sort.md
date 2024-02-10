@@ -5,14 +5,15 @@ blurb: An input/output exercise using Legos.
 postId: 1
 image: /lego-sort-example-clumping.png
 tags:
-- Groupwork
-- I/O
-- Counting
-- Medium
-- Hard
-- Medium Length
-- Long
+  - Groupwork
+  - I/O
+  - Counting
+  - Medium
+  - Hard
+  - Medium Length
+  - Long
 ---
+
 # Simulating I/O with LEGOs
 
 This proposal details an adaptation of the KIDATA Computer Science Standards 4.2 LEGO stacking game idea in an in-person format.
@@ -126,7 +127,7 @@ Introducing clumping does not eliminate the concept of splitting, but may simpli
 
 ## Recommendations
 
-It is is *highly* recommended to create your base and goal target LEGO stacks after creating your LEGO exchange.
+It is is _highly_ recommended to create your base and goal target LEGO stacks after creating your LEGO exchange.
 
 Using a random reference image may lead to impossible (or extremely difficult) solutions. It is also encouraged to create your LEGO exchange rules with a means to revert an in-progress stack back to its initial state.
 

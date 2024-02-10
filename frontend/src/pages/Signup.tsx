@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { AccountType, AuthService } from '../api';
+import React, { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { AccountType, AuthService } from "../api";
 
 const Signup = () => {
   const { login } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
   const handleSignup = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -20,12 +20,14 @@ const Signup = () => {
       password: password,
       username: username,
       account_type: AccountType.STUDENT,
-    }).then((response) => {
-      login(response.token);
-      navigate('/');
-    }).catch((error) => {
-      console.log(error);
-    });
+    })
+      .then((response) => {
+        login(response.token);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -38,9 +40,18 @@ const Signup = () => {
         </div>
 
         <div className="p-2 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white px-6 py-6 shadow-lg rounded-2xl sm:px-12 border-2 border-blue-500" style={{ boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}>
+          <div
+            className="bg-white px-6 py-6 shadow-lg rounded-2xl sm:px-12 border-2 border-blue-500"
+            style={{
+              boxShadow:
+                "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+            }}
+          >
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Email address
               </label>
               <div className="p-2">
@@ -55,7 +66,10 @@ const Signup = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Password
               </label>
               <div className="p-2">
@@ -70,7 +84,10 @@ const Signup = () => {
             </div>
 
             <div>
-              <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Name
               </label>
               <div className="p-2">
@@ -84,12 +101,15 @@ const Signup = () => {
             </div>
 
             <div>
-              <label htmlFor="birthday" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="birthday"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Birthday
               </label>
             </div>
 
-            <div className='p-2'>
+            <div className="p-2">
               <button
                 type="submit"
                 onClick={handleSignup}
@@ -101,8 +121,11 @@ const Signup = () => {
           </div>
 
           <p className="p-2 text-center text-sm text-gray-500">
-            Already have an account?{' '}
-            <a href="/login" className="font-medium text-blue-600 hover:underline">
+            Already have an account?{" "}
+            <a
+              href="/login"
+              className="font-medium text-blue-600 hover:underline"
+            >
               Login
             </a>
           </p>

@@ -11,11 +11,7 @@ function ViewAllGamesButton() {
         <path d="M18 7.5a3 3 0 013 3V18a3 3 0 01-3 3h-7.5a3 3 0 01-3-3v-7.5a3 3 0 013-3H18z" />
       </svg>
 
-      <button
-        type="button"
-      >
-        View All Games -&gt;
-      </button>
+      <button type="button">View All Games -&gt;</button>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

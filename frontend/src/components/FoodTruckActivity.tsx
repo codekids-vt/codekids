@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface IFoodTruckActivityProps {
   showIOLabels: boolean;
@@ -42,19 +42,21 @@ export function FoodTruckActivity({
       )}
 
       <div className="flex flex-wrap justify-center space-x-4">
-        {options.map((option: { text: string; image: string }, index: number) => (
-          <button
-            key={index}
-            className={`px-4 py-2 text-lg font-medium ${
-              selectedOption === option.text
-                ? 'bg-primary-green text-white'
-                : 'bg-gray-100 text-gray-800'
-            } border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-primary-green`}
-            onClick={() => handleOptionClick(option.text)}
-          >
-            {option.text}
-          </button>
-        ))}
+        {options.map(
+          (option: { text: string; image: string }, index: number) => (
+            <button
+              key={index}
+              className={`px-4 py-2 text-lg font-medium ${
+                selectedOption === option.text
+                  ? "bg-primary-green text-white"
+                  : "bg-gray-100 text-gray-800"
+              } border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-primary-green`}
+              onClick={() => handleOptionClick(option.text)}
+            >
+              {option.text}
+            </button>
+          ),
+        )}
       </div>
 
       {selectedOption && (
@@ -68,7 +70,12 @@ export function FoodTruckActivity({
       <div className="my-4">
         {selectedOption && (
           <img
-            src={options.find((option: { text: string; image: string }) => option.text === selectedOption)?.image || ''}
+            src={
+              options.find(
+                (option: { text: string; image: string }) =>
+                  option.text === selectedOption,
+              )?.image || ""
+            }
             alt="Image"
             className="max-w-100 max-h-100 rounded-md shadow-md"
             width={props.width || 400}

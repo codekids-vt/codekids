@@ -9,10 +9,10 @@ import rehypeStringify from "rehype-stringify";
 const markdownProcessor = unified()
   .use(remarkParse)
   .use(remarkRehype, {
-    allowDangerousHtml: true
+    allowDangerousHtml: true,
   })
   .use(rehypeStringify, {
-    allowDangerousHtml: true
+    allowDangerousHtml: true,
   });
 
 export default async function MarkdownView({ content }: { content: string }) {
@@ -21,7 +21,7 @@ export default async function MarkdownView({ content }: { content: string }) {
   return (
     <section
       className="markdown-viewer"
-      dangerouslySetInnerHTML={{ __html: processedContent.toString() }} 
+      dangerouslySetInnerHTML={{ __html: processedContent.toString() }}
     />
   );
 }

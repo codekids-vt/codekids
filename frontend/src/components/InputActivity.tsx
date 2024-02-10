@@ -1,45 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 export interface IInputActivityProps {
   showIOLabels: boolean;
   question: string | undefined;
   options: number[];
-  ans: number | number[]; 
+  ans: number | number[];
   initialImage: string;
   correctImage: string;
 }
 
-export function InputActivity({ props, setAllowNext }: { props: any | IInputActivityProps, setAllowNext: React.Dispatch<React.SetStateAction<boolean>> }) {
-  const { question, options, ans, showIOLabels, initialImage, correctImage } = props;
+export function InputActivity({
+  props,
+  setAllowNext,
+}: {
+  props: any | IInputActivityProps;
+  setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const { question, options, ans, showIOLabels, initialImage, correctImage } =
+    props;
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState("");
   const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
   const [currentImage, setCurrentImage] = useState(initialImage);
 
   useEffect(() => {
-    
     setAllowNext(answeredCorrectly);
   }, [answeredCorrectly, setAllowNext]);
 
   const handleOptionClick = (choice: number) => {
     if (!answeredCorrectly) {
       setSelectedOption(choice);
-    
+
       if (Array.isArray(ans) && ans.includes(choice)) {
-        setResult('Correct!');
+        setResult("Correct!");
         setCurrentImage(correctImage);
-        setAnsweredCorrectly(true); 
+        setAnsweredCorrectly(true);
       } else if (choice === ans) {
-        setResult('Correct!');
+        setResult("Correct!");
         setCurrentImage(correctImage);
-        setAnsweredCorrectly(true); 
+        setAnsweredCorrectly(true);
       } else {
-        setResult('Incorrect! Try again.');
-        setAnsweredCorrectly(false); 
+        setResult("Incorrect! Try again.");
+        setAnsweredCorrectly(false);
       }
     }
   };
-  
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
@@ -73,8 +78,8 @@ export function InputActivity({ props, setAllowNext }: { props: any | IInputActi
             key={index}
             className={`px-4 py-2 text-lg font-medium ${
               (selectedOption === option || answeredCorrectly) && option === ans
-                ? 'bg-primary-green text-white'
-                : 'bg-gray-100 text-gray-800'
+                ? "bg-primary-green text-white"
+                : "bg-gray-100 text-gray-800"
             } border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-primary-green`}
             onClick={() => handleOptionClick(option)}
           >
