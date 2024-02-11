@@ -11,8 +11,8 @@ import type { User } from "./User";
 export type Interaction = {
   id: number;
   user?: User | null;
+  userId?: number | null;
   interactionType: InteractionType;
-  userId: number;
   answer?: string | null;
   correct?: boolean | null;
   date: string;
