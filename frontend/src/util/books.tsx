@@ -848,7 +848,7 @@ export const books: Book[] = [
     title: "Variables",
     bookCover: "/lighter_orange.png",
     blurb: "Learn about variables in Python",
-    author: "Dev",
+    author: "Thomas",
     cover: "/Python-logo-notext.png",
     gradeRange: "4-6",
     category: BookCategory.ADVANCED,
@@ -957,11 +957,66 @@ export const books: Book[] = [
         },
       },
       {
+        image: "Sequencing",
+        content: [
+          "Let's use the football game for another question!",
+          "A very important concept to understand while programming is that each line is executed from top to bottom.",
+          "This means every line's execution is dependent on the lines above it.",
+          "Think of each line as its own step with the very beginning line being step 1.",
+          "Each step will be executed one after another until the program is over.",
+        ],
+        props: {
+          ans: ["Option 3. Make sure to read the explanation!"],
+          helpImage: "/help/Variables_Help_4.png",
+        },
+      },
+      {
+        image: "tutor",
+        content: [
+          "Click through the code to the left and think about how the code is executed from top to bottom.",
+          "Even though first is reassigned to 5 and second is reassigned to 10, total was calculated beforehand.",
+        ],
+        props: {
+          code:
+            "first = 0\nsecond = 0\n\n#What is total set to here?\ntotal = first + second\n\n#first and second are reassigned after total has been assigned.\nfirst = 5\nsecond = 10\n\n" +
+            "# total is still printed as 0.\nprint(total)",
+        },
+      },
+      {
+        image: "/if_condition/action5.gif",
+        content: [
+          "Congratulations! You have finished this book introducing you to Python variables.",
+          "Variables are places where you store data throughout a program.",
+          "Every variable has a name and can be assigned a value. When a variable is assigned a value, any old value it had is lost.",
+          "In the next book, you'll learn about the various types of data you can store!",
+        ],
+      },
+    ],
+  },
+  {
+    BookId: 8,
+    title: "Variable Data Types",
+    bookCover: "/lighter_orange.png",
+    blurb: "Learn about variables in Python",
+    author: "Thomas",
+    cover: "/Python-logo-notext.png",
+    gradeRange: "4-6",
+    category: BookCategory.ADVANCED,
+    pages: [
+      {
+        image: "/VariablesBook/DataTypeIntro.svg",
+        content: [
+          "Now that we know variable are storage spaces for data, we also need to consider what type of data we are storing.",
+          "We simply call this a data type.",
+          "We will learn about three different data types: Integer, String, and Boolean.",
+        ],
+      },
+      {
         // Data types intro
         image: "DataTypesIntro",
         content: [
-          "When assigning a variable a value, it's also important to consider what type of value you are assigning.",
-          "This is known as a data type. We'll only use 3 data types for now.",
+          "It's important to know what type of value a variable has.",
+          "We'll learn about 3 data types for now.",
           "1. Integer - this is any whole number like 9.",
           '2. String - this is text like "Hello".',
           "3. Boolean - this is a logical value indicating True or False.",
@@ -1011,32 +1066,6 @@ export const books: Book[] = [
         },
       },
       {
-        image: "Sequencing",
-        content: [
-          "Let's use the football game for another question!",
-          "A very important concept to understand while programming is that each line is executed from top to bottom.",
-          "This means every line's execution is dependent on the lines above it.",
-          "Think of each line as its own step with the very beginning line being step 1.",
-          "Each step will be executed one after another until the program is over.",
-        ],
-        props: {
-          ans: ["Option 3. Make sure to read the explanation!"],
-          helpImage: "/help/Variables_Help_4.png",
-        },
-      },
-      {
-        image: "tutor",
-        content: [
-          "Click through the code to the left and think about how the code is executed from top to bottom.",
-          "Even though first is reassigned to 5 and second is reassigned to 10, total was calculated beforehand.",
-        ],
-        props: {
-          code:
-            "first = 0\nsecond = 0\n\n#What is total set to here?\ntotal = first + second\n\n#first and second are reassigned after total has been assigned.\nfirst = 5\nsecond = 10\n\n" +
-            "# total is still printed as 0.\nprint(total)",
-        },
-      },
-      {
         // Strings
         image: "Strings",
         props: {
@@ -1045,8 +1074,8 @@ export const books: Book[] = [
           helpImage: "/help/Variables_Help_5.png",
         },
         content: [
-          "This page will focus on Strings!",
-          "You may have noticed in the previous pages that 'Epcot' is an example of a String! Let's try more practice.",
+          "Now let's focus on Strings!",
+          "You may have noticed in the previous book that 'Epcot' is an example of a String! Let's try more practice.",
           'A String is text like "Hello". You can also think of it like a sequence of different characters.',
           "When the data type is String, then the characters will ALWAYS be surrounded by double or single quotation marks.",
           "For example, \"Hello\" and 'Hello' are both strings since they're surrounded by double or single quotation marks.",
@@ -1113,10 +1142,8 @@ export const books: Book[] = [
       {
         image: "/if_condition/action5.gif",
         content: [
-          "Congratulations! You have completed this book about variables!",
+          "Congratulations! You have completed this book about variable data types!",
           "Here is a quick recap of what we learned.",
-          "Variables are places where you store data throughout a program.",
-          "Every variable has a name and can be assigned a value. When a variable is assigned a value, any old value it had is lost.",
           "The values of a variable are always of a data type: Integer, Boolean, or String.",
           "An Integer is a whole number.",
           "A Boolean is always True or False.",
@@ -1126,7 +1153,7 @@ export const books: Book[] = [
     ],
   },
   {
-    BookId: 12,
+    BookId: 9,
     title: "Conditional Operators",
     blurb: "Learn about conditional operators",
     author: "Thomas",
@@ -1236,7 +1263,7 @@ export const books: Book[] = [
     ],
   },
   {
-    BookId: 13,
+    BookId: 11,
     title: "Logical Operators",
     blurb: "Learn about Python Logical Operators",
     author: "Thomas",
@@ -1353,7 +1380,7 @@ export const books: Book[] = [
     ],
   },
   {
-    BookId: 8,
+    BookId: 12,
     title: "If Statements",
     blurb: "Learn about Python If Statements",
     author: "Thomas",
@@ -1511,7 +1538,7 @@ export const books: Book[] = [
     ],
   },
   {
-    BookId: 9,
+    BookId: 13,
     title: "Life of Moose",
     blurb: "Learn coding through the life of Moose",
     author: "Dev",
@@ -1616,7 +1643,7 @@ export const books: Book[] = [
     ],
   },
   {
-    BookId: 11,
+    BookId: 14,
     title: "Flowcharts",
     blurb: "Learn how to read flow charts",
     author: "Dev",

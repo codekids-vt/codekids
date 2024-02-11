@@ -25,7 +25,7 @@ export function IfStatementIntro() {
         width={400}
         height={400}
         src={"/IfStatementsBook/cloudy.jpg"}
-        alt="Image of construction"
+        alt="Construction"
       />
       <Reader text="Example of if-statement" />
       <CodeSnippet code={p1Code} />
