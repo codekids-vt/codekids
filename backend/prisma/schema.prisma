@@ -35,9 +35,9 @@ enum InteractionType {
 
 model Interaction {
   id      Int      @id @default(autoincrement())
-  user    User     @relation(fields: [userId], references: [id])
+  user    User?     @relation(fields: [userId], references: [id])
+  userId  Int?
   interactionType InteractionType
-  userId  Int
   answer  String?
   correct Boolean?
   date    DateTime
