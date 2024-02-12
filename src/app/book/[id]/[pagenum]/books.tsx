@@ -357,7 +357,7 @@ export const books: Book[] = [
     title: "Food Truck Input/Output ",
     bookCover: "/lighter_orange.png",
     blurb: "Learn about Input and output!",
-    author: "Prapti",
+    author: "Prapti, Gabriel H", 
     gradeRange: "K-2",
     category: BookCategory.BEGINNER,
     pages: [
@@ -365,40 +365,43 @@ export const books: Book[] = [
         content: ["Welcome to Foodie Adventures!",
           "Get ready for a delicious experience where you're in charge of creating your own magical meals!",
         ],
-        image: "/io_book/burger_food_truck.png",
+        image: "/io_book/pizza_food_truck.png",
       },
       {
         content: ["Time to make your meal uniquely yours! ",
-          "Explore the menu and tap on the items you'd like to order",
+          "Explore the menu and tap on the items to add them to the pizza.",
         ],
-        image: "/io_book/burger_food_truck.png",
+        image: "/io_book/pizza_food_truck.png",
       },
       {
         content: [
-          "Choose a meal!",
-          "Input your choice to get it as output.",
+          "Choose the toppings to make a ham and pineapple pizza",
+          "Input your toppings to get it as output.",
         ],
         image: "FoodTruckActivity",
         game: "FoodTruckActivity",
         props: {
           showIOLabels: true,
           options: [
-            { text: 'Hamburger', image: "/io_book/hamburger.png" },
-            { text: 'Cheeseburger', image: "/io_book/cheeseburger.png" },
+            { text: 'Onions', image: "/io_book/onion_pizza.png" },
+            { text: 'Pineapple', image: "/io_book/pineapple_pizza.png" },
+            { text: 'Ham', image: "/io_book/ham_pizza.png" },
           ],
         },
       },
       {
         content: [
-          "Let's choose a side!",
+          "Let's make a new spinach and onion pizza!",
         ],
         image: "FoodTruckActivity",
         game: "FoodTruckActivity",
         props: {
           showIOLabels: true,
           options: [
-            { text: 'French Fries', image: "/io_book/fries.png" },
-            { text: 'Chicken Nuggets', image: "/io_book/nuggets.png" },
+            { text: 'Spinach', image: "/io_book/spinach_pizza.png" },
+            { text: 'Onions', image: "/io_book/onion_pizza.png" },
+            { text: 'Bacon', image: "/io_book/bacon_pizza.png" },
+
           ],
         },
       },
@@ -1436,6 +1439,25 @@ export const books: Book[] = [
         image: "/FlowchartsBook/Kids_Menu.jpg",
         content: ["Congratulations! You now know how to read flowcharts!",
           "You also know how they relate to code and If-statements"]
+      }
+    ]
+  }, {
+    BookId: 12,
+    title: "Gabriel Dummy",
+    blurb: "Learn how to read flow charts",
+    author: "Dev",
+    bookCover: "/color_6.png",
+    cover: "/FlowchartsBook/example_1.svg",
+    gradeRange: "4-6",
+    category: BookCategory.ADVANCED,
+    pages: [
+      {
+        image: "/FlowchartsBook/example_1.png",
+        content: ["In this book, we are going to learn how to read flowcharts.",
+          "Flowcharts are a visual aid to help you when you need to make a decision.",
+          "Flowcharts naturally work very well with If-statements since you make decisions based on a condition.",
+          "The left page has an example of a flowchart.",
+          "The yellow rhombus is the condition and the arrows point to what to do if the condition is True or False."]
       }
     ]
   },
