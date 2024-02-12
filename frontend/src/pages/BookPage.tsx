@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useParams, useNavigate} from "react-router-dom";
+import { Dispatch, SetStateAction, useState} from "react";
 import { books } from "../util/books";
 import { Page } from "../util/BookData";
 import Navbar from "../components/Navbar";
@@ -32,6 +32,7 @@ import { ChangingCondition } from "../components/MisconceptionComponents/Flowcha
 import { InputActivity } from "../components/InputActivity";
 import { TableComponent } from "../components/TableComponent";
 import { FoodTruckActivity } from "../components/FoodTruckActivity";
+import { InteractionType, InteractionsService } from "../api";
 
 function BookImage({
   image,
@@ -43,6 +44,7 @@ function BookImage({
   setAllowNext: Dispatch<SetStateAction<boolean>>;
 }) {
   const isImage = image && image.includes(".");
+
 
   return (
     <div className="h-[calc(100vh-10rem)] xl:h-[calc(100vh-14rem)] overflow-y-scroll flex flex-col items-center w-full">
@@ -162,10 +164,12 @@ export default function BookPage() {
   let { idString, pagenumString } = useParams();
   const id = parseInt(idString as string);
   const pagenum = parseInt(pagenumString as string);
+  const navigate = useNavigate();
 
   const [help, setHelp] = useState(false);
   const [allowNext, setAllowNext] = useState(true);
-
+  const startTime = new Date().getTime();
+  
   const bookNum = id - 1;
   const pageNum = pagenum;
   const book = books.find((book) => book.BookId === bookNum + 1);
@@ -190,13 +194,29 @@ export default function BookPage() {
     return pageNum - 1 < 0 ? null : pageNum - 1;
   }
 
+  function moveToNextPage() {
+    const timeSpent = (startTime - new Date().getTime()) /1000;
+    InteractionsService.createInteractionInteractionsPost({
+      interaction_type: InteractionType.NEXT_PAGE, time_since_load: timeSpent
+    })
+    navigate(`/book/${id}/${getNextPageNum()}`);
+
+  }
+
+  function helpMeClicked(){
+    const timeSpent = (startTime - new Date().getTime())/1000;
+    InteractionsService.createInteractionInteractionsPost({
+      interaction_type: InteractionType.HELP_ME, time_since_load: timeSpent
+    })
+    setHelp(!help);
+  }
+
   const forwardButton =
     getNextPageNum() !== null ? (
-      <a href={`/book/${id}/${getNextPageNum()}`}>
-        <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
-          Next
-        </button>
-      </a>
+      <button onClick={moveToNextPage}
+         className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
+        Next
+      </button>
     ) : (
       <a href={`/`}>
         <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
@@ -240,7 +260,8 @@ export default function BookPage() {
                     {backButton}
                     {(page?.props?.ans?.length || page?.props?.helpImage) && (
                       <button
-                        onClick={() => setHelp(!help)}
+                      //helpme
+                        onClick={helpMeClicked}
                         className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold flex flex-row items-center p-1 xl:p-6 xl:text-2xl rounded-full"
                       >
                         Help me
@@ -278,9 +299,8 @@ export default function BookPage() {
               {(page?.props?.ans?.length || page?.props?.helpImage) && (
                 <div
                   id="help-modal"
-                  className={`fixed top-0 left-0 right-0 z-50 ${
-                    help ? "" : "hidden"
-                  } w-full h-full bg-gray-900 bg-opacity-50`}
+                  className={`fixed top-0 left-0 right-0 z-50 ${help ? "" : "hidden"
+                    } w-full h-full bg-gray-900 bg-opacity-50`}
                 >
                   <div className="flex items-center justify-center h-full">
                     <div className="bg-white rounded-lg shadow-lg w-full md:w-1/2">

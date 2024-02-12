@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Reader } from "./Reader";
+import { InteractionType, InteractionsService } from "../api";
 
 export interface IQuestionProps {
   question: string;
@@ -52,6 +53,9 @@ export function MultipleChoiceQuestion({
     setAnswerExplanation(answerExplanation);
     setCorrect(correct);
     changeButtonColor(index, correct);
+    InteractionsService.createInteractionInteractionsPost({
+      interaction_type: InteractionType.QUESTION, time_since_load: 1
+    })
     if (buttonPressed !== undefined) {
       buttonPressed(button);
     }
