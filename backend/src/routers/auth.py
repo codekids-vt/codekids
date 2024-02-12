@@ -1,16 +1,14 @@
-import contextlib
+import hmac
+import hashlib
 import secrets
-from fastapi import APIRouter, Depends, FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import HTTPBasicCredentials
 from typing import Annotated
-import uvicorn
 from pydantic import BaseModel
 from prisma.enums import AccountType
 from prisma.models import User
-import dotenv
 from src.db import db
-from src import routers
+from src.config import settings
 
 from src.auth import get_user
 
@@ -34,14 +32,17 @@ async def signup(req: SignupRequest) -> LoginResponse:
     if user:
         raise HTTPException(status_code=400, detail="User already exists")
     else:
-        token = secrets.token_urlsafe(16)
+        token = secrets.token_urlsafe(32)
+        password_hash = hmac.new(
+            settings.SECRET_HASH_KEY.encode(), req.password.encode(), hashlib.sha256
+        )
         await db.user.create(
             {
                 "token": token,
                 "type": req.account_type,
                 "name": req.username,
                 "email": req.email,
-                "password": req.password,
+                "password": password_hash.hexdigest(),
             }
         )
         return LoginResponse(token=token)
@@ -57,8 +58,11 @@ async def get_user_data(user: Annotated[User, Depends(get_user)]) -> User:
 
 @auth_router.post("/login", tags=["auth"])
 async def login(credentials: HTTPBasicCredentials) -> LoginResponse:
+    password_hash = hmac.new(
+        settings.SECRET_HASH_KEY.encode(), credentials.password.encode(), hashlib.sha256
+    )
     user = await db.user.find_first(
-        where={"email": credentials.username, "password": credentials.password}
+        where={"email": credentials.username, "password": password_hash.hexdigest()}
     )
     if user:
         return LoginResponse(token=user.token)
