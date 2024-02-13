@@ -1075,9 +1075,9 @@ export const books: Book[] = [
         },
         content: [
           "Now let's focus on Strings!",
-          "You may have noticed in the previous book that 'Epcot' is an example of a String! Let's try more practice.",
-          'A String is text like "Hello". You can also think of it like a sequence of different characters.',
-          "When the data type is String, then the characters will ALWAYS be surrounded by double or single quotation marks.",
+          "You may have already noticed examples of Strings in the previous pages.",
+          'A String is text like "Hello". You can also think of it like a sequence of characters.',
+          "When the data type is String, the characters will ALWAYS be surrounded by double or single quotation marks.",
           "For example, \"Hello\" and 'Hello' are both strings since they're surrounded by double or single quotation marks.",
           "What do you think '9' is? You may initially think Integer, but notice it's surrounded in single quotation marks. So, it's a string.",
         ],
@@ -1371,7 +1371,17 @@ export const books: Book[] = [
         },
       },
       {
-        image: "/LogicalOperators/LogicalOperatorsP1.svg",
+        image: "/LogicalOperatorsBook/TruthTables.svg",
+        content: [
+          "A format that is used often when working with logic are Truth Tables.",
+          "Here are the Truth Tables for the \"and\", \"or\", \"not\" logical operators.",
+          "Given two conditions P and Q, you can quickly figure out what the result be in any situation.",
+          "For example, for the \"and\" Truth Table, you can see both P and Q need to be True to get True.",
+          "Meanwhile, for the \"or\" Truth Table, only P or Q need to be True to get True."
+        ]
+      },
+      {
+        image: "/LogicalOperatorsBook/LogicalOperatorsP1.svg",
         content: [
           "Congratulations! You now know how logical operators work.",
           "In the next book. You'll learn why conditional and logical operators are important and how they can be used in a program!",
