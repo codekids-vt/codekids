@@ -1374,11 +1374,11 @@ export const books: Book[] = [
         image: "/LogicalOperatorsBook/TruthTables.svg",
         content: [
           "A format that is used often when working with logic are Truth Tables.",
-          "Here are the Truth Tables for the \"and\", \"or\", \"not\" logical operators.",
+          'Here are the Truth Tables for the "and", "or", "not" logical operators.',
           "Given two conditions P and Q, you can quickly figure out what the result be in any situation.",
-          "For example, for the \"and\" Truth Table, you can see both P and Q need to be True to get True.",
-          "Meanwhile, for the \"or\" Truth Table, only P or Q need to be True to get True."
-        ]
+          'For example, for the "and" Truth Table, you can see both P and Q need to be True to get True.',
+          'Meanwhile, for the "or" Truth Table, only P or Q need to be True to get True.',
+        ],
       },
       {
         image: "/LogicalOperatorsBook/LogicalOperatorsP1.svg",
