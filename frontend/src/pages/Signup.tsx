@@ -8,15 +8,22 @@ const Signup = () => {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [username, setUsername] = useState("");
   const [accountType, setAccountType] = useState<AccountType>(
     AccountType.STUDENT,
   );
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleSignup = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!email || !password || !username) {
+      setError("Please fill in all fields");
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
       return;
     }
     AuthService.signupSignupPost({
@@ -64,7 +71,10 @@ const Signup = () => {
                   type="email"
                   placeholder="Enter your email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError(null);
+                  }}
                   className="p-2 block w-full rounded-xl border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-green sm:text-sm sm:leading-6"
                 />
               </div>
@@ -82,7 +92,34 @@ const Signup = () => {
                   type="password"
                   placeholder="Enter your password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setError(null);
+                  }}
+                  className="p-2 block w-full rounded-xl border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-green sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Confirm Password
+              </label>
+              <div className="p-2">
+                <input
+                  type="password"
+                  placeholder="Confirm your password"
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                    if (password !== e.target.value) {
+                      setError("Passwords do not match");
+                    } else {
+                      setError(null);
+                    }
+                  }}
                   className="p-2 block w-full rounded-xl border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-green sm:text-sm sm:leading-6"
                 />
               </div>
@@ -99,7 +136,10 @@ const Signup = () => {
                 <input
                   placeholder="Enter your name"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                    setError(null);
+                  }}
                   className="p-2 block w-full rounded-xl border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-green sm:text-sm sm:leading-6"
                 />
               </div>
@@ -128,6 +168,12 @@ const Signup = () => {
                 Teacher
               </button>
             </div>
+
+            {error && (
+              <div className="p-2">
+                <p className="text-red-500 text-sm">{error}</p>
+              </div>
+            )}
 
             <div className="p-2">
               <button
