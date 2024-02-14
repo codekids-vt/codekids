@@ -1,9 +1,9 @@
-name: Deploy to Kubernetes
+name: Deploy Preview
 
 on:
   push:
     branches:
-      - main  # or any branch you want to deploy from
+      - preview  # or any branch you want to deploy from
 
 jobs:
   build_and_deploy:
@@ -26,7 +26,7 @@ jobs:
           context: frontend
           file: frontend/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/codekids:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository_owner }}/codekids-preview:${{ github.sha }}
       - name: Set up Kubectl
         uses: azure/setup-kubectl@v1
         with:
@@ -35,4 +35,4 @@ jobs:
         run: |
           echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ./kubeconfig
           export KUBECONFIG=./kubeconfig
-          kubectl set image deployment/codekids codekids=ghcr.io/${{ github.repository_owner }}/codekids:${{ github.sha }} --namespace codekids-app
+          kubectl set image deployment/codekids-preview codekids-preview=ghcr.io/${{ github.repository_owner }}/codekids-preview:${{ github.sha }} --namespace codekids-app

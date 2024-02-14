@@ -1,16 +1,27 @@
-# Code Kids Website
+# Codekids App
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
+## Run backend
 
 ```bash
-npm run dev
+python -m venv .venv
+source .venv/bin/activate
+cd backend
+pip install -r requirements.txt
+prisma generate  # needs a running database
+python uvicorn src.main:app --reload
 ```
-Then setup the prisma migration:
+
+To startup a local database, you can use the following command:
+
 ```bash
-npx prisma db push
-npx prisma db seed
+cd backend
+docker compose up -d
+```
+
+## Run frontend
+
+```bash
+cd frontend
+npm i
+npm start
 ```

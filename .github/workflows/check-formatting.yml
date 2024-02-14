@@ -1,0 +1,16 @@
+name: check-formatting
+on: pull_request
+jobs:
+  check-formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          ref: ${{ github.head_ref }}
+      - name: prettier
+        run: cd frontend && npx prettier . --check 
+      - name: black
+        run: |
+          cd backend &&
+          pip install black &&
+          black . --check
