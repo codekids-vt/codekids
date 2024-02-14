@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { AccountType, AuthService } from "../api";
+import Background from "../components/Background";
 
 const Signup = () => {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [accountType, setAccountType] = useState<AccountType>(
+    AccountType.STUDENT,
+  );
   const navigate = useNavigate();
 
   const handleSignup = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -19,7 +23,7 @@ const Signup = () => {
       email: email,
       password: password,
       username: username,
-      account_type: AccountType.STUDENT,
+      account_type: accountType,
     })
       .then((response) => {
         login(response.token);
@@ -32,16 +36,17 @@ const Signup = () => {
 
   return (
     <>
+      <Background />
       <div className="flex min-h-screen flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="p-2 text-center text-2xl font-bold leading-9 tracking-tight text-blue-500">
-            Sign in to your account
+          <h2 className="p-2 text-center text-2xl font-bold leading-9 tracking-tight text-primary-green">
+            CodeKids Signup
           </h2>
         </div>
 
         <div className="p-2 sm:mx-auto sm:w-full sm:max-w-md">
           <div
-            className="bg-white px-6 py-6 shadow-lg rounded-2xl sm:px-12 border-2 border-blue-500"
+            className="bg-white px-6 py-6 shadow-lg rounded-xll sm:px-12 border-2 border-primary-green"
             style={{
               boxShadow:
                 "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
@@ -60,7 +65,7 @@ const Signup = () => {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="p-2 block w-full rounded-xl border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-green sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -78,7 +83,7 @@ const Signup = () => {
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="p-2 block w-full rounded-xl border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-green sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -95,25 +100,40 @@ const Signup = () => {
                   placeholder="Enter your name"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="p-2 block w-full rounded-xl border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-green sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
             <div>
               <label
-                htmlFor="birthday"
+                htmlFor="account_type"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Birthday
+                Account Type
               </label>
+            </div>
+            <div className="flex flex-row justify-between p-2">
+              <div
+                className={`p-2 w-full rounded-xl border-primary-green border-2 text-center ${accountType === AccountType.STUDENT ? "bg-primary-green text-white" : "bg-white"}`}
+                onClick={() => setAccountType(AccountType.STUDENT)}
+              >
+                Student
+              </div>
+              <div className="p-2"></div>
+              <div
+                className={`p-2 w-full rounded-xl bg-primary-green border-primary-green border-2 text-center ${accountType === AccountType.TEACHER ? "bg-primary-green text-white" : "bg-white"}`}
+                onClick={() => setAccountType(AccountType.TEACHER)}
+              >
+                Teacher
+              </div>
             </div>
 
             <div className="p-2">
               <button
                 type="submit"
                 onClick={handleSignup}
-                className="flex w-full justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium leading-6 text-white shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="flex w-full justify-center rounded-xl bg-primary-green px-4 py-2 text-sm font-medium leading-6 text-white shadow-md hover:bg-primary-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-green"
               >
                 Sign up
               </button>
@@ -124,7 +144,7 @@ const Signup = () => {
             Already have an account?{" "}
             <a
               href="/login"
-              className="font-medium text-blue-600 hover:underline"
+              className="font-medium text-primary-green hover:underline"
             >
               Login
             </a>
