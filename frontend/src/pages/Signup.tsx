@@ -114,19 +114,19 @@ const Signup = () => {
               </label>
             </div>
             <div className="flex flex-row justify-between p-2">
-              <div
+              <button
                 className={`p-2 w-full rounded-xl border-primary-green border-2 text-center ${accountType === AccountType.STUDENT ? "bg-primary-green text-white" : "bg-white"}`}
                 onClick={() => setAccountType(AccountType.STUDENT)}
               >
                 Student
-              </div>
+              </button>
               <div className="p-2"></div>
-              <div
+              <button
                 className={`p-2 w-full rounded-xl bg-primary-green border-primary-green border-2 text-center ${accountType === AccountType.TEACHER ? "bg-primary-green text-white" : "bg-white"}`}
                 onClick={() => setAccountType(AccountType.TEACHER)}
               >
                 Teacher
-              </div>
+              </button>
             </div>
 
             <div className="p-2">
