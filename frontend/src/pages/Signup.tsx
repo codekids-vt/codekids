@@ -46,7 +46,7 @@ const Signup = () => {
 
         <div className="p-2 sm:mx-auto sm:w-full sm:max-w-md">
           <div
-            className="bg-white px-6 py-6 shadow-lg rounded-xll sm:px-12 border-2 border-primary-green"
+            className="bg-white px-6 py-6 shadow-lg rounded-xl sm:px-12 border-2 border-primary-green"
             style={{
               boxShadow:
                 "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
