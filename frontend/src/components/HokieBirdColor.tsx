@@ -53,7 +53,7 @@ export function HokieBirdColoring({
   });
 
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
-  
+
   enum AlertType {
     NONE,
     SUCCESS,
