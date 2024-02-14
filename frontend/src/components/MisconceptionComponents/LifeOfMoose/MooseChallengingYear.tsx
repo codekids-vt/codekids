@@ -57,7 +57,7 @@ export function MooseChallengingYear({
           width={300}
           height={300}
           src={"/LifeOfMoose/moose_with_hokie_bird.jpg"}
-          alt="Image of Moose graduating"
+          alt="Moose graduating"
         />
         <PythonTutor props={{ code: code }} />
         <Reader text="Take a look at the code! What do you think will printed throughout the program?" />

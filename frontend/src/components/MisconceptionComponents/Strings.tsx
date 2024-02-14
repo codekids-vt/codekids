@@ -99,7 +99,7 @@ export function Strings({
     return getPage1();
   } else if (props.pageNumber === 2) {
     return getPage2();
-  } else if (props.pageNumber == 3) {
+  } else if (props.pageNumber === 3) {
     return getPage3();
   } else {
     return getPage4();
@@ -113,7 +113,7 @@ export function Strings({
           width={300}
           height={300}
           src={"/VariablesBook/therapy_dogs.png"}
-          alt="Image of Virginia Tech therapy dogs."
+          alt="Virginia Tech therapy dogs."
         />
         <CodeSnippet code={p1Code} />
         <MultipleChoiceQuestion
@@ -134,7 +134,7 @@ export function Strings({
           width={300}
           height={300}
           src={"/VariablesBook/therapy_dogs.png"}
-          alt="Image of Virginia Tech therapy dogs."
+          alt="Virginia Tech therapy dogs."
         />
         <CodeSnippet code={p2Code} />
         <MultipleChoiceQuestion
@@ -155,7 +155,7 @@ export function Strings({
             width={200}
             height={200}
             src={"/VariablesBook/hokie-bird-148.png"}
-            alt="Image of Hokie Bird holding 148th birthday sign."
+            alt="Hokie Bird holding 148th birthday sign."
           />
           <CodeSnippet code={p3Code} />
         </div>
@@ -185,7 +185,7 @@ export function Strings({
             width={200}
             height={200}
             src={"/VariablesBook/hokie-bird-148.png"}
-            alt="Image of Hokie Bird holding 148th birthday sign."
+            alt="Hokie Bird holding 148th birthday sign."
           />
           <CodeSnippet code={p4Code} />
         </div>

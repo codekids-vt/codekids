@@ -77,7 +77,7 @@ export function IntsAndBools({
           width={350}
           height={350}
           src={"/VariablesBook/vt_syracuse_score.png"}
-          alt="Image of football score between Virginia Tech and Syracuse"
+          alt="football score between Virginia Tech and Syracuse"
         />
         <div className="mb-5">
           <CodeSnippet
@@ -108,7 +108,7 @@ export function IntsAndBools({
           width={350}
           height={350}
           src={"/VariablesBook/vt_syracuse_score.png"}
-          alt="Image of football score between Virginia Tech and Syracuse"
+          alt="football score between Virginia Tech and Syracuse"
         />
         <div className="mb-5">
           <CodeSnippet code={p2Code} />

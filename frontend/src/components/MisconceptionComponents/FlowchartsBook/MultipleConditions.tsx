@@ -83,13 +83,13 @@ export function MultipleConditions({
           width={400}
           height={400}
           src={"/FlowchartsBook/MultipleConditions/food.png"}
-          alt="Image of food."
+          alt="food."
         />
         <img
           width={500}
           height={500}
           src={"/FlowchartsBook/example_3.svg"}
-          alt="Image of food."
+          alt="food."
         />
       </div>
     );
@@ -104,7 +104,7 @@ export function MultipleConditions({
             width={120}
             height={120}
             src={"/FlowchartsBook/MultipleConditions/food2.png"}
-            alt="Image of food."
+            alt="food."
           />
           <MultipleChoiceQuestion
             question={q1.question}
@@ -117,7 +117,7 @@ export function MultipleConditions({
           width={500}
           height={500}
           src={"/FlowchartsBook/example_3.svg"}
-          alt="Image of food."
+          alt="food."
         />
       </div>
     );
@@ -148,7 +148,7 @@ export function MultipleConditions({
                 height={imageDim[0]}
                 width={imageDim[1]}
                 src={currentImage}
-                alt="Image of flow chart"
+                alt="flow chart"
               />
             )}
           </div>
