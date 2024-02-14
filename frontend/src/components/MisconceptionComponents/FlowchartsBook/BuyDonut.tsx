@@ -65,7 +65,7 @@ export function BuyDonut({
             height={1000}
             width={1000}
             src={currentImage}
-            alt="Partial image of flowchart"
+            alt="Partial flowchart"
           />
         )}
         {showQuestion && (

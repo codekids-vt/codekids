@@ -163,7 +163,7 @@ export function ConditionalOperators({
 
   function getPage1() {
     return (
-      <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5">
+      <div className="flex flex-col w-full items-center font-semibold text-lg text-center gap-5">
         {image}
         <CodeSnippet code={p1Code} />
         <MultipleChoiceQuestion

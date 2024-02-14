@@ -24,7 +24,7 @@ export function HokieBirdIfCondition({
 
   React.useEffect(() => {
     setAllowNext(good);
-  }, [good]);
+  }, [good, setAllowNext]);
 
   function handleOptionSelect(option: string) {
     const isCorrectAnswer =
@@ -42,9 +42,9 @@ export function HokieBirdIfCondition({
     e.dataTransfer.setData("statement", statement);
   }
 
-  function handleOnDragCondition(e: React.DragEvent, condition: string) {
-    e.dataTransfer.setData("condition", condition);
-  }
+  // function handleOnDragCondition(e: React.DragEvent, condition: string) {
+  //   e.dataTransfer.setData("condition", condition);
+  // }
 
   function handleDragOver(e: React.DragEvent) {
     e.preventDefault();
@@ -112,7 +112,7 @@ export function HokieBirdIfCondition({
           src={currentImage}
           width={400}
           height={400}
-          alt="Hokie Bird Image"
+          alt="Hokie Bird"
           className="absolute  w-[200px] xl:w-[450px] rounded-2xl"
         ></img>
         {props?.effect && (
@@ -120,7 +120,7 @@ export function HokieBirdIfCondition({
             src={props.effect}
             width={400}
             height={400}
-            alt="Hokie Bird Image Effect"
+            alt="Hokie Bird Effect"
             className="absolute  w-[200px] xl:w-[450px]"
           ></img>
         )}

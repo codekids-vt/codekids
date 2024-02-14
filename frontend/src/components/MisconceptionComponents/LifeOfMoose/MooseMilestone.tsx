@@ -57,7 +57,7 @@ export function MooseMilestone({
           width={400}
           height={400}
           src={"/LifeOfMoose/moose_milestone.png"}
-          alt="Image of Moose"
+          alt="Moose"
         />
         <PythonTutor props={{ code: code }} />
         <Reader text="Take a look at the code. What do you think will be printed at the end? We will trace the code in the next page." />

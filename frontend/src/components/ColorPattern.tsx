@@ -1,13 +1,7 @@
-import React, { useState } from "react";
-
-interface colorState {
-  pattern: string[];
-  userInput: string[];
-  message: string;
-}
+import { useState } from "react";
 
 export function ColorPattern() {
-  const [pattern, setPattern] = useState(["red", "red", "blue", "blue"]);
+  const pattern = ["red", "red", "blue", "blue"];
   const [userInput, setUserInput] = useState([""]);
   const [message, setMessage] = useState("Repeat the pattern!");
 

@@ -26,6 +26,7 @@ export function PythonTutor({ props }: { props: any | IPythonTutorProps }) {
       {!editing && (
         <div className="overflow-scroll flex-grow shadow-2xl rounded-2xl w-full">
           <iframe
+            title="Python Tutor"
             id="pyTutorFrame"
             className="w-full h-full"
             style={{ scale: scale, transformOrigin: "top left" }}

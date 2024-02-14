@@ -41,13 +41,13 @@ export function Sequencing({
   }, [q1Correct, setAllowNext]);
 
   return (
-    <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-3">
+    <div className="flex flex-col w-full items-center font-semibold text-lg text-center gap-3">
       <img
         className="mb-5"
         width={400}
         height={400}
         src="/VariablesBook/vt_syracuse_score.png"
-        alt="Image of therapy dogs with their names."
+        alt="therapy dogs with their names."
       />
       <Reader text="We always read the code from top to bottom. The line numbers have been provided. (Yellow column)." />
       <div className="flex flex-col-2 gap-0">

@@ -1,5 +1,3 @@
-import Link from "react-router-dom";
-
 function FooterLink({ name, href }: { name: string; href: string }) {
   return (
     <li className="m-1 p-1 float-right tablet:float-none tablet:inline-block">
@@ -15,11 +13,9 @@ export default function Footer() {
         &copy; KiData Project 2023. All Rights Reserved.
       </span>
       <ul className="p-auto my-auto tablet:text-center text-sm">
-        {/* 
         <FooterLink name="About" href="/about" />
         <FooterLink name="Contact" href="/contact" />
-        <FooterLink name="License" href="/license" /> 
-        */}
+        <FooterLink name="License" href="/license" />
       </ul>
     </footer>
   );
