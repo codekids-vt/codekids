@@ -3,7 +3,7 @@ name: Deploy Backend
 on:
   push:
     branches:
-      - preview  # or any branch you want to deploy from
+      - main  # or any branch you want to deploy from
 
 jobs:
   build_and_deploy:
