@@ -6,6 +6,8 @@ import { Type, TypeStyle } from "../TypeStyle";
 export function IfStatementIntro() {
   const p1Code = (
     <p>
+      it_is_raining = <TypeStyle text="True" style={Type.BOOLEAN} />
+      <br />
       if it_is_raining:
       <br />
       {"\t"}print(
@@ -18,14 +20,14 @@ export function IfStatementIntro() {
   );
 
   return (
-    <div className="flex flex-col w-full items-center font-semibold text-lg text-center gap-3">
-      <Reader text="Example of if-statement" />
+    <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-3">
       <img
         width={400}
         height={400}
         src={"/IfStatementsBook/cloudy.jpg"}
-        alt="Image of construction"
+        alt="Construction"
       />
+      <Reader text="Example of if-statement" />
       <CodeSnippet code={p1Code} />
     </div>
   );

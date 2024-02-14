@@ -1,4 +1,4 @@
-import { Book, BookCategory } from "./BookData";
+import { Book, BookCategory } from "../util/BookData";
 
 export const books: Book[] = [
   {
@@ -848,7 +848,7 @@ export const books: Book[] = [
     title: "Variables",
     bookCover: "/lighter_orange.png",
     blurb: "Learn about variables in Python",
-    author: "Dev",
+    author: "Thomas",
     cover: "/Python-logo-notext.png",
     gradeRange: "4-6",
     category: BookCategory.ADVANCED,
@@ -957,11 +957,66 @@ export const books: Book[] = [
         },
       },
       {
+        image: "Sequencing",
+        content: [
+          "Let's use the football game for another question!",
+          "A very important concept to understand while programming is that each line is executed from top to bottom.",
+          "This means every line's execution is dependent on the lines above it.",
+          "Think of each line as its own step with the very beginning line being step 1.",
+          "Each step will be executed one after another until the program is over.",
+        ],
+        props: {
+          ans: ["Option 3. Make sure to read the explanation!"],
+          helpImage: "/help/Variables_Help_4.png",
+        },
+      },
+      {
+        image: "tutor",
+        content: [
+          "Click through the code to the left and think about how the code is executed from top to bottom.",
+          "Even though first is reassigned to 5 and second is reassigned to 10, total was calculated beforehand.",
+        ],
+        props: {
+          code:
+            "first = 0\nsecond = 0\n\n#What is total set to here?\ntotal = first + second\n\n#first and second are reassigned after total has been assigned.\nfirst = 5\nsecond = 10\n\n" +
+            "# total is still printed as 0.\nprint(total)",
+        },
+      },
+      {
+        image: "/if_condition/action5.gif",
+        content: [
+          "Congratulations! You have finished this book introducing you to Python variables.",
+          "Variables are places where you store data throughout a program.",
+          "Every variable has a name and can be assigned a value. When a variable is assigned a value, any old value it had is lost.",
+          "In the next book, you'll learn about the various types of data you can store!",
+        ],
+      },
+    ],
+  },
+  {
+    BookId: 8,
+    title: "Variable Data Types",
+    bookCover: "/lighter_orange.png",
+    blurb: "Learn about variables in Python",
+    author: "Thomas",
+    cover: "/Python-logo-notext.png",
+    gradeRange: "4-6",
+    category: BookCategory.ADVANCED,
+    pages: [
+      {
+        image: "/VariablesBook/DataTypeIntro.svg",
+        content: [
+          "Now that we know variable are storage spaces for data, we also need to consider what type of data we are storing.",
+          "We simply call this a data type.",
+          "We will learn about three different data types: Integer, String, and Boolean.",
+        ],
+      },
+      {
         // Data types intro
         image: "DataTypesIntro",
         content: [
-          "When assigning a variable a value, it's also important to consider what type of value you are assigning.",
-          "This is known as a data type. We'll only use 3 data types for now.",
+          "It's important to know what type of value a variable has.",
+          "We'll learn about 3 data types for now.",
           "1. Integer - this is any whole number like 9.",
           '2. String - this is text like "Hello".',
           "3. Boolean - this is a logical value indicating True or False.",
@@ -1011,32 +1066,6 @@ export const books: Book[] = [
         },
       },
       {
-        image: "Sequencing",
-        content: [
-          "Let's use the football game for another question!",
-          "A very important concept to understand while programming is that each line is executed from top to bottom.",
-          "This means every line's execution is dependent on the lines above it.",
-          "Think of each line as its own step with the very beginning line being step 1.",
-          "Each step will be executed one after another until the program is over.",
-        ],
-        props: {
-          ans: ["Option 3. Make sure to read the explanation!"],
-          helpImage: "/help/Variables_Help_4.png",
-        },
-      },
-      {
-        image: "tutor",
-        content: [
-          "Click through the code to the left and think about how the code is executed from top to bottom.",
-          "Even though first is reassigned to 5 and second is reassigned to 10, total was calculated beforehand.",
-        ],
-        props: {
-          code:
-            "first = 0\nsecond = 0\n\n#What is total set to here?\ntotal = first + second\n\n#first and second are reassigned after total has been assigned.\nfirst = 5\nsecond = 10\n\n" +
-            "# total is still printed as 0.\nprint(total)",
-        },
-      },
-      {
         // Strings
         image: "Strings",
         props: {
@@ -1045,10 +1074,10 @@ export const books: Book[] = [
           helpImage: "/help/Variables_Help_5.png",
         },
         content: [
-          "This page will focus on Strings!",
-          "You may have noticed in the previous pages that 'Epcot' is an example of a String! Let's try more practice.",
-          'A String is text like "Hello". You can also think of it like a sequence of different characters.',
-          "When the data type is String, then the characters will ALWAYS be surrounded by double or single quotation marks.",
+          "Now let's focus on Strings!",
+          "You may have already noticed examples of Strings in the previous pages.",
+          'A String is text like "Hello". You can also think of it like a sequence of characters.',
+          "When the data type is String, the characters will ALWAYS be surrounded by double or single quotation marks.",
           "For example, \"Hello\" and 'Hello' are both strings since they're surrounded by double or single quotation marks.",
           "What do you think '9' is? You may initially think Integer, but notice it's surrounded in single quotation marks. So, it's a string.",
         ],
@@ -1113,10 +1142,8 @@ export const books: Book[] = [
       {
         image: "/if_condition/action5.gif",
         content: [
-          "Congratulations! You have completed this book about variables!",
+          "Congratulations! You have completed this book about variable data types!",
           "Here is a quick recap of what we learned.",
-          "Variables are places where you store data throughout a program.",
-          "Every variable has a name and can be assigned a value. When a variable is assigned a value, any old value it had is lost.",
           "The values of a variable are always of a data type: Integer, Boolean, or String.",
           "An Integer is a whole number.",
           "A Boolean is always True or False.",
@@ -1126,81 +1153,33 @@ export const books: Book[] = [
     ],
   },
   {
-    BookId: 8,
-    title: "If Statements",
-    blurb: "Learn about Python If Statements",
-    author: "Dev",
-    bookCover: "/color_4.png",
+    BookId: 9,
+    title: "Conditional Operators",
+    blurb: "Learn about conditional operators",
+    author: "Thomas",
+    bookCover: "/color_5.png",
     cover: "/Python-logo-notext.png",
     gradeRange: "4-6",
     category: BookCategory.ADVANCED,
     pages: [
       {
-        // If statement intro
-        image: "IfStatementIntro",
+        image: "/ConditionalOperatorsBook/ConditionalOperatorP1.svg",
         content: [
-          "In programs, there are ways for you to control the flow of execution.",
-          "In this book, you'll learn about If statements in Python!",
-          "If-statements simply allow you to execute code only if a certain condition is true.",
-        ],
-      },
-      {
-        image: "tutor",
-        content: [
-          "Look at this quick example of an If-Statement!",
-          "Click the Next button in Python Tutor and run through the code.",
-          "Notice how lines 6 and 7 are skipped but the rest of the program executes.",
-          'This is because on line 3 we are saying "If sky_is_blue is True, then execute lines 4 and 5. Otherwise, execute line 7".',
-          "Line 9 isn't part of the If-statement, so it gets executed regardless.",
-        ],
-        props: {
-          code: 'sky_is_blue = True\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\nelse:\n\tprint("It\'s raining. Lets stay inside")\n\nprint("Hopefully it\'s sunny tomorrow!")',
-        },
-      },
-      {
-        image: "tutor",
-        content: [
-          "Here is the same code as the previous page except this time sky_is_blue is False",
-          "Now notice lines 4 and 5 get skipped and line 7 is executed.",
-          "Line 7 is part of the 'else'. The 'else' part of an If-statement gets executed when the If-statement is false.",
-          "In this example, sky_is_blue is False. So the 'else' part is executed.",
-          "If-statements let you choose what to execute.",
-          "This is how you can control the flow of execution!",
-        ],
-        props: {
-          code: 'sky_is_blue = False\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\nelse:\n\tprint("It\'s raining. Lets stay inside")\n\nprint("Hopefully it\'s sunny tomorrow!")',
-        },
-      },
-      {
-        image: "tutor",
-        content: [
-          "It's also important to recognize what is part of an If-statement.",
-          "Python uses indentation to convey this.",
-          "Notice that lines 4 and 5 are indented under the If-statement on line 3.",
-          "This means they are part of the If-statement and will be executed if sky_is_blue is True",
-          "Also notice line 7 is NOT indented, so it's not part of the If-Statement and will be executed regardless.",
-          "Run through the code to see this!",
-          "As a quick exercise, click the Edit Code button and change sky_is_blue to True and run it again!",
-        ],
-        props: {
-          code: 'sky_is_blue = False\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\n\nprint("Hopefully it\'s sunny tomorrow!")',
-        },
-      },
-      {
-        // Conditional operators
-        image: "ConditionalOperators",
-        content: [
-          "Let's learn a very important concept for if-statements: Conditional Operators.",
-          "A conditional operator is similar to a mathematical operator(+, -). However, a conditional operator's result is always True or False -- a Boolean!",
+          "Let's learn about Conditional Operators.",
+          "A conditional operator is similar to a math operator(+, -). However, a conditional operator's result is always True or False -- a Boolean!",
           "Remember we learned about Booleans in the previous book about variables.",
           "Here are some common conditional operators:",
           '1. Use "==" to check if two values are equal or the same.',
           '2. Use "<" to check if one value is less than another.',
           '3. use ">" to check if one value is greater than another.',
-          "Here are some examples:",
-          "5 == 5 will be True",
-          "5 + 5 == 10 will be True",
-          "5 < 5 will be False",
+        ],
+      },
+      {
+        // Conditional operators
+        image: "ConditionalOperators",
+        content: [
+          "Test your knowledge about conditional operators!",
+          'Remember "==" checks if two values are equal.',
         ],
         props: {
           pageNumber: 1,
@@ -1211,10 +1190,7 @@ export const books: Book[] = [
       {
         // Conditional operators
         image: "ConditionalOperators",
-        content: [
-          "Here is another question using the '==' operator.",
-          "Remember '==' checks is two values are equal.",
-        ],
+        content: ["Here is another question using the '==' operator."],
         props: {
           pageNumber: 2,
           ans: ["Option 1. Make sure to read the explanation!"],
@@ -1226,7 +1202,7 @@ export const books: Book[] = [
         image: "ConditionalOperators",
         content: [
           "It's also important to pay attention to the data types of the values you are comparing.",
-          "It's best to never use conditional operators on variables with different data types.",
+          "It's best to only use conditional operators on variables of the same data type.",
           "Technically, == can be used on different data types and it will always return false.",
           "However, using the conditional operators > and < will cause an error.",
         ],
@@ -1251,6 +1227,16 @@ export const books: Book[] = [
         },
       },
       {
+        image: "ConditionalOperators",
+        content: [
+          "Now total_number is also an integer",
+          "This means total_number and cream_number are both integers!",
+        ],
+        props: {
+          pageNumber: 5,
+        },
+      },
+      {
         image: "tutor",
         content: [
           "Here is an example using '==' to check if two values are equal.",
@@ -1263,31 +1249,46 @@ export const books: Book[] = [
         },
       },
       {
-        image: "tutor",
+        image: "/ConditionalOperatorsBook/ConditionalOperatorP1.svg",
         content: [
-          "Take a look at this example.",
-          "Notice how we are now combining conditional operators and If-statements.",
-          "Since conditional operators always evaluate to True or False, they are perfect for using in If-statements.",
-          "Run through this code and notice what happens at line 5.",
-          "black_number < cream_number will evaluate to True, so line 6 will be executed.",
-          "Now pay close attention to the variable data types on line 8. Notice that total_number is a String.",
-          "Since total_number is a String, the expression will evaluate to False.",
+          "Congratulations! You have learned about conditional operators!",
+          "Let do a quick a recap!",
+          "Conditional operators evaluate to either True or False",
+          "Conditional operators should only be used on variables of the same data type.",
+          "'==' checks if two values are equal.",
+          "'x < y' checks if x is less than y.",
+          "'x > y' checks if x is greater than y.",
         ],
-        props: {
-          code: "black_number = 1\ncream_number = 2\ntotal_number = '3'\n\nif black_number < cream_number:\n\tprint('1 is less than 2')\n\nprint(total_number == (black_number + cream_number))",
-        },
+      },
+    ],
+  },
+  {
+    BookId: 11,
+    title: "Logical Operators",
+    blurb: "Learn about Python Logical Operators",
+    author: "Thomas",
+    bookCover: "/color_7.png",
+    cover: "/Python-logo-notext.png",
+    gradeRange: "4-6",
+    category: BookCategory.ADVANCED,
+    pages: [
+      {
+        image: "/LogicalOperatorsBook/LogicalOperatorsP1.svg",
+        content: [
+          "In this book, we will learn about another type of operator called a logical operator.",
+          "Logical operators help us make decisions based on multiple Booleans.",
+          "Here are the logical operators we'll use.",
+          "1. and operator. All Booleans must be true.",
+          "2. or operator. At least one Boolean is true.",
+          "2. not operator. True becomes false, and false becomes true.",
+        ],
       },
       {
         // Logical operators
         image: "LogicalOperators",
         content: [
-          "Another kind of operator are logical operators.",
-          "Logical operators help us make decisions based on multiple Booleans.",
-          "Here are the logical operators we'll use.",
-          "1. and operator. All Booleans must be true.",
-          "2. or operator. At least one Boolean is true, the rest can be false.",
-          "2. not operator. True becomes false, and false becomes true.",
-          "Take a look at the examples!",
+          "Like conditional operators, logical operators can only evaluate to True or False.",
+          "The next few pages will ask you questions about the different logical operators.",
         ],
         props: {
           pageNumber: 1,
@@ -1370,9 +1371,103 @@ export const books: Book[] = [
         },
       },
       {
+        image: "/LogicalOperatorsBook/TruthTables.svg",
+        content: [
+          "A format that is used often when working with logic are Truth Tables.",
+          'Here are the Truth Tables for the "and", "or", "not" logical operators.',
+          "Given two conditions P and Q, you can quickly figure out what the result be in any situation.",
+          'For example, for the "and" Truth Table, you can see both P and Q need to be True to get True.',
+          'Meanwhile, for the "or" Truth Table, only P or Q need to be True to get True.',
+        ],
+      },
+      {
+        image: "/LogicalOperatorsBook/LogicalOperatorsP1.svg",
+        content: [
+          "Congratulations! You now know how logical operators work.",
+          "In the next book. You'll learn why conditional and logical operators are important and how they can be used in a program!",
+        ],
+      },
+    ],
+  },
+  {
+    BookId: 12,
+    title: "If Statements",
+    blurb: "Learn about Python If Statements",
+    author: "Thomas",
+    bookCover: "/color_4.png",
+    cover: "/Python-logo-notext.png",
+    gradeRange: "4-6",
+    category: BookCategory.ADVANCED,
+    pages: [
+      {
+        // If statement intro
+        image: "IfStatementIntro",
+        content: [
+          "In programs, there are ways for you to control the flow of execution.",
+          "In this book, you'll learn about If statements in Python!",
+          "If-statements simply allow you to execute code only if a certain condition is true.",
+        ],
+      },
+      {
+        image: "tutor",
+        content: [
+          "Look at this quick example of an If-Statement!",
+          "Click the Next button in Python Tutor and run through the code.",
+          "Notice how lines 6 and 7 are skipped but the rest of the program executes.",
+          'This is because on line 3 we are saying "If sky_is_blue is True, then execute lines 4 and 5. Otherwise, execute line 7".',
+          "Line 9 isn't part of the If-statement, so it gets executed regardless.",
+        ],
+        props: {
+          code: 'sky_is_blue = True\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\nelse:\n\tprint("It\'s raining. Lets stay inside")\n\nprint("Hopefully it\'s sunny tomorrow!")',
+        },
+      },
+      {
+        image: "tutor",
+        content: [
+          "Here is the same code as the previous page except this time sky_is_blue is False",
+          "Now notice lines 4 and 5 get skipped and line 7 is executed.",
+          "Line 7 is part of the 'else'. The 'else' part of an If-statement gets executed when the If-statement is false.",
+          "In this example, sky_is_blue is False. So the 'else' part is executed.",
+          "If-statements let you choose what to execute.",
+          "This is how you can control the flow of execution!",
+        ],
+        props: {
+          code: 'sky_is_blue = False\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\nelse:\n\tprint("It\'s raining. Lets stay inside")\n\nprint("Hopefully it\'s sunny tomorrow!")',
+        },
+      },
+      {
+        image: "tutor",
+        content: [
+          "It's also important to recognize what is part of an If-statement.",
+          "Python uses indentation to convey this.",
+          "Notice that lines 4 and 5 are indented under the If-statement on line 3.",
+          "This means they are part of the If-statement and will be executed if sky_is_blue is True",
+          "Also notice line 7 is NOT indented, so it's not part of the If-Statement and will be executed regardless.",
+          "Run through the code to see this!",
+          "As a quick exercise, click the Edit Code button and change sky_is_blue to True and run it again!",
+        ],
+        props: {
+          code: 'sky_is_blue = False\n\nif sky_is_blue:\n\tprint("It\'s sunny today!")\n\tprint("Lets play outside!")\n\nprint("Hopefully it\'s sunny tomorrow!")',
+        },
+      },
+      {
+        image: "tutor",
+        content: [
+          "Take a look at this example.",
+          "Notice how we are now combining conditional operators and If-statements.",
+          "Since conditional operators always evaluate to True or False, they are perfect for using in If-statements.",
+          "Run through this code and notice what happens at line 5.",
+          "black_number < cream_number will evaluate to True, so line 6 will be executed.",
+          "Now pay close attention to the variable data types on line 8. Notice that total_number is a String.",
+          "Since total_number is a String, the expression will evaluate to False.",
+        ],
+        props: {
+          code: "black_number = 1\ncream_number = 2\ntotal_number = '3'\n\nif black_number < cream_number:\n\tprint('1 is less than 2')\n\nprint(total_number == (black_number + cream_number))",
+        },
+      },
+      {
         image: "IfStatements",
         content: [
-          "Now that we know about conditional and logical operators, let's see how they can be used in If-statements.",
           "As we have seen, if statements allow you to control the flow of execution based on a condition.",
           "A condition can only ever be True or False.",
           "This means Booleans, conditional operators, and logical operators can be used to create a condition for an If-statement.",
@@ -1453,7 +1548,7 @@ export const books: Book[] = [
     ],
   },
   {
-    BookId: 9,
+    BookId: 13,
     title: "Life of Moose",
     blurb: "Learn coding through the life of Moose",
     author: "Dev",
@@ -1558,7 +1653,7 @@ export const books: Book[] = [
     ],
   },
   {
-    BookId: 11,
+    BookId: 14,
     title: "Flowcharts",
     blurb: "Learn how to read flow charts",
     author: "Dev",
