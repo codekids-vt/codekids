@@ -18,6 +18,16 @@ cd backend
 docker compose up -d
 ```
 
+## For permission to download the @codekids-vt/rush-hour package
+
+- Create a github [personal access token](https://github.com/settings/tokens)
+- give it the `read:packages` permission
+- save it to `$NPM_TOKEN` in your environment (optionally in your `.bashrc` or `.zshrc`)
+
+```bash
+export NPM_TOKEN=your-token
+```
+
 ## Run frontend
 
 ```bash
