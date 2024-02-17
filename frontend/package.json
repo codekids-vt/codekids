@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.23.9",
-    "@codekids-vt/rush-hour": "0.0.1",
+    "@codekids-vt/rush-hour": "^0.0.1",
     "@types/node": "^16.18.79",
     "@types/react": "^18.2.54",
     "@types/react-dom": "^18.2.18",
@@ -57,5 +57,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/codekids-vt/codekids.git"
+  },
+  "overrides": {
+    "typescript": "^5.0.0"
   }
 }
