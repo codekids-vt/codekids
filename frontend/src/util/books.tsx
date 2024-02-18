@@ -1579,7 +1579,7 @@ export const books: Book[] = [
       },
       {
         image: "LifeOfMoose",
-        content: [],
+        content: [""],
         props: {
           pageNumber: 2,
         },
