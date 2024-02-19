@@ -29,6 +29,7 @@ enum InteractionType {
   QUESTION
   NEXT_PAGE
   HELP_ME
+  PREV_PAGE
 }
 
 model Interaction {
