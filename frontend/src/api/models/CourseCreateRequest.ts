@@ -3,7 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export type CourseCreateRequest = {
-  title: string;
-  studentIds: Array<number>;
-  bookIds: Array<number>;
+    title: string;
+    studentIds: Array<number>;
+    bookIds: Array<number>;
 };
+
