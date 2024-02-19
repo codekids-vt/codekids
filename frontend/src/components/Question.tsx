@@ -54,8 +54,9 @@ export function MultipleChoiceQuestion({
     setCorrect(correct);
     changeButtonColor(index, correct);
     InteractionsService.createInteractionInteractionsPost({
-      interaction_type: InteractionType.QUESTION, time_since_load: 1
-    })
+      interaction_type: InteractionType.QUESTION,
+      time_since_load: 1,
+    });
     if (buttonPressed !== undefined) {
       buttonPressed(button);
     }
