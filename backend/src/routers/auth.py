@@ -22,7 +22,6 @@ class SignupRequest(BaseModel):
     account_type: AccountType
 
 
-
 @auth_router.post("/signup", tags=["auth"])
 async def signup(req: SignupRequest) -> User:
     user = await db.user.find_first(where={"email": req.email})
@@ -33,7 +32,7 @@ async def signup(req: SignupRequest) -> User:
         password_hash = hmac.new(
             settings.SECRET_HASH_KEY.encode(), req.password.encode(), hashlib.sha256
         )
-        
+
         user = await db.user.create(
             {
                 "token": token,
@@ -61,7 +60,7 @@ async def login(credentials: HTTPBasicCredentials) -> User:
     )
     user = await db.user.find_first(
         where={"email": credentials.username, "password": password_hash.hexdigest()},
-        include={"id":True, "token":True, "name":True, "email":True, "type":True},
+        include={"id": True, "token": True, "name": True, "email": True, "type": True},
     )
     if user:
         return user
