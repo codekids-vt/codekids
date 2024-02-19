@@ -10,6 +10,7 @@
  * [FastAPI docs for HTTP Basic Auth](https://fastapi.tiangolo.com/advanced/security/http-basic-auth/).
  */
 export type HTTPBasicCredentials = {
-  username: string;
-  password: string;
+    username: string;
+    password: string;
 };
+

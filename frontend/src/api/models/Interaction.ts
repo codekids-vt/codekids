@@ -2,21 +2,22 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { InteractionType } from "./InteractionType";
-import type { Question } from "./Question";
-import type { User } from "./User";
+import type { InteractionType } from './InteractionType';
+import type { Question } from './Question';
+import type { User } from './User';
 /**
  * Represents a Interaction record
  */
 export type Interaction = {
-  id: number;
-  user?: User | null;
-  userId?: number | null;
-  interactionType: InteractionType;
-  answer?: string | null;
-  correct?: boolean | null;
-  date: string;
-  timeSinceLoad: number;
-  question?: Question | null;
-  questionId?: number | null;
+    id: number;
+    user?: (User | null);
+    userId?: (number | null);
+    interactionType: InteractionType;
+    answer?: (string | null);
+    correct?: (boolean | null);
+    date: string;
+    timeSinceLoad: number;
+    question?: (Question | null);
+    questionId?: (number | null);
 };
+

@@ -2,17 +2,18 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Interaction } from "./Interaction";
-import type { Page } from "./Page";
+import type { Interaction } from './Interaction';
+import type { Page } from './Page';
 /**
  * Represents a Question record
  */
 export type Question = {
-  id: number;
-  question: string;
-  answer: string;
-  options: Array<string>;
-  questionAttempts?: Array<Interaction> | null;
-  page?: Page | null;
-  pageId: number;
+    id: number;
+    question: string;
+    answer: string;
+    options: Array<string>;
+    questionAttempts?: (Array<Interaction> | null);
+    page?: (Page | null);
+    pageId: number;
 };
+

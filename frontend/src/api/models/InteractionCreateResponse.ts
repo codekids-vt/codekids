@@ -3,5 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export type InteractionCreateResponse = {
-  id: number;
+    id: number;
 };
+

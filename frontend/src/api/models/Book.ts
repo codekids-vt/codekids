@@ -2,14 +2,15 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BookCourse } from "./BookCourse";
-import type { Page } from "./Page";
+import type { BookCourse } from './BookCourse';
+import type { Page } from './Page';
 /**
  * Represents a Book record
  */
 export type Book = {
-  id: number;
-  number: number;
-  pages?: Array<Page> | null;
-  courses?: Array<BookCourse> | null;
+    id: number;
+    number: number;
+    pages?: (Array<Page> | null);
+    courses?: (Array<BookCourse> | null);
 };
+
