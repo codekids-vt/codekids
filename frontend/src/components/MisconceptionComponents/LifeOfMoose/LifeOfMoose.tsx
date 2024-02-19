@@ -54,6 +54,7 @@ export function LifeOfMoose({
     return (
       <div className="flex flex-col w-full h-full items-center font-semibold text-lg text-center gap-3">
         <img
+          className="w-20 h-20 xl:w-52 xl:h-52"
           width={500}
           height={500}
           src={"/LifeOfMoose/moose_2.png"}

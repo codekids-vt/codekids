@@ -34,7 +34,7 @@ export function MultipleChoiceQuestion({
   const answerWrong =
     "text-base bg-red-400 text-black border border-solid border-black rounded-3xl py-3.5 px-12 cursor-pointer whitespace-pre-wrap";
   const answerRight =
-    "text-base bg-green-400 text-black border border-solid border-black rounded-3xl py-3.5 px-12 cursor-pointer whitespace-pre-wrap";
+    "text-base bg-primary-green text-black border border-solid border-black rounded-3xl py-3.5 px-12 cursor-pointer whitespace-pre-wrap";
 
   const [answerExplanation, setAnswerExplanation] = useState(
     "Choose an answer above!",
