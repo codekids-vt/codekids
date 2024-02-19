@@ -16,7 +16,7 @@ const Login: React.FC = () => {
       password: password,
     })
       .then((response) => {
-        login(response.token);
+        login(response);
         navigate("/");
       })
       .catch((error) => {

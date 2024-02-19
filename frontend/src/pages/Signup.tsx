@@ -33,7 +33,7 @@ const Signup = () => {
       account_type: accountType,
     })
       .then((response) => {
-        login(response.token);
+        login(response);
         navigate("/");
       })
       .catch((error) => {

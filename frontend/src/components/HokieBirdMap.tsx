@@ -68,6 +68,7 @@ export function HokieBirdMap({
         setMessage("You did it!");
         setCurrentImage(props.images[procedures.length]);
         navigate(`/book/${props.bookID}/${props.pageNum + 1}`);
+        setAllowNext(true);
       }
     }
   }

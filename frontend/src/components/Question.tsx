@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Reader } from "./Reader";
+import { InteractionType, InteractionsService } from "../api";
 
 export interface IQuestionProps {
   question: string;
@@ -34,7 +35,7 @@ export function MultipleChoiceQuestion({
   const answerWrong =
     "text-base bg-red-400 text-black border border-solid border-black rounded-3xl py-3.5 px-12 cursor-pointer whitespace-pre-wrap";
   const answerRight =
-    "text-base bg-green-400 text-black border border-solid border-black rounded-3xl py-3.5 px-12 cursor-pointer whitespace-pre-wrap";
+    "text-base bg-primary-green text-black border border-solid border-black rounded-3xl py-3.5 px-12 cursor-pointer whitespace-pre-wrap";
 
   const [answerExplanation, setAnswerExplanation] = useState(
     "Choose an answer above!",
@@ -52,6 +53,10 @@ export function MultipleChoiceQuestion({
     setAnswerExplanation(answerExplanation);
     setCorrect(correct);
     changeButtonColor(index, correct);
+    InteractionsService.createInteractionInteractionsPost({
+      interaction_type: InteractionType.QUESTION,
+      time_since_load: 1,
+    });
     if (buttonPressed !== undefined) {
       buttonPressed(button);
     }

@@ -1,10 +1,10 @@
 // AuthContext.tsx
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { OpenAPI } from "../api";
+import { OpenAPI, User } from "../api";
 
 interface AuthContextType {
-  token: string | null;
-  login: (token: string) => void;
+  user: User | null;
+  login: (user: User) => void;
   logout: () => void;
 }
 
@@ -13,27 +13,32 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token"),
-  );
+  const [user, setUser] = useState<User | null>(null);
 
-  OpenAPI.HEADERS = { "X-API-KEY": token || "" };
-  const login = (newToken: string) => {
-    setToken(newToken);
-    localStorage.setItem("token", newToken);
+  OpenAPI.HEADERS = { "X-API-KEY": user?.token || "" };
+  const login = (newUser: User) => {
+    setUser(newUser);
+    localStorage.setItem("token", JSON.stringify(newUser));
   };
 
   const logout = () => {
-    setToken(null);
-    localStorage.removeItem("token");
+    setUser(null);
+    localStorage.removeItem("user");
   };
 
   useEffect(() => {
     // Add any additional logic here to check token validity, e.g., expiration.
-  }, [token]);
+    try {
+      const userString = localStorage.getItem("user");
+      if (userString != null) {
+        const storageUser = JSON.parse(userString);
+        setUser(storageUser);
+      }
+    } catch (error) {}
+  }, [user]);
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
