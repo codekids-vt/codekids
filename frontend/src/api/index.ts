@@ -19,7 +19,6 @@ export type { Interaction } from "./models/Interaction";
 export type { InteractionCreateRequest } from "./models/InteractionCreateRequest";
 export type { InteractionCreateResponse } from "./models/InteractionCreateResponse";
 export { InteractionType } from "./models/InteractionType";
-export type { LoginResponse } from "./models/LoginResponse";
 export type { Page } from "./models/Page";
 export type { Question } from "./models/Question";
 export type { SignupRequest } from "./models/SignupRequest";

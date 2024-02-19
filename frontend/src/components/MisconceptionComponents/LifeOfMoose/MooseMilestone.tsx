@@ -55,6 +55,7 @@ export function MooseMilestone({
         <img
           width={400}
           height={400}
+          className="w-20 h-20 xl:w-52 xl:h-52"
           src={"/LifeOfMoose/moose_milestone.png"}
           alt="Moose"
         />
