@@ -38,7 +38,7 @@ export function QuestionSet({
             setCurrentQuestion(currentQuestion - 1);
           }}
         >
-          {"⯇ Previous Question"}
+          {"← Previous Question"}
         </button>
         <button
           className={nextButtonStyle}
@@ -47,7 +47,7 @@ export function QuestionSet({
             setCurrentQuestion(currentQuestion + 1);
           }}
         >
-          {"Next Question ⯈"}
+          {"Next Question →"}
         </button>
       </div>
     </div>
