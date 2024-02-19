@@ -10,7 +10,7 @@ function BookPreview({ BookData }: { BookData: Book }) {
             src={BookData.bookCover}
             width={275}
             height={280}
-            alt={`Book Image-Background`}
+            alt="Book Background"
             className="absolute"
           />
           <div className="relative top-12 left-4 w-52 h-64 flex-col flex items-center p-2 text-center">
@@ -19,7 +19,7 @@ function BookPreview({ BookData }: { BookData: Book }) {
               src={BookData.cover ? BookData.cover : BookData.pages[0].image}
               width={125}
               height={125}
-              alt={`Book Image-${BookData.title}`}
+              alt={`Book ${BookData.title}`}
               className="rounded-2xl"
             />
             <h1 className="text-black font-semibold">{BookData.title}</h1>

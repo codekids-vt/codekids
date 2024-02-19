@@ -1,11 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-interface HokieBirdColorState {
-  images: string[];
-  ans: string[];
-}
-
 const actions = ["turn_left()", "turn_right()", "move(2)", "move(3)"];
 
 export function HokieBirdMap({
@@ -28,7 +23,7 @@ export function HokieBirdMap({
 
   React.useEffect(() => {
     setAllowNext(false);
-  }, []);
+  }, [setAllowNext]);
 
   function handleOnDragStatement(e: React.DragEvent, statement: string) {
     e.dataTransfer.setData("statement", statement);
@@ -58,7 +53,7 @@ export function HokieBirdMap({
     for (let i = 0; i < procedures.length; i++) {
       if (procedures[i] !== props.ans[i]) {
         console.log(`Error at ${i} ${procedures[i]} ${props.ans[i]}`);
-        if (procedures[i] == "") {
+        if (procedures[i] === "") {
           setMessage(`Keep going! Your're almost there!`);
         } else {
           setMessage(
@@ -97,7 +92,7 @@ export function HokieBirdMap({
         src={`/Maze/${currentImage}`}
         width={400}
         height={400}
-        alt="Hokie Bird Maze Image"
+        alt="Hokie Bird Maze"
       />
       <div className="flex flex-row ">
         <div>

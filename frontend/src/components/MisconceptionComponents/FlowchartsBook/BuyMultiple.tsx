@@ -78,7 +78,7 @@ export function BuyMultiple({
           width={600}
           height={600}
           src={"/FlowchartsBook/BuyMultiple/buy_multiple.png"}
-          alt="Image of flowchart and food."
+          alt="buy multiple flow."
         />
         <MultipleChoiceQuestion
           question={q1.question}
@@ -115,7 +115,7 @@ export function BuyMultiple({
                 height={imageDim[0]}
                 width={imageDim[1]}
                 src={currentImage}
-                alt="Image of flow chart"
+                alt="flow"
               />
             )}
           </div>

@@ -51,7 +51,7 @@ export function InputActivity({
       <div className="my-4">
         <img
           src={currentImage}
-          alt="Image"
+          alt="Activity"
           className="max-w-100 max-h-100 rounded-md shadow-md"
           width={props.width || 400}
           height={props.height || 500}

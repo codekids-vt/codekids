@@ -12,7 +12,7 @@ function Card({
       <div className="max-w-sm m-2 drop-shadow-md transition-transform hover:-translate-y-1">
         <img
           src="/GameImage_1.png"
-          alt="Game card image"
+          alt="Game card"
           width={300}
           height={300}
           className="w-full object-cover rounded-lg"

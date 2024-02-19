@@ -35,7 +35,7 @@ function CategoryPreview({ category }: { category: CategorySpine }) {
             src={category.image}
             height={150}
             width={600}
-            alt={`Book Image-Background`}
+            alt={`Book Background`}
             className="absolute"
           />
           <div className="relative top-4 left-16 w-9/12 h-3/4 flex-col justify-center flex items-center p-2 text-center">

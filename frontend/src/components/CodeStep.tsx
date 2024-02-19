@@ -20,7 +20,7 @@ export function CodeStep({ props }: { props: any | ICodeStepProps }) {
   const code: string[] = props.code.split("\n");
 
   function checkCurrentLine(thisLine: number, currentLine: number) {
-    if (thisLine == currentLine) return "yellow";
+    if (thisLine === currentLine) return "yellow";
     return "none";
   }
 

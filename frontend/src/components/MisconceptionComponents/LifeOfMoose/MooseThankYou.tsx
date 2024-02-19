@@ -16,7 +16,7 @@ export function MooseThankYou() {
         width={300}
         height={300}
         src={"/LifeOfMoose/moose_with_hokie_bird.jpg"}
-        alt="Image of Moose with Hokie Bird"
+        alt="Moose with Hokie Bird"
       />
       <PythonTutor props={{ code: code }} />
     </div>

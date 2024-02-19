@@ -57,7 +57,7 @@ export function LifeOfMoose({
           width={500}
           height={500}
           src={"/LifeOfMoose/moose_2.png"}
-          alt="Image of Moose"
+          alt="Moose"
         />
         <Reader text="First look over the code and then answer the following questions!" />
         <PythonTutor props={{ code: code }} />

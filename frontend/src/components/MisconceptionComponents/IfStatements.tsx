@@ -138,13 +138,13 @@ export function IfStatements({
 
   function getPage1() {
     return (
-      <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5">
+      <div className="flex flex-col w-full items-center font-semibold text-lg text-center gap-5">
         <div className="flex flex-col-2 m-5 items-center gap-36">
           <img
             width={400}
             height={400}
             src={"/IfStatementsBook/derek_happy.png"}
-            alt="Image of Derek the therapy dog."
+            alt="Derek the therapy dog."
           />
           <div>
             <Reader text="What is printed in the program?" />
@@ -164,13 +164,13 @@ export function IfStatements({
 
   function getPage2() {
     return (
-      <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5">
+      <div className="flex flex-col w-full items-center font-semibold text-lg text-center gap-5">
         <div className="flex flex-col-2 m-5 items-center gap-36">
           <img
             width={300}
             height={300}
             src={"/IfStatementsBook/bad_weather.png"}
-            alt="Image of storm over Lane Stadium."
+            alt="storm over Lane Stadium."
           />
           <div>
             <Reader text="What is printed in the program?" />
@@ -189,13 +189,13 @@ export function IfStatements({
 
   function getPage3() {
     return (
-      <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5">
+      <div className="flex flex-col w-full items-center font-semibold text-lg text-center gap-5">
         <div className="flex flex-col-2 m-5 items-center gap-36">
           <img
             width={250}
             height={250}
             src={"/VariablesBook/hokie-bird-148.png"}
-            alt="Image of storm over Lane Stadium."
+            alt="storm over Lane Stadium."
           />
           <div>
             <Reader text="What is printed in the program below?" />
@@ -214,13 +214,13 @@ export function IfStatements({
 
   function getPage4() {
     return (
-      <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-5">
+      <div className="flex flex-col w-full items-center font-semibold text-lg text-center gap-5">
         <div className="flex flex-col-2 m-5 items-center gap-36">
           <img
             width={250}
             height={250}
             src={"/VariablesBook/hokie-bird-148.png"}
-            alt="Image of storm over Lane Stadium."
+            alt="storm over Lane Stadium."
           />
           <CodeSnippet code={p4Code} />
         </div>

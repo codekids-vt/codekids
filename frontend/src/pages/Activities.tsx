@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Background from "../components/Background";
@@ -34,8 +33,6 @@ function PostPreview({ postData }: { postData: PostData }) {
 }
 
 export default function ActivityPostList() {
-  let { pageStr } = useParams();
-
   const otherPostsData = [
     {
       image: "/lego-sort-example-clumping.png",

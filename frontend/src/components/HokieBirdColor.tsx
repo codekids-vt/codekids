@@ -53,6 +53,13 @@ export function HokieBirdColoring({
   });
 
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
+
+  enum AlertType {
+    NONE,
+    SUCCESS,
+    FAILURE,
+  }
+
   const colorNextPart = (color: string) => {
     if (currentColorIndex < availableParts.length) {
       const partToColor = availableParts[currentColorIndex];
@@ -65,12 +72,6 @@ export function HokieBirdColoring({
     }
   };
 
-  enum AlertType {
-    NONE,
-    SUCCESS,
-    FAILURE,
-  }
-
   const [currentAlert, setCurrentAlert] = useState<{
     type: AlertType;
     message: string;
@@ -78,7 +79,7 @@ export function HokieBirdColoring({
 
   React.useEffect(() => {
     setAllowNext(currentAlert.type === AlertType.SUCCESS);
-  }, [currentAlert]);
+  }, [currentAlert, AlertType.SUCCESS, setAllowNext]);
 
   function HokieBirdColors() {
     const handlePart = (index: number, value: string) => {
@@ -118,7 +119,7 @@ export function HokieBirdColoring({
       }
       if (value.startsWith('"') && value.endsWith('"')) {
         const strippedValue = val.substring(1, val.length - 1);
-        if (availableColors.includes(strippedValue) && part != "") {
+        if (availableColors.includes(strippedValue) && part !== "") {
           setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
           setColors((prevColors) => ({
             ...prevColors,
@@ -282,70 +283,70 @@ export function HokieBirdColoring({
       <div className="flex flex-col flex-grow justify-center items-center relative">
         <img
           src="/HokieBird.png"
-          alt="book image"
+          alt="Hokie Bird"
           className={"center-left w-[200px] xl:w-[500px]"}
           width={500}
           height={500}
         />
         <img
           src="/HokieHead.png"
-          alt="book image"
+          alt="Hokie Bird Head"
           className={`absolute center-left img-${colors.head} `}
           width={500}
           height={500}
         />
         <img
           src="/HokieNose.png"
-          alt="book image"
+          alt="Hokie Bird Nose"
           className={`absolute center-left img-${colors.nose} `}
           width={500}
           height={500}
         />
         <img
           src="/HokieNeck.png"
-          alt="book image"
+          alt="Hokie Bird Neck"
           className={`absolute center-left img-${colors.neck} `}
           width={500}
           height={500}
         />
         <img
           src="/HokieBody.png"
-          alt="book image"
+          alt="Hokie Bird Body"
           className={`absolute center-left img-${colors.body} `}
           width={500}
           height={500}
         />
         <img
           src="/HokieTail.png"
-          alt="book image"
+          alt="Hokie Bird Tail"
           className={`absolute center-left img-${colors.tail} `}
           width={500}
           height={500}
         />
         <img
           src="/HokieLeftLeg.png"
-          alt="book image"
+          alt="Hokie Bird Left Leg"
           className={`absolute center-left img-${colors.left_leg} `}
           width={500}
           height={500}
         />
         <img
           src="/HokieRightLeg.png"
-          alt="book image"
+          alt="Hokie Bird Right Leg"
           className={`absolute center-left img-${colors.right_leg} `}
           width={500}
           height={500}
         />
         <img
           src="/HokieLeftFoot.png"
-          alt="book image"
+          alt="Hokie Bird Left Foot"
           className={`absolute center-left img-${colors.left_foot} `}
           width={500}
           height={500}
         />
         <img
           src="/HokieRightFoot.png"
-          alt="book image"
+          alt="Hokie Bird Right Foot"
           className={`absolute center-left img-${colors.right_foot} `}
           width={500}
           height={500}
