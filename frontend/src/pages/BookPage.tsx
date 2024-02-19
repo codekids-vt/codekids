@@ -32,9 +32,8 @@ import { ChangingCondition } from "../components/MisconceptionComponents/Flowcha
 import { InputActivity } from "../components/InputActivity";
 import { TableComponent } from "../components/TableComponent";
 import { FoodTruckActivity } from "../components/FoodTruckActivity";
-import { AuthService, InteractionType, InteractionsService } from "../api";
+import { InteractionType, InteractionsService } from "../api";
 import { useAuth } from "../context/AuthContext";
-import { userAgent } from "blockly/core/utils";
 
 function BookImage({
   image,
