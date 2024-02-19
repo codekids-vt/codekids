@@ -292,7 +292,7 @@ export default function BookPage() {
       time_since_load: timeSpent,
       user_id: user?.id,
     });
-    navigate(`/book/${id}/${getNextPageNum()}`);
+    navigate(`/book/${id}/${getPrevPageNum()}`);
   }
 
   function helpMeClicked() {
