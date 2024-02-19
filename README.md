@@ -8,7 +8,7 @@ source .venv/bin/activate
 cd backend
 pip install -r requirements.txt
 prisma generate  # needs a running database
-python uvicorn src.main:app --reload
+uvicorn src.main:app --reload --port 8080
 ```
 
 To startup a local database, you can use the following command:
