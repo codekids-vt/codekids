@@ -32,7 +32,9 @@ import { ChangingCondition } from "../components/MisconceptionComponents/Flowcha
 import { InputActivity } from "../components/InputActivity";
 import { TableComponent } from "../components/TableComponent";
 import { FoodTruckActivity } from "../components/FoodTruckActivity";
-import { InteractionType, InteractionsService } from "../api";
+import { AuthService, InteractionType, InteractionsService } from "../api";
+import { useAuth } from "../context/AuthContext";
+import { userAgent } from "blockly/core/utils";
 
 function BookImage({
   image,
@@ -165,7 +167,7 @@ export default function BookPage() {
   const id = parseInt(idString as string);
   const pagenum = parseInt(pagenumString as string);
   const navigate = useNavigate();
-
+  const { login } = useAuth();
   const [help, setHelp] = useState(false);
   const [allowNext, setAllowNext] = useState(true);
   const startTime = new Date().getTime();
@@ -203,6 +205,15 @@ export default function BookPage() {
 
   }
 
+  function moveToPrevPage() {
+    const timeSpent = (startTime - new Date().getTime()) /1000;
+    InteractionsService.createInteractionInteractionsPost({
+      interaction_type: InteractionType.PREV_PAGE, time_since_load: timeSpent
+    })
+    navigate(`/book/${id}/${getNextPageNum()}`);
+
+  }
+
   function helpMeClicked(){
     const timeSpent = (startTime - new Date().getTime())/1000;
     InteractionsService.createInteractionInteractionsPost({
@@ -227,11 +238,10 @@ export default function BookPage() {
 
   const backButton =
     getPrevPageNum() !== null ? (
-      <a href={`/book/${id}/${getPrevPageNum()}`}>
-        <button className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
+      <button onClick={moveToPrevPage}
+        className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">
           Back
         </button>
-      </a>
     ) : (
       <a href={`/`}>
         <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-2 xl:p-6 xl:text-2xl rounded-full">

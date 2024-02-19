@@ -65,6 +65,6 @@ async def login(credentials: HTTPBasicCredentials) -> LoginResponse:
         where={"email": credentials.username, "password": password_hash.hexdigest()}
     )
     if user:
-        return LoginResponse(token=user.token)
+        return LoginResponse(token=user)
     else:
         raise HTTPException(status_code=400, detail="Invalid credentials")
