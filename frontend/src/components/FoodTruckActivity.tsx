@@ -4,25 +4,26 @@ interface IFoodTruckActivityProps {
   showIOLabels: boolean;
   question: string | undefined;
   options: { text: string; image: string }[];
+  width: number;
+  height: number;
 }
 
 export function FoodTruckActivity({
   props,
   setAllowNext,
 }: {
-  props: any | IFoodTruckActivityProps;
+  props: IFoodTruckActivityProps;
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { question, options, showIOLabels } = props;
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  console.log(selectedOptions);
 
   const handleOptionClick = (choice: string) => {
     // if string is present in selected options array, unadd  choice to selected options else add it
-    choice = options.find(
-      (option: { text: string; image: string }) => option.text === choice,
-    ).text;
-    console.log(choice);
+    choice =
+      options.find(
+        (option: { text: string; image: string }) => option.text === choice,
+      )?.text || "";
 
     if (selectedOptions.find((selectedOption) => selectedOption === choice)) {
       setSelectedOptions(
@@ -34,8 +35,8 @@ export function FoodTruckActivity({
   };
 
   React.useEffect(() => {
-    // Notify the parent component if needed
-    setAllowNext(selectedOptions !== null);
+    const all = selectedOptions.length === options.length;
+    setAllowNext(all);
   }, [selectedOptions, setAllowNext]);
 
   return (
@@ -112,19 +113,23 @@ export function FoodTruckActivity({
                   )?.image || ""
                 }
                 alt="option"
-                className={`max-w-100 max-h-100 rounded-md absolute left-12 bottom-24 ${
+                className={`max-w-100 max-h-100 rounded-md absolute ${
                   currentElement === "Ham" || currentElement === "Onions"
-                    ? "scale-75"
+                    ? "scale-75 bottom-20"
                     : currentElement === "Bacon"
-                      ? "scale-100 scale-x-75 left-8 scale-y-125"
-                      : currentElement === "Mushrooms" ||
-                          currentElement === "Green Onions"
-                        ? "scale-75 scale-y-100 bottom-32"
-                        : currentElement === "Chicken"
-                          ? "scale-100 bottom-16"
-                          : currentElement === "Barbecue Sauce"
-                            ? "scale-100 bottom-16"
-                            : "scale-50"
+                      ? "scale-100 scale-x-75 scale-y-125 bottom-20"
+                      : currentElement === "Pineapple"
+                        ? "scale-50 bottom-2"
+                        : currentElement === "Mushrooms" ||
+                            currentElement === "Green Onions"
+                          ? "scale-50 scale-y-100 bottom-16"
+                          : currentElement === "Chicken"
+                            ? "scale-100 bottom-4"
+                            : currentElement === "Spinach"
+                              ? "scale-50 bottom-4"
+                              : currentElement === "Barbecue Sauce"
+                                ? "scale-75 bottom-2/3 right-px"
+                                : "scale-50"
                 }`}
                 // className="max-w-100 max-h-100 rounded-md absolute left-80 top-1/2 bottom-1/2 object-center scale-50"
 
