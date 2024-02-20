@@ -49,13 +49,17 @@ function BookImage({
   return (
     <div className="h-[calc(100vh-9rem)] xl:h-[calc(100vh-13rem)] overflow-y-scroll flex flex-col items-center w-full">
       {isImage && (
-        <img
-          src={image}
-          alt="book"
-          width={600}
-          height={600}
-          className="object-contain max-w-full max-h-full"
-        />
+
+        <div className="flex flex-col justify-center items-center w-full h-full">
+          <img
+            src={image}
+            alt="book"
+            width={600}
+            height={600}
+          
+            className="object-contain max-w-full max-h-full"
+          />
+        </div>
       )}
       {image === "HokieBirdActivity" && (
         <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />
@@ -132,6 +136,7 @@ function BookContent({
   props: any;
   setAllowNext: Dispatch<SetStateAction<boolean>>;
 }) {
+  const isImage = game && game.includes(".");
   return (
     <div className="h-[calc(100vh-9rem)] xl:h-[calc(100vh-13rem)] overflow-y-scroll flex flex-col justify-center gap-1 items-center w-full">
       <ul className="flex flex-col justify-center py-2 md:space-y-1 xl:space-y-4">
@@ -156,6 +161,15 @@ function BookContent({
       {game && game === "TableComponent" && (
         <TableComponent cellContents={props.cellContents} />
       )}
+      
+      {isImage && (
+        <img
+          src={game}
+          alt="book"
+          width={600}
+          height={600}
+     /> 
+     )}
     </div>
   );
 }

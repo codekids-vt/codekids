@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 interface IFoodTruckActivityProps {
   showIOLabels: boolean;
   question: string | undefined;
@@ -14,16 +15,37 @@ export function FoodTruckActivity({
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { question, options, showIOLabels } = props;
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  console.log(selectedOptions);
 
   const handleOptionClick = (choice: string) => {
-    setSelectedOption(choice);
+    // if string is present in selected options array, unadd  choice to selected options else add it
+    choice = options.find(
+      (option: { text: string; image: string }) => option.text === choice,
+    ).text;
+    console.log(choice);
+
+    if (selectedOptions.find((selectedOption) => selectedOption === choice)) {
+      setSelectedOptions(
+        selectedOptions.filter((selectedOption) => selectedOption !== choice),
+      );
+    } else {
+      setSelectedOptions([...selectedOptions, choice]);
+    }
   };
 
   React.useEffect(() => {
     // Notify the parent component if needed
-    setAllowNext(selectedOption !== null);
-  }, [selectedOption, setAllowNext]);
+    setAllowNext(selectedOptions !== null);
+  }, [selectedOptions, setAllowNext]);
+
+
+
+  React.useEffect(() => {
+
+    console.log("Use effect rendered");
+
+  },[]);
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
@@ -47,8 +69,13 @@ export function FoodTruckActivity({
             <button
               key={index}
               className={`px-4 py-2 text-lg font-medium ${
-                selectedOption === option.text
-                  ? "bg-primary-green text-white"
+                //if in the selected options array
+                options.find(
+                  (option: { text: string; image: string }) =>
+                    option.text === selectedOptions[index],
+                )?.image || ""
+                  ? // could use includes as well, selectedOption.includes(option.text)
+                    "bg-primary-green text-white"
                   : "bg-gray-100 text-gray-800"
               } border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-primary-green`}
               onClick={() => handleOptionClick(option.text)}
@@ -59,7 +86,7 @@ export function FoodTruckActivity({
         )}
       </div>
 
-      {selectedOption && (
+      {selectedOptions && (
         <div className="flex flex-row items-center justify-center space-x-4">
           <div className="flex flex-col items-center justify-center space-y-2">
             <p className="text-lg font-medium">Output</p>
@@ -68,20 +95,55 @@ export function FoodTruckActivity({
       )}
 
       <div className="my-4">
-        {selectedOption && (
-          <img
-            src={
-              options.find(
-                (option: { text: string; image: string }) =>
-                  option.text === selectedOption,
-              )?.image || ""
-            }
-            alt="Output"
-            className="max-w-100 max-h-100 rounded-md shadow-md"
-            width={props.width || 400}
-            height={props.height || 500}
-          />
-        )}
+        <img
+          src="/io_book/pizza_pizza.png"
+          alt=""
+          className="h-96 w-96 rounded-md shadow-md justify-center left-40"
+        />
+
+        {/*
+              Expected Output displayed in bottom right corner
+              Should be a customer and all topping choices in bottom right of the screen
+              Expected Output displayed in bottom right corner
+              Finds and renders images
+          */}
+
+        {selectedOptions &&
+          selectedOptions.map((currentElement, index) => (
+            <div
+              className="flex flex-col flex-grow justify-center items-center relative"
+              key={index}
+            >
+              <img
+                key={currentElement}
+                src={
+                  options.find(
+                    (option: { text: string; image: string }) =>
+                      option.text === currentElement,
+                  )?.image || ""
+                }
+                alt="Image"
+                className={`max-w-100 max-h-100 rounded-md absolute left-12 bottom-24 ${
+                  currentElement === "Ham" || currentElement === "Onions"
+                    ? "scale-75"
+                    : currentElement === "Bacon"
+                      ? "scale-100 scale-x-75 left-8 scale-y-125"
+                      : currentElement === "Mushrooms" ||
+                          currentElement === "Green Onions"
+                        ? "scale-75 scale-y-100 bottom-32"
+                        : currentElement === "Chicken"
+                          ? "scale-100 bottom-16"
+                          : currentElement === "Barbecue Sauce"
+                            ? "scale-100 bottom-16"
+                            : "scale-50"
+                }`}
+                // className="max-w-100 max-h-100 rounded-md absolute left-80 top-1/2 bottom-1/2 object-center scale-50"
+
+                width={props.width || 400}
+                height={props.height || 500}
+              />
+            </div>
+          ))}
       </div>
     </div>
   );

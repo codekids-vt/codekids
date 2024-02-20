@@ -402,81 +402,89 @@ export const books: Book[] = [
     title: "Food Truck Input/Output ",
     bookCover: "/lighter_orange.png",
     blurb: "Learn about Input and output!",
-    author: "Prapti",
+    author: "Prapti, Gabriel H", 
     gradeRange: "K-2",
     category: BookCategory.BEGINNER,
     pages: [
       {
-        content: [
-          "Welcome to Foodie Adventures!",
+        content: ["Welcome to Foodie Adventures!",
           "Get ready for a delicious experience where you're in charge of creating your own magical meals!",
         ],
-        image: "/io_book/burger_food_truck.png",
+        image: "/io_book/pizza_food_truck.png",
+      },
+      {
+        content: ["Time to make your meal uniquely yours! ",
+          "Explore the menu and tap on the items to add them to the pizza.",
+        ],
+        image: "/io_book/pizza_food_truck.png",
       },
       {
         content: [
-          "Time to make your meal uniquely yours! ",
-          "Explore the menu and tap on the items you'd like to order",
+          "Choose the toppings to make a ham and pineapple pizza",
+          "Input your toppings to get it as output.",
         ],
-        image: "/io_book/burger_food_truck.png",
-      },
-      {
-        content: ["Choose a meal!", "Input your choice to get it as output."],
         image: "FoodTruckActivity",
         game: "FoodTruckActivity",
         props: {
           showIOLabels: true,
           options: [
-            { text: "Hamburger", image: "/io_book/hamburger.png" },
-            { text: "Cheeseburger", image: "/io_book/cheeseburger.png" },
-          ],
-        },
-      },
-      {
-        content: ["Let's choose a side!"],
-        image: "FoodTruckActivity",
-        game: "FoodTruckActivity",
-        props: {
-          showIOLabels: true,
-          options: [
-            { text: "French Fries", image: "/io_book/fries.png" },
-            { text: "Chicken Nuggets", image: "/io_book/nuggets.png" },
-          ],
-        },
-      },
-      {
-        content: ["Let's choose another side!"],
-        image: "FoodTruckActivity",
-        game: "FoodTruckActivity",
-        props: {
-          showIOLabels: true,
-          options: [
-            { text: "Apple Slices", image: "/io_book/apple_slices.png" },
-            { text: "Go Gurt", image: "/io_book/go_gurt.png" },
-          ],
-        },
-      },
-      {
-        content: ["Let's choose a drink now!"],
-        image: "FoodTruckActivity",
-        game: "FoodTruckActivity",
-        props: {
-          showIOLabels: true,
-          options: [
-            { text: "Apple Juice", image: "/io_book/apple_juice.png" },
-            { text: "Chocolate Milk", image: "/io_book/chocolate_milk.png" },
+            { text: 'Onions', image: "/io_book/diced_onions_pizza.png" },
+            { text: 'Pineapple', image: "/io_book/pineapple_pizza.png" },
+            { text: 'Ham', image: "/io_book/diced_ham_pizza.png" },
           ],
         },
       },
       {
         content: [
-          "Wohoo!",
-          "Here is your happy meal!",
-          "Hope you enjoyed the outputs to all your inputs.",
+          "Let's make a new Spinach and Onion Pizza!",
         ],
-        image: "/io_book/happy_meal.png",
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: 'Spinach', image: "/io_book/spinach_pizza.png" },
+            { text: 'Onions', image: "/io_book/diced_onions_pizza.png" },
+            { text: 'Bacon', image: "/io_book/bacon_pizza.png" },
+
+          ],
+        },
       },
-    ],
+      {
+        content: [
+          "Let's make another Veggie Pizza!",
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: 'Mushrooms', image: "/io_book/mushrooms_pizza.png" },
+            { text: 'Green Onions', image: "/io_book/green_onion_pizza.png"},
+          ],
+        },
+      },
+      {
+        content: [
+          "Let's make a Barbecue Pizza now!",
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: 'Barbecue Sauce', image: "/io_book/bbq_pizza.png" },
+            { text: 'Chicken', image: "/io_book/chicken_pizza.png" },
+          ],
+        },
+      },
+      {
+        content: ["Wohoo!",
+          "Here is your pizza!", "Hope you enjoyed the outputs to all your inputs."
+        ],
+        image: "/io_book/final_pizza.jpeg",
+      }
+    ]
   },
   {
     BookId: 4,
