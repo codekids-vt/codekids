@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 interface IFoodTruckActivityProps {
   showIOLabels: boolean;
   question: string | undefined;
@@ -39,14 +38,6 @@ export function FoodTruckActivity({
     setAllowNext(selectedOptions !== null);
   }, [selectedOptions, setAllowNext]);
 
-
-
-  React.useEffect(() => {
-
-    console.log("Use effect rendered");
-
-  },[]);
-
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
       {question && (
@@ -70,14 +61,12 @@ export function FoodTruckActivity({
               key={index}
               className={`px-4 py-2 text-lg font-medium ${
                 //if in the selected options array
-                options.find(
-                  (option: { text: string; image: string }) =>
-                    option.text === selectedOptions[index],
-                )?.image || ""
-                  ? // could use includes as well, selectedOption.includes(option.text)
-                    "bg-primary-green text-white"
+                selectedOptions.find(
+                  (selectOption) => selectOption === option.text,
+                ) // could use includes as well, selectedOption.includes(option.text)
+                  ? "bg-primary-green text-white"
                   : "bg-gray-100 text-gray-800"
-              } border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-primary-green`}
+              } border border-gray-300 rounded-md shadow-sm hover:outline-none hover:ring-2 hover:ring-primary-green hover:border-primary-green`}
               onClick={() => handleOptionClick(option.text)}
             >
               {option.text}
@@ -122,7 +111,7 @@ export function FoodTruckActivity({
                       option.text === currentElement,
                   )?.image || ""
                 }
-                alt="Image"
+                alt="option"
                 className={`max-w-100 max-h-100 rounded-md absolute left-12 bottom-24 ${
                   currentElement === "Ham" || currentElement === "Onions"
                     ? "scale-75"

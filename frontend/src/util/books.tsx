@@ -402,18 +402,20 @@ export const books: Book[] = [
     title: "Food Truck Input/Output ",
     bookCover: "/lighter_orange.png",
     blurb: "Learn about Input and output!",
-    author: "Prapti, Gabriel H", 
+    author: "Prapti, Gabriel H",
     gradeRange: "K-2",
     category: BookCategory.BEGINNER,
     pages: [
       {
-        content: ["Welcome to Foodie Adventures!",
+        content: [
+          "Welcome to Foodie Adventures!",
           "Get ready for a delicious experience where you're in charge of creating your own magical meals!",
         ],
         image: "/io_book/pizza_food_truck.png",
       },
       {
-        content: ["Time to make your meal uniquely yours! ",
+        content: [
+          "Time to make your meal uniquely yours! ",
           "Explore the menu and tap on the items to add them to the pizza.",
         ],
         image: "/io_book/pizza_food_truck.png",
@@ -428,63 +430,58 @@ export const books: Book[] = [
         props: {
           showIOLabels: true,
           options: [
-            { text: 'Onions', image: "/io_book/diced_onions_pizza.png" },
-            { text: 'Pineapple', image: "/io_book/pineapple_pizza.png" },
-            { text: 'Ham', image: "/io_book/diced_ham_pizza.png" },
+            { text: "Onions", image: "/io_book/diced_onions_pizza.png" },
+            { text: "Pineapple", image: "/io_book/pineapple_pizza.png" },
+            { text: "Ham", image: "/io_book/diced_ham_pizza.png" },
           ],
         },
       },
       {
-        content: [
-          "Let's make a new Spinach and Onion Pizza!",
-        ],
+        content: ["Let's make a new Spinach and Onion Pizza!"],
         image: "FoodTruckActivity",
         game: "FoodTruckActivity",
         props: {
           showIOLabels: true,
           options: [
-            { text: 'Spinach', image: "/io_book/spinach_pizza.png" },
-            { text: 'Onions', image: "/io_book/diced_onions_pizza.png" },
-            { text: 'Bacon', image: "/io_book/bacon_pizza.png" },
-
+            { text: "Spinach", image: "/io_book/spinach_pizza.png" },
+            { text: "Onions", image: "/io_book/diced_onions_pizza.png" },
+            { text: "Bacon", image: "/io_book/bacon_pizza.png" },
           ],
         },
       },
       {
-        content: [
-          "Let's make another Veggie Pizza!",
-        ],
+        content: ["Let's make another Veggie Pizza!"],
         image: "FoodTruckActivity",
         game: "FoodTruckActivity",
         props: {
           showIOLabels: true,
           options: [
-            { text: 'Mushrooms', image: "/io_book/mushrooms_pizza.png" },
-            { text: 'Green Onions', image: "/io_book/green_onion_pizza.png"},
+            { text: "Mushrooms", image: "/io_book/mushrooms_pizza.png" },
+            { text: "Green Onions", image: "/io_book/green_onion_pizza.png" },
           ],
         },
       },
       {
-        content: [
-          "Let's make a Barbecue Pizza now!",
-        ],
+        content: ["Let's make a Barbecue Pizza now!"],
         image: "FoodTruckActivity",
         game: "FoodTruckActivity",
         props: {
           showIOLabels: true,
           options: [
-            { text: 'Barbecue Sauce', image: "/io_book/bbq_pizza.png" },
-            { text: 'Chicken', image: "/io_book/chicken_pizza.png" },
+            { text: "Barbecue Sauce", image: "/io_book/bbq_pizza.png" },
+            { text: "Chicken", image: "/io_book/chicken_pizza.png" },
           ],
         },
       },
       {
-        content: ["Wohoo!",
-          "Here is your pizza!", "Hope you enjoyed the outputs to all your inputs."
+        content: [
+          "Wohoo!",
+          "Here is your pizza!",
+          "Hope you enjoyed the outputs to all your inputs.",
         ],
         image: "/io_book/final_pizza.jpeg",
-      }
-    ]
+      },
+    ],
   },
   {
     BookId: 4,

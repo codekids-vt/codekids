@@ -49,14 +49,12 @@ function BookImage({
   return (
     <div className="h-[calc(100vh-9rem)] xl:h-[calc(100vh-13rem)] overflow-y-scroll flex flex-col items-center w-full">
       {isImage && (
-
         <div className="flex flex-col justify-center items-center w-full h-full">
           <img
             src={image}
             alt="book"
             width={600}
             height={600}
-          
             className="object-contain max-w-full max-h-full"
           />
         </div>
@@ -161,15 +159,8 @@ function BookContent({
       {game && game === "TableComponent" && (
         <TableComponent cellContents={props.cellContents} />
       )}
-      
-      {isImage && (
-        <img
-          src={game}
-          alt="book"
-          width={600}
-          height={600}
-     /> 
-     )}
+
+      {isImage && <img src={game} alt="book" width={600} height={600} />}
     </div>
   );
 }
@@ -297,6 +288,7 @@ export default function BookPage() {
       user_id: user?.id,
     });
     navigate(`/book/${id}/${getNextPageNum()}`);
+    navigate(0); // forces react to do a rerender when going from pages with same paths with different params and same component tree
   }
 
   function moveToPrevPage() {
@@ -307,6 +299,7 @@ export default function BookPage() {
       user_id: user?.id,
     });
     navigate(`/book/${id}/${getPrevPageNum()}`);
+    navigate(0); // forces react to do a rerender when going from pages with same paths with different params and same component tree
   }
 
   function helpMeClicked() {
