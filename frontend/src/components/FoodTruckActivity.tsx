@@ -37,7 +37,7 @@ export function FoodTruckActivity({
   React.useEffect(() => {
     const all = selectedOptions.length === options.length;
     setAllowNext(all);
-  }, [selectedOptions, setAllowNext]);
+  }, [selectedOptions, setAllowNext, options.length]);
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
