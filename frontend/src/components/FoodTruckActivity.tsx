@@ -91,13 +91,6 @@ export function FoodTruckActivity({
           className="h-96 w-96 rounded-md shadow-md justify-center left-40"
         />
 
-        {/*
-              Expected Output displayed in bottom right corner
-              Should be a customer and all topping choices in bottom right of the screen
-              Expected Output displayed in bottom right corner
-              Finds and renders images
-          */}
-
         {selectedOptions &&
           selectedOptions.map((currentElement, index) => (
             <div
