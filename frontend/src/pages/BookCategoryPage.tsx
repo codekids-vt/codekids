@@ -4,6 +4,7 @@ import ActivityBookList from "../components/ActivityBookList";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Background from "../components/Background";
+import { toTitleCase } from "../util/toTitleCase";
 
 export default function BookCategoryPage() {
   // try to get the category from the params
@@ -28,8 +29,11 @@ export default function BookCategoryPage() {
             height={150}
             className="mx-auto"
           />
-          <div className="card p-2 mb-2 max-w-lg text-center">
+          <div className="p-4 max-w-lg text-center">
             <h1 className="text-2xl font-bold">Pick a book!</h1>
+            <div className="bg-primary-green border-2 border-gray-300 rounded-full text-white p-2 text-xl font-bold">
+              {toTitleCase(category)}
+            </div>
           </div>
         </div>
         <ActivityBookList category={category} />
