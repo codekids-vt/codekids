@@ -17,8 +17,8 @@ export default function BookCategoryPage() {
 
   return (
     <>
-      <Navbar />
       <Background />
+      <Navbar />
       <div className="flex flex-col items-center container mx-auto z-10 min-h-screen">
         <div>
           <img
