@@ -170,11 +170,17 @@ function HelpMeWindow({
   help,
   setHelp,
   page,
+  playLowClick,
 }: {
   help: boolean;
   setHelp: Dispatch<SetStateAction<boolean>>;
   page: Page;
+  playLowClick: () => void;
 }) {
+  function closeHelp() {
+    playLowClick();
+    setHelp(!help);
+  }
   return (
     <div
       id="help-modal"
@@ -187,7 +193,7 @@ function HelpMeWindow({
           <div className="flex items-center justify-between p-5 border-b rounded-t">
             <h3 className="text-xl font-medium text-gray-900">Codekids Help</h3>
             <button
-              onClick={() => setHelp(!help)}
+              onClick={() => closeHelp()}
               type="button"
               className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
               data-modal-hide="bottom-right-modal"
@@ -234,7 +240,7 @@ function HelpMeWindow({
           )}
           <div className="flex justify-end p-5 border-t rounded-b">
             <button
-              onClick={() => setHelp(!help)}
+              onClick={() => closeHelp()}
               type="button"
               className="text-white bg-red-600 hover:bg-red-800 font-medium rounded-lg text-sm items-center px-5 py-2.5 text-center mr-2"
             >
@@ -251,6 +257,7 @@ export default function BookPage() {
   let { idString, pagenumString } = useParams();
   const id = parseInt(idString as string);
   const [playPageFlip] = useSound("/sounds/page-flip.mp3", { volume: 0.5 });
+  const [playLowClick] = useSound("/sounds/low-click.mp3", { volume: 0.5 });
   const pagenum = parseInt(pagenumString as string);
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -309,6 +316,7 @@ export default function BookPage() {
   }
 
   function helpMeClicked() {
+    playLowClick();
     const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     InteractionsService.createInteractionInteractionsPost({
       interaction_type: InteractionType.HELP_ME,
@@ -370,7 +378,12 @@ export default function BookPage() {
           {page && (
             <div className="flex flex-col w-full min-h-full justify-between gap-1">
               {(page?.props?.ans?.length || page?.props?.helpImage) && (
-                <HelpMeWindow help={help} setHelp={setHelp} page={page} />
+                <HelpMeWindow
+                  help={help}
+                  setHelp={setHelp}
+                  page={page}
+                  playLowClick={playLowClick}
+                />
               )}
               <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max flex-grow">
                 <div className="flex flex-col flex-grow items-center bg-white rounded-l-2xl h-full">

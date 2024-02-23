@@ -11,7 +11,7 @@ export default function BookCategoryPage() {
   // try to get the category from the params
   const { categoryString } = useParams();
   const navigate = useNavigate();
-  const [playSound] = useSound("/sounds/low-click.mp3", { volume: 0.5 });
+  const [playLowClick] = useSound("/sounds/low-click.mp3", { volume: 0.5 });
   // if the category is not valid, redirect to the home page
   if (!Object.values(BookCategory).includes(categoryString as BookCategory)) {
     navigate("/");
@@ -19,8 +19,8 @@ export default function BookCategoryPage() {
   let category = categoryString as BookCategory;
 
   useEffect(() => {
-    playSound();
-  }, [playSound]);
+    playLowClick();
+  }, [playLowClick]);
 
   return (
     <>
