@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { books } from "../util/books";
 import { Page } from "../util/BookData";
 import Navbar from "../components/Navbar";
@@ -34,6 +34,7 @@ import { TableComponent } from "../components/TableComponent";
 import { FoodTruckActivity } from "../components/FoodTruckActivity";
 import { InteractionType, InteractionsService } from "../api";
 import { useAuth } from "../context/AuthContext";
+import { useSound } from "use-sound";
 
 function BookImage({
   image,
@@ -249,6 +250,7 @@ function HelpMeWindow({
 export default function BookPage() {
   let { idString, pagenumString } = useParams();
   const id = parseInt(idString as string);
+  const [playPageFlip] = useSound("/sounds/page-flip.mp3", { volume: 0.5 });
   const pagenum = parseInt(pagenumString as string);
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -259,7 +261,11 @@ export default function BookPage() {
   const bookNum = id - 1;
   const pageNum = pagenum;
   const book = books.find((book) => book.BookId === bookNum + 1);
-  console.log(books);
+
+  useEffect(() => {
+    playPageFlip();
+  }, [playPageFlip]);
+
   if (!book) {
     return (
       <div className="flex flex-col flex-grow items-center justify-center">

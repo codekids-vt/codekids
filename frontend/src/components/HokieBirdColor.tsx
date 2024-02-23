@@ -1,4 +1,5 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import useSound from "use-sound";
 
 interface HokieBirdColorState {
   head: string;
@@ -53,12 +54,27 @@ export function HokieBirdColoring({
   });
 
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
-
+  const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
+  const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
+    volume: 0.5,
+  });
   enum AlertType {
     NONE,
     SUCCESS,
     FAILURE,
   }
+  const [currentAlert, setCurrentAlert] = useState<{
+    type: AlertType;
+    message: string;
+  }>({ type: AlertType.NONE, message: "" });
+
+  useEffect(() => {
+    if (currentAlert.type === AlertType.SUCCESS) {
+      playCorrectSound();
+    } else if (currentAlert.type === AlertType.FAILURE) {
+      playIncorrectSound();
+    }
+  }, [currentAlert, playCorrectSound, playIncorrectSound, AlertType]);
 
   const colorNextPart = (color: string) => {
     if (currentColorIndex < availableParts.length) {
@@ -71,11 +87,6 @@ export function HokieBirdColoring({
       setCurrentColorIndex(currentColorIndex + 1);
     }
   };
-
-  const [currentAlert, setCurrentAlert] = useState<{
-    type: AlertType;
-    message: string;
-  }>({ type: AlertType.NONE, message: "" });
 
   React.useEffect(() => {
     setAllowNext(currentAlert.type === AlertType.SUCCESS);

@@ -25,6 +25,7 @@
     "remark-rehype": "^11.1.0",
     "typescript": "^4.9.5",
     "unified": "^11.0.4",
+    "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

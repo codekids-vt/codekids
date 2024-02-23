@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useSound from "use-sound";
 
 const actions = ["turn_left()", "turn_right()", "move(2)", "move(3)"];
 
@@ -10,6 +11,11 @@ export function HokieBirdMap({
   props: any;
   setAllowNext: Dispatch<SetStateAction<boolean>>;
 }) {
+  const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
+  const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
+    volume: 0.5,
+  });
+
   const blankProcedures = props.ans.map((statement: string) => {
     return "";
   });
@@ -53,6 +59,7 @@ export function HokieBirdMap({
     for (let i = 0; i < procedures.length; i++) {
       if (procedures[i] !== props.ans[i]) {
         console.log(`Error at ${i} ${procedures[i]} ${props.ans[i]}`);
+        playIncorrectSound();
         if (procedures[i] === "") {
           setMessage(`Keep going! Your're almost there!`);
         } else {
@@ -65,6 +72,7 @@ export function HokieBirdMap({
         break;
       }
       if (i === procedures.length - 1) {
+        playCorrectSound();
         setMessage("You did it!");
         setCurrentImage(props.images[procedures.length]);
         navigate(`/book/${props.bookID}/${props.pageNum + 1}`);
