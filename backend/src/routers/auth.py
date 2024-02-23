@@ -30,7 +30,7 @@ class UpdateUserRequest(BaseModel):
     password: Optional[str] = None
 
 @auth_router.post("/signup", tags=["auth"])
-async def signup(req: SignupRequest) -> LoginResponse:
+async def signup(req: SignupRequest) -> User:
     user = await db.user.find_first(where={"email": req.email})
     if user:
         raise HTTPException(status_code=400, detail="User already exists")
@@ -39,7 +39,8 @@ async def signup(req: SignupRequest) -> LoginResponse:
         password_hash = hmac.new(
             settings.SECRET_HASH_KEY.encode(), req.password.encode(), hashlib.sha256
         )
-        await db.user.create(
+
+        user = await db.user.create(
             {
                 "token": token,
                 "type": req.account_type,
@@ -84,14 +85,15 @@ async def delete_user_account(user: Annotated[User, Depends(get_user)]):
     return {"message": "User deleted successfully"}
 
 @auth_router.post("/login", tags=["auth"])
-async def login(credentials: HTTPBasicCredentials) -> LoginResponse:
+async def login(credentials: HTTPBasicCredentials) -> User:
     password_hash = hmac.new(
         settings.SECRET_HASH_KEY.encode(), credentials.password.encode(), hashlib.sha256
     )
     user = await db.user.find_first(
-        where={"email": credentials.username, "password": password_hash.hexdigest()}
+        where={"email": credentials.username, "password": password_hash.hexdigest()},
+        include={"id": True, "token": True, "name": True, "email": True, "type": True},
     )
     if user:
-        return LoginResponse(token=user.token)
+        return user
     else:
         raise HTTPException(status_code=400, detail="Invalid credentials")

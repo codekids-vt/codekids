@@ -43,6 +43,14 @@ export default function ActivityPostList() {
       link: "/lego-sort.md",
     },
     {
+      image: "/activity-images/rush-hour-preview.png",
+      postId: "rush-hour",
+      title: "Rush Hour",
+      author: "Noah & Namita",
+      blurb: "A fun game to learn about problem solving!",
+      link: "/activity/rush-hour",
+    },
+    {
       image: "/book-page1.png",
       postId: "picture-book",
       title: "CodeKids Picture Book",

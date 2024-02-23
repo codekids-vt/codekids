@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import BookPage from "./pages/BookPage";
 import BookCategoryPage from "./pages/BookCategoryPage";
 import ActivityPostList from "./pages/Activities";
+import RushHourPage from "./pages/RushHourPage";
 
 function App() {
   // const { token } = useAuth();
@@ -22,6 +23,7 @@ function App() {
             path="/book_category/:categoryString"
             element={<BookCategoryPage />}
           />
+          <Route path="/activity/rush-hour" element={<RushHourPage />} />
           <Route path="/activities/:pageStr" element={<ActivityPostList />} />
         </Routes>
       </BrowserRouter>

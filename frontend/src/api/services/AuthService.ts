@@ -3,7 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { HTTPBasicCredentials } from "../models/HTTPBasicCredentials";
-import type { LoginResponse } from "../models/LoginResponse";
 import type { SignupRequest } from "../models/SignupRequest";
 import type { User } from "../models/User";
 import type { CancelablePromise } from "../core/CancelablePromise";
@@ -13,12 +12,12 @@ export class AuthService {
   /**
    * Signup
    * @param requestBody
-   * @returns LoginResponse Successful Response
+   * @returns User Successful Response
    * @throws ApiError
    */
   public static signupSignupPost(
     requestBody: SignupRequest,
-  ): CancelablePromise<LoginResponse> {
+  ): CancelablePromise<User> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/signup",
@@ -43,12 +42,12 @@ export class AuthService {
   /**
    * Login
    * @param requestBody
-   * @returns LoginResponse Successful Response
+   * @returns User Successful Response
    * @throws ApiError
    */
   public static loginLoginPost(
     requestBody: HTTPBasicCredentials,
-  ): CancelablePromise<LoginResponse> {
+  ): CancelablePromise<User> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/login",
