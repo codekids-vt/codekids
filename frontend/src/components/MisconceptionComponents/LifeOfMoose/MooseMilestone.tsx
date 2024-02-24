@@ -29,8 +29,8 @@ export function MooseMilestone({
   const [q3Correct, setQ3Correct] = useState(false);
   const [q4Correct, setQ4Correct] = useState(false);
 
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [currentInstruction, setCurrentInstruction] = useState(0)
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentInstruction, setCurrentInstruction] = useState(0);
 
   React.useEffect(() => {
     if (props.pageNumber === 2) {
@@ -46,7 +46,7 @@ export function MooseMilestone({
   ]);
 
   function getCurrentQuestion(questionNumber: number) {
-    setCurrentQuestion(questionNumber)
+    setCurrentQuestion(questionNumber);
   }
 
   function getInstructionToJumpTo() {
@@ -60,7 +60,7 @@ export function MooseMilestone({
       case 3:
         return 3;
       default:
-       return 0;
+        return 0;
     }
   }
 
@@ -90,7 +90,11 @@ export function MooseMilestone({
   function getPage2() {
     return (
       <div className="flex w-full h-full text-center items-start gap-5">
-        <div className="w-1/2 h-full"><PythonTutor props={{ code: code, instruction: currentInstruction }} /></div>
+        <div className="w-1/2 h-full">
+          <PythonTutor
+            props={{ code: code, instruction: currentInstruction }}
+          />
+        </div>
         <div className="flex flex-col gap-5 w-1/2 items-center">
           <QuestionSet
             correctAnswers={[q1Correct, q2Correct, q3Correct, q4Correct]}
@@ -121,8 +125,11 @@ export function MooseMilestone({
               setCorrect={setQ4Correct}
             />
           </QuestionSet>
-          <Reader text="If you get lost, press this button to jump to the correct line in Python Tutor!"/>
-          <button className="border border-solid border-black w-fit py-3 px-5 rounded-3xl cursor-pointer bg-violet-300" onClick={() => setCurrentInstruction(getInstructionToJumpTo())}>{`Jump to line ${getInstructionToJumpTo() + 1}`}</button>
+          <Reader text="If you get lost, press this button to jump to the correct line in Python Tutor!" />
+          <button
+            className="border border-solid border-black w-fit py-3 px-5 rounded-3xl cursor-pointer bg-violet-300"
+            onClick={() => setCurrentInstruction(getInstructionToJumpTo())}
+          >{`Jump to line ${getInstructionToJumpTo() + 1}`}</button>
         </div>
       </div>
     );
