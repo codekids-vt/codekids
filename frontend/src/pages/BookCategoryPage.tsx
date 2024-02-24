@@ -5,16 +5,23 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Background from "../components/Background";
 import { toTitleCase } from "../util/toTitleCase";
+import useSound from "use-sound";
+import { useEffect } from "react";
 
 export default function BookCategoryPage() {
   // try to get the category from the params
   const { categoryString } = useParams();
   const navigate = useNavigate();
+  const [playLowClick] = useSound("/sounds/low-click.mp3", { volume: 0.5 });
   // if the category is not valid, redirect to the home page
   if (!Object.values(BookCategory).includes(categoryString as BookCategory)) {
     navigate("/");
   }
   let category = categoryString as BookCategory;
+
+  useEffect(() => {
+    playLowClick();
+  }, [playLowClick]);
 
   return (
     <>

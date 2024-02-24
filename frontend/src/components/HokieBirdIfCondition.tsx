@@ -1,5 +1,6 @@
 "use client";
 import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import useSound from "use-sound";
 
 interface HokieBirdColorState {
   condition: string;
@@ -13,6 +14,10 @@ export function HokieBirdIfCondition({
   props: any;
   setAllowNext: Dispatch<SetStateAction<boolean>>;
 }) {
+  const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
+  const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
+    volume: 0.5,
+  });
   const answer = props.ans[0];
   const [wrong, setWrong] = useState(false);
   const [good, setGood] = useState(false);
@@ -34,6 +39,11 @@ export function HokieBirdIfCondition({
       statement: option,
     }));
     setGood(isCorrectAnswer);
+    if (isCorrectAnswer) {
+      playCorrectSound();
+    } else {
+      playIncorrectSound();
+    }
     setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);
     setWrong(!isCorrectAnswer);
   }

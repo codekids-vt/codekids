@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import Background from "../components/Background";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import useSound from "use-sound";
 
 type CategorySpine = {
   name: string;
@@ -48,6 +50,10 @@ function CategoryPreview({ category }: { category: CategorySpine }) {
 }
 
 export default function HomePage() {
+  const [playSound] = useSound("/sounds/low-click.mp3", { volume: 0.5 });
+  useEffect(() => {
+    playSound();
+  }, [playSound]);
   return (
     <>
       <Background />
