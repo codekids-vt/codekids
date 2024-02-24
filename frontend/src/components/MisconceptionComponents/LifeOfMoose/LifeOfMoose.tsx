@@ -3,12 +3,11 @@ import { Reader } from "../../Reader";
 import { PythonTutor } from "../../PythonTutor";
 import { MultipleChoiceQuestion, Styles } from "../../Question";
 import { LifeOfMooseQuestions } from "../../../util/QuestionBank";
+import { QuestionSet } from "../../QuestionSet";
 
 export interface ILifeOfMooseProps {
   pageNumber: number;
 }
-
-const border = "border-4 border-lime-300 p-4";
 
 const code =
   "moose_name = 'Moose'\nprint(moose_name)\nmoose_birthday = '02/13/2012'\nprint(moose_birthday)\nmoose_color = 'cream'\nprint(moose_color)\n" +
@@ -31,6 +30,9 @@ export function LifeOfMoose({
   const [q3Correct, setQ3Correct] = useState(false);
   const [q4Correct, setQ4Correct] = useState(false);
 
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentInstruction, setCurrentInstruction] = useState(0);
+
   React.useEffect(() => {
     if (props.pageNumber === 2) {
       setAllowNext(q1Correct && q2Correct && q3Correct && q4Correct);
@@ -43,6 +45,25 @@ export function LifeOfMoose({
     props.pageNumber,
     setAllowNext,
   ]);
+
+  function getCurrentQuestion(questionNumber: number) {
+    setCurrentQuestion(questionNumber);
+  }
+
+  function getInstructionToJumpTo() {
+    switch (currentQuestion) {
+      case 0:
+        return 0;
+      case 1:
+        return 2;
+      case 2:
+        return 4;
+      case 3:
+        return 6;
+      default:
+        return 0;
+    }
+  }
 
   if (props.pageNumber === 1) {
     return getPage1();
@@ -68,41 +89,47 @@ export function LifeOfMoose({
 
   function getPage2() {
     return (
-      <div className="flex flex-col w-full h-full text-center items-center gap-5">
-        <PythonTutor props={{ code: code }} />
-        <div className="grid grid-cols-2 grid-rows-2">
-          <div className={border}>
+      <div className="flex w-full h-full text-center items-start gap-5">
+        <div className="w-1/2 h-full">
+          <PythonTutor
+            props={{ code: code, instruction: currentInstruction }}
+          />
+        </div>
+        <div className="flex flex-col gap-5 w-1/2 items-center">
+          <QuestionSet
+            correctAnswers={[q1Correct, q2Correct, q3Correct, q4Correct]}
+            getCurrentQuestion={getCurrentQuestion}
+          >
             <MultipleChoiceQuestion
               question={q1.question}
               answers={q1.answers}
               style={Styles.HORIZONTAL}
               setCorrect={setQ1Correct}
             />
-          </div>
-          <div className={border}>
             <MultipleChoiceQuestion
               question={q2.question}
               answers={q2.answers}
               style={Styles.HORIZONTAL}
               setCorrect={setQ2Correct}
             />
-          </div>
-          <div className={border}>
             <MultipleChoiceQuestion
               question={q3.question}
               answers={q3.answers}
               style={Styles.HORIZONTAL}
               setCorrect={setQ3Correct}
             />
-          </div>
-          <div className={border}>
             <MultipleChoiceQuestion
               question={q4.question}
               answers={q4.answers}
               style={Styles.HORIZONTAL}
               setCorrect={setQ4Correct}
             />
-          </div>
+          </QuestionSet>
+          <Reader text="If you get lost, press this button to jump to the correct line in Python Tutor!" />
+          <button
+            className="border border-solid border-black w-fit py-3 px-5 rounded-3xl cursor-pointer bg-violet-300"
+            onClick={() => setCurrentInstruction(getInstructionToJumpTo())}
+          >{`Jump to line ${getInstructionToJumpTo() + 1}`}</button>
         </div>
       </div>
     );
