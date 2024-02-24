@@ -128,7 +128,10 @@ export function HokieBirdColoring({
           message: "This value is a color, not a body part!",
         });
       }
-      if (value.startsWith('"') && value.endsWith('"')) {
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
         const strippedValue = val.substring(1, val.length - 1);
         if (availableColors.includes(strippedValue) && part !== "") {
           setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
