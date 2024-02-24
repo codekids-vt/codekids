@@ -13,8 +13,7 @@ function BookPreview({ BookData }: { BookData: Book }) {
             alt="Book Background"
             className="absolute"
           />
-          <div className="relative top-12 left-4 w-52 h-64 flex-col flex items-center p-2 text-center">
-            <p className="mt-1 mb-2 text-sm text-end text-black">{` Grades: ${BookData.gradeRange}`}</p>
+          <div className="relative top-16 left-4 w-52 h-64 flex-col flex items-center p-2 text-center">
             <img
               src={BookData.cover ? BookData.cover : BookData.pages[0].image}
               width={125}
