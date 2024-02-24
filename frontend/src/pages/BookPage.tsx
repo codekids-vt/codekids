@@ -299,9 +299,10 @@ export default function BookPage() {
       interaction_type: InteractionType.NEXT_PAGE,
       time_since_load: timeSpent,
       user_id: user?.id,
+    }).then(() => {
+      navigate(`/book/${id}/${getNextPageNum()}`);
+      navigate(0); // forces react to do a rerender when going from pages with same paths with different params and same component tree
     });
-    navigate(`/book/${id}/${getNextPageNum()}`);
-    navigate(0); // forces react to do a rerender when going from pages with same paths with different params and same component tree
   }
 
   function moveToPrevPage() {
@@ -310,9 +311,10 @@ export default function BookPage() {
       interaction_type: InteractionType.PREV_PAGE,
       time_since_load: timeSpent,
       user_id: user?.id,
+    }).then(() => {
+      navigate(`/book/${id}/${getPrevPageNum()}`);
+      navigate(0); // forces react to do a rerender when going from pages with same paths with different params and same component tree
     });
-    navigate(`/book/${id}/${getPrevPageNum()}`);
-    navigate(0); // forces react to do a rerender when going from pages with same paths with different params and same component tree
   }
 
   function helpMeClicked() {
@@ -322,8 +324,10 @@ export default function BookPage() {
       interaction_type: InteractionType.HELP_ME,
       time_since_load: timeSpent,
       user_id: user?.id,
+    }).then(() => {
+      console.log("interaction created");
+      setHelp(!help);
     });
-    setHelp(!help);
   }
 
   const forwardButton =
