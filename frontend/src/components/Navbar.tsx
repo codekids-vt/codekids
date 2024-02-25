@@ -39,7 +39,7 @@ export default function Navbar() {
 
   return (
     <header className={`top-0 sticky w-full px-2 z-[100]`}>
-      <div className="container mx-auto sm:flex justify-between">
+      <div className="flex flex-row justify-between relative h-[60px]">
         <div className="flex flex-row items-center justify-between py-1 sm:py-0">
           <a href="/">
             <img
@@ -80,6 +80,7 @@ export default function Navbar() {
           ${open ? "block" : "hidden"}
           sm:block my-auto  sm:py-0
           rounded-b-md font-semibold
+          absolute left-1/2 transform -translate-x-1/2
         `}
         >
           <ul className="tablet:mx-auto sm:flex sm:items-center text-center text-lg">
@@ -105,24 +106,3 @@ export default function Navbar() {
     </header>
   );
 }
-
-/*
-<li key="nav-play" className={`
-  inline-block px-3 py-2 ml-2
-  rounded-md bg-lime-500 outline outline-1 outline-lime-600/60
-  transition-shadow duration-500 shadow-lime-500/20 shadow-md 
-  hover:shadow-lime-500/50 hover:shadow-lg
-`}>
-  Play now!
-</li>
-
-<Link href={href}>
-  <li className={`
-    inline-block p-2 m-1
-    transition-colors hover:bg-black/10 hover:text-lime-700
-    rounded-md outline-1 outline-neutral-300 hover:outline
-  `}>
-    {text}
-  </li>
-</Link>
-*/
