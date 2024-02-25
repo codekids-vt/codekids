@@ -92,6 +92,8 @@ export function HokieBirdColoring({
     setAllowNext(currentAlert.type === AlertType.SUCCESS);
   }, [currentAlert, AlertType.SUCCESS, setAllowNext]);
 
+  let isFireFox = navigator.userAgent.indexOf("Firefox") !== -1;
+
   function HokieBirdColors() {
     const handlePart = (index: number, value: string) => {
       const val = value.toLowerCase();
@@ -216,7 +218,7 @@ export function HokieBirdColoring({
                       onBlur={(e) => handleValueOnBlur(e.target.value)}
                       onChange={(e) => handlePart(index, e.target.value)}
                       defaultValue={part[index]}
-                      disabled={!props.type}
+                      disabled={!isFireFox && !props.type}
                     />
                   ) : (
                     `${availablePart}`
@@ -245,7 +247,7 @@ export function HokieBirdColoring({
                           ? `"${colors[availablePart as keyof HokieBirdColorState]}"`
                           : ""
                     }
-                    disabled={!props.type}
+                    disabled={!isFireFox && !props.type}
                   />
                 </label>
               </div>

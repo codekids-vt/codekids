@@ -27,6 +27,8 @@ export function HokieBirdMap({
 
   const navigate = useNavigate();
 
+  let isFireFox = navigator.userAgent.indexOf("Firefox") !== -1;
+
   React.useEffect(() => {
     setAllowNext(false);
   }, [setAllowNext]);
@@ -117,7 +119,7 @@ export function HokieBirdMap({
                     type="text"
                     className={`rounded-2xl text-center w-min ${errorProcedure === index ? "border-red-500" : ""} ${procedures[index] !== "" ? "bg-blue-200" : "bg-gray-200"}`}
                     placeholder={props?.type ? "Type Here" : "Drag Here"}
-                    disabled={!props.type}
+                    disabled={!isFireFox && !props.type}
                     value={statement}
                     onChange={(e) => setProcedure(index, e.target.value)}
                   />
