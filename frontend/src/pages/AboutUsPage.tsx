@@ -19,8 +19,8 @@ export default function AboutUsPage() {
     <div>
       <Background />
       <Navbar />
-      <div className="flex flex-col gap-2 items-center container z-10 min-h-screen">
-        <div className="p-2 w-1/2">
+      <div className="flex flex-col gap-2 items-center z-10 min-h-screen w-full">
+        <div className=" w-1/2">
           <h1 className="text-4xl font-bold mt-10">About Us</h1>
           <p className="text-lg mt-5">
             Welcome to CodeKids! We are a team of students from Virginia Tech
