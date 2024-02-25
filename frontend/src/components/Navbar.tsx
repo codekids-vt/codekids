@@ -1,18 +1,28 @@
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { AccountType } from "../api";
 
 interface NavLinkRoute {
   text: string;
   href: string;
 }
 
-const navbarLinks: readonly NavLinkRoute[] = [
+const baseLinks: readonly NavLinkRoute[] = [
   {
     text: "Home",
     href: "/",
   },
   {
-    text: "Activities",
-    href: "/activities/1",
+    text: "About Us",
+    href: "/about_us",
+  },
+];
+
+const teacherLinks: readonly NavLinkRoute[] = [
+  ...baseLinks,
+  {
+    text: "Teacher Resources",
+    href: "/teacher_resources",
   },
 ];
 
@@ -36,6 +46,10 @@ function NavButton(route: NavLinkRoute) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { user, logout } = useAuth();
+
+  const navLinks =
+    user?.type === AccountType.TEACHER ? teacherLinks : baseLinks;
 
   return (
     <header className={`top-0 sticky w-full px-2 z-[100]`}>
@@ -83,24 +97,41 @@ export default function Navbar() {
         `}
         >
           <ul className="tablet:mx-auto sm:flex sm:items-center text-center text-lg">
-            {navbarLinks.map((route, i) => (
+            {navLinks.map((route, i) => (
               <NavButton {...route} key={`nav-${i}`} />
             ))}
           </ul>
         </nav>
 
-        <a className="my-auto" href="/login">
-          <p
-            className={`
+        {!user ? (
+          <a className="my-auto" href="/login">
+            <p
+              className={`
             px-3 py-2
             text-neutral-100 text-center text-sm bg-primary-green rounded-md
-            transition-shadow duration-200 shadow-black/40 shadow-none
+            transition-shadow duration-200
             hover:shadow-black/20 hover:shadow-md
           `}
-          >
-            Log in
-          </p>
-        </a>
+            >
+              Log in
+            </p>
+          </a>
+        ) : (
+          <div className="flex flex-row p-4 gap-2 items-center">
+            <div className="div text-xl font-semibold">Hi {user.name}!</div>
+            <button
+              onClick={logout}
+              className={`
+              px-3 py-2 bg-primary-green
+              text-neutral-100 text-center text-sm rounded-md
+              transition-shadow duration-200
+              hover:shadow-black/20 hover:shadow-md
+            `}
+            >
+              Log out
+            </button>
+          </div>
+        )}
       </div>
     </header>
   );

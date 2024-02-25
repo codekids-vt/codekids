@@ -4,10 +4,11 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import BookPage from "./pages/BookPage";
 import BookCategoryPage from "./pages/BookCategoryPage";
-import ActivityPostList from "./pages/Activities";
+import TeacherResourcesPage from "./pages/TeacherResources";
 import RushHourPage from "./pages/RushHourPage";
 import { useOrientation } from "react-use";
 import PleaseRotateScreen from "./components/PleaseRotateScreen";
+import AboutUsPage from "./pages/AboutUsPage";
 
 function App() {
   const orientation = useOrientation();
@@ -32,7 +33,11 @@ function App() {
               element={<BookCategoryPage />}
             />
             <Route path="/activity/rush-hour" element={<RushHourPage />} />
-            <Route path="/activities/:pageStr" element={<ActivityPostList />} />
+            <Route
+              path="/teacher_resources"
+              element={<TeacherResourcesPage />}
+            />
+            <Route path="/about_us" element={<AboutUsPage />} />
           </Routes>
         </BrowserRouter>
       </div>
