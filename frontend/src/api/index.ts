@@ -23,6 +23,7 @@ export type { Page } from "./models/Page";
 export type { Question } from "./models/Question";
 export type { SignupRequest } from "./models/SignupRequest";
 export type { User } from "./models/User";
+export type { UserLightNoPassword } from "./models/UserLightNoPassword";
 export type { ValidationError } from "./models/ValidationError";
 
 export { AuthService } from "./services/AuthService";
