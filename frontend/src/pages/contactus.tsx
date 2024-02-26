@@ -4,14 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 const ContactUs: React.FC = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log({ name, email, subject, message });
+    console.log({ name, subject, message });
     navigate("/");
   };
 
