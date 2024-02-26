@@ -11,15 +11,17 @@ export interface IPythonTutorProps {
   cumulative?: boolean;
   width?: number;
   height?: number;
+  instruction?: number;
 }
 
-export function PythonTutor({ props }: { props: any | IPythonTutorProps }) {
+export function PythonTutor({ props }: { props: IPythonTutorProps }) {
   const [editing, setEditing] = useState(false);
   const [code, setCode] = useState(props.code);
   const [scale, setScale] = useState(1);
 
   // calculate width and height based on device
   const cumulative = props.cumulative ?? false;
+  const instruction = props.instruction ?? 0;
 
   return (
     <div className="flex flex-col flex-grow items-center w-full h-full">
@@ -29,8 +31,9 @@ export function PythonTutor({ props }: { props: any | IPythonTutorProps }) {
             title="Python Tutor"
             id="pyTutorFrame"
             className="w-full h-full"
+            key={instruction}
             style={{ scale: scale, transformOrigin: "top left" }}
-            src={`https://pythontutor.com/iframe-embed.html#code=${encodeURIComponent(code)}&cumulative=${cumulative}&py=2`}
+            src={`https://pythontutor.com/iframe-embed.html#code=${encodeURIComponent(code)}&cumulative=${cumulative}&py=2&curInstr=${instruction}`}
           ></iframe>
         </div>
       )}

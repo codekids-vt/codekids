@@ -74,7 +74,7 @@ export const books: Book[] = [
           "You will drag and drop commands to help HokieBird make it to lane stadium!",
           "Direct the HokieBird across campus with the following commands in blue!",
         ],
-        image: "/Maze/SadHokieBird.png",
+        image: "/Maze/lost_hokiebird.png",
       },
       {
         content: [
@@ -85,7 +85,7 @@ export const books: Book[] = [
           "Turning left and right is similar with the move_left() and move_right() commands.",
           "Placing any of these commands in the command boxes will move the HokieBird in order of the commands, if they are valid.",
         ],
-        image: "/Maze/SadHokieBird.png",
+        image: "/Maze/you_helping_hokiebird.png",
       },
       {
         content: [

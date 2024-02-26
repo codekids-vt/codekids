@@ -4,7 +4,7 @@
 /* eslint-disable */
 import type { HTTPBasicCredentials } from "../models/HTTPBasicCredentials";
 import type { SignupRequest } from "../models/SignupRequest";
-import type { User } from "../models/User";
+import type { UserLightNoPassword } from "../models/UserLightNoPassword";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
@@ -12,12 +12,12 @@ export class AuthService {
   /**
    * Signup
    * @param requestBody
-   * @returns User Successful Response
+   * @returns UserLightNoPassword Successful Response
    * @throws ApiError
    */
   public static signupSignupPost(
     requestBody: SignupRequest,
-  ): CancelablePromise<User> {
+  ): CancelablePromise<UserLightNoPassword> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/signup",
@@ -30,10 +30,10 @@ export class AuthService {
   }
   /**
    * Get User Data
-   * @returns User Successful Response
+   * @returns UserLightNoPassword Successful Response
    * @throws ApiError
    */
-  public static getUserDataUserMeGet(): CancelablePromise<User> {
+  public static getUserDataUserMeGet(): CancelablePromise<UserLightNoPassword> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/user/me",
@@ -42,12 +42,12 @@ export class AuthService {
   /**
    * Login
    * @param requestBody
-   * @returns User Successful Response
+   * @returns UserLightNoPassword Successful Response
    * @throws ApiError
    */
   public static loginLoginPost(
     requestBody: HTTPBasicCredentials,
-  ): CancelablePromise<User> {
+  ): CancelablePromise<UserLightNoPassword> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/login",
