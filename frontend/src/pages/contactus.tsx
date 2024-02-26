@@ -43,7 +43,7 @@ const ContactUs: React.FC = () => {
                 />
               </div>
             </div>
-            
+
             {/* Subject Field */}
             <div>
               <label htmlFor="subject" className="block text-sm font-medium leading-6 text-gray-900">
@@ -80,12 +80,9 @@ const ContactUs: React.FC = () => {
 
             {/* Submit Button */}
             <div className="p-2">
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-xl bg-primary-green px-4 py-2 text-sm font-medium leading-6 text-white shadow-md hover:bg-primary-green-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-green"
-              >
+              <a href={`mailto:sallyh84@vt.edu?subject=${subject}&body=${message + encodeURI("\n\nRegards,\n") + name}`} className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-green hover:bg-primary-green-dark focus:outline-none focus:border-primary-green focus:shadow-outline-primary-green active:bg-primary-green-dark transition duration-150 ease-in-out">
                 Send Message
-              </button>
+              </a>
             </div>
           </div>
         </form>
