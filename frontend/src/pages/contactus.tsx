@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Background from "../components/Background";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const ContactUs: React.FC = () => {
   const [name, setName] = useState("");
@@ -17,6 +19,7 @@ const ContactUs: React.FC = () => {
   return (
     <>
       <Background />
+      <Navbar />
       <div className="flex min-h-screen flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="p-2 text-center text-2xl font-bold leading-9 tracking-tight text-primary-green">
@@ -101,6 +104,7 @@ const ContactUs: React.FC = () => {
           </div>
         </form>
       </div>
+      <Footer />
     </>
   );
 };
