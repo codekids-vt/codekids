@@ -9,7 +9,7 @@ import RushHourPage from "./pages/RushHourPage";
 import { useOrientation } from "react-use";
 import PleaseRotateScreen from "./components/PleaseRotateScreen";
 import AboutUsPage from "./pages/AboutUsPage";
-import ContactUs from './pages/contactus';
+import ContactUs from "./pages/contactus";
 
 function App() {
   const orientation = useOrientation();
