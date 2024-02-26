@@ -1,6 +1,8 @@
 "use client";
 import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import useSound from "use-sound";
+import { useAuth } from "../context/AuthContext";
+import { handleInteraction } from "../util/interaction";
 
 interface HokieBirdColorState {
   condition: string;
@@ -26,6 +28,8 @@ export function HokieBirdIfCondition({
     condition: "",
     statement: "",
   });
+  const { user } = useAuth();
+  const startTime = new Date().getTime();
 
   React.useEffect(() => {
     setAllowNext(good);
@@ -39,11 +43,6 @@ export function HokieBirdIfCondition({
       statement: option,
     }));
     setGood(isCorrectAnswer);
-    if (isCorrectAnswer) {
-      playCorrectSound();
-    } else {
-      playIncorrectSound();
-    }
     setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);
     setWrong(!isCorrectAnswer);
   }
@@ -66,6 +65,15 @@ export function HokieBirdIfCondition({
       ...game,
       condition: condition,
     });
+    const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
+    const isCorrectAnswer = condition === props.ans?.condition && game.statement === answer;
+    if (isCorrectAnswer) {
+      playCorrectSound();
+      handleInteraction("Correct", timeSpent, user?.id)
+    } else {
+      playIncorrectSound();
+      handleInteraction("Incorrect", timeSpent, user?.id)
+    }
     setGood(condition === props.ans?.condition && game.statement === answer);
   }
 
@@ -78,11 +86,20 @@ export function HokieBirdIfCondition({
       temp,
     };
     setGame(newColors);
-    setGood(newColors.statement === answer);
+    const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
+    const isCorrectAnswer = newColors.statement === answer;
+    if (isCorrectAnswer) {
+      playCorrectSound();
+      handleInteraction("Correct", timeSpent, user?.id)
+    } else {
+      playIncorrectSound();
+      handleInteraction("Incorrect", timeSpent, user?.id)
+    }
+    setGood(isCorrectAnswer);
     setCurrentImage(
-      newColors.statement === answer ? props.ans_image : props.image,
+      isCorrectAnswer ? props.ans_image : props.image,
     );
-    setWrong(newColors.statement !== answer);
+    setWrong(!isCorrectAnswer);
   }
 
   function handleReset(e: any) {

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Reader } from "./Reader";
-import { InteractionType, InteractionsService } from "../api";
 import useSound from "use-sound";
+import { useAuth } from "../context/AuthContext";
+import { handleInteraction } from "../util/interaction";
 
 export interface IQuestionProps {
   question: string;
@@ -34,6 +35,8 @@ export function MultipleChoiceQuestion({
   const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
     volume: 0.5,
   });
+  const { user } = useAuth();
+  const startTime = new Date().getTime();
 
   var layout: string = "";
   const buttonStyle =
@@ -56,18 +59,17 @@ export function MultipleChoiceQuestion({
     button: HTMLButtonElement,
     index: number,
   ) {
+    const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     setAnswerExplanation(answerExplanation);
     setCorrect(correct);
     if (correct) {
       playCorrectSound();
+      handleInteraction("Correct", timeSpent, user?.id)
     } else {
       playIncorrectSound();
+      handleInteraction("Incorrect", timeSpent, user?.id)
     }
     changeButtonColor(index, correct);
-    InteractionsService.createInteractionInteractionsPost({
-      interaction_type: InteractionType.QUESTION,
-      time_since_load: 1,
-    });
     if (buttonPressed !== undefined) {
       buttonPressed(button);
     }
