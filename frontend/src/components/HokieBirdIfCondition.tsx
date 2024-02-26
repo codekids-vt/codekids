@@ -66,13 +66,14 @@ export function HokieBirdIfCondition({
       condition: condition,
     });
     const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
-    const isCorrectAnswer = condition === props.ans?.condition && game.statement === answer;
+    const isCorrectAnswer =
+      condition === props.ans?.condition && game.statement === answer;
     if (isCorrectAnswer) {
       playCorrectSound();
-      handleInteraction("Correct", timeSpent, user?.id)
+      handleInteraction("Correct", timeSpent, user?.id);
     } else {
       playIncorrectSound();
-      handleInteraction("Incorrect", timeSpent, user?.id)
+      handleInteraction("Incorrect", timeSpent, user?.id);
     }
     setGood(condition === props.ans?.condition && game.statement === answer);
   }
@@ -90,15 +91,13 @@ export function HokieBirdIfCondition({
     const isCorrectAnswer = newColors.statement === answer;
     if (isCorrectAnswer) {
       playCorrectSound();
-      handleInteraction("Correct", timeSpent, user?.id)
+      handleInteraction("Correct", timeSpent, user?.id);
     } else {
       playIncorrectSound();
-      handleInteraction("Incorrect", timeSpent, user?.id)
+      handleInteraction("Incorrect", timeSpent, user?.id);
     }
     setGood(isCorrectAnswer);
-    setCurrentImage(
-      isCorrectAnswer ? props.ans_image : props.image,
-    );
+    setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);
     setWrong(!isCorrectAnswer);
   }
 

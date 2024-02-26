@@ -64,10 +64,10 @@ export function MultipleChoiceQuestion({
     setCorrect(correct);
     if (correct) {
       playCorrectSound();
-      handleInteraction("Correct", timeSpent, user?.id)
+      handleInteraction("Correct", timeSpent, user?.id);
     } else {
       playIncorrectSound();
-      handleInteraction("Incorrect", timeSpent, user?.id)
+      handleInteraction("Incorrect", timeSpent, user?.id);
     }
     changeButtonColor(index, correct);
     if (buttonPressed !== undefined) {

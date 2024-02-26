@@ -317,13 +317,13 @@ export default function BookPage() {
     });
   }
 
-  function homeClicked(){
+  function homeClicked() {
     const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     InteractionsService.createInteractionInteractionsPost({
       interaction_type: InteractionType.PREV_PAGE,
       time_since_load: timeSpent,
       user_id: user?.id,
-    })
+    });
   }
 
   function helpMeClicked() {
@@ -349,9 +349,10 @@ export default function BookPage() {
       </button>
     ) : (
       <a href={`/`}>
-        <button 
-        onClick={() => homeClicked()}
-        className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-1 xl:px-4 xl:py-4 lg:text-lg xl:text-2xl rounded-full">
+        <button
+          onClick={() => homeClicked()}
+          className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-1 xl:px-4 xl:py-4 lg:text-lg xl:text-2xl rounded-full"
+        >
           Home
         </button>
       </a>
@@ -368,8 +369,9 @@ export default function BookPage() {
     ) : (
       <a href={`/`}>
         <button
-        onClick={() => homeClicked()} 
-        className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-1 xl:px-4 xl:py-4 lg:text-lg xl:text-2xl rounded-full">
+          onClick={() => homeClicked()}
+          className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-1 xl:px-4 xl:py-4 lg:text-lg xl:text-2xl rounded-full"
+        >
           Home
         </button>
       </a>
