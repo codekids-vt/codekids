@@ -32,6 +32,7 @@ export function LifeOfMoose({
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentInstruction, setCurrentInstruction] = useState(0);
+  const [reload, setReload] = useState(0);
 
   React.useEffect(() => {
     if (props.pageNumber === 2) {
@@ -92,7 +93,11 @@ export function LifeOfMoose({
       <div className="flex w-full h-full text-center items-start gap-5">
         <div className="w-1/2 h-full">
           <PythonTutor
-            props={{ code: code, instruction: currentInstruction }}
+            props={{
+              code: code,
+              instruction: currentInstruction,
+              reload: reload,
+            }}
           />
         </div>
         <div className="flex flex-col gap-5 w-1/2 items-center">
@@ -128,7 +133,10 @@ export function LifeOfMoose({
           <Reader text="If you get lost, press this button to jump to the correct line in Python Tutor!" />
           <button
             className="border border-solid border-black w-fit py-3 px-5 rounded-3xl cursor-pointer bg-violet-300"
-            onClick={() => setCurrentInstruction(getInstructionToJumpTo())}
+            onClick={() => {
+              setCurrentInstruction(getInstructionToJumpTo());
+              setReload(reload + 1);
+            }}
           >{`Jump to line ${getInstructionToJumpTo() + 1}`}</button>
         </div>
       </div>

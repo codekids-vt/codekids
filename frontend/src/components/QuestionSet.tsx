@@ -44,7 +44,7 @@ export function QuestionSet({
           {question}
         </div>
       ))}
-      <div className="flex flex-col-2 gap-96">
+      <div className="flex justify-between w-full">
         <button
           className={prevButtonStyle}
           disabled={currentQuestion === 0}
