@@ -33,6 +33,12 @@ enum InteractionType {
   PREV_PAGE
 }
 
+enum BookCategory {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
 model Interaction {
   id      Int      @id @default(autoincrement())
   user    User?     @relation(fields: [userId], references: [id])
@@ -60,20 +66,26 @@ model Question {
 }
 
 model Book {
-  id     Int @id @default(autoincrement())
-  number Int
-
-  pages   Page[]
-  courses BookCourse[]
+  id          Int           @id @default(autoincrement())
+  bookCover   String?
+  title       String
+  blurb       String?
+  author      String
+  gradeRange  String
+  category    BookCategory  // or String if you prefer
+  pages       Page[]
+  courses     BookCourse[]
 }
 
 model Page {
-  id     Int @id @default(autoincrement())
-  number Int
-
-  book   Book @relation(fields: [bookId], references: [id])
-  bookId Int
-  questions Question[]
+  id          Int           @id @default(autoincrement())
+  pageNumber  Int
+  content     Json          // or String[]
+  image       String
+  props       Json?          // for storing additional interactive properties
+  book        Book          @relation(fields: [bookId], references: [id])
+  bookId      Int
+  questions   Question[]
 }
 
 model CourseStudent {
