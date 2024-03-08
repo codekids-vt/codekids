@@ -5,6 +5,7 @@ from prisma import Prisma
 # Initialize Prisma client
 client = Prisma()
 
+
 async def main():
     # Connect to the database
     await client.connect()
@@ -46,6 +47,7 @@ async def main():
 
     # Disconnect the database
     await client.disconnect()
+
 
 # Run the main function
 asyncio.run(main())
