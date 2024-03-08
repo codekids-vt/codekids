@@ -9,6 +9,7 @@ from prisma.enums import AccountType
 from prisma.models import User
 from src.db import db
 from src.config import settings
+from prisma.partials import UserLightNoPassword
 
 from src.auth import get_user
 
@@ -30,7 +31,7 @@ class UpdateUserRequest(BaseModel):
     password: Optional[str] = None
 
 @auth_router.post("/signup", tags=["auth"])
-async def signup(req: SignupRequest) -> User:
+async def signup(req: SignupRequest) -> UserLightNoPassword:
     user = await db.user.find_first(where={"email": req.email})
     if user:
         raise HTTPException(status_code=400, detail="User already exists")
@@ -40,7 +41,7 @@ async def signup(req: SignupRequest) -> User:
             settings.SECRET_HASH_KEY.encode(), req.password.encode(), hashlib.sha256
         )
 
-        user = await db.user.create(
+        user = await UserLightNoPassword.prisma().create(
             {
                 "token": token,
                 "type": req.account_type,
@@ -52,8 +53,12 @@ async def signup(req: SignupRequest) -> User:
         return LoginResponse(token=token)
 
 @auth_router.get("/user/me", tags=["auth"])
-async def get_user_data(user: Annotated[User, Depends(get_user)]) -> User:
-    user_data = await db.user.find_first(where={"token": user.token})
+async def get_user_data(
+    user: Annotated[User, Depends(get_user)]
+) -> UserLightNoPassword:
+    user_data = await UserLightNoPassword.prisma().find_first(
+        where={"token": user.token}
+    )
     if not user_data:
         raise HTTPException(status_code=400, detail="User not found")
     return user_data
@@ -85,13 +90,12 @@ async def delete_user_account(user: Annotated[User, Depends(get_user)]):
     return {"message": "User deleted successfully"}
 
 @auth_router.post("/login", tags=["auth"])
-async def login(credentials: HTTPBasicCredentials) -> User:
+async def login(credentials: HTTPBasicCredentials) -> UserLightNoPassword:
     password_hash = hmac.new(
         settings.SECRET_HASH_KEY.encode(), credentials.password.encode(), hashlib.sha256
     )
-    user = await db.user.find_first(
+    user = await UserLightNoPassword.prisma().find_first(
         where={"email": credentials.username, "password": password_hash.hexdigest()},
-        include={"id": True, "token": True, "name": True, "email": True, "type": True},
     )
     if user:
         return user

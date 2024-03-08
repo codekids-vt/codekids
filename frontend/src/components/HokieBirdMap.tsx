@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useSound from "use-sound";
 
 const actions = ["turn_left()", "turn_right()", "move(2)", "move(3)"];
 
@@ -10,6 +11,11 @@ export function HokieBirdMap({
   props: any;
   setAllowNext: Dispatch<SetStateAction<boolean>>;
 }) {
+  const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
+  const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
+    volume: 0.5,
+  });
+
   const blankProcedures = props.ans.map((statement: string) => {
     return "";
   });
@@ -20,6 +26,8 @@ export function HokieBirdMap({
   const [procedures, setProcedures] = useState<string[]>(blankProcedures);
 
   const navigate = useNavigate();
+
+  let isFireFox = navigator.userAgent.indexOf("Firefox") !== -1;
 
   React.useEffect(() => {
     setAllowNext(false);
@@ -53,6 +61,7 @@ export function HokieBirdMap({
     for (let i = 0; i < procedures.length; i++) {
       if (procedures[i] !== props.ans[i]) {
         console.log(`Error at ${i} ${procedures[i]} ${props.ans[i]}`);
+        playIncorrectSound();
         if (procedures[i] === "") {
           setMessage(`Keep going! Your're almost there!`);
         } else {
@@ -65,6 +74,7 @@ export function HokieBirdMap({
         break;
       }
       if (i === procedures.length - 1) {
+        playCorrectSound();
         setMessage("You did it!");
         setCurrentImage(props.images[procedures.length]);
         navigate(`/book/${props.bookID}/${props.pageNum + 1}`);
@@ -109,7 +119,7 @@ export function HokieBirdMap({
                     type="text"
                     className={`rounded-2xl text-center w-min ${errorProcedure === index ? "border-red-500" : ""} ${procedures[index] !== "" ? "bg-blue-200" : "bg-gray-200"}`}
                     placeholder={props?.type ? "Type Here" : "Drag Here"}
-                    disabled={!props.type}
+                    disabled={!isFireFox && !props.type}
                     value={statement}
                     onChange={(e) => setProcedure(index, e.target.value)}
                   />
