@@ -78,6 +78,7 @@ model Book {
 
 model Page {
   id          Int           @id @default(autoincrement())
+  pageNumber  Int
   content     Json          // or String[]
   image       String
   props       Json?          // for storing additional interactive properties
