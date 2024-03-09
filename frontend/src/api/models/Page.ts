@@ -9,7 +9,10 @@ import type { Question } from "./Question";
  */
 export type Page = {
   id: number;
-  number: number;
+  pageNumber: number;
+  content: any;
+  image: string;
+  props?: null;
   book?: Book | null;
   bookId: number;
   questions?: Array<Question> | null;

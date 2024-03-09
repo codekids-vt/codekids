@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { HTTPBasicCredentials } from "../models/HTTPBasicCredentials";
 import type { SignupRequest } from "../models/SignupRequest";
+import type { UpdateUserRequest } from "../models/UpdateUserRequest";
 import type { UserLightNoPassword } from "../models/UserLightNoPassword";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
@@ -36,6 +37,36 @@ export class AuthService {
   public static getUserDataUserMeGet(): CancelablePromise<UserLightNoPassword> {
     return __request(OpenAPI, {
       method: "GET",
+      url: "/user/me",
+    });
+  }
+  /**
+   * Update User Data
+   * @param requestBody
+   * @returns any Successful Response
+   * @throws ApiError
+   */
+  public static updateUserDataUserMePut(
+    requestBody: UpdateUserRequest,
+  ): CancelablePromise<any> {
+    return __request(OpenAPI, {
+      method: "PUT",
+      url: "/user/me",
+      body: requestBody,
+      mediaType: "application/json",
+      errors: {
+        422: `Validation Error`,
+      },
+    });
+  }
+  /**
+   * Delete User Account
+   * @returns any Successful Response
+   * @throws ApiError
+   */
+  public static deleteUserAccountUserMeDelete(): CancelablePromise<any> {
+    return __request(OpenAPI, {
+      method: "DELETE",
       url: "/user/me",
     });
   }
