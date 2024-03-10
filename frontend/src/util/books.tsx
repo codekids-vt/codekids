@@ -1909,6 +1909,7 @@ export const books: Book[] = [
       },
       {
         image: "BinaryConverter",
+        props: {},
         content: [
           "Now it's your turn! Try turning any of the 0's and 1's “on or off” to see what number is displayed!",
           "Example: How would we show the number 7? Think about doing 4+2+1 to get the number 7",
