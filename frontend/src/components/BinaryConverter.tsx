@@ -16,7 +16,7 @@ export default function BinaryConverter({
   const { correct } = props;
   const [binary, setBinary] = useState("");
   useEffect(() => {
-    if (correct == undefined) {
+    if (correct === undefined) {
       setAllowNext(true);
     } else {
       let isCorrect = binary === correct.toString();
@@ -46,7 +46,7 @@ export default function BinaryConverter({
       <div className="py-2">Your binary number in decimal is: </div>
 
       <div className="p-2">
-        {dec == undefined || isNaN(dec) ? "Invalid" : dec}
+        {dec === undefined || isNaN(dec) ? "Invalid" : dec}
       </div>
     </div>
   );
