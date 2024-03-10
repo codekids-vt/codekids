@@ -1808,4 +1808,110 @@ export const books: Book[] = [
       },
     ],
   },
+  {
+    BookId: 15,
+    title: "Bits and Bytes",
+    blurb: "Learn about 0's and 1's!",
+    author: "Dev",
+    bookCover: "/color_7.png",
+    cover: "/BitsNBytesBook/bits1.png",
+    gradeRange: "K-2",
+    category: BookCategory.BEGINNER,
+    pages: [
+      {
+        image: "/BitsNBytesBook/bits1.png",
+        content: [
+          "Have you ever wondered how a computer holds all of the tons of information inside it?",
+          "Believe it or not, it looks just like this! <--",
+          "Behind the scenes, a computer is entirely made up of 0s and 1s",
+        ],
+      },
+      {
+        image: "/BitsNBytesBook/bits1.png",
+        content: [
+          "One single digit in this image, a 0 or a 1, is called a bit.",
+          "A bit can have two states, 0 or 1.",
+          "In different scenarios, 0 or 1 could mean different things.",
+          "Generally, 0 means no or off, and 1 means yes or on.",
+        ],
+      },
+      {
+        content: [
+          "Here, we can see that if we say that the Hokie Bird is awake is equal to the value 0, then the Hokie Bird will be asleep, since the 0 means off, meaning he is NOT awake",
+          "If we change the 0 to a 1, we can see that the Hokie Bird will wake up!",
+          "Try it now!",
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: false,
+          options: [
+            { text: "HokieBird_is_awake = 0", image: "/BitsNBytesBook/hbasleep.png" },
+            { text: "HokieBird_is_awake = 1", image: "/BitsNBytesBook/hbawake.png" },
+          ],
+        },
+      },
+      {
+        image: "/BitsNBytesBook/bits2.png",
+        content: [
+          "Now, imagine there are 8 Hokie Birds. All of them could either be awake or asleep.",
+          "Together, these 8 Hokie Birds have 8 bits.",
+          "The collection of these Hokie Birds is then called a byte, because there are 8 bits in 1 byte.",
+        ],
+      },
+      {
+        image: "/BitsNBytesBook/bits3.png",
+        content: [
+          "Since a byte is a collection of bits, the different combinations of 0s and 1s in a byte represent a number from 0 to 255.",
+          "Here, we can see that the byte 00000000 represents the number 0.",
+        ],
+      },
+      {
+        image: "/BitsNBytesBook/bits4.png",
+        content: [
+          "Similarly, we can see that 00000001 represents the number 1.",
+          "Changing any one of the 8 bits will completely change the character that is shown.",
+        ],
+      },
+      {
+        image: "/BitsNBytesBook/bits5.png",
+        content: [
+          "Moving from right to left, changing the 0’s to 1’s will slowly make the number displayed grow.",
+          "For example, if we switch the last 0 and 1 from the last slide, we can see that 00000010 represents the number 2",
+        ],
+      },
+      {
+        content: [
+          "Now, what if we wanted to show the number 3? Wouldn’t we make it 00000100?",
+          "Try selecting the numbers 3, 4, 5, and 6, and see what it looks like as a byte!"
+        ],
+        image: "FoodTruckActivity",
+        game: "FoodTruckActivity",
+        props: {
+          showIOLabels: false,
+          options: [
+            { text: "3", image: "/BitsNBytesBook/byte3.png" },
+            { text: "4", image: "/BitsNBytesBook/byte4.png" },
+            { text: "5", image: "/BitsNBytesBook/byte5.png" },
+            { text: "6", image: "/BitsNBytesBook/byte6.png" },
+          ],
+        },
+      },
+      {
+        image: "/BitsNBytesBook/bitmath.png",
+        content: [
+          "Consider each spot in a byte to be a different value, with each value being double the last.",
+          "So, if we “turn on” the bits in the 2 and 1 value spot, then we will see the number 3 because 2+1=3.",
+          "And if we “turn on” the bits in the 4 and 1 value spot, then we will see the number 5 because 4+1=5",
+        ],
+      },
+      {
+        image: "/FlowchartsBook/example_1.png",
+        content: [
+          "Now it’s your turn! Try turning any of the 0’s and 1’s “on or off” to see what number is displayed!",
+          "Example: How would we show the number 7? Think about doing 4+2+1 to get the number 7",
+        ],
+      },
+    ],
+  },
 ];
