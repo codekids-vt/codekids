@@ -1841,13 +1841,17 @@ export const books: Book[] = [
           "If we change the 0 to a 1, we can see that the Hokie Bird will wake up!",
           "Try it now!",
         ],
-        image: "FoodTruckActivity",
-        game: "FoodTruckActivity",
+        image: "SelectImageActivity",
         props: {
-          showIOLabels: false,
           options: [
-            { text: "HokieBird_is_awake = 0", image: "/BitsNBytesBook/hbasleep.png" },
-            { text: "HokieBird_is_awake = 1", image: "/BitsNBytesBook/hbawake.png" },
+            {
+              text: "HokieBird_is_awake = 0",
+              image: "/BitsNBytesBook/hbasleep.png",
+            },
+            {
+              text: "HokieBird_is_awake = 1",
+              image: "/BitsNBytesBook/hbawake.png",
+            },
           ],
         },
       },
@@ -1883,12 +1887,10 @@ export const books: Book[] = [
       {
         content: [
           "Now, what if we wanted to show the number 3? Wouldn’t we make it 00000100?",
-          "Try selecting the numbers 3, 4, 5, and 6, and see what it looks like as a byte!"
+          "Try selecting the numbers 3, 4, 5, and 6, and see what it looks like as a byte!",
         ],
-        image: "FoodTruckActivity",
-        game: "FoodTruckActivity",
+        image: "SelectImageActivity",
         props: {
-          showIOLabels: false,
           options: [
             { text: "3", image: "/BitsNBytesBook/byte3.png" },
             { text: "4", image: "/BitsNBytesBook/byte4.png" },
