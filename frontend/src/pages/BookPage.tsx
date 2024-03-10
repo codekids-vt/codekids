@@ -36,6 +36,7 @@ import { InteractionType, InteractionsService } from "../api";
 import { useAuth } from "../context/AuthContext";
 import { useSound } from "use-sound";
 import { SelectImageActivity } from "../components/SelectImage";
+import BinaryConverter from "../components/BinaryConverter";
 
 function BookImage({
   image,
@@ -123,6 +124,9 @@ function BookImage({
       )}
       {image === "SelectImageActivity" && (
         <SelectImageActivity props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "BinaryConverter" && (
+        <BinaryConverter props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );
