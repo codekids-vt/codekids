@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate": "openapi -i http://localhost:8080/openapi.json -o src/api",
+    "generate": "openapi -i http://localhost:8080/openapi.json -o src/api && prettier --write src/api",
     "format": "prettier --write ."
   },
   "eslintConfig": {

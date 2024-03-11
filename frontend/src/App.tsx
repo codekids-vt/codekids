@@ -11,6 +11,7 @@ import PleaseRotateScreen from "./components/PleaseRotateScreen";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactUs from "./pages/contactus";
 import EditBooksPage from "./pages/EditBooksPage";
+import BookEditor from "./pages/BookEditor";
 
 function App() {
   const orientation = useOrientation();
@@ -42,6 +43,10 @@ function App() {
             />
             <Route path="/about_us" element={<AboutUsPage />} />
             <Route path="/edit_books" element={<EditBooksPage />} />
+            <Route
+              path="/book_editor/:bookIdParam/:pageNumParam"
+              element={<BookEditor />}
+            />
           </Routes>
         </BrowserRouter>
       </div>

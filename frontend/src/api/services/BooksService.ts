@@ -17,7 +17,7 @@ export class BooksService {
    * @throws ApiError
    */
   public static searchBooksBooksGet(
-    category: BookCategory | null,
+    category?: BookCategory | null,
     limit: number = 10,
   ): CancelablePromise<Array<Book>> {
     return __request(OpenAPI, {
