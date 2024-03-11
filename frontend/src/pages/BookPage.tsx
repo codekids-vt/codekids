@@ -264,7 +264,7 @@ export default function BookPage() {
               )}
               <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max flex-grow">
                 <div className="flex flex-col flex-grow items-center bg-white rounded-l-2xl h-full">
-                  <div className="flex flex-col flex-grow items-center justify-center w-full">
+                  <div className="flex flex-col flex-grow items-center justify-center w-full h-[calc(100vh-9rem)] xl:h-[calc(100vh-13rem)]">
                     <BookImage
                       key={page.pageNumber} // This is to force a re-render when the page changes
                       image={page.image}

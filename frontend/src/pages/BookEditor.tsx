@@ -3,11 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Book, BooksService, Page, PagesService } from "../api";
 import { BookImage } from "../components/BookImage";
-import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs/components/prism-core";
-import "prismjs/components/prism-clike";
-import "prismjs/components/prism-javascript";
-import "prismjs/themes/prism.css";
+import Editor from "@monaco-editor/react";
 
 function PageNavigator({
   pages,
@@ -19,7 +15,7 @@ function PageNavigator({
   setPageNum: (pageNum: number) => void;
 }) {
   return (
-    <div className="min-h-full overflow-y-scroll w-1/12 bg-gray-200">
+    <div className="min-h-full max-h-full overflow-y-scroll w-1/12 bg-gray-200">
       <div className="flex flex-col py-2 gap-2 items-center">
         {pages.map((page, i) => {
           const isSelected = page.pageNumber === pageNum;
@@ -84,7 +80,7 @@ function BookContentEditor({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="flex flex-col h-full items-center w-full">
       {tempContents.map((item, index) => (
         <div key={index} className="flex items-center space-x-2 w-full">
           <textarea
@@ -124,42 +120,70 @@ function BookImageEditor({
   page: Page;
   setPage: (page: Page) => void;
 }) {
+  const [tempImage, setTempImage] = useState(page.image);
   const [tempProps, setTempProps] = useState(
     JSON.stringify(page.props, null, 2),
   );
 
+  // update the page every 3 seconds if there has been a change
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (
+        tempImage !== page.image ||
+        JSON.stringify(JSON.parse(tempProps)) !== JSON.stringify(page.props)
+      ) {
+        setPage({ ...page, image: tempImage, props: JSON.parse(tempProps) });
+      }
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [tempImage, tempProps, page, setPage]);
+
   return (
-    <div className="flex flex-col w-full">
-      <Editor
-        value={tempProps}
-        onValueChange={(code) => setTempProps(code)}
-        highlight={(code) => highlight(code, languages.js)}
-        padding={10}
-        style={{
-          fontFamily: '"Fira code", "Fira Mono", "monospace"',
-          transformOrigin: "top left",
-        }}
-        className="w-10/12 text-sm h-1/2 overflow-y-scroll border-2 p-10 shadow-2xl rounded-xl"
+    <div className="flex flex-col w-full p-2 h-full">
+      <ImageTypeEditor
+        tempImageType={tempImage}
+        setTempImageType={setTempImage}
       />
-      <BookImage
-        key={page.pageNumber} // This is to force a re-render when the page changes
-        image={page.image}
-        page={page}
-        setAllowNext={() => {}}
-      />
+      {page.image == "Image" ? (
+        <div className="flex flex-col w-full">
+          <div>image url or path:</div>
+          <input
+            className="w-10/12 h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
+            value={tempProps}
+            onChange={(e) => setTempProps(e.target.value)}
+          />
+        </div>
+      ) : (
+        <Editor
+          height="50%"
+          defaultValue={tempProps}
+          onChange={(value) => {
+            value && setTempProps(value);
+          }}
+          className="w-full max-h-1/2 shadow-2xl rounded-xl"
+          theme="vs-dark"
+          language="json"
+        />
+      )}
+      <div className="h-1/2 max-h-80">
+        <BookImage
+          key={page.pageNumber} // This is to force a re-render when the page changes
+          image={tempImage}
+          page={{ ...page, image: tempImage, props: JSON.parse(tempProps) }}
+          setAllowNext={() => {}}
+        />
+      </div>
     </div>
   );
 }
 
 function ImageTypeEditor({
-  page,
-  setPage,
+  tempImageType,
+  setTempImageType,
 }: {
-  page: Page;
-  setPage: (page: Page) => void;
+  tempImageType: string;
+  setTempImageType: (tempImageType: string) => void;
 }) {
-  const [tempImageType, setTempImageType] = useState(page.image);
-
   const imageTypes = [
     "HokieBirdActivity",
     "tutor",
@@ -185,12 +209,13 @@ function ImageTypeEditor({
     "ChangingCondition",
     "InputActivity",
     "FoodTruckActivity",
+    "Image",
   ];
 
   return (
     <div className="flex flex-col w-full">
       <select
-        className="w-10/12 h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
+        className="w-full h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
         value={tempImageType}
         onChange={(e) => {
           setTempImageType(e.target.value);
@@ -220,8 +245,7 @@ function PageEditor({
   return (
     <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max w-full">
       <div className="flex flex-col w-full items-center bg-white rounded-l-2xl h-full">
-        <div className="flex flex-col w-full items-center justify-center">
-          <ImageTypeEditor page={page} setPage={setPage} />
+        <div className="flex flex-col h-full w-full items-center justify-center">
           <BookImageEditor
             key={page.pageNumber}
             page={page}
@@ -231,7 +255,7 @@ function PageEditor({
       </div>
       {page.content && page.content.length > 0 && (
         <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl">
-          <div className="flex flex-col items-center justify-center p-1 w-full">
+          <div className="flex flex-col items-center p-1 w-full min-h-full max-h-full overflow-y-scroll">
             <BookContentEditor content={page.content} setContent={setContent} />
           </div>
         </div>
