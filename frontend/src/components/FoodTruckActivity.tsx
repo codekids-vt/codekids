@@ -13,7 +13,7 @@ export function FoodTruckActivity({
   props,
   setAllowNext,
 }: {
-  props: IFoodTruckActivityProps;
+  props: IFoodTruckActivityProps | any;
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { question, options, showIOLabels } = props;

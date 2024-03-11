@@ -9,7 +9,11 @@ books_router = APIRouter()
 
 @books_router.get("/books", response_model=List[Book], tags=["books"])
 async def search_books(category: Optional[BookCategory], limit: int = 10):
-    books = await db.book.find_many(take=limit, include={"courses": True})
+    books = await db.book.find_many(
+        take=limit,
+        include={"courses": True},
+        where={"category": category} if category else None,
+    )
     return books
 
 

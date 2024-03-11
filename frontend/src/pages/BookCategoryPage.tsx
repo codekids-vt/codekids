@@ -58,7 +58,7 @@ export default function BookCategoryPage() {
         <ActivityBookList
           books={books}
           linkPrefix={"/book/"}
-          linkSuffix={"/0"}
+          linkSuffix={"/1"}
         />
       </div>
       <Footer />

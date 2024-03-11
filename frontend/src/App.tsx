@@ -27,7 +27,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route
-              path="/book/:idString/:pagenumString"
+              path="/book/:idString/:pageNumParam"
               element={<BookPage />}
             />
             <Route
