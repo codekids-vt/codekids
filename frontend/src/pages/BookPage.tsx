@@ -2,9 +2,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Reader } from "../components/Reader";
-import { ColorPattern } from "../components/ColorPattern";
-import NumericalPattern from "../components/NumericalPatter";
-import { CodeComplete } from "../components/CodeComplete";
 import { HokieBirdColoring } from "../components/HokieBirdColor";
 import { HokieBirdMap } from "../components/HokieBirdMap";
 import { HokieBirdIfCondition } from "../components/HokieBirdIfCondition";
@@ -28,7 +25,6 @@ import { BuyMultiple } from "../components/MisconceptionComponents/FlowchartsBoo
 import { MultipleConditions } from "../components/MisconceptionComponents/FlowchartsBook/MultipleConditions";
 import { ChangingCondition } from "../components/MisconceptionComponents/FlowchartsBook/ChangingCondition";
 import { InputActivity } from "../components/InputActivity";
-import { TableComponent } from "../components/TableComponent";
 import { FoodTruckActivity } from "../components/FoodTruckActivity";
 import {
   Book,
@@ -259,7 +255,7 @@ export default function BookPage() {
     navigate(`/book/${idString}/${pageNum}`);
     setPageNum(pageNum);
     setAllowNext(true);
-  }, [playPageFlip, pageNum]);
+  }, [playPageFlip, pageNum, idString, navigate]);
 
   if (!book || !book.pages) {
     return (
