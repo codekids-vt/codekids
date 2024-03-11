@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { BookCategory } from "./BookCategory";
 import type { BookCourse } from "./BookCourse";
 import type { Page } from "./Page";
 /**
@@ -9,7 +10,13 @@ import type { Page } from "./Page";
  */
 export type Book = {
   id: number;
-  number: number;
+  bookCover: string;
+  coverImage?: string | null;
+  title: string;
+  blurb?: string | null;
+  author: string;
+  gradeRange: string;
+  category: BookCategory;
   pages?: Array<Page> | null;
   courses?: Array<BookCourse> | null;
 };

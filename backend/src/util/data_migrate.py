@@ -26,6 +26,9 @@ async def main():
         created_book = await client.book.create(
             {
                 "title": book["title"],
+                "bookCover": book["bookCover"],
+                "blurb": book["blurb"],
+                "coverImage": book["cover"] if book.get("cover") else None,
                 "author": book["author"],
                 "gradeRange": book["gradeRange"],
                 "category": book["category"],

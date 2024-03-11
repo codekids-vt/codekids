@@ -9,6 +9,7 @@ export type { OpenAPIConfig } from "./core/OpenAPI";
 
 export { AccountType } from "./models/AccountType";
 export type { Book } from "./models/Book";
+export { BookCategory } from "./models/BookCategory";
 export type { BookCourse } from "./models/BookCourse";
 export type { Course } from "./models/Course";
 export type { CourseCreateRequest } from "./models/CourseCreateRequest";
@@ -22,6 +23,7 @@ export { InteractionType } from "./models/InteractionType";
 export type { Page } from "./models/Page";
 export type { Question } from "./models/Question";
 export type { SignupRequest } from "./models/SignupRequest";
+export type { UpdateUserRequest } from "./models/UpdateUserRequest";
 export type { User } from "./models/User";
 export type { UserLightNoPassword } from "./models/UserLightNoPassword";
 export type { ValidationError } from "./models/ValidationError";

@@ -10,6 +10,7 @@ import { useOrientation } from "react-use";
 import PleaseRotateScreen from "./components/PleaseRotateScreen";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactUs from "./pages/contactus";
+import EditBooksPage from "./pages/EditBooksPage";
 
 function App() {
   const orientation = useOrientation();
@@ -26,7 +27,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route
-              path="/book/:idString/:pagenumString"
+              path="/book/:idString/:pageNumParam"
               element={<BookPage />}
             />
             <Route
@@ -40,6 +41,7 @@ function App() {
               element={<TeacherResourcesPage />}
             />
             <Route path="/about_us" element={<AboutUsPage />} />
+            <Route path="/edit_books" element={<EditBooksPage />} />
           </Routes>
         </BrowserRouter>
       </div>
