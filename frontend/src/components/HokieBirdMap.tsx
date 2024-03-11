@@ -68,10 +68,10 @@ export function HokieBirdMap({
         console.log(`Error at ${i} ${procedures[i]} ${props.ans[i]}`);
         playIncorrectSound();
         if (procedures[i] === "") {
-          handleInteraction("In Progress", timeSpent, user?.id);
+          handleInteraction("In Progress", false, timeSpent, user?.id);
           setMessage(`Keep going! Your're almost there!`);
         } else {
-          handleInteraction("Incorrect", timeSpent, user?.id);
+          handleInteraction(procedures[i], false, timeSpent, user?.id);
           setMessage(
             `Almost! Try again, ${procedures[i]} is not the right statement.`,
           );
@@ -81,7 +81,7 @@ export function HokieBirdMap({
         break;
       }
       if (i === procedures.length - 1) {
-        handleInteraction("Correct", timeSpent, user?.id);
+        handleInteraction("Correct", true, timeSpent, user?.id);
         playCorrectSound();
         setMessage("You did it!");
         setCurrentImage(props.images[procedures.length]);

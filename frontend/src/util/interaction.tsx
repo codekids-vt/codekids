@@ -2,7 +2,8 @@ import { InteractionType } from "../api/models/InteractionType";
 import { InteractionsService } from "../api/services/InteractionsService";
 
 export function handleInteraction(
-  correct: string,
+  answer: string,
+  correct: boolean,
   timeSpent: number,
   user: number | undefined,
 ) {
@@ -10,6 +11,7 @@ export function handleInteraction(
     interaction_type: InteractionType.QUESTION,
     time_since_load: timeSpent,
     user_id: user,
-    answer: correct,
+    answer: answer,
+    correct: correct,
   });
 }

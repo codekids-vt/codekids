@@ -54,6 +54,7 @@ export function MultipleChoiceQuestion({
   );
 
   function handleQuestion(
+    answerText: string,
     answerExplanation: string,
     correct: boolean,
     button: HTMLButtonElement,
@@ -64,10 +65,10 @@ export function MultipleChoiceQuestion({
     setCorrect(correct);
     if (correct) {
       playCorrectSound();
-      handleInteraction("Correct", timeSpent, user?.id);
+      handleInteraction(answerText, true, timeSpent, user?.id);
     } else {
       playIncorrectSound();
-      handleInteraction("Incorrect", timeSpent, user?.id);
+      handleInteraction(answerText, false, timeSpent, user?.id);
     }
     changeButtonColor(index, correct);
     if (buttonPressed !== undefined) {
@@ -103,6 +104,7 @@ export function MultipleChoiceQuestion({
             key={index}
             onClick={(e) =>
               handleQuestion(
+                answer.answerText,
                 answer.answerExplanation,
                 answer.correct,
                 e.currentTarget,

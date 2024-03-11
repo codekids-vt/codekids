@@ -37,17 +37,17 @@ export function InputActivity({
       setSelectedOption(choice);
       if (Array.isArray(ans) && ans.includes(choice)) {
         setResult("Correct!");
-        handleInteraction("Correct", timeSpent, user?.id);
+        handleInteraction(String(choice), true, timeSpent, user?.id);
         setCurrentImage(correctImage);
         setAnsweredCorrectly(true);
       } else if (choice === ans) {
         setResult("Correct!");
-        handleInteraction("Correct", timeSpent, user?.id);
+        handleInteraction(String(choice), true, timeSpent, user?.id);
         setCurrentImage(correctImage);
         setAnsweredCorrectly(true);
       } else {
         setResult("Incorrect! Try again.");
-        handleInteraction("Incorrect", timeSpent, user?.id);
+        handleInteraction(String(choice), false, timeSpent, user?.id);
         setAnsweredCorrectly(false);
       }
     }
