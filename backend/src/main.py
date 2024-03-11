@@ -29,6 +29,7 @@ app.include_router(routers.courses_router)
 app.include_router(routers.books_router)
 app.include_router(routers.auth_router)
 app.include_router(routers.interactions_router)
+app.include_router(routers.pages_router)
 
 if __name__ == "__main__":
     uvicorn.run("src.main:app", host="localhost", port=8080, reload=True)

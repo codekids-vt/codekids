@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { Book, BooksService, Page } from "../api";
+import { Book, BooksService, Page, PagesService } from "../api";
+import { BookImage } from "../components/BookImage";
+import Editor from "react-simple-code-editor";
+import { highlight, languages } from "prismjs/components/prism-core";
+import "prismjs/components/prism-clike";
+import "prismjs/components/prism-javascript";
+import "prismjs/themes/prism.css";
 
 function PageNavigator({
   pages,
@@ -111,6 +117,95 @@ function BookContentEditor({
   );
 }
 
+function BookImageEditor({
+  page,
+  setPage,
+}: {
+  page: Page;
+  setPage: (page: Page) => void;
+}) {
+  const [tempProps, setTempProps] = useState(
+    JSON.stringify(page.props, null, 2),
+  );
+
+  return (
+    <div className="flex flex-col w-full">
+      <Editor
+        value={tempProps}
+        onValueChange={(code) => setTempProps(code)}
+        highlight={(code) => highlight(code, languages.js)}
+        padding={10}
+        style={{
+          fontFamily: '"Fira code", "Fira Mono", "monospace"',
+          transformOrigin: "top left",
+        }}
+        className="w-10/12 text-sm h-1/2 overflow-y-scroll border-2 p-10 shadow-2xl rounded-xl"
+      />
+      <BookImage
+        key={page.pageNumber} // This is to force a re-render when the page changes
+        image={page.image}
+        page={page}
+        setAllowNext={() => {}}
+      />
+    </div>
+  );
+}
+
+function ImageTypeEditor({
+  page,
+  setPage,
+}: {
+  page: Page;
+  setPage: (page: Page) => void;
+}) {
+  const [tempImageType, setTempImageType] = useState(page.image);
+
+  const imageTypes = [
+    "HokieBirdActivity",
+    "tutor",
+    "HokieBirdMazeActivity",
+    "HokieBirdIfConditionActivity",
+    "DataTypesIntro",
+    "IntsAndBools",
+    "VariableAssignment",
+    "Strings",
+    "Sequencing",
+    "IfStatementIntro",
+    "ConditionalOperators",
+    "LogicalOperators",
+    "IfStatements",
+    "LifeOfMoose",
+    "MooseMilestone",
+    "MooseDr",
+    "MooseChallengingYear",
+    "MooseThankYou",
+    "BuyDonut",
+    "BuyMultiple",
+    "MultipleConditions",
+    "ChangingCondition",
+    "InputActivity",
+    "FoodTruckActivity",
+  ];
+
+  return (
+    <div className="flex flex-col w-full">
+      <select
+        className="w-10/12 h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
+        value={tempImageType}
+        onChange={(e) => {
+          setTempImageType(e.target.value);
+        }}
+      >
+        {imageTypes.map((type, i) => (
+          <option key={i} value={type}>
+            {type}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
 function PageEditor({
   page,
   setPage,
@@ -123,16 +218,15 @@ function PageEditor({
   }
 
   return (
-    <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max flex-grow">
-      <div className="flex flex-col flex-grow items-center bg-white rounded-l-2xl h-full">
-        <div className="flex flex-col flex-grow items-center justify-center w-full">
-          {/* <BookImage
-              key={page.pageNumber} // This is to force a re-render when the page changes
-              image={page.image}
-              page={page}
-              setAllowNext={setAllowNext}
-            /> */}
-          {page.pageNumber}
+    <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max w-full">
+      <div className="flex flex-col w-full items-center bg-white rounded-l-2xl h-full">
+        <div className="flex flex-col w-full items-center justify-center">
+          <ImageTypeEditor page={page} setPage={setPage} />
+          <BookImageEditor
+            key={page.pageNumber}
+            page={page}
+            setPage={setPage}
+          />
         </div>
       </div>
       {page.content && page.content.length > 0 && (
@@ -185,7 +279,20 @@ export default function BookEditor() {
     }
     let newPages = book.pages?.slice() ?? [];
     newPages[pageNum - 1] = page;
-    setBook({ ...book, pages: newPages ?? [] });
+
+    PagesService.pageUpdatePagePageIdPut(page.id, {
+      content: JSON.stringify(page.content),
+      image: page.image,
+      props: JSON.stringify(page.props),
+    })
+      .then((response) => {
+        console.log(response);
+        setBook({ ...book, pages: newPages ?? [] });
+      })
+      .catch((error) => {
+        console.error(error);
+        setBook({ ...book });
+      });
   }
 
   return (
@@ -193,7 +300,7 @@ export default function BookEditor() {
       <Navbar />
       <div className="h-[calc(100vh-60px)] flex flex-row p-2 gap-2">
         <PageNavigator
-          pages={book.pages}
+          pages={book.pages.sort((a, b) => a.pageNumber - b.pageNumber)}
           pageNum={pageNum}
           setPageNum={setPageNum}
         />

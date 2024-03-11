@@ -1,17 +1,24 @@
+import json
 from fastapi import APIRouter, HTTPException
+from prisma import Json
 from src.db import db
-from prisma.models import Book, Page
-from typing import Optional, List
-from prisma.enums import BookCategory
+from prisma.models import Page
+from prisma.partials import UpdatePage
 
 pages_router = APIRouter()
 
 
-# @pages_router.put("/pages", response_model=List[Book], tags=["pages"])
-# async def search_pages(category: Optional[BookCategory] = None, limit: int = 10):
-#     pages = await db.book.find_many(
-#         take=limit,
-#         include={"courses": True},
-#         where={"category": category} if category else None,
-#     )
-#     return pages
+@pages_router.put("/page/{page_id}", tags=["pages"])
+async def page_update(page_id: int, page: UpdatePage) -> Page:
+    print(page)
+    page_return = await db.page.update(
+        where={"id": page_id},
+        data={
+            "content": Json(page.content),
+            "image": page.image,
+            "props": Json(page.props),
+        },
+    )
+    if page_return:
+        return page_return
+    raise HTTPException(status_code=404, detail="Update failed")
