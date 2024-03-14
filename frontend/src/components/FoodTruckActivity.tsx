@@ -48,7 +48,14 @@ export function FoodTruckActivity({
       playCorrectSound();
       handleInteraction("completed", true, timeSpent, user?.id);
     }
-  }, [selectedOptions, setAllowNext, options.length, playCorrectSound]);
+  }, [
+    selectedOptions,
+    setAllowNext,
+    options.length,
+    playCorrectSound,
+    startTime,
+    user,
+  ]);
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
