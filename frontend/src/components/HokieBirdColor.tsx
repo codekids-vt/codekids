@@ -124,7 +124,7 @@ export function HokieBirdColoring({
         !availableParts.includes(value) &&
         value !== ""
       ) {
-        answer = value
+        answer = value;
         setCurrentAlert({
           type: AlertType.FAILURE,
           message: "That isn't quite one of the options. Try again.",
@@ -134,7 +134,7 @@ export function HokieBirdColoring({
 
     const handleColorChange = (part: string, value: string) => {
       const val = value.toLowerCase();
-      answer = val
+      answer = val;
       if (availableParts.includes(val)) {
         setCurrentAlert({
           type: AlertType.FAILURE,
@@ -169,7 +169,7 @@ export function HokieBirdColoring({
         temp,
       };
       setColors(newColors);
-      answer = color
+      answer = color;
       setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
     }
 

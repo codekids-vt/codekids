@@ -16,6 +16,6 @@ export function handleInteraction(
       correct: correct,
     });
   } catch (error) {
-    console.log("Error occured while interacting with database")
+    console.log("Error occured while interacting with database");
   }
 }

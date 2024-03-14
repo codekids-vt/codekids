@@ -42,7 +42,7 @@ export function HokieBirdIfCondition({
       ...prevGame,
       statement: option,
     }));
-    handleAnswer(isCorrectAnswer, option)
+    handleAnswer(isCorrectAnswer, option);
     setGood(isCorrectAnswer);
     setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);
     setWrong(!isCorrectAnswer);
