@@ -38,18 +38,11 @@ export function HokieBirdIfCondition({
   function handleOptionSelect(option: string) {
     const isCorrectAnswer =
       Array.isArray(props.ans) && props.ans.includes(option);
-    const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     setGame((prevGame) => ({
       ...prevGame,
       statement: option,
     }));
-    if (isCorrectAnswer) {
-      playCorrectSound();
-      handleInteraction(option, true, timeSpent, user?.id);
-    } else {
-      playIncorrectSound();
-      handleInteraction(option, false, timeSpent, user?.id);
-    }
+    handleAnswer(isCorrectAnswer, option)
     setGood(isCorrectAnswer);
     setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);
     setWrong(!isCorrectAnswer);
@@ -85,11 +78,6 @@ export function HokieBirdIfCondition({
     });
     const isCorrectAnswer =
       condition === props.ans?.condition && game.statement === answer;
-    if (isCorrectAnswer) {
-      playCorrectSound();
-    } else {
-      playIncorrectSound();
-    }
     handleAnswer(isCorrectAnswer, game.statement);
     setGood(condition === props.ans?.condition && game.statement === answer);
   }
@@ -104,11 +92,6 @@ export function HokieBirdIfCondition({
     };
     setGame(newColors);
     const isCorrectAnswer = newColors.statement === answer;
-    if (isCorrectAnswer) {
-      playCorrectSound();
-    } else {
-      playIncorrectSound();
-    }
     handleAnswer(isCorrectAnswer, newColors.statement);
     setGood(isCorrectAnswer);
     setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);

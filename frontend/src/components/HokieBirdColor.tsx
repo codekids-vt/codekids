@@ -1,5 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useSound from "use-sound";
+import { handleInteraction } from "../util/interaction";
+import { useAuth } from "../context/AuthContext";
 
 interface HokieBirdColorState {
   head: string;
@@ -52,7 +54,9 @@ export function HokieBirdColoring({
     left_foot: "",
     right_foot: "",
   });
-
+  const { user } = useAuth();
+  const startTime = new Date().getTime();
+  let answer = "";
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
   const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
@@ -69,10 +73,13 @@ export function HokieBirdColoring({
   }>({ type: AlertType.NONE, message: "" });
 
   useEffect(() => {
+    const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     if (currentAlert.type === AlertType.SUCCESS) {
       playCorrectSound();
+      handleInteraction(answer, true, timeSpent, user?.id);
     } else if (currentAlert.type === AlertType.FAILURE) {
       playIncorrectSound();
+      handleInteraction(answer, false, timeSpent, user?.id);
     }
   }, [currentAlert, playCorrectSound, playIncorrectSound, AlertType]);
 
@@ -83,6 +90,7 @@ export function HokieBirdColoring({
         ...prevColors,
         [partToColor]: color,
       }));
+      answer = color;
       setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
       setCurrentColorIndex(currentColorIndex + 1);
     }
@@ -97,6 +105,7 @@ export function HokieBirdColoring({
   function HokieBirdColors() {
     const handlePart = (index: number, value: string) => {
       const val = value.toLowerCase();
+      answer = val;
       if (availableParts.includes(val)) {
         const updatedParts = [...part];
         updatedParts[index] = val;
@@ -115,6 +124,7 @@ export function HokieBirdColoring({
         !availableParts.includes(value) &&
         value !== ""
       ) {
+        answer = value
         setCurrentAlert({
           type: AlertType.FAILURE,
           message: "That isn't quite one of the options. Try again.",
@@ -124,6 +134,7 @@ export function HokieBirdColoring({
 
     const handleColorChange = (part: string, value: string) => {
       const val = value.toLowerCase();
+      answer = val
       if (availableParts.includes(val)) {
         setCurrentAlert({
           type: AlertType.FAILURE,
@@ -158,6 +169,7 @@ export function HokieBirdColoring({
         temp,
       };
       setColors(newColors);
+      answer = color
       setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
     }
 
