@@ -9,28 +9,58 @@ function PageNavigator({
   pages,
   pageNum,
   setPageNum,
+  addPage,
+  deletePage,
+  swapPages,
 }: {
   pages: Page[];
   pageNum: number;
   setPageNum: (pageNum: number) => void;
+  addPage: () => void;
+  deletePage: (pageId: number) => void;
+  swapPages: (pageNum1: number, pageNum2: number) => void;
 }) {
   return (
-    <div className="min-h-full max-h-full overflow-y-scroll w-1/12 bg-gray-200">
+    <div className="min-h-full max-h-full overflow-y-scroll w-1/6 bg-gray-200">
       <div className="flex flex-col py-2 gap-2 items-center">
         {pages.map((page, i) => {
           const isSelected = page.pageNumber === pageNum;
           const selectedTw = "border-primary-green bg-primary-green text-white";
           const unselectedTw = "border-gray-300";
           return (
-            <button
-              key={i}
-              className={`w-9/12 h-12 border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl ${isSelected ? selectedTw : unselectedTw}`}
-              onClick={() => setPageNum(page.pageNumber)}
-            >
-              {page.pageNumber}
-            </button>
+            <div className="flex flex-row w-9/12 h-12 items-center gap-1">
+              <button
+                key={i}
+                className={`w-full h-full border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:shadow-md ${isSelected ? selectedTw : unselectedTw}`}
+                onClick={() => setPageNum(page.pageNumber)}
+              >
+                {page.pageNumber}
+              </button>
+              <button
+                className="flex flex-col items-center justify-center w-8 h-8 bg-red-400 text-white rounded-full"
+                onClick={() => deletePage(page.id)}
+              >
+                X
+              </button>
+              <button
+                onClick={() => swapPages(page.pageNumber, page.pageNumber - 1)}
+              >
+                ↑
+              </button>
+              <button
+                onClick={() => swapPages(page.pageNumber, page.pageNumber + 1)}
+              >
+                ↓
+              </button>
+            </div>
           );
         })}
+        <button
+          className="w-9/12 h-12 border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:bg-primary-green hover:text-white"
+          onClick={addPage}
+        >
+          +
+        </button>
       </div>
     </div>
   );
@@ -144,13 +174,13 @@ function BookImageEditor({
         tempImageType={tempImage}
         setTempImageType={setTempImage}
       />
-      {page.image == "Image" ? (
+      {page.image.includes("/") || page.image === "Image" ? (
         <div className="flex flex-col w-full">
           <div>image url or path:</div>
           <input
             className="w-10/12 h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
-            value={tempProps}
-            onChange={(e) => setTempProps(e.target.value)}
+            value={tempImage}
+            onChange={(e) => setTempImage(e.target.value)}
           />
         </div>
       ) : (
@@ -185,6 +215,7 @@ function ImageTypeEditor({
   setTempImageType: (tempImageType: string) => void;
 }) {
   const imageTypes = [
+    "Image",
     "HokieBirdActivity",
     "tutor",
     "HokieBirdMazeActivity",
@@ -209,7 +240,6 @@ function ImageTypeEditor({
     "ChangingCondition",
     "InputActivity",
     "FoodTruckActivity",
-    "Image",
   ];
 
   return (
@@ -319,6 +349,50 @@ export default function BookEditor() {
       });
   }
 
+  function addPage() {
+    PagesService.pageCreatePagePost(bookId).then((response) => {
+      if (!book || !book.pages) {
+        return;
+      }
+      let newPage = response;
+      let newPages = book.pages.slice();
+      newPages.push(newPage);
+      setBook({ ...book, pages: newPages });
+    });
+  }
+
+  function deletePage(pageId: number) {
+    PagesService.pageDeletePagePageIdDelete(pageId).then((response) => {
+      if (!book || !book.pages) {
+        return;
+      }
+      if (
+        pageNum === book.pages.find((page) => page.id === pageId)?.pageNumber
+      ) {
+        setPageNum(pageNum - 1);
+      }
+      setBook(response);
+    });
+  }
+
+  function swapPages(pageNum1: number, pageNum2: number) {
+    if (!book || !book.pages) {
+      return;
+    }
+    PagesService.pageSwapPageSwapPageId1PageId2Put(
+      book.pages.find((page) => page.pageNumber === pageNum1)?.id as number,
+      book.pages.find((page) => page.pageNumber === pageNum2)?.id as number,
+    ).then((response) => {
+      setBook(response);
+      if (pageNum1 === pageNum) {
+        setPageNum(pageNum2);
+      }
+      if (pageNum2 === pageNum) {
+        setPageNum(pageNum1);
+      }
+    });
+  }
+
   return (
     <div className="text-xs xl:text-lg 2xl:text-xl">
       <Navbar />
@@ -327,6 +401,9 @@ export default function BookEditor() {
           pages={book.pages.sort((a, b) => a.pageNumber - b.pageNumber)}
           pageNum={pageNum}
           setPageNum={setPageNum}
+          addPage={addPage}
+          deletePage={deletePage}
+          swapPages={swapPages}
         />
         {currentPage && <PageEditor page={currentPage} setPage={setPage} />}
       </div>
