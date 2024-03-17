@@ -14,6 +14,7 @@ export type { BookCourse } from "./models/BookCourse";
 export type { Course } from "./models/Course";
 export type { CourseCreateRequest } from "./models/CourseCreateRequest";
 export type { CourseStudent } from "./models/CourseStudent";
+export type { CreateBookRequest } from "./models/CreateBookRequest";
 export type { HTTPBasicCredentials } from "./models/HTTPBasicCredentials";
 export type { HTTPValidationError } from "./models/HTTPValidationError";
 export type { Interaction } from "./models/Interaction";

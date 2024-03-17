@@ -19,6 +19,7 @@ model User {
   interactions  Interaction[]
   courses       Course[]
   CourseStudent CourseStudent[]
+  books         Book[]
 }
 
 enum AccountType {
@@ -76,6 +77,8 @@ model Book {
   category    BookCategory  // or String if you prefer
   pages       Page[]
   courses     BookCourse[]
+  owner       User          @relation(fields: [ownerId], references: [id])
+  ownerId     Int           @default(1)
 }
 
 model Page {
