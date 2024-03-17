@@ -6,7 +6,7 @@ from src.db import db
 from prisma.models import Book, User
 from typing import Annotated, Optional, List
 from prisma.enums import BookCategory, AccountType
-from prisma.types import BookWhereInput
+from prisma.types import BookWhereInput, BookUpdateInput
 
 books_router = APIRouter()
 
@@ -38,6 +38,10 @@ class CreateBookRequest(BaseModel):
     title: str
     category: BookCategory
     gradeRange: str
+    bookCover: Optional[str] = None
+    coverImage: Optional[str] = None
+    author: Optional[str] = None
+    blurb: Optional[str] = None
 
 
 @books_router.post("/books", tags=["books"])
@@ -65,4 +69,39 @@ async def create_book(
             "pageNumber": 1,
         }
     )
+    return book
+
+
+@books_router.put("/books/{book_id}", tags=["books"])
+async def edit_book(
+    book_id: int,
+    req: CreateBookRequest,
+    user: Annotated[User, Depends(get_user)],
+) -> Book:
+    if not user or user.type != AccountType.TEACHER or user.name is None:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    book = await db.book.find_unique(where={"id": book_id})
+    if not book:
+        raise HTTPException(status_code=404, detail="Book not found")
+    if book.ownerId != user.id:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    book_update_data: BookUpdateInput = {
+        "title": req.title,
+        "category": req.category,
+        "gradeRange": req.gradeRange,
+    }
+    if req.bookCover:
+        book_update_data["bookCover"] = req.bookCover
+    if req.coverImage:
+        book_update_data["coverImage"] = req.coverImage
+    if req.author:
+        book_update_data["author"] = req.author
+    if req.blurb:
+        book_update_data["blurb"] = req.blurb
+    book = await db.book.update(
+        where={"id": book_id},
+        data=book_update_data,
+    )
+    if not book:
+        raise HTTPException(status_code=404, detail="Book not found")
     return book
