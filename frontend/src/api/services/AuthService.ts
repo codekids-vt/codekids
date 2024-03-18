@@ -4,7 +4,8 @@
 /* eslint-disable */
 import type { HTTPBasicCredentials } from "../models/HTTPBasicCredentials";
 import type { SignupRequest } from "../models/SignupRequest";
-import type { User } from "../models/User";
+import type { UpdateUserRequest } from "../models/UpdateUserRequest";
+import type { UserLightNoPassword } from "../models/UserLightNoPassword";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
@@ -12,12 +13,12 @@ export class AuthService {
   /**
    * Signup
    * @param requestBody
-   * @returns User Successful Response
+   * @returns UserLightNoPassword Successful Response
    * @throws ApiError
    */
   public static signupSignupPost(
     requestBody: SignupRequest,
-  ): CancelablePromise<User> {
+  ): CancelablePromise<UserLightNoPassword> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/signup",
@@ -30,24 +31,54 @@ export class AuthService {
   }
   /**
    * Get User Data
-   * @returns User Successful Response
+   * @returns UserLightNoPassword Successful Response
    * @throws ApiError
    */
-  public static getUserDataUserMeGet(): CancelablePromise<User> {
+  public static getUserDataUserMeGet(): CancelablePromise<UserLightNoPassword> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/user/me",
     });
   }
   /**
+   * Update User Data
+   * @param requestBody
+   * @returns any Successful Response
+   * @throws ApiError
+   */
+  public static updateUserDataUserMePut(
+    requestBody: UpdateUserRequest,
+  ): CancelablePromise<any> {
+    return __request(OpenAPI, {
+      method: "PUT",
+      url: "/user/me",
+      body: requestBody,
+      mediaType: "application/json",
+      errors: {
+        422: `Validation Error`,
+      },
+    });
+  }
+  /**
+   * Delete User Account
+   * @returns any Successful Response
+   * @throws ApiError
+   */
+  public static deleteUserAccountUserMeDelete(): CancelablePromise<any> {
+    return __request(OpenAPI, {
+      method: "DELETE",
+      url: "/user/me",
+    });
+  }
+  /**
    * Login
    * @param requestBody
-   * @returns User Successful Response
+   * @returns UserLightNoPassword Successful Response
    * @throws ApiError
    */
   public static loginLoginPost(
     requestBody: HTTPBasicCredentials,
-  ): CancelablePromise<User> {
+  ): CancelablePromise<UserLightNoPassword> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/login",

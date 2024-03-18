@@ -12,9 +12,10 @@ export interface IPythonTutorProps {
   width?: number;
   height?: number;
   instruction?: number;
+  reload?: number; // Number that's used as key for iframe. Forces iframe to reload when changed.
 }
 
-export function PythonTutor({ props }: { props: IPythonTutorProps }) {
+export function PythonTutor({ props }: { props: IPythonTutorProps | any }) {
   const [editing, setEditing] = useState(false);
   const [code, setCode] = useState(props.code);
   const [scale, setScale] = useState(1);
@@ -22,6 +23,7 @@ export function PythonTutor({ props }: { props: IPythonTutorProps }) {
   // calculate width and height based on device
   const cumulative = props.cumulative ?? false;
   const instruction = props.instruction ?? 0;
+  const reload = props.reload ?? 0;
 
   return (
     <div className="flex flex-col flex-grow items-center w-full h-full">
@@ -31,7 +33,7 @@ export function PythonTutor({ props }: { props: IPythonTutorProps }) {
             title="Python Tutor"
             id="pyTutorFrame"
             className="w-full h-full"
-            key={instruction}
+            key={reload}
             style={{ scale: scale, transformOrigin: "top left" }}
             src={`https://pythontutor.com/iframe-embed.html#code=${encodeURIComponent(code)}&cumulative=${cumulative}&py=2&curInstr=${instruction}`}
           ></iframe>

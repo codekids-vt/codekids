@@ -18,7 +18,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   OpenAPI.HEADERS = { "X-API-KEY": user?.token || "" };
   const login = (newUser: User) => {
     setUser(newUser);
-    localStorage.setItem("token", JSON.stringify(newUser));
+    console.log(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser));
+    console.log(localStorage.getItem("user"));
   };
 
   const logout = () => {
@@ -35,7 +37,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         setUser(storageUser);
       }
     } catch (error) {}
-  }, [user]);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
