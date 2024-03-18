@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { Book, BooksService, Page, PagesService } from "../api";
+import { Book, BooksService, Page, PagesService, Question } from "../api";
 import { BookImage } from "../components/BookImage";
-import Editor from "@monaco-editor/react";
+import { IChangeEvent } from '@rjsf/core';
+import Form from '@rjsf/mui';
+import validator from '@rjsf/validator-ajv8';
 
 function PageNavigator({
   pages,
@@ -113,6 +115,18 @@ function BookContentEditor({
   );
 }
 
+type JSONSchemaType = 'string' | 'number' | 'boolean' | 'object' | 'array';
+
+interface SchemaProperty {
+  type: JSONSchemaType;
+  title: string;
+  items?: SchemaProperty | SchemaProperty[]; // Add items property for arrays
+}
+
+interface SchemaProperties {
+  [key: string]: SchemaProperty;
+}
+
 function BookImageEditor({
   page,
   setPage,
@@ -120,23 +134,51 @@ function BookImageEditor({
   page: Page;
   setPage: (page: Page) => void;
 }) {
-  const [tempImage, setTempImage] = useState(page.image);
-  const [tempProps, setTempProps] = useState(
-    JSON.stringify(page.props, null, 2),
-  );
+  const [tempImage, setTempImage] = useState<string>(page.image);
+  const [tempProps, setTempProps] = useState<string>(JSON.stringify(page.props || {}));
+  const [formData, setFormData] = useState<any>(page.props || {});
+  const [schema, setSchema] = useState<any>({});
 
-  // update the page every 3 seconds if there has been a change
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (
-        tempImage !== page.image ||
-        JSON.stringify(JSON.parse(tempProps)) !== JSON.stringify(page.props)
-      ) {
-        setPage({ ...page, image: tempImage, props: JSON.parse(tempProps) });
+  const generateSchema = (props: any): { title: string, type: 'object', properties: SchemaProperties } => {
+    const schemaProperties: SchemaProperties = {};
+  
+    Object.keys(props).forEach(key => {
+      const value = props[key];
+      let propertySchema: SchemaProperty;
+  
+      if (Array.isArray(value)) {
+        // Assuming all elements in the array are of the same type
+        const itemType: JSONSchemaType = value.length > 0 ? typeof value[0] as JSONSchemaType : 'string';
+        propertySchema = {
+          type: 'array',
+          title: key,
+          items: { type: itemType, title: `${key}_item` } // Define items for array types
+        };
+      } else if (typeof value === 'object' && value !== null) {
+        propertySchema = { type: 'object', title: key };
+      } else {
+        propertySchema = { type: typeof value as JSONSchemaType, title: key };
       }
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [tempImage, tempProps, page, setPage]);
+  
+      schemaProperties[key] = propertySchema;
+    });
+  
+    return {
+      title: "Page Properties",
+      type: "object",
+      properties: schemaProperties,
+    };
+  };  
+
+  useEffect(() => {
+    const newSchema = generateSchema(page.props || {});
+    setSchema(newSchema);
+    setFormData(page.props || {});
+  }, [page]);
+
+  const handleFormChange = (e: IChangeEvent<any>) => {
+    setPage({ ...page, props: e.formData });
+  };
 
   return (
     <div className="flex flex-col w-full p-2 h-full">
@@ -144,27 +186,12 @@ function BookImageEditor({
         tempImageType={tempImage}
         setTempImageType={setTempImage}
       />
-      {page.image == "Image" ? (
-        <div className="flex flex-col w-full">
-          <div>image url or path:</div>
-          <input
-            className="w-10/12 h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
-            value={tempProps}
-            onChange={(e) => setTempProps(e.target.value)}
-          />
-        </div>
-      ) : (
-        <Editor
-          height="50%"
-          defaultValue={tempProps}
-          onChange={(value) => {
-            value && setTempProps(value);
-          }}
-          className="w-full max-h-1/2 shadow-2xl rounded-xl"
-          theme="vs-dark"
-          language="json"
-        />
-      )}
+      <Form
+        schema={schema}
+        formData={formData}
+        onChange={handleFormChange} 
+        validator={validator}
+      />
       <div className="h-1/2 max-h-80">
         <BookImage
           key={page.pageNumber} // This is to force a re-render when the page changes
@@ -244,20 +271,19 @@ function PageEditor({
 
   return (
     <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max w-full">
-      <div className="flex flex-col w-full items-center bg-white rounded-l-2xl h-full">
-        <div className="flex flex-col h-full w-full items-center justify-center">
-          <BookImageEditor
-            key={page.pageNumber}
-            page={page}
-            setPage={setPage}
-          />
-        </div>
+      {/* Left Panel for BookImageEditor */}
+      <div className="flex flex-col w-2/3 items-center bg-white rounded-l-2xl h-full">
+        <BookImageEditor
+          key={page.pageNumber}
+          page={page}
+          setPage={setPage}
+        />
       </div>
+
+      {/* Right Panel for BookContentEditor */}
       {page.content && page.content.length > 0 && (
-        <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl">
-          <div className="flex flex-col items-center p-1 w-full min-h-full max-h-full overflow-y-scroll">
-            <BookContentEditor content={page.content} setContent={setContent} />
-          </div>
+        <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl overflow-y-scroll">
+          <BookContentEditor content={page.content} setContent={setContent} />
         </div>
       )}
     </div>
