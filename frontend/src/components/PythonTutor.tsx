@@ -15,7 +15,7 @@ export interface IPythonTutorProps {
   reload?: number; // Number that's used as key for iframe. Forces iframe to reload when changed.
 }
 
-export function PythonTutor({ props }: { props: IPythonTutorProps }) {
+export function PythonTutor({ props }: { props: IPythonTutorProps | any }) {
   const [editing, setEditing] = useState(false);
   const [code, setCode] = useState(props.code);
   const [scale, setScale] = useState(1);

@@ -53,7 +53,7 @@ async def signup(req: SignupRequest) -> UserLightNoPassword:
                 "password": password_hash.hexdigest(),
             }
         )
-        return LoginResponse(token=token)
+        return user
 
 
 @auth_router.get("/user/me", tags=["auth"])

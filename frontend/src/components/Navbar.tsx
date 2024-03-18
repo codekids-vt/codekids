@@ -24,6 +24,10 @@ const teacherLinks: readonly NavLinkRoute[] = [
     text: "Teacher Resources",
     href: "/teacher_resources",
   },
+  {
+    text: "Book Editor",
+    href: "/edit_books",
+  },
 ];
 
 function NavButton(route: NavLinkRoute) {

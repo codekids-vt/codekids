@@ -14,17 +14,17 @@ const bookCategorySpines: CategorySpine[] = [
   {
     name: "Beginner",
     image: "/home_page/green_spine.png",
-    link: "/book_category/beginner",
+    link: "/book_category/BEGINNER",
   },
   {
     name: "Intermediate",
     image: "/home_page/orange_spine.png",
-    link: "/book_category/intermediate",
+    link: "/book_category/INTERMEDIATE",
   },
   {
     name: "Advanced",
     image: "/home_page/purple_spine.png",
-    link: "/book_category/advanced",
+    link: "/book_category/ADVANCED",
   },
 ];
 

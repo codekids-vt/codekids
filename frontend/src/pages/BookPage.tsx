@@ -1,141 +1,19 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { books } from "../util/books";
-import { Page } from "../util/BookData";
 import Navbar from "../components/Navbar";
 import { Reader } from "../components/Reader";
-import { ColorPattern } from "../components/ColorPattern";
-import NumericalPattern from "../components/NumericalPatter";
-import { CodeComplete } from "../components/CodeComplete";
-import { HokieBirdColoring } from "../components/HokieBirdColor";
-import { HokieBirdMap } from "../components/HokieBirdMap";
-import { HokieBirdIfCondition } from "../components/HokieBirdIfCondition";
-import { PythonTutor } from "../components/PythonTutor";
-import { DataTypesIntro } from "../components/MisconceptionComponents/DataTypesIntro";
-import { IntsAndBools } from "../components/MisconceptionComponents/IntsAndBools";
-import { VariableAssignment } from "../components/MisconceptionComponents/VariableAssignment";
-import { Strings } from "../components/MisconceptionComponents/Strings";
-import { Sequencing } from "../components/MisconceptionComponents/Sequencing";
-import { IfStatementIntro } from "../components/MisconceptionComponents/IfStatementIntro";
-import { ConditionalOperators } from "../components/MisconceptionComponents/ConditionalOperators";
-import { LogicalOperators } from "../components/MisconceptionComponents/LogicalOperators";
-import { IfStatements } from "../components/MisconceptionComponents/IfStatements";
-import { LifeOfMoose } from "../components/MisconceptionComponents/LifeOfMoose/LifeOfMoose";
-import { MooseMilestone } from "../components/MisconceptionComponents/LifeOfMoose/MooseMilestone";
-import { MooseDr } from "../components/MisconceptionComponents/LifeOfMoose/MooseDr";
-import { MooseChallengingYear } from "../components/MisconceptionComponents/LifeOfMoose/MooseChallengingYear";
-import { MooseThankYou } from "../components/MisconceptionComponents/LifeOfMoose/MooseThankYou";
-import { BuyDonut } from "../components/MisconceptionComponents/FlowchartsBook/BuyDonut";
-import { BuyMultiple } from "../components/MisconceptionComponents/FlowchartsBook/BuyMultiple";
-import { MultipleConditions } from "../components/MisconceptionComponents/FlowchartsBook/MultipleConditions";
-import { ChangingCondition } from "../components/MisconceptionComponents/FlowchartsBook/ChangingCondition";
-import { InputActivity } from "../components/InputActivity";
-import { TableComponent } from "../components/TableComponent";
-import { FoodTruckActivity } from "../components/FoodTruckActivity";
-import { InteractionType, InteractionsService } from "../api";
+import {
+  Book,
+  BooksService,
+  InteractionType,
+  InteractionsService,
+  Page,
+} from "../api";
 import { useAuth } from "../context/AuthContext";
 import { useSound } from "use-sound";
+import { BookImage } from "../components/BookImage";
 
-function BookImage({
-  image,
-  page,
-  setAllowNext,
-}: {
-  image: string;
-  page: Page;
-  setAllowNext: Dispatch<SetStateAction<boolean>>;
-}) {
-  const isImage = image && image.includes(".");
-
-  return (
-    <div className="h-[calc(100vh-9rem)] xl:h-[calc(100vh-13rem)] overflow-y-scroll flex flex-col items-center w-full">
-      {isImage && (
-        <div className="flex flex-col justify-center items-center w-full h-full">
-          <img
-            src={image}
-            alt="book"
-            width={600}
-            height={600}
-            className="object-contain max-w-full max-h-full"
-          />
-        </div>
-      )}
-      {image === "HokieBirdActivity" && (
-        <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "tutor" && <PythonTutor props={page?.props} />}
-      {image === "HokieBirdMazeActivity" && (
-        <HokieBirdMap props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "HokieBirdIfConditionActivity" && (
-        <HokieBirdIfCondition props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "DataTypesIntro" && <DataTypesIntro />}
-      {image === "IntsAndBools" && (
-        <IntsAndBools props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "VariableAssignment" && (
-        <VariableAssignment props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "Strings" && (
-        <Strings props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "Sequencing" && <Sequencing setAllowNext={setAllowNext} />}
-      {image === "IfStatementIntro" && <IfStatementIntro />}
-      {image === "ConditionalOperators" && (
-        <ConditionalOperators props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "LogicalOperators" && (
-        <LogicalOperators props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "IfStatements" && (
-        <IfStatements props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "LifeOfMoose" && (
-        <LifeOfMoose props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "MooseMilestone" && (
-        <MooseMilestone props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "MooseDr" && (
-        <MooseDr props={page.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "MooseChallengingYear" && (
-        <MooseChallengingYear props={page.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "MooseThankYou" && <MooseThankYou />}
-      {image === "BuyDonut" && <BuyDonut setAllowNext={setAllowNext} />}
-      {image === "BuyMultiple" && (
-        <BuyMultiple props={page.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "MultipleConditions" && (
-        <MultipleConditions props={page.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "ChangingCondition" && (
-        <ChangingCondition props={page.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "InputActivity" && (
-        <InputActivity props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "FoodTruckActivity" && (
-        <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext} />
-      )}
-    </div>
-  );
-}
-
-function BookContent({
-  content,
-  game,
-  props,
-  setAllowNext,
-}: {
-  content: string[];
-  game: string | undefined;
-  props: any;
-  setAllowNext: Dispatch<SetStateAction<boolean>>;
-}) {
-  const isImage = game && game.includes(".");
+function BookContent({ content }: { content: string[] }) {
   return (
     <div className="h-[calc(100vh-9rem)] xl:h-[calc(100vh-13rem)] overflow-y-scroll flex flex-col justify-center gap-1 items-center w-full">
       <ul className="flex flex-col justify-center py-2 md:space-y-1 xl:space-y-4">
@@ -145,23 +23,6 @@ function BookContent({
           </li>
         ))}
       </ul>
-      {game && game === "color" && <ColorPattern />}
-      {game && game === "number" && (
-        <NumericalPattern pattern={props.pattern} answer={props.ans[0]} />
-      )}
-      {game && game === "code" && (
-        <CodeComplete
-          beforeCode="if ("
-          afterCode=") brushTeeth()"
-          answer="teethDirty"
-          choices={["eating", "teethDirty", "playing"]}
-        />
-      )}
-      {game && game === "TableComponent" && (
-        <TableComponent cellContents={props.cellContents} />
-      )}
-
-      {isImage && <img src={game} alt="book" width={600} height={600} />}
     </div>
   );
 }
@@ -254,26 +115,37 @@ function HelpMeWindow({
 }
 
 export default function BookPage() {
-  let { idString, pagenumString } = useParams();
+  let { idString, pageNumParam } = useParams();
   const id = parseInt(idString as string);
   const [playPageFlip] = useSound("/sounds/page-flip.mp3", { volume: 0.5 });
   const [playLowClick] = useSound("/sounds/low-click.mp3", { volume: 0.5 });
-  const pagenum = parseInt(pagenumString as string);
-  const navigate = useNavigate();
   const { user } = useAuth();
   const [help, setHelp] = useState(false);
   const [allowNext, setAllowNext] = useState(true);
+  const [book, setBook] = useState<Book | undefined>(undefined);
+  const [pageNum, setPageNum] = useState(
+    pageNumParam ? parseInt(pageNumParam) : 1,
+  );
   const startTime = new Date().getTime();
+  const navigate = useNavigate();
 
-  const bookNum = id - 1;
-  const pageNum = pagenum;
-  const book = books.find((book) => book.BookId === bookNum + 1);
+  useEffect(() => {
+    BooksService.getBookBooksBookIdGet(id)
+      .then((response) => {
+        setBook(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [id]);
 
   useEffect(() => {
     playPageFlip();
-  }, [playPageFlip]);
+    navigate(`/book/${idString}/${pageNum}`);
+    setPageNum(pageNum);
+  }, [playPageFlip, pageNum, idString, navigate]);
 
-  if (!book) {
+  if (!book || !book.pages) {
     return (
       <div className="flex flex-col flex-grow items-center justify-center">
         <h1 className="text-center text-lg font-medium">
@@ -283,14 +155,16 @@ export default function BookPage() {
     );
   }
 
-  const page = book.pages[pageNum];
+  const page = book.pages.find((p) => p.pageNumber === pageNum);
 
   function getNextPageNum(): number | null {
-    return book && pageNum + 1 > book.pages.length - 1 ? null : pageNum + 1;
+    return book && book.pages && pageNum > book.pages.length - 1
+      ? null
+      : pageNum + 1;
   }
 
   function getPrevPageNum(): number | null {
-    return pageNum - 1 < 0 ? null : pageNum - 1;
+    return pageNum <= 1 ? null : pageNum - 1;
   }
 
   function moveToNextPage() {
@@ -300,8 +174,7 @@ export default function BookPage() {
       time_since_load: timeSpent,
       user_id: user?.id,
     }).then(() => {
-      navigate(`/book/${id}/${getNextPageNum()}`);
-      navigate(0); // forces react to do a rerender when going from pages with same paths with different params and same component tree
+      setPageNum(pageNum + 1);
     });
   }
 
@@ -312,8 +185,8 @@ export default function BookPage() {
       time_since_load: timeSpent,
       user_id: user?.id,
     }).then(() => {
-      navigate(`/book/${id}/${getPrevPageNum()}`);
-      navigate(0); // forces react to do a rerender when going from pages with same paths with different params and same component tree
+      setAllowNext(true);
+      setPageNum(pageNum - 1);
     });
   }
 
@@ -391,8 +264,9 @@ export default function BookPage() {
               )}
               <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max flex-grow">
                 <div className="flex flex-col flex-grow items-center bg-white rounded-l-2xl h-full">
-                  <div className="flex flex-col flex-grow items-center justify-center w-full">
+                  <div className="flex flex-col flex-grow items-center justify-center w-full h-[calc(100vh-9rem)] xl:h-[calc(100vh-13rem)]">
                     <BookImage
+                      key={page.pageNumber} // This is to force a re-render when the page changes
                       image={page.image}
                       page={page}
                       setAllowNext={setAllowNext}
@@ -402,12 +276,7 @@ export default function BookPage() {
                 {page.content && page.content.length > 0 && (
                   <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl">
                     <div className="flex flex-col items-center justify-center p-1">
-                      <BookContent
-                        content={page.content}
-                        game={page.game}
-                        props={page.props}
-                        setAllowNext={setAllowNext}
-                      />
+                      <BookContent content={page.content} />
                     </div>
                   </div>
                 )}
