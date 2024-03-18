@@ -14,7 +14,7 @@ function BookPreview({
       <a href={`${linkPrefix}${book.id}${linkSuffix}`}>
         <div className="h-[325px] w-[275px] hover:shadow-2xl rounded-2xl hover:-translate-y-1">
           <img
-            src={book.bookCover}
+            src={book.bookCover ? book.bookCover : "/color_2.png"}
             width={275}
             height={280}
             alt="Book Background"
