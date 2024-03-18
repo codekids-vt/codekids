@@ -68,7 +68,7 @@ model Question {
 
 model Book {
   id              Int          @id @default(autoincrement())
-  bookCover       String
+  bookCover       String?
   coverImage      String?
   title           String
   blurb           String?

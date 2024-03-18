@@ -11,7 +11,7 @@ import type { User } from "./User";
  */
 export type Book = {
   id: number;
-  bookCover: string;
+  bookCover?: string | null;
   coverImage?: string | null;
   title: string;
   blurb?: string | null;
