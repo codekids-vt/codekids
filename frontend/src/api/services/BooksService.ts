@@ -14,6 +14,7 @@ export class BooksService {
    * @param category
    * @param limit
    * @param ownerId
+   * @param published
    * @returns Book Successful Response
    * @throws ApiError
    */
@@ -21,6 +22,7 @@ export class BooksService {
     category?: BookCategory | null,
     limit?: number | null,
     ownerId?: number | null,
+    published?: boolean | null,
   ): CancelablePromise<Array<Book>> {
     return __request(OpenAPI, {
       method: "GET",
@@ -29,6 +31,7 @@ export class BooksService {
         category: category,
         limit: limit,
         owner_id: ownerId,
+        published: published,
       },
       errors: {
         422: `Validation Error`,
@@ -67,6 +70,30 @@ export class BooksService {
       path: {
         book_id: bookId,
       },
+      errors: {
+        422: `Validation Error`,
+      },
+    });
+  }
+  /**
+   * Edit Book
+   * @param bookId
+   * @param requestBody
+   * @returns Book Successful Response
+   * @throws ApiError
+   */
+  public static editBookBooksBookIdPut(
+    bookId: number,
+    requestBody: CreateBookRequest,
+  ): CancelablePromise<Book> {
+    return __request(OpenAPI, {
+      method: "PUT",
+      url: "/books/{book_id}",
+      path: {
+        book_id: bookId,
+      },
+      body: requestBody,
+      mediaType: "application/json",
       errors: {
         422: `Validation Error`,
       },

@@ -16,12 +16,17 @@ async def search_books(
     category: Optional[BookCategory] = None,
     limit: Optional[int] = 10,
     owner_id: Optional[int] = None,
+    published: Optional[bool] = None,
 ) -> List[Book]:
     where: BookWhereInput = {}
     if category:
         where["category"] = category
     if owner_id:
         where["ownerId"] = owner_id
+    if published is not None:
+        where["published"] = published
+    else:
+        where["published"] = True
     books = await db.book.find_many(take=limit, include={"courses": True}, where=where)
     return books
 

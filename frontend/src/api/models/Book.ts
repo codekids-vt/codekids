@@ -15,6 +15,8 @@ export type Book = {
   coverImage?: string | null;
   title: string;
   blurb?: string | null;
+  readyForPublish: boolean;
+  published: boolean;
   author: string;
   gradeRange: string;
   category: BookCategory;

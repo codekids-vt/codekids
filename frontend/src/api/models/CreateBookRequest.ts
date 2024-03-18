@@ -7,4 +7,8 @@ export type CreateBookRequest = {
   title: string;
   category: BookCategory;
   gradeRange: string;
+  bookCover?: string | null;
+  coverImage?: string | null;
+  author?: string | null;
+  blurb?: string | null;
 };

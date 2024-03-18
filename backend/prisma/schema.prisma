@@ -10,11 +10,11 @@ datasource db {
 }
 
 model User {
-  id            Int               @id @default(autoincrement())
+  id            Int             @id @default(autoincrement())
   token         String
   type          AccountType
   name          String?
-  email         String?           @unique
+  email         String?         @unique
   password      String?
   interactions  Interaction[]
   courses       Course[]
@@ -41,55 +41,57 @@ enum BookCategory {
 }
 
 model Interaction {
-  id      Int      @id @default(autoincrement())
-  user    User?     @relation(fields: [userId], references: [id])
-  userId  Int?
+  id              Int             @id @default(autoincrement())
+  user            User?           @relation(fields: [userId], references: [id])
+  userId          Int?
   interactionType InteractionType
-  answer  String?
-  correct Boolean?
-  date    DateTime
-  timeSinceLoad Int
+  answer          String?
+  correct         Boolean?
+  date            DateTime
+  timeSinceLoad   Int
 
   question   Question? @relation(fields: [questionId], references: [id])
   questionId Int?
-	@@map("QuestionAttempt")
+
+  @@map("QuestionAttempt")
 }
 
 model Question {
-  id               Int               @id @default(autoincrement())
+  id               Int           @id @default(autoincrement())
   question         String
   answer           String
   options          String[]
   questionAttempts Interaction[]
-  page             Page              @relation(fields: [pageId], references: [id])
+  page             Page          @relation(fields: [pageId], references: [id])
   pageId           Int
-
 }
 
 model Book {
-  id          Int           @id @default(autoincrement())
-  bookCover   String
-  coverImage  String?
-  title       String
-  blurb       String?
-  author      String
-  gradeRange  String
-  category    BookCategory  // or String if you prefer
-  pages       Page[]
-  courses     BookCourse[]
-  owner       User          @relation(fields: [ownerId], references: [id])
-  ownerId     Int           @default(1)
+  id              Int          @id @default(autoincrement())
+  bookCover       String
+  coverImage      String?
+  title           String
+  blurb           String?
+  readyForPublish Boolean      @default(false)
+  published       Boolean      @default(false)
+  author          String
+  gradeRange      String
+  category        BookCategory // or String if you prefer
+  pages           Page[]
+  courses         BookCourse[]
+  owner           User         @relation(fields: [ownerId], references: [id])
+  ownerId         Int          @default(1)
 }
 
 model Page {
-  id          Int           @id @default(autoincrement())
-  pageNumber  Int
-  content     Json          // or String[]
-  image       String
-  props       Json?          // for storing additional interactive properties
-  book        Book          @relation(fields: [bookId], references: [id])
-  bookId      Int
-  questions   Question[]
+  id         Int        @id @default(autoincrement())
+  pageNumber Int
+  content    Json // or String[]
+  image      String
+  props      Json? // for storing additional interactive properties
+  book       Book       @relation(fields: [bookId], references: [id])
+  bookId     Int
+  questions  Question[]
 }
 
 model CourseStudent {
