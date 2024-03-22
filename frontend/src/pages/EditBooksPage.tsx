@@ -12,7 +12,7 @@ export default function EditBooksPage() {
   const [books, setBooks] = useState<Book[]>([]);
   useEffect(() => {
     if (user) {
-      BooksService.searchBooksBooksGet(null, 100, user.id, false)
+      BooksService.searchBooksBooksGet(null, 100, user.id)
         .then((response) => {
           setBooks(response);
         })
