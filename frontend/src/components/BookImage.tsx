@@ -24,6 +24,8 @@ import { ChangingCondition } from "../components/MisconceptionComponents/Flowcha
 import { InputActivity } from "../components/InputActivity";
 import { FoodTruckActivity } from "../components/FoodTruckActivity";
 import { Page } from "../api";
+import { SelectImageActivity } from "./SelectImage";
+import BinaryConverter from "./BinaryConverter";
 
 export function BookImage({
   image,
@@ -108,6 +110,12 @@ export function BookImage({
       )}
       {image === "FoodTruckActivity" && (
         <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "SelectImageActivity" && (
+        <SelectImageActivity props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "BinaryConverter" && (
+        <BinaryConverter props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );
