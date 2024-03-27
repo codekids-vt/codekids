@@ -85,7 +85,7 @@ export function ChangingCondition({
           height={1300}
           width={1300}
           src={"/FlowchartsBook/example_4.svg"}
-          alt="Image of flow chart."
+          alt="flow"
         />
         <div className="flex flex-col gap-5">
           <MultipleChoiceQuestion
@@ -124,7 +124,7 @@ export function ChangingCondition({
                 height={imageDim[0]}
                 width={imageDim[1]}
                 src={currentImage}
-                alt="Image of flow chart"
+                alt="flow"
               />
             )}
           </div>

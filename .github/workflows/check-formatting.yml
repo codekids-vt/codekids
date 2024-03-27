@@ -1,4 +1,4 @@
-name: check-formatting
+name: check-build-and-formatting
 on: pull_request
 jobs:
   check-formatting:
@@ -8,9 +8,16 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: prettier
-        run: cd frontend && npx prettier . --check 
+        run: |
+          cd frontend &&
+          npx prettier . --check 
       - name: black
         run: |
           cd backend &&
           pip install black &&
           black . --check
+      - name: frontend-build
+        run: |
+          cd frontend &&
+          npm install &&
+          CI=True npm run build

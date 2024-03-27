@@ -391,6 +391,29 @@ export const IfStatementsQuestions: { [id: string]: IQuestion } = {
       },
     ],
   },
+  ConditionalOperatorsQ5: {
+    question: "What does total_number > cream_number evaluate to?",
+    answers: [
+      {
+        answerText: "True",
+        answerExplanation:
+          "Correct! total_number is greater than cream_number.",
+        correct: true,
+      },
+      {
+        answerText: "False",
+        answerExplanation:
+          "Incorrect. Is total_number greater than cream_number? Try again!",
+        correct: false,
+      },
+      {
+        answerText: "None",
+        answerExplanation:
+          "Incorrect. Both total_number and cream_number are integer's. So it will be True or False. Try again!",
+        correct: false,
+      },
+    ],
+  },
   LogicalOperatorsQ1: {
     question: "",
     answers: [

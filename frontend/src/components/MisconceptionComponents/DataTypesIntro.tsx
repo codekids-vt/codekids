@@ -16,7 +16,7 @@ export function DataTypesIntro() {
   );
 
   return (
-    <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center">
+    <div className="flex flex-col w-full items-center font-semibold text-lg text-center">
       <Reader text="The Variable name jersey_number is of type Integer" />
       <div className="flex flex-col-2 m-5 items-center gap-36">
         <CodeSnippet
@@ -61,7 +61,7 @@ export function DataTypesIntro() {
           width={200}
           height={200}
           src="/VariablesBook/sky-boolean.png"
-          alt="Image of sky show it is True that the sky is blue"
+          alt="sky show it is True that the sky is blue"
         />
       </div>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import useSound from "use-sound";
 
 interface HokieBirdColorState {
   condition: string;
@@ -13,6 +14,10 @@ export function HokieBirdIfCondition({
   props: any;
   setAllowNext: Dispatch<SetStateAction<boolean>>;
 }) {
+  const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
+  const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
+    volume: 0.5,
+  });
   const answer = props.ans[0];
   const [wrong, setWrong] = useState(false);
   const [good, setGood] = useState(false);
@@ -24,7 +29,7 @@ export function HokieBirdIfCondition({
 
   React.useEffect(() => {
     setAllowNext(good);
-  }, [good]);
+  }, [good, setAllowNext]);
 
   function handleOptionSelect(option: string) {
     const isCorrectAnswer =
@@ -34,6 +39,11 @@ export function HokieBirdIfCondition({
       statement: option,
     }));
     setGood(isCorrectAnswer);
+    if (isCorrectAnswer) {
+      playCorrectSound();
+    } else {
+      playIncorrectSound();
+    }
     setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);
     setWrong(!isCorrectAnswer);
   }
@@ -42,9 +52,9 @@ export function HokieBirdIfCondition({
     e.dataTransfer.setData("statement", statement);
   }
 
-  function handleOnDragCondition(e: React.DragEvent, condition: string) {
-    e.dataTransfer.setData("condition", condition);
-  }
+  // function handleOnDragCondition(e: React.DragEvent, condition: string) {
+  //   e.dataTransfer.setData("condition", condition);
+  // }
 
   function handleDragOver(e: React.DragEvent) {
     e.preventDefault();
@@ -112,7 +122,7 @@ export function HokieBirdIfCondition({
           src={currentImage}
           width={400}
           height={400}
-          alt="Hokie Bird Image"
+          alt="Hokie Bird"
           className="absolute  w-[200px] xl:w-[450px] rounded-2xl"
         ></img>
         {props?.effect && (
@@ -120,7 +130,7 @@ export function HokieBirdIfCondition({
             src={props.effect}
             width={400}
             height={400}
-            alt="Hokie Bird Image Effect"
+            alt="Hokie Bird Effect"
             className="absolute  w-[200px] xl:w-[450px]"
           ></img>
         )}

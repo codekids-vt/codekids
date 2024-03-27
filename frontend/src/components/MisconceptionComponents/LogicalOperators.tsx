@@ -73,7 +73,7 @@ export function LogicalOperators({
           width={300}
           height={300}
           src="/IfStatementsBook/therapy_dog_1.png"
-          alt="Image of therapy dogs with their names."
+          alt="therapy dogs with their names."
         />
         <div>
           <Reader text="Use the code snippet below to answer the question." />
@@ -85,7 +85,7 @@ export function LogicalOperators({
 
   function getPage1() {
     return (
-      <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-3">
+      <div className="flex flex-col w-full items-center font-semibold text-lg text-center gap-3">
         {codeSnippet()}
         <Reader text="The next few pages will have questions about the code above and logical operators." />
       </div>
@@ -94,7 +94,7 @@ export function LogicalOperators({
 
   function getPage2() {
     return (
-      <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-3">
+      <div className="flex flex-col w-full items-center font-semibold text-lg text-center gap-3">
         {codeSnippet()}
         <Reader text="AND Operator" />
         <Reader text='Simply ask "are both of these true?"' />
@@ -117,7 +117,7 @@ export function LogicalOperators({
 
   function getPage3() {
     return (
-      <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-3">
+      <div className="flex flex-col w-full items-center font-semibold text-lg text-center gap-3">
         {codeSnippet()}
         <Reader text="OR Operator" />
         <Reader text='Simply ask "are either of these true?"' />
@@ -140,7 +140,7 @@ export function LogicalOperators({
 
   function getPage4() {
     return (
-      <div className="flex flex-col w-full text-center items-center font-semibold text-lg text-center gap-3">
+      <div className="flex flex-col w-full items-center font-semibold text-lg text-center gap-3">
         {codeSnippet()}
         <Reader text="NOT Operator" />
         <Reader text='Simply ask "what is the opposite?"' />

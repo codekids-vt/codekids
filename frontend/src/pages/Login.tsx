@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Background from "../components/Background";
-import Navbar from "../components/Navbar";
 import { AuthService } from "../api";
 
 const Login: React.FC = () => {
@@ -17,7 +16,7 @@ const Login: React.FC = () => {
       password: password,
     })
       .then((response) => {
-        login(response.token);
+        login(response);
         navigate("/");
       })
       .catch((error) => {
@@ -56,7 +55,7 @@ const Login: React.FC = () => {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-green sm:text-sm sm:leading-6"
+                  className="p-2 w-full rounded-xl border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-green sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -74,7 +73,7 @@ const Login: React.FC = () => {
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-green sm:text-sm sm:leading-6"
+                  className="p-2 w-full rounded-xl border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-green sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -83,7 +82,7 @@ const Login: React.FC = () => {
               <button
                 type="submit"
                 onClick={handleLogin}
-                className="flex w-full justify-center rounded-md bg-primary-green px-4 py-2 text-sm font-medium leading-6 text-white shadow-md hover:bg-primary-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-green"
+                className="flex w-full justify-center rounded-xl bg-primary-green px-4 py-2 text-sm font-medium leading-6 text-white shadow-md hover:bg-primary-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-green"
               >
                 Sign in
               </button>

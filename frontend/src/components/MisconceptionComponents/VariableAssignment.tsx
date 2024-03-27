@@ -52,7 +52,7 @@ export function VariableAssignment({
   const [q2Correct, setQ2Correct] = useState(false);
 
   React.useEffect(() => {
-    if (props.pageNumber == 1) {
+    if (props.pageNumber === 1) {
       setAllowNext(q1Correct);
     } else if (props.pageNumber === 2) {
       setAllowNext(q2Correct);
