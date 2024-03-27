@@ -51,7 +51,10 @@ async def page_delete(page_id: int) -> Book:
 
     # now move all pages with higher pageNumber down
     pages = await db.page.find_many(
-        where={"pageNumber": {"gt": page_return.pageNumber}}
+        where={
+            "pageNumber": {"gt": page_return.pageNumber},
+            "bookId": page_return.bookId,
+        }
     )
     async with db.tx() as transaction:
         for page in pages:
