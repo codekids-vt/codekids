@@ -115,7 +115,9 @@
         }
       },
       {
-        "content": ["Awesome, the Hokie Bird made it to Lane Stadium!"],
+        "content": [
+          "Awesome, the Hokie Bird made it to Lane Stadium!"
+        ],
         "image": "/Maze/Maze6.jpg"
       },
       {
@@ -155,7 +157,9 @@
         }
       },
       {
-        "content": ["Awesome, the Hokie Bird made it to Lane Stadium!"],
+        "content": [
+          "Awesome, the Hokie Bird made it to Lane Stadium!"
+        ],
         "image": "/Maze/Maze6.jpg"
       }
     ]
@@ -194,8 +198,15 @@
         "image": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [1, 2, 3, 4],
-          "ans": [3],
+          "options": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "ans": [
+            3
+          ],
           "initialImage": "/io_book/park_1.png",
           "correctImage": "/io_book/park_2.png",
           "helpImage": "/help/IO_Help_1.png"
@@ -227,8 +238,15 @@
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [9, 10, 11, 12],
-          "ans": [10],
+          "options": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "ans": [
+            10
+          ],
           "initialImage": "/io_book/flowers_0.png",
           "correctImage": "/io_book/flowers_0.png",
           "helpImage": "/help/IO_Help_2.png"
@@ -242,21 +260,37 @@
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [9, 10, 11, 12],
-          "ans": [9],
+          "options": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "ans": [
+            9
+          ],
           "initialImage": "/io_book/flowers_0.png",
           "correctImage": "/io_book/flowers_0.png",
           "helpImage": "/help/IO_Help_3.png"
         }
       },
       {
-        "content": ["What is the sum of flowers in all the corners right now?"],
+        "content": [
+          "What is the sum of flowers in all the corners right now?"
+        ],
         "image": "InputActivity",
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [19, 20, 21, 22],
-          "ans": [19],
+          "options": [
+            19,
+            20,
+            21,
+            22
+          ],
+          "ans": [
+            19
+          ],
           "initialImage": "/io_book/flowers_0.png",
           "correctImage": "/io_book/flowers_0.png",
           "helpImage": "/help/IO_Help_4.png"
@@ -271,8 +305,15 @@
         "game": "TableComponent",
         "props": {
           "showIOLabels": true,
-          "options": [4, 5, 6, 7],
-          "ans": [5],
+          "options": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "ans": [
+            5
+          ],
           "initialImage": "/io_book/flowers_1.png",
           "correctImage": "/io_book/flowers_2.png",
           "cellContents": [
@@ -299,8 +340,15 @@
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [7, 8, 9, 10],
-          "ans": [10],
+          "options": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "ans": [
+            10
+          ],
           "initialImage": "/io_book/trees_0.png",
           "correctImage": "/io_book/trees_0.png",
           "helpImage": "/help/IO_Help_6.png"
@@ -314,21 +362,37 @@
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [7, 8, 9, 10],
-          "ans": [9],
+          "options": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "ans": [
+            9
+          ],
           "initialImage": "/io_book/trees_0.png",
           "correctImage": "/io_book/trees_0.png",
           "helpImage": "/help/IO_Help_7.png"
         }
       },
       {
-        "content": ["What is the sum of trees in all the corners right now?"],
+        "content": [
+          "What is the sum of trees in all the corners right now?"
+        ],
         "image": "InputActivity",
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [16, 17, 18, 19],
-          "ans": [19],
+          "options": [
+            16,
+            17,
+            18,
+            19
+          ],
+          "ans": [
+            19
+          ],
           "initialImage": "/io_book/trees_0.png",
           "correctImage": "/io_book/trees_0.png",
           "helpImage": "/help/IO_Help_8.png"
@@ -344,8 +408,15 @@
         "game": "TableComponent",
         "props": {
           "showIOLabels": true,
-          "options": [1, 2, 3, 4],
-          "ans": [1],
+          "options": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "ans": [
+            1
+          ],
           "initialImage": "/io_book/trees_1.png",
           "correctImage": "/io_book/trees_2.png",
           "cellContents": [
@@ -371,8 +442,15 @@
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [1, 2, 3, 4],
-          "ans": [2],
+          "options": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "ans": [
+            2
+          ],
           "initialImage": "/io_book/multiplication_0.png",
           "correctImage": "/io_book/multiplication_0.png",
           "helpImage": "/help/IO_Help_10.png"
@@ -387,8 +465,15 @@
         "game": "TableComponent",
         "props": {
           "showIOLabels": true,
-          "options": [6, 7, 8, 9],
-          "ans": [8],
+          "options": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "ans": [
+            8
+          ],
           "initialImage": "/io_book/multiplication_1.png",
           "correctImage": "/io_book/multiplication_2.png",
           "cellContents": [
@@ -458,7 +543,9 @@
         }
       },
       {
-        "content": ["Let's make a new Spinach and Onion Pizza!"],
+        "content": [
+          "Let's make a new Spinach and Onion Pizza!"
+        ],
         "image": "FoodTruckActivity",
         "game": "FoodTruckActivity",
         "props": {
@@ -480,7 +567,9 @@
         }
       },
       {
-        "content": ["Let's make another Veggie Pizza!"],
+        "content": [
+          "Let's make another Veggie Pizza!"
+        ],
         "image": "FoodTruckActivity",
         "game": "FoodTruckActivity",
         "props": {
@@ -498,7 +587,9 @@
         }
       },
       {
-        "content": ["Let's make a Barbecue Pizza now!"],
+        "content": [
+          "Let's make a Barbecue Pizza now!"
+        ],
         "image": "FoodTruckActivity",
         "game": "FoodTruckActivity",
         "props": {
@@ -578,9 +669,14 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": ["tshirt", "winter_jacket"],
+          "statements": [
+            "tshirt",
+            "winter_jacket"
+          ],
           "condition": "weather_is_hot",
-          "ans": ["tshirt"],
+          "ans": [
+            "tshirt"
+          ],
           "helpImage": "/help/IfConditionBook1_Help_1.png",
           "image": "/if_condition/sun.gif",
           "ans_image": "/if_condition/HokieBirdSun.gif"
@@ -596,9 +692,14 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": ["tshirt", "winter_jacket"],
+          "statements": [
+            "tshirt",
+            "winter_jacket"
+          ],
           "condition": "weather_is_cold",
-          "ans": ["winter_jacket"],
+          "ans": [
+            "winter_jacket"
+          ],
           "image": "/if_condition/HokieBirdIf.png",
           "ans_image": "/if_condition/HokieBirdJacket.png",
           "effect": "/if_condition/snow.gif",
@@ -613,9 +714,14 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": ["sunglasses", "umbrella"],
+          "statements": [
+            "sunglasses",
+            "umbrella"
+          ],
           "condition": "weather_is_raining",
-          "ans": ["umbrella"],
+          "ans": [
+            "umbrella"
+          ],
           "image": "/if_condition/HokieBirdIf.png",
           "ans_image": "/if_condition/Umbrella2.png",
           "effect": "/if_condition/rain.gif",
@@ -630,9 +736,14 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": ["cry", "laugh"],
+          "statements": [
+            "cry",
+            "laugh"
+          ],
           "condition": "rains_without_an_umbrella",
-          "ans": ["cry"],
+          "ans": [
+            "cry"
+          ],
           "image": "/if_condition/HokieBirdIf.png",
           "ans_image": "/if_condition/HokieBirdCry.png",
           "effect": "/if_condition/rain.gif",
@@ -666,9 +777,16 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": ["cry", "laugh", "surprised", "angry"],
+          "statements": [
+            "cry",
+            "laugh",
+            "surprised",
+            "angry"
+          ],
           "condition": "Hokie_feels_sad",
-          "ans": ["cry"],
+          "ans": [
+            "cry"
+          ],
           "image": "/if_condition/mood.gif",
           "ans_image": "/if_condition/sad.png",
           "helpImage": "/help/IfConditionBook2_Help_1.png"
@@ -682,9 +800,16 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": ["cry", "laugh", "surprised", "angry"],
+          "statements": [
+            "cry",
+            "laugh",
+            "surprised",
+            "angry"
+          ],
           "condition": "Hokie_feels_happy",
-          "ans": ["laugh"],
+          "ans": [
+            "laugh"
+          ],
           "image": "/if_condition/mood.gif",
           "ans_image": "/if_condition/happy.png",
           "helpImage": "/help/IfConditionBook2_Help_2.png"
@@ -698,9 +823,16 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": ["cry", "laugh", "surprised", "angry"],
+          "statements": [
+            "cry",
+            "laugh",
+            "surprised",
+            "angry"
+          ],
           "condition": "Hokie_feels_angry",
-          "ans": ["angry"],
+          "ans": [
+            "angry"
+          ],
           "image": "/if_condition/mood.gif",
           "ans_image": "/if_condition/angry.png",
           "helpImage": "/help/IfConditionBook2_Help_3.png"
@@ -714,9 +846,16 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": ["cry", "laugh", "surprised", "angry"],
+          "statements": [
+            "cry",
+            "laugh",
+            "surprised",
+            "angry"
+          ],
           "condition": "Hokie_feels_surprised",
-          "ans": ["surprised"],
+          "ans": [
+            "surprised"
+          ],
           "image": "/if_condition/mood.gif",
           "ans_image": "/if_condition/surprise.png",
           "helpImage": "/help/IfConditionBook2_Help_4.png"
@@ -765,7 +904,9 @@
             "rotate"
           ],
           "condition": "HokieBird_makes_action1",
-          "ans": ["bend_sideways"],
+          "ans": [
+            "bend_sideways"
+          ],
           "image": "/if_condition/ready.gif",
           "ans_image": "/if_condition/action1.gif",
           "helpImage": "/help/IfConditionBook3_Help_1.png"
@@ -793,7 +934,9 @@
             "rotate"
           ],
           "condition": "HokieBird_makes_action4",
-          "ans": ["wave_arm"],
+          "ans": [
+            "wave_arm"
+          ],
           "image": "/if_condition/ready.gif",
           "ans_image": "/if_condition/action4.gif",
           "helpImage": "/help/IfConditionBook3_Help_2.png"
@@ -821,7 +964,9 @@
             "rotate"
           ],
           "condition": "HokieBird_makes_action3",
-          "ans": ["butt_twist"],
+          "ans": [
+            "butt_twist"
+          ],
           "image": "/if_condition/ready.gif",
           "ans_image": "/if_condition/action3.gif",
           "helpImage": "/help/IfConditionBook3_Help_3.png"
@@ -849,7 +994,9 @@
             "rotate"
           ],
           "condition": "HokieBird_makes_action5",
-          "ans": ["rotate"],
+          "ans": [
+            "rotate"
+          ],
           "image": "/if_condition/ready.gif",
           "ans_image": "/if_condition/action5.gif",
           "helpImage": "/help/IfConditionBook3_Help_4.png"
@@ -877,7 +1024,9 @@
             "rotate"
           ],
           "condition": "HokieBird_makes_action2",
-          "ans": ["back_kick"],
+          "ans": [
+            "back_kick"
+          ],
           "image": "/if_condition/ready.gif",
           "ans_image": "/if_condition/action2.gif",
           "helpImage": "/help/IfConditionBook3_Help_5.png"
@@ -957,7 +1106,9 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": ["Option 1. Make sure to read the explanation!"],
+          "ans": [
+            "Option 1. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/Variables_Help_1.png"
         }
       },
@@ -970,7 +1121,9 @@
         ],
         "props": {
           "pageNumber": 2,
-          "ans": ["Option 1. Make sure to read the explanation!"]
+          "ans": [
+            "Option 1. Make sure to read the explanation!"
+          ]
         }
       },
       {
@@ -1005,7 +1158,9 @@
           "Each step will be executed one after another until the program is over."
         ],
         "props": {
-          "ans": ["Option 3. Make sure to read the explanation!"],
+          "ans": [
+            "Option 3. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/Variables_Help_4.png"
         }
       },
@@ -1069,7 +1224,9 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": ["Option 2. Make sure to read the explanation!"],
+          "ans": [
+            "Option 2. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/Variables_Help_2.png"
         }
       },
@@ -1083,7 +1240,9 @@
         ],
         "props": {
           "pageNumber": 2,
-          "ans": ["Option 4. Make sure to read the explanation!"],
+          "ans": [
+            "Option 4. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/Variables_Help_3.png"
         }
       },
@@ -1102,7 +1261,9 @@
         "image": "Strings",
         "props": {
           "pageNumber": 1,
-          "ans": ["Option 3. Make sure to read the explanation!"],
+          "ans": [
+            "Option 3. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/Variables_Help_5.png"
         },
         "content": [
@@ -1118,7 +1279,9 @@
         "image": "Strings",
         "props": {
           "pageNumber": 2,
-          "ans": ["Option 4. Make sure to read the explanation!"],
+          "ans": [
+            "Option 4. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/Variables_Help_6.png"
         },
         "content": [
@@ -1147,7 +1310,9 @@
         "image": "Strings",
         "props": {
           "pageNumber": 4,
-          "ans": ["Option 2. Make sure to read the explanation!"],
+          "ans": [
+            "Option 2. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/Variables_Help_8.png"
         },
         "content": [
@@ -1213,16 +1378,22 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": ["Option 2. Make sure to read the explanation!"],
+          "ans": [
+            "Option 2. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/PythonIf_Help_1.png"
         }
       },
       {
         "image": "ConditionalOperators",
-        "content": ["Here is another question using the '==' operator."],
+        "content": [
+          "Here is another question using the '==' operator."
+        ],
         "props": {
           "pageNumber": 2,
-          "ans": ["Option 1. Make sure to read the explanation!"],
+          "ans": [
+            "Option 1. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/PythonIf_Help_2.png"
         }
       },
@@ -1236,7 +1407,9 @@
         ],
         "props": {
           "pageNumber": 3,
-          "ans": ["Option 2. Make sure to read the explanation!"],
+          "ans": [
+            "Option 2. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/PythonIf_Help_3.png"
         }
       },
@@ -1249,7 +1422,9 @@
         ],
         "props": {
           "pageNumber": 4,
-          "ans": ["Option 3. Make sure to read the explanation!"],
+          "ans": [
+            "Option 3. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/PythonIf_Help_4.png"
         }
       },
@@ -1331,7 +1506,9 @@
         ],
         "props": {
           "pageNumber": 2,
-          "ans": ["Option 1. Make sure to read the explanation!"],
+          "ans": [
+            "Option 1. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/PythonIf_Help_5.png"
         }
       },
@@ -1347,7 +1524,9 @@
         ],
         "props": {
           "pageNumber": 3,
-          "ans": ["Option 1. Make sure to read the explanation!"],
+          "ans": [
+            "Option 1. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/PythonIf_Help_6.png"
         }
       },
@@ -1363,7 +1542,9 @@
         ],
         "props": {
           "pageNumber": 4,
-          "ans": ["Option 2. Make sure to read the explanation!"],
+          "ans": [
+            "Option 2. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/PythonIf_Help_7.png"
         }
       },
@@ -1498,7 +1679,9 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": ["Option 2. Make sure to read the explanation!"],
+          "ans": [
+            "Option 2. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/PythonIf_Help_8.png"
         }
       },
@@ -1511,7 +1694,9 @@
         ],
         "props": {
           "pageNumber": 2,
-          "ans": ["Option 2. Make sure to read the explanation!"],
+          "ans": [
+            "Option 2. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/PythonIf_Help_9.png"
         }
       },
@@ -1523,7 +1708,9 @@
         ],
         "props": {
           "pageNumber": 3,
-          "ans": ["Option 3. Make sure to read the explanation!"],
+          "ans": [
+            "Option 3. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/PythonIf_Help_10.png"
         }
       },
@@ -1535,7 +1722,9 @@
         ],
         "props": {
           "pageNumber": 4,
-          "ans": ["Option 3. Make sure to read the explanation!"],
+          "ans": [
+            "Option 3. Make sure to read the explanation!"
+          ],
           "helpImage": "/help/PythonIf_Help_11.png"
         }
       },
@@ -1734,7 +1923,9 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": ["Option 2. Make sure to read the explanation!"]
+          "ans": [
+            "Option 2. Make sure to read the explanation!"
+          ]
         }
       },
       {
@@ -1742,7 +1933,9 @@
         "content": [],
         "props": {
           "pageNumber": 2,
-          "ans": ["Click Next until you reach the end of the code!"]
+          "ans": [
+            "Click Next until you reach the end of the code!"
+          ]
         }
       },
       {
@@ -1766,7 +1959,9 @@
         ],
         "props": {
           "pageNumber": 2,
-          "ans": ["Option 3. Make sure to read the explanation!"]
+          "ans": [
+            "Option 3. Make sure to read the explanation!"
+          ]
         }
       },
       {
@@ -1774,7 +1969,9 @@
         "content": [],
         "props": {
           "pageNumber": 3,
-          "ans": ["Click Next until you reach the end of the code!"]
+          "ans": [
+            "Click Next until you reach the end of the code!"
+          ]
         }
       },
       {
@@ -1801,7 +1998,9 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": ["Option 1. Make sure to read the explanation!"]
+          "ans": [
+            "Option 1. Make sure to read the explanation!"
+          ]
         }
       },
       {
@@ -1809,7 +2008,9 @@
         "content": [],
         "props": {
           "pageNumber": 2,
-          "ans": ["Click Next until you reach the end of the code!"]
+          "ans": [
+            "Click Next until you reach the end of the code!"
+          ]
         }
       },
       {
@@ -1939,6 +2140,291 @@
           "Now it's your turn! Try turning any of the 0's and 1's “on or off” to see what number is displayed!",
           "Example: How would we show the number 7? Think about doing 4+2+1 to get the number 7"
         ]
+      }
+    ]
+  },
+  {
+    "BookId": 12,
+    "title": "Computer Parts",
+    "blurb": "Learn about the parts of a computer",
+    "author": "Dev",
+    "bookCover": "/color_7.png",
+    "cover": "/Computer_partsBook/TitleSlide_CP.jpg",
+    "gradeRange": "K-2",
+    "category": "BEGINNER",
+    "pages": [
+      {
+        "image": "/Computer_partsBook/TitleSlide_CP.jpg",
+        "content": [
+          "In this book, we are going to learn the parts of a computer.",
+          "Have you ever thought about how a computer works?",
+          "What parts come together to make all the right things happen?",
+          "A computer is not just one thing, but many different parts coming together to do their jobs to make the computer work. Let us explore them together!"
+        ]
+      },
+      {
+        "image": "/Computer_partsBook/playground.jpg",
+        "content": [
+          "While all of the parts of a computer are important, the most important of all is the motherboard.",
+          "The motherboard connects all of the hardware pieces in a computer",
+          "We can imagine the motherboard like a playground. Its where  everyone goes!"
+        ]
+      },
+      {
+        "image": "/Computer_partsBook/PowerSupply_CP.jpg",
+        "content": [
+          "The computer’s power supply is like the cafeteria. ",
+          "Just like how a power cable keeps a computer charged, the cafeteria keeps you energized when you eat your lunch."
+        ]
+      },
+      {
+        "image": "/Computer_partsBook/principal_CP.png",
+        "content": [
+          "The CPU is like your school’s principal.",
+          " It makes all the big decisions and helps direct the other parts of the computer, just like how you principal helps run the school."
+        ]
+      },
+      {
+        "image": "/Computer_partsBook/Library_CP.jpg",
+        "content": [
+          "A computer has to have somewhere to store information.",
+          "Just like how your library holds many different books, a computer’s hard drive, acts as a storage container for the computers information. "
+        ]
+      },
+      {
+        "image": "Computer_IO",
+        "content": [
+          "There are many input devices in the computer. They put information into the computer. When you click your mouse, the computer will do an action! When you type on your keyboard, the computer will make a letter!",
+          "A computer also has output devices. These send information out from the computer. Headphones send out sound from the computer.",
+          "Try matching the names of the devices to thier picture"
+        ],
+        "props": {
+          "draggable": true,
+          "statements": [
+            "Mouse",
+            "Monitor",
+            "Speakers"
+          ],
+          "condition": "weather_is_hot",
+          "ans": [
+            "tshirt"
+          ],
+          "help Image": "/Computer_partsBook/InputOutput_CP.png",
+          "image": "/if_condition/sun.gif"
+        }
+      },
+      {
+        "image": "/Computer_partsBook/SchoolChildren_CP.jpg",
+        "content": [
+          "The RAM (Random Access Memory) in a computer is similar to students like you!",
+          "They have good short term memory. Long term memory is left to the hard drive, or as we looked at earlier, the library."
+        ]
+      },
+      {
+        "content": [
+          "Computers use software as instructions to tell it what to do. ",
+          "Imagine the software of a computer like the instructions on your homework! You follow the steps so you know what to do!",
+          "1. Look at this picture",
+          "2. Count the number of green shapes",
+          "3. Choose the correct number from the options below"
+        ],
+        "image": "InputActivity",
+        "props": {
+          "showIOLabels": false,
+          "options": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "ans": [
+            5
+          ],
+          "initialImage": "/io_book/park_1.png",
+          "correctImage": "/io_book/park_3.png",
+          "": "/help/IO_Help_1.png"
+        }
+      }
+    ]
+  },
+  {
+    "BookId": 13,
+    "title": "CoStar Coloring Game",
+    "blurb": "Learn about the parts of a computer",
+    "author": "Dev",
+    "bookCover": "/color_2.png",
+    "cover": "/Costar_Logo.png",
+    "gradeRange": "K-2",
+    "category": "BEGINNER",
+    "pages": [
+      {
+        "content": [
+          "In this book we will be learning how to drag and drop colors to color in the Costar logo",
+          "We have some special colors we can use!"
+        ],
+        "image": "/CoStar_Group.jpg"
+      },
+      {
+        "content": [
+          "Here you are able to drag and drop the different colors into the 6 different letters in “COSTAR”",
+          "The Logo is split into all the different letters",
+          "Try dragging different colors and see the changes happen live!",
+          "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable."
+        ],
+        "image": "CostarColoring",
+        "props": {
+          "draggable": true,
+          "command": "Drag the Colors over these boxes",
+          "": "/help/HokieBirdColoring_Help.png"
+        }
+      },
+      {
+        "content": [
+          "Now that you assigned variables by dragging values over them, lets try typing in the colors!",
+          "Click on the part of the logo you would like to color and type in any of the listed colors",
+          "After pressing enter the values should update the color of the letter"
+        ],
+        "image": "CostarColoring",
+        "props": {
+          "type": true,
+          "command": "Type the Colors over these boxes",
+          "": "/help/HokieBirdColoring_Help.png"
+        }
+      },
+      {
+        "content": [
+          "Now use your knowledge on  how to set color for each part, you can type body part with corresponding color."
+        ],
+        "image": "CostarColoring",
+        "props": {
+          "type": true,
+          "typeVariable": true,
+          "command": "Type the Body Part and Colors over these boxes",
+          "": "/help/HokieBirdColoring_Help.png"
+        }
+      }
+    ]
+  },
+  {
+    "BookId": 14,
+    "title": "Lego I/O Activity",
+    "blurb": "An input/output exercise using Legos",
+    "author": "Dev",
+    "bookCover": "/color_4.png",
+    "cover": " /lego-sort-example-clumping.png",
+    "gradeRange": "K-2",
+    "category": "INTERMEDIATE",
+    "pages": [
+      {
+        "content": [
+          "Simulating I/O with LEGOs",
+          "This proposal details an adaptation of the KIDATA Computer Science Standards 4.2 LEGO stacking game idea in an in-person format.",
+          "Essential Questions:",
+          "-What is a pattern?",
+          "-How can we describe repeating and growing patterns using words, tables, graphs, or symbols?",
+          "-How can pattern identification be used to solve problems?",
+          "The game is intended to be a problem solving game that encourages its participants to solve problems in unique ways using a set of provided tools."
+        ],
+        "image": "/lego-sort-example-clumping.png"
+      },
+      {
+        "content": [
+          "Participants will divide into groups. They will be given a small set of tracking-related resources: a pencil, and one (or a few) sheets of paper.",
+          "The activity is oriented around LEGOs of varying color. Both the number and color of the necessary LEGOs vary with respect to the rules of the “LEGO exchange” (see below).",
+          "Operation: Participants will be provided a stack of LEGOs of varying color (all groups receive the same pattern), and are provided a reference image of a stack of LEGOs.",
+          "The participants’ goal is to match the reference image by splitting and using LEGO exchange in the fewest possible steps, with the intent of encouraging friendly competition between groups. The group that uses the fewest sum of steps from all of the rounds can be subject to a prize."
+        ],
+        "image": "/lego-sort-reference-sample.png"
+      },
+      {
+        "content": [
+          "If an exchange key is not provided to groups, participants will have to consume steps to figure out the rules of the exchange. This encourages group members to engage with each other.",
+          "Groups may either be entrusted to track themselves, or a chaperone may be assigned to each group to track their actions for them and provide healthy guidance throughout the activity. Steps consist of:",
+          "- Exchange: 1 exchange = 1 step",
+          "- Attaching LEGOs together: 1 step",
+          "- Detaching LEGOs: 1 step"
+        ],
+        "image": "/lego-sort-reference-sample.png"
+      },
+      {
+        "content": [
+          "LEGO Exchange:",
+          "A LEGO “exchange” will be set up somewhere in the vicinity of all of the groups. This will be a line of chaperones that allow the participants to trade their LEGO colors. The LEGO exchange is intended to be a direct parallel to functions, converting a given input by a set of rules.",
+          "Generally, the exchange should have rules that engage critical thinking skills. The transactions should be consistent and presented to the participants in a clean, concise manner. For example, the exchange can follow:",
+          "1. Color: if a participant provides a blue LEGO to a yellow exchange, they will receive a yellow LEGO.",
+          "2. Mix colors: if a participant presents a blue LEGO to a yellow LEGO exchange, they will receive a green LEGO.",
+          "3. Change yield: a yellow LEGO exchange may only accept groups of 2 LEGOs, and may provide a single blue LEGO in return.",
+          "It is also encouraged to later allow clumping, the process where a single exchange may convert groups of LEGOs."
+        ],
+        "image": "/lego-sort-example-clumping.png"
+      },
+      {
+        "content": [
+          "The exchange may also be presented in a finite manner. In this case, students should be eager to figure out the rules of the game as soon as possible before",
+          "their allotted pieces are gone. In the case that a group cannot create the LEGO stack as presented in the reference image, they are automatically given a certain amount of steps. Such a policy may have some caveats, like groups hoarding LEGOs, so it must be carefully doctored."
+        ],
+        "image": "/lego-sort-reference-sample.png"
+      },
+      {
+        "content": [
+          "Example:",
+          "Let's say we are provided the following stack using three colors of LEGOs and exchange key:",
+          "- Exchange: 1 exchange = 1 step",
+          "- Attaching LEGOs together: 1 step",
+          "- Detaching LEGOs: 1 step"
+        ],
+        "image": "/lego-sort-example-reference.png"
+      },
+      {
+        "content": [
+          "...and we need to convert our LEGO stack to look like the following reference image:"
+        ],
+        "image": "/lego-sort-example-target.png"
+      },
+      {
+        "content": [
+          "Here, we allot 3 steps to discover the rule. Ideally, this would mean someone provides a red LEGO to the exchange. Via the key, the exchange provides a blue LEGO. This same blue LEGO can put into the exchange again to yield a yellow, and likewise for the yellow. This covers all bases for the exchange rules.",
+          "Since all 3 steps were used for experimentation, whatever actions we take next now will count against us.",
+          "Let's consider two cases for this problem:",
+          "1.  Clumping is not allowed.",
+          "Since clumping is not allowed, we must present LEGOs in groups of the same color to the LEGO exchange.",
+          "The image is  an example of splitting. Each division counts as a step, so 2 steps were made."
+        ],
+        "image": "/lego-sort-splitting.png"
+      },
+      {
+        "content": [
+          "If an exchange key is not provided to groups, participants will have to consume steps to figure out the rules of the exchange. This encourages group members to engage with each other.",
+          "Groups may either be entrusted to track themselves, or a chaperone may be assigned to each group to track their actions for them and provide healthy guidance throughout the activity. Steps consist of:",
+          "- Exchange: 1 exchange = 1 step",
+          "- Attaching LEGOs together: 1 step",
+          "- Detaching LEGOs: 1 step"
+        ],
+        "image": "/lego-sort-reference-sample.png"
+      },
+      {
+        "content": [
+          "To get our reference image, we may follow a process similar to the following image\n:",
+          "We were only allowed one split at a time, each consuming a step. This solution was relatively simple due to the minimal amount of colors and LEGOs, but prohibiting clumping may introduce excess complexity to solutions,",
+          "causing participants to develop lengthy algorithms. Introducing this complexity may also better engage critical thinking and teamwork skills, which may lead groups to come up with more unique solutions."
+        ],
+        "image": "/lego-sort-example-splits.png"
+      },
+      {
+        "content": [
+          "2. Clumping is allowed:",
+          "Here, the solution is much more simple. Since we have identified the exchange rules, it is clear that each of our LEGO bricks in the stack went through one cycle in the exchange. Thus, we can provide the entire stack to the exchange at once:",
+          "Introducing clumping does not eliminate the concept of splitting, but may simplify certain operations by a significant margin. Allowing both is ideal, providing participants more of a sandbox-like experience; however, it may be wise to use these two examples as an introduction to each of the concepts."
+        ],
+        "image": "/lego-sort-example-clumping.png"
+      },
+      {
+        "content": [
+          "It is is HIGHLY recommended to create your base and goal target LEGO stacks after creating your LEGO exchange.",
+          "Using a random reference image may lead to impossible (or extremely difficult) solutions. It is also encouraged to create your LEGO exchange rules with a means to revert an in-progress stack back to its initial state.",
+          "If this is not feasible, you can offer a 'reset', where groups can reset their steps to `+ 1` of its original state (e.g. resetting once makes you start with 1 step, restarting twice makes you start with 2). This may damage continuity, as participants may be able to explore the exchange more with little to no penalty."
+        ],
+        "image": "/lego-sort-example-clumping.png"
       }
     ]
   }
