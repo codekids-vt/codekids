@@ -26,7 +26,6 @@ import { FoodTruckActivity } from "../components/FoodTruckActivity";
 import { Page } from "../api";
 import { SelectImageActivity } from "./SelectImage";
 import BinaryConverter from "./BinaryConverter";
-import { CostarColoring } from "./CostarColoring";
 
 export function BookImage({
   image,
@@ -58,9 +57,6 @@ export function BookImage({
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && (
         <HokieBirdMap props={page?.props} setAllowNext={setAllowNext} />
-      )}
-      {image === "CostarColoring" && (
-        <CostarColoring props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "HokieBirdIfConditionActivity" && (
         <HokieBirdIfCondition props={page?.props} setAllowNext={setAllowNext} />
