@@ -32,6 +32,7 @@ import { ChangingCondition } from "../components/MisconceptionComponents/Flowcha
 import { InputActivity } from "../components/InputActivity";
 import { TableComponent } from "../components/TableComponent";
 import { FoodTruckActivity } from "../components/FoodTruckActivity";
+import { CostarColoring } from "../components/CostarColoring";
 
 function BookImage({
   image,
@@ -56,6 +57,12 @@ function BookImage({
         />
       )}
       {image === "HokieBirdActivity" && (
+        <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "CostarColoring" && (
+        <CostarColoring props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "Computer_IO" && (
         <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "tutor" && <PythonTutor props={page?.props} />}

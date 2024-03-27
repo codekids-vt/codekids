@@ -1708,4 +1708,286 @@ export const books: Book[] = [
       },
     ],
   },
+  {
+    BookId: 12,
+    title: "Computer Parts",
+    blurb: "Learn about the parts of a computer",
+    author: "Dev",
+    bookCover: "/color_7.png",
+    cover: "/Computer_partsBook/TitleSlide_CP.jpg",
+    gradeRange: "K-2",
+    category: BookCategory.BEGINNER,
+    pages: [
+      { 
+        //Title page
+        image: "/Computer_partsBook/TitleSlide_CP.jpg",
+        content: ["In this book, we are going to learn the parts of a computer.",
+          "Have you ever thought about how a computer works?",
+          "What parts come together to make all the right things happen?",
+          "A computer is not just one thing, but many different parts coming together to do their jobs to make the computer work. Let us explore them together!"],
+      },
+      
+      { //Motherboard
+        image: "/Computer_partsBook/playground.jpg",
+        content: ["While all of the parts of a computer are important, the most important of all is the motherboard.",
+          "The motherboard connects all of the hardware pieces in a computer",
+          "We can imagine the motherboard like a playground. Its where  everyone goes!"],
+      },
+      {
+        //Power
+        image: "/Computer_partsBook/PowerSupply_CP.jpg",
+        content: ["The computer’s power supply is like the cafeteria. ",
+          "Just like how a power cable keeps a computer charged, the cafeteria keeps you energized when you eat your lunch."],
+      },
+      {
+        //CPU
+        image: "/Computer_partsBook/principal_CP.png",
+        content: ["The CPU is like your school’s principal.",
+          " It makes all the big decisions and helps direct the other parts of the computer, just like how you principal helps run the school."],
+        
+      },
+      {
+        //HardDrive
+        image: "/Computer_partsBook/Library_CP.jpg",
+        content: ["A computer has to have somewhere to store information.",
+          "Just like how your library holds many different books, a computer’s hard drive, acts as a storage container for the computers information. "],
+      },
+      {//Input/Output
+        image: "Computer_IO",
+        content: ["There are many input devices in the computer. They put information into the computer. When you click your mouse, the computer will do an action! When you type on your keyboard, the computer will make a letter!",
+        "A computer also has output devices. These send information out from the computer. Headphones send out sound from the computer.",
+        "Try matching the names of the devices to thier picture"],
+        props: {
+          draggable: true,
+          statements: ["Mouse", "Monitor", "Speakers"],
+          condition: "weather_is_hot",
+          ans: ["tshirt"],
+          helpImage: "/Computer_partsBook/InputOutput_CP.png",
+          image: "/if_condition/sun.gif",
+          ans_image: "/if_condition/HokieBirdSun.gif",
+        },
+      },
+      {//RAM
+        image: "/Computer_partsBook/SchoolChildren_CP.jpg",
+        content: ["The RAM (Random Access Memory) in a computer is similar to students like you!",
+          "They have good short term memory. Long term memory is left to the hard drive, or as we looked at earlier, the library."],
+      },
+      {//Software
+        
+        content: ["Computers use software as instructions to tell it what to do. ",
+          "Imagine the software of a computer like the instructions on your homework! You follow the steps so you know what to do!",
+          "1. Look at this picture",
+          "2. Count the number of green shapes",
+          "3. Choose the correct number from the options below"],
+        image: "InputActivity",
+        props: {
+          showIOLabels: false,
+          options: [2, 3, 4, 5],
+          ans: [5],
+          initialImage: "/io_book/park_1.png",
+          correctImage: "/io_book/park_3.png",
+          helpImage: "/help/IO_Help_1.png",
+        },
+
+      },
+    ]
+  },
+  {
+    BookId: 13,
+    title: "CoStar Coloring Game",
+    blurb: "Learn about the parts of a computer",
+    author: "Dev",
+    bookCover: "/color_2.png",
+    cover: "/Costar_Logo.png",
+    gradeRange: "K-2",
+    category: BookCategory.BEGINNER,
+    pages: [
+      {
+        content: [
+          "In this book we will be learning how to drag and drop colors to color in the Costar logo",
+          "We have some special colors we can use!",
+        ],
+        image: "/CoStar_Group.jpg",
+      },
+      {
+        content: [
+          "Here you are able to drag and drop the different colors into the 6 different letters in “COSTAR”",
+          "The Logo is split into all the different letters",
+          "Try dragging different colors and see the changes happen live!",
+          "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable."
+          
+          ,
+        ],
+        image: "CostarColoring",
+        props: {
+          draggable: true,
+          command: "Drag the Colors over these boxes",
+          helpImage: "/help/HokieBirdColoring_Help.png",
+        },
+      },
+      {
+        content: [
+          "Now that you assigned variables by dragging values over them, lets try typing in the colors!",
+          "Click on the part of the logo you would like to color and type in any of the listed colors",
+          "After pressing enter the values should update the color of the letter",
+        ],
+        image: "CostarColoring",
+        props: {
+          type: true,
+          command: "Type the Colors over these boxes",
+          helpImage: "/help/HokieBirdColoring_Help.png",
+        },
+      },
+      {
+        content: [
+          "Now use your knowledge on  how to set color for each part, you can type body part with corresponding color.",
+        ],
+        image: "CostarColoring",
+        props: {
+          type: true,
+          typeVariable: true,
+          command: "Type the Body Part and Colors over these boxes",
+          helpImage: "/help/HokieBirdColoring_Help.png",
+        },
+      },
+    ],
+  },
+  {
+    BookId: 14,
+    title: "Lego I/O Activity",
+    blurb: "An input/output exercise using Legos",
+    author: "Dev",
+    bookCover: "/color_4.png",
+    cover: " /lego-sort-example-clumping.png",
+    gradeRange: "K-2",
+    category: BookCategory.INTERMEDIATE,
+    pages: [
+      {
+        content: [
+          "Simulating I/O with LEGOs",
+          "This proposal details an adaptation of the KIDATA Computer Science Standards 4.2 LEGO stacking game idea in an in-person format.",
+          "Essential Questions:",
+          "-What is a pattern?",
+          "-How can we describe repeating and growing patterns using words, tables, graphs, or symbols?",
+          "-How can pattern identification be used to solve problems?",
+
+          "The game is intended to be a problem solving game that encourages its participants to solve problems in unique ways using a set of provided tools."
+          
+        ],
+        image: "/lego-sort-example-clumping.png",
+      },
+      {
+        content: [
+          "Participants will divide into groups. They will be given a small set of tracking-related resources: a pencil, and one (or a few) sheets of paper.",
+
+          "The activity is oriented around LEGOs of varying color. Both the number and color of the necessary LEGOs vary with respect to the rules of the “LEGO exchange” (see below).",
+          
+          "Operation: Participants will be provided a stack of LEGOs of varying color (all groups receive the same pattern), and are provided a reference image of a stack of LEGOs.",
+          "The participants’ goal is to match the reference image by splitting and using LEGO exchange in the fewest possible steps, with the intent of encouraging friendly competition between groups. The group that uses the fewest sum of steps from all of the rounds can be subject to a prize.",
+      
+        ],
+        image: "/lego-sort-reference-sample.png",
+      },
+      {
+        content: [
+          "If an exchange key is not provided to groups, participants will have to consume steps to figure out the rules of the exchange. This encourages group members to engage with each other.",
+          "Groups may either be entrusted to track themselves, or a chaperone may be assigned to each group to track their actions for them and provide healthy guidance throughout the activity. Steps consist of:",
+
+          "- Exchange: 1 exchange = 1 step",
+          "- Attaching LEGOs together: 1 step",
+          "- Detaching LEGOs: 1 step",
+        ],
+        image: "/lego-sort-reference-sample.png",
+      },
+      {
+        content: [
+          "LEGO Exchange:",
+          "A LEGO “exchange” will be set up somewhere in the vicinity of all of the groups. This will be a line of chaperones that allow the participants to trade their LEGO colors. The LEGO exchange is intended to be a direct parallel to functions, converting a given input by a set of rules.",
+          "Generally, the exchange should have rules that engage critical thinking skills. The transactions should be consistent and presented to the participants in a clean, concise manner. For example, the exchange can follow:",
+          "1. Color: if a participant provides a blue LEGO to a yellow exchange, they will receive a yellow LEGO.",
+          "2. Mix colors: if a participant presents a blue LEGO to a yellow LEGO exchange, they will receive a green LEGO.",
+          "3. Change yield: a yellow LEGO exchange may only accept groups of 2 LEGOs, and may provide a single blue LEGO in return.",
+          "It is also encouraged to later allow clumping, the process where a single exchange may convert groups of LEGOs.",
+          
+        ],
+        image: "/lego-sort-example-clumping.png",
+      },
+      {
+        content: [
+          "The exchange may also be presented in a finite manner. In this case, students should be eager to figure out the rules of the game as soon as possible before",
+          "their allotted pieces are gone. In the case that a group cannot create the LEGO stack as presented in the reference image, they are automatically given a certain amount of steps. Such a policy may have some caveats, like groups hoarding LEGOs, so it must be carefully doctored.",
+        ],
+        image: "/lego-sort-reference-sample.png",
+      },
+      {
+        content: [
+          "Example:",
+          "Let's say we are provided the following stack using three colors of LEGOs and exchange key:",
+          "- Exchange: 1 exchange = 1 step",
+          "- Attaching LEGOs together: 1 step",
+          "- Detaching LEGOs: 1 step",
+        ],
+        image: "/lego-sort-example-reference.png",
+      },
+      {
+        content: [
+          "...and we need to convert our LEGO stack to look like the following reference image:",
+          
+        ],
+        image: "/lego-sort-example-target.png",
+      },
+      {
+        content: [
+          "Here, we allot 3 steps to discover the rule. Ideally, this would mean someone provides a red LEGO to the exchange. Via the key, the exchange provides a blue LEGO. This same blue LEGO can put into the exchange again to yield a yellow, and likewise for the yellow. This covers all bases for the exchange rules.",
+
+          "Since all 3 steps were used for experimentation, whatever actions we take next now will count against us.",
+          
+          "Let's consider two cases for this problem:",
+          
+          "1.  Clumping is not allowed.",
+          
+          "Since clumping is not allowed, we must present LEGOs in groups of the same color to the LEGO exchange.",
+          "The image is  an example of splitting. Each division counts as a step, so 2 steps were made."
+        ],
+        image: "/lego-sort-splitting.png",
+      },
+      {
+        content: [
+          "If an exchange key is not provided to groups, participants will have to consume steps to figure out the rules of the exchange. This encourages group members to engage with each other.",
+          "Groups may either be entrusted to track themselves, or a chaperone may be assigned to each group to track their actions for them and provide healthy guidance throughout the activity. Steps consist of:",
+
+          "- Exchange: 1 exchange = 1 step",
+          "- Attaching LEGOs together: 1 step",
+          "- Detaching LEGOs: 1 step",
+        ],
+        image: "/lego-sort-reference-sample.png",
+      },
+      {
+        content: [
+          "To get our reference image, we may follow a process similar to the following image\n:",
+          "We were only allowed one split at a time, each consuming a step. This solution was relatively simple due to the minimal amount of colors and LEGOs, but prohibiting clumping may introduce excess complexity to solutions,", 
+          "causing participants to develop lengthy algorithms. Introducing this complexity may also better engage critical thinking and teamwork skills, which may lead groups to come up with more unique solutions.",
+        ],
+        image: "/lego-sort-example-splits.png",
+      },
+      {
+        content: [
+          "2. Clumping is allowed:",
+          "Here, the solution is much more simple. Since we have identified the exchange rules, it is clear that each of our LEGO bricks in the stack went through one cycle in the exchange. Thus, we can provide the entire stack to the exchange at once:",
+          "Introducing clumping does not eliminate the concept of splitting, but may simplify certain operations by a significant margin. Allowing both is ideal, providing participants more of a sandbox-like experience; however, it may be wise to use these two examples as an introduction to each of the concepts.",
+        ],
+        image: "/lego-sort-example-clumping.png",
+      },
+      {
+        content: [
+          "It is is HIGHLY recommended to create your base and goal target LEGO stacks after creating your LEGO exchange.",
+
+          "Using a random reference image may lead to impossible (or extremely difficult) solutions. It is also encouraged to create your LEGO exchange rules with a means to revert an in-progress stack back to its initial state.",
+          
+          "If this is not feasible, you can offer a 'reset', where groups can reset their steps to `+ 1` of its original state (e.g. resetting once makes you start with 1 step, restarting twice makes you start with 2). This may damage continuity, as participants may be able to explore the exchange more with little to no penalty.",
+        ],
+        image: "/lego-sort-example-clumping.png",
+      },
+    ],
+  },
 ];
