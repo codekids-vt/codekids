@@ -25,8 +25,6 @@ async def search_books(
         where["ownerId"] = owner_id
     if published is not None:
         where["published"] = published
-    else:
-        where["published"] = True
     books = await db.book.find_many(take=limit, include={"courses": True}, where=where)
     return books
 
