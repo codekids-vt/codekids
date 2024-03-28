@@ -248,6 +248,8 @@ function ImageTypeEditor({
     "ChangingCondition",
     "InputActivity",
     "FoodTruckActivity",
+    "Computer_IO",
+    "CostarColoring",
   ];
 
   return (
