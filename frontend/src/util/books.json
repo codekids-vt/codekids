@@ -2197,21 +2197,7 @@
           "There are many input devices in the computer. They put information into the computer. When you click your mouse, the computer will do an action! When you type on your keyboard, the computer will make a letter!",
           "A computer also has output devices. These send information out from the computer. Headphones send out sound from the computer.",
           "Try matching the names of the devices to thier picture"
-        ],
-        "props": {
-          "draggable": true,
-          "statements": [
-            "Mouse",
-            "Monitor",
-            "Speakers"
-          ],
-          "condition": "weather_is_hot",
-          "ans": [
-            "tshirt"
-          ],
-          "help Image": "/Computer_partsBook/InputOutput_CP.png",
-          "image": "/if_condition/sun.gif"
-        }
+        ]
       },
       {
         "image": "/Computer_partsBook/SchoolChildren_CP.jpg",
@@ -2269,7 +2255,7 @@
           "Here you are able to drag and drop the different colors into the 6 different letters in “COSTAR”",
           "The Logo is split into all the different letters",
           "Try dragging different colors and see the changes happen live!",
-          "Notice how the value on the right hand side changes when a color is dropped, this is the assignment of a variable."
+          "Notice how the value on the right hand side of the equation changes when a color is dropped, this is the assignment of a variable."
         ],
         "image": "CostarColoring",
         "props": {
@@ -2282,7 +2268,7 @@
         "content": [
           "Now that you assigned variables by dragging values over them, lets try typing in the colors!",
           "Click on the part of the logo you would like to color and type in any of the listed colors",
-          "After pressing enter the values should update the color of the letter"
+          "To complete this activity you will need to add quotation marks before and after typing your color choice, then press enter."
         ],
         "image": "CostarColoring",
         "props": {
@@ -2293,7 +2279,8 @@
       },
       {
         "content": [
-          "Now use your knowledge on  how to set color for each part, you can type body part with corresponding color."
+          "Now use your knowledge on  how to set color for each part, you can type body part with corresponding color.",
+          "Reminder to use quotation marks when writing your string variables."
         ],
         "image": "CostarColoring",
         "props": {

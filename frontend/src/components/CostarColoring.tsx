@@ -12,11 +12,11 @@ interface CostarColorState {
 
 const availableColors = ["dark_blue", "medium_blue", "golden_yellow", "light_blue", "darkest_black"];
 const availableColorsTailwind: { [key: string]: string } = {
-  dark_blue: "bg-red-600",
-  medium_blue: "bg-orange-600",
-  golden_yellow: "bg-green-700",
-  light_blue: "bg-maroon",
-  darkest_black: "bg-yellow-500",
+  dark_blue: "bg-blue-600",
+  medium_blue: "bg-blue-400",
+  golden_yellow: "bg-yellow-500",
+  light_blue: "bg-blue-200",
+  darkest_black: "bg-black",
   
 };
 const availableParts = [
@@ -190,7 +190,7 @@ export function CostarColoring({
                       key={`${part}Text1`}
                       className={`rounded-sm w-24`}
                       type="text"
-                      placeholder="Type a body part"
+                      placeholder="Type a letter"
                       onBlur={(e) => handleValueOnBlur(e.target.value)}
                       onChange={(e) => handlePart(index, e.target.value)}
                       defaultValue={part[index]}
@@ -281,42 +281,42 @@ export function CostarColoring({
           height={500}
         />
         <img
-          src="/HokieHead.png"
+          src="/Costar_Images/Letter_C.png"
           alt="book image"
           className={`absolute center-left img-${colors.letter_C} `}
           width={500}
           height={500}
         />
         <img
-          src="/HokieNose.png"
+          src="/Costar_Images/Letter_O.png"
           alt="book image"
           className={`absolute center-left img-${colors.letter_O} `}
           width={500}
           height={500}
         />
         <img
-          src="/HokieNeck.png"
+          src="/Costar_Images/Letter_S.png"
           alt="book image"
           className={`absolute center-left img-${colors.letter_S} `}
           width={500}
           height={500}
         />
         <img
-          src="/HokieBody.png"
+          src="/Costar_Images/Letter_T.png"
           alt="book image"
           className={`absolute center-left img-${colors.letter_T} `}
           width={500}
           height={500}
         />
         <img
-          src="/HokieTail.png"
+          src="/Costar_Images/Letter_A.png"
           alt="book image"
           className={`absolute center-left img-${colors.letter_A} `}
           width={500}
           height={500}
         />
         <img
-          src="/HokieLeftLeg.png"
+          src="/Costar_Images/Letter_R.png"
           alt="book image"
           className={`absolute center-left img-${colors.letter_R} `}
           width={500}

@@ -9,8 +9,10 @@ enum AlertType {
 const availableElements = ["mouse", "speakers", "keyboard"];
 
 export function ElementPlacement({
+  props,
   setAllowNext,
 }: {
+  props: any;
   setAllowNext: Dispatch<SetStateAction<boolean>>;
 }) {
   const [placedElements, setPlacedElements] = useState<string[]>([]);
