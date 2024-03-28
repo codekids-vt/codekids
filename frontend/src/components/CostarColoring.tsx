@@ -1,12 +1,12 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 
 interface CostarColorState {
-  letter_C: string;
-  letter_O: string;
-  letter_S: string;
-  letter_T: string;
-  letter_A: string;
-  letter_R: string;
+  letter_c: string;
+  letter_o: string;
+  letter_s: string;
+  letter_t: string;
+  letter_a: string;
+  letter_r: string;
 
 }
 
@@ -20,12 +20,12 @@ const availableColorsTailwind: { [key: string]: string } = {
   
 };
 const availableParts = [
-  "letter_C",
-  "letter_O",
-  "letter_S",
-  "letter_T",
-  "letter_A",
-  "letter_R",
+  "letter_c",
+  "letter_o",
+  "letter_s",
+  "letter_t",
+  "letter_a",
+  "letter_r",
 ];
 
 export function CostarColoring({
@@ -37,12 +37,12 @@ export function CostarColoring({
 }) {
   const [part, setPart] = useState(["", "", ""]);
   const [colors, setColors] = useState({
-    letter_C: "",
-    letter_O: "",
-    letter_S: "",
-    letter_T: "",
-    letter_A: "",
-    letter_R: "",
+    letter_c: "",
+    letter_o: "",
+    letter_s: "",
+    letter_t: "",
+    letter_a: "",
+    letter_r: "",
   });
 
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
@@ -281,44 +281,44 @@ export function CostarColoring({
           height={500}
         />
         <img
-          src="/Costar_Images/Letter_C.png"
+          src="/Costar_Images/letter_C.png"
           alt="book image"
-          className={`absolute center-left img-${colors.letter_C} `}
+          className={`absolute center-left img-${colors.letter_c} `}
           width={500}
           height={500}
         />
         <img
-          src="/Costar_Images/Letter_O.png"
+          src="/Costar_Images/letter_O.png"
           alt="book image"
-          className={`absolute center-left img-${colors.letter_O} `}
+          className={`absolute center-left img-${colors.letter_o} `}
           width={500}
           height={500}
         />
         <img
-          src="/Costar_Images/Letter_S.png"
+          src="/Costar_Images/letter_S.png"
           alt="book image"
-          className={`absolute center-left img-${colors.letter_S} `}
+          className={`absolute center-left img-${colors.letter_s} `}
           width={500}
           height={500}
         />
         <img
-          src="/Costar_Images/Letter_T.png"
+          src="/Costar_Images/letter_T.png"
           alt="book image"
-          className={`absolute center-left img-${colors.letter_T} `}
+          className={`absolute center-left img-${colors.letter_t} `}
           width={500}
           height={500}
         />
         <img
-          src="/Costar_Images/Letter_A.png"
+          src="/Costar_Images/letter_A.png"
           alt="book image"
-          className={`absolute center-left img-${colors.letter_A} `}
+          className={`absolute center-left img-${colors.letter_a} `}
           width={500}
           height={500}
         />
         <img
-          src="/Costar_Images/Letter_R.png"
+          src="/Costar_Images/letter_R.png"
           alt="book image"
-          className={`absolute center-left img-${colors.letter_R} `}
+          className={`absolute center-left img-${colors.letter_r} `}
           width={500}
           height={500}
         />
