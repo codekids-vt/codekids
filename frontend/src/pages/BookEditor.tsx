@@ -38,7 +38,15 @@ function PageNavigator({
               </button>
               <button
                 className="flex flex-col items-center justify-center w-8 h-8 bg-red-400 text-white rounded-full"
-                onClick={() => deletePage(page.id)}
+                onClick={() => {
+                  if (
+                    window.confirm(
+                      "Are you sure you wish to delete this page? This action cannot be undone.",
+                    )
+                  ) {
+                    deletePage(page.id);
+                  }
+                }}
               >
                 X
               </button>
@@ -250,7 +258,13 @@ function ImageTypeEditor({
         className="w-full h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
         value={tempImageType}
         onChange={(e) => {
-          setTempImageType(e.target.value);
+          if (
+            window.confirm(
+              "Are you sure you want to change the image type? All edited properties will be lost.",
+            )
+          ) {
+            setTempImageType(e.target.value);
+          }
         }}
       >
         {imageTypes.map((type, i) => (

@@ -115,9 +115,7 @@
         }
       },
       {
-        "content": [
-          "Awesome, the Hokie Bird made it to Lane Stadium!"
-        ],
+        "content": ["Awesome, the Hokie Bird made it to Lane Stadium!"],
         "image": "/Maze/Maze6.jpg"
       },
       {
@@ -157,9 +155,7 @@
         }
       },
       {
-        "content": [
-          "Awesome, the Hokie Bird made it to Lane Stadium!"
-        ],
+        "content": ["Awesome, the Hokie Bird made it to Lane Stadium!"],
         "image": "/Maze/Maze6.jpg"
       }
     ]
@@ -198,15 +194,8 @@
         "image": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "ans": [
-            3
-          ],
+          "options": [1, 2, 3, 4],
+          "ans": [3],
           "initialImage": "/io_book/park_1.png",
           "correctImage": "/io_book/park_2.png",
           "helpImage": "/help/IO_Help_1.png"
@@ -238,15 +227,8 @@
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [
-            9,
-            10,
-            11,
-            12
-          ],
-          "ans": [
-            10
-          ],
+          "options": [9, 10, 11, 12],
+          "ans": [10],
           "initialImage": "/io_book/flowers_0.png",
           "correctImage": "/io_book/flowers_0.png",
           "helpImage": "/help/IO_Help_2.png"
@@ -260,37 +242,21 @@
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [
-            9,
-            10,
-            11,
-            12
-          ],
-          "ans": [
-            9
-          ],
+          "options": [9, 10, 11, 12],
+          "ans": [9],
           "initialImage": "/io_book/flowers_0.png",
           "correctImage": "/io_book/flowers_0.png",
           "helpImage": "/help/IO_Help_3.png"
         }
       },
       {
-        "content": [
-          "What is the sum of flowers in all the corners right now?"
-        ],
+        "content": ["What is the sum of flowers in all the corners right now?"],
         "image": "InputActivity",
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [
-            19,
-            20,
-            21,
-            22
-          ],
-          "ans": [
-            19
-          ],
+          "options": [19, 20, 21, 22],
+          "ans": [19],
           "initialImage": "/io_book/flowers_0.png",
           "correctImage": "/io_book/flowers_0.png",
           "helpImage": "/help/IO_Help_4.png"
@@ -305,15 +271,8 @@
         "game": "TableComponent",
         "props": {
           "showIOLabels": true,
-          "options": [
-            4,
-            5,
-            6,
-            7
-          ],
-          "ans": [
-            5
-          ],
+          "options": [4, 5, 6, 7],
+          "ans": [5],
           "initialImage": "/io_book/flowers_1.png",
           "correctImage": "/io_book/flowers_2.png",
           "cellContents": [
@@ -340,15 +299,8 @@
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [
-            7,
-            8,
-            9,
-            10
-          ],
-          "ans": [
-            10
-          ],
+          "options": [7, 8, 9, 10],
+          "ans": [10],
           "initialImage": "/io_book/trees_0.png",
           "correctImage": "/io_book/trees_0.png",
           "helpImage": "/help/IO_Help_6.png"
@@ -362,37 +314,21 @@
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [
-            7,
-            8,
-            9,
-            10
-          ],
-          "ans": [
-            9
-          ],
+          "options": [7, 8, 9, 10],
+          "ans": [9],
           "initialImage": "/io_book/trees_0.png",
           "correctImage": "/io_book/trees_0.png",
           "helpImage": "/help/IO_Help_7.png"
         }
       },
       {
-        "content": [
-          "What is the sum of trees in all the corners right now?"
-        ],
+        "content": ["What is the sum of trees in all the corners right now?"],
         "image": "InputActivity",
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [
-            16,
-            17,
-            18,
-            19
-          ],
-          "ans": [
-            19
-          ],
+          "options": [16, 17, 18, 19],
+          "ans": [19],
           "initialImage": "/io_book/trees_0.png",
           "correctImage": "/io_book/trees_0.png",
           "helpImage": "/help/IO_Help_8.png"
@@ -408,15 +344,8 @@
         "game": "TableComponent",
         "props": {
           "showIOLabels": true,
-          "options": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "ans": [
-            1
-          ],
+          "options": [1, 2, 3, 4],
+          "ans": [1],
           "initialImage": "/io_book/trees_1.png",
           "correctImage": "/io_book/trees_2.png",
           "cellContents": [
@@ -442,15 +371,8 @@
         "game": "InputActivity",
         "props": {
           "showIOLabels": true,
-          "options": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "ans": [
-            2
-          ],
+          "options": [1, 2, 3, 4],
+          "ans": [2],
           "initialImage": "/io_book/multiplication_0.png",
           "correctImage": "/io_book/multiplication_0.png",
           "helpImage": "/help/IO_Help_10.png"
@@ -465,15 +387,8 @@
         "game": "TableComponent",
         "props": {
           "showIOLabels": true,
-          "options": [
-            6,
-            7,
-            8,
-            9
-          ],
-          "ans": [
-            8
-          ],
+          "options": [6, 7, 8, 9],
+          "ans": [8],
           "initialImage": "/io_book/multiplication_1.png",
           "correctImage": "/io_book/multiplication_2.png",
           "cellContents": [
@@ -543,9 +458,7 @@
         }
       },
       {
-        "content": [
-          "Let's make a new Spinach and Onion Pizza!"
-        ],
+        "content": ["Let's make a new Spinach and Onion Pizza!"],
         "image": "FoodTruckActivity",
         "game": "FoodTruckActivity",
         "props": {
@@ -567,9 +480,7 @@
         }
       },
       {
-        "content": [
-          "Let's make another Veggie Pizza!"
-        ],
+        "content": ["Let's make another Veggie Pizza!"],
         "image": "FoodTruckActivity",
         "game": "FoodTruckActivity",
         "props": {
@@ -587,9 +498,7 @@
         }
       },
       {
-        "content": [
-          "Let's make a Barbecue Pizza now!"
-        ],
+        "content": ["Let's make a Barbecue Pizza now!"],
         "image": "FoodTruckActivity",
         "game": "FoodTruckActivity",
         "props": {
@@ -669,14 +578,9 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": [
-            "tshirt",
-            "winter_jacket"
-          ],
+          "statements": ["tshirt", "winter_jacket"],
           "condition": "weather_is_hot",
-          "ans": [
-            "tshirt"
-          ],
+          "ans": ["tshirt"],
           "helpImage": "/help/IfConditionBook1_Help_1.png",
           "image": "/if_condition/sun.gif",
           "ans_image": "/if_condition/HokieBirdSun.gif"
@@ -692,14 +596,9 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": [
-            "tshirt",
-            "winter_jacket"
-          ],
+          "statements": ["tshirt", "winter_jacket"],
           "condition": "weather_is_cold",
-          "ans": [
-            "winter_jacket"
-          ],
+          "ans": ["winter_jacket"],
           "image": "/if_condition/HokieBirdIf.png",
           "ans_image": "/if_condition/HokieBirdJacket.png",
           "effect": "/if_condition/snow.gif",
@@ -714,14 +613,9 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": [
-            "sunglasses",
-            "umbrella"
-          ],
+          "statements": ["sunglasses", "umbrella"],
           "condition": "weather_is_raining",
-          "ans": [
-            "umbrella"
-          ],
+          "ans": ["umbrella"],
           "image": "/if_condition/HokieBirdIf.png",
           "ans_image": "/if_condition/Umbrella2.png",
           "effect": "/if_condition/rain.gif",
@@ -736,14 +630,9 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": [
-            "cry",
-            "laugh"
-          ],
+          "statements": ["cry", "laugh"],
           "condition": "rains_without_an_umbrella",
-          "ans": [
-            "cry"
-          ],
+          "ans": ["cry"],
           "image": "/if_condition/HokieBirdIf.png",
           "ans_image": "/if_condition/HokieBirdCry.png",
           "effect": "/if_condition/rain.gif",
@@ -777,16 +666,9 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": [
-            "cry",
-            "laugh",
-            "surprised",
-            "angry"
-          ],
+          "statements": ["cry", "laugh", "surprised", "angry"],
           "condition": "Hokie_feels_sad",
-          "ans": [
-            "cry"
-          ],
+          "ans": ["cry"],
           "image": "/if_condition/mood.gif",
           "ans_image": "/if_condition/sad.png",
           "helpImage": "/help/IfConditionBook2_Help_1.png"
@@ -800,16 +682,9 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": [
-            "cry",
-            "laugh",
-            "surprised",
-            "angry"
-          ],
+          "statements": ["cry", "laugh", "surprised", "angry"],
           "condition": "Hokie_feels_happy",
-          "ans": [
-            "laugh"
-          ],
+          "ans": ["laugh"],
           "image": "/if_condition/mood.gif",
           "ans_image": "/if_condition/happy.png",
           "helpImage": "/help/IfConditionBook2_Help_2.png"
@@ -823,16 +698,9 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": [
-            "cry",
-            "laugh",
-            "surprised",
-            "angry"
-          ],
+          "statements": ["cry", "laugh", "surprised", "angry"],
           "condition": "Hokie_feels_angry",
-          "ans": [
-            "angry"
-          ],
+          "ans": ["angry"],
           "image": "/if_condition/mood.gif",
           "ans_image": "/if_condition/angry.png",
           "helpImage": "/help/IfConditionBook2_Help_3.png"
@@ -846,16 +714,9 @@
         "image": "HokieBirdIfConditionActivity",
         "props": {
           "draggable": true,
-          "statements": [
-            "cry",
-            "laugh",
-            "surprised",
-            "angry"
-          ],
+          "statements": ["cry", "laugh", "surprised", "angry"],
           "condition": "Hokie_feels_surprised",
-          "ans": [
-            "surprised"
-          ],
+          "ans": ["surprised"],
           "image": "/if_condition/mood.gif",
           "ans_image": "/if_condition/surprise.png",
           "helpImage": "/help/IfConditionBook2_Help_4.png"
@@ -904,9 +765,7 @@
             "rotate"
           ],
           "condition": "HokieBird_makes_action1",
-          "ans": [
-            "bend_sideways"
-          ],
+          "ans": ["bend_sideways"],
           "image": "/if_condition/ready.gif",
           "ans_image": "/if_condition/action1.gif",
           "helpImage": "/help/IfConditionBook3_Help_1.png"
@@ -934,9 +793,7 @@
             "rotate"
           ],
           "condition": "HokieBird_makes_action4",
-          "ans": [
-            "wave_arm"
-          ],
+          "ans": ["wave_arm"],
           "image": "/if_condition/ready.gif",
           "ans_image": "/if_condition/action4.gif",
           "helpImage": "/help/IfConditionBook3_Help_2.png"
@@ -964,9 +821,7 @@
             "rotate"
           ],
           "condition": "HokieBird_makes_action3",
-          "ans": [
-            "butt_twist"
-          ],
+          "ans": ["butt_twist"],
           "image": "/if_condition/ready.gif",
           "ans_image": "/if_condition/action3.gif",
           "helpImage": "/help/IfConditionBook3_Help_3.png"
@@ -994,9 +849,7 @@
             "rotate"
           ],
           "condition": "HokieBird_makes_action5",
-          "ans": [
-            "rotate"
-          ],
+          "ans": ["rotate"],
           "image": "/if_condition/ready.gif",
           "ans_image": "/if_condition/action5.gif",
           "helpImage": "/help/IfConditionBook3_Help_4.png"
@@ -1024,9 +877,7 @@
             "rotate"
           ],
           "condition": "HokieBird_makes_action2",
-          "ans": [
-            "back_kick"
-          ],
+          "ans": ["back_kick"],
           "image": "/if_condition/ready.gif",
           "ans_image": "/if_condition/action2.gif",
           "helpImage": "/help/IfConditionBook3_Help_5.png"
@@ -1106,9 +957,7 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": [
-            "Option 1. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 1. Make sure to read the explanation!"],
           "helpImage": "/help/Variables_Help_1.png"
         }
       },
@@ -1121,9 +970,7 @@
         ],
         "props": {
           "pageNumber": 2,
-          "ans": [
-            "Option 1. Make sure to read the explanation!"
-          ]
+          "ans": ["Option 1. Make sure to read the explanation!"]
         }
       },
       {
@@ -1158,9 +1005,7 @@
           "Each step will be executed one after another until the program is over."
         ],
         "props": {
-          "ans": [
-            "Option 3. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 3. Make sure to read the explanation!"],
           "helpImage": "/help/Variables_Help_4.png"
         }
       },
@@ -1224,9 +1069,7 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": [
-            "Option 2. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 2. Make sure to read the explanation!"],
           "helpImage": "/help/Variables_Help_2.png"
         }
       },
@@ -1240,9 +1083,7 @@
         ],
         "props": {
           "pageNumber": 2,
-          "ans": [
-            "Option 4. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 4. Make sure to read the explanation!"],
           "helpImage": "/help/Variables_Help_3.png"
         }
       },
@@ -1261,9 +1102,7 @@
         "image": "Strings",
         "props": {
           "pageNumber": 1,
-          "ans": [
-            "Option 3. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 3. Make sure to read the explanation!"],
           "helpImage": "/help/Variables_Help_5.png"
         },
         "content": [
@@ -1279,9 +1118,7 @@
         "image": "Strings",
         "props": {
           "pageNumber": 2,
-          "ans": [
-            "Option 4. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 4. Make sure to read the explanation!"],
           "helpImage": "/help/Variables_Help_6.png"
         },
         "content": [
@@ -1310,9 +1147,7 @@
         "image": "Strings",
         "props": {
           "pageNumber": 4,
-          "ans": [
-            "Option 2. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 2. Make sure to read the explanation!"],
           "helpImage": "/help/Variables_Help_8.png"
         },
         "content": [
@@ -1378,22 +1213,16 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": [
-            "Option 2. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 2. Make sure to read the explanation!"],
           "helpImage": "/help/PythonIf_Help_1.png"
         }
       },
       {
         "image": "ConditionalOperators",
-        "content": [
-          "Here is another question using the '==' operator."
-        ],
+        "content": ["Here is another question using the '==' operator."],
         "props": {
           "pageNumber": 2,
-          "ans": [
-            "Option 1. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 1. Make sure to read the explanation!"],
           "helpImage": "/help/PythonIf_Help_2.png"
         }
       },
@@ -1407,9 +1236,7 @@
         ],
         "props": {
           "pageNumber": 3,
-          "ans": [
-            "Option 2. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 2. Make sure to read the explanation!"],
           "helpImage": "/help/PythonIf_Help_3.png"
         }
       },
@@ -1422,9 +1249,7 @@
         ],
         "props": {
           "pageNumber": 4,
-          "ans": [
-            "Option 3. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 3. Make sure to read the explanation!"],
           "helpImage": "/help/PythonIf_Help_4.png"
         }
       },
@@ -1506,9 +1331,7 @@
         ],
         "props": {
           "pageNumber": 2,
-          "ans": [
-            "Option 1. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 1. Make sure to read the explanation!"],
           "helpImage": "/help/PythonIf_Help_5.png"
         }
       },
@@ -1524,9 +1347,7 @@
         ],
         "props": {
           "pageNumber": 3,
-          "ans": [
-            "Option 1. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 1. Make sure to read the explanation!"],
           "helpImage": "/help/PythonIf_Help_6.png"
         }
       },
@@ -1542,9 +1363,7 @@
         ],
         "props": {
           "pageNumber": 4,
-          "ans": [
-            "Option 2. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 2. Make sure to read the explanation!"],
           "helpImage": "/help/PythonIf_Help_7.png"
         }
       },
@@ -1679,9 +1498,7 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": [
-            "Option 2. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 2. Make sure to read the explanation!"],
           "helpImage": "/help/PythonIf_Help_8.png"
         }
       },
@@ -1694,9 +1511,7 @@
         ],
         "props": {
           "pageNumber": 2,
-          "ans": [
-            "Option 2. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 2. Make sure to read the explanation!"],
           "helpImage": "/help/PythonIf_Help_9.png"
         }
       },
@@ -1708,9 +1523,7 @@
         ],
         "props": {
           "pageNumber": 3,
-          "ans": [
-            "Option 3. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 3. Make sure to read the explanation!"],
           "helpImage": "/help/PythonIf_Help_10.png"
         }
       },
@@ -1722,9 +1535,7 @@
         ],
         "props": {
           "pageNumber": 4,
-          "ans": [
-            "Option 3. Make sure to read the explanation!"
-          ],
+          "ans": ["Option 3. Make sure to read the explanation!"],
           "helpImage": "/help/PythonIf_Help_11.png"
         }
       },
@@ -1923,9 +1734,7 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": [
-            "Option 2. Make sure to read the explanation!"
-          ]
+          "ans": ["Option 2. Make sure to read the explanation!"]
         }
       },
       {
@@ -1933,9 +1742,7 @@
         "content": [],
         "props": {
           "pageNumber": 2,
-          "ans": [
-            "Click Next until you reach the end of the code!"
-          ]
+          "ans": ["Click Next until you reach the end of the code!"]
         }
       },
       {
@@ -1959,9 +1766,7 @@
         ],
         "props": {
           "pageNumber": 2,
-          "ans": [
-            "Option 3. Make sure to read the explanation!"
-          ]
+          "ans": ["Option 3. Make sure to read the explanation!"]
         }
       },
       {
@@ -1969,9 +1774,7 @@
         "content": [],
         "props": {
           "pageNumber": 3,
-          "ans": [
-            "Click Next until you reach the end of the code!"
-          ]
+          "ans": ["Click Next until you reach the end of the code!"]
         }
       },
       {
@@ -1998,9 +1801,7 @@
         ],
         "props": {
           "pageNumber": 1,
-          "ans": [
-            "Option 1. Make sure to read the explanation!"
-          ]
+          "ans": ["Option 1. Make sure to read the explanation!"]
         }
       },
       {
@@ -2008,9 +1809,7 @@
         "content": [],
         "props": {
           "pageNumber": 2,
-          "ans": [
-            "Click Next until you reach the end of the code!"
-          ]
+          "ans": ["Click Next until you reach the end of the code!"]
         }
       },
       {
@@ -2144,7 +1943,7 @@
     ]
   },
   {
-    "BookId": 12,
+    "BookId": 16,
     "title": "Computer Parts",
     "blurb": "Learn about the parts of a computer",
     "author": "Dev",
@@ -2217,15 +2016,8 @@
         "image": "InputActivity",
         "props": {
           "showIOLabels": false,
-          "options": [
-            2,
-            3,
-            4,
-            5
-          ],
-          "ans": [
-            5
-          ],
+          "options": [2, 3, 4, 5],
+          "ans": [5],
           "initialImage": "/io_book/park_1.png",
           "correctImage": "/io_book/park_3.png",
           "": "/help/IO_Help_1.png"
@@ -2234,7 +2026,7 @@
     ]
   },
   {
-    "BookId": 13,
+    "BookId": 17,
     "title": "CoStar Coloring Game",
     "blurb": "Learn about the parts of a computer",
     "author": "Dev",
@@ -2293,7 +2085,7 @@
     ]
   },
   {
-    "BookId": 14,
+    "BookId": 18,
     "title": "Lego I/O Activity",
     "blurb": "An input/output exercise using Legos",
     "author": "Dev",
