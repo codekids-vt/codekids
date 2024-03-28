@@ -249,7 +249,7 @@ function ImageTypeEditor({
     "InputActivity",
     "FoodTruckActivity",
     "Computer_IO",
-    "CostarColoring"
+    "CostarColoring",
   ];
 
   return (

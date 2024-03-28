@@ -7,17 +7,21 @@ interface CostarColorState {
   letter_t: string;
   letter_a: string;
   letter_r: string;
-
 }
 
-const availableColors = ["dark_blue", "medium_blue", "golden_yellow", "light_blue", "darkest_black"];
+const availableColors = [
+  "dark_blue",
+  "medium_blue",
+  "golden_yellow",
+  "light_blue",
+  "darkest_black",
+];
 const availableColorsTailwind: { [key: string]: string } = {
   dark_blue: "bg-blue-600",
   medium_blue: "bg-blue-400",
   golden_yellow: "bg-yellow-500",
   light_blue: "bg-blue-200",
   darkest_black: "bg-black",
-  
 };
 const availableParts = [
   "letter_c",
@@ -27,6 +31,12 @@ const availableParts = [
   "letter_a",
   "letter_r",
 ];
+
+enum AlertType {
+  NONE,
+  SUCCESS,
+  FAILURE,
+}
 
 export function CostarColoring({
   props,
@@ -58,12 +68,6 @@ export function CostarColoring({
     }
   };
 
-  enum AlertType {
-    NONE,
-    SUCCESS,
-    FAILURE,
-  }
-
   const [currentAlert, setCurrentAlert] = useState<{
     type: AlertType;
     message: string;
@@ -71,7 +75,7 @@ export function CostarColoring({
 
   React.useEffect(() => {
     setAllowNext(currentAlert.type === AlertType.SUCCESS);
-  }, [currentAlert]);
+  }, [currentAlert, setAllowNext]);
 
   function HokieBirdColors() {
     const handlePart = (index: number, value: string) => {
@@ -111,7 +115,7 @@ export function CostarColoring({
       }
       if (value.startsWith('"') && value.endsWith('"')) {
         const strippedValue = val.substring(1, val.length - 1);
-        if (availableColors.includes(strippedValue) && part != "") {
+        if (availableColors.includes(strippedValue) && part !== "") {
           setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
           setColors((prevColors) => ({
             ...prevColors,
@@ -275,49 +279,49 @@ export function CostarColoring({
       <div className="flex flex-col flex-grow justify-center items-center relative">
         <img
           src="/Costar_Logo.png"
-          alt="book image"
+          alt="book"
           className={"center-left w-[200px] xl:w-[500px]"}
           width={500}
           height={500}
         />
         <img
           src="/Costar_Images/letter_C.png"
-          alt="book image"
+          alt="book"
           className={`absolute center-left img-${colors.letter_c} `}
           width={500}
           height={500}
         />
         <img
           src="/Costar_Images/letter_O.png"
-          alt="book image"
+          alt="book"
           className={`absolute center-left img-${colors.letter_o} `}
           width={500}
           height={500}
         />
         <img
           src="/Costar_Images/letter_S.png"
-          alt="book image"
+          alt="book"
           className={`absolute center-left img-${colors.letter_s} `}
           width={500}
           height={500}
         />
         <img
           src="/Costar_Images/letter_T.png"
-          alt="book image"
+          alt="book"
           className={`absolute center-left img-${colors.letter_t} `}
           width={500}
           height={500}
         />
         <img
           src="/Costar_Images/letter_A.png"
-          alt="book image"
+          alt="book"
           className={`absolute center-left img-${colors.letter_a} `}
           width={500}
           height={500}
         />
         <img
           src="/Costar_Images/letter_R.png"
-          alt="book image"
+          alt="book"
           className={`absolute center-left img-${colors.letter_r} `}
           width={500}
           height={500}

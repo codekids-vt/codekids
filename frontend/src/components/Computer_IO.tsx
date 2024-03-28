@@ -23,7 +23,7 @@ export function ElementPlacement({
 
   React.useEffect(() => {
     setAllowNext(placedElements.length === availableElements.length);
-  }, [placedElements]);
+  }, [placedElements, setAllowNext]);
 
   function handleOnDrop(e: React.DragEvent, element: string) {
     e.preventDefault();
@@ -81,7 +81,9 @@ export function ElementPlacement({
           )}
         </div>
       )}
-      <h1 className="font-bold text-center xl:p-4">Place Elements on Picture</h1>
+      <h1 className="font-bold text-center xl:p-4">
+        Place Elements on Picture
+      </h1>
       <div className="flex flex-col px-2">
         <div className="flex flex-col items-center justify-center space-y-2">
           <h1 className="font-bold text-lg">Available Elements</h1>
@@ -107,8 +109,7 @@ export function ElementPlacement({
         onDragOver={(e) => handleDragOver(e)}
       >
         <div className="w-[400px] h-[300px] border border-gray-300 rounded-md p-4 my-4">
-          
-          <img src="/mouse.jpg" alt="Picture" className="w-full h-full" />
+          <img src="/mouse.jpg" alt="mouse" className="w-full h-full" />
         </div>
       </div>
       <div className="flex flex-col items-center justify-center space-y-2">
