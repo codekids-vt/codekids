@@ -484,6 +484,84 @@ export const books: Book[] = [
     ],
   },
   {
+    BookId: 16,
+    title: "Co-Star Input/Output Simulator",
+    bookCover: "/lighter_orange.png",
+    blurb: "Learn about Input and output!",
+    author: "Prapti, Gabriel H",
+    gradeRange: "K-2",
+    category: BookCategory.BEGINNER,
+    pages: [
+      {
+        content: [
+          "Explore how input and output works featuring Co-Star!",
+        ],
+        image: "/Co-Star_InputOutputBook/transparentCoverImage.png",
+      },
+      {
+        content: [
+          "Time to make your avatar uniquely yours! ",
+          "Explore the options and tap on the items to add them to your avatar.",
+        ],
+        image: "/Co-Star_InputOutputBook/baseAvatar.png",
+      },
+      {
+        content: [
+          "Add both the glasses and the bow to complete the activity.",
+          "Input your options to get them as output.",
+        ],
+        
+        image: "ClothingActivity",
+        game: "ClothingActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: "Bow", image: "/Co-Star_InputOutputBook/justHeadband.png" },
+            { text: "Glasses", image: "/Co-Star_InputOutputBook/justGlasses.png" },
+          ],
+          baseLayer: "/Co-Star_InputOutputBook/baseAvatar.png",
+        },
+      },
+      {
+        content: ["CoStar helps people buy homes using computers in clever ways!",
+          "Customize your Costar water bottle with stickers and logos!", 
+          "Add all options: Computer and Logo to move on!"],
+        image: "ClothingActivity",
+        game: "ClothingActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: "Computer Sticker", image: "/Co-Star_InputOutputBook/downsizedComputer.png" },
+            { text: "CoStar Logo", image: "/Co-Star_InputOutputBook/costarLogoDownsized.png" },
+          ],
+          baseLayer: "/Co-Star_InputOutputBook/waterBottle.jpg",
+        },
+      },
+      {
+        content: ["Customize your coding desk with various items!",
+        "Add your Co-Star laptop and water bottle to move on!"],
+        image: "ClothingActivity",
+        game: "ClothingActivity",
+        props: {
+          showIOLabels: true,
+          options: [
+            { text: "Laptop", image: "/Co-Star_InputOutputBook/laptopComposite.png" },
+            { text: "Water Bottle", image: "/Co-Star_InputOutputBook/waterBottleTransparentLogo.png" },
+          ],
+          baseLayer: "/Co-Star_InputOutputBook/deskCartoon.webp",
+        },
+      },
+      {
+        content: [
+          "Wohoo!",
+          "You're on your way to becoming a full-fledged programmer!",
+          "Hope you enjoyed the outputs to all your inputs.",
+        ],
+        image: "/Co-Star_InputOutputBook/coder.png",
+      },
+    ],
+  },
+  {
     BookId: 4,
     bookCover: "/lighter_maroon.png",
     title: "If-condition with HokieBird Weathers",

@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 
-interface IFoodTruckActivityProps {
+interface ClothingActivityProps {
   showIOLabels: boolean;
   question: string | undefined;
   options: { text: string; image: string }[];
   width: number;
   height: number;
+  baseLayer: string;
 }
 
-export function FoodTruckActivity({
+export function ClothingActivity({
   props,
   setAllowNext,
 }: {
-  props: IFoodTruckActivityProps;
+  props: ClothingActivityProps;
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { question, options, showIOLabels } = props;
@@ -86,7 +87,7 @@ export function FoodTruckActivity({
 
       <div className="my-4">
         <img
-          src="/io_book/pizza_pizza.png"
+          src={props.baseLayer}
           alt=""
           className="h-96 w-96 rounded-md shadow-md justify-center left-40"
         />
@@ -108,25 +109,18 @@ export function FoodTruckActivity({
                 alt="option"
                 className={`max-w-100 max-h-100 rounded-md absolute ${
                   currentElement === "Bow" || currentElement === "Glasses"
-                    ? "scale-100 bottom-10"
-                  : currentElement === "Ham" || currentElement === "Onions"
-                    ? "scale-75 bottom-20"
-                    : currentElement === "Bacon"
-                      ? "scale-100 scale-x-75 scale-y-125 bottom-20"
-                      : currentElement === "Pineapple"
-                        ? "scale-50 bottom-2"
-                        : currentElement === "Mushrooms" ||
-                            currentElement === "Green Onions"
-                          ? "scale-50 scale-y-100 bottom-16"
-                          : currentElement === "Chicken"
-                            ? "scale-100 bottom-4"
-                            : currentElement === "Spinach"
-                              ? "scale-50 bottom-4"
-                              : currentElement === "Barbecue Sauce"
-                                ? "scale-75 bottom-2/3 right-px"
+                    ? "scale-100 bottom-0"
+                      : currentElement === "Computer Sticker"
+                        ? "scale-50 absolute bottom-1/4" 
+                        : currentElement === "CoStar Logo" 
+                          ? "scale-100 bottom-10 absolute"
+                          : currentElement === "Water Bottle"
+                            ? "scale-75 bottom-28 left-24"
+                            : currentElement === "Laptop"
+                              ? "scale-50 bottom-32 right-9"
                                 : "scale-50"
                 }`}
-                // className="max-w-100 max-h-100 rounded-md absolute left-80 top-1/2 bottom-1/2 object-center scale-50"
+              
 
                 width={props.width || 400}
                 height={props.height || 500}

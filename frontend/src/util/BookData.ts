@@ -55,4 +55,5 @@ export interface PageProps {
   options?: number[];
   helpImage?: string;
   command?: string;
+  baseLayer?: string;
 }

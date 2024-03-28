@@ -32,6 +32,7 @@ import { ChangingCondition } from "../components/MisconceptionComponents/Flowcha
 import { InputActivity } from "../components/InputActivity";
 import { TableComponent } from "../components/TableComponent";
 import { FoodTruckActivity } from "../components/FoodTruckActivity";
+import { ClothingActivity } from "../components/ClothingActivity";
 import { InteractionType, InteractionsService } from "../api";
 import { useAuth } from "../context/AuthContext";
 
@@ -118,6 +119,9 @@ function BookImage({
       )}
       {image === "FoodTruckActivity" && (
         <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "ClothingActivity" && (
+        <ClothingActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );
