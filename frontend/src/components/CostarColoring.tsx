@@ -285,42 +285,42 @@ export function CostarColoring({
           height={500}
         />
         <img
-          src="/Costar_Images/letter_C.png"
+          src="/Costar_Images/Letter_C.png"
           alt="book"
           className={`absolute center-left img-${colors.letter_c} `}
           width={500}
           height={500}
         />
         <img
-          src="/Costar_Images/letter_O.png"
+          src="/Costar_Images/Letter_O.png"
           alt="book"
           className={`absolute center-left img-${colors.letter_o} `}
           width={500}
           height={500}
         />
         <img
-          src="/Costar_Images/letter_S.png"
+          src="/Costar_Images/Letter_S.png"
           alt="book"
           className={`absolute center-left img-${colors.letter_s} `}
           width={500}
           height={500}
         />
         <img
-          src="/Costar_Images/letter_T.png"
+          src="/Costar_Images/Letter_T.png"
           alt="book"
           className={`absolute center-left img-${colors.letter_t} `}
           width={500}
           height={500}
         />
         <img
-          src="/Costar_Images/letter_A.png"
+          src="/Costar_Images/Letter_A.png"
           alt="book"
           className={`absolute center-left img-${colors.letter_a} `}
           width={500}
           height={500}
         />
         <img
-          src="/Costar_Images/letter_R.png"
+          src="/Costar_Images/Letter_R.png"
           alt="book"
           className={`absolute center-left img-${colors.letter_r} `}
           width={500}
