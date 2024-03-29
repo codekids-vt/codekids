@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import { Book, BooksService, Page, PagesService } from "../api";
 import { BookImage } from "../components/BookImage";
 import Editor from "@monaco-editor/react";
+import { editorDefaults } from "../util/componentEditorDefaults";
+import { ErrorBoundary } from "react-error-boundary";
 
 function PageNavigator({
   pages,
@@ -166,21 +168,34 @@ function BookImageEditor({
   // update the page every 3 seconds if there has been a change
   useEffect(() => {
     const interval = setInterval(() => {
-      if (
-        tempImage !== page.image ||
-        JSON.stringify(JSON.parse(tempProps)) !== JSON.stringify(page.props)
-      ) {
-        setPage({ ...page, image: tempImage, props: JSON.parse(tempProps) });
+      try {
+        if (
+          tempImage !== page.image ||
+          JSON.stringify(JSON.parse(tempProps)) !== JSON.stringify(page.props)
+        ) {
+          setPage({ ...page, image: tempImage, props: JSON.parse(tempProps) });
+        }
+      } catch (e) {
+        console.error(`Error parsing JSON: ${e} may not have saved changes.`);
       }
     }, 2000);
     return () => clearInterval(interval);
   }, [tempImage, tempProps, page, setPage]);
+
+  let error = false;
+  try {
+    JSON.parse(tempProps);
+  } catch (e) {
+    error = true;
+  }
+  console.log("error", error);
 
   return (
     <div className="flex flex-col w-full p-2 h-full">
       <ImageTypeEditor
         tempImageType={tempImage}
         setTempImageType={setTempImage}
+        setTempProps={setTempProps}
       />
       {page.image.includes("/") || page.image === "Image" ? (
         <div className="flex flex-col w-full">
@@ -193,6 +208,7 @@ function BookImageEditor({
         </div>
       ) : (
         <Editor
+          key={tempImage} // This is to force a re-render when the image changes
           height="50%"
           defaultValue={tempProps}
           onChange={(value) => {
@@ -204,12 +220,20 @@ function BookImageEditor({
         />
       )}
       <div className="h-1/2 max-h-80">
-        <BookImage
-          key={page.pageNumber} // This is to force a re-render when the page changes
-          image={tempImage}
-          page={{ ...page, image: tempImage, props: JSON.parse(tempProps) }}
-          setAllowNext={() => {}}
-        />
+        {!error && (
+          <ErrorBoundary
+            fallback={
+              <div className="text-red-500">Error, try adjusting the props</div>
+            }
+          >
+            <BookImage
+              key={`${tempImage}-${tempProps}-${page.pageNumber}`}
+              image={tempImage}
+              page={{ ...page, image: tempImage, props: JSON.parse(tempProps) }}
+              setAllowNext={() => {}}
+            />
+          </ErrorBoundary>
+        )}
       </div>
     </div>
   );
@@ -218,40 +242,12 @@ function BookImageEditor({
 function ImageTypeEditor({
   tempImageType,
   setTempImageType,
+  setTempProps,
 }: {
   tempImageType: string;
   setTempImageType: (tempImageType: string) => void;
+  setTempProps: (tempProps: string) => void;
 }) {
-  const imageTypes = [
-    "Image",
-    "HokieBirdActivity",
-    "tutor",
-    "HokieBirdMazeActivity",
-    "HokieBirdIfConditionActivity",
-    "DataTypesIntro",
-    "IntsAndBools",
-    "VariableAssignment",
-    "Strings",
-    "Sequencing",
-    "IfStatementIntro",
-    "ConditionalOperators",
-    "LogicalOperators",
-    "IfStatements",
-    "LifeOfMoose",
-    "MooseMilestone",
-    "MooseDr",
-    "MooseChallengingYear",
-    "MooseThankYou",
-    "BuyDonut",
-    "BuyMultiple",
-    "MultipleConditions",
-    "ChangingCondition",
-    "InputActivity",
-    "FoodTruckActivity",
-    "Computer_IO",
-    "CostarColoring",
-  ];
-
   return (
     <div className="flex flex-col w-full">
       <select
@@ -264,10 +260,13 @@ function ImageTypeEditor({
             )
           ) {
             setTempImageType(e.target.value);
+            setTempProps(
+              JSON.stringify(editorDefaults[e.target.value], null, 2),
+            );
           }
         }}
       >
-        {imageTypes.map((type, i) => (
+        {Object.keys(editorDefaults).map((type, i) => (
           <option key={i} value={type}>
             {type}
           </option>
