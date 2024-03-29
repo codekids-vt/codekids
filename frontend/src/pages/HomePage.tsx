@@ -71,7 +71,12 @@ export default function HomePage() {
             <h1 className="text-2xl font-bold">Welcome to CodeKids!</h1>
           </div>
           <div className="card p-2 text-center mx-auto w-1/2">
-            <h1 className="text-l">CodeKids offers a wide range of engaging coding activities for students of all levels, Teachers will find activities that match their lesson plans and teaching materials to make coding education exciting in the classroom.</h1>
+            <h1 className="text-l">
+              CodeKids offers a wide range of engaging coding activities for
+              students of all levels, Teachers will find activities that match
+              their lesson plans and teaching materials to make coding education
+              exciting in the classroom.
+            </h1>
           </div>
         </div>
         <div className="flex flex-col justify-center">
