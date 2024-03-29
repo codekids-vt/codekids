@@ -11,4 +11,5 @@ export type CreateBookRequest = {
   coverImage?: string | null;
   author?: string | null;
   blurb?: string | null;
+  readyForPublish?: boolean | null;
 };

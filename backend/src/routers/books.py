@@ -45,6 +45,7 @@ class CreateBookRequest(BaseModel):
     coverImage: Optional[str] = None
     author: Optional[str] = None
     blurb: Optional[str] = None
+    readyForPublish: Optional[bool] = False
 
 
 @books_router.post("/books", tags=["books"])
@@ -101,6 +102,8 @@ async def edit_book(
         book_update_data["author"] = req.author
     if req.blurb:
         book_update_data["blurb"] = req.blurb
+    if req.readyForPublish is not None:
+        book_update_data["readyForPublish"] = req.readyForPublish
     book = await db.book.update(
         where={"id": book_id},
         data=book_update_data,

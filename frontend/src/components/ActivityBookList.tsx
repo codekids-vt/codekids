@@ -1,6 +1,6 @@
 import { Book } from "../api/models/Book";
 
-function BookPreview({
+export function BookPreview({
   BookData: book,
   linkPrefix,
   linkSuffix,
