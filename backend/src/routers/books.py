@@ -1,3 +1,4 @@
+import re
 from fastapi import APIRouter, Depends, HTTPException
 from prisma import Json
 from pydantic import BaseModel
@@ -14,9 +15,10 @@ books_router = APIRouter()
 @books_router.get("/books", tags=["books"])
 async def search_books(
     category: Optional[BookCategory] = None,
-    limit: Optional[int] = 10,
+    limit: Optional[int] = 100,
     owner_id: Optional[int] = None,
     published: Optional[bool] = None,
+    query: Optional[str] = None,
 ) -> List[Book]:
     where: BookWhereInput = {}
     if category:
@@ -25,7 +27,43 @@ async def search_books(
         where["ownerId"] = owner_id
     if published is not None:
         where["published"] = published
-    books = await db.book.find_many(take=limit, include={"courses": True}, where=where)
+    books = await db.book.find_many(
+        take=limit, include={"courses": True, "pages": True}, where=where
+    )
+
+    if query:
+        filtered_and_sorted_books = [
+            book
+            for book, _ in sorted(
+                [
+                    (
+                        book,
+                        len(
+                            re.findall(
+                                query,
+                                (
+                                    book.title
+                                    + book.author
+                                    + (book.blurb if book.blurb else "")
+                                    + "".join(
+                                        [a for page in book.pages for a in page.content]
+                                    )
+                                    if book.pages
+                                    else ""
+                                ),
+                                re.IGNORECASE,
+                            )
+                        ),
+                    )
+                    for book in books
+                ],
+                key=lambda x: x[1],
+                reverse=True,
+            )
+            if _ > 0
+        ]
+        return filtered_and_sorted_books
+
     return books
 
 
