@@ -67,7 +67,7 @@ export default function HomePage() {
             </h1>
           </div>
         </div>
-        <div className="flex flex-col w-10/12 items-center gap-2">
+        <div className="flex flex-col w-full 2xl:w-10/12 items-center gap-2">
           <div className="flex flex-row items-center p-2 bg-gray-200 border-2 border-primary-green w-1/3 h-12 shadow-xl rounded-full">
             <svg
               className="w-4 h-4 ml-2 text-primary-green"

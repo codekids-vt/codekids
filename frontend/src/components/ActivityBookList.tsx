@@ -63,7 +63,7 @@ function BookPreviewList({
 }) {
   const emptyBookData = Array.from({ length: 6 }, () => ({}));
   return (
-    <ul className="[&>*:not(:last-child)]:mb-2 flex-wrap flex items-center justify-center">
+    <ul className="flex-wrap gap-2 flex items-center justify-center">
       {!loading
         ? pageBookData.map((BookData: Book, i: number) => (
             <li key={`BookData-${i}`} className="pl-3">
