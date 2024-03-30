@@ -15,6 +15,7 @@ export class BooksService {
    * @param limit
    * @param ownerId
    * @param published
+   * @param query
    * @returns Book Successful Response
    * @throws ApiError
    */
@@ -23,6 +24,7 @@ export class BooksService {
     limit?: number | null,
     ownerId?: number | null,
     published?: boolean | null,
+    query?: string | null,
   ): CancelablePromise<Array<Book>> {
     return __request(OpenAPI, {
       method: "GET",
@@ -32,6 +34,7 @@ export class BooksService {
         limit: limit,
         owner_id: ownerId,
         published: published,
+        query: query,
       },
       errors: {
         422: `Validation Error`,
