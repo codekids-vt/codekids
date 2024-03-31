@@ -2208,105 +2208,254 @@
     ]
   },
   {
-    "BookId":19,
-    "title":"Co-Star Input/Output Simulator",
-    "bookCover":"/lighter_orange.png",
-    "blurb":"Learn about Input and output!",
-    "author":"Prapti, Gabriel H",
-    "gradeRange":"K-2",
-    "cover":"/Co-Star_InputOutputBook/transparentCoverImage.png",
-    "category":"BEGINNER",
-    "pages":[
+    "BookId": 19,
+    "title": "Co-Star Input/Output Simulator",
+    "bookCover": "/lighter_orange.png",
+    "blurb": "Learn about Input and output!",
+    "author": "Prapti, Gabriel H",
+    "gradeRange": "K-2",
+    "cover": "/Co-Star_InputOutputBook/transparentCoverImage.png",
+    "category": "BEGINNER",
+    "pages": [
       {
-        "content":[
-          "Explore how input and output works featuring Co-Star!"
-        ],
-        "image":"/Co-Star_InputOutputBook/transparentCoverImage.png"
+        "content": ["Explore how input and output works featuring Co-Star!"],
+        "image": "/Co-Star_InputOutputBook/transparentCoverImage.png"
       },
       {
-        "content":[
+        "content": [
           "Time to make your avatar uniquely yours! ",
           "Explore the options and tap on the items to add them to your avatar."
         ],
-        "image":"/Co-Star_InputOutputBook/baseAvatar.png"
+        "image": "/Co-Star_InputOutputBook/baseAvatar.png"
       },
       {
-        "content":[
+        "content": [
           "Add both the glasses and the bow to complete the activity.",
           "Input your options to get them as output."
         ],
-        "image":"ClothingActivity",
-        "game":"ClothingActivity",
-        "props":{
-          "showIOLabels":true,
-          "options":[
+        "image": "ClothingActivity",
+        "game": "ClothingActivity",
+        "props": {
+          "showIOLabels": true,
+          "options": [
             {
-              "text":"Bow",
-              "image":"/Co-Star_InputOutputBook/justHeadband.png"
+              "text": "Bow",
+              "image": "/Co-Star_InputOutputBook/justHeadband.png"
             },
             {
-              "text":"Glasses",
-              "image":"/Co-Star_InputOutputBook/justGlasses.png"
+              "text": "Glasses",
+              "image": "/Co-Star_InputOutputBook/justGlasses.png"
             }
           ],
-          "baseLayer":"/Co-Star_InputOutputBook/baseAvatar.png"
+          "baseLayer": "/Co-Star_InputOutputBook/baseAvatar.png"
         }
       },
       {
-        "content":[
+        "content": [
           "CoStar helps people buy homes using computers in clever ways!",
           "Customize your Costar water bottle with stickers and logos!",
           "Add all options: Computer and Logo to move on!"
         ],
-        "image":"ClothingActivity",
-        "game":"ClothingActivity",
-        "props":{
-          "showIOLabels":true,
-          "options":[
+        "image": "ClothingActivity",
+        "game": "ClothingActivity",
+        "props": {
+          "showIOLabels": true,
+          "options": [
             {
-              "text":"Computer Sticker",
-              "image":"/Co-Star_InputOutputBook/downsizedComputer.png"
+              "text": "Computer Sticker",
+              "image": "/Co-Star_InputOutputBook/downsizedComputer.png"
             },
             {
-              "text":"CoStar Logo",
-              "image":"/Co-Star_InputOutputBook/costarLogoDownsized.png"
+              "text": "CoStar Logo",
+              "image": "/Co-Star_InputOutputBook/costarLogoDownsized.png"
             }
           ],
-          "baseLayer":"/Co-Star_InputOutputBook/waterBottle.jpg"
+          "baseLayer": "/Co-Star_InputOutputBook/waterBottle.jpg"
         }
       },
       {
-        "content":[
+        "content": [
           "Customize your coding desk with various items!",
           "Add your Co-Star laptop and water bottle to move on!"
         ],
-        "image":"ClothingActivity",
-        "game":"ClothingActivity",
-        "props":{
-          "showIOLabels":true,
-          "options":[
+        "image": "ClothingActivity",
+        "game": "ClothingActivity",
+        "props": {
+          "showIOLabels": true,
+          "options": [
             {
-              "text":"Laptop",
-              "image":"/Co-Star_InputOutputBook/laptopComposite.png"
+              "text": "Laptop",
+              "image": "/Co-Star_InputOutputBook/laptopComposite.png"
             },
             {
-              "text":"Water Bottle",
-              "image":"/Co-Star_InputOutputBook/waterBottleTransparentLogo.png"
+              "text": "Water Bottle",
+              "image": "/Co-Star_InputOutputBook/waterBottleTransparentLogo.png"
             }
           ],
-          "baseLayer":"/Co-Star_InputOutputBook/deskCartoon.webp"
+          "baseLayer": "/Co-Star_InputOutputBook/deskCartoon.webp"
         }
       },
       {
-        "content":[
+        "content": [
           "Wohoo!",
           "You're on your way to becoming a full-fledged programmer!",
           "Hope you enjoyed the outputs to all your inputs."
         ],
-        "image":"/Co-Star_InputOutputBook/coder.png"
+        "image": "/Co-Star_InputOutputBook/coder.png"
+      }
+    ]
+  },
+  {
+    "BookId": 20,
+    "title": "Sequencing",
+    "blurb": "Learn the Sequencing and Algorithims",
+    "author": "Gabriel H.",
+    "bookCover": "/color_3.png",
+    "cover": "/MouseBook/mouse_icon.png",
+    "gradeRange": "K-2",
+    "category": "BEGINNNER",
+    "pages": [
+      {
+        "image": "/MouseBook/Agorithim Intro Image.png",
+        "content": [
+          "In this book, we are going to learn how algorithims work.",
+          "You may be using algorithims everyday and not know it!",
+          "Algorithims can help you establish good habits both in coding but also in life.",
+          "Algorithims involve having an input, a set of rules or commands to make a certain output."
+        ]
+      },
+      {
+        "image": "/MouseBook/Algorithim_Example.png",
+        "content": [
+          "Now lets look at an example where we use basic rules to create an algorithim.",
+          "This example involves fixing a lamp!",
+          "We start with knowing the lamp doesn't work.",
+          "We first check the rule of if the lamp is plugged in.",
+          "We determine yes or no and follow down the path that matches.",
+          "We then check the rule of if the bulb has burned out.",
+          "We determine yes or no and follow down the path that matches.",
+          "Based on that we either replace the bulb or buy a new lamp!",
+          "Congratulations you've just traced your first algorithim!"
+        ]
+      },
+      {
+        "image": "/MouseBook/Sequencing.jpeg",
+        "content": [
+          "Now lets talk about Sequencing.",
+          "Sequencing is slightly different from Algorithims.",
+          "They both have structure that allows for new determinations.",
+          "Sequencing, however is much more straight forward and includes less branches.",
+          "There are no yes or no determinations. If something happens, it is a fact that some specific action will follow.",
+          "We will explore this more in depth with the story of If You give a Mouse A Cookie."
+        ]
+      },
+      {
+        "image": "/MouseBook/If you give a mouse a cookie.png",
+        "content": [
+          "Click on the Mouse To see what happens next when you give a mouse a cookie."
+        ],
+        "props": {
+          "ans": [
+            "Option 1. Make sure to read the explanation!",
+            "Press Next until you reach the end of the code!"
+          ]
+        }
+      },
+      {
+        "image": "BuyMultiple",
+        "content": [
+          "Now imagine you have $9 in your pocket.",
+          "You find out that spaghetti costs $3, a yummy burger is $5, and a scoop of ice cream is $3.",
+          "Do you think you can buy all three with your $9.",
+          "Let's use the flowchart to answer the question!"
+        ],
+        "props": {
+          "pageNumber": 1,
+          "ans": ["Option 2. Make sure to read the explanation!"]
+        }
+      },
+      {
+        "image": "BuyMultiple",
+        "content": [],
+        "props": {
+          "pageNumber": 2,
+          "ans": ["Click Next until you reach the end of the code!"]
+        }
+      },
+      {
+        "image": "MultipleConditions",
+        "content": [
+          "Let's explore how we can use flowcharts to figure out problems when there's more than one thing to consider!",
+          "Imagine you have $7, and there's a choice of green salads, pepperoni pizza, and bacon and beef burgers for sale.",
+          "Which one will you be able to buy to buy in the end?",
+          "Or maybe you can't afford any of them?",
+          "Try using the flowchart on the left to find out!"
+        ],
+        "props": {
+          "pageNumber": 1
+        }
+      },
+      {
+        "image": "MultipleConditions",
+        "content": [
+          "Please think carefully first and follow the flowchart to answer the question.",
+          "If you can't figure out the answer, don't worry! We'll walk through this one on the next page."
+        ],
+        "props": {
+          "pageNumber": 2,
+          "ans": ["Option 3. Make sure to read the explanation!"]
+        }
+      },
+      {
+        "image": "MultipleConditions",
+        "content": [],
+        "props": {
+          "pageNumber": 3,
+          "ans": ["Click Next until you reach the end of the code!"]
+        }
+      },
+      {
+        "image": "/FlowchartsBook/ChangingCondition/multiple_buys.png",
+        "content": [
+          "Imagine you have 16 dollars and then you buy a pepperoni pizza.",
+          "Will you have enough money to buy a strawberry cake and a donut afterward?",
+          "Try drawing a flowchart yourself and then go to the next page!"
+        ]
+      },
+      {
+        "image": "/FlowchartsBook/ChangingCondition/multiple_buys_flowchart.png",
+        "content": [
+          "Compare the flowchart you drew with the one on the left to see if they're similar.",
+          "Don't worry if they're a little different as this is a little challenging.",
+          "Next, let's turn to the next page and answer a question about the flowchart!"
+        ]
+      },
+      {
+        "image": "ChangingCondition",
+        "content": [
+          "Use the flowchart to help you answer the question on the left.",
+          "On the next page, we'll run through the code!"
+        ],
+        "props": {
+          "pageNumber": 1,
+          "ans": ["Option 1. Make sure to read the explanation!"]
+        }
+      },
+      {
+        "image": "ChangingCondition",
+        "content": [],
+        "props": {
+          "pageNumber": 2,
+          "ans": ["Click Next until you reach the end of the code!"]
+        }
+      },
+      {
+        "image": "/FlowchartsBook/Kids_Menu.jpg",
+        "content": [
+          "Congratulations! You now know how to read flowcharts!",
+          "You also know how they relate to code and If-statements"
+        ]
       }
     ]
   }
-
-  
 ]
