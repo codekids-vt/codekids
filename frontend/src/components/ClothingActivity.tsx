@@ -110,18 +110,16 @@ export function ClothingActivity({
                 className={`max-w-100 max-h-100 rounded-md absolute ${
                   currentElement === "Bow" || currentElement === "Glasses"
                     ? "scale-100 bottom-0"
-                      : currentElement === "Computer Sticker"
-                        ? "scale-50 absolute bottom-1/4" 
-                        : currentElement === "CoStar Logo" 
-                          ? "scale-100 bottom-10 absolute"
-                          : currentElement === "Water Bottle"
-                            ? "scale-75 bottom-28 left-24"
-                            : currentElement === "Laptop"
-                              ? "scale-50 bottom-32 right-9"
-                                : "scale-50"
+                    : currentElement === "Computer Sticker"
+                      ? "scale-50 absolute bottom-1/4"
+                      : currentElement === "CoStar Logo"
+                        ? "scale-100 bottom-10 absolute"
+                        : currentElement === "Water Bottle"
+                          ? "scale-75 bottom-28 left-24"
+                          : currentElement === "Laptop"
+                            ? "scale-50 bottom-32 right-9"
+                            : "scale-50"
                 }`}
-              
-
                 width={props.width || 400}
                 height={props.height || 500}
               />

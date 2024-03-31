@@ -10,7 +10,6 @@
     "@types/react-dom": "^18.2.18",
     "blockly": "^10.3.1",
     "fs": "^0.0.1-security",
-    "gray-matter": "^4.0.3",
     "path": "^0.12.7",
     "prettier": "^3.2.5",
     "prismjs": "^1.29.0",
@@ -18,14 +17,12 @@
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",
     "react-error-boundary": "^4.0.13",
+    "react-markdown": "^9.0.1",
     "react-router-dom": "^6.22.0",
     "react-scripts": "5.0.1",
     "react-simple-code-editor": "^0.13.1",
     "react-use": "^17.5.0",
     "reagraph": "^4.15.10",
-    "rehype-stringify": "^10.0.0",
-    "remark-parse": "^11.0.0",
-    "remark-rehype": "^11.1.0",
     "typescript": "^4.9.5",
     "unified": "^11.0.4",
     "use-sound": "^4.0.1",
@@ -57,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.12",
     "openapi-typescript-codegen": "^0.27.0",
     "tailwind": "^4.0.0"
   }

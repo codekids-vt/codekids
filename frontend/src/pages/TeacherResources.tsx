@@ -11,7 +11,7 @@ export default function ActivityPostList() {
       title: "Lego I/O",
       author: "John Doe",
       blurb: "An input/output exercise using Legos.",
-      link: "/lego-sort.md",
+      link: "/article/lego",
     },
     {
       image:
