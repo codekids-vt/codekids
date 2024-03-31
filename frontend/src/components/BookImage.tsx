@@ -28,6 +28,7 @@ import { SelectImageActivity } from "./SelectImage";
 import BinaryConverter from "./BinaryConverter";
 import { CostarColoring } from "./CostarColoring";
 import { ElementPlacement } from "./Computer_IO";
+import { ClothingActivity } from "./ClothingActivity";
 
 export function BookImage({
   image,
@@ -124,6 +125,9 @@ export function BookImage({
       )}
       {image === "BinaryConverter" && (
         <BinaryConverter props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "ClothingActivity" && (
+        <ClothingActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );

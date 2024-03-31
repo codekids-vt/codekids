@@ -121,4 +121,18 @@ export const editorDefaults: { [key: string]: any } = {
     command: "Type the Colors over these boxes",
     "": "/help/HokieBirdColoring_Help.png",
   },
+  ClothingActivity: {
+    showIOLabels: true,
+    options: [
+      {
+        text: "Bow",
+        image: "/Co-Star_InputOutputBook/justHeadband.png",
+      },
+      {
+        text: "Glasses",
+        image: "/Co-Star_InputOutputBook/justGlasses.png",
+      },
+    ],
+    baseLayer: "/Co-Star_InputOutputBook/baseAvatar.png",
+  },
 };
