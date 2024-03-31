@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Background from "../components/Background";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -14,21 +14,16 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState<BookCategory | null>(
     null,
   );
+  const [timerHandle, setTimerHandle] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     playSound();
   }, [playSound]);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
+  const loadBookResults = useCallback(
+    (category: BookCategory | null, query: string | null) => {
       setLoading(true);
-      BooksService.searchBooksBooksGet(
-        selectedCategory,
-        null,
-        null,
-        true,
-        query,
-      )
+      BooksService.searchBooksBooksGet(category, null, null, true, query)
         .then((response) => {
           setResults(response);
           setLoading(false);
@@ -37,10 +32,13 @@ export default function HomePage() {
           console.error(error);
           setLoading(false);
         });
-    }, 1000);
+    },
+    [setResults, setLoading],
+  );
 
-    return () => clearTimeout(timeout);
-  }, [query, selectedCategory, setResults, setLoading]);
+  useEffect(() => {
+    loadBookResults(null, null);
+  }, [loadBookResults]);
 
   return (
     <>
@@ -86,7 +84,16 @@ export default function HomePage() {
             </svg>
             <input
               placeholder="Search for a book"
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                if (timerHandle) {
+                  clearTimeout(timerHandle);
+                }
+                const handle = setTimeout(() => {
+                  loadBookResults(selectedCategory, query);
+                }, 500);
+                setTimerHandle(handle);
+              }}
               value={query}
               className="w-full px-4 bg-transparent outline-none text-xl"
               type="text"
@@ -97,9 +104,10 @@ export default function HomePage() {
               <button
                 key={category}
                 onClick={() => {
-                  setSelectedCategory(
-                    category === selectedCategory ? null : category,
-                  );
+                  const newSelectedCategory =
+                    selectedCategory === category ? null : category;
+                  setSelectedCategory(newSelectedCategory);
+                  loadBookResults(newSelectedCategory, query);
                 }}
                 className={`${
                   selectedCategory === category
