@@ -271,12 +271,17 @@ function ImageTypeEditor({
             )
           ) {
             setTempImageType(e.target.value);
-            setTempProps(
-              JSON.stringify(editorDefaults[e.target.value], null, 2),
-            );
+            if (e.target.value === "Image") {
+              setTempProps("{}");
+            } else {
+              setTempProps(
+                JSON.stringify(editorDefaults[e.target.value], null, 2),
+              );
+            }
           }
         }}
       >
+        <option value="Image">Image</option>
         {Object.keys(editorDefaults).map((type, i) => (
           <option key={i} value={type}>
             {type}
