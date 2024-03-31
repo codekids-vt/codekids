@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "Book" ADD COLUMN     "coverImage" TEXT,
+ADD COLUMN     "ownerId" INTEGER NOT NULL DEFAULT 1,
+ADD COLUMN     "published" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "readyForPublish" BOOLEAN NOT NULL DEFAULT false;
+
+-- AddForeignKey
+ALTER TABLE "Book" ADD CONSTRAINT "Book_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

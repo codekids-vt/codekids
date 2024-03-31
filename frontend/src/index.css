@@ -27,6 +27,36 @@
     drop-shadow(0 0 0 gold) drop-shadow(0 0 0 gold);
 }
 
+.img-dark_blue {
+  filter: opacity(0.1) drop-shadow(0 0 0 rgb(0, 84, 166))
+    drop-shadow(0 0 0 rgb(0, 84, 166)) drop-shadow(0 0 0 rgb(0, 84, 166))
+    drop-shadow(0 0 0 rgb(0, 84, 166));
+}
+
+.img-medium_blue {
+  filter: opacity(0.1) drop-shadow(0 0 0 rgb(0, 176, 230))
+    drop-shadow(0 0 0 rgb(0, 176, 230)) drop-shadow(0 0 0 rgb(0, 176, 230))
+    drop-shadow(0 0 0 rgb(0, 176, 230));
+}
+
+.img-golden_yellow {
+  filter: opacity(0.1) drop-shadow(0 0 0 rgb(255, 194, 14))
+    drop-shadow(0 0 0 rgb(255, 194, 14)) drop-shadow(0 0 0 rgb(255, 194, 14))
+    drop-shadow(0 0 0 rgb(255, 194, 14));
+}
+
+.img-light_blue {
+  filter: opacity(0.1) drop-shadow(0 0 0 rgb(157, 220, 249))
+    drop-shadow(0 0 0 rgb(157, 220, 249)) drop-shadow(0 0 0 rgb(157, 220, 249))
+    drop-shadow(0 0 0 rgb(157, 220, 249));
+}
+
+.img-darkest_black {
+  filter: opacity(0.1) drop-shadow(0 0 0 rgb(0, 0, 0))
+    drop-shadow(0 0 0 rgb(0, 0, 0)) drop-shadow(0 0 0 rgb(0, 0, 0))
+    drop-shadow(0 0 0 rgb(0, 0, 0));
+}
+
 .img- {
   filter: opacity(0) drop-shadow(0 0 0 white);
 }

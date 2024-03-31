@@ -27,8 +27,8 @@ export function MultipleConditions({
 
   const code =
     'my_money = 7\npepperoni_price = 11\nsalad_price = 8\nburger_price = 5\nif my_money >= pepperoni_price:\n\tprint("Great! You can buy a pepperoni pizza!")\n' +
-    'else if my_money >= salad_price:\n\tprint("Great! You have enough money to buy a healthy green salad!")\n' +
-    'else if my_money >= burger_price:\n\tprint("Great! You can buy a delicious bacon & beef burger!")\n' +
+    'elif my_money >= salad_price:\n\tprint("Great! You have enough money to buy a healthy green salad!")\n' +
+    'elif my_money >= burger_price:\n\tprint("Great! You can buy a delicious bacon & beef burger!")\n' +
     "else:\n\tprint(\"Sadly, you don't have enough money to buy, whether it's a pepperoni pizza or a green salad or a burger.\")\n \n# End of program";
 
   React.useEffect(() => {

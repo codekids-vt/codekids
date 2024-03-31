@@ -1,18 +1,32 @@
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { AccountType } from "../api";
 
 interface NavLinkRoute {
   text: string;
   href: string;
 }
 
-const navbarLinks: readonly NavLinkRoute[] = [
+const baseLinks: readonly NavLinkRoute[] = [
   {
     text: "Home",
     href: "/",
   },
   {
-    text: "Activities",
-    href: "/activities/1",
+    text: "About Us",
+    href: "/about_us",
+  },
+];
+
+const teacherLinks: readonly NavLinkRoute[] = [
+  ...baseLinks,
+  {
+    text: "Teacher Resources",
+    href: "/teacher_resources",
+  },
+  {
+    text: "Book Editor",
+    href: "/edit_books",
   },
 ];
 
@@ -36,10 +50,14 @@ function NavButton(route: NavLinkRoute) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { user, logout } = useAuth();
+
+  const navLinks =
+    user?.type === AccountType.TEACHER ? teacherLinks : baseLinks;
 
   return (
     <header className={`top-0 sticky w-full px-2 z-[100]`}>
-      <div className="container mx-auto sm:flex justify-between">
+      <div className="flex flex-row justify-between relative h-[60px]">
         <div className="flex flex-row items-center justify-between py-1 sm:py-0">
           <a href="/">
             <img
@@ -80,49 +98,46 @@ export default function Navbar() {
           ${open ? "block" : "hidden"}
           sm:block my-auto  sm:py-0
           rounded-b-md font-semibold
+          absolute left-1/2 transform -translate-x-1/2
         `}
         >
           <ul className="tablet:mx-auto sm:flex sm:items-center text-center text-lg">
-            {navbarLinks.map((route, i) => (
+            {navLinks.map((route, i) => (
               <NavButton {...route} key={`nav-${i}`} />
             ))}
           </ul>
         </nav>
 
-        <a className="my-auto" href="/login">
-          <p
-            className={`
+        {!user ? (
+          <a className="my-auto" href="/login">
+            <p
+              className={`
             px-3 py-2
             text-neutral-100 text-center text-sm bg-primary-green rounded-md
-            transition-shadow duration-200 shadow-black/40 shadow-none
+            transition-shadow duration-200
             hover:shadow-black/20 hover:shadow-md
           `}
-          >
-            Log in
-          </p>
-        </a>
+            >
+              Log in
+            </p>
+          </a>
+        ) : (
+          <div className="flex flex-row p-4 gap-2 items-center">
+            <div className="div text-xl font-semibold">Hi {user.name}!</div>
+            <button
+              onClick={logout}
+              className={`
+              px-3 py-2 bg-primary-green
+              text-neutral-100 text-center text-sm rounded-md
+              transition-shadow duration-200
+              hover:shadow-black/20 hover:shadow-md
+            `}
+            >
+              Log out
+            </button>
+          </div>
+        )}
       </div>
     </header>
   );
 }
-
-/*
-<li key="nav-play" className={`
-  inline-block px-3 py-2 ml-2
-  rounded-md bg-lime-500 outline outline-1 outline-lime-600/60
-  transition-shadow duration-500 shadow-lime-500/20 shadow-md 
-  hover:shadow-lime-500/50 hover:shadow-lg
-`}>
-  Play now!
-</li>
-
-<Link href={href}>
-  <li className={`
-    inline-block p-2 m-1
-    transition-colors hover:bg-black/10 hover:text-lime-700
-    rounded-md outline-1 outline-neutral-300 hover:outline
-  `}>
-    {text}
-  </li>
-</Link>
-*/
