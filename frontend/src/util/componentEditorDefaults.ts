@@ -135,4 +135,12 @@ export const editorDefaults: { [key: string]: any } = {
     ],
     baseLayer: "/Co-Star_InputOutputBook/baseAvatar.png",
   },
+  BookRushHour: {
+    initialCars: [
+      { x: 0, y: 2, vertical: false, length: 2, color: "bg-red-500" },
+      { x: 4, y: 3, vertical: false, length: 2, color: "bg-blue-500" },
+      { x: 2, y: 2, vertical: true, length: 2, color: "bg-green-500" },
+    ],
+    solveToContinue: true,
+  },
 };
