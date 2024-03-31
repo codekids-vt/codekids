@@ -112,9 +112,7 @@ export function FoodTruckActivity({
                 }
                 alt="option"
                 className={`max-w-100 max-h-100 rounded-md absolute ${
-                  currentElement === "Bow" || currentElement === "Glasses"
-                    ? "scale-100 bottom-10"
-                  : currentElement === "Ham" || currentElement === "Onions"
+                  currentElement === "Ham" || currentElement === "Onions"
                     ? "scale-75 bottom-20"
                     : currentElement === "Bacon"
                       ? "scale-100 scale-x-75 scale-y-125 bottom-20"
