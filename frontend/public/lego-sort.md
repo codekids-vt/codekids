@@ -1,19 +1,3 @@
----
-author: John Doe
-title: Lego I/O
-blurb: An input/output exercise using Legos.
-postId: 1
-image: /lego-sort-example-clumping.png
-tags:
-  - Groupwork
-  - I/O
-  - Counting
-  - Medium
-  - Hard
-  - Medium Length
-  - Long
----
-
 # Simulating I/O with LEGOs
 
 This proposal details an adaptation of the KIDATA Computer Science Standards 4.2 LEGO stacking game idea in an in-person format.
@@ -40,8 +24,7 @@ Participants will be provided a stack of LEGOs of varying color (all groups rece
 
 ![LEGO Reference Image Example](/lego-sort-reference-sample.png)
 
-<center>An example of a reference image using three LEGO colors.</center>
-<br />
+An example of a reference image using three LEGO colors.
 
 If an exchange key is not provided to groups, participants will have to consume steps to figure out the rules of the exchange. This encourages group members to engage with each other.
 Groups may either be entrusted to track themselves, or a chaperone may be assigned to each group to track their actions for them and provide healthy guidance throughout the activity. Steps consist of:
@@ -64,8 +47,7 @@ It is also encouraged to later allow clumping, the process where a single exchan
 
 ![LEGO Exchange Clumping](/lego-sort-example-clumping.png)
 
-<center>An example of clumping. Here, three coloring rules were compressed into one.</center>
-<br />
+An example of clumping. Here, three coloring rules were compressed into one.
 
 The exchange may also be presented in a finite manner. In this case, students should be eager to figure out the rules of the game as soon as possible before their allotted pieces are gone. In the case that a group cannot create the LEGO stack as presented in the reference image, they are automatically given a certain amount of steps. Such a policy may have some caveats, like groups hoarding LEGOs, so it must be carefully doctored.
 
@@ -75,20 +57,17 @@ Let's say we are provided the following stack using three colors of LEGOs and ex
 
 ![LEGO Provided Stack](/lego-sort-example-reference.png)
 
-<center>Provided LEGO stack.</center>
-<br />
+Provided LEGO stack.
 
 ![LEGO Exchange Key](/lego-sort-example-exchange.png)
 
-<center>LEGO exchange key (not presented to participants).</center>
-<br />
+LEGO exchange key (not presented to participants).
 
 ...and we need to convert our LEGO stack to look like the following reference image:
 
 ![LEGO Reference Image](/lego-sort-example-target.png)
 
-<center>Provided LEGO reference image.</center>
-<br />
+Provided LEGO reference image.
 
 Here, we allot 3 steps to discover the rule. Ideally, this would mean someone provides a red LEGO to the exchange. Via the key, the exchange provides a blue LEGO. This same blue LEGO can put into the exchange again to yield a yellow, and likewise for the yellow. This covers all bases for the exchange rules.
 
@@ -102,15 +81,13 @@ Since clumping is not allowed, we must present LEGOs in groups of the same color
 
 ![Splitting Example](/lego-sort-splitting.png)
 
-<center>An example of splitting. Each division counts as a step, so 2 steps were made.</center>
-<br />
+An example of splitting. Each division counts as a step, so 2 steps were made.
 
 To get our reference image, we may follow a process similar to the following:
 
 ![Splitting Solution](/lego-sort-example-splits.png)
 
-<center>A sample solution using splitting.</center>
-<br />
+A sample solution using splitting.
 
 We were only allowed one split at a time, each consuming a step. This solution was relatively simple due to the minimal amount of colors and LEGOs, but prohibiting clumping may introduce excess complexity to solutions, causing participants to develop lengthy algorithms. Introducing this complexity may also better engage critical thinking and teamwork skills, which may lead groups to come up with more unique solutions.
 
@@ -120,8 +97,7 @@ Here, the solution is much more simple. Since we have identified the exchange ru
 
 ![Splitting Solution](/lego-sort-example-clumping.png)
 
-<center>A sample solution using clumping.</center>
-<br />
+A sample solution using clumping.
 
 Introducing clumping does not eliminate the concept of splitting, but may simplify certain operations by a significant margin. Allowing both is ideal, providing participants more of a sandbox-like experience; however, it may be wise to use these two examples as an introduction to each of the concepts.
 
