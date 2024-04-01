@@ -5,6 +5,7 @@ import RushHour from "./RushHour/RushHour";
 type Props = {
   initialCars: Car[];
   solveToContinue: boolean;
+  exitImage?: string;
 };
 
 export default function BookRushHour({
@@ -14,7 +15,7 @@ export default function BookRushHour({
   props: Props | any;
   setAllowNext: Dispatch<SetStateAction<boolean>>;
 }) {
-  const { initialCars, solveToContinue } = props;
+  const { initialCars, solveToContinue, exitImage } = props;
 
   useEffect(() => {
     setAllowNext(!solveToContinue);
@@ -22,14 +23,32 @@ export default function BookRushHour({
 
   return (
     <div className="w-full h-full flex flex-column justify-center items-center">
-      <RushHour
-        initialCars={initialCars}
-        onCompletion={() => {
-          if (solveToContinue) {
-            setAllowNext(true);
-          }
-        }}
-      />
+      <div className="flex flex-row items-start">
+        <RushHour
+          initialCars={initialCars}
+          onCompletion={() => {
+            if (solveToContinue) {
+              setAllowNext(true);
+            }
+          }}
+        />
+        {exitImage &&
+          (exitImage == "Exit" ? (
+            <div className="ml-4 pt-32">
+              <div className="bg-red-500 text-white text-center rounded-xl border border-white w-[63px]">
+                Exit
+              </div>
+            </div>
+          ) : (
+            <img
+              src={exitImage}
+              alt="Exit"
+              height="63"
+              width="63"
+              className="ml-4 pt-32"
+            />
+          ))}
+      </div>
     </div>
   );
 }

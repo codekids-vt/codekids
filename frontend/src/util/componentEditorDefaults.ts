@@ -142,5 +142,6 @@ export const editorDefaults: { [key: string]: any } = {
       { x: 2, y: 2, vertical: true, length: 2, color: "bg-green-500" },
     ],
     solveToContinue: true,
+    exitImage: "Exit",
   },
 };
