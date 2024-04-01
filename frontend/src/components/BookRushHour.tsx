@@ -33,7 +33,7 @@ export default function BookRushHour({
           }}
         />
         {exitImage &&
-          (exitImage == "Exit" ? (
+          (exitImage === "Exit" ? (
             <div className="ml-4 pt-32">
               <div className="bg-red-500 text-white text-center rounded-xl border border-white w-[63px]">
                 Exit
