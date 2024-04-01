@@ -4,7 +4,7 @@
 /* eslint-disable */
 import type { Book } from "../models/Book";
 import type { BookCategory } from "../models/BookCategory";
-import type { Page } from "../models/Page";
+import type { CreateBookRequest } from "../models/CreateBookRequest";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
@@ -13,12 +13,18 @@ export class BooksService {
    * Search Books
    * @param category
    * @param limit
+   * @param ownerId
+   * @param published
+   * @param query
    * @returns Book Successful Response
    * @throws ApiError
    */
   public static searchBooksBooksGet(
-    category: BookCategory | null,
-    limit: number = 10,
+    category?: BookCategory | null,
+    limit?: number | null,
+    ownerId?: number | null,
+    published?: boolean | null,
+    query?: string | null,
   ): CancelablePromise<Array<Book>> {
     return __request(OpenAPI, {
       method: "GET",
@@ -26,7 +32,29 @@ export class BooksService {
       query: {
         category: category,
         limit: limit,
+        owner_id: ownerId,
+        published: published,
+        query: query,
       },
+      errors: {
+        422: `Validation Error`,
+      },
+    });
+  }
+  /**
+   * Create Book
+   * @param requestBody
+   * @returns Book Successful Response
+   * @throws ApiError
+   */
+  public static createBookBooksPost(
+    requestBody: CreateBookRequest,
+  ): CancelablePromise<Book> {
+    return __request(OpenAPI, {
+      method: "POST",
+      url: "/books",
+      body: requestBody,
+      mediaType: "application/json",
       errors: {
         422: `Validation Error`,
       },
@@ -51,23 +79,24 @@ export class BooksService {
     });
   }
   /**
-   * Get Page
+   * Edit Book
    * @param bookId
-   * @param pageId
-   * @returns Page Successful Response
+   * @param requestBody
+   * @returns Book Successful Response
    * @throws ApiError
    */
-  public static getPagePagesBookIdPageIdGet(
+  public static editBookBooksBookIdPut(
     bookId: number,
-    pageId: number,
-  ): CancelablePromise<Page> {
+    requestBody: CreateBookRequest,
+  ): CancelablePromise<Book> {
     return __request(OpenAPI, {
-      method: "GET",
-      url: "/pages/{book_id}/{page_id}",
+      method: "PUT",
+      url: "/books/{book_id}",
       path: {
         book_id: bookId,
-        page_id: pageId,
       },
+      body: requestBody,
+      mediaType: "application/json",
       errors: {
         422: `Validation Error`,
       },

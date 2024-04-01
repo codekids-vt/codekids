@@ -30,6 +30,15 @@ export default function AboutUsPage() {
             engaging environment for kids to learn how to code. We hope you
             enjoy our resources and have fun learning how to code!
           </p>
+          <p className="text-lg mt-5">
+            Created by Dr. Sally Hamouda and a group of graduate and
+            undergraduate students and staff members at Virginia Tech including
+            Noah Provenzano, Namita Shashidar, Amal Alamri, Khoulood Alharthi,
+            Heewoon Bae, Thomas Deverin, Janna Helvey, Gabriel Holder, Mahesh
+            Maddhuru, Varsha Manickam, Phu Nguyen, Virginia Pettit, Nikhil Ram,
+            Labiba Sajjad, Michael Shi, Matthew Soohoo, Apoorva Srivastava,
+            Ethan Triggiano, Dhruv Varshney, Zannah Ziew, and Tyler Zhang.
+          </p>
           <h1 className="text-4xl font-bold mt-10">Featured Student Stories</h1>
           {studentVideos.map((video, i) => (
             <div key={i} className="flex flex-col gap-2">
