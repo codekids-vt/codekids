@@ -57,8 +57,10 @@ export function HokieBirdColoring({
   const { user } = useAuth();
   const [answer, setAnswer] = useState("");
   const [startTime, setTime] = useState(0);
-  setTime(new Date().getTime());
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
+  useEffect(() => {
+    setTime(new Date().getTime());
+  }, []);
   const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
   const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
     volume: 0.5,
