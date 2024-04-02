@@ -5,9 +5,7 @@ from fastapi import HTTPException
 from src.db import db
 from prisma.models import User
 from minio import Minio
-from minio.error import S3Error
 from src.auth import get_user
-from pydantic import BaseModel
 from io import BytesIO
 
 image_router = APIRouter()
@@ -25,7 +23,6 @@ async def upload_image(
     try:
         contents = await image.read()
         temp_file = BytesIO(contents)
-        
         name = f"{name}.jpg"
         client.put_object(
             bucket_name="test-bucket",
