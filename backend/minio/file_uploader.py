@@ -10,7 +10,7 @@ def main():
     src = "test.txt"
 
     bucket = "test-bucket"
-    dest = "my-test-file.txt"
+    dest = "test-file.txt"
     found = client.bucket_exists(bucket)
     if not found:
         client.make_bucket(bucket)

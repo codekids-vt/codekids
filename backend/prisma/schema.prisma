@@ -9,6 +9,12 @@ datasource db {
   url      = env("DATABASE_PRISMA_URL") // uses connection pooling
 }
 
+model Image {
+  id        Int      @id @default(autoincrement())
+  name      String
+  image_url String
+}
+
 model User {
   id            Int             @id @default(autoincrement())
   token         String
