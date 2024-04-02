@@ -29,6 +29,7 @@ import BinaryConverter from "./BinaryConverter";
 import { CostarColoring } from "./CostarColoring";
 import { ElementPlacement } from "./Computer_IO";
 import { ClothingActivity } from "./ClothingActivity";
+import BookRushHour from "./BookRushHour";
 
 export function BookImage({
   image,
@@ -128,6 +129,9 @@ export function BookImage({
       )}
       {image === "ClothingActivity" && (
         <ClothingActivity props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "BookRushHour" && (
+        <BookRushHour props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );
