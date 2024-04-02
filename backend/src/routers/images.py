@@ -20,14 +20,14 @@ client = Minio(
 
 @image_router.post("/images", tags=["images"])
 async def upload_image(
-    user: Annotated[User, Depends(get_user)], name: str, image: UploadFile = File(...)
+    user: Annotated[User, Depends(get_user)], image: UploadFile = File(...)
 ):
 
     try:
         bucket_name = os.getenv("MINIO_DEFAULT_BUCKET")
+        name = image.filename
         contents = await image.read()
         temp_file = BytesIO(contents)
-        name = f"{name}.jpg"
         client.put_object(
             bucket_name=bucket_name,
             object_name=name,
@@ -39,7 +39,6 @@ async def upload_image(
         temp_file.close()
         endpoint = os.getenv("MINIO_ENDPOINT")
         image_url = f"{endpoint}/{bucket_name}/{name}"
-        print(image_url)
         image_obj = await db.image.create(
             {
                 "name": name,
