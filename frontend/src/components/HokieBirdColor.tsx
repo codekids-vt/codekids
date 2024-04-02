@@ -56,7 +56,7 @@ export function HokieBirdColoring({
   });
   const { user } = useAuth();
   const startTime = new Date().getTime();
-  let answer = "";
+  const [answer, setAnswer] = useState("");
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
   const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
@@ -98,7 +98,7 @@ export function HokieBirdColoring({
         ...prevColors,
         [partToColor]: color,
       }));
-      answer = color;
+      setAnswer(color)
       setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
       setCurrentColorIndex(currentColorIndex + 1);
     }
@@ -113,7 +113,7 @@ export function HokieBirdColoring({
   function HokieBirdColors() {
     const handlePart = (index: number, value: string) => {
       const val = value.toLowerCase();
-      answer = val;
+      setAnswer(val)
       if (availableParts.includes(val)) {
         const updatedParts = [...part];
         updatedParts[index] = val;
@@ -132,7 +132,7 @@ export function HokieBirdColoring({
         !availableParts.includes(value) &&
         value !== ""
       ) {
-        answer = value;
+        setAnswer(value)
         setCurrentAlert({
           type: AlertType.FAILURE,
           message: "That isn't quite one of the options. Try again.",
@@ -142,7 +142,7 @@ export function HokieBirdColoring({
 
     const handleColorChange = (part: string, value: string) => {
       const val = value.toLowerCase();
-      answer = val;
+      setAnswer(val)
       if (availableParts.includes(val)) {
         setCurrentAlert({
           type: AlertType.FAILURE,
@@ -177,7 +177,7 @@ export function HokieBirdColoring({
         temp,
       };
       setColors(newColors);
-      answer = color;
+      setAnswer(color)
       setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
     }
 
