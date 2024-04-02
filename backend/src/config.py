@@ -14,6 +14,9 @@ class Settings(BaseSettings):
     MINIO_ROOT_PASSWORD: str
     MINIO_DEFAULT_BUCKET: str
     MINIO_ENDPOINT: str
+    MINIO_SECRET_KEY: str
+    MINIO_ROOT_PASSWORD: str
+    MINIO_ACCESS_KEY: str
 
     class Config:
         env_file = f".env"

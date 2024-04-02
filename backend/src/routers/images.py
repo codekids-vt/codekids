@@ -3,17 +3,18 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, UploadFile, File
 from fastapi import HTTPException
 from src.db import db
-from prisma.models import User
+from prisma.models import User, Image
 from minio import Minio
 from src.auth import get_user
+from src.config import settings
 from io import BytesIO
 
 image_router = APIRouter()
 
 client = Minio(
-    os.getenv("MINIO_ENDPOINT"),
-    access_key=os.getenv("MINIO_ROOT_USER"),
-    secret_key=os.getenv("MINIO_ROOT_PASSWORD"),
+    settings.MINIO_ENDPOINT,
+    access_key=settings.MINIO_ROOT_USER,
+    secret_key=settings.MINIO_ROOT_PASSWORD,
     secure=False,
 )  # Secure=False indicates the connection is not TLS/SSL
 
@@ -21,11 +22,11 @@ client = Minio(
 @image_router.post("/images", tags=["images"])
 async def upload_image(
     user: Annotated[User, Depends(get_user)], image: UploadFile = File(...)
-):
+) -> Image:
 
     try:
-        bucket_name = os.getenv("MINIO_DEFAULT_BUCKET")
-        name = image.filename
+        bucket_name = settings.MINIO_DEFAULT_BUCKET
+        name = image.filename or f"image-{image.content_type}"
         contents = await image.read()
         temp_file = BytesIO(contents)
         client.put_object(
@@ -33,11 +34,11 @@ async def upload_image(
             object_name=name,
             data=temp_file,
             length=len(contents),
-            content_type=image.content_type,
+            content_type=image.content_type or "application/octet-stream",
         )
 
         temp_file.close()
-        endpoint = os.getenv("MINIO_ENDPOINT")
+        endpoint = settings.MINIO_ENDPOINT
         image_url = f"{endpoint}/{bucket_name}/{name}"
         image_obj = await db.image.create(
             {
@@ -52,7 +53,7 @@ async def upload_image(
 
 
 @image_router.get("/image/{image_id}", tags=["images"])
-async def get_image(image_id: int):
+async def get_image(image_id: int) -> Image:
     try:
         image = await db.image.find_unique(where={"id": image_id})
         if image is None:
