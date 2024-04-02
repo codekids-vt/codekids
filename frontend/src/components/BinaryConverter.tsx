@@ -30,7 +30,11 @@ export default function BinaryConverter({
 
     // Calculate the binary conversion steps and sum
     if (binary.match(/^[01]+$/)) {
-      const steps = binary.split('').reverse().map((digit, index) => digit === "1" ? Math.pow(2, index) : null).filter((n): n is number => n !== null);
+      const steps = binary
+        .split("")
+        .reverse()
+        .map((digit, index) => (digit === "1" ? Math.pow(2, index) : null))
+        .filter((n): n is number => n !== null);
       const sum = steps.reduce((acc, val) => acc + val, 0);
       setConversionSteps(`${steps.join(" + ")} = ${sum}`);
     } else {
@@ -53,12 +57,14 @@ export default function BinaryConverter({
         className="w-1/2 p-2 border-2 border-gray-300 rounded-md"
       />
 
-    <div className="py-2">Your binary number in decimal is: </div>
-        <div className="p-2">
-            {dec === undefined || isNaN(dec) ? "Invalid" : dec}
-        </div>
+      <div className="py-2">Your binary number in decimal is: </div>
       <div className="p-2">
-        {dec !== undefined && !isNaN(dec) && conversionSteps ? `Conversion: ${conversionSteps}` : ""}
+        {dec === undefined || isNaN(dec) ? "Invalid" : dec}
+      </div>
+      <div className="p-2">
+        {dec !== undefined && !isNaN(dec) && conversionSteps
+          ? `Conversion: ${conversionSteps}`
+          : ""}
       </div>
     </div>
   );
