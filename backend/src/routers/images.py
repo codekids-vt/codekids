@@ -1,3 +1,4 @@
+import os
 from typing import Annotated
 from fastapi import APIRouter, Depends, UploadFile, File
 from fastapi import HTTPException
@@ -10,7 +11,10 @@ from io import BytesIO
 image_router = APIRouter()
 
 client = Minio(
-    "127.0.0.1:9000", access_key="minioadmin", secret_key="minioadmin", secure=False
+    os.getenv("MINIO_ENDPOINT"),
+    access_key=os.getenv("MINIO_ROOT_USER"),
+    secret_key=os.getenv("MINIO_ROOT_PASSWORD"),
+    secure=False,
 )  # Secure=False indicates the connection is not TLS/SSL
 
 
@@ -18,12 +22,14 @@ client = Minio(
 async def upload_image(
     user: Annotated[User, Depends(get_user)], name: str, image: UploadFile = File(...)
 ):
+
     try:
+        bucket_name = os.getenv("MINIO_DEFAULT_BUCKET")
         contents = await image.read()
         temp_file = BytesIO(contents)
         name = f"{name}.jpg"
         client.put_object(
-            bucket_name="test-bucket",
+            bucket_name=bucket_name,
             object_name=name,
             data=temp_file,
             length=len(contents),
@@ -31,8 +37,9 @@ async def upload_image(
         )
 
         temp_file.close()
-
-        image_url = f"http://127.0.0.1:9000/test-bucket/{name}"
+        endpoint = os.getenv("MINIO_ENDPOINT")
+        image_url = f"{endpoint}/{bucket_name}/{name}"
+        print(image_url)
         image_obj = await db.image.create(
             {
                 "name": name,
