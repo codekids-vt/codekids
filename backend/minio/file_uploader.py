@@ -1,11 +1,11 @@
 from minio import Minio
 from minio.error import S3Error
 
-def main(): 
-    client = Minio("127.0.0.1:9000",
-               access_key="minioadmin",
-               secret_key="minioadmin",
-               secure=False)  # Secure=False indicates the connection is not TLS/SSL
+
+def main():
+    client = Minio(
+        "127.0.0.1:9000", access_key="minioadmin", secret_key="minioadmin", secure=False
+    )  # Secure=False indicates the connection is not TLS/SSL
 
     src = "test.txt"
 
@@ -19,12 +19,18 @@ def main():
         print("Bucket", bucket, "already exists")
 
     client.fput_object(
-        bucket, dest, src,
+        bucket,
+        dest,
+        src,
     )
     print(
-        src, "successfully uploaded as object",
-        dest, "to bucket", bucket,
+        src,
+        "successfully uploaded as object",
+        dest,
+        "to bucket",
+        bucket,
     )
+
 
 if __name__ == "__main__":
     try:

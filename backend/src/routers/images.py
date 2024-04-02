@@ -1,4 +1,3 @@
-
 from typing import Annotated
 from fastapi import APIRouter, Depends, UploadFile, File
 from fastapi import HTTPException
@@ -10,10 +9,9 @@ from io import BytesIO
 
 image_router = APIRouter()
 
-client = Minio("127.0.0.1:9000",
-               access_key="minioadmin",
-               secret_key="minioadmin",
-               secure=False)  # Secure=False indicates the connection is not TLS/SSL
+client = Minio(
+    "127.0.0.1:9000", access_key="minioadmin", secret_key="minioadmin", secure=False
+)  # Secure=False indicates the connection is not TLS/SSL
 
 
 @image_router.post("/images", tags=["images"])
@@ -29,11 +27,11 @@ async def upload_image(
             object_name=name,
             data=temp_file,
             length=len(contents),
-            content_type=image.content_type
+            content_type=image.content_type,
         )
-        
+
         temp_file.close()
-        
+
         image_url = f"http://127.0.0.1:9000/test-bucket/{name}"
         image_obj = await db.image.create(
             {
@@ -45,6 +43,7 @@ async def upload_image(
     except Exception as e:
         print(e)
         raise HTTPException(status_code=400, detail="Invalid image data")
+
 
 @image_router.get("/image/{image_id}", tags=["images"])
 async def get_image(image_id: int):
