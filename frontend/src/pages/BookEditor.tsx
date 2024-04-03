@@ -7,7 +7,6 @@ import Form, { IChangeEvent } from '@rjsf/core';
 import validator from '@rjsf/validator-ajv8'; 
 import { editorDefaults } from "../util/componentEditorDefaults";
 import ErrorBoundary from '../util/ErrorBoundary';
-import { error } from "console";
 import { BookPreview } from "../components/ActivityBookList";
 
 function PageNavigator({
@@ -245,7 +244,7 @@ function BookImageEditor({
         validator={validator}
       />
       <div className="h-1/2 max-h-80">
-        {!error && (
+        {!console.error && (
           <ErrorBoundary
             fallback={
               <div className="text-red-500">Error, try adjusting the props</div>
