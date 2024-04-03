@@ -1,5 +1,6 @@
 volumes:
   postgres-data:
+  minio_data:
 
 services:
   
@@ -12,3 +13,14 @@ services:
       - 5432:5432
     volumes:
       - postgres-data:/var/lib/postgresql/data
+  
+  minio:
+    image: quay.io/minio/minio
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - minio_data:/data
+    env_file:
+      - .env
+    command: server /data --console-address ":9001"
