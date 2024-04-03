@@ -3,7 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Book, BookCategory, BooksService, Page, PagesService, Question } from "../api";
 import { BookImage } from "../components/BookImage";
-import Editor from "@monaco-editor/react";
+import Form, { IChangeEvent } from '@rjsf/core';
+import validator from '@rjsf/validator-ajv8'; 
+import { editorDefaults } from "../util/componentEditorDefaults";
+import ErrorBoundary from '../util/ErrorBoundary';
+import { error } from "console";
+import { BookPreview } from "../components/ActivityBookList";
 
 function PageNavigator({
   pages,
