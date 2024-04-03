@@ -57,10 +57,10 @@ export function HokieBirdColoring({
   const { user } = useAuth();
   const [answer, setAnswer] = useState("");
   const [startTime, setTime] = useState(0);
-  const [currentColorIndex, setCurrentColorIndex] = useState(0);
   useEffect(() => {
     setTime(new Date().getTime());
   }, []);
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
   const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
     volume: 0.5,
@@ -84,15 +84,7 @@ export function HokieBirdColoring({
       playIncorrectSound();
       handleInteraction(answer, false, timeSpent, user?.id);
     }
-  }, [
-    currentAlert,
-    playCorrectSound,
-    playIncorrectSound,
-    AlertType,
-    startTime,
-    user,
-    answer,
-  ]);
+  }, [currentAlert, playCorrectSound, playIncorrectSound, AlertType]);
 
   const colorNextPart = (color: string) => {
     if (currentColorIndex < availableParts.length) {
@@ -116,10 +108,10 @@ export function HokieBirdColoring({
   function HokieBirdColors() {
     const handlePart = (index: number, value: string) => {
       const val = value.toLowerCase();
-      setAnswer(val);
       if (availableParts.includes(val)) {
         const updatedParts = [...part];
         updatedParts[index] = val;
+        setAnswer(val);
         setPart(updatedParts);
       } else if (availableColors.includes(val)) {
         setCurrentAlert({
@@ -145,7 +137,6 @@ export function HokieBirdColoring({
 
     const handleColorChange = (part: string, value: string) => {
       const val = value.toLowerCase();
-      setAnswer(val);
       if (availableParts.includes(val)) {
         setCurrentAlert({
           type: AlertType.FAILURE,
@@ -158,6 +149,7 @@ export function HokieBirdColoring({
       ) {
         const strippedValue = val.substring(1, val.length - 1);
         if (availableColors.includes(strippedValue) && part !== "") {
+          setAnswer(strippedValue);
           setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
           setColors((prevColors) => ({
             ...prevColors,
