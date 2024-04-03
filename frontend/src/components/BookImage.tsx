@@ -24,6 +24,12 @@ import { ChangingCondition } from "../components/MisconceptionComponents/Flowcha
 import { InputActivity } from "../components/InputActivity";
 import { FoodTruckActivity } from "../components/FoodTruckActivity";
 import { Page } from "../api";
+import { SelectImageActivity } from "./SelectImage";
+import BinaryConverter from "./BinaryConverter";
+import { CostarColoring } from "./CostarColoring";
+import { ElementPlacement } from "./Computer_IO";
+import { ClothingActivity } from "./ClothingActivity";
+import BookRushHour from "./BookRushHour";
 
 export function BookImage({
   image,
@@ -55,6 +61,12 @@ export function BookImage({
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && (
         <HokieBirdMap props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "CostarColoring" && (
+        <CostarColoring props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "Computer_IO" && (
+        <ElementPlacement props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "HokieBirdIfConditionActivity" && (
         <HokieBirdIfCondition props={page?.props} setAllowNext={setAllowNext} />
@@ -108,6 +120,18 @@ export function BookImage({
       )}
       {image === "FoodTruckActivity" && (
         <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "SelectImageActivity" && (
+        <SelectImageActivity props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "BinaryConverter" && (
+        <BinaryConverter props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "ClothingActivity" && (
+        <ClothingActivity props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "BookRushHour" && (
+        <BookRushHour props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );

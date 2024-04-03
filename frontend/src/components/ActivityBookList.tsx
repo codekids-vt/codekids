@@ -1,6 +1,6 @@
 import { Book } from "../api/models/Book";
 
-function BookPreview({
+export function BookPreview({
   BookData: book,
   linkPrefix,
   linkSuffix,
@@ -14,7 +14,7 @@ function BookPreview({
       <a href={`${linkPrefix}${book.id}${linkSuffix}`}>
         <div className="h-[325px] w-[275px] hover:shadow-2xl rounded-2xl hover:-translate-y-1">
           <img
-            src={book.bookCover}
+            src={book.bookCover ? book.bookCover : "/color_2.png"}
             width={275}
             height={280}
             alt="Book Background"
@@ -39,27 +39,46 @@ function BookPreview({
   );
 }
 
+function LoadingBookPreview() {
+  // same as book but gray and pulse tailwind
+  return (
+    <div className="h-[325px] w-[275px] relative">
+      <div className="h-[325px] w-[275px] rounded-2xl animate-pulse">
+        <div className="bg-gray-400 w-[275px] h-[280px] rounded-2xl" />
+      </div>
+    </div>
+  );
+}
+
 function BookPreviewList({
   pageBookData,
   linkPrefix,
   linkSuffix,
+  loading,
 }: {
   pageBookData: Book[];
-
   linkPrefix: string;
   linkSuffix: string;
+  loading: boolean;
 }) {
+  const emptyBookData = Array.from({ length: 6 }, () => ({}));
   return (
-    <ul className="[&>*:not(:last-child)]:mb-2 flex-wrap flex items-center justify-center">
-      {pageBookData.map((BookData: Book, i: number) => (
-        <li key={`BookData-${i}`} className="pl-3">
-          <BookPreview
-            BookData={BookData}
-            linkPrefix={linkPrefix}
-            linkSuffix={linkSuffix}
-          />
-        </li>
-      ))}
+    <ul className="flex-wrap gap-2 flex items-center justify-center">
+      {!loading
+        ? pageBookData.map((BookData: Book, i: number) => (
+            <li key={`BookData-${i}`} className="pl-3">
+              <BookPreview
+                BookData={BookData}
+                linkPrefix={linkPrefix}
+                linkSuffix={linkSuffix}
+              />
+            </li>
+          ))
+        : emptyBookData.map((_, i) => (
+            <li key={`BookData-${i}`} className="pl-3">
+              <LoadingBookPreview />
+            </li>
+          ))}
     </ul>
   );
 }
@@ -68,10 +87,12 @@ export default function ActivityBookList({
   books,
   linkPrefix,
   linkSuffix,
+  loading,
 }: {
   books: Book[];
   linkPrefix: string;
   linkSuffix: string;
+  loading?: boolean;
 }) {
   return (
     <>
@@ -80,6 +101,7 @@ export default function ActivityBookList({
           pageBookData={books}
           linkPrefix={linkPrefix}
           linkSuffix={linkSuffix}
+          loading={loading === undefined ? false : loading}
         />
       </section>
     </>

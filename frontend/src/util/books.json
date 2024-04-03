@@ -2,6 +2,7 @@
   {
     "BookId": 1,
     "bookCover": "/color_2.png",
+    "cover": "/HokieBird.png",
     "title": "Variables With Coloring",
     "blurb": "Learn about different variables types, coloring the Hokie Bird!",
     "author": "Dev",
@@ -59,6 +60,7 @@
   {
     "BookId": 2,
     "bookCover": "/color_3.png",
+    "cover": "/Maze/lost_hokiebird.png",
     "title": "Hokie Bird is Lost!",
     "blurb": "Learn how to communicate specific instructions to the Hokie Bird to help him find his way!",
     "author": "Dev",
@@ -71,7 +73,7 @@
           "You will drag and drop commands to help HokieBird make it to lane stadium!",
           "Direct the HokieBird across campus with the following commands in blue!"
         ],
-        "image": "/Maze/SadHokieBird.png"
+        "image": "/Maze/lost_hokiebird.png"
       },
       {
         "content": [
@@ -82,7 +84,7 @@
           "Turning left and right is similar with the move_left() and move_right() commands.",
           "Placing any of these commands in the command boxes will move the HokieBird in order of the commands, if they are valid."
         ],
-        "image": "/Maze/SadHokieBird.png"
+        "image": "/Maze/you_helping_hokiebird.png"
       },
       {
         "content": [
@@ -410,8 +412,9 @@
     "BookId": 10,
     "title": "Food Truck Input/Output ",
     "bookCover": "/lighter_orange.png",
+    "cover": "/io_book/pizza_food_truck.png",
     "blurb": "Learn about Input and output!",
-    "author": "Prapti",
+    "author": "Prapti, Gabriel H",
     "gradeRange": "K-2",
     "category": "BEGINNER",
     "pages": [
@@ -420,83 +423,94 @@
           "Welcome to Foodie Adventures!",
           "Get ready for a delicious experience where you're in charge of creating your own magical meals!"
         ],
-        "image": "/io_book/burger_food_truck.png"
+        "image": "/io_book/pizza_food_truck.png"
       },
       {
         "content": [
           "Time to make your meal uniquely yours! ",
-          "Explore the menu and tap on the items you'd like to order"
+          "Explore the menu and tap on the items to add them to the pizza."
         ],
-        "image": "/io_book/burger_food_truck.png"
+        "image": "/io_book/pizza_food_truck.png"
       },
       {
-        "content": ["Choose a meal!", "Input your choice to get it as output."],
+        "content": [
+          "Choose the toppings to make a ham and pineapple pizza",
+          "Input your toppings to get it as output."
+        ],
         "image": "FoodTruckActivity",
         "game": "FoodTruckActivity",
         "props": {
           "showIOLabels": true,
           "options": [
             {
-              "text": "Hamburger",
-              "image": "/io_book/hamburger.png"
+              "text": "Onions",
+              "image": "/io_book/diced_onions_pizza.png"
             },
             {
-              "text": "Cheeseburger",
-              "image": "/io_book/cheeseburger.png"
+              "text": "Pineapple",
+              "image": "/io_book/pineapple_pizza.png"
+            },
+            {
+              "text": "Ham",
+              "image": "/io_book/diced_ham_pizza.png"
             }
           ]
         }
       },
       {
-        "content": ["Let's choose a side!"],
+        "content": ["Let's make a new Spinach and Onion Pizza!"],
         "image": "FoodTruckActivity",
         "game": "FoodTruckActivity",
         "props": {
           "showIOLabels": true,
           "options": [
             {
-              "text": "French Fries",
-              "image": "/io_book/fries.png"
+              "text": "Spinach",
+              "image": "/io_book/spinach_pizza.png"
             },
             {
-              "text": "Chicken Nuggets",
-              "image": "/io_book/nuggets.png"
+              "text": "Onions",
+              "image": "/io_book/diced_onions_pizza.png"
+            },
+            {
+              "text": "Bacon",
+              "image": "/io_book/bacon_pizza.png"
             }
           ]
         }
       },
       {
-        "content": ["Let's choose another side!"],
+        "content": ["Let's make another Veggie Pizza!"],
         "image": "FoodTruckActivity",
         "game": "FoodTruckActivity",
         "props": {
           "showIOLabels": true,
           "options": [
             {
-              "text": "Apple Slices",
-              "image": "/io_book/apple_slices.png"
+              "text": "Mushrooms",
+              "image": "/io_book/mushrooms_pizza.png"
             },
             {
-              "text": "Go Gurt",
-              "image": "/io_book/go_gurt.png"
+              "text": "Green Onions",
+              "image": "/io_book/green_onion_pizza.png"
             }
           ]
         }
       },
       {
-        "content": ["Let's choose a drink now!"],
+        "content": ["Let's make a Barbecue Pizza now!"],
         "image": "FoodTruckActivity",
         "game": "FoodTruckActivity",
         "props": {
           "showIOLabels": true,
           "options": [
             {
-              "text": "Apple Juice",
-              "image": "/io_book/apple_juice.png"
+              "text": "Barbecue Sauce",
+              "image": "/io_book/bbq_pizza.png"
             },
             {
-              "text": "Chocolate Milk",
-              "image": "/io_book/chocolate_milk.png"
+              "text": "Chicken",
+              "image": "/io_book/chicken_pizza.png"
             }
           ]
         }
@@ -504,16 +518,17 @@
       {
         "content": [
           "Wohoo!",
-          "Here is your happy meal!",
+          "Here is your pizza!",
           "Hope you enjoyed the outputs to all your inputs."
         ],
-        "image": "/io_book/happy_meal.png"
+        "image": "/io_book/final_pizza.jpeg"
       }
     ]
   },
   {
     "BookId": 4,
     "bookCover": "/lighter_maroon.png",
+    "cover": "/if_condition/weather.jpg",
     "title": "If-condition with HokieBird Weathers",
     "blurb": "Learn when and when not a command will run with HokieBird!",
     "author": "Dev",
@@ -630,6 +645,7 @@
     "BookId": 5,
     "title": "If-condition with HokieBird Mood",
     "bookCover": "/color_7.png",
+    "cover": "/if_condition/mood.gif",
     "blurb": "Learn when and when not a command will run with HokieBird!",
     "author": "Dev",
     "gradeRange": "2-4",
@@ -1700,6 +1716,643 @@
           "Pay close attention to how the flowchart relates to the code.",
           "Also, you'll notice we're using a conditional operator you haven't seen before '<='.",
           "'<=' is less than or equal too and is the same as '<' except now the two values can be equal."
+        ],
+        "props": {
+          "ans": [
+            "Option 1. Make sure to read the explanation!",
+            "Press Next until you reach the end of the code!"
+          ]
+        }
+      },
+      {
+        "image": "BuyMultiple",
+        "content": [
+          "Now imagine you have $9 in your pocket.",
+          "You find out that spaghetti costs $3, a yummy burger is $5, and a scoop of ice cream is $3.",
+          "Do you think you can buy all three with your $9.",
+          "Let's use the flowchart to answer the question!"
+        ],
+        "props": {
+          "pageNumber": 1,
+          "ans": ["Option 2. Make sure to read the explanation!"]
+        }
+      },
+      {
+        "image": "BuyMultiple",
+        "content": [],
+        "props": {
+          "pageNumber": 2,
+          "ans": ["Click Next until you reach the end of the code!"]
+        }
+      },
+      {
+        "image": "MultipleConditions",
+        "content": [
+          "Let's explore how we can use flowcharts to figure out problems when there's more than one thing to consider!",
+          "Imagine you have $7, and there's a choice of green salads, pepperoni pizza, and bacon and beef burgers for sale.",
+          "Which one will you be able to buy to buy in the end?",
+          "Or maybe you can't afford any of them?",
+          "Try using the flowchart on the left to find out!"
+        ],
+        "props": {
+          "pageNumber": 1
+        }
+      },
+      {
+        "image": "MultipleConditions",
+        "content": [
+          "Please think carefully first and follow the flowchart to answer the question.",
+          "If you can't figure out the answer, don't worry! We'll walk through this one on the next page."
+        ],
+        "props": {
+          "pageNumber": 2,
+          "ans": ["Option 3. Make sure to read the explanation!"]
+        }
+      },
+      {
+        "image": "MultipleConditions",
+        "content": [],
+        "props": {
+          "pageNumber": 3,
+          "ans": ["Click Next until you reach the end of the code!"]
+        }
+      },
+      {
+        "image": "/FlowchartsBook/ChangingCondition/multiple_buys.png",
+        "content": [
+          "Imagine you have 16 dollars and then you buy a pepperoni pizza.",
+          "Will you have enough money to buy a strawberry cake and a donut afterward?",
+          "Try drawing a flowchart yourself and then go to the next page!"
+        ]
+      },
+      {
+        "image": "/FlowchartsBook/ChangingCondition/multiple_buys_flowchart.png",
+        "content": [
+          "Compare the flowchart you drew with the one on the left to see if they're similar.",
+          "Don't worry if they're a little different as this is a little challenging.",
+          "Next, let's turn to the next page and answer a question about the flowchart!"
+        ]
+      },
+      {
+        "image": "ChangingCondition",
+        "content": [
+          "Use the flowchart to help you answer the question on the left.",
+          "On the next page, we'll run through the code!"
+        ],
+        "props": {
+          "pageNumber": 1,
+          "ans": ["Option 1. Make sure to read the explanation!"]
+        }
+      },
+      {
+        "image": "ChangingCondition",
+        "content": [],
+        "props": {
+          "pageNumber": 2,
+          "ans": ["Click Next until you reach the end of the code!"]
+        }
+      },
+      {
+        "image": "/FlowchartsBook/Kids_Menu.jpg",
+        "content": [
+          "Congratulations! You now know how to read flowcharts!",
+          "You also know how they relate to code and If-statements"
+        ]
+      }
+    ]
+  },
+  {
+    "BookId": 15,
+    "title": "Bits and Bytes",
+    "blurb": "Learn about 0's and 1's!",
+    "author": "Dev",
+    "bookCover": "/color_7.png",
+    "cover": "/BitsNBytesBook/bits1.png",
+    "gradeRange": "K-2",
+    "category": "BEGINNER",
+    "pages": [
+      {
+        "image": "/BitsNBytesBook/bits1.png",
+        "content": [
+          "Have you ever wondered how a computer holds all of the tons of information inside it?",
+          "Believe it or not, it looks just like this! <--",
+          "Behind the scenes, a computer is entirely made up of 0s and 1s"
+        ]
+      },
+      {
+        "image": "/BitsNBytesBook/bits1.png",
+        "content": [
+          "One single digit in this image, a 0 or a 1, is called a bit.",
+          "A bit can have two states, 0 or 1.",
+          "In different scenarios, 0 or 1 could mean different things.",
+          "Generally, 0 means no or off, and 1 means yes or on."
+        ]
+      },
+      {
+        "content": [
+          "Here, we can see that if we say that the Hokie Bird is awake is equal to the value 0, then the Hokie Bird will be asleep, since the 0 means off, meaning he is NOT awake",
+          "If we change the 0 to a 1, we can see that the Hokie Bird will wake up!",
+          "Try it now!"
+        ],
+        "image": "SelectImageActivity",
+        "props": {
+          "options": [
+            {
+              "text": "HokieBird_is_awake = 0",
+              "image": "/BitsNBytesBook/hbasleep.png"
+            },
+            {
+              "text": "HokieBird_is_awake = 1",
+              "image": "/BitsNBytesBook/hbawake.png"
+            }
+          ]
+        }
+      },
+      {
+        "image": "/BitsNBytesBook/bits2.png",
+        "content": [
+          "Now, imagine there are 8 Hokie Birds. All of them could either be awake or asleep.",
+          "Together, these 8 Hokie Birds have 8 bits.",
+          "The collection of these Hokie Birds is then called a byte, because there are 8 bits in 1 byte."
+        ]
+      },
+      {
+        "image": "/BitsNBytesBook/bits3.png",
+        "content": [
+          "Since a byte is a collection of bits, the different combinations of 0s and 1s in a byte represent a number from 0 to 255.",
+          "Here, we can see that the byte 00000000 represents the number 0."
+        ]
+      },
+      {
+        "image": "/BitsNBytesBook/bits4.png",
+        "content": [
+          "Similarly, we can see that 00000001 represents the number 1.",
+          "Changing any one of the 8 bits will completely change the character that is shown."
+        ]
+      },
+      {
+        "image": "/BitsNBytesBook/bits5.png",
+        "content": [
+          "Moving from right to left, changing the 0’s to 1’s will slowly make the number displayed grow.",
+          "For example, if we switch the last 0 and 1 from the last slide, we can see that 00000010 represents the number 2"
+        ]
+      },
+      {
+        "content": [
+          "Now, what if we wanted to show the number 3? Wouldn’t we make it 00000100?",
+          "Try selecting the numbers 3, 4, 5, and 6, and see what it looks like as a byte!"
+        ],
+        "image": "SelectImageActivity",
+        "props": {
+          "options": [
+            {
+              "text": "3",
+              "image": "/BitsNBytesBook/byte3.png"
+            },
+            {
+              "text": "4",
+              "image": "/BitsNBytesBook/byte4.png"
+            },
+            {
+              "text": "5",
+              "image": "/BitsNBytesBook/byte5.png"
+            },
+            {
+              "text": "6",
+              "image": "/BitsNBytesBook/byte6.png"
+            }
+          ]
+        }
+      },
+      {
+        "image": "/BitsNBytesBook/bitmath.png",
+        "content": [
+          "Consider each spot in a byte to be a different value, with each value being double the last.",
+          "So, if we “turn on” the bits in the 2 and 1 value spot, then we will see the number 3 because 2+1=3.",
+          "And if we “turn on” the bits in the 4 and 1 value spot, then we will see the number 5 because 4+1=5"
+        ]
+      },
+      {
+        "image": "BinaryConverter",
+        "props": {},
+        "content": [
+          "Now it's your turn! Try turning any of the 0's and 1's “on or off” to see what number is displayed!",
+          "Example: How would we show the number 7? Think about doing 4+2+1 to get the number 7"
+        ]
+      }
+    ]
+  },
+  {
+    "BookId": 16,
+    "title": "Computer Parts",
+    "blurb": "Learn about the parts of a computer",
+    "author": "Dev",
+    "bookCover": "/color_7.png",
+    "cover": "/Computer_partsBook/TitleSlide_CP.jpg",
+    "gradeRange": "K-2",
+    "category": "BEGINNER",
+    "pages": [
+      {
+        "image": "/Computer_partsBook/TitleSlide_CP.jpg",
+        "content": [
+          "In this book, we are going to learn the parts of a computer.",
+          "Have you ever thought about how a computer works?",
+          "What parts come together to make all the right things happen?",
+          "A computer is not just one thing, but many different parts coming together to do their jobs to make the computer work. Let us explore them together!"
+        ]
+      },
+      {
+        "image": "/Computer_partsBook/playground.jpg",
+        "content": [
+          "While all of the parts of a computer are important, the most important of all is the motherboard.",
+          "The motherboard connects all of the hardware pieces in a computer",
+          "We can imagine the motherboard like a playground. Its where  everyone goes!"
+        ]
+      },
+      {
+        "image": "/Computer_partsBook/PowerSupply_CP.jpg",
+        "content": [
+          "The computer’s power supply is like the cafeteria. ",
+          "Just like how a power cable keeps a computer charged, the cafeteria keeps you energized when you eat your lunch."
+        ]
+      },
+      {
+        "image": "/Computer_partsBook/principal_CP.png",
+        "content": [
+          "The CPU is like your school’s principal.",
+          " It makes all the big decisions and helps direct the other parts of the computer, just like how you principal helps run the school."
+        ]
+      },
+      {
+        "image": "/Computer_partsBook/Library_CP.jpg",
+        "content": [
+          "A computer has to have somewhere to store information.",
+          "Just like how your library holds many different books, a computer’s hard drive, acts as a storage container for the computers information. "
+        ]
+      },
+      {
+        "image": "Computer_IO",
+        "content": [
+          "There are many input devices in the computer. They put information into the computer. When you click your mouse, the computer will do an action! When you type on your keyboard, the computer will make a letter!",
+          "A computer also has output devices. These send information out from the computer. Headphones send out sound from the computer.",
+          "Try matching the names of the devices to thier picture"
+        ]
+      },
+      {
+        "image": "/Computer_partsBook/SchoolChildren_CP.jpg",
+        "content": [
+          "The RAM (Random Access Memory) in a computer is similar to students like you!",
+          "They have good short term memory. Long term memory is left to the hard drive, or as we looked at earlier, the library."
+        ]
+      },
+      {
+        "content": [
+          "Computers use software as instructions to tell it what to do. ",
+          "Imagine the software of a computer like the instructions on your homework! You follow the steps so you know what to do!",
+          "1. Look at this picture",
+          "2. Count the number of green shapes",
+          "3. Choose the correct number from the options below"
+        ],
+        "image": "InputActivity",
+        "props": {
+          "showIOLabels": false,
+          "options": [2, 3, 4, 5],
+          "ans": [5],
+          "initialImage": "/io_book/park_1.png",
+          "correctImage": "/io_book/park_3.png",
+          "": "/help/IO_Help_1.png"
+        }
+      }
+    ]
+  },
+  {
+    "BookId": 17,
+    "title": "CoStar Coloring Game",
+    "blurb": "Learn about the parts of a computer",
+    "author": "Dev",
+    "bookCover": "/color_2.png",
+    "cover": "/Costar_Logo.png",
+    "gradeRange": "K-2",
+    "category": "BEGINNER",
+    "pages": [
+      {
+        "content": [
+          "In this book we will be learning how to drag and drop colors to color in the Costar logo",
+          "We have some special colors we can use!"
+        ],
+        "image": "/CoStar_Group.jpg"
+      },
+      {
+        "content": [
+          "Here you are able to drag and drop the different colors into the 6 different letters in “COSTAR”",
+          "The Logo is split into all the different letters",
+          "Try dragging different colors and see the changes happen live!",
+          "Notice how the value on the right hand side of the equation changes when a color is dropped, this is the assignment of a variable."
+        ],
+        "image": "CostarColoring",
+        "props": {
+          "draggable": true,
+          "command": "Drag the Colors over these boxes",
+          "": "/help/HokieBirdColoring_Help.png"
+        }
+      },
+      {
+        "content": [
+          "Now that you assigned variables by dragging values over them, lets try typing in the colors!",
+          "Click on the part of the logo you would like to color and type in any of the listed colors",
+          "To complete this activity you will need to add quotation marks before and after typing your color choice, then press enter."
+        ],
+        "image": "CostarColoring",
+        "props": {
+          "type": true,
+          "command": "Type the Colors over these boxes",
+          "": "/help/HokieBirdColoring_Help.png"
+        }
+      },
+      {
+        "content": [
+          "Now use your knowledge on  how to set color for each part, you can type body part with corresponding color.",
+          "Reminder to use quotation marks when writing your string variables."
+        ],
+        "image": "CostarColoring",
+        "props": {
+          "type": true,
+          "typeVariable": true,
+          "command": "Type the Body Part and Colors over these boxes",
+          "": "/help/HokieBirdColoring_Help.png"
+        }
+      }
+    ]
+  },
+  {
+    "BookId": 18,
+    "title": "Lego I/O Activity",
+    "blurb": "An input/output exercise using Legos",
+    "author": "Dev",
+    "bookCover": "/color_4.png",
+    "cover": " /lego-sort-example-clumping.png",
+    "gradeRange": "K-2",
+    "category": "INTERMEDIATE",
+    "pages": [
+      {
+        "content": [
+          "Simulating I/O with LEGOs",
+          "This proposal details an adaptation of the KIDATA Computer Science Standards 4.2 LEGO stacking game idea in an in-person format.",
+          "Essential Questions:",
+          "-What is a pattern?",
+          "-How can we describe repeating and growing patterns using words, tables, graphs, or symbols?",
+          "-How can pattern identification be used to solve problems?",
+          "The game is intended to be a problem solving game that encourages its participants to solve problems in unique ways using a set of provided tools."
+        ],
+        "image": "/lego-sort-example-clumping.png"
+      },
+      {
+        "content": [
+          "Participants will divide into groups. They will be given a small set of tracking-related resources: a pencil, and one (or a few) sheets of paper.",
+          "The activity is oriented around LEGOs of varying color. Both the number and color of the necessary LEGOs vary with respect to the rules of the “LEGO exchange” (see below).",
+          "Operation: Participants will be provided a stack of LEGOs of varying color (all groups receive the same pattern), and are provided a reference image of a stack of LEGOs.",
+          "The participants’ goal is to match the reference image by splitting and using LEGO exchange in the fewest possible steps, with the intent of encouraging friendly competition between groups. The group that uses the fewest sum of steps from all of the rounds can be subject to a prize."
+        ],
+        "image": "/lego-sort-reference-sample.png"
+      },
+      {
+        "content": [
+          "If an exchange key is not provided to groups, participants will have to consume steps to figure out the rules of the exchange. This encourages group members to engage with each other.",
+          "Groups may either be entrusted to track themselves, or a chaperone may be assigned to each group to track their actions for them and provide healthy guidance throughout the activity. Steps consist of:",
+          "- Exchange: 1 exchange = 1 step",
+          "- Attaching LEGOs together: 1 step",
+          "- Detaching LEGOs: 1 step"
+        ],
+        "image": "/lego-sort-reference-sample.png"
+      },
+      {
+        "content": [
+          "LEGO Exchange:",
+          "A LEGO “exchange” will be set up somewhere in the vicinity of all of the groups. This will be a line of chaperones that allow the participants to trade their LEGO colors. The LEGO exchange is intended to be a direct parallel to functions, converting a given input by a set of rules.",
+          "Generally, the exchange should have rules that engage critical thinking skills. The transactions should be consistent and presented to the participants in a clean, concise manner. For example, the exchange can follow:",
+          "1. Color: if a participant provides a blue LEGO to a yellow exchange, they will receive a yellow LEGO.",
+          "2. Mix colors: if a participant presents a blue LEGO to a yellow LEGO exchange, they will receive a green LEGO.",
+          "3. Change yield: a yellow LEGO exchange may only accept groups of 2 LEGOs, and may provide a single blue LEGO in return.",
+          "It is also encouraged to later allow clumping, the process where a single exchange may convert groups of LEGOs."
+        ],
+        "image": "/lego-sort-example-clumping.png"
+      },
+      {
+        "content": [
+          "The exchange may also be presented in a finite manner. In this case, students should be eager to figure out the rules of the game as soon as possible before",
+          "their allotted pieces are gone. In the case that a group cannot create the LEGO stack as presented in the reference image, they are automatically given a certain amount of steps. Such a policy may have some caveats, like groups hoarding LEGOs, so it must be carefully doctored."
+        ],
+        "image": "/lego-sort-reference-sample.png"
+      },
+      {
+        "content": [
+          "Example:",
+          "Let's say we are provided the following stack using three colors of LEGOs and exchange key:",
+          "- Exchange: 1 exchange = 1 step",
+          "- Attaching LEGOs together: 1 step",
+          "- Detaching LEGOs: 1 step"
+        ],
+        "image": "/lego-sort-example-reference.png"
+      },
+      {
+        "content": [
+          "...and we need to convert our LEGO stack to look like the following reference image:"
+        ],
+        "image": "/lego-sort-example-target.png"
+      },
+      {
+        "content": [
+          "Here, we allot 3 steps to discover the rule. Ideally, this would mean someone provides a red LEGO to the exchange. Via the key, the exchange provides a blue LEGO. This same blue LEGO can put into the exchange again to yield a yellow, and likewise for the yellow. This covers all bases for the exchange rules.",
+          "Since all 3 steps were used for experimentation, whatever actions we take next now will count against us.",
+          "Let's consider two cases for this problem:",
+          "1.  Clumping is not allowed.",
+          "Since clumping is not allowed, we must present LEGOs in groups of the same color to the LEGO exchange.",
+          "The image is  an example of splitting. Each division counts as a step, so 2 steps were made."
+        ],
+        "image": "/lego-sort-splitting.png"
+      },
+      {
+        "content": [
+          "If an exchange key is not provided to groups, participants will have to consume steps to figure out the rules of the exchange. This encourages group members to engage with each other.",
+          "Groups may either be entrusted to track themselves, or a chaperone may be assigned to each group to track their actions for them and provide healthy guidance throughout the activity. Steps consist of:",
+          "- Exchange: 1 exchange = 1 step",
+          "- Attaching LEGOs together: 1 step",
+          "- Detaching LEGOs: 1 step"
+        ],
+        "image": "/lego-sort-reference-sample.png"
+      },
+      {
+        "content": [
+          "To get our reference image, we may follow a process similar to the following image\n:",
+          "We were only allowed one split at a time, each consuming a step. This solution was relatively simple due to the minimal amount of colors and LEGOs, but prohibiting clumping may introduce excess complexity to solutions,",
+          "causing participants to develop lengthy algorithms. Introducing this complexity may also better engage critical thinking and teamwork skills, which may lead groups to come up with more unique solutions."
+        ],
+        "image": "/lego-sort-example-splits.png"
+      },
+      {
+        "content": [
+          "2. Clumping is allowed:",
+          "Here, the solution is much more simple. Since we have identified the exchange rules, it is clear that each of our LEGO bricks in the stack went through one cycle in the exchange. Thus, we can provide the entire stack to the exchange at once:",
+          "Introducing clumping does not eliminate the concept of splitting, but may simplify certain operations by a significant margin. Allowing both is ideal, providing participants more of a sandbox-like experience; however, it may be wise to use these two examples as an introduction to each of the concepts."
+        ],
+        "image": "/lego-sort-example-clumping.png"
+      },
+      {
+        "content": [
+          "It is is HIGHLY recommended to create your base and goal target LEGO stacks after creating your LEGO exchange.",
+          "Using a random reference image may lead to impossible (or extremely difficult) solutions. It is also encouraged to create your LEGO exchange rules with a means to revert an in-progress stack back to its initial state.",
+          "If this is not feasible, you can offer a 'reset', where groups can reset their steps to `+ 1` of its original state (e.g. resetting once makes you start with 1 step, restarting twice makes you start with 2). This may damage continuity, as participants may be able to explore the exchange more with little to no penalty."
+        ],
+        "image": "/lego-sort-example-clumping.png"
+      }
+    ]
+  },
+  {
+    "BookId": 19,
+    "title": "Co-Star Input/Output Simulator",
+    "bookCover": "/lighter_orange.png",
+    "blurb": "Learn about Input and output!",
+    "author": "Prapti, Gabriel H",
+    "gradeRange": "K-2",
+    "cover": "/Co-Star_InputOutputBook/transparentCoverImage.png",
+    "category": "BEGINNER",
+    "pages": [
+      {
+        "content": ["Explore how input and output works featuring Co-Star!"],
+        "image": "/Co-Star_InputOutputBook/transparentCoverImage.png"
+      },
+      {
+        "content": [
+          "Time to make your avatar uniquely yours! ",
+          "Explore the options and tap on the items to add them to your avatar."
+        ],
+        "image": "/Co-Star_InputOutputBook/baseAvatar.png"
+      },
+      {
+        "content": [
+          "Add both the glasses and the bow to complete the activity.",
+          "Input your options to get them as output."
+        ],
+        "image": "ClothingActivity",
+        "game": "ClothingActivity",
+        "props": {
+          "showIOLabels": true,
+          "options": [
+            {
+              "text": "Bow",
+              "image": "/Co-Star_InputOutputBook/justHeadband.png"
+            },
+            {
+              "text": "Glasses",
+              "image": "/Co-Star_InputOutputBook/justGlasses.png"
+            }
+          ],
+          "baseLayer": "/Co-Star_InputOutputBook/baseAvatar.png"
+        }
+      },
+      {
+        "content": [
+          "CoStar helps people buy homes using computers in clever ways!",
+          "Customize your Costar water bottle with stickers and logos!",
+          "Add all options: Computer and Logo to move on!"
+        ],
+        "image": "ClothingActivity",
+        "game": "ClothingActivity",
+        "props": {
+          "showIOLabels": true,
+          "options": [
+            {
+              "text": "Computer Sticker",
+              "image": "/Co-Star_InputOutputBook/downsizedComputer.png"
+            },
+            {
+              "text": "CoStar Logo",
+              "image": "/Co-Star_InputOutputBook/costarLogoDownsized.png"
+            }
+          ],
+          "baseLayer": "/Co-Star_InputOutputBook/waterBottle.jpg"
+        }
+      },
+      {
+        "content": [
+          "Customize your coding desk with various items!",
+          "Add your Co-Star laptop and water bottle to move on!"
+        ],
+        "image": "ClothingActivity",
+        "game": "ClothingActivity",
+        "props": {
+          "showIOLabels": true,
+          "options": [
+            {
+              "text": "Laptop",
+              "image": "/Co-Star_InputOutputBook/laptopComposite.png"
+            },
+            {
+              "text": "Water Bottle",
+              "image": "/Co-Star_InputOutputBook/waterBottleTransparentLogo.png"
+            }
+          ],
+          "baseLayer": "/Co-Star_InputOutputBook/deskCartoon.webp"
+        }
+      },
+      {
+        "content": [
+          "Wohoo!",
+          "You're on your way to becoming a full-fledged programmer!",
+          "Hope you enjoyed the outputs to all your inputs."
+        ],
+        "image": "/Co-Star_InputOutputBook/coder.png"
+      }
+    ]
+  },
+  {
+    "BookId": 20,
+    "title": "Sequencing",
+    "blurb": "Learn the Sequencing and Algorithims",
+    "author": "Gabriel H.",
+    "bookCover": "/color_3.png",
+    "cover": "/MouseBook/mouse_icon.png",
+    "gradeRange": "K-2",
+    "category": "BEGINNER",
+    "pages": [
+      {
+        "image": "/MouseBook/Agorithim Intro Image.png",
+        "content": [
+          "In this book, we are going to learn how algorithims work.",
+          "You may be using algorithims everyday and not know it!",
+          "Algorithims can help you establish good habits both in coding but also in life.",
+          "Algorithims involve having an input, a set of rules or commands to make a certain output."
+        ]
+      },
+      {
+        "image": "/MouseBook/Algorithim_Example.png",
+        "content": [
+          "Now lets look at an example where we use basic rules to create an algorithim.",
+          "This example involves fixing a lamp!",
+          "We start with knowing the lamp doesn't work.",
+          "We first check the rule of if the lamp is plugged in.",
+          "We determine yes or no and follow down the path that matches.",
+          "We then check the rule of if the bulb has burned out.",
+          "We determine yes or no and follow down the path that matches.",
+          "Based on that we either replace the bulb or buy a new lamp!",
+          "Congratulations you've just traced your first algorithim!"
+        ]
+      },
+      {
+        "image": "/MouseBook/Sequencing.jpeg",
+        "content": [
+          "Now lets talk about Sequencing.",
+          "Sequencing is slightly different from Algorithims.",
+          "They both have structure that allows for new determinations.",
+          "Sequencing, however is much more straight forward and includes less branches.",
+          "There are no yes or no determinations. If something happens, it is a fact that some specific action will follow.",
+          "We will explore this more in depth with the story of If You give a Mouse A Cookie."
+        ]
+      },
+      {
+        "image": "/MouseBook/If you give a mouse a cookie.png",
+        "content": [
+          "Click on the Mouse To see what happens next when you give a mouse a cookie."
         ],
         "props": {
           "ans": [

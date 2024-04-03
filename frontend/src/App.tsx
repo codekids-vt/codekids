@@ -5,13 +5,13 @@ import Signup from "./pages/Signup";
 import BookPage from "./pages/BookPage";
 import BookCategoryPage from "./pages/BookCategoryPage";
 import TeacherResourcesPage from "./pages/TeacherResources";
-import RushHourPage from "./pages/RushHourPage";
 import { useOrientation } from "react-use";
 import PleaseRotateScreen from "./components/PleaseRotateScreen";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactUs from "./pages/contactus";
 import EditBooksPage from "./pages/EditBooksPage";
 import BookEditor from "./pages/BookEditor";
+import Article from "./pages/Article";
 
 function App() {
   const orientation = useOrientation();
@@ -36,7 +36,6 @@ function App() {
               element={<BookCategoryPage />}
             />
             <Route path="/contact" element={<ContactUs />} />
-            <Route path="/activity/rush-hour" element={<RushHourPage />} />
             <Route
               path="/teacher_resources"
               element={<TeacherResourcesPage />}
@@ -47,6 +46,7 @@ function App() {
               path="/book_editor/:bookIdParam/:pageNumParam"
               element={<BookEditor />}
             />
+            <Route path="/article/:articleNameParam" element={<Article />} />
           </Routes>
         </BrowserRouter>
       </div>
