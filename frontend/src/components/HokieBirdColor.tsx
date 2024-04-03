@@ -69,6 +69,9 @@ export function HokieBirdColoring({
     NONE,
     SUCCESS,
     FAILURE,
+    answer,
+    startTime,
+    user,
   }
   const [currentAlert, setCurrentAlert] = useState<{
     type: AlertType;
