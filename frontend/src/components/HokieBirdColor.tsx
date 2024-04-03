@@ -69,9 +69,6 @@ export function HokieBirdColoring({
     NONE,
     SUCCESS,
     FAILURE,
-    answer,
-    startTime,
-    user,
   }
   const [currentAlert, setCurrentAlert] = useState<{
     type: AlertType;
@@ -87,7 +84,15 @@ export function HokieBirdColoring({
       playIncorrectSound();
       handleInteraction(answer, false, timeSpent, user?.id);
     }
-  }, [currentAlert, playCorrectSound, playIncorrectSound, AlertType]);
+  }, [
+    currentAlert,
+    playCorrectSound,
+    playIncorrectSound,
+    AlertType,
+    startTime,
+    user,
+    answer,
+  ]);
 
   const colorNextPart = (color: string) => {
     if (currentColorIndex < availableParts.length) {
