@@ -1,6 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useSound from "use-sound";
+import { useAuth } from "../context/AuthContext";
+import { handleInteraction } from "../util/interaction";
 
 const actions = ["turn_left()", "turn_right()", "move(2)", "move(3)"];
 
@@ -24,8 +26,10 @@ export function HokieBirdMap({
   const [message, setMessage] = useState<string | null>(null);
   const [currentImage, setCurrentImage] = useState(props.images[0]);
   const [procedures, setProcedures] = useState<string[]>(blankProcedures);
+  const { user } = useAuth();
 
   const navigate = useNavigate();
+  const startTime = new Date().getTime();
 
   let isFireFox = navigator.userAgent.indexOf("Firefox") !== -1;
 
@@ -58,13 +62,16 @@ export function HokieBirdMap({
 
   function runProcedure() {
     setMessage("So far so good! Keep going!");
+    const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     for (let i = 0; i < procedures.length; i++) {
       if (procedures[i] !== props.ans[i]) {
         console.log(`Error at ${i} ${procedures[i]} ${props.ans[i]}`);
         playIncorrectSound();
         if (procedures[i] === "") {
+          handleInteraction("In Progress", false, timeSpent, user?.id);
           setMessage(`Keep going! Your're almost there!`);
         } else {
+          handleInteraction(procedures[i], false, timeSpent, user?.id);
           setMessage(
             `Almost! Try again, ${procedures[i]} is not the right statement.`,
           );
@@ -74,6 +81,7 @@ export function HokieBirdMap({
         break;
       }
       if (i === procedures.length - 1) {
+        handleInteraction("Correct", true, timeSpent, user?.id);
         playCorrectSound();
         setMessage("You did it!");
         setCurrentImage(props.images[procedures.length]);

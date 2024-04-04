@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import useSound from "use-sound";
+import { useAuth } from "../context/AuthContext";
+import { handleInteraction } from "../util/interaction";
 
 interface IFoodTruckActivityProps {
   showIOLabels: boolean;
@@ -19,6 +21,8 @@ export function FoodTruckActivity({
   const { question, options, showIOLabels } = props;
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
+  const { user } = useAuth();
+  const startTime = new Date().getTime();
 
   const handleOptionClick = (choice: string) => {
     // if string is present in selected options array, unadd  choice to selected options else add it
@@ -39,10 +43,19 @@ export function FoodTruckActivity({
   React.useEffect(() => {
     const all = selectedOptions.length === options.length;
     if (all) {
+      const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
       setAllowNext(all);
       playCorrectSound();
+      handleInteraction("completed", true, timeSpent, user?.id);
     }
-  }, [selectedOptions, setAllowNext, options.length, playCorrectSound]);
+  }, [
+    selectedOptions,
+    setAllowNext,
+    options.length,
+    playCorrectSound,
+    startTime,
+    user,
+  ]);
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
