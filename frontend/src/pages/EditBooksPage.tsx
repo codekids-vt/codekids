@@ -36,6 +36,7 @@ export default function EditBooksPage() {
           books={books}
           linkPrefix={"/book_editor/"}
           linkSuffix={"/1"}
+          showPublished
         />
         <button
           className="bg-primary-green text-white px-6 py-4 text-xl rounded-full"
