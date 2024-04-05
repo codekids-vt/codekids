@@ -43,7 +43,6 @@ export default function EditBooksPage() {
             BooksService.createBookBooksPost({
               title: "New Book",
               category: BookCategory.BEGINNER,
-              gradeRange: "2-4",
             }).then((response) => {
               navigate(`/book_editor/${response.id}/1`);
             });
