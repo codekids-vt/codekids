@@ -3,6 +3,8 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { AccountType, AuthService } from "../api";
 import Background from "../components/Background";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Signup = () => {
   const { login } = useAuth();
@@ -45,6 +47,7 @@ const Signup = () => {
   return (
     <>
       <Background />
+      <Navbar />
       <div className="flex min-h-screen flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="p-2 text-center text-2xl font-bold leading-9 tracking-tight text-primary-green">
@@ -198,6 +201,7 @@ const Signup = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
