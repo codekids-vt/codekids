@@ -332,9 +332,10 @@ function BookDetailsEditor({
 }: {
   book: Book;
   setBook: (book: Book) => void;
-  saveBook: () => void;
+  saveBook: (bookParam?: Book) => void;
 }) {
-  let textFields = ["coverImage", "title", "blurb", "gradeRange"];
+  let textFields = ["coverImage", "title", "blurb"];
+  let listFields = ["tags"];
   let enumFields: { [key: string]: { options: any[]; default: any } } = {
     bookCover: {
       options: [
@@ -367,7 +368,23 @@ function BookDetailsEditor({
               className="w-full h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
               value={(book as any)[field] ?? ""}
               onChange={(e) => setBook({ ...book, [field]: e.target.value })}
-              onBlur={saveBook}
+              onBlur={() => saveBook()}
+            />
+          </div>
+        ))}
+        {listFields.map((field, i) => (
+          <div
+            key={i + textFields.length}
+            className="flex flex-col w-full gap-2"
+          >
+            <div>{field}</div>
+            <BookContentEditor
+              content={(book as any)[field] ?? []}
+              setContent={(values) => {
+                let newBook = { ...book, [field]: values };
+                setBook(newBook);
+                saveBook(newBook);
+              }}
             />
           </div>
         ))}
@@ -391,7 +408,7 @@ function BookDetailsEditor({
                 console.log(value);
                 setBook({ ...book, [field]: value });
               }}
-              onBlur={saveBook}
+              onBlur={() => saveBook()}
             >
               {enumFields[field].options.map((option, i) => (
                 <option key={i} value={option}>
@@ -505,18 +522,19 @@ export default function BookEditor() {
     });
   }
 
-  function saveBook() {
-    if (!book) {
+  function saveBook(bookParam?: Book) {
+    let saveBook = bookParam ?? book;
+    if (!saveBook || !book) {
       return;
     }
-    BooksService.editBookBooksBookIdPut(book.id, {
-      bookCover: book.bookCover,
-      coverImage: book.coverImage,
-      title: book.title,
-      blurb: book.blurb,
-      gradeRange: book.gradeRange,
-      readyForPublish: book.readyForPublish,
-      category: book.category,
+    BooksService.editBookBooksBookIdPut(saveBook.id, {
+      bookCover: saveBook.bookCover,
+      coverImage: saveBook.coverImage,
+      title: saveBook.title,
+      blurb: saveBook.blurb,
+      tags: saveBook.tags,
+      readyForPublish: saveBook.readyForPublish,
+      category: saveBook.category,
     })
       .then((response) => {
         setBook({
@@ -525,7 +543,7 @@ export default function BookEditor() {
           coverImage: response.coverImage,
           title: response.title,
           blurb: response.blurb,
-          gradeRange: response.gradeRange,
+          tags: response.tags,
           readyForPublish: response.readyForPublish,
           category: response.category,
         });

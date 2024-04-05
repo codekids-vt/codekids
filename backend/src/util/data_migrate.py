@@ -31,7 +31,6 @@ async def main():
             "blurb": book["blurb"],
             "coverImage": book["cover"] if book.get("cover") else None,
             "author": book["author"],
-            "gradeRange": book["gradeRange"],
             "category": book["category"],
             "pages": {
                 "create": [  # type: ignore

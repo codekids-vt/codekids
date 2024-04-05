@@ -18,7 +18,7 @@ export type Book = {
   readyForPublish: boolean;
   published: boolean;
   author: string;
-  gradeRange: string;
+  tags: Array<string>;
   category: BookCategory;
   pages?: Array<Page> | null;
   courses?: Array<BookCourse> | null;
