@@ -38,6 +38,7 @@ const Signup = () => {
       })
       .catch((error) => {
         console.log(error);
+        setError(error.body.detail);
       });
   };
 
@@ -170,8 +171,8 @@ const Signup = () => {
             </div>
 
             {error && (
-              <div className="p-2">
-                <p className="text-red-500 text-sm">{error}</p>
+              <div className="p-2 bg-red-100 text-red-700 rounded-xl">
+                {error}
               </div>
             )}
 

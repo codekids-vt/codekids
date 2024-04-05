@@ -8,6 +8,7 @@ const Login: React.FC = () => {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -20,7 +21,8 @@ const Login: React.FC = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.body.detail);
+        setError(error.body.detail);
       });
   };
 
@@ -35,13 +37,7 @@ const Login: React.FC = () => {
         </div>
 
         <div className="p-2 sm:mx-auto sm:w-full sm:max-w-md">
-          <div
-            className="bg-white px-6 py-6 shadow-lg rounded-2xl sm:px-12 border-2 border-primary-green"
-            style={{
-              boxShadow:
-                "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-            }}
-          >
+          <div className="bg-white px-6 py-6 shadow-lg rounded-2xl sm:px-12 border-2 border-primary-green">
             <div>
               <label
                 htmlFor="email"
@@ -77,6 +73,12 @@ const Login: React.FC = () => {
                 />
               </div>
             </div>
+
+            {error && (
+              <div className="p-2 bg-red-100 text-red-700 rounded-xl">
+                {error}
+              </div>
+            )}
 
             <div className="p-2">
               <button
