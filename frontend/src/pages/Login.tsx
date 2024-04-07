@@ -3,11 +3,14 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Background from "../components/Background";
 import { AuthService } from "../api";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Login: React.FC = () => {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -20,13 +23,15 @@ const Login: React.FC = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.body.detail);
+        setError(error.body.detail);
       });
   };
 
   return (
     <>
       <Background />
+      <Navbar />
       <div className="flex min-h-screen flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="p-2 text-center text-2xl font-bold leading-9 tracking-tight text-primary-green">
@@ -35,13 +40,7 @@ const Login: React.FC = () => {
         </div>
 
         <div className="p-2 sm:mx-auto sm:w-full sm:max-w-md">
-          <div
-            className="bg-white px-6 py-6 shadow-lg rounded-2xl sm:px-12 border-2 border-primary-green"
-            style={{
-              boxShadow:
-                "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-            }}
-          >
+          <div className="bg-white px-6 py-6 shadow-lg rounded-2xl sm:px-12 border-2 border-primary-green">
             <div>
               <label
                 htmlFor="email"
@@ -78,6 +77,12 @@ const Login: React.FC = () => {
               </div>
             </div>
 
+            {error && (
+              <div className="p-2 bg-red-100 text-red-700 rounded-xl">
+                {error}
+              </div>
+            )}
+
             <div className="p-2">
               <button
                 type="submit"
@@ -100,6 +105,7 @@ const Login: React.FC = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
