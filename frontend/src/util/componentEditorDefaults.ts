@@ -9,6 +9,7 @@ export const editorDefaults: { [key: string]: any } = {
   },
   HokieBirdMazeActivity: {
     type: true,
+    actions: ["turn_left()", "turn_right()", "move(2)", "move(3)"],
     draggable: false,
     images: ["Maze1.jpg", "Maze2.jpg", "Maze3.jpg", "Maze4.jpg", "Maze5.jpg"],
     pageNum: 5,

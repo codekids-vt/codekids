@@ -4,8 +4,6 @@ import useSound from "use-sound";
 import { useAuth } from "../context/AuthContext";
 import { handleInteraction } from "../util/interaction";
 
-const actions = ["turn_left()", "turn_right()", "move(2)", "move(3)"];
-
 export function HokieBirdMap({
   props,
   setAllowNext,
@@ -141,7 +139,7 @@ export function HokieBirdMap({
         </div>
         <div className="flex flex-col items-center">
           <div className="flex flex-col p-2">
-            {actions.map((action: string, i: number) => (
+            {props.actions.map((action: string, i: number) => (
               <div key={i} className="p-1 hover:shadow-2xl">
                 <div
                   draggable={props.draggable}
