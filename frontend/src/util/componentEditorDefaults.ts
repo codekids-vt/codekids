@@ -168,4 +168,21 @@ export const editorDefaults: { [key: string]: any } = {
     style: Styles.HORIZONTAL,
     image: "/sky.jpg",
   },
+  DragMultiChoice: {
+    options: [
+      {
+        text: "Option 1",
+        img: "/sky.jpg",
+      },
+      {
+        text: "Option 2",
+      },
+    ],
+    questions: [
+      {
+        question: "What is the color of the sky?",
+        answer: "Option 1",
+      },
+    ],
+  },
 };
