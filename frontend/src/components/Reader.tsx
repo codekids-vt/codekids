@@ -14,7 +14,7 @@ export function Reader(props: IReaderProps) {
     let utterance = new SpeechSynthesisUtterance(props.text);
     utterance.lang = "en-US";
     utterance.rate = 1;
-    utterance.pitch = 1.2;
+    utterance.pitch = 1.05;
     let voices = speechSynthesis.getVoices();
     let voice = voices.find(
       (voice) => voice.name === "Google UK English Female",
