@@ -1,3 +1,5 @@
+import { Styles } from "../components/Question";
+
 export const editorDefaults: { [key: string]: any } = {
   HokieBirdActivity: {
     draggable: true,
@@ -143,5 +145,27 @@ export const editorDefaults: { [key: string]: any } = {
     ],
     solveToContinue: true,
     exitImage: "Exit",
+  },
+  ImageQuestion: {
+    question: "What is the color of the sky?",
+    answers: [
+      {
+        answerText: "Blue",
+        answerExplanation: "The sky is blue!",
+        correct: true,
+      },
+      {
+        answerText: "Green",
+        answerExplanation: "The sky is not green!",
+        correct: false,
+      },
+      {
+        answerText: "Red",
+        answerExplanation: "The sky is not red!",
+        correct: false,
+      },
+    ],
+    style: Styles.HORIZONTAL,
+    image: "/sky.jpg",
   },
 };

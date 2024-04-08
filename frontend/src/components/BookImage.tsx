@@ -30,6 +30,7 @@ import { CostarColoring } from "./CostarColoring";
 import { ElementPlacement } from "./Computer_IO";
 import { ClothingActivity } from "./ClothingActivity";
 import BookRushHour from "./BookRushHour";
+import { ImageQuestion } from "./ImageQuestion";
 
 export function BookImage({
   image,
@@ -132,6 +133,9 @@ export function BookImage({
       )}
       {image === "BookRushHour" && (
         <BookRushHour props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "ImageQuestion" && (
+        <ImageQuestion props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );
