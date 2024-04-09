@@ -31,6 +31,7 @@ import { ElementPlacement } from "./Computer_IO";
 import { ClothingActivity } from "./ClothingActivity";
 import BookRushHour from "./BookRushHour";
 import { ImageQuestion } from "./ImageQuestion";
+import { DragMultiChoice } from "./DragMultiChoice";
 
 export function BookImage({
   image,
@@ -136,6 +137,9 @@ export function BookImage({
       )}
       {image === "ImageQuestion" && (
         <ImageQuestion props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "DragMultiChoice" && (
+        <DragMultiChoice props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );

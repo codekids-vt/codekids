@@ -168,4 +168,26 @@ export const editorDefaults: { [key: string]: any } = {
     style: Styles.HORIZONTAL,
     image: "/sky.jpg",
   },
+  DragMultiChoice: {
+    title: "What is the title?",
+    options: [
+      {
+        text: "Option 1",
+        image: "https://codekids-minio.endeavour.cs.vt.edu/codekids/1.webp",
+      },
+      {
+        text: "Option 2",
+      },
+    ],
+    questions: [
+      {
+        text: "What is the color of the sky?",
+        answer: "Option 1",
+      },
+      {
+        text: "What is the color of the sky?",
+        answer: "Option 2",
+      },
+    ],
+  },
 };
