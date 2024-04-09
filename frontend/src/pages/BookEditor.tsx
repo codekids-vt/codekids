@@ -131,11 +131,11 @@ function BookContentEditor({
   };
 
   return (
-    <div className="flex flex-col h-full items-center w-full">
+    <div className="flex flex-col h-full items-center w-full gap-1 justify-start">
       {tempContents.map((item, index) => (
-        <div key={index} className="flex items-center space-x-2 w-full">
+        <div key={index} className="flex items-center gap-1 w-full">
           <textarea
-            className="border border-gray-300 rounded-xl p-1 m-1 w-full"
+            className="border border-gray-300 rounded-xl p-1 w-full text-sm h-32"
             value={item}
             onChange={(e) => {
               const newTempContents = [...tempContents];
