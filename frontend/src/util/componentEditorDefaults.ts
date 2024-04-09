@@ -169,10 +169,11 @@ export const editorDefaults: { [key: string]: any } = {
     image: "/sky.jpg",
   },
   DragMultiChoice: {
+    title: "What is the title?",
     options: [
       {
         text: "Option 1",
-        img: "/sky.jpg",
+        image: "https://codekids-minio.endeavour.cs.vt.edu/codekids/1.webp",
       },
       {
         text: "Option 2",
@@ -180,8 +181,12 @@ export const editorDefaults: { [key: string]: any } = {
     ],
     questions: [
       {
-        question: "What is the color of the sky?",
+        text: "What is the color of the sky?",
         answer: "Option 1",
+      },
+      {
+        text: "What is the color of the sky?",
+        answer: "Option 2",
       },
     ],
   },
