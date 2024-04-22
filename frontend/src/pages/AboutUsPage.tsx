@@ -37,8 +37,7 @@ export default function AboutUsPage() {
             Heewoon Bae, Thomas Deverin, Janna Helvey, Gabriel Holder, Mahesh
             Maddhuru, Varsha Manickam, Phu Nguyen, Virginia Pettit, Nikhil Ram,
             Labiba Sajjad, Michael Shi, Matthew Soohoo, Apoorva Srivastava,
-            Ethan Triggiano, Dhruv Varshney, Zannah Ziew, Tyler Zhang, and Alex
-            Ryu.
+            Ethan Triggiano, Dhruv Varshney, Zannah Ziew, and Tyler Zhang.
           </p>
           <h1 className="text-4xl font-bold mt-10">Featured Student Stories</h1>
           {studentVideos.map((video, i) => (
