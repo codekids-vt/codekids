@@ -6,6 +6,8 @@ export function handleInteraction(
   correct: boolean,
   timeSpent: number,
   user: number | undefined,
+  bookID: number,
+  pageID: number,
 ) {
   try {
     InteractionsService.createInteractionInteractionsPost({
@@ -14,6 +16,8 @@ export function handleInteraction(
       user_id: user,
       answer: answer,
       correct: correct,
+      book_id: bookID,
+      page_id: pageID,
     });
   } catch (error) {
     console.log("Error occured while interacting with database");

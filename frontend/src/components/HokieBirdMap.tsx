@@ -28,6 +28,10 @@ export function HokieBirdMap({
 
   const navigate = useNavigate();
   const startTime = new Date().getTime();
+  const url = new URL(window.location.href);
+  const pathSegments = url.pathname.split("/").filter((segment) => segment);
+  const bookID = parseInt(pathSegments[1], 10);
+  const pageID = parseInt(pathSegments[2], 10);
 
   let isFireFox = navigator.userAgent.indexOf("Firefox") !== -1;
 
@@ -66,10 +70,24 @@ export function HokieBirdMap({
         console.log(`Error at ${i} ${procedures[i]} ${props.ans[i]}`);
         playIncorrectSound();
         if (procedures[i] === "") {
-          handleInteraction("In Progress", false, timeSpent, user?.id);
+          handleInteraction(
+            "In Progress",
+            false,
+            timeSpent,
+            user?.id,
+            bookID,
+            pageID,
+          );
           setMessage(`Keep going! Your're almost there!`);
         } else {
-          handleInteraction(procedures[i], false, timeSpent, user?.id);
+          handleInteraction(
+            procedures[i],
+            false,
+            timeSpent,
+            user?.id,
+            bookID,
+            pageID,
+          );
           setMessage(
             `Almost! Try again, ${procedures[i]} is not the right statement.`,
           );
@@ -79,7 +97,7 @@ export function HokieBirdMap({
         break;
       }
       if (i === procedures.length - 1) {
-        handleInteraction("Correct", true, timeSpent, user?.id);
+        handleInteraction("Correct", true, timeSpent, user?.id, bookID, pageID);
         playCorrectSound();
         setMessage("You did it!");
         setCurrentImage(props.images[procedures.length]);

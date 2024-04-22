@@ -23,6 +23,10 @@ export function FoodTruckActivity({
   const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
   const { user } = useAuth();
   const startTime = new Date().getTime();
+  const url = new URL(window.location.href);
+  const pathSegments = url.pathname.split("/").filter((segment) => segment);
+  const bookID = parseInt(pathSegments[1], 10);
+  const pageID = parseInt(pathSegments[2], 10);
 
   const handleOptionClick = (choice: string) => {
     // if string is present in selected options array, unadd  choice to selected options else add it
@@ -46,7 +50,7 @@ export function FoodTruckActivity({
       const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
       setAllowNext(all);
       playCorrectSound();
-      handleInteraction("completed", true, timeSpent, user?.id);
+      handleInteraction("completed", true, timeSpent, user?.id, bookID, pageID);
     }
   }, [
     selectedOptions,
