@@ -35,8 +35,9 @@ export default function AboutUsPage() {
             Noah Provenzano, Namita Shashidar, Amal Alamri, Khoulood Alharthi,
             Heewoon Bae, Thomas Deverin, Janna Helvey, Gabriel Holder, Mahesh
             Maddhuru, Varsha Manickam, Phu Nguyen, Virginia Pettit, Nikhil Ram,
-            Alex Ryu, Labiba Sajjad, Michael Shi, Matthew Soohoo, Apoorva Srivastava,
-            Ethan Triggiano, Dhruv Varshney, Zannah Ziew, and Tyler Zhang.
+            Alex Ryu, Labiba Sajjad, Michael Shi, Matthew Soohoo, Apoorva
+            Srivastava, Ethan Triggiano, Dhruv Varshney, Zannah Ziew, and Tyler
+            Zhang.
           </p>
           <a
             href="/contact"
