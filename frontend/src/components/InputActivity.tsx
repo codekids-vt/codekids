@@ -26,6 +26,10 @@ export function InputActivity({
   const [currentImage, setCurrentImage] = useState(initialImage);
   const { user } = useAuth();
   const startTime = new Date().getTime();
+  const url = new URL(window.location.href);
+  const pathSegments = url.pathname.split("/").filter((segment) => segment);
+  const bookID = parseInt(pathSegments[1], 10);
+  const pageID = parseInt(pathSegments[2], 10);
 
   useEffect(() => {
     setAllowNext(answeredCorrectly);
@@ -37,17 +41,38 @@ export function InputActivity({
       setSelectedOption(choice);
       if (Array.isArray(ans) && ans.includes(choice)) {
         setResult("Correct!");
-        handleInteraction(String(choice), true, timeSpent, user?.id);
+        handleInteraction(
+          String(choice),
+          true,
+          timeSpent,
+          user?.id,
+          bookID,
+          pageID,
+        );
         setCurrentImage(correctImage);
         setAnsweredCorrectly(true);
       } else if (choice === ans) {
         setResult("Correct!");
-        handleInteraction(String(choice), true, timeSpent, user?.id);
+        handleInteraction(
+          String(choice),
+          true,
+          timeSpent,
+          user?.id,
+          bookID,
+          pageID,
+        );
         setCurrentImage(correctImage);
         setAnsweredCorrectly(true);
       } else {
         setResult("Incorrect! Try again.");
-        handleInteraction(String(choice), false, timeSpent, user?.id);
+        handleInteraction(
+          String(choice),
+          false,
+          timeSpent,
+          user?.id,
+          bookID,
+          pageID,
+        );
         setAnsweredCorrectly(false);
       }
     }

@@ -16,8 +16,8 @@ export function handleInteraction(
       user_id: user,
       answer: answer,
       correct: correct,
-      book_id: bookID,
-      page_id: pageID,
+      bookId: bookID,
+      pageId: pageID,
     });
   } catch (error) {
     console.log("Error occured while interacting with database");

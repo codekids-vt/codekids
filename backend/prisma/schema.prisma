@@ -55,8 +55,8 @@ model Interaction {
   correct         Boolean?
   date            DateTime
   timeSinceLoad   Int
-  bookId          Int
-  pageId          Int
+  bookId          Int?
+  pageId          Int?
 
   question   Question? @relation(fields: [questionId], references: [id])
   questionId Int?

@@ -27,6 +27,8 @@ class InteractionCreateRequest(BaseModel):
     question_id: Optional[int] = None
     answer: Optional[str] = None
     correct: Optional[bool] = None
+    bookId: Optional[int] = None
+    pageId: Optional[int] = None
 
 
 class InteractionCreateResponse(BaseModel):
@@ -47,6 +49,8 @@ async def create_interaction(
                 "correct": interaction_data.correct,
                 "questionId": interaction_data.question_id,
                 "userId": interaction_data.user_id,
+                "bookId": interaction_data.bookId,
+                "pageId": interaction_data.pageId,
             }
         )
     except Exception as e:

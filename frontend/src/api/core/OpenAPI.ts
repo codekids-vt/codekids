@@ -20,7 +20,7 @@ export type OpenAPIConfig = {
 };
 
 export const OpenAPI: OpenAPIConfig = {
-  BASE: "https://codekids-backend.endeavour.cs.vt.edu",
+  BASE: "http://127.0.0.1:8080",
   VERSION: "0.1.0",
   WITH_CREDENTIALS: false,
   CREDENTIALS: "include",

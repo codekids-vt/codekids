@@ -10,6 +10,6 @@ export type InteractionCreateRequest = {
   question_id?: number | null;
   answer?: string | null;
   correct?: boolean | null;
-  book_id?: number | null;
-  page_id?: number | null;
+  bookId?: number | null;
+  pageId?: number | null;
 };
