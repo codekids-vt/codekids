@@ -25,3 +25,15 @@ cd frontend
 npm i
 npm start
 ```
+
+## Checks and Formatting
+
+These commands should be run before pushing code. They will check if the code is formatted correctly and if the tests will pass in the CI.
+
+```bash
+cd frontend
+npm run format
+CI=True npm run build
+cd ../backend
+black . --check
+```
