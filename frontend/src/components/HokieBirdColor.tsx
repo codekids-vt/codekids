@@ -98,6 +98,8 @@ export function HokieBirdColoring({
     startTime,
     user,
     answer,
+    bookID,
+    pageID,
   ]);
 
   const colorNextPart = (color: string) => {
