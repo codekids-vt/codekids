@@ -59,6 +59,8 @@ export function FoodTruckActivity({
     playCorrectSound,
     startTime,
     user,
+    bookID,
+    pageID,
   ]);
 
   return (
