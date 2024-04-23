@@ -173,6 +173,8 @@ export default function BookPage() {
       interaction_type: InteractionType.NEXT_PAGE,
       time_since_load: timeSpent,
       user_id: user?.id,
+      bookId: id,
+      pageId: pageNum,
     }).then(() => {
       setPageNum(pageNum + 1);
     });
@@ -184,6 +186,8 @@ export default function BookPage() {
       interaction_type: InteractionType.PREV_PAGE,
       time_since_load: timeSpent,
       user_id: user?.id,
+      bookId: id,
+      pageId: pageNum,
     }).then(() => {
       setAllowNext(true);
       setPageNum(pageNum - 1);
@@ -196,6 +200,8 @@ export default function BookPage() {
       interaction_type: InteractionType.PREV_PAGE,
       time_since_load: timeSpent,
       user_id: user?.id,
+      bookId: id,
+      pageId: pageNum,
     });
   }
 
@@ -206,8 +212,9 @@ export default function BookPage() {
       interaction_type: InteractionType.HELP_ME,
       time_since_load: timeSpent,
       user_id: user?.id,
+      bookId: id,
+      pageId: pageNum,
     }).then(() => {
-      console.log("interaction created");
       setHelp(!help);
     });
   }

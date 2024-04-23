@@ -30,6 +30,10 @@ export function HokieBirdIfCondition({
   });
   const { user } = useAuth();
   const startTime = new Date().getTime();
+  const url = new URL(window.location.href);
+  const pathSegments = url.pathname.split("/").filter((segment) => segment);
+  const bookID = parseInt(pathSegments[1], 10);
+  const pageID = parseInt(pathSegments[2], 10);
 
   React.useEffect(() => {
     setAllowNext(good);
@@ -67,7 +71,14 @@ export function HokieBirdIfCondition({
     } else {
       playIncorrectSound();
     }
-    handleInteraction(answer, isCorrectAnswer, timeSpent, user?.id);
+    handleInteraction(
+      answer,
+      isCorrectAnswer,
+      timeSpent,
+      user?.id,
+      bookID,
+      pageID,
+    );
   }
 
   function handleOnDropCondition(e: React.DragEvent, part: string) {

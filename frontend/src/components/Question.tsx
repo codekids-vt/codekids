@@ -37,6 +37,10 @@ export function MultipleChoiceQuestion({
   });
   const { user } = useAuth();
   const startTime = new Date().getTime();
+  const url = new URL(window.location.href);
+  const pathSegments = url.pathname.split("/").filter((segment) => segment);
+  const bookID = parseInt(pathSegments[1], 10);
+  const pageID = parseInt(pathSegments[2], 10);
 
   var layout: string = "";
   const buttonStyle =
@@ -65,10 +69,10 @@ export function MultipleChoiceQuestion({
     setCorrect(correct);
     if (correct) {
       playCorrectSound();
-      handleInteraction(answerText, true, timeSpent, user?.id);
+      handleInteraction(answerText, true, timeSpent, user?.id, bookID, pageID);
     } else {
       playIncorrectSound();
-      handleInteraction(answerText, false, timeSpent, user?.id);
+      handleInteraction(answerText, false, timeSpent, user?.id, bookID, pageID);
     }
     changeButtonColor(index, correct);
     if (buttonPressed !== undefined) {
