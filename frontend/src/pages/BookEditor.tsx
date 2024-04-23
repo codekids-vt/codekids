@@ -15,6 +15,7 @@ function PageNavigator({
   addPage,
   deletePage,
   swapPages,
+  bookId,
 }: {
   pages: Page[];
   pageNum: number | undefined;
@@ -22,10 +23,18 @@ function PageNavigator({
   addPage: () => void;
   deletePage: (pageId: number) => void;
   swapPages: (pageNum1: number, pageNum2: number) => void;
+  bookId: number;
 }) {
   return (
     <div className="min-h-full max-h-full overflow-y-scroll w-1/6 bg-gray-200">
       <div className="flex flex-col py-2 gap-2 items-center">
+        <a
+          key={0}
+          className="w-9/12 h-12 border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:bg-primary-green hover:text-white"
+          href={`/book/${bookId}/1`}
+        >
+          Preview Book
+        </a>
         <button
           key={0}
           className="w-9/12 h-12 border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:bg-primary-green hover:text-white"
@@ -564,6 +573,7 @@ export default function BookEditor() {
           addPage={addPage}
           deletePage={deletePage}
           swapPages={swapPages}
+          bookId={bookId}
         />
         {currentPage && <PageEditor page={currentPage} setPage={setPage} />}
         {pageNum === 0 && book && (
