@@ -118,6 +118,9 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
+  BinaryConverter: {
+    correct: 7,
+  },
   Computer_IO: {},
   CostarColoring: {
     type: true,
