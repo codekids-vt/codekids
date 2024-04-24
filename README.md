@@ -37,3 +37,9 @@ CI=True npm run build
 cd ../backend
 black . --check
 ```
+
+To take a backup of the database, you can use the following command:
+
+```bash
+pg_dump -h endeavour.cs.vt.edu -p 30030 -U postgres -d codekids > codekids-db-$(date +%Y-%m-%d).bak
+```
