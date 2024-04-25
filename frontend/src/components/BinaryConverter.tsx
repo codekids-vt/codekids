@@ -18,10 +18,10 @@ export default function BinaryConverter({
   const [conversionSteps, setConversionSteps] = useState("");
 
   useEffect(() => {
-  // Strip leading zeros for comparison and validation
-  const strippedBinary = binary.replace(/^0+/, '');
-  // Check if the input is a valid binary number and strip leading zeros
-  const isValidBinary = /^[01]+$/.test(strippedBinary);
+    // Strip leading zeros for comparison and validation
+    const strippedBinary = binary.replace(/^0+/, "");
+    // Check if the input is a valid binary number and strip leading zeros
+    const isValidBinary = /^[01]+$/.test(strippedBinary);
     if (correct === undefined) {
       setAllowNext(true);
     } else {
@@ -46,7 +46,7 @@ export default function BinaryConverter({
   }, [binary, correct, playCorrectSound, setAllowNext]);
 
   let dec = undefined;
-    if (binary.match(/^[01]+$/)) {
+  if (binary.match(/^[01]+$/)) {
     dec = parseInt(binary, 2);
   }
   return (
@@ -60,14 +60,17 @@ export default function BinaryConverter({
       />
 
       <div className="py-2">Your binary number in decimal is:</div>
-        <div className="p-2" style={{ color: dec === undefined || isNaN(dec) ? 'red' : 'black' }}>
-          {dec === undefined || isNaN(dec) ? "Invalid" : dec}
-        </div>
-        <div className="p-2">
-          {dec !== undefined && !isNaN(dec) && conversionSteps
-            ? `Conversion: ${conversionSteps}`
-            : ""}
-        </div>
+      <div
+        className="p-2"
+        style={{ color: dec === undefined || isNaN(dec) ? "red" : "black" }}
+      >
+        {dec === undefined || isNaN(dec) ? "Invalid" : dec}
       </div>
-    );
-  }
+      <div className="p-2">
+        {dec !== undefined && !isNaN(dec) && conversionSteps
+          ? `Conversion: ${conversionSteps}`
+          : ""}
+      </div>
+    </div>
+  );
+}
