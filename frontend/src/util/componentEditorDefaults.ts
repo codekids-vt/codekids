@@ -118,6 +118,23 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
+  SelectImageActivity: {
+    question: "What is the color of the sky?",
+    options: [
+      {
+        text: "Blue",
+        image: "/sky.jpg",
+      },
+      {
+        text: "Green",
+        image: "/sky.jpg",
+      },
+      {
+        text: "Red",
+        image: "/sky.jpg",
+      },
+    ],
+  },
   BinaryConverter: {
     correct: 7,
   },
