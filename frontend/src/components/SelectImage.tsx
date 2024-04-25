@@ -27,7 +27,6 @@ export function SelectImageActivity({
 
   useEffect(() => {
     if (selectedOption !== undefined) {
-      // Ensure sound plays only when there is a selection
       playCorrectSound();
     }
     setAllowNext(true);

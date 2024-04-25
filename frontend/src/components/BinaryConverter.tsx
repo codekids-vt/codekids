@@ -18,9 +18,7 @@ export default function BinaryConverter({
   const [conversionSteps, setConversionSteps] = useState("");
 
   useEffect(() => {
-    // Strip leading zeros for comparison and validation
     const strippedBinary = binary.replace(/^0+/, "");
-    // Check if the input is a valid binary number and strip leading zeros
     const isValidBinary = /^[01]+$/.test(strippedBinary);
     if (correct === undefined) {
       setAllowNext(true);
@@ -31,7 +29,6 @@ export default function BinaryConverter({
         playCorrectSound();
       }
     }
-    // Calculate the binary conversion steps and sum
     if (isValidBinary) {
       const steps = strippedBinary
         .split("")
