@@ -16,6 +16,7 @@ function PageNavigator({
   addPage,
   deletePage,
   swapPages,
+  bookId,
 }: {
   pages: Page[];
   pageNum: number | undefined;
@@ -23,10 +24,18 @@ function PageNavigator({
   addPage: () => void;
   deletePage: (pageId: number) => void;
   swapPages: (pageNum1: number, pageNum2: number) => void;
+  bookId: number;
 }) {
   return (
     <div className="min-h-full max-h-full overflow-y-scroll w-1/6 bg-gray-200">
       <div className="flex flex-col py-2 gap-2 items-center">
+        <a
+          key={0}
+          className="w-9/12 h-12 border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:bg-primary-green hover:text-white"
+          href={`/book/${bookId}/1`}
+        >
+          Preview Book
+        </a>
         <button
           key={0}
           className="w-9/12 h-12 border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:bg-primary-green hover:text-white"
@@ -132,11 +141,11 @@ function BookContentEditor({
   };
 
   return (
-    <div className="flex flex-col h-full items-center w-full">
+    <div className="flex flex-col h-full items-center w-full gap-1 justify-start">
       {tempContents.map((item, index) => (
-        <div key={index} className="flex items-center space-x-2 w-full">
+        <div key={index} className="flex items-center gap-1 w-full">
           <textarea
-            className="border border-gray-300 rounded-xl p-1 m-1 w-full"
+            className="border border-gray-300 rounded-xl p-1 w-full text-sm h-32"
             value={item}
             onChange={(e) => {
               const newTempContents = [...tempContents];
@@ -344,9 +353,10 @@ function BookDetailsEditor({
 }: {
   book: Book;
   setBook: (book: Book) => void;
-  saveBook: () => void;
+  saveBook: (bookParam?: Book) => void;
 }) {
-  let textFields = ["coverImage", "title", "blurb", "gradeRange"];
+  let textFields = ["coverImage", "title", "blurb"];
+  let listFields = ["tags"];
   let enumFields: { [key: string]: { options: any[]; default: any } } = {
     bookCover: {
       options: [
@@ -379,7 +389,23 @@ function BookDetailsEditor({
               className="w-full h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
               value={(book as any)[field] ?? ""}
               onChange={(e) => setBook({ ...book, [field]: e.target.value })}
-              onBlur={saveBook}
+              onBlur={() => saveBook()}
+            />
+          </div>
+        ))}
+        {listFields.map((field, i) => (
+          <div
+            key={i + textFields.length}
+            className="flex flex-col w-full gap-2"
+          >
+            <div>{field}</div>
+            <BookContentEditor
+              content={(book as any)[field] ?? []}
+              setContent={(values) => {
+                let newBook = { ...book, [field]: values };
+                setBook(newBook);
+                saveBook(newBook);
+              }}
             />
           </div>
         ))}
@@ -403,7 +429,7 @@ function BookDetailsEditor({
                 console.log(value);
                 setBook({ ...book, [field]: value });
               }}
-              onBlur={saveBook}
+              onBlur={() => saveBook()}
             >
               {enumFields[field].options.map((option, i) => (
                 <option key={i} value={option}>
@@ -517,18 +543,19 @@ export default function BookEditor() {
     });
   }
 
-  function saveBook() {
-    if (!book) {
+  function saveBook(bookParam?: Book) {
+    let saveBook = bookParam ?? book;
+    if (!saveBook || !book) {
       return;
     }
-    BooksService.editBookBooksBookIdPut(book.id, {
-      bookCover: book.bookCover,
-      coverImage: book.coverImage,
-      title: book.title,
-      blurb: book.blurb,
-      gradeRange: book.gradeRange,
-      readyForPublish: book.readyForPublish,
-      category: book.category,
+    BooksService.editBookBooksBookIdPut(saveBook.id, {
+      bookCover: saveBook.bookCover,
+      coverImage: saveBook.coverImage,
+      title: saveBook.title,
+      blurb: saveBook.blurb,
+      tags: saveBook.tags,
+      readyForPublish: saveBook.readyForPublish,
+      category: saveBook.category,
     })
       .then((response) => {
         setBook({
@@ -537,7 +564,7 @@ export default function BookEditor() {
           coverImage: response.coverImage,
           title: response.title,
           blurb: response.blurb,
-          gradeRange: response.gradeRange,
+          tags: response.tags,
           readyForPublish: response.readyForPublish,
           category: response.category,
         });
@@ -558,6 +585,7 @@ export default function BookEditor() {
           addPage={addPage}
           deletePage={deletePage}
           swapPages={swapPages}
+          bookId={bookId}
         />
         {currentPage && <PageEditor page={currentPage} setPage={setPage} />}
         {pageNum === 0 && book && (

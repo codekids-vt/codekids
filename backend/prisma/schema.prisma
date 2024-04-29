@@ -1,12 +1,18 @@
 generator client {
   provider      = "prisma-client-py"
   interface     = "asyncio"
-  binaryTargets = ["native", "debian-openssl-3.0.x"]
+  binaryTargets = ["native"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_PRISMA_URL") // uses connection pooling
+}
+
+model Image {
+  id        Int      @id @default(autoincrement())
+  name      String
+  image_url String
 }
 
 model User {
@@ -49,6 +55,8 @@ model Interaction {
   correct         Boolean?
   date            DateTime
   timeSinceLoad   Int
+  bookId          Int?
+  pageId          Int?
 
   question   Question? @relation(fields: [questionId], references: [id])
   questionId Int?
@@ -75,7 +83,7 @@ model Book {
   readyForPublish Boolean      @default(false)
   published       Boolean      @default(false)
   author          String
-  gradeRange      String
+  tags            String[]     @default([])
   category        BookCategory // or String if you prefer
   pages           Page[]
   courses         BookCourse[]

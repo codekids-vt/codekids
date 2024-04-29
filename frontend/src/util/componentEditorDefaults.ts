@@ -1,3 +1,5 @@
+import { Styles } from "../components/Question";
+
 export const editorDefaults: { [key: string]: any } = {
   HokieBirdActivity: {
     draggable: true,
@@ -9,6 +11,7 @@ export const editorDefaults: { [key: string]: any } = {
   },
   HokieBirdMazeActivity: {
     type: true,
+    actions: ["turn_left()", "turn_right()", "move(2)", "move(3)"],
     draggable: false,
     images: ["Maze1.jpg", "Maze2.jpg", "Maze3.jpg", "Maze4.jpg", "Maze5.jpg"],
     pageNum: 5,
@@ -115,6 +118,26 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
+  SelectImageActivity: {
+    question: "What is the color of the sky?",
+    options: [
+      {
+        text: "Blue",
+        image: "/sky.jpg",
+      },
+      {
+        text: "Green",
+        image: "/sky.jpg",
+      },
+      {
+        text: "Red",
+        image: "/sky.jpg",
+      },
+    ],
+  },
+  BinaryConverter: {
+    correct: 7,
+  },
   Computer_IO: {},
   CostarColoring: {
     type: true,
@@ -143,5 +166,49 @@ export const editorDefaults: { [key: string]: any } = {
     ],
     solveToContinue: true,
     exitImage: "Exit",
+  },
+  ImageQuestion: {
+    question: "What is the color of the sky?",
+    answers: [
+      {
+        answerText: "Blue",
+        answerExplanation: "The sky is blue!",
+        correct: true,
+      },
+      {
+        answerText: "Green",
+        answerExplanation: "The sky is not green!",
+        correct: false,
+      },
+      {
+        answerText: "Red",
+        answerExplanation: "The sky is not red!",
+        correct: false,
+      },
+    ],
+    style: Styles.HORIZONTAL,
+    image: "/sky.jpg",
+  },
+  DragMultiChoice: {
+    title: "What is the title?",
+    options: [
+      {
+        text: "Option 1",
+        image: "https://codekids-minio.endeavour.cs.vt.edu/codekids/1.webp",
+      },
+      {
+        text: "Option 2",
+      },
+    ],
+    questions: [
+      {
+        text: "What is the color of the sky?",
+        answer: "Option 1",
+      },
+      {
+        text: "What is the color of the sky?",
+        answer: "Option 2",
+      },
+    ],
   },
 };

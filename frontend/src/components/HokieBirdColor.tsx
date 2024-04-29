@@ -1,5 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useSound from "use-sound";
+import { handleInteraction } from "../util/interaction";
+import { useAuth } from "../context/AuthContext";
 
 interface HokieBirdColorState {
   head: string;
@@ -52,7 +54,18 @@ export function HokieBirdColoring({
     left_foot: "",
     right_foot: "",
   });
-
+  const { user } = useAuth();
+  const [answer, setAnswer] = useState("");
+  const [startTime, setTime] = useState(0);
+  const [bookID, setbookID] = useState(0);
+  const [pageID, setpageID] = useState(0);
+  useEffect(() => {
+    setTime(new Date().getTime());
+    const url = new URL(window.location.href);
+    const pathSegments = url.pathname.split("/").filter((segment) => segment);
+    setbookID(parseInt(pathSegments[1], 10));
+    setpageID(parseInt(pathSegments[2], 10));
+  }, []);
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
   const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
@@ -69,12 +82,25 @@ export function HokieBirdColoring({
   }>({ type: AlertType.NONE, message: "" });
 
   useEffect(() => {
+    const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     if (currentAlert.type === AlertType.SUCCESS) {
       playCorrectSound();
+      handleInteraction(answer, true, timeSpent, user?.id, bookID, pageID);
     } else if (currentAlert.type === AlertType.FAILURE) {
       playIncorrectSound();
+      handleInteraction(answer, false, timeSpent, user?.id, bookID, pageID);
     }
-  }, [currentAlert, playCorrectSound, playIncorrectSound, AlertType]);
+  }, [
+    currentAlert,
+    playCorrectSound,
+    playIncorrectSound,
+    AlertType,
+    startTime,
+    user,
+    answer,
+    bookID,
+    pageID,
+  ]);
 
   const colorNextPart = (color: string) => {
     if (currentColorIndex < availableParts.length) {
@@ -83,6 +109,7 @@ export function HokieBirdColoring({
         ...prevColors,
         [partToColor]: color,
       }));
+      setAnswer(color);
       setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
       setCurrentColorIndex(currentColorIndex + 1);
     }
@@ -100,6 +127,7 @@ export function HokieBirdColoring({
       if (availableParts.includes(val)) {
         const updatedParts = [...part];
         updatedParts[index] = val;
+        setAnswer(val);
         setPart(updatedParts);
       } else if (availableColors.includes(val)) {
         setCurrentAlert({
@@ -115,6 +143,7 @@ export function HokieBirdColoring({
         !availableParts.includes(value) &&
         value !== ""
       ) {
+        setAnswer(value);
         setCurrentAlert({
           type: AlertType.FAILURE,
           message: "That isn't quite one of the options. Try again.",
@@ -136,6 +165,7 @@ export function HokieBirdColoring({
       ) {
         const strippedValue = val.substring(1, val.length - 1);
         if (availableColors.includes(strippedValue) && part !== "") {
+          setAnswer(strippedValue);
           setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
           setColors((prevColors) => ({
             ...prevColors,
@@ -158,6 +188,7 @@ export function HokieBirdColoring({
         temp,
       };
       setColors(newColors);
+      setAnswer(color);
       setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
     }
 

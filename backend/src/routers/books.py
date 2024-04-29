@@ -27,8 +27,12 @@ async def search_books(
         where["ownerId"] = owner_id
     if published is not None:
         where["published"] = published
+
     books = await db.book.find_many(
-        take=limit, include={"courses": True, "pages": True}, where=where
+        take=limit,
+        include={"courses": True, "pages": True},
+        where=where,
+        order={"category": "asc"},
     )
 
     if query:
@@ -45,6 +49,7 @@ async def search_books(
                                     book.title
                                     + book.author
                                     + (book.blurb if book.blurb else "")
+                                    + "".join(book.tags)
                                     + "".join(
                                         [a for page in book.pages for a in page.content]
                                     )
@@ -78,7 +83,7 @@ async def get_book(book_id: int) -> Book:
 class CreateBookRequest(BaseModel):
     title: str
     category: BookCategory
-    gradeRange: str
+    tags: list[str] = []
     bookCover: Optional[str] = None
     coverImage: Optional[str] = None
     author: Optional[str] = None
@@ -99,7 +104,7 @@ async def create_book(
             "bookCover": "/color_2.png",
             "title": req.title,
             "category": req.category,
-            "gradeRange": req.gradeRange,
+            "tags": req.tags,
             "ownerId": user.id,
         }
     )
@@ -130,7 +135,7 @@ async def edit_book(
     book_update_data: BookUpdateInput = {
         "title": req.title,
         "category": req.category,
-        "gradeRange": req.gradeRange,
+        "tags": req.tags,
     }
     if req.bookCover:
         book_update_data["bookCover"] = req.bookCover

@@ -25,3 +25,21 @@ cd frontend
 npm i
 npm start
 ```
+
+## Checks and Formatting
+
+These commands should be run before pushing code. They will check if the code is formatted correctly and if the tests will pass in the CI.
+
+```bash
+cd frontend
+npm run format
+CI=True npm run build
+cd ../backend
+black . --check
+```
+
+To take a backup of the database, you can use the following command:
+
+```bash
+pg_dump -h endeavour.cs.vt.edu -p 30030 -U postgres -d codekids > codekids-db-$(date +%Y-%m-%d).bak
+```

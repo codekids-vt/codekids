@@ -3,8 +3,6 @@ from fastapi import APIRouter, Depends
 from fastapi import HTTPException
 from src.db import db
 from prisma.models import User, CourseStudent, BookCourse, Course
-
-
 from prisma.enums import AccountType
 from src.auth import get_user
 from pydantic import BaseModel

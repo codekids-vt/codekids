@@ -55,11 +55,13 @@ function BookPreviewList({
   linkPrefix,
   linkSuffix,
   loading,
+  showPublished,
 }: {
   pageBookData: Book[];
   linkPrefix: string;
   linkSuffix: string;
   loading: boolean;
+  showPublished: boolean;
 }) {
   const emptyBookData = Array.from({ length: 6 }, () => ({}));
   return (
@@ -72,6 +74,13 @@ function BookPreviewList({
                 linkPrefix={linkPrefix}
                 linkSuffix={linkSuffix}
               />
+              {showPublished && (
+                <div
+                  className={`${BookData.published ? "text-green-500 border-green-500" : "text-red-500 border-red-500"} bg-white p-1 rounded-full border-2 text-center`}
+                >
+                  {BookData.published ? "Published" : "Not Published"}
+                </div>
+              )}
             </li>
           ))
         : emptyBookData.map((_, i) => (
@@ -88,11 +97,13 @@ export default function ActivityBookList({
   linkPrefix,
   linkSuffix,
   loading,
+  showPublished,
 }: {
   books: Book[];
   linkPrefix: string;
   linkSuffix: string;
   loading?: boolean;
+  showPublished?: boolean;
 }) {
   return (
     <>
@@ -102,6 +113,7 @@ export default function ActivityBookList({
           linkPrefix={linkPrefix}
           linkSuffix={linkSuffix}
           loading={loading === undefined ? false : loading}
+          showPublished={showPublished === undefined ? false : showPublished}
         />
       </section>
     </>

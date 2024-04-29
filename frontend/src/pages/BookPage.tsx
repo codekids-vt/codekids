@@ -173,6 +173,8 @@ export default function BookPage() {
       interaction_type: InteractionType.NEXT_PAGE,
       time_since_load: timeSpent,
       user_id: user?.id,
+      bookId: id,
+      pageId: pageNum,
     }).then(() => {
       setPageNum(pageNum + 1);
     });
@@ -184,9 +186,22 @@ export default function BookPage() {
       interaction_type: InteractionType.PREV_PAGE,
       time_since_load: timeSpent,
       user_id: user?.id,
+      bookId: id,
+      pageId: pageNum,
     }).then(() => {
       setAllowNext(true);
       setPageNum(pageNum - 1);
+    });
+  }
+
+  function homeClicked() {
+    const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
+    InteractionsService.createInteractionInteractionsPost({
+      interaction_type: InteractionType.PREV_PAGE,
+      time_since_load: timeSpent,
+      user_id: user?.id,
+      bookId: id,
+      pageId: pageNum,
     });
   }
 
@@ -197,8 +212,9 @@ export default function BookPage() {
       interaction_type: InteractionType.HELP_ME,
       time_since_load: timeSpent,
       user_id: user?.id,
+      bookId: id,
+      pageId: pageNum,
     }).then(() => {
-      console.log("interaction created");
       setHelp(!help);
     });
   }
@@ -213,7 +229,10 @@ export default function BookPage() {
       </button>
     ) : (
       <a href={`/`}>
-        <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-1 xl:px-4 xl:py-4 lg:text-lg xl:text-2xl rounded-full">
+        <button
+          onClick={() => homeClicked()}
+          className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-1 xl:px-4 xl:py-4 lg:text-lg xl:text-2xl rounded-full"
+        >
           Home
         </button>
       </a>
@@ -229,7 +248,10 @@ export default function BookPage() {
       </button>
     ) : (
       <a href={`/`}>
-        <button className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-1 xl:px-4 xl:py-4 lg:text-lg xl:text-2xl rounded-full">
+        <button
+          onClick={() => homeClicked()}
+          className="bg-blue-500 hover:bg-hover-blue hover:shadow-2xl text-white font-bold p-1 xl:px-4 xl:py-4 lg:text-lg xl:text-2xl rounded-full"
+        >
           Home
         </button>
       </a>

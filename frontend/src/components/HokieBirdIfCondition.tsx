@@ -1,6 +1,8 @@
 "use client";
 import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import useSound from "use-sound";
+import { useAuth } from "../context/AuthContext";
+import { handleInteraction } from "../util/interaction";
 
 interface HokieBirdColorState {
   condition: string;
@@ -26,6 +28,12 @@ export function HokieBirdIfCondition({
     condition: "",
     statement: "",
   });
+  const { user } = useAuth();
+  const startTime = new Date().getTime();
+  const url = new URL(window.location.href);
+  const pathSegments = url.pathname.split("/").filter((segment) => segment);
+  const bookID = parseInt(pathSegments[1], 10);
+  const pageID = parseInt(pathSegments[2], 10);
 
   React.useEffect(() => {
     setAllowNext(good);
@@ -38,12 +46,8 @@ export function HokieBirdIfCondition({
       ...prevGame,
       statement: option,
     }));
+    handleAnswer(isCorrectAnswer, option);
     setGood(isCorrectAnswer);
-    if (isCorrectAnswer) {
-      playCorrectSound();
-    } else {
-      playIncorrectSound();
-    }
     setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);
     setWrong(!isCorrectAnswer);
   }
@@ -60,12 +64,32 @@ export function HokieBirdIfCondition({
     e.preventDefault();
   }
 
+  function handleAnswer(isCorrectAnswer: boolean, answer: string) {
+    const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
+    if (isCorrectAnswer) {
+      playCorrectSound();
+    } else {
+      playIncorrectSound();
+    }
+    handleInteraction(
+      answer,
+      isCorrectAnswer,
+      timeSpent,
+      user?.id,
+      bookID,
+      pageID,
+    );
+  }
+
   function handleOnDropCondition(e: React.DragEvent, part: string) {
     const condition = e.dataTransfer.getData("condition") as string;
     setGame({
       ...game,
       condition: condition,
     });
+    const isCorrectAnswer =
+      condition === props.ans?.condition && game.statement === answer;
+    handleAnswer(isCorrectAnswer, game.statement);
     setGood(condition === props.ans?.condition && game.statement === answer);
   }
 
@@ -78,11 +102,11 @@ export function HokieBirdIfCondition({
       temp,
     };
     setGame(newColors);
-    setGood(newColors.statement === answer);
-    setCurrentImage(
-      newColors.statement === answer ? props.ans_image : props.image,
-    );
-    setWrong(newColors.statement !== answer);
+    const isCorrectAnswer = newColors.statement === answer;
+    handleAnswer(isCorrectAnswer, newColors.statement);
+    setGood(isCorrectAnswer);
+    setCurrentImage(isCorrectAnswer ? props.ans_image : props.image);
+    setWrong(!isCorrectAnswer);
   }
 
   function handleReset(e: any) {

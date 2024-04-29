@@ -6,7 +6,7 @@ import type { BookCategory } from "./BookCategory";
 export type CreateBookRequest = {
   title: string;
   category: BookCategory;
-  gradeRange: string;
+  tags?: Array<string>;
   bookCover?: string | null;
   coverImage?: string | null;
   author?: string | null;
