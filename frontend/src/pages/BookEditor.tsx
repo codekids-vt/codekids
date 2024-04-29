@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { Book, BookCategory, BooksService, Page, PagesService, Question } from "../api";
+import { Book, BookCategory, BooksService, Page, PagesService } from "../api";
 import { BookImage } from "../components/BookImage";
-import Form, { IChangeEvent } from '@rjsf/core';
-import validator from '@rjsf/validator-ajv8'; 
+import Form, { IChangeEvent } from "@rjsf/core";
+import validator from "@rjsf/validator-ajv8";
 import { editorDefaults } from "../util/componentEditorDefaults";
-import ErrorBoundary from '../util/ErrorBoundary';
+import ErrorBoundary from "../util/ErrorBoundary";
 import { BookPreview } from "../components/ActivityBookList";
 
 function PageNavigator({
@@ -174,7 +174,7 @@ function BookContentEditor({
   );
 }
 
-type JSONSchemaType = 'string' | 'number' | 'boolean' | 'object' | 'array';
+type JSONSchemaType = "string" | "number" | "boolean" | "object" | "array";
 
 interface SchemaProperty {
   type: JSONSchemaType;
@@ -194,40 +194,45 @@ function BookImageEditor({
   setPage: (page: Page) => void;
 }) {
   const [tempImage, setTempImage] = useState<string>(page.image);
-  const [tempProps, setTempProps] = useState<string>(JSON.stringify(page.props || {}));
+  const [tempProps, setTempProps] = useState<string>(
+    JSON.stringify(page.props || {}),
+  );
   const [formData, setFormData] = useState<any>(page.props || {});
   const [schema, setSchema] = useState<any>({});
 
-  const generateSchema = (props: any): { title: string, type: 'object', properties: SchemaProperties } => {
+  const generateSchema = (
+    props: any,
+  ): { title: string; type: "object"; properties: SchemaProperties } => {
     const schemaProperties: SchemaProperties = {};
-  
-    Object.keys(props).forEach(key => {
+
+    Object.keys(props).forEach((key) => {
       const value = props[key];
       let propertySchema: SchemaProperty;
-  
+
       if (Array.isArray(value)) {
         // Assuming all elements in the array are of the same type
-        const itemType: JSONSchemaType = value.length > 0 ? typeof value[0] as JSONSchemaType : 'string';
+        const itemType: JSONSchemaType =
+          value.length > 0 ? (typeof value[0] as JSONSchemaType) : "string";
         propertySchema = {
-          type: 'array',
+          type: "array",
           title: key,
-          items: { type: itemType, title: `${key}_item` } // Define items for array types
+          items: { type: itemType, title: `${key}_item` }, // Define items for array types
         };
-      } else if (typeof value === 'object' && value !== null) {
-        propertySchema = { type: 'object', title: key };
+      } else if (typeof value === "object" && value !== null) {
+        propertySchema = { type: "object", title: key };
       } else {
         propertySchema = { type: typeof value as JSONSchemaType, title: key };
       }
-  
+
       schemaProperties[key] = propertySchema;
     });
-  
+
     return {
       title: "Page Properties",
       type: "object",
       properties: schemaProperties,
     };
-  };  
+  };
 
   useEffect(() => {
     const newSchema = generateSchema(page.props || {});
@@ -249,7 +254,7 @@ function BookImageEditor({
       <Form
         schema={schema}
         formData={formData}
-        onChange={handleFormChange} 
+        onChange={handleFormChange}
         validator={validator}
       />
       <div className="h-1/2 max-h-80">
@@ -329,11 +334,7 @@ function PageEditor({
     <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max w-full">
       {/* Left Panel for BookImageEditor */}
       <div className="flex flex-col w-2/3 items-center bg-white rounded-l-2xl h-full">
-        <BookImageEditor
-          key={page.pageNumber}
-          page={page}
-          setPage={setPage}
-        />
+        <BookImageEditor key={page.pageNumber} page={page} setPage={setPage} />
       </div>
 
       {/* Right Panel for BookContentEditor */}
