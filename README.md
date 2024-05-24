@@ -1,5 +1,12 @@
 # Codekids App
 
+## Create env
+
+```bash
+cd backend
+cp .env.example .env
+```
+
 ## Run backend
 
 ```bash
