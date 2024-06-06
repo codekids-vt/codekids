@@ -19,7 +19,7 @@ export function ImageQuestion({
       <img
         src={props.image}
         alt={props.question}
-        className="h-1/2 aspect-square"
+        className="h-1/2"
       />
       <MultipleChoiceQuestion
         question={props.question}
