@@ -16,11 +16,7 @@ export function ImageQuestion({
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
-      <img
-        src={props.image}
-        alt={props.question}
-        className="h-1/2 aspect-square"
-      />
+      <img src={props.image} alt={props.question} className="h-1/2" />
       <MultipleChoiceQuestion
         question={props.question}
         answers={props.answers}
