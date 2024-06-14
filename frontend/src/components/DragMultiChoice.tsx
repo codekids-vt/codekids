@@ -102,7 +102,7 @@ export const DragMultiChoice: React.FC<DragMultiChoiceProps> = ({
               }`}
             >
               {answersCorrectness[index] ? (
-                <div className="flex justify-center items-center w-32 h-12 gap-2 border-2 border-green-500 bg-green-100 rounded-lg text-green-500">
+                <div className="flex justify-center items-center w-32 gap-2 p-2 border-2 border-green-500 bg-green-100 rounded-lg text-green-500">
                   {options.find((option) => option.text === question.answer)
                     ?.image && (
                     <img
@@ -117,7 +117,7 @@ export const DragMultiChoice: React.FC<DragMultiChoiceProps> = ({
                       className="w-8 h-8 object-cover rounded-md"
                     />
                   )}
-                  <p className="text-green-500 font-medium">Correct</p>
+                  <p className="text-green-500 font-medium text-center">{question.answer}</p>
                 </div>
               ) : (
                 <div
