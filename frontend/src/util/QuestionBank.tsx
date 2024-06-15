@@ -193,9 +193,9 @@ export const VariablesQuestions: { [id: string]: IQuestion } = {
         correct: false,
       },
       {
-        answerText: "Epcot",
+        answerText: "therapy_dog_left",
         answerExplanation:
-          "Incorrect. therapy_dog_left is what's being printed. Try Again!",
+          "Incorrect. therapy_dog_left is a variable. The print statement will print the value of the variable.",
         correct: false,
       },
       {
@@ -706,7 +706,7 @@ export const LifeOfMooseQuestions: { [id: string]: IQuestion } = {
       'Press the next button again and notice moose_birthday is created and contains the value "02/13/2012". What will be printed',
     answers: [
       {
-        answerText: "02-13-2012",
+        answerText: "02/13/2012",
         answerExplanation:
           "Correct! Press the next button again to see the value printed!",
         correct: true,
