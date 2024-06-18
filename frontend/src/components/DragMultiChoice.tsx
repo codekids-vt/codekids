@@ -117,7 +117,9 @@ export const DragMultiChoice: React.FC<DragMultiChoiceProps> = ({
                       className="w-8 h-8 object-cover rounded-md"
                     />
                   )}
-                  <p className="text-green-500 font-medium text-center">{question.answer}</p>
+                  <p className="text-green-500 font-medium text-center">
+                    {question.answer}
+                  </p>
                 </div>
               ) : (
                 <div
