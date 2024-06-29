@@ -16,6 +16,7 @@ export class BooksService {
    * @param ownerId
    * @param published
    * @param query
+   * @param userToken
    * @returns Book Successful Response
    * @throws ApiError
    */
@@ -25,6 +26,7 @@ export class BooksService {
     ownerId?: number | null,
     published?: boolean | null,
     query?: string | null,
+    userToken?: string | null,
   ): CancelablePromise<Array<Book>> {
     return __request(OpenAPI, {
       method: "GET",
@@ -35,6 +37,7 @@ export class BooksService {
         owner_id: ownerId,
         published: published,
         query: query,
+        user_token: userToken,
       },
       errors: {
         422: `Validation Error`,

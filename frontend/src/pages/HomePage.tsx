@@ -5,8 +5,10 @@ import Navbar from "../components/Navbar";
 import useSound from "use-sound";
 import { Book, BookCategory, BooksService } from "../api";
 import ActivityBookList from "../components/ActivityBookList";
+import { useAuth } from "../context/AuthContext";
 
 export default function HomePage() {
+  const { user } = useAuth();
   const [playSound] = useSound("/sounds/low-click.mp3", { volume: 0.5 });
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Book[]>([]);
@@ -23,7 +25,14 @@ export default function HomePage() {
   const loadBookResults = useCallback(
     (category: BookCategory | null, query: string | null) => {
       setLoading(true);
-      BooksService.searchBooksBooksGet(category, null, null, true, query)
+      BooksService.searchBooksBooksGet(
+        category,
+        null,
+        null,
+        true,
+        query,
+        user?.token,
+      )
         .then((response) => {
           setResults(response);
           setLoading(false);
@@ -33,12 +42,12 @@ export default function HomePage() {
           setLoading(false);
         });
     },
-    [setResults, setLoading],
+    [setResults, setLoading, user],
   );
 
   useEffect(() => {
     loadBookResults(null, null);
-  }, [loadBookResults]);
+  }, [loadBookResults, user]);
 
   return (
     <>

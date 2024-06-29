@@ -2,7 +2,7 @@ import re
 from fastapi import APIRouter, Depends, HTTPException
 from prisma import Json
 from pydantic import BaseModel
-from src.auth import get_user
+from src.auth import get_user, get_user_from_api_key
 from src.db import db
 from prisma.models import Book, User
 from typing import Annotated, Optional, List
@@ -19,6 +19,7 @@ async def search_books(
     owner_id: Optional[int] = None,
     published: Optional[bool] = None,
     query: Optional[str] = None,
+    user_token: Optional[str] = None,
 ) -> List[Book]:
     where: BookWhereInput = {}
     if category:
@@ -34,6 +35,8 @@ async def search_books(
         where=where,
         order={"category": "asc"},
     )
+    if user_token:
+        user = await get_user_from_api_key(user_token)
 
     if query:
         filtered_and_sorted_books = [

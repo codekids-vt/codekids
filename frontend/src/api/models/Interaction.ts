@@ -17,6 +17,8 @@ export type Interaction = {
   correct?: boolean | null;
   date: string;
   timeSinceLoad: number;
+  bookId?: number | null;
+  pageId?: number | null;
   question?: Question | null;
   questionId?: number | null;
 };
