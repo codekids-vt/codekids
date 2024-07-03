@@ -4,7 +4,7 @@ from prisma import Json
 from pydantic import BaseModel
 from src.auth import get_user, get_user_from_api_key
 from src.db import db
-from prisma.models import Book, User
+from prisma.models import Book, User, UserBookScore
 from typing import Annotated, Optional, List
 from prisma.enums import BookCategory, AccountType
 from prisma.types import BookWhereInput, BookUpdateInput
@@ -29,15 +29,27 @@ async def search_books(
     if published is not None:
         where["published"] = published
 
+# Fetch from db
     books = await db.book.find_many(
         take=limit,
         include={"courses": True, "pages": True},
         where=where,
         order={"category": "asc"},
     )
+    user = None
     if user_token:
         user = await get_user_from_api_key(user_token)
-
+    
+    # ----------------------------------------------
+    user_scores = {}
+    if user:
+        # Fetches user's book scores if user is logged in
+        scores = await db.userbookscore.find_many(
+            where={"userId": user.id}
+        )
+        # Creates a dictionary of book IDs to scores for the user
+        user_scores = {score.bookId: score.score for score in scores}
+    # ----------------------------------------------
     if query:
         filtered_and_sorted_books = [
             book
@@ -62,18 +74,23 @@ async def search_books(
                                 re.IGNORECASE,
                             )
                         ),
+                        user_scores.get(book.id, 0)  # Added user score as a secondary sort key
                     )
                     for book in books
                 ],
-                key=lambda x: x[1],
+                key=lambda x: (x[1], x[2]),  # Sorts by query match count first, then by the user score
                 reverse=True,
             )
             if _ > 0
         ]
         return filtered_and_sorted_books
-
-    return books
-
+    else:
+        sorted_books = sorted(
+            books,
+            key=lambda book: user_scores.get(book.id, 0),  # Sorts by user score
+            reverse=True
+        )
+        return sorted_books
 
 @books_router.get("/books/{book_id}", tags=["books"])
 async def get_book(book_id: int) -> Book:
@@ -81,7 +98,6 @@ async def get_book(book_id: int) -> Book:
     if not book:
         raise HTTPException(status_code=404, detail="Book not found")
     return book
-
 
 class CreateBookRequest(BaseModel):
     title: str
@@ -92,7 +108,6 @@ class CreateBookRequest(BaseModel):
     author: Optional[str] = None
     blurb: Optional[str] = None
     readyForPublish: Optional[bool] = False
-
 
 @books_router.post("/books", tags=["books"])
 async def create_book(
@@ -120,7 +135,6 @@ async def create_book(
         }
     )
     return book
-
 
 @books_router.put("/books/{book_id}", tags=["books"])
 async def edit_book(

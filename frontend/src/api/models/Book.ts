@@ -6,6 +6,7 @@ import type { BookCategory } from "./BookCategory";
 import type { BookCourse } from "./BookCourse";
 import type { Page } from "./Page";
 import type { User } from "./User";
+import type { UserBookScore } from "./UserBookScore";
 /**
  * Represents a Book record
  */
@@ -24,4 +25,5 @@ export type Book = {
   courses?: Array<BookCourse> | null;
   owner?: User | null;
   ownerId: number;
+  bookScores?: Array<UserBookScore> | null;
 };
