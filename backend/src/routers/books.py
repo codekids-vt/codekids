@@ -29,7 +29,7 @@ async def search_books(
     if published is not None:
         where["published"] = published
 
-# Fetch from db
+    # Fetch from db
     books = await db.book.find_many(
         take=limit,
         include={"courses": True, "pages": True},
@@ -40,7 +40,6 @@ async def search_books(
     if user_token:
         user = await get_user_from_api_key(user_token)
     
-    # ----------------------------------------------
     user_scores = {}
     if user:
         # Fetches user's book scores if user is logged in
@@ -49,7 +48,7 @@ async def search_books(
         )
         # Creates a dictionary of book IDs to scores for the user
         user_scores = {score.bookId: score.score for score in scores}
-    # ----------------------------------------------
+
     if query:
         filtered_and_sorted_books = [
             book
