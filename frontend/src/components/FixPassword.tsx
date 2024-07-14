@@ -25,9 +25,15 @@ const isStrongPassword = (password: string) => {
 
 const FixPassword = ({ props, setAllowNext }: FixPasswordProps) => {
   const { weakPasswords } = props;
-  const [passwords, setPasswords] = useState(Array(weakPasswords.length).fill(""));
-  const [isStrong, setIsStrong] = useState(Array(weakPasswords.length).fill(false));
-  const [showPasswords, setShowPasswords] = useState(Array(weakPasswords.length).fill(false));
+  const [passwords, setPasswords] = useState(
+    Array(weakPasswords.length).fill(""),
+  );
+  const [isStrong, setIsStrong] = useState(
+    Array(weakPasswords.length).fill(false),
+  );
+  const [showPasswords, setShowPasswords] = useState(
+    Array(weakPasswords.length).fill(false),
+  );
 
   useEffect(() => {
     setAllowNext(isStrong.every((strength) => strength));
