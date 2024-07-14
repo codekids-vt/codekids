@@ -69,21 +69,27 @@ export function DragDrop({
   const [strongWords, setStrongWords] = useState<WordItem[]>([]);
   const [weakWords, setWeakWords] = useState<WordItem[]>([]);
   const [wordBank, setWordBank] = useState<WordItem[]>(props.words);
-  const [strongErrorMessage, setStrongErrorMessage] = useState<string | null>(null);
+  const [strongErrorMessage, setStrongErrorMessage] = useState<string | null>(
+    null,
+  );
   const [weakErrorMessage, setWeakErrorMessage] = useState<string | null>(null);
 
   const boxNames = props.boxNames || { strong: "Strong", weak: "Weak" };
 
   useEffect(() => {
-    validateWords();
-  }, [strongWords, weakWords]);
-
-  const validateWords = () => {
-    const allWordsValid = strongWords.every((word) => word.correctBox === boxNames.strong) &&
-                          weakWords.every((word) => word.correctBox === boxNames.weak) &&
-                          strongWords.length + weakWords.length === props.words.length;
+    const allWordsValid =
+      strongWords.every((word) => word.correctBox === boxNames.strong) &&
+      weakWords.every((word) => word.correctBox === boxNames.weak) &&
+      strongWords.length + weakWords.length === props.words.length;
     setAllowNext(allWordsValid);
-  };
+  }, [
+    strongWords,
+    weakWords,
+    boxNames.strong,
+    boxNames.weak,
+    props.words.length,
+    setAllowNext,
+  ]);
 
   const handleDropStrong = (item: WordItem) => {
     if (item.correctBox === boxNames.strong) {
@@ -107,7 +113,9 @@ export function DragDrop({
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
-      <h2 className="text-2xl mb-4">Drag and Drop the words into the correct categories</h2>
+      <h2 className="text-2xl mb-4">
+        Drag and Drop the words into the correct categories
+      </h2>
       <div className="flex w-full justify-center">
         <DropArea
           title={boxNames.strong}
