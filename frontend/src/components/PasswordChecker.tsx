@@ -22,9 +22,15 @@ export function PasswordChecker({
 
   const validatePassword = (password: string, requirements: any) => {
     const minLength = password.length >= requirements.minLength;
-    const upperCase = requirements.requireUpperCase ? /[A-Z]/.test(password) : true;
-    const lowerCase = requirements.requireLowerCase ? /[a-z]/.test(password) : true;
-    const specialChar = requirements.requireSpecialChar ? /[!@#$%^&*(),.?":{}|<>]/.test(password) : true;
+    const upperCase = requirements.requireUpperCase
+      ? /[A-Z]/.test(password)
+      : true;
+    const lowerCase = requirements.requireLowerCase
+      ? /[a-z]/.test(password)
+      : true;
+    const specialChar = requirements.requireSpecialChar
+      ? /[!@#$%^&*(),.?":{}|<>]/.test(password)
+      : true;
     const number = requirements.requireNumber ? /\d/.test(password) : true;
 
     setHasMinLength(minLength);
@@ -52,7 +58,7 @@ export function PasswordChecker({
           type={showPassword ? "text" : "password"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className={`border p-2 ${isValid ? 'border-green-500' : 'border-red-500'} flex-grow`}
+          className={`border p-2 ${isValid ? "border-green-500" : "border-red-500"} flex-grow`}
         />
         <button
           className="ml-2 px-2 py-1 bg-gray-200 rounded"
@@ -64,35 +70,41 @@ export function PasswordChecker({
       <p className="mt-2">
         Password must meet the following requirements:
         {props.minLength && (
-          <span className={`${hasMinLength ? 'text-green-500' : 'text-red-500'}`}>
+          <span
+            className={`${hasMinLength ? "text-green-500" : "text-red-500"}`}
+          >
             <br />- Minimum {props.minLength} characters long
           </span>
         )}
         {props.requireUpperCase && (
-          <span className={`${hasUpperCase ? 'text-green-500' : 'text-red-500'}`}>
+          <span
+            className={`${hasUpperCase ? "text-green-500" : "text-red-500"}`}
+          >
             <br />- At least one uppercase letter
           </span>
         )}
         {props.requireLowerCase && (
-          <span className={`${hasLowerCase ? 'text-green-500' : 'text-red-500'}`}>
+          <span
+            className={`${hasLowerCase ? "text-green-500" : "text-red-500"}`}
+          >
             <br />- At least one lowercase letter
           </span>
         )}
         {props.requireSpecialChar && (
-          <span className={`${hasSpecialChar ? 'text-green-500' : 'text-red-500'}`}>
+          <span
+            className={`${hasSpecialChar ? "text-green-500" : "text-red-500"}`}
+          >
             <br />- At least one special character
           </span>
         )}
         {props.requireNumber && (
-          <span className={`${hasNumber ? 'text-green-500' : 'text-red-500'}`}>
+          <span className={`${hasNumber ? "text-green-500" : "text-red-500"}`}>
             <br />- At least one number
           </span>
         )}
       </p>
       {isValid && (
-        <p className="text-green-500 mt-2">
-          Password meets all requirements!
-        </p>
+        <p className="text-green-500 mt-2">Password meets all requirements!</p>
       )}
     </div>
   );
