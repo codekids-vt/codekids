@@ -1,4 +1,3 @@
-
 import { Styles } from "../components/Question";
 
 export const editorDefaults: { [key: string]: any } = {
@@ -235,5 +234,4 @@ export const editorDefaults: { [key: string]: any } = {
   FixPassword: {
     weakPasswords: ["weakPass1", "123456", "password"],
   },
-  
 };
