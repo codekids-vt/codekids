@@ -211,4 +211,27 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
+  PasswordChecker: {
+    minLength: 8,
+    requireUpperCase: true,
+    requireLowerCase: true,
+    requireSpecialChar: true,
+    requireNumber: true,
+  },
+  DragDrop: {
+    words: [
+      { id: 1, text: "Secure", correctBox: "Strong" },
+      { id: 2, text: "123456", correctBox: "Weak" },
+      { id: 3, text: "Password", correctBox: "Weak" },
+      { id: 4, text: "StrongPass1!", correctBox: "Strong" },
+      { id: 5, text: "WeakPass", correctBox: "Weak" },
+    ],
+    boxNames: {
+      strong: "Strong",
+      weak: "Weak",
+    },
+  },
+  FixPassword: {
+    weakPasswords: ["weakPass1", "123456", "password"],
+  },
 };

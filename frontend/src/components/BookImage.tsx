@@ -32,7 +32,9 @@ import { ClothingActivity } from "./ClothingActivity";
 import BookRushHour from "./BookRushHour";
 import { ImageQuestion } from "./ImageQuestion";
 import { DragMultiChoice } from "./DragMultiChoice";
-
+import { PasswordChecker } from "./PasswordChecker";
+import { DragDrop } from "./DragDrop";
+import FixPassword from "./FixPassword";
 export function BookImage({
   image,
   page,
@@ -140,6 +142,15 @@ export function BookImage({
       )}
       {image === "DragMultiChoice" && (
         <DragMultiChoice props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "PasswordChecker" && (
+        <PasswordChecker props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "DragDrop" && (
+        <DragDrop props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "FixPassword" && (
+        <FixPassword props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );
