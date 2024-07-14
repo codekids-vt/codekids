@@ -150,7 +150,7 @@ export function BookImage({
         <DragDrop props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "FixPassword" && (
-        <FixPassword props={page?.props} setAllowNext={setAllowNext}/>
+        <FixPassword props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );
