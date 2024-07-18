@@ -56,7 +56,7 @@ export function BuyDonut({
             skipLines: [4, 5, 6],
             enableNext: enableNext,
           }}
-          loop={{exists: false}}
+          loop={{ exists: false }}
         />
       </div>
       <div className="w-1/2">

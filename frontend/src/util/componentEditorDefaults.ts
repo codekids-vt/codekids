@@ -188,6 +188,7 @@ export const editorDefaults: { [key: string]: any } = {
     ],
     style: Styles.HORIZONTAL,
     image: "/sky.jpg",
+    code: "",
   },
   DragMultiChoice: {
     title: "What is the title?",
@@ -212,36 +213,41 @@ export const editorDefaults: { [key: string]: any } = {
     ],
   },
   CodeStepFlowchart: {
-      flowChart: {
-        "0": {
-          "text": "Click next and watch the for loop execute.",
-          "image": "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats.svg"
-        },
-        "2": {
-          "text": "The arrow is followed back up to the beginning of the loop.",
-          "image": "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_3.svg"
-        },
-        "3": {
-          "text": "cup_number is X which is in range(0, 5). So, the True arrow will be followed.",
-          "image": "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_2.svg"
-        },
-        "5": {
-          "text": "cup_number would become 5 which is not in range(0, 5). So, the False arrow is followed.",
-          "image": "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_4.svg"
-        },
-        "2f": {
-          "text": "The loop begins and will execute as long as cup_number is in range(0, 5).",
-          "image": "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_1.svg"
-        }
+    flowChart: {
+      "0": {
+        text: "Click next and watch the for loop execute.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats.svg",
+      },
+      "2": {
+        text: "The arrow is followed back up to the beginning of the loop.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_3.svg",
+      },
+      "3": {
+        text: "cup_number is X which is in range(0, 5). So, the True arrow will be followed.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_2.svg",
+      },
+      "5": {
+        text: "cup_number would become 5 which is not in range(0, 5). So, the False arrow is followed.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_4.svg",
+      },
+      "2f": {
+        text: "The loop begins and will execute as long as cup_number is in range(0, 5).",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_1.svg",
+      },
     },
-    code: "# cup_number is currently %N\n \nfor cup_number in range(0, 5):\n\tprint(\"Fed baby goats a cup!\")\n \n#End of program",
+    code: '# cup_number is currently %N\n \nfor cup_number in range(0, 5):\n\tprint("Fed baby goats a cup!")\n \n#End of program',
     skipLines: [1, 4],
     loop: {
       exists: true,
       lines: [2, 3],
       iterations: 5,
       type: "for",
-      display: "iteration"
-    }
-  }
+      display: "iteration",
+    },
+  },
 };

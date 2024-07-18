@@ -139,7 +139,7 @@ export function MultipleConditions({
                 enableNext: true,
                 getLine: getLine,
               }}
-              loop={{exists: false}}
+              loop={{ exists: false }}
             />
           </div>
           <div className="flex flex-col text-center w-1/2">
