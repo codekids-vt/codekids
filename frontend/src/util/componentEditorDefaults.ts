@@ -250,4 +250,35 @@ export const editorDefaults: { [key: string]: any } = {
       display: "iteration",
     },
   },
+  FillInTheBlank: {
+    image:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/riding_2.jpg",
+    description: [
+      "Make the For-loop execute 3 times for each lap of pony riding!",
+      "Type in the iterator variable and iterator object from the given options!",
+      "You can also click an answer choice and a text input to copy it in.",
+    ],
+    questionText: "for %B in %B:\n\tprint('Fed baby goats one cup!')",
+    answers: [
+      {
+        text: "lap_number",
+        correct: "1",
+      },
+      {
+        text: "range(0, 5)",
+        correct: "-1",
+      },
+      {
+        text: "range(0, 3)",
+        correct: "2",
+      },
+    ],
+    helpText: {
+      start: "Type in your answers above and then click submit!",
+      correct:
+        "Correct! The iterator variable is lap_number and iterator object is range(0, 3).",
+      incorrect:
+        "Incorrect. Remember a for loop has a iterator variable and a iterable object.",
+    },
+  },
 };
