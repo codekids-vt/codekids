@@ -65,6 +65,8 @@ function FillInTheBlank({
             type="text"
             value={blanksTyped[index]}
             onChange={(e) => onBlankChanged(e)}
+            onDrop={(e) => handleOnDrop(e, index)}
+            onDragOver={handleDragOver}
           />,
         ],
       );
@@ -102,6 +104,21 @@ function FillInTheBlank({
     setAnswerExplanation(allCorrect ? helpText.correct : helpText.incorrect);
   }
 
+  const handleOnDrag = (e: React.DragEvent, answerText: string) => {
+    e.dataTransfer.setData("answerText", answerText);
+  };
+
+  const handleOnDrop = (e: React.DragEvent, blankIndex: number) => {
+    const answerText = e.dataTransfer.getData("answerText") as string;
+    const copy = JSON.parse(JSON.stringify(blanksTyped));
+    copy[blankIndex] = answerText;
+    setBlanksTyped(copy);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       {props.image && props.image !== "" && (
@@ -113,7 +130,7 @@ function FillInTheBlank({
         {description && description !== "" && (
           <div className="flex flex-col w-1/2 items-center gap-5 font-bold text-center">
             {description.map((text: string, index: number) => (
-              <Reader key={index} text={text} />
+              <Reader key={text + index} text={text} />
             ))}
           </div>
         )}
@@ -127,10 +144,12 @@ function FillInTheBlank({
             {answers.map((answer: any, index: number) => (
               <button
                 id={index.toString()}
-                key={index}
+                key={answer + index}
                 className={`${answerButtonStyle} ${answerSelectedStyle[index]}`}
                 type="button"
                 onClick={(e) => answerPressed(e.currentTarget)}
+                draggable
+                onDragStart={(e) => handleOnDrag(e, answer.text)}
               >
                 {answer.text}
               </button>
