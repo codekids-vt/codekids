@@ -61,7 +61,7 @@ function FillInTheBlank({
           <input
             id={index.toString()}
             onClick={(e) => blankPressed(e.currentTarget)}
-            className="px-1 bg-orange-100 hover:bg-orange-50 w-28 text-lg"
+            className="px-1 bg-orange-100 hover:bg-orange-50 w-28 lg:text-lg md:text-md sm:text-sm"
             type="text"
             value={blanksTyped[index]}
             onChange={(e) => onBlankChanged(e)}

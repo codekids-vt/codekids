@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { MultipleChoiceQuestion } from "./Question";
-import { CodeSnippet } from "./CodeSnippet";
+import { CodeBlock } from "react-code-blocks";
 
 export function ImageQuestion({
   props,
@@ -20,7 +20,7 @@ export function ImageQuestion({
       <img src={props.image} alt={props.question} className="h-1/2" />
       {props.code !== undefined && props.code !== "" && (
         <div className="m-5">
-          <CodeSnippet code={props.code} />
+          <CodeBlock text={props.code} language="python" />
         </div>
       )}
       <MultipleChoiceQuestion

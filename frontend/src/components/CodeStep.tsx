@@ -3,6 +3,7 @@
 */
 
 import React, { useState } from "react";
+import { CodeBlock } from "react-code-blocks";
 
 /*
     Code is delimited by \n 
@@ -24,9 +25,11 @@ export interface ILoop {
 export function CodeStep({
   props,
   loop,
+  useCodeBlock,
 }: {
   props: ICodeStepProps;
   loop: ILoop;
+  useCodeBlock?: boolean;
 }) {
   const [currentLine, setCurrentLine] = useState(0);
   const [loopIteration, setLoopIteration] = useState(0);
@@ -36,11 +39,6 @@ export function CodeStep({
   function checkCurrentLine(thisLine: number, currentLine: number) {
     if (thisLine === currentLine) return "yellow";
     return "none";
-  }
-
-  function getButtonStyle() {
-    if (props.enableNext) return button_style;
-    return disabled_button_style;
   }
 
   function nextButton() {
@@ -144,23 +142,39 @@ export function CodeStep({
 
   return (
     <React.Fragment>
-      <div className=" flex flex-col ml-auto mr-auto px-10 py-5 w-fit bg-zinc-200">
-        {code.map((line, index) => (
-          <div
-            className="px-5 whitespace-pre-wrap text-left"
-            key={index}
-            style={{ background: checkCurrentLine(index, currentLine) }}
-          >
-            {line}
-          </div>
-        ))}
+      <div className=" flex flex-col ml-auto mr-auto px-10 py-5 w-fit bg-zinc-200 text-start">
+        {useCodeBlock ? (
+          <CodeBlock
+            text={props.code}
+            language="python"
+            highlight={
+              currentLine === 0
+                ? ""
+                : `${code[0].includes("#") ? "1," : ""}${(currentLine + 1).toString()}`
+            }
+          />
+        ) : (
+          code.map((line, index) => (
+            <div
+              className="px-5 whitespace-pre-wrap text-left"
+              key={line + index}
+              style={{ background: checkCurrentLine(index, currentLine) }}
+            >
+              {line}
+            </div>
+          ))
+        )}
       </div>
       <div className="inline-flex mt-5 rounded-md gap-10 justify-center">
-        <button style={button_style} type="button" onClick={() => backButton()}>
+        <button
+          className="bg-gray-300 text-xl border-black border-2 rounded-3xl px-5 py-2 m-1 whitespace-pre-wrap"
+          type="button"
+          onClick={() => backButton()}
+        >
           Back
         </button>
         <button
-          style={getButtonStyle()}
+          className={`${!props.enableNext ? "opacity-50" : ""} bg-gray-300 text-xl border-black border-2 rounded-3xl px-5 m-1 whitespace-pre-wrap`}
           disabled={!props.enableNext}
           type="button"
           onClick={() => nextButton()}
@@ -171,28 +185,3 @@ export function CodeStep({
     </React.Fragment>
   );
 }
-
-const button_style = {
-  backgroundColor: "#D1D5DB",
-  color: "black",
-  fontSize: "20px",
-  border: "1px solid grey",
-  borderRadius: "30px",
-  padding: "5px 20px",
-  margin: ".5%",
-  cursor: "pointer",
-  whiteSpace: "pre-wrap" as "pre-wrap",
-};
-
-const disabled_button_style = {
-  backgroundColor: "#D1D5DB",
-  color: "black",
-  fontSize: "20px",
-  border: "1px solid grey",
-  borderRadius: "30px",
-  padding: "5px 20px",
-  margin: ".5%",
-  cursor: "pointer",
-  whiteSpace: "pre-wrap" as "pre-wrap",
-  opacity: "50%",
-};
