@@ -188,6 +188,7 @@ export const editorDefaults: { [key: string]: any } = {
     ],
     style: Styles.HORIZONTAL,
     image: "/sky.jpg",
+    code: "",
   },
   DragMultiChoice: {
     title: "What is the title?",
@@ -210,5 +211,74 @@ export const editorDefaults: { [key: string]: any } = {
         answer: "Option 2",
       },
     ],
+  },
+  CodeStepFlowchart: {
+    flowChart: {
+      "0": {
+        text: "Click next and watch the for loop execute.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats.svg",
+      },
+      "2": {
+        text: "The arrow is followed back up to the beginning of the loop.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_3.svg",
+      },
+      "3": {
+        text: "cup_number is X which is in range(0, 5). So, the True arrow will be followed.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_2.svg",
+      },
+      "5": {
+        text: "cup_number would become 5 which is not in range(0, 5). So, the False arrow is followed.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_4.svg",
+      },
+      "2f": {
+        text: "The loop begins and will execute as long as cup_number is in range(0, 5).",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_1.svg",
+      },
+    },
+    code: '# cup_number is currently %N\n \nfor cup_number in range(0, 5):\n\tprint("Fed baby goats a cup!")\n \n#End of program',
+    skipLines: [1, 4],
+    loop: {
+      exists: true,
+      lines: [2, 3],
+      iterations: 5,
+      type: "for",
+      display: "iteration",
+    },
+  },
+  FillInTheBlank: {
+    image:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/riding_2.jpg",
+    description: [
+      "Make the For-loop execute 3 times for each lap of pony riding!",
+      "Type in the iterator variable and iterator object from the given options!",
+      "You can also click an answer choice and a text input to copy it in.",
+    ],
+    questionText: "for %B in %B:\n\tprint('Fed baby goats one cup!')",
+    answers: [
+      {
+        text: "lap_number",
+        correct: "1",
+      },
+      {
+        text: "range(0, 5)",
+        correct: "-1",
+      },
+      {
+        text: "range(0, 3)",
+        correct: "2",
+      },
+    ],
+    helpText: {
+      start: "Type in your answers above and then click submit!",
+      correct:
+        "Correct! The iterator variable is lap_number and iterator object is range(0, 3).",
+      incorrect:
+        "Incorrect. Remember a for loop has a iterator variable and a iterable object.",
+    },
   },
 };

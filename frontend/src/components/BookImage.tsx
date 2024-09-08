@@ -32,6 +32,8 @@ import { ClothingActivity } from "./ClothingActivity";
 import BookRushHour from "./BookRushHour";
 import { ImageQuestion } from "./ImageQuestion";
 import { DragMultiChoice } from "./DragMultiChoice";
+import CodeStepFlowchart from "./CodeStepFlowchart";
+import FillInTheBlank from "./FillInTheBlank";
 
 export function BookImage({
   image,
@@ -140,6 +142,12 @@ export function BookImage({
       )}
       {image === "DragMultiChoice" && (
         <DragMultiChoice props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "CodeStepFlowchart" && (
+        <CodeStepFlowchart props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "FillInTheBlank" && (
+        <FillInTheBlank props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );
