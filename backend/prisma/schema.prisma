@@ -11,7 +11,7 @@ datasource db {
 
 model Image {
   id        Int      @id @default(autoincrement())
-  name      String
+  name      String 
   image_url String
 }
 
@@ -26,6 +26,7 @@ model User {
   courses       Course[]
   CourseStudent CourseStudent[]
   books         Book[]
+  bookScores    UserBookScore[] //Added new relation
 }
 
 enum AccountType {
@@ -89,6 +90,7 @@ model Book {
   courses         BookCourse[]
   owner           User         @relation(fields: [ownerId], references: [id])
   ownerId         Int          @default(1)
+  bookScores      UserBookScore[] //Added new relation
 }
 
 model Page {
@@ -128,4 +130,15 @@ model BookCourse {
   bookId   Int
   course   Course @relation(fields: [courseId], references: [id])
   courseId Int
+}
+
+model UserBookScore {
+  id     Int    @id @default(autoincrement())
+  userId Int
+  bookId Int
+  score  Float
+  user   User   @relation(fields: [userId], references: [id])
+  book   Book   @relation(fields: [bookId], references: [id])
+
+  @@map("user_book_scores")
 }

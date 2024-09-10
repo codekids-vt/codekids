@@ -7,6 +7,7 @@ import type { Book } from "./Book";
 import type { Course } from "./Course";
 import type { CourseStudent } from "./CourseStudent";
 import type { Interaction } from "./Interaction";
+import type { UserBookScore } from "./UserBookScore";
 /**
  * Represents a User record
  */
@@ -21,4 +22,5 @@ export type User = {
   courses?: Array<Course> | null;
   CourseStudent?: Array<CourseStudent> | null;
   books?: Array<Book> | null;
+  bookScores?: Array<UserBookScore> | null;
 };

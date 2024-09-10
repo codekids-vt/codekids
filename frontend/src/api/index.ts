@@ -29,6 +29,7 @@ export type { SignupRequest } from "./models/SignupRequest";
 export type { UpdatePage } from "./models/UpdatePage";
 export type { UpdateUserRequest } from "./models/UpdateUserRequest";
 export type { User } from "./models/User";
+export type { UserBookScore } from "./models/UserBookScore";
 export type { UserLightNoPassword } from "./models/UserLightNoPassword";
 export type { ValidationError } from "./models/ValidationError";
 
