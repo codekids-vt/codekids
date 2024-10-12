@@ -118,6 +118,23 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
+  InputOutputActivity: {
+    showIOLabels: true,
+    options: [
+      {
+        text: "Bow",
+        image: "/dressing_figure/bow.png",
+      },
+      {
+        text: "Glasses",
+        image: "/dressing_figure/glasses.png",
+      },
+      {
+        text: "Hat",
+        image: "/dressing_figure/hat.png",
+      },
+    ],
+  },
   SelectImageActivity: {
     question: "What is the color of the sky?",
     options: [
