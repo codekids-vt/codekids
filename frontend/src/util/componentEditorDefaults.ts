@@ -120,18 +120,130 @@ export const editorDefaults: { [key: string]: any } = {
   },
   InputOutputActivity: {
     showIOLabels: true,
-    options: [
+    backgroundImage: "Add background image here",
+    categories: [
       {
-        text: "Bow",
-        image: "/dressing_figure/bow.png",
+        name: "Category One",
+        options: [
+          {
+            text: "Input One",
+            image: "Add the first image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)"
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)"
+            }
+          },
+          {
+            text: "Input Two",
+            image: "Add the second image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)"
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)"
+            }
+          },
+          {
+            text: "Input Three",
+            image: "Add the third image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)"
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)"
+            }
+          },
+        ],
       },
       {
-        text: "Glasses",
-        image: "/dressing_figure/glasses.png",
+        name: "Category Two",
+        options: [
+          {
+            text: "Input One",
+            image: "Add the first image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)"
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)"
+            }
+          },
+          {
+            text: "Input Two",
+            image: "Add the second image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)"
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)"
+            }
+          },
+          {
+            text: "Input Three",
+            image: "Add the third image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)"
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)"
+            }
+          },
+        ],
       },
       {
-        text: "Hat",
-        image: "/dressing_figure/hat.png",
+        name: "Category Three",
+        options: [
+          {
+            text: "Input One",
+            image: "Add the first image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)"
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)"
+            }
+          },
+          {
+            text: "Input Two",
+            image: "Add the second image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)"
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)"
+            }
+          },
+          {
+            text: "Input Three",
+            image: "Add the third image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)"
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)"
+            }
+          },
+        ],
       },
     ],
   },

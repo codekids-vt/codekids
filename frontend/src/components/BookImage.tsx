@@ -126,9 +126,9 @@ export function BookImage({
       {image === "FoodTruckActivity" && (
         <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
-      {/* {image === "InputOutputActivity" && (
+      {image === "InputOutputActivity" && (
         <InputOutputActivity props={page?.props} setAllowNext={setAllowNext} />
-      )} */}
+      )}
       {image === "SelectImageActivity" && (
         <SelectImageActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
