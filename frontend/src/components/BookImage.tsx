@@ -23,7 +23,7 @@ import { MultipleConditions } from "../components/MisconceptionComponents/Flowch
 import { ChangingCondition } from "../components/MisconceptionComponents/FlowchartsBook/ChangingCondition";
 import { InputActivity } from "../components/InputActivity";
 import { FoodTruckActivity } from "../components/FoodTruckActivity";
-import { InputOutputActivity } from "../components/InputOutput"
+import { InputOutputActivity } from "../components/InputOutput";
 import { Page } from "../api";
 import { SelectImageActivity } from "./SelectImage";
 import BinaryConverter from "./BinaryConverter";
