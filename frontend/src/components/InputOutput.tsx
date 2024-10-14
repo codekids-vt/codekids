@@ -125,7 +125,7 @@ export function InputOutputActivity({
         {/* Background image */}
         <img
           src={backgroundImage}
-          alt="Background Image"
+          alt="Background"
           className="h-96 w-96 rounded-md shadow-md justify-center"
         />
         {/* Selected item overlays */}
