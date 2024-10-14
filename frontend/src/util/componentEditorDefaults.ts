@@ -118,6 +118,53 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
+  InputOutputActivity: {
+    showIOLabels: true,
+    backgroundImage: "Add background image here",
+    categories: [
+      {
+        name: "Category Name",
+        options: [
+          {
+            text: "Input One",
+            image: "Add the first image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)",
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)",
+            },
+          },
+          {
+            text: "Input Two",
+            image: "Add the second image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)",
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)",
+            },
+          },
+          {
+            text: "Input Three",
+            image: "Add the third image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)",
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)",
+            },
+          },
+        ],
+      },
+    ],
+  },
   SelectImageActivity: {
     question: "What is the color of the sky?",
     options: [
