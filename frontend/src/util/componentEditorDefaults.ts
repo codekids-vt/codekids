@@ -118,6 +118,9 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
+  RandomPicker: {
+    // TO DO
+  },
   SelectImageActivity: {
     question: "What is the color of the sky?",
     options: [
