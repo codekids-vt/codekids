@@ -77,13 +77,17 @@ export function BookImage({
 
       {image === "ImageClickAnimationWrong" && (
         <ImageClickAnimation
-          props={{ ...page?.props, wrongTrickMode: true }}
+          {...page?.props} // Spread all other props directly
+          wrongTrickMode={true} // Explicitly set wrongTrickMode to true
           setAllowNext={setAllowNext}
         />
       )}
 
       {image === "ImageClickAnimation" && (
-        <ImageClickAnimation props={page?.props} setAllowNext={setAllowNext} />
+        <ImageClickAnimation
+          {...page?.props} // Spread all other props directly
+          setAllowNext={setAllowNext}
+        />
       )}
       {image === "DragAndDrop" && (
         <DragAndDropActivity props={page?.props} setAllowNext={setAllowNext} />

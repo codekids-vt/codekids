@@ -330,29 +330,36 @@ export const editorDefaults: { [key: string]: any } = {
   },
   TextBoxImage: {
     prompt: "What is the name of your pet?",
-    image: "/PetTrainingBook/dog-clipart-boy-3.png",
+    image:
+      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-clipart-boy-3.png",
   },
   DragAndDrop: {
-    dogImage: "/PetTrainingBook/dog-clipart-boy-3.png",
-    treatImage: "/PetTrainingBook/dog_treat.png",
-    toyImage: "/PetTrainingBook/dog-toy.png",
+    dogImage:
+      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-clipart-boy-3.png",
+    treatImage:
+      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog_treat.png",
+    toyImage:
+      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-toy.png",
     prompt: "Drag and drop a toy or a treat to your pet!",
   },
 
   ImageClickAnimation: {
-    image: "/PetTrainingBook/dog-clipart-boy-3.png",
+    image:
+      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-clipart-boy-3.png",
     animationType: "freeze",
     wrongTrickMode: false,
   },
 
   ImageClickAnimationWrong: {
-    image: "/PetTrainingBook/dog-clipart-boy-3.png",
+    image:
+      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-clipart-boy-3.png",
     animationType: "freeze",
     wrongTrickMode: true,
   },
 
   CountdownTimer: {
     initialTime: "00:10",
-    image: "/PetTrainingBook/dog-clipart-boy-3.png",
+    image:
+      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-clipart-boy-3.png",
   },
 };

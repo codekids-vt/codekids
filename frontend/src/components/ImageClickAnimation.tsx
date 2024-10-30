@@ -6,13 +6,14 @@ export interface IImageClickAnimationProps {
 }
 
 export function ImageClickAnimation({
-  props,
+  image,
+  wrongTrickMode = false, // Default wrongTrickMode to false if not provided
   setAllowNext,
 }: {
-  props: IImageClickAnimationProps;
+  image: string;
+  wrongTrickMode?: boolean;
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { image, wrongTrickMode = false } = props; // Default wrongTrickMode to false if not provided
   const [animationType, setAnimationType] = useState<string>("freeze");
 
   // Handle button clicks to change animation, apply the wrong trick if wrongTrickMode is true
