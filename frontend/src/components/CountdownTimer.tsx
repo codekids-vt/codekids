@@ -13,11 +13,11 @@ export function CountdownTimer({
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { initialTime = "00:10", dogImage } = props; // Default to "00:10"
-  const [timeInput, setTimeInput] = useState(initialTime); 
-  const [seconds, setSeconds] = useState<number>(0); 
-  const [isCounting, setIsCounting] = useState<boolean>(false); 
+  const [timeInput, setTimeInput] = useState(initialTime);
+  const [seconds, setSeconds] = useState<number>(0);
+  const [isCounting, setIsCounting] = useState<boolean>(false);
   const [isValidTime, setIsValidTime] = useState<boolean>(true);
-  
+
   // Parse the input time (MM:SS) into seconds
   const parseTimeToSeconds = (time: string): number | null => {
     const parts = time.split(":");
@@ -43,7 +43,7 @@ export function CountdownTimer({
       setIsCounting(true);
       setIsValidTime(true);
     } else {
-      setIsValidTime(false); 
+      setIsValidTime(false);
     }
   };
 
@@ -111,9 +111,9 @@ export function CountdownTimer({
 
       <div className="dog-image-section flex justify-center">
         <img
-          src={dogImage} 
+          src={dogImage}
           alt="Dog"
-          style={{ width: "150px", height: "150px" }} 
+          style={{ width: "150px", height: "150px" }}
         />
       </div>
     </div>
