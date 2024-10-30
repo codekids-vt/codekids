@@ -47,16 +47,13 @@ export function TextBoxImageActivity({
       className="text-box-image-activity flex flex-col items-center justify-center"
       style={{ minHeight: "90vh" }}
     >
-      {" "}
-      {/* Center content and reduce empty space */}
-      {/* Wrapper div with flexbox to center the image */}
       <div
         className="flex justify-center items-center"
         style={{ width: "100%", height: "auto", marginBottom: "10px" }}
       >
         <img
           src={image}
-          alt="Activity Image"
+          alt="Pet to name"
           className="object-contain"
           style={{ width: 300, height: 200 }}
         />
@@ -74,9 +71,7 @@ export function TextBoxImageActivity({
         className="border border-gray-300 rounded-md p-2"
         style={{ marginBottom: "10px" }}
       />
-      {/* Show "Well done!" message after submission */}
       {isSubmitted && <p className="text-green-500 mt-2">Well done!</p>}
-      {/* Reset button to clear input and try again */}
       <button
         onClick={handleReset}
         className="bg-red-500 text-white rounded-md px-4 py-2 mt-4"
