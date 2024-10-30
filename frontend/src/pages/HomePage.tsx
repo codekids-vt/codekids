@@ -104,8 +104,7 @@ export default function HomePage() {
               <button
                 key={category}
                 onClick={() => {
-                  const newSelectedCategory =
-                    selectedCategory === category ? null : category;
+                  const newSelectedCategory = category;
                   setSelectedCategory(newSelectedCategory);
                   loadBookResults(newSelectedCategory, query);
                 }}

@@ -1,3 +1,5 @@
+import { DragAndDropActivity } from "../components/DragAndDrop";
+import { ImageClickAnimation } from "../components/ImageClickAnimation";
 import { Styles } from "../components/Question";
 
 export const editorDefaults: { [key: string]: any } = {
@@ -327,5 +329,32 @@ export const editorDefaults: { [key: string]: any } = {
       incorrect:
         "Incorrect. Remember a for loop has a iterator variable and a iterable object.",
     },
+  },
+  TextBoxImage: {
+    prompt: "What is the name of your pet?",
+    image: "/PetTrainingBook/dog-clipart-boy-3.png",
+  },
+  DragAndDrop: {
+    dogImage: "/PetTrainingBook/dog-clipart-boy-3.png",
+    treatImage: "/PetTrainingBook/dog_treat.png",
+    toyImage: "/PetTrainingBook/dog-toy.png",
+    prompt: "Drag and drop a toy or a treat to your pet!",
+  },
+
+  ImageClickAnimation: {
+    image: "/PetTrainingBook/dog-clipart-boy-3.png",
+    animationType: "freeze",
+    wrongTrickMode: false,
+  },
+
+  ImageClickAnimationWrong: {
+    image: "/PetTrainingBook/dog-clipart-boy-3.png",
+    animationType: "freeze",
+    wrongTrickMode: true,
+  },
+
+  CountdownTimer: {
+    initialTime: "00:10",
+    image: "/PetTrainingBook/dog-clipart-boy-3.png",
   },
 };

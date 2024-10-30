@@ -12,16 +12,12 @@ export function CountdownTimer({
   props: ICountdownTimerProps;
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { initialTime = "00:10", dogImage } = props; // Default to "00:10" if no initial time is provided
-
-  const [timeInput, setTimeInput] = useState(initialTime); // User input for the timer
-  const [seconds, setSeconds] = useState<number>(0); // Total seconds for the countdown
-  const [isCounting, setIsCounting] = useState<boolean>(false); // Track if the timer is counting down
-  const [isValidTime, setIsValidTime] = useState<boolean>(true); // Validate the time input
-
-  useEffect(() => {
-    console.log(props);
-  }, []);
+  const { initialTime = "00:10", dogImage } = props; // Default to "00:10"
+  const [timeInput, setTimeInput] = useState(initialTime); 
+  const [seconds, setSeconds] = useState<number>(0); 
+  const [isCounting, setIsCounting] = useState<boolean>(false); 
+  const [isValidTime, setIsValidTime] = useState<boolean>(true);
+  
   // Parse the input time (MM:SS) into seconds
   const parseTimeToSeconds = (time: string): number | null => {
     const parts = time.split(":");
@@ -47,7 +43,7 @@ export function CountdownTimer({
       setIsCounting(true);
       setIsValidTime(true);
     } else {
-      setIsValidTime(false); // Mark input as invalid if not parsable
+      setIsValidTime(false); 
     }
   };
 
@@ -76,11 +72,10 @@ export function CountdownTimer({
 
   return (
     <div
-      className="countdown-timer-container flex justify-center items-center w-full"
+      className="countdown-timer-container flex flex-col justify-center items-center w-full h-full text-center"
       style={{ gap: "20px" }}
     >
-      {/* Timer Section */}
-      <div className="timer-section flex flex-col items-center">
+      <div className="timer-section flex flex-col items-center mb-4">
         <div className="input-section mb-4">
           <input
             type="text"
@@ -89,7 +84,7 @@ export function CountdownTimer({
             placeholder="MM:SS"
             className={`border ${
               isValidTime ? "border-gray-300" : "border-red-500"
-            } p-2 rounded`}
+            } p-2 rounded text-center`}
             disabled={isCounting} // Disable input during countdown
           />
           {!isValidTime && (
@@ -114,12 +109,11 @@ export function CountdownTimer({
         )}
       </div>
 
-      {/* Dog Image Section */}
-      <div className="dog-image-section">
+      <div className="dog-image-section flex justify-center">
         <img
-          src={dogImage} // Path to the dog image
+          src={dogImage} 
           alt="Dog"
-          style={{ width: "150px", height: "150px" }} // Adjust the size as needed
+          style={{ width: "150px", height: "150px" }} 
         />
       </div>
     </div>
