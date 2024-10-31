@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Image {
-  id        Int      @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   name      String
   image_url String
 }
@@ -44,6 +44,7 @@ enum BookCategory {
   BEGINNER
   INTERMEDIATE
   ADVANCED
+  UNPLUGGED
 }
 
 model Interaction {
