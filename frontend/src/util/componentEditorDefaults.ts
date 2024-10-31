@@ -328,4 +328,29 @@ export const editorDefaults: { [key: string]: any } = {
         "Incorrect. Remember a for loop has a iterator variable and a iterable object.",
     },
   },
+  TextBoxImage: {
+    prompt: "What is the name of your pet?",
+    image:
+      " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
+  },
+  DragAndDrop: {
+    dogImage:
+      " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
+    treatImage: "/PetTrainingBook/dog_treat.png",
+    toyImage: "/PetTrainingBook/dog-toy.png",
+    prompt: "Drag and drop a toy or a treat to your pet!",
+  },
+
+  ImageClickAnimation: {
+    image:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
+    animationType: "freeze",
+    wrongTrickMode: false,
+  },
+
+  CountdownTimer: {
+    dogImage:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
+    initialTime: "00:10",
+  },
 };

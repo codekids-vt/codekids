@@ -35,6 +35,10 @@ import { ImageQuestion } from "./ImageQuestion";
 import { DragMultiChoice } from "./DragMultiChoice";
 import CodeStepFlowchart from "./CodeStepFlowchart";
 import FillInTheBlank from "./FillInTheBlank";
+import { TextBoxImageActivity } from "./TextBoxImage"; // Import your component
+import { DragAndDropActivity } from "./DragAndDrop";
+import { ImageClickAnimation } from "./ImageClickAnimation";
+import { CountdownTimer } from "./CountdownTimer";
 
 export function BookImage({
   image,
@@ -60,6 +64,21 @@ export function BookImage({
           />
         </div>
       )}
+
+      {image === "CountdownTimer" && (
+        <CountdownTimer props={page?.props} setAllowNext={setAllowNext} />
+      )}
+
+      {image === "ImageClickAnimation" && (
+        <ImageClickAnimation props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "DragAndDrop" && (
+        <DragAndDropActivity props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "TextBoxImage" && (
+        <TextBoxImageActivity props={page?.props} setAllowNext={setAllowNext} />
+      )}
+
       {image === "HokieBirdActivity" && (
         <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />
       )}
