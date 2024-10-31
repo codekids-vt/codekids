@@ -1,5 +1,3 @@
-import { DragAndDropActivity } from "../components/DragAndDrop";
-import { ImageClickAnimation } from "../components/ImageClickAnimation";
 import { Styles } from "../components/Question";
 
 export const editorDefaults: { [key: string]: any } = {
