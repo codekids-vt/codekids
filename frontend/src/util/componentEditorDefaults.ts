@@ -1,3 +1,5 @@
+import { DragAndDropActivity } from "../components/DragAndDrop";
+import { ImageClickAnimation } from "../components/ImageClickAnimation";
 import { Styles } from "../components/Question";
 
 export const editorDefaults: { [key: string]: any } = {
@@ -331,35 +333,26 @@ export const editorDefaults: { [key: string]: any } = {
   TextBoxImage: {
     prompt: "What is the name of your pet?",
     image:
-      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-clipart-boy-3.png",
+      " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
   },
   DragAndDrop: {
     dogImage:
-      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-clipart-boy-3.png",
-    treatImage:
-      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog_treat.png",
-    toyImage:
-      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-toy.png",
+      " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
+    treatImage: "/PetTrainingBook/dog_treat.png",
+    toyImage: "/PetTrainingBook/dog-toy.png",
     prompt: "Drag and drop a toy or a treat to your pet!",
   },
 
   ImageClickAnimation: {
     image:
-      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-clipart-boy-3.png",
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
     animationType: "freeze",
     wrongTrickMode: false,
   },
 
-  ImageClickAnimationWrong: {
-    image:
-      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-clipart-boy-3.png",
-    animationType: "freeze",
-    wrongTrickMode: true,
-  },
-
   CountdownTimer: {
+    dogImage:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
     initialTime: "00:10",
-    image:
-      "https://codekids-minioui.endeavour.cs.vt.edu/browser/codekids/PetTrainingBook%2Fdog-clipart-boy-3.png",
   },
 };

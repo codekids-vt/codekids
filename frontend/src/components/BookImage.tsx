@@ -66,28 +66,11 @@ export function BookImage({
       )}
 
       {image === "CountdownTimer" && (
-        <CountdownTimer
-          props={{
-            ...page?.props,
-            dogImage: "/PetTrainingBook/dog-clipart-boy-3.png",
-          }}
-          setAllowNext={setAllowNext}
-        />
-      )}
-
-      {image === "ImageClickAnimationWrong" && (
-        <ImageClickAnimation
-          {...page?.props} // Spread all other props directly
-          wrongTrickMode={true} // Explicitly set wrongTrickMode to true
-          setAllowNext={setAllowNext}
-        />
+        <CountdownTimer props={page?.props} setAllowNext={setAllowNext} />
       )}
 
       {image === "ImageClickAnimation" && (
-        <ImageClickAnimation
-          {...page?.props} // Spread all other props directly
-          setAllowNext={setAllowNext}
-        />
+        <ImageClickAnimation props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "DragAndDrop" && (
         <DragAndDropActivity props={page?.props} setAllowNext={setAllowNext} />

@@ -6,14 +6,13 @@ export interface IImageClickAnimationProps {
 }
 
 export function ImageClickAnimation({
-  image,
-  wrongTrickMode = false, // Default wrongTrickMode to false if not provided
+  props,
   setAllowNext,
 }: {
-  image: string;
-  wrongTrickMode?: boolean;
+  props: IImageClickAnimationProps;
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const { image, wrongTrickMode = false } = props; // Default wrongTrickMode to false if not provided
   const [animationType, setAnimationType] = useState<string>("freeze");
 
   // Handle button clicks to change animation, apply the wrong trick if wrongTrickMode is true
@@ -30,7 +29,7 @@ export function ImageClickAnimation({
     }
 
     setAnimationType(appliedAnimation);
-    setAllowNext(true); // You can allow the next activity here if needed
+    setAllowNext(true);
   };
 
   // Inline styles for animations
@@ -58,14 +57,14 @@ export function ImageClickAnimation({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: "100vh", // Full viewport height to center vertically
+        minHeight: "100vh",
       }}
     >
       {/* Image with dynamic inline styles */}
       <img
         src={image}
         alt="Animated"
-        style={imageStyle} // Apply dynamic inline styles based on animation type
+        style={imageStyle}
         onClick={() => setAllowNext(true)}
       />
 
