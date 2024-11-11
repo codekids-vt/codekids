@@ -98,12 +98,14 @@ export default function ActivityBookList({
   linkSuffix,
   loading,
   showPublished,
+  isUnplugged,
 }: {
   books: Book[];
   linkPrefix: string;
   linkSuffix: string;
   loading?: boolean;
   showPublished?: boolean;
+  isUnplugged?: boolean;
 }) {
   return (
     <>
@@ -117,5 +119,40 @@ export default function ActivityBookList({
         />
       </section>
     </>
+  );
+}
+
+export function BookPreviewUnplugged({ BookData }: { BookData: Array<any> }) {
+  return (
+    <div className="flex flex-wrap gap-4">
+      {BookData.map((book, index) => (
+        <div key={index} className="h-[325px] w-[275px] relative">
+          <a href={`/${book.link}`}>
+            <div className="h-[325px] w-[275px] hover:shadow-2xl rounded-2xl hover:-translate-y-1">
+              <img
+                src={book.bookCover ? book.bookCover : "/color_2.png"}
+                width={275}
+                height={280}
+                alt="Book Background"
+                className="absolute"
+              />
+              <div className="relative top-16 left-4 w-52 h-64 flex-col flex items-center p-2 text-center">
+                {book.coverImage && (
+                  <img
+                    src={book.coverImage}
+                    width={125}
+                    height={125}
+                    alt={`Book ${book.title}`}
+                    className="rounded-2xl"
+                  />
+                )}
+                <h1 className="text-black font-semibold">{book.title}</h1>
+                <p className="mt-1 text-sm text-black">{book.blurb}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
   );
 }

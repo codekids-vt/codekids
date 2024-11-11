@@ -4,7 +4,10 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import useSound from "use-sound";
 import { Book, BookCategory, BooksService } from "../api";
-import ActivityBookList from "../components/ActivityBookList";
+import ActivityBookList, {
+  BookPreview,
+  BookPreviewUnplugged,
+} from "../components/ActivityBookList";
 
 export default function HomePage() {
   const [playSound] = useSound("/sounds/low-click.mp3", { volume: 0.5 });
@@ -15,6 +18,45 @@ export default function HomePage() {
     null,
   );
   const [timerHandle, setTimerHandle] = useState<NodeJS.Timeout | null>(null);
+  const [isUnplugged, setIsUnplugged] = useState(false);
+  const unpluggedList = [
+    {
+      author: "Daniella Efrach",
+      blurb: "transform input to output with math operations",
+      bookCover: "/color_1.png",
+      category: "UNPLUGGED",
+      courses: [],
+      coverImage:
+        "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/math-operations.png",
+      id: 9999999,
+      owner: null,
+      ownderId: 16,
+      pages: [],
+      published: true,
+      readyForPublish: false,
+      tags: [],
+      title: "Math Input/Output Activity",
+      link: "math_io_pipeline_functions.pdf",
+    },
+    {
+      author: "Thomas",
+      blurb: "Learn about loops and abstraction through a maze",
+      bookCover: "/color_7.png",
+      category: "UNPLUGGED",
+      courses: [],
+      coverImage:
+        "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/arrow.png",
+      id: 9999998,
+      owner: null,
+      ownderId: 16,
+      pages: [],
+      published: true,
+      readyForPublish: false,
+      tags: [],
+      title: "Maze Solver Game",
+      link: "maze_solver.pdf",
+    },
+  ];
 
   useEffect(() => {
     playSound();
@@ -25,6 +67,7 @@ export default function HomePage() {
       setLoading(true);
       BooksService.searchBooksBooksGet(category, null, null, true, query)
         .then((response) => {
+          console.log(response);
           setResults(response);
           setLoading(false);
         })
@@ -108,6 +151,7 @@ export default function HomePage() {
                     selectedCategory === category ? null : category;
                   setSelectedCategory(newSelectedCategory);
                   loadBookResults(newSelectedCategory, query);
+                  setIsUnplugged(false);
                 }}
                 className={`${
                   selectedCategory === category
@@ -118,13 +162,34 @@ export default function HomePage() {
                 {category}
               </button>
             ))}
+            <button
+              key={"Unplugged"}
+              onClick={() => {
+                setIsUnplugged(!isUnplugged); //render unplugged books
+                setSelectedCategory(null); //set category to unplugged
+                loadBookResults(null, query); //gets rid of non-unplugged books
+              }}
+              className={`${
+                isUnplugged
+                  ? "bg-primary-green text-white"
+                  : "bg-white text-primary-green"
+              } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
+            >
+              UNPLUGGED
+            </button>
           </div>
-          <ActivityBookList
-            books={results}
-            linkPrefix={"/book/"}
-            linkSuffix={"/1"}
-            loading={loading}
-          />
+          {isUnplugged ? (
+            <div>
+              <BookPreviewUnplugged BookData={unpluggedList} />
+            </div>
+          ) : (
+            <ActivityBookList
+              books={results}
+              linkPrefix={"/book/"}
+              linkSuffix={"/1"}
+              loading={loading}
+            />
+          )}
         </div>
       </div>
       <Footer />
