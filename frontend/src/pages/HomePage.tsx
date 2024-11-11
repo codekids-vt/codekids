@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar";
 import useSound from "use-sound";
 import { Book, BookCategory, BooksService } from "../api";
 import ActivityBookList, {
-  BookPreview,
   BookPreviewUnplugged,
 } from "../components/ActivityBookList";
 
