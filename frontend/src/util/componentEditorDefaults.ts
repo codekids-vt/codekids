@@ -118,6 +118,9 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
+  BookReview: {
+
+  },
   InputOutputActivity: {
     showIOLabels: true,
     backgroundImage: "Add background image here",

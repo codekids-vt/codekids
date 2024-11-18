@@ -69,10 +69,10 @@ export function MultipleChoiceQuestion({
     setCorrect(correct);
     if (correct) {
       playCorrectSound();
-      handleInteraction(answerText, true, timeSpent, user?.id, bookID, pageID);
+      handleInteraction(answerText, true, timeSpent, user?.id, bookID, pageID, undefined);
     } else {
       playIncorrectSound();
-      handleInteraction(answerText, false, timeSpent, user?.id, bookID, pageID);
+      handleInteraction(answerText, false, timeSpent, user?.id, bookID, pageID, undefined);
     }
     changeButtonColor(index, correct);
     if (buttonPressed !== undefined) {
