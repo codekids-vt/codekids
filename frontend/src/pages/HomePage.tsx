@@ -106,24 +106,27 @@ export default function HomePage() {
           </div>
           <div className="flex flex-row items-center gap-2">
             {/* Filters out UNPLUGGED category because that button is manually inserted. */}
-            {Object.values(BookCategory).filter((category) => category !== BookCategory.UNPLUGGED).map((category) => (
-              <button
-                key={category}
-                onClick={() => {
-                  const newSelectedCategory =
-                    selectedCategory === category ? null : category;
-                  setSelectedCategory(newSelectedCategory);
-                  loadBookResults(newSelectedCategory, query);
-                  setIsUnplugged(false);
-                }}
-                className={`${selectedCategory === category
-                  ? "bg-primary-green text-white"
-                  : "bg-white text-primary-green"
+            {Object.values(BookCategory)
+              .filter((category) => category !== BookCategory.UNPLUGGED)
+              .map((category) => (
+                <button
+                  key={category}
+                  onClick={() => {
+                    const newSelectedCategory =
+                      selectedCategory === category ? null : category;
+                    setSelectedCategory(newSelectedCategory);
+                    loadBookResults(newSelectedCategory, query);
+                    setIsUnplugged(false);
+                  }}
+                  className={`${
+                    selectedCategory === category
+                      ? "bg-primary-green text-white"
+                      : "bg-white text-primary-green"
                   } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
-              >
-                {category}
-              </button>
-            ))}
+                >
+                  {category}
+                </button>
+              ))}
             <button
               key={"Unplugged"}
               onClick={() => {
@@ -131,10 +134,11 @@ export default function HomePage() {
                 setSelectedCategory(null); //set category to unplugged
                 loadBookResults(null, query); //gets rid of non-unplugged books
               }}
-              className={`${isUnplugged
-                ? "bg-primary-green text-white"
-                : "bg-white text-primary-green"
-                } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
+              className={`${
+                isUnplugged
+                  ? "bg-primary-green text-white"
+                  : "bg-white text-primary-green"
+              } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
             >
               UNPLUGGED
             </button>
