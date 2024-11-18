@@ -21,7 +21,7 @@ export default function HomePage() {
   const unpluggedList = [
     {
       author: "Daniella Efrach",
-      blurb: "transform input to output with math operations",
+      blurb: "Transform input to output with math operations",
       bookCover: "/color_1.png",
       category: "UNPLUGGED",
       courses: [],
@@ -53,7 +53,25 @@ export default function HomePage() {
       readyForPublish: false,
       tags: [],
       title: "Maze Solver Game",
-      link: "maze_solver.pdf",
+      link: "Maze_Solver.pdf",
+    },
+    {
+      author: "Thomas",
+      blurb: "A matching game with computer components",
+      bookCover: "/color_4.png",
+      category: "UNPLUGGED",
+      courses: [],
+      coverImage:
+        "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/deck-of-cards-clipart-sm.png",
+      id: 9999998,
+      owner: null,
+      ownderId: 16,
+      pages: [],
+      published: true,
+      readyForPublish: false,
+      tags: [],
+      title: "Card Game",
+      link: "CardGames.pdf",
     },
   ];
 
