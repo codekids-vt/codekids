@@ -4,7 +4,10 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import useSound from "use-sound";
 import { Book, BookCategory, BooksService } from "../api";
-import ActivityBookList from "../components/ActivityBookList";
+import ActivityBookList, {
+  BookPreviewUnplugged,
+} from "../components/ActivityBookList";
+import { unpluggedBooks } from "../util/UnpluggedBooks";
 
 export default function HomePage() {
   const [playSound] = useSound("/sounds/low-click.mp3", { volume: 0.5 });
@@ -15,6 +18,7 @@ export default function HomePage() {
     null,
   );
   const [timerHandle, setTimerHandle] = useState<NodeJS.Timeout | null>(null);
+  const [isUnplugged, setIsUnplugged] = useState(false);
 
   useEffect(() => {
     playSound();
@@ -25,6 +29,7 @@ export default function HomePage() {
       setLoading(true);
       BooksService.searchBooksBooksGet(category, null, null, true, query)
         .then((response) => {
+          console.log(response);
           setResults(response);
           setLoading(false);
         })
@@ -100,31 +105,56 @@ export default function HomePage() {
             ></input>
           </div>
           <div className="flex flex-row items-center gap-2">
-            {Object.values(BookCategory).map((category) => (
-              <button
-                key={category}
-                onClick={() => {
-                  const newSelectedCategory =
-                    selectedCategory === category ? null : category;
-                  setSelectedCategory(newSelectedCategory);
-                  loadBookResults(newSelectedCategory, query);
-                }}
-                className={`${
-                  selectedCategory === category
-                    ? "bg-primary-green text-white"
-                    : "bg-white text-primary-green"
-                } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
-              >
-                {category}
-              </button>
-            ))}
+            {/* Filters out UNPLUGGED category because that button is manually inserted. */}
+            {Object.values(BookCategory)
+              .filter((category) => category !== BookCategory.UNPLUGGED)
+              .map((category) => (
+                <button
+                  key={category}
+                  onClick={() => {
+                    const newSelectedCategory =
+                      selectedCategory === category ? null : category;
+                    setSelectedCategory(newSelectedCategory);
+                    loadBookResults(newSelectedCategory, query);
+                    setIsUnplugged(false);
+                  }}
+                  className={`${
+                    selectedCategory === category
+                      ? "bg-primary-green text-white"
+                      : "bg-white text-primary-green"
+                  } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
+                >
+                  {category}
+                </button>
+              ))}
+            <button
+              key={"Unplugged"}
+              onClick={() => {
+                setIsUnplugged(!isUnplugged); //render unplugged books
+                setSelectedCategory(null); //set category to unplugged
+                loadBookResults(null, query); //gets rid of non-unplugged books
+              }}
+              className={`${
+                isUnplugged
+                  ? "bg-primary-green text-white"
+                  : "bg-white text-primary-green"
+              } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
+            >
+              UNPLUGGED
+            </button>
           </div>
-          <ActivityBookList
-            books={results}
-            linkPrefix={"/book/"}
-            linkSuffix={"/1"}
-            loading={loading}
-          />
+          {isUnplugged ? (
+            <div>
+              <BookPreviewUnplugged BookData={unpluggedBooks} />
+            </div>
+          ) : (
+            <ActivityBookList
+              books={results}
+              linkPrefix={"/book/"}
+              linkSuffix={"/1"}
+              loading={loading}
+            />
+          )}
         </div>
       </div>
       <Footer />
