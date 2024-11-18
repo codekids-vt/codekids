@@ -7,6 +7,7 @@ import { Book, BookCategory, BooksService } from "../api";
 import ActivityBookList, {
   BookPreviewUnplugged,
 } from "../components/ActivityBookList";
+import { unpluggedBooks } from "../util/UnpluggedBooks";
 
 export default function HomePage() {
   const [playSound] = useSound("/sounds/low-click.mp3", { volume: 0.5 });
@@ -18,62 +19,6 @@ export default function HomePage() {
   );
   const [timerHandle, setTimerHandle] = useState<NodeJS.Timeout | null>(null);
   const [isUnplugged, setIsUnplugged] = useState(false);
-  const unpluggedList = [
-    {
-      author: "Daniella Efrach",
-      blurb: "Transform input to output with math operations",
-      bookCover: "/color_1.png",
-      category: "UNPLUGGED",
-      courses: [],
-      coverImage:
-        "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/math-operations.png",
-      id: 9999999,
-      owner: null,
-      ownderId: 16,
-      pages: [],
-      published: true,
-      readyForPublish: false,
-      tags: [],
-      title: "Math Input/Output Activity",
-      link: "math_io_pipeline_functions.pdf",
-    },
-    {
-      author: "Thomas",
-      blurb: "Learn about loops and abstraction through a maze",
-      bookCover: "/color_7.png",
-      category: "UNPLUGGED",
-      courses: [],
-      coverImage:
-        "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/arrow.png",
-      id: 9999998,
-      owner: null,
-      ownderId: 16,
-      pages: [],
-      published: true,
-      readyForPublish: false,
-      tags: [],
-      title: "Maze Solver Game",
-      link: "Maze_Solver.pdf",
-    },
-    {
-      author: "Thomas",
-      blurb: "A matching game with computer components",
-      bookCover: "/color_4.png",
-      category: "UNPLUGGED",
-      courses: [],
-      coverImage:
-        "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/deck-of-cards-clipart-sm.png",
-      id: 9999998,
-      owner: null,
-      ownderId: 16,
-      pages: [],
-      published: true,
-      readyForPublish: false,
-      tags: [],
-      title: "Card Game",
-      link: "CardGames.pdf",
-    },
-  ];
 
   useEffect(() => {
     playSound();
@@ -160,7 +105,8 @@ export default function HomePage() {
             ></input>
           </div>
           <div className="flex flex-row items-center gap-2">
-            {Object.values(BookCategory).map((category) => (
+            {/* Filters out UNPLUGGED category because that button is manually inserted. */}
+            {Object.values(BookCategory).filter((category) => category !== BookCategory.UNPLUGGED).map((category) => (
               <button
                 key={category}
                 onClick={() => {
@@ -170,11 +116,10 @@ export default function HomePage() {
                   loadBookResults(newSelectedCategory, query);
                   setIsUnplugged(false);
                 }}
-                className={`${
-                  selectedCategory === category
-                    ? "bg-primary-green text-white"
-                    : "bg-white text-primary-green"
-                } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
+                className={`${selectedCategory === category
+                  ? "bg-primary-green text-white"
+                  : "bg-white text-primary-green"
+                  } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
               >
                 {category}
               </button>
@@ -186,18 +131,17 @@ export default function HomePage() {
                 setSelectedCategory(null); //set category to unplugged
                 loadBookResults(null, query); //gets rid of non-unplugged books
               }}
-              className={`${
-                isUnplugged
-                  ? "bg-primary-green text-white"
-                  : "bg-white text-primary-green"
-              } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
+              className={`${isUnplugged
+                ? "bg-primary-green text-white"
+                : "bg-white text-primary-green"
+                } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
             >
               UNPLUGGED
             </button>
           </div>
           {isUnplugged ? (
             <div>
-              <BookPreviewUnplugged BookData={unpluggedList} />
+              <BookPreviewUnplugged BookData={unpluggedBooks} />
             </div>
           ) : (
             <ActivityBookList
