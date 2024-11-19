@@ -77,7 +77,7 @@ export function HokieBirdMap({
             user?.id,
             bookID,
             pageID,
-            undefined
+            undefined,
           );
           setMessage(`Keep going! Your're almost there!`);
         } else {
@@ -88,7 +88,7 @@ export function HokieBirdMap({
             user?.id,
             bookID,
             pageID,
-            undefined
+            undefined,
           );
           setMessage(
             `Almost! Try again, ${procedures[i]} is not the right statement.`,
@@ -99,7 +99,15 @@ export function HokieBirdMap({
         break;
       }
       if (i === procedures.length - 1) {
-        handleInteraction("Correct", true, timeSpent, user?.id, bookID, pageID, undefined);
+        handleInteraction(
+          "Correct",
+          true,
+          timeSpent,
+          user?.id,
+          bookID,
+          pageID,
+          undefined,
+        );
         playCorrectSound();
         setMessage("You did it!");
         setCurrentImage(props.images[procedures.length]);

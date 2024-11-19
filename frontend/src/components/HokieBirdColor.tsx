@@ -85,10 +85,26 @@ export function HokieBirdColoring({
     const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     if (currentAlert.type === AlertType.SUCCESS) {
       playCorrectSound();
-      handleInteraction(answer, true, timeSpent, user?.id, bookID, pageID, undefined);
+      handleInteraction(
+        answer,
+        true,
+        timeSpent,
+        user?.id,
+        bookID,
+        pageID,
+        undefined,
+      );
     } else if (currentAlert.type === AlertType.FAILURE) {
       playIncorrectSound();
-      handleInteraction(answer, false, timeSpent, user?.id, bookID, pageID, undefined);
+      handleInteraction(
+        answer,
+        false,
+        timeSpent,
+        user?.id,
+        bookID,
+        pageID,
+        undefined,
+      );
     }
   }, [
     currentAlert,

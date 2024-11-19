@@ -48,7 +48,7 @@ export function InputActivity({
           user?.id,
           bookID,
           pageID,
-          undefined
+          undefined,
         );
         setCurrentImage(correctImage);
         setAnsweredCorrectly(true);
@@ -61,7 +61,7 @@ export function InputActivity({
           user?.id,
           bookID,
           pageID,
-          undefined
+          undefined,
         );
         setCurrentImage(correctImage);
         setAnsweredCorrectly(true);

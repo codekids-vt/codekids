@@ -50,7 +50,15 @@ export function FoodTruckActivity({
       const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
       setAllowNext(all);
       playCorrectSound();
-      handleInteraction("completed", true, timeSpent, user?.id, bookID, pageID, undefined);
+      handleInteraction(
+        "completed",
+        true,
+        timeSpent,
+        user?.id,
+        bookID,
+        pageID,
+        undefined,
+      );
     }
   }, [
     selectedOptions,
