@@ -54,7 +54,7 @@ export function TextBoxImageActivity({
       >
         <img
           src={image}
-          alt="image to name"
+          alt="custom"
           className="object-contain"
           style={{ width: 300, height: 200 }}
         />
