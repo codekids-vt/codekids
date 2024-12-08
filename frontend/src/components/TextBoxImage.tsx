@@ -5,6 +5,7 @@ export interface ITextBoxImageActivityProps {
   image: string;
   completionSound: string;
   prompt: string;
+  correct: string;
 }
 
 export function TextBoxImageActivity({
@@ -53,7 +54,7 @@ export function TextBoxImageActivity({
       >
         <img
           src={image}
-          alt="Pet to name"
+          alt="image to name"
           className="object-contain"
           style={{ width: 300, height: 200 }}
         />
@@ -66,7 +67,7 @@ export function TextBoxImageActivity({
         value={inputValue}
         onChange={onInputChange}
         onKeyPress={handleKeyPress} // Trigger submission on enter
-        placeholder="Name your pet"
+        placeholder="Enter text here"
         disabled={isSubmitted} // Disable input after submission
         className="border border-gray-300 rounded-md p-2"
         style={{ marginBottom: "10px" }}
@@ -76,7 +77,7 @@ export function TextBoxImageActivity({
         onClick={handleReset}
         className="bg-red-500 text-white rounded-md px-4 py-2 mt-4"
       >
-        Reset Name
+        Reset
       </button>
     </div>
   );
