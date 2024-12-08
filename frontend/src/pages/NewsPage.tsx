@@ -6,27 +6,29 @@ export default function NewsPage() {
   const newsArticles = [
     {
       title: "Exciting Updates from CodeKids!",
-      content: "We are thrilled to announce the launch of our new AI Books for kids to learn new Artificial Intelligence topics!"
-       + " Browse the new books on our homepage.",
+      content:
+        "We are thrilled to announce the launch of our new AI Books for kids to learn new Artificial Intelligence topics!" +
+        " Browse the new books on our homepage.",
       date: "September 1, 2024",
     },
     {
-        title: "CodeKids Participates in Hokie for a Day",
-        content: (
-          <>
-            CodeKids attended Virginia Tech's Hokie for a Day program. See more at this{" "}
-            <a
-              href="https://news.vt.edu/videos/k/2024/10/1_udlbdosv.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary-green underline hover:text-hover-green"
-            >
-              link
-            </a>
-            .
-          </>
-        ),
-      },
+      title: "CodeKids Participates in Hokie for a Day",
+      content: (
+        <>
+          CodeKids attended Virginia Tech's Hokie for a Day program. See more at
+          this{" "}
+          <a
+            href="https://news.vt.edu/videos/k/2024/10/1_udlbdosv.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-green underline hover:text-hover-green"
+          >
+            link
+          </a>
+          .
+        </>
+      ),
+    },
   ];
 
   return (
