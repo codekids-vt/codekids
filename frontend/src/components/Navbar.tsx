@@ -16,6 +16,10 @@ const baseLinks: readonly NavLinkRoute[] = [
     text: "About Us",
     href: "/about_us",
   },
+  {
+    text: "News", // Add News link here
+    href: "/news",
+  },
 ];
 
 const teacherLinks: readonly NavLinkRoute[] = [
@@ -36,11 +40,7 @@ function NavButton(route: NavLinkRoute) {
   return (
     <a href={href}>
       <li
-        className={`
-        p-2 mx-1 my-2
-        transition-colors hover:bg-black/10 hover:text-lime-700
-        rounded-md outline-1 outline-neutral-300/20 hover:outline
-      `}
+        className={`p-2 mx-1 my-2 transition-colors hover:bg-black/10 hover:text-lime-700 rounded-md outline-1 outline-neutral-300/20 hover:outline`}
       >
         {text}
       </li>
@@ -70,10 +70,7 @@ export default function Navbar() {
           </a>
           <button
             onClick={() => setOpen(!open)}
-            className={`
-            sm:hidden aspect-square w-10 h-auto
-            rounded-md outline outline-1 outline-neutral-300
-          `}
+            className={`sm:hidden aspect-square w-10 h-auto rounded-md outline outline-1 outline-neutral-300`}
           >
             <svg className="h-6 w-6 fill-current mx-auto" viewBox="0 0 24 24">
               {open ? (
@@ -84,7 +81,7 @@ export default function Navbar() {
               ) : (
                 <path
                   fillRule="evenodd"
-                  d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+                  d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
                 />
               )}
             </svg>
@@ -92,14 +89,7 @@ export default function Navbar() {
         </div>
 
         <nav
-          className={`
-          px-1
-          bg-stone-800 text-white
-          ${open ? "block" : "hidden"}
-          sm:block my-auto  sm:py-0
-          rounded-b-md font-semibold
-          absolute left-1/2 transform -translate-x-1/2
-        `}
+          className={`px-1 bg-stone-800 text-white ${open ? "block" : "hidden"} sm:block my-auto sm:py-0 rounded-b-md font-semibold absolute left-1/2 transform -translate-x-1/2`}
         >
           <ul className="tablet:mx-auto sm:flex sm:items-center text-center text-lg">
             {navLinks.map((route, i) => (
@@ -111,12 +101,7 @@ export default function Navbar() {
         {!user ? (
           <a className="my-auto" href="/login">
             <p
-              className={`
-            px-3 py-2
-            text-neutral-100 text-center text-sm bg-primary-green rounded-md
-            transition-shadow duration-200
-            hover:shadow-black/20 hover:shadow-md
-          `}
+              className={`px-3 py-2 text-neutral-100 text-center text-sm bg-primary-green rounded-md transition-shadow duration-200 hover:shadow-black/20 hover:shadow-md`}
             >
               Log in
             </p>
@@ -126,12 +111,7 @@ export default function Navbar() {
             <div className="div text-xl font-semibold">Hi {user.name}!</div>
             <button
               onClick={logout}
-              className={`
-              px-3 py-2 bg-primary-green
-              text-neutral-100 text-center text-sm rounded-md
-              transition-shadow duration-200
-              hover:shadow-black/20 hover:shadow-md
-            `}
+              className={`px-3 py-2 bg-primary-green text-neutral-100 text-center text-sm rounded-md transition-shadow duration-200 hover:shadow-black/20 hover:shadow-md`}
             >
               Log out
             </button>
