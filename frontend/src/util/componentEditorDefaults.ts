@@ -332,7 +332,7 @@ export const editorDefaults: { [key: string]: any } = {
     prompt: "Question?",
     image:
       " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
-    successMessage: "hi"
+    successMessage: "hi",
   },
   DragAndDrop: {
     dogImage:
