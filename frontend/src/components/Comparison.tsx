@@ -115,6 +115,7 @@ export function Comparison({
     currentAlert,
     playCorrectSound,
     playIncorrectSound,
+    AlertType,
     startTime,
     user,
     bookID,
@@ -125,7 +126,7 @@ export function Comparison({
     // You can tailor the condition that allows next page.
     // For now, sets allowNext to true if the last action was correct.
     setAllowNext(currentAlert.type === AlertType.SUCCESS);
-  }, [currentAlert, setAllowNext]);
+  }, [currentAlert, AlertType.SUCCESS, setAllowNext]);
 
   function onDragStart(e: React.DragEvent, id: number) {
     e.dataTransfer.setData("id", id.toString());
