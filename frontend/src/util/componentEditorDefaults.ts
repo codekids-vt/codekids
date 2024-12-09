@@ -1,4 +1,3 @@
-import { Comparison } from "../components/Comparison";
 import { Styles } from "../components/Question";
 
 export const editorDefaults: { [key: string]: any } = {
