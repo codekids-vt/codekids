@@ -57,7 +57,7 @@ export function BookReview({
 
   React.useEffect(() => {
     setAllowNext(true); // Ensures that the next button is initially disabled
-  }, []);
+  }, [setAllowNext]);
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
