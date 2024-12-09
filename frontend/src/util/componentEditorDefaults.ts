@@ -341,9 +341,10 @@ export const editorDefaults: { [key: string]: any } = {
     },
   },
   TextBoxImage: {
-    prompt: "What is the name of your pet?",
+    prompt: "Question?",
     image:
       " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
+    correct: "correct message here",
   },
   DragAndDrop: {
     dogImage:
