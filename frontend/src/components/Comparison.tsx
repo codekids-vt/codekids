@@ -3,11 +3,29 @@ import useSound from "use-sound";
 import { handleInteraction } from "../util/interaction";
 import { useAuth } from "../context/AuthContext";
 
+type Association = string | "bank";
+
+type Option = {
+  id: number;
+  label: string;
+  correctAssociation: string;
+  status: Association;
+};
+
 export function Comparison({
   props,
   setAllowNext,
 }: {
-  props: any;
+  props: {
+    command?: string;
+    categoryA?: string; // First category (e.g. "Front-End")
+    categoryB?: string; // Second category (e.g. "Back-End")
+    options?: {
+      id: number;
+      label: string;
+      correctAssociation: string;
+    }[];
+  };
   setAllowNext: Dispatch<SetStateAction<boolean>>;
 }) {
   const { user } = useAuth();
@@ -15,14 +33,35 @@ export function Comparison({
   const [bookID, setbookID] = useState(0);
   const [pageID, setpageID] = useState(0);
 
-  // Example options to classify as True or False
-  const initialOptions = [
-    { id: 1, label: "Option 1", status: "bank" },
-    { id: 2, label: "Option 2", status: "bank" },
-    { id: 3, label: "Option 3", status: "bank" },
-  ];
+  const categoryA = props.categoryA || "Front-End";
+  const categoryB = props.categoryB || "Back-End";
 
-  const [options, setOptions] = useState(initialOptions);
+  // Fallback if no props.options are provided
+  const initialOptions: Option[] =
+    props.options && props.options.length > 0
+      ? props.options.map((o) => ({ ...o, status: "bank" as const }))
+      : [
+          {
+            id: 1,
+            label: "React",
+            correctAssociation: categoryA,
+            status: "bank",
+          },
+          {
+            id: 2,
+            label: "Node.js",
+            correctAssociation: categoryB,
+            status: "bank",
+          },
+          {
+            id: 3,
+            label: "CSS",
+            correctAssociation: categoryA,
+            status: "bank",
+          },
+        ];
+
+  const [options, setOptions] = useState<Option[]>(initialOptions);
 
   const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
   const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
@@ -45,25 +84,48 @@ export function Comparison({
     setTime(new Date().getTime());
     const url = new URL(window.location.href);
     const pathSegments = url.pathname.split("/").filter((segment) => segment);
-    setbookID(parseInt(pathSegments[1], 10));
-    setpageID(parseInt(pathSegments[2], 10));
+    if (pathSegments[1]) setbookID(parseInt(pathSegments[1], 10));
+    if (pathSegments[2]) setpageID(parseInt(pathSegments[2], 10));
   }, []);
 
   React.useEffect(() => {
     const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     if (currentAlert.type === AlertType.SUCCESS) {
       playCorrectSound();
-      handleInteraction("Some Answer", true, timeSpent, user?.id, bookID, pageID);
+      handleInteraction(
+        "Some Answer",
+        true,
+        timeSpent,
+        user?.id,
+        bookID,
+        pageID,
+      );
     } else if (currentAlert.type === AlertType.FAILURE) {
       playIncorrectSound();
-      handleInteraction("Some Answer", false, timeSpent, user?.id, bookID, pageID);
+      handleInteraction(
+        "Some Answer",
+        false,
+        timeSpent,
+        user?.id,
+        bookID,
+        pageID,
+      );
     }
-  }, [currentAlert, playCorrectSound, playIncorrectSound, startTime, user, bookID, pageID]);
+  }, [
+    currentAlert,
+    playCorrectSound,
+    playIncorrectSound,
+    startTime,
+    user,
+    bookID,
+    pageID,
+  ]);
 
   React.useEffect(() => {
-    // If success allows navigation to next page, adjust as needed
+    // You can tailor the condition that allows next page.
+    // For now, sets allowNext to true if the last action was correct.
     setAllowNext(currentAlert.type === AlertType.SUCCESS);
-  }, [currentAlert, setAllowNext, AlertType.SUCCESS]);
+  }, [currentAlert, setAllowNext]);
 
   function onDragStart(e: React.DragEvent, id: number) {
     e.dataTransfer.setData("id", id.toString());
@@ -73,33 +135,63 @@ export function Comparison({
     e.preventDefault();
   }
 
-  function onDrop(e: React.DragEvent, dropStatus: "true" | "false") {
+  function onDrop(e: React.DragEvent, dropStatus: Association) {
     const id = parseInt(e.dataTransfer.getData("id"), 10);
+    let isCorrect = false;
     const updatedOptions = options.map((option) => {
       if (option.id === id) {
+        // Check correctness only if dropping into categoryA or categoryB
+        if (dropStatus !== "bank") {
+          const correct = option.correctAssociation === dropStatus;
+          if (correct) {
+            isCorrect = true;
+          }
+        }
         return { ...option, status: dropStatus };
       }
       return option;
     });
     setOptions(updatedOptions);
 
-    // Trigger success/failure feedback
-    if (dropStatus === "true") {
-      setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
+    // Trigger success/failure feedback only if dropping into categoryA or categoryB
+    if (dropStatus === categoryA || dropStatus === categoryB) {
+      if (isCorrect) {
+        setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
+      } else {
+        const droppedOption = options.find((option) => option.id === id);
+        setCurrentAlert({
+          type: AlertType.FAILURE,
+          message: `Incorrect. ${droppedOption?.label} belongs to ${droppedOption?.correctAssociation}. Try again.`,
+        });
+      }
     } else {
-      setCurrentAlert({ type: AlertType.FAILURE, message: "Incorrect. Try again." });
+      // Dropping back to bank doesn't show alerts
+      setCurrentAlert({ type: AlertType.NONE, message: "" });
     }
   }
 
-  // Compute styling based on status:
-  // bank: neutral
-  // true: green
-  // false: red
-  function getOptionStyle(status: string) {
-    if (status === "bank") return "bg-gray-300";
-    if (status === "true") return "bg-green-600 text-white";
-    if (status === "false") return "bg-red-600 text-white";
-    return "bg-gray-300";
+  // Compute styling based on correctness:
+  // If status matches the correctAssociation, green; otherwise red.
+  // Bank is neutral.
+  function getOptionStyle(option: Option) {
+    if (option.status === "bank") return "bg-gray-300";
+    const isCorrect = option.status === option.correctAssociation;
+    return isCorrect ? "bg-green-600 text-white" : "bg-red-600 text-white";
+  }
+
+  function renderOptionsForStatus(status: Association) {
+    return options
+      .filter((o) => o.status === status)
+      .map((option) => (
+        <div
+          key={option.id}
+          draggable={true}
+          onDragStart={(e) => onDragStart(e, option.id)}
+          className={`cursor-move text-center p-2 rounded-lg shadow ${getOptionStyle(option)}`}
+        >
+          {option.label}
+        </div>
+      ));
   }
 
   return (
@@ -115,7 +207,9 @@ export function Comparison({
           {currentAlert.message}
           {currentAlert.type === AlertType.FAILURE && (
             <button
-              onClick={() => setCurrentAlert({ type: AlertType.NONE, message: "" })}
+              onClick={() =>
+                setCurrentAlert({ type: AlertType.NONE, message: "" })
+              }
               className="ml-2 text-red-700 font-bold"
             >
               x
@@ -124,56 +218,39 @@ export function Comparison({
         </div>
       )}
 
-      <h1 className="text-center font-bold">{props?.command || "Drag and Drop Classification"}</h1>
+      <h1 className="text-center font-bold">
+        {props?.command || "Drag and Drop Classification"}
+      </h1>
 
       <div className="flex flex-row space-x-4 justify-center">
-        {/* Bank of Options */}
-        <div className="flex flex-col space-y-2 p-4 bg-white rounded-2xl border-2 border-gray-300">
+        {/* Bank of Options (Now droppable) */}
+        <div
+          className="flex flex-col space-y-2 p-4 bg-white rounded-2xl border-2 border-gray-300 w-96 h-96"
+          onDrop={(e) => onDrop(e, "bank")}
+          onDragOver={(e) => onDragOver(e)}
+        >
           <h2 className="text-center font-semibold">Options</h2>
-          {options.filter((o) => o.status === "bank").map((option) => (
-            <div
-              key={option.id}
-              draggable
-              onDragStart={(e) => onDragStart(e, option.id)}
-              className={`cursor-move text-center p-2 rounded-lg shadow ${getOptionStyle(option.status)}`}
-            >
-              {option.label}
-            </div>
-          ))}
+          {renderOptionsForStatus("bank")}
         </div>
 
-        {/* True Box */}
+        {/* Category A Box */}
         <div
-          onDrop={(e) => onDrop(e, "true")}
+          onDrop={(e) => onDrop(e, categoryA)}
           onDragOver={(e) => onDragOver(e)}
-          className="flex-1 flex flex-col space-y-2 p-4 bg-white rounded-2xl border-2 border-gray-300"
+          className="flex-1 flex flex-col space-y-2 p-4 bg-white rounded-2xl border-2 border-gray-300 w-96 h-96"
         >
-          <h2 className="text-center font-semibold">True</h2>
-          {options.filter((o) => o.status === "true").map((option) => (
-            <div
-              key={option.id}
-              className={`p-2 rounded-lg shadow ${getOptionStyle(option.status)}`}
-            >
-              {option.label}
-            </div>
-          ))}
+          <h2 className="text-center font-semibold">{categoryA}</h2>
+          {renderOptionsForStatus(categoryA)}
         </div>
 
-        {/* False Box */}
+        {/* Category B Box */}
         <div
-          onDrop={(e) => onDrop(e, "false")}
+          onDrop={(e) => onDrop(e, categoryB)}
           onDragOver={(e) => onDragOver(e)}
-          className="flex-1 flex flex-col space-y-2 p-4 bg-white rounded-2xl border-2 border-gray-300"
+          className="flex-1 flex flex-col space-y-2 p-4 bg-white rounded-2xl border-2 border-gray-300 w-96 h-96"
         >
-          <h2 className="text-center font-semibold">False</h2>
-          {options.filter((o) => o.status === "false").map((option) => (
-            <div
-              key={option.id}
-              className={`p-2 rounded-lg shadow ${getOptionStyle(option.status)}`}
-            >
-              {option.label}
-            </div>
-          ))}
+          <h2 className="text-center font-semibold">{categoryB}</h2>
+          {renderOptionsForStatus(categoryB)}
         </div>
       </div>
     </div>
