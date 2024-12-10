@@ -169,7 +169,7 @@ export function Comparison({
           .replace("{label}", droppedOption?.label || "this item")
           .replace(
             "{correctAssociation}",
-            droppedOption?.correctAssociation || "the correct category"
+            droppedOption?.correctAssociation || "the correct category",
           );
         setCurrentAlert({
           type: AlertType.FAILURE,
