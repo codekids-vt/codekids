@@ -62,7 +62,7 @@ export const unpluggedBooks = [
     coverImage:
       "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/mazeIcon.png",
     id: 9999997,
-    owner: null,
+    owner: null, 
     ownerId: 16,
     pages: [],
     published: true,
