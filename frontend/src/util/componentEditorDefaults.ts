@@ -1,6 +1,19 @@
 import { Styles } from "../components/Question";
 
 export const editorDefaults: { [key: string]: any } = {
+  Comparison: {
+    command: "Match these technologies",
+    categoryA: "Front-End",
+    categoryB: "Back-End",
+    options: [
+      { id: 1, label: "React", correctAssociation: "Front-End" },
+      { id: 2, label: "Node.js", correctAssociation: "Back-End" },
+      { id: 3, label: "CSS", correctAssociation: "Front-End" },
+      { id: 4, label: "MongoDB", correctAssociation: "Back-End" },
+    ],
+    incorrectMessageTemplate:
+      "Incorrect. {label} should go under {correctAssociation}. Try again.",
+  },
   HokieBirdActivity: {
     draggable: true,
     command: "Drag the Colors over these boxes",
