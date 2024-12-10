@@ -58,6 +58,7 @@ model Interaction {
   timeSinceLoad   Int
   bookId          Int?
   pageId          Int?
+  thumbsUp        Boolean?
 
   question   Question? @relation(fields: [questionId], references: [id])
   questionId Int?

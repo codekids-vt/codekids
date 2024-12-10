@@ -66,7 +66,15 @@ export function InputOutputActivity({
       const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
       setAllowNext(true);
       playCorrectSound();
-      handleInteraction("completed", true, timeSpent, user?.id, bookID, pageID);
+      handleInteraction(
+        "completed",
+        true,
+        timeSpent,
+        user?.id,
+        bookID,
+        pageID,
+        undefined,
+      );
     }
   }, [
     selectedItems,

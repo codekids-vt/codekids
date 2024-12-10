@@ -8,6 +8,7 @@ export function handleInteraction(
   user: number | undefined,
   bookID: number,
   pageID: number,
+  thumbsUp: boolean | undefined,
 ) {
   try {
     InteractionsService.createInteractionInteractionsPost({
@@ -18,6 +19,7 @@ export function handleInteraction(
       correct: correct,
       bookId: bookID,
       pageId: pageID,
+      thumbsUp: thumbsUp,
     });
   } catch (error) {
     console.log("Error occured while interacting with database");
