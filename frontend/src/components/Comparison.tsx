@@ -25,6 +25,7 @@ export function Comparison({
       label: string;
       correctAssociation: string;
     }[];
+    incorrectMessageTemplate?: string; // Customizable incorrect message
   };
   setAllowNext: Dispatch<SetStateAction<boolean>>;
 }) {
@@ -35,6 +36,10 @@ export function Comparison({
 
   const categoryA = props.categoryA || "Front-End";
   const categoryB = props.categoryB || "Back-End";
+
+  const incorrectMessageTemplate =
+    props.incorrectMessageTemplate ||
+    "Incorrect. {label} belongs to {correctAssociation}. Try again.";
 
   // Fallback if no props.options are provided
   const initialOptions: Option[] =
@@ -160,9 +165,15 @@ export function Comparison({
         setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
       } else {
         const droppedOption = options.find((option) => option.id === id);
+        const message = incorrectMessageTemplate
+          .replace("{label}", droppedOption?.label || "this item")
+          .replace(
+            "{correctAssociation}",
+            droppedOption?.correctAssociation || "the correct category"
+          );
         setCurrentAlert({
           type: AlertType.FAILURE,
-          message: `Incorrect. ${droppedOption?.label} belongs to ${droppedOption?.correctAssociation}. Try again.`,
+          message,
         });
       }
     } else {

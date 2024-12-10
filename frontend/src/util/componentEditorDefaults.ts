@@ -11,6 +11,8 @@ export const editorDefaults: { [key: string]: any } = {
       { id: 3, label: "CSS", correctAssociation: "Front-End" },
       { id: 4, label: "MongoDB", correctAssociation: "Back-End" },
     ],
+    incorrectMessageTemplate:
+      "Incorrect. {label} should go under {correctAssociation}. Try again.",
   },
   HokieBirdActivity: {
     draggable: true,
