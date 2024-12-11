@@ -6,4 +6,5 @@ export enum BookCategory {
   BEGINNER = "BEGINNER",
   INTERMEDIATE = "INTERMEDIATE",
   ADVANCED = "ADVANCED",
+  UNPLUGGED = "UNPLUGGED",
 }
