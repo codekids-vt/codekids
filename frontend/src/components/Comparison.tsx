@@ -104,6 +104,7 @@ export function Comparison({
         user?.id,
         bookID,
         pageID,
+        undefined,
       );
     } else if (currentAlert.type === AlertType.FAILURE) {
       playIncorrectSound();
@@ -114,6 +115,7 @@ export function Comparison({
         user?.id,
         bookID,
         pageID,
+        undefined,
       );
     }
   }, [
