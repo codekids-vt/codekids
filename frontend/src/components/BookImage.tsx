@@ -39,6 +39,7 @@ import { TextBoxImageActivity } from "./TextBoxImage"; // Import your component
 import { DragAndDropActivity } from "./DragAndDrop";
 import { ImageClickAnimation } from "./ImageClickAnimation";
 import { CountdownTimer } from "./CountdownTimer";
+import { Comparison } from "./Comparison";
 import { BookReview } from "./BookReview";
 
 export function BookImage({
@@ -175,6 +176,9 @@ export function BookImage({
       )}
       {image === "FillInTheBlank" && (
         <FillInTheBlank props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "Comparison" && (
+        <Comparison props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );

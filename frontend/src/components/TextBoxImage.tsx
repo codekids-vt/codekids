@@ -5,6 +5,7 @@ export interface ITextBoxImageActivityProps {
   image: string;
   completionSound: string;
   prompt: string;
+  successMessage: string;
 }
 
 export function TextBoxImageActivity({
@@ -14,7 +15,7 @@ export function TextBoxImageActivity({
   props: ITextBoxImageActivityProps;
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { image, completionSound, prompt } = props;
+  const { image, completionSound, prompt, successMessage } = props;
   const [inputValue, setInputValue] = useState<string>(""); // Track the user input
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false); // Track if input is submitted
   const [playCompletionSound] = useSound(completionSound, { volume: 0.5 });
@@ -53,7 +54,7 @@ export function TextBoxImageActivity({
       >
         <img
           src={image}
-          alt="Pet to name"
+          alt="custom"
           className="object-contain"
           style={{ width: 300, height: 200 }}
         />
@@ -66,17 +67,17 @@ export function TextBoxImageActivity({
         value={inputValue}
         onChange={onInputChange}
         onKeyPress={handleKeyPress} // Trigger submission on enter
-        placeholder="Name your pet"
+        placeholder="Enter text here"
         disabled={isSubmitted} // Disable input after submission
         className="border border-gray-300 rounded-md p-2"
         style={{ marginBottom: "10px" }}
       />
-      {isSubmitted && <p className="text-green-500 mt-2">Well done!</p>}
+      {isSubmitted && <p className="text-green-500 mt-2">{successMessage}</p>}
       <button
         onClick={handleReset}
         className="bg-red-500 text-white rounded-md px-4 py-2 mt-4"
       >
-        Reset Name
+        Reset
       </button>
     </div>
   );
