@@ -53,4 +53,22 @@ export const unpluggedBooks = [
     title: "Card Game",
     link: "CardGames.pdf",
   },
+  {
+    author: "Zoe Hite",
+    blurb: "Grid puzzle activity teaching algorithms",
+    bookCover: "/color_2.png",
+    category: "UNPLUGGED",
+    courses: [],
+    coverImage:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/mazeIcon.png",
+    id: 9999996,
+    owner: null,
+    ownerId: 16,
+    pages: [],
+    published: true,
+    readyForPublish: false,
+    tags: [],
+    title: "Grid Puzzle",
+    link: "GridPuzzleAlgorithms.pdf",
+  },
 ];

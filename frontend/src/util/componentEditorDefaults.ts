@@ -131,6 +131,7 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
+  BookReview: {},
   InputOutputActivity: {
     showIOLabels: true,
     backgroundImage: "Add background image here",
@@ -345,7 +346,7 @@ export const editorDefaults: { [key: string]: any } = {
     prompt: "Question?",
     image:
       " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
-    correct: "correct message here",
+    successMessage: "hi",
   },
   DragAndDrop: {
     dogImage:
