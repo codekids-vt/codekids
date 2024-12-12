@@ -117,7 +117,6 @@ export default function NewsPage() {
                 <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
                   Spring 2024
                 </time>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white"></h3>
                 <p className="text-base font-normal text-gray-500 dark:text-gray-400">
                   The Association for Women in Computing is a student-run,
                   non-profit organization at Virginia Tech. For over 20 years,
