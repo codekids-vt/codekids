@@ -15,6 +15,7 @@ books_router = APIRouter()
 @books_router.get("/books", tags=["books"])
 async def search_books(
     category: Optional[BookCategory] = None,
+    bookTopic: Optional[str] = None,
     limit: Optional[int] = 100,
     owner_id: Optional[int] = None,
     published: Optional[bool] = None,
@@ -23,6 +24,8 @@ async def search_books(
     where: BookWhereInput = {}
     if category:
         where["category"] = category
+    if bookTopic:
+        where["bookTopic"] = bookTopic
     if owner_id:
         where["ownerId"] = owner_id
     if published is not None:
@@ -83,6 +86,7 @@ async def get_book(book_id: int) -> Book:
 class CreateBookRequest(BaseModel):
     title: str
     category: BookCategory
+    bookTopic: Optional[str] = None
     tags: list[str] = []
     bookCover: Optional[str] = None
     coverImage: Optional[str] = None
@@ -104,6 +108,7 @@ async def create_book(
             "bookCover": "/color_2.png",
             "title": req.title,
             "category": req.category,
+            "bookTopic": req.bookTopic,
             "tags": req.tags,
             "ownerId": user.id,
         }
@@ -147,6 +152,8 @@ async def edit_book(
         book_update_data["blurb"] = req.blurb
     if req.readyForPublish is not None:
         book_update_data["readyForPublish"] = req.readyForPublish
+    if req.bookTopic:
+        book_update_data["bookTopic"] = req.bookTopic
     book = await db.book.update(
         where={"id": book_id},
         data=book_update_data,
