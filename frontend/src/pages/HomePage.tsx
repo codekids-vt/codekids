@@ -17,17 +17,25 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState<BookCategory | null>(
     null,
   );
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [topics, setTopics] = useState<string[]>([]);
   const [timerHandle, setTimerHandle] = useState<NodeJS.Timeout | null>(null);
   const [isUnplugged, setIsUnplugged] = useState(false);
-
+  
+  useEffect(() => {
+    BooksService.getUniqueBookTopicsBookTopicsGet()
+      .then((response) => setTopics(response))
+      .catch((error) => console.error("Failed to fetch topics:", error));
+  }, []);
+  
   useEffect(() => {
     playSound();
   }, [playSound]);
 
   const loadBookResults = useCallback(
-    (category: BookCategory | null, query: string | null) => {
+    (category: BookCategory | null, topic: string | null, query: string | null) => {
       setLoading(true);
-      BooksService.searchBooksBooksGet(category, null, null, true, query)
+      BooksService.searchBooksBooksGet(category, topic, null, null, true, query)
         .then((response) => {
           console.log(response);
           setResults(response);
@@ -42,7 +50,7 @@ export default function HomePage() {
   );
 
   useEffect(() => {
-    loadBookResults(null, null);
+    loadBookResults(null, null, null);
   }, [loadBookResults]);
 
   return (
@@ -95,7 +103,7 @@ export default function HomePage() {
                   clearTimeout(timerHandle);
                 }
                 const handle = setTimeout(() => {
-                  loadBookResults(selectedCategory, query);
+                  loadBookResults(selectedCategory, selectedTopic, query);
                 }, 500);
                 setTimerHandle(handle);
               }}
@@ -105,6 +113,35 @@ export default function HomePage() {
             ></input>
           </div>
           <div className="flex flex-row items-center gap-2">
+            {/* Dropdown for selecting book topic */}
+            <select
+              value={selectedTopic || ""}
+              onChange={(e) => {
+                const newTopic = e.target.value || null;
+                setSelectedTopic(newTopic);
+                loadBookResults(selectedCategory, newTopic, query);
+              }}
+              className="px-4 py-1 rounded-full bg-white text-primary-green border-2 border-primary-green hover:bg-hover-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl w-[150px] overflow-hidden"
+              style={{
+                whiteSpace: "normal",
+                wordWrap: "break-word",
+              }}
+            >
+              <option value="">All Topics</option>
+              {topics.map((topic) => (
+                <option
+                  key={topic}
+                  value={topic}
+                  className="max-w-[150px] break-words"
+                  style={{
+                    overflowWrap: "break-word",
+                    whiteSpace: "normal",
+                  }}
+                >
+                  {topic}
+                </option>
+              ))}
+            </select>
             {/* Filters out UNPLUGGED category because that button is manually inserted. */}
             {Object.values(BookCategory)
               .filter((category) => category !== BookCategory.UNPLUGGED)
@@ -115,7 +152,7 @@ export default function HomePage() {
                     const newSelectedCategory =
                       selectedCategory === category ? null : category;
                     setSelectedCategory(newSelectedCategory);
-                    loadBookResults(newSelectedCategory, query);
+                    loadBookResults(newSelectedCategory, selectedTopic, query);
                     setIsUnplugged(false);
                   }}
                   className={`${
@@ -132,7 +169,7 @@ export default function HomePage() {
               onClick={() => {
                 setIsUnplugged(!isUnplugged); //render unplugged books
                 setSelectedCategory(null); //set category to unplugged
-                loadBookResults(null, query); //gets rid of non-unplugged books
+                loadBookResults(null, null, query); //gets rid of non-unplugged books
               }}
               className={`${
                 isUnplugged
