@@ -83,6 +83,13 @@ async def get_book(book_id: int) -> Book:
     return book
 
 
+@books_router.get("/book-topics", tags=["books"])
+async def get_unique_book_topics() -> List[str]:
+    books = await db.book.find_many()
+    unique_topics = set(book.bookTopic for book in books if book.bookTopic)
+    return list(unique_topics)
+
+
 class CreateBookRequest(BaseModel):
     title: str
     category: BookCategory
