@@ -1,4 +1,4 @@
-/* generated using openapi-typescript-codegen -- do no edit */
+/* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -12,6 +12,7 @@ export class BooksService {
   /**
    * Search Books
    * @param category
+   * @param bookTopic
    * @param limit
    * @param ownerId
    * @param published
@@ -21,6 +22,7 @@ export class BooksService {
    */
   public static searchBooksBooksGet(
     category?: BookCategory | null,
+    bookTopic?: string | null,
     limit?: number | null,
     ownerId?: number | null,
     published?: boolean | null,
@@ -31,6 +33,7 @@ export class BooksService {
       url: "/books",
       query: {
         category: category,
+        bookTopic: bookTopic,
         limit: limit,
         owner_id: ownerId,
         published: published,
@@ -102,4 +105,16 @@ export class BooksService {
       },
     });
   }
+  /**
+     * Get Unique Book Topics
+     * @returns string Successful Response
+     * @throws ApiError
+     */
+  public static getUniqueBookTopicsBookTopicsGet(): CancelablePromise<Array<string>> {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/book-topics',
+    });
+  }
 }
+
