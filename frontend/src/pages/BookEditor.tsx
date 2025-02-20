@@ -367,6 +367,17 @@ function BookDetailsEditor({
       default: BookCategory.BEGINNER,
     },
   };
+
+  const [bookTopics, setTopics] = useState<string[]>([]);
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [newTopic, setNewTopic] = useState<string>("");
+  useEffect(() => {
+    BooksService.getUniqueBookTopicsBookTopicsGet()
+      .then((response) => setTopics(response))
+      .catch((error) => console.error("Failed to fetch topics:", error));
+  }, []);
+
+  console.log(book);
   return (
     <div className="flex flex-row h-full p-2 gap-2 w-full">
       <div className="flex flex-col gap-2 w-full">
@@ -397,6 +408,60 @@ function BookDetailsEditor({
             />
           </div>
         ))}
+
+        {/* Topic Selection */}
+        <div className="flex flex-col w-full gap-2">
+          <div>Topic</div>
+          <select
+            className="w-full h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
+            value={selectedTopic || ""}
+            onChange={(e) => {
+              const selectedValue = e.target.value;
+              setSelectedTopic(selectedValue);
+              if (selectedValue !== "add-new") {
+                const updatedBook = { ...book, bookTopic: selectedValue };
+                setBook(updatedBook);
+              }
+            }}
+          >
+            <option value="">Select Topic</option>
+            <option value="add-new">Add New Topic</option>
+            {bookTopics.map((topic) => (
+              <option key={topic} value={topic}>
+                {topic}
+              </option>
+            ))}
+          </select>
+
+          {/* Input for new topic if 'Add New Topic' is selected */}
+          {selectedTopic === "add-new" && (
+            <div className="flex flex-col w-full gap-2 mt-2">
+              <input
+                type="text"
+                placeholder="Enter new topic"
+                value={newTopic}
+                onChange={(e) => setNewTopic(e.target.value)}
+                className="w-full h-12 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
+              />
+              <button
+                onClick={() => {
+                  if (newTopic && !bookTopics.includes(newTopic)) {
+                    setTopics((prevTopics) => [...prevTopics, newTopic]);
+                    setSelectedTopic(newTopic);
+                    const updatedBook = { ...book, bookTopic: newTopic };
+                    setBook(updatedBook);
+                    saveBook(updatedBook);
+                    setNewTopic("");
+                  }
+                }}
+                className="mt-2 px-4 py-2 bg-primary-green text-white rounded-full"
+              >
+                Add Topic
+              </button>
+            </div>
+          )}
+        </div>
+
         {Object.keys(enumFields).map((field, i) => (
           <div
             key={i + textFields.length}

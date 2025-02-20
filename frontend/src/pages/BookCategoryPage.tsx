@@ -26,7 +26,7 @@ export default function BookCategoryPage() {
   }, [playLowClick]);
 
   useEffect(() => {
-    BooksService.searchBooksBooksGet(category, null, null, true)
+    BooksService.searchBooksBooksGet(category, null, null, null, true)
       .then((response) => {
         setBooks(response);
       })
