@@ -106,15 +106,16 @@ export class BooksService {
     });
   }
   /**
-     * Get Unique Book Topics
-     * @returns string Successful Response
-     * @throws ApiError
-     */
-  public static getUniqueBookTopicsBookTopicsGet(): CancelablePromise<Array<string>> {
+   * Get Unique Book Topics
+   * @returns string Successful Response
+   * @throws ApiError
+   */
+  public static getUniqueBookTopicsBookTopicsGet(): CancelablePromise<
+    Array<string>
+  > {
     return __request(OpenAPI, {
-        method: 'GET',
-        url: '/book-topics',
+      method: "GET",
+      url: "/book-topics",
     });
   }
 }
-
