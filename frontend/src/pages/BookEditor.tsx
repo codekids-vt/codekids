@@ -377,25 +377,6 @@ function BookDetailsEditor({
       .catch((error) => console.error("Failed to fetch topics:", error));
   }, []);
 
-  const handleTopicChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setSelectedTopic(value);
-    setBook({ ...book, bookTopic: value });
-  };
-
-  const handleNewTopicChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTopic(e.target.value);
-  };
-
-  const handleAddNewTopic = () => {
-    if (newTopic && !bookTopics.includes(newTopic)) {
-      setTopics((prevTopics) => [...prevTopics, newTopic]); // Add new topic to the list
-      setSelectedTopic(newTopic); // Set the new topic as selected
-      // Update book with new topic
-      setBook({ ...book, bookTopic: newTopic });
-      setNewTopic(''); // Clear the input field
-    }
-  };
   console.log(book);
   return (
     <div className="flex flex-row h-full p-2 gap-2 w-full">
