@@ -21,19 +21,23 @@ export default function HomePage() {
   const [topics, setTopics] = useState<string[]>([]);
   const [timerHandle, setTimerHandle] = useState<NodeJS.Timeout | null>(null);
   const [isUnplugged, setIsUnplugged] = useState(false);
-  
+
   useEffect(() => {
     BooksService.getUniqueBookTopicsBookTopicsGet()
       .then((response) => setTopics(response))
       .catch((error) => console.error("Failed to fetch topics:", error));
   }, []);
-  
+
   useEffect(() => {
     playSound();
   }, [playSound]);
 
   const loadBookResults = useCallback(
-    (category: BookCategory | null, topic: string | null, query: string | null) => {
+    (
+      category: BookCategory | null,
+      topic: string | null,
+      query: string | null,
+    ) => {
       setLoading(true);
       BooksService.searchBooksBooksGet(category, topic, null, null, true, query)
         .then((response) => {

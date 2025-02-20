@@ -461,7 +461,7 @@ function BookDetailsEditor({
             </div>
           )}
         </div>
-        
+
         {Object.keys(enumFields).map((field, i) => (
           <div
             key={i + textFields.length}
