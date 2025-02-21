@@ -1,21 +1,31 @@
 name: check-build-and-formatting
-on: pull_request
+
+on:
+  pull_request:
+  workflow_dispatch:  # Allows manual triggering
+
 jobs:
   check-formatting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout repository (for forks and branches)
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          fetch-depth: 0
+
       - name: prettier
         run: |
           cd frontend &&
-          npx prettier . --check 
+          npx prettier . --check
+
       - name: black
         run: |
           cd backend &&
           pip install black &&
           black . --check
+
       - name: frontend-build
         run: |
           cd frontend &&

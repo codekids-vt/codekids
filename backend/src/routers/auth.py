@@ -58,7 +58,7 @@ async def signup(req: SignupRequest) -> UserLightNoPassword:
 
 @auth_router.get("/user/me", tags=["auth"])
 async def get_user_data(
-    user: Annotated[User, Depends(get_user)]
+    user: Annotated[User, Depends(get_user)],
 ) -> UserLightNoPassword:
     user_data = await UserLightNoPassword.prisma().find_first(
         where={"token": user.token}

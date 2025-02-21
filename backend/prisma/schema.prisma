@@ -86,6 +86,7 @@ model Book {
   published       Boolean      @default(false)
   author          String
   tags            String[]     @default([])
+  bookTopic       String?
   category        BookCategory // or String if you prefer
   pages           Page[]
   courses         BookCourse[]

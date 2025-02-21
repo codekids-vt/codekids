@@ -1,4 +1,4 @@
-/* generated using openapi-typescript-codegen -- do no edit */
+/* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -20,6 +20,7 @@ export type Book = {
   author: string;
   tags: Array<string>;
   category: BookCategory;
+  bookTopic?: string | null;
   pages?: Array<Page> | null;
   courses?: Array<BookCourse> | null;
   owner?: User | null;
