@@ -17,9 +17,9 @@ export function Comparison({
   setAllowNext,
 }: {
   props: {
-    command?: string;
-    categoryA?: string; // First category (e.g. "Front-End")
-    categoryB?: string; // Second category (e.g. "Back-End")
+    Title?: string;
+    CategoryA_Title?: string; // First category (e.g. "Front-End")
+    CategoryB_Title?: string; // Second category (e.g. "Back-End")
     options?: {
       id: number;
       label: string;
@@ -34,8 +34,8 @@ export function Comparison({
   const [bookID, setbookID] = useState(0);
   const [pageID, setpageID] = useState(0);
 
-  const categoryA = props.categoryA || "Front-End";
-  const categoryB = props.categoryB || "Back-End";
+  const CategoryA_Title = props.CategoryA_Title || "Front-End";
+  const CategoryB_Title = props.CategoryB_Title || "Back-End";
 
   const incorrectMessageTemplate =
     props.incorrectMessageTemplate ||
@@ -49,19 +49,19 @@ export function Comparison({
           {
             id: 1,
             label: "React",
-            correctAssociation: categoryA,
+            correctAssociation: CategoryA_Title,
             status: "bank",
           },
           {
             id: 2,
             label: "Node.js",
-            correctAssociation: categoryB,
+            correctAssociation: CategoryB_Title,
             status: "bank",
           },
           {
             id: 3,
             label: "CSS",
-            correctAssociation: categoryA,
+            correctAssociation: CategoryA_Title,
             status: "bank",
           },
         ];
@@ -148,7 +148,7 @@ export function Comparison({
     let isCorrect = false;
     const updatedOptions = options.map((option) => {
       if (option.id === id) {
-        // Check correctness only if dropping into categoryA or categoryB
+        // Check correctness only if dropping into CategoryA_Title or CategoryB_Title
         if (dropStatus !== "bank") {
           const correct = option.correctAssociation === dropStatus;
           if (correct) {
@@ -161,8 +161,8 @@ export function Comparison({
     });
     setOptions(updatedOptions);
 
-    // Trigger success/failure feedback only if dropping into categoryA or categoryB
-    if (dropStatus === categoryA || dropStatus === categoryB) {
+    // Trigger success/failure feedback only if dropping into CategoryA_Title or CategoryB_Title
+    if (dropStatus === CategoryA_Title || dropStatus === CategoryB_Title) {
       if (isCorrect) {
         setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
       } else {
@@ -233,7 +233,7 @@ export function Comparison({
       )}
 
       <h1 className="text-center font-bold">
-        {props?.command || "Drag and Drop Classification"}
+        {props?.Title || "Drag and Drop Classification"}
       </h1>
 
       <div className="flex flex-row space-x-4 justify-center">
@@ -249,22 +249,22 @@ export function Comparison({
 
         {/* Category A Box */}
         <div
-          onDrop={(e) => onDrop(e, categoryA)}
+          onDrop={(e) => onDrop(e, CategoryA_Title)}
           onDragOver={(e) => onDragOver(e)}
           className="flex-1 flex flex-col space-y-2 p-4 bg-white rounded-2xl border-2 border-gray-300 w-96 h-96"
         >
-          <h2 className="text-center font-semibold">{categoryA}</h2>
-          {renderOptionsForStatus(categoryA)}
+          <h2 className="text-center font-semibold">{CategoryA_Title}</h2>
+          {renderOptionsForStatus(CategoryA_Title)}
         </div>
 
         {/* Category B Box */}
         <div
-          onDrop={(e) => onDrop(e, categoryB)}
+          onDrop={(e) => onDrop(e, CategoryB_Title)}
           onDragOver={(e) => onDragOver(e)}
           className="flex-1 flex flex-col space-y-2 p-4 bg-white rounded-2xl border-2 border-gray-300 w-96 h-96"
         >
-          <h2 className="text-center font-semibold">{categoryB}</h2>
-          {renderOptionsForStatus(categoryB)}
+          <h2 className="text-center font-semibold">{CategoryB_Title}</h2>
+          {renderOptionsForStatus(CategoryB_Title)}
         </div>
       </div>
     </div>

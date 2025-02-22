@@ -2,9 +2,9 @@ import { Styles } from "../components/Question";
 
 export const editorDefaults: { [key: string]: any } = {
   Comparison: {
-    command: "Match these technologies",
-    categoryA: "Front-End",
-    categoryB: "Back-End",
+    Title: "Match these technologies",
+    CategoryA_Title: "Front-End",
+    CategoryB_Title: "Back-End",
     options: [
       { id: 1, label: "React", correctAssociation: "Front-End" },
       { id: 2, label: "Node.js", correctAssociation: "Back-End" },

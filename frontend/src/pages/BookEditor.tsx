@@ -3,10 +3,85 @@ import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Book, BookCategory, BooksService, Page, PagesService } from "../api";
 import { BookImage } from "../components/BookImage";
-import Editor from "@monaco-editor/react";
 import { editorDefaults } from "../util/componentEditorDefaults";
 import { ErrorBoundary } from "react-error-boundary";
 import { BookPreview } from "../components/ActivityBookList";
+
+interface PropsFormProps {
+  tempProps: string;
+  setTempProps: (newProps: string) => void;
+  
+}
+
+function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
+  let propsObject: { [key: string]: any } = {};
+
+  // Try to parse the JSON; if it fails, default to an empty object.
+  try {
+    propsObject = JSON.parse(tempProps);
+  } catch (e) {
+    console.error("Error parsing tempProps JSON:", e);
+    // Optionally, you could set propsObject to a default value or display an error message.
+  }
+
+  // const handleInputChange = (key: string, value: string) => {
+  //   const updatedProps = { ...propsObject, [key]: value };
+  //   // Convert back to a nicely formatted JSON string.
+  //   setTempProps(JSON.stringify(updatedProps, null, 2));
+  // };
+
+  const handleInputChange = (key: string, value: string) => {
+    let updatedValue: any = value;
+  
+    try {
+      // Try to parse the value as JSON (if it's valid JSON, it will become an object or array)
+      updatedValue = JSON.parse(value);
+    } catch (e) {
+      // If parsing fails, it means the value is just a regular string, so leave it as is
+      updatedValue = value;
+    }
+  
+    const updatedProps = { ...propsObject, [key]: updatedValue };
+    // Convert back to a nicely formatted JSON string for the state
+    setTempProps(JSON.stringify(updatedProps, null, 2));
+  };
+
+  // If there are no keys, display a simple message
+  if (Object.keys(propsObject).length === 0) {
+    return (
+      <div className="border border-gray-300 rounded-lg p-2 mt-2">
+        <p>No properties to edit.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form className="flex flex-col gap-2 p-2">
+      {Object.keys(propsObject).map((key) => {
+        const value = propsObject[key];
+  
+        // Check if the value is an object or array
+        const displayValue = typeof value === 'object' ? JSON.stringify(value) : value;
+  
+        return (
+          <div key={key} className="flex flex-col">
+            <label className="font-bold" htmlFor={key}>
+              {key}
+            </label>
+            <input
+              id={key}
+              type="text"
+              value={displayValue}
+              onChange={(e) => handleInputChange(key, e.target.value)}
+              className="border border-gray-300 rounded p-1"
+            />
+          </div>
+        );
+      })}
+    </form>
+  );
+  
+}
 
 function PageNavigator({
   pages,
@@ -227,17 +302,9 @@ function BookImageEditor({
           />
         </div>
       ) : (
-        <Editor
-          key={tempImage} // This is to force a re-render when the image changes
-          height="50%"
-          defaultValue={tempProps}
-          onChange={(value) => {
-            value && setTempProps(value);
-          }}
-          className="w-full max-h-1/2 shadow-2xl rounded-xl"
-          theme="vs-dark"
-          language="json"
-        />
+        <div className="w-full max-h-1/2 shadow-2xl rounded-xl">
+          <PropsForm tempProps={tempProps} setTempProps={setTempProps} />
+        </div>
       )}
       <div className="h-1/2 max-h-80">
         {!error && (
