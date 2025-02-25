@@ -7,80 +7,266 @@ import { editorDefaults } from "../util/componentEditorDefaults";
 import { ErrorBoundary } from "react-error-boundary";
 import { BookPreview } from "../components/ActivityBookList";
 
+
 interface PropsFormProps {
   tempProps: string;
   setTempProps: (newProps: string) => void;
-  
+}
+
+interface Option {
+  [key: string]: any;
 }
 
 function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
   let propsObject: { [key: string]: any } = {};
 
-  // Try to parse the JSON; if it fails, default to an empty object.
   try {
     propsObject = JSON.parse(tempProps);
   } catch (e) {
     console.error("Error parsing tempProps JSON:", e);
-    // Optionally, you could set propsObject to a default value or display an error message.
   }
 
-  // const handleInputChange = (key: string, value: string) => {
-  //   const updatedProps = { ...propsObject, [key]: value };
-  //   // Convert back to a nicely formatted JSON string.
-  //   setTempProps(JSON.stringify(updatedProps, null, 2));
-  // };
+  // Identify object arrays (e.g., "options", "Answers") and primitive arrays (e.g., integers, strings)
+  const objectArrays = Object.keys(propsObject).filter(
+    (key) => Array.isArray(propsObject[key]) && propsObject[key].every((item: any) => typeof item === "object")
+  );
+  
+  const primitiveArrays = Object.keys(propsObject).filter(
+    (key) => Array.isArray(propsObject[key]) && propsObject[key].every((item: any) => typeof item !== "object")
+  );
+
+  
+  const [objectArrayData, setObjectArrayData] = useState<{ [key: string]: Option[] }>(() => {
+    const initialState: { [key: string]: Option[] } = {};
+    objectArrays.forEach((key) => {
+      initialState[key] = propsObject[key] || [];
+    });
+    return initialState;
+  });
+
+  const [primitiveArrayData, setPrimitiveArrayData] = useState<{ [key: string]: any[] }>(() => {
+    const initialState: { [key: string]: any[] } = {};
+    primitiveArrays.forEach((key) => {
+      initialState[key] = propsObject[key] || [];
+    });
+    return initialState;
+  });
+
+  useEffect(() => {
+    const newProps = JSON.parse(tempProps);
+    const updatedObjectArrayState: { [key: string]: Option[] } = {};
+    objectArrays.forEach((key) => {
+      updatedObjectArrayState[key] = newProps[key] || [];
+    });
+    setObjectArrayData(updatedObjectArrayState);
+
+    const updatedPrimitiveArrayState: { [key: string]: any[] } = {};
+    primitiveArrays.forEach((key) => {
+      updatedPrimitiveArrayState[key] = newProps[key] || [];
+    });
+    setPrimitiveArrayData(updatedPrimitiveArrayState);
+  }, [tempProps]);
 
   const handleInputChange = (key: string, value: string) => {
-    let updatedValue: any = value;
-  
-    try {
-      // Try to parse the value as JSON (if it's valid JSON, it will become an object or array)
-      updatedValue = JSON.parse(value);
-    } catch (e) {
-      // If parsing fails, it means the value is just a regular string, so leave it as is
-      updatedValue = value;
-    }
-  
-    const updatedProps = { ...propsObject, [key]: updatedValue };
-    // Convert back to a nicely formatted JSON string for the state
+    const updatedProps = { ...propsObject, [key]: value };
     setTempProps(JSON.stringify(updatedProps, null, 2));
   };
 
-  // If there are no keys, display a simple message
-  if (Object.keys(propsObject).length === 0) {
-    return (
-      <div className="border border-gray-300 rounded-lg p-2 mt-2">
-        <p>No properties to edit.</p>
-      </div>
-    );
-  }
+  const handleOptionChange = (arrayKey: string, index: number, field: string, value: string) => {
+    const updatedArray = [...objectArrayData[arrayKey]];
+    const originalValue = updatedArray[index][field];
+  
+    let newValue: any = value;
+    if (typeof originalValue === "number") newValue = Number(value);
+    if (typeof originalValue === "boolean") newValue = value === "true"; 
+  
+    updatedArray[index] = { ...updatedArray[index], [field]: newValue };
+  
+    setObjectArrayData({ ...objectArrayData, [arrayKey]: updatedArray });
+    setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+  };
+
+  const addNewItemToPrimitiveArray = (arrayKey: string) => {
+    const currentArray = primitiveArrayData[arrayKey];
+    const newItem = ""; // Default to an empty string (or 0 for numbers)
+
+    const updatedArray = [...currentArray, newItem];
+    setPrimitiveArrayData({ ...primitiveArrayData, [arrayKey]: updatedArray });
+    setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+  };
+
+  const removeItemFromPrimitiveArray = (arrayKey: string, index: number) => {
+    const updatedArray = primitiveArrayData[arrayKey].filter((_, i) => i !== index);
+    setPrimitiveArrayData({ ...primitiveArrayData, [arrayKey]: updatedArray });
+    setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+  };
+
+  const addNewItem = (arrayKey: string) => {
+    const currentArray = objectArrayData[arrayKey];
+  
+    
+    const newItem: Record<string, any> = {};
+  
+    if (currentArray.length > 0) {
+      Object.keys(currentArray[0]).forEach((key) => {
+        const existingType = typeof currentArray[0][key];
+        if (existingType === "number") {
+          newItem[key] = 0; // Default number value
+        } else if (existingType === "boolean") {
+          newItem[key] = false; // Default boolean value
+        } else {
+          newItem[key] = ""; // Default string value
+        }
+      });
+    }
+  
+    const updatedArray = [...currentArray, newItem as Option];
+    setObjectArrayData({ ...objectArrayData, [arrayKey]: updatedArray });
+    setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+  };
+
+  const removeItem = (arrayKey: string, index: number) => {
+    const updatedArray = objectArrayData[arrayKey].filter((_, i) => i !== index);
+    setObjectArrayData({ ...objectArrayData, [arrayKey]: updatedArray });
+    setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+  };
 
   return (
-    <form className="flex flex-col gap-2 p-2">
-      {Object.keys(propsObject).map((key) => {
-        const value = propsObject[key];
-  
-        // Check if the value is an object or array
-        const displayValue = typeof value === 'object' ? JSON.stringify(value) : value;
-  
-        return (
-          <div key={key} className="flex flex-col">
-            <label className="font-bold" htmlFor={key}>
-              {key}
-            </label>
-            <input
-              id={key}
-              type="text"
-              value={displayValue}
-              onChange={(e) => handleInputChange(key, e.target.value)}
-              className="border border-gray-300 rounded p-1"
-            />
+    <div className="p-2">
+      <form className="flex flex-col gap-2">
+        {Object.keys(propsObject).map((key) => {
+          if (!objectArrays.includes(key) && !primitiveArrays.includes(key)) {
+            return (
+              <div key={key} className="flex flex-col">
+                <label className="font-bold" htmlFor={key}>
+                  {key}
+                </label>
+                <input
+                  id={key}
+                  type="text"
+                  value={propsObject[key]}
+                  onChange={(e) => handleInputChange(key, e.target.value)}
+                  className="border border-gray-300 rounded p-1"
+                />
+              </div>
+            );
+          }
+        })}
+
+        {objectArrays.map((arrayKey) => (
+          <div key={arrayKey} className="mt-4">
+            <h3 className="font-bold">{arrayKey}</h3>
+            {(objectArrayData[arrayKey] || []).map((item, index) => (
+              <div key={index} className="flex gap-4 mb-2">
+                {Object.keys(item).map((field) => {
+
+                  return (
+                    <div key={field} className="flex flex-col">
+                      <label className="font-bold" htmlFor={`${field}-${index}`}>
+                        {field}
+                      </label>
+                      {typeof item[field] === "boolean" ? (
+                        <select
+                          id={`${field}-${index}`}
+                          value={item[field].toString()}
+                          onChange={(e) => handleOptionChange(arrayKey, index, field, e.target.value)}
+                          className="border border-gray-300 rounded p-1"
+                        >
+                          <option value="true">True</option>
+                          <option value="false">False</option>
+                        </select>
+                      ) : (
+                        <input
+                          id={`${field}-${index}`}
+                          type="text"
+                          value={item[field]}
+                          onChange={(e) => handleOptionChange(arrayKey, index, field, e.target.value)}
+                          className="border border-gray-300 rounded p-1"
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+
+                <button
+                  type="button"
+                  onClick={() => removeItem(arrayKey, index)}
+                  className="bg-red-500 text-white p-1 rounded mt-2 hover:bg-red-600 focus:outline-none"
+                  style={{
+                    alignSelf: "flex-start",
+                    marginTop: "27px",  
+                    padding: "5px 10px", 
+                    fontSize: "0.875rem",  
+                    width: "auto",  
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              onClick={() => addNewItem(arrayKey)}
+              className="bg-blue-500 text-white p-2 rounded mt-2"
+            >
+              Add Item
+            </button>
           </div>
-        );
-      })}
-    </form>
+        ))}
+
+        {primitiveArrays.map((arrayKey) => (
+          <div key={arrayKey} className="mt-4">
+            <h3 className="font-bold">{arrayKey}</h3>
+            {(primitiveArrayData[arrayKey] || []).map((item, index) => (
+              <div key={index} className="flex gap-4 mb-2">
+                <div className="flex flex-col">
+                  <label className="font-bold" htmlFor={`${arrayKey}-${index}`}>
+                    Item {index + 1}
+                  </label>
+                  <input
+                    id={`${arrayKey}-${index}`}
+                    type="text"
+                    value={item}
+                    onChange={(e) => {
+                      const updatedArray = [...primitiveArrayData[arrayKey]];
+                      updatedArray[index] = e.target.value;
+                      setPrimitiveArrayData({ ...primitiveArrayData, [arrayKey]: updatedArray });
+                      setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+                    }}
+                    className="border border-gray-300 rounded p-1"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => removeItemFromPrimitiveArray(arrayKey, index)}
+                  className="bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"
+                  style={{
+                    alignSelf: "flex-start",
+                    marginTop: "27px",  
+                    padding: "5px 10px", 
+                    fontSize: "0.875rem",  
+                    width: "auto",  
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              onClick={() => addNewItemToPrimitiveArray(arrayKey)}
+              className="bg-blue-500 text-white p-2 rounded mt-2"
+            >
+              Add Item
+            </button>
+          </div>
+        ))}
+      </form>
+    </div>
   );
-  
 }
 
 function PageNavigator({

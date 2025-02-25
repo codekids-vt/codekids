@@ -8,8 +8,6 @@ export const editorDefaults: { [key: string]: any } = {
     options: [
       { id: 1, label: "React", correctAssociation: "Front-End" },
       { id: 2, label: "Node.js", correctAssociation: "Back-End" },
-      { id: 3, label: "CSS", correctAssociation: "Front-End" },
-      { id: 4, label: "MongoDB", correctAssociation: "Back-End" },
     ],
     incorrectMessageTemplate:
       "Incorrect. {label} should go under {correctAssociation}. Try again.",
@@ -249,7 +247,7 @@ export const editorDefaults: { [key: string]: any } = {
     ],
     style: Styles.HORIZONTAL,
     image: "/sky.jpg",
-    code: "",
+    // code: "",
   },
   Drag_And_Drop_Question: {
     title: "What is the title?",
