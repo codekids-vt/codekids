@@ -46,6 +46,7 @@ export class PagesService {
       method: "DELETE",
       url: "/page/{page_id}",
       path: {
+
         page_id: pageId,
       },
       errors: {
@@ -94,4 +95,51 @@ export class PagesService {
       },
     });
   }
+
+//   public static pageCreateHints(
+//     bookId: number,
+//     pageId: number,
+//     content: string[],
+//     props: Record<string, unknown>,
+//   ): CancelablePromise<Page> {
+//     console.log(" pageservice pagecreate hints")
+//     return __request(OpenAPI, {
+//       method: "POST",
+//       url: "/page/createhints",
+//       query: {
+//         bookId: bookId,
+//         pageId: pageId,
+//       },
+//       body: {
+//         content: content,
+//         props: props,
+//       },
+//       errors: {
+//         422: `Validation Error`,
+//       },
+//     });
+//   }
+// }
+
+public static pageCreateHints(
+  bookId: number,
+  content: string[]
+): CancelablePromise<Page> {
+  console.log("Calling /page/createhints API");
+  
+  return __request(OpenAPI, {
+    method: "POST",
+    url: "/page/createhints",
+    query: {
+      bookId: bookId,  // ✅ bookId as a query param
+    },
+    body: {
+      content: content,  // ✅ Content should be inside request body
+    },
+    mediaType: "application/json", // ✅ Ensure correct Content-Type
+    errors: {
+      422: `Validation Error`,
+    },
+  });
+}
 }

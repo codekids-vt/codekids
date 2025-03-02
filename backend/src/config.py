@@ -1,4 +1,8 @@
 from pydantic_settings import BaseSettings
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from .env
 
 
 class Settings(BaseSettings):
@@ -21,6 +25,7 @@ class Settings(BaseSettings):
     class Config:
         env_file = f".env"
         case_sensitive = True
+        OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 settings: Settings = Settings()  # type: ignore
