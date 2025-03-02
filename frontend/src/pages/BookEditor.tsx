@@ -437,16 +437,19 @@ function BookContentEditor({
 function BookImageEditor({
   page,
   setPage,
+  tempImage,
+  setTempImage,
+  tempProps,
+  setTempProps,
 }: {
   page: Page;
   setPage: (page: Page) => void;
+  tempImage: string;
+  setTempImage: React.Dispatch<React.SetStateAction<string>>;
+  tempProps: string;
+  setTempProps: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const [tempImage, setTempImage] = useState(page.image);
-  const [tempProps, setTempProps] = useState(
-    JSON.stringify(page.props, null, 2),
-  );
-
-  // update the page every 3 seconds if there has been a change
+  // Update the page every 3 seconds if there has been a change
   useEffect(() => {
     const interval = setInterval(() => {
       try {
@@ -460,6 +463,7 @@ function BookImageEditor({
         console.error(`Error parsing JSON: ${e} may not have saved changes.`);
       }
     }, 2000);
+
     return () => clearInterval(interval);
   }, [tempImage, tempProps, page, setPage]);
 
@@ -469,7 +473,6 @@ function BookImageEditor({
   } catch (e) {
     error = true;
   }
-  console.log("error", error);
 
   return (
     <div className="flex flex-col w-full p-2 h-full">
@@ -482,32 +485,16 @@ function BookImageEditor({
         <div className="flex flex-col w-full">
           <div>image url or path:</div>
           <input
-            className="w-10/12 h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
+            className="w-10/12 h-15 border-2 p-2 rounded-xl border-primary-green focus:outline-none"
             value={tempImage}
             onChange={(e) => setTempImage(e.target.value)}
           />
         </div>
       ) : (
-        <div className="w-full max-h-1/2 shadow-2xl rounded-xl">
+        <div className="w-full max-h-1/2 rounded-xl">
           <PropsForm tempProps={tempProps} setTempProps={setTempProps} />
         </div>
       )}
-      <div className="h-1/2 max-h-80">
-        {!error && (
-          <ErrorBoundary
-            fallback={
-              <div className="text-red-500">Error, try adjusting the props</div>
-            }
-          >
-            <BookImage
-              key={`${tempImage}-${tempProps}-${page.pageNumber}`}
-              image={tempImage}
-              page={{ ...page, image: tempImage, props: JSON.parse(tempProps) }}
-              setAllowNext={() => {}}
-            />
-          </ErrorBoundary>
-        )}
-      </div>
     </div>
   );
 }
@@ -561,28 +548,55 @@ function PageEditor({
   page: Page;
   setPage: (page: Page) => void;
 }) {
+  const [tempImage, setTempImage] = useState(page.image);
+  const [tempProps, setTempProps] = useState(JSON.stringify(page.props, null, 2));
+
   function setContent(content: string[]) {
     setPage({ ...page, content: content });
   }
 
   return (
-    <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max w-full">
-      <div className="flex flex-col w-full items-center bg-white rounded-l-2xl h-full">
-        <div className="flex flex-col h-full w-full items-center justify-center">
-          <BookImageEditor
-            key={page.pageNumber}
-            page={page}
-            setPage={setPage}
-          />
-        </div>
-      </div>
-      {page.content && page.content.length > 0 && (
-        <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl">
-          <div className="flex flex-col items-center p-1 w-full min-h-full max-h-full overflow-y-scroll">
-            <BookContentEditor content={page.content} setContent={setContent} />
+    <div className="flex w-full h-screen"> 
+      <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl w-full h-[calc(51vh-60px)]">
+        <div className="flex flex-col w-full items-center bg-white rounded-l-2xl  h-[calc(50vh-60px)] overflow-y-auto">
+          <div className="flex flex-col w-full items-center justify-center min-h-[500px] max-h-screen">
+            <BookImageEditor
+              tempImage={tempImage}
+              setTempImage={setTempImage}
+              tempProps={tempProps}
+              setTempProps={setTempProps}
+              page={page}
+              setPage={setPage}
+            />
           </div>
         </div>
-      )}
+
+        {/* Right container for BookContentEditor */}
+        {page.content && page.content.length > 0 && (
+          <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl">
+            <div className="flex flex-col items-center p-1 w-full min-h-full max-h-full overflow-y-scroll">
+              <BookContentEditor content={page.content} setContent={setContent} />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* New Section: BookImage - placed below the content */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 top-[calc(60vh-60px)] w-full p-4">
+        {!JSON.parse(tempProps) && (
+          <div className="text-red-500">Error, try adjusting the props</div>
+        )}
+        <ErrorBoundary
+          fallback={<div className="text-red-500">Error, try adjusting the props</div>}
+        >
+          <BookImage
+            key={`${tempImage}-${tempProps}-${page.pageNumber}`}
+            image={tempImage}
+            page={{ ...page, image: tempImage, props: JSON.parse(tempProps) }}
+            setAllowNext={() => {}}
+          />
+        </ErrorBoundary>
+      </div>
     </div>
   );
 }
@@ -835,6 +849,21 @@ export default function BookEditor() {
     if (!book || !book.pages) {
       return;
     }
+  
+    // Get the first and last page numbers
+    const firstPageNum = book.pages[0].pageNumber;
+    const lastPageNum = book.pages[book.pages.length - 1].pageNumber;
+  
+    // Prevent swapping with a non-existent page
+    if (pageNum1 === firstPageNum && pageNum2 < firstPageNum) {
+      console.log("Cannot swap with the top page as it's the first page.");
+      return;
+    }
+    if (pageNum2 === lastPageNum && pageNum1 > lastPageNum) {
+      console.log("Cannot swap with the bottom page as it's the last page.");
+      return;
+    }
+  
     PagesService.pageSwapPageSwapPageId1PageId2Put(
       book.pages.find((page) => page.pageNumber === pageNum1)?.id as number,
       book.pages.find((page) => page.pageNumber === pageNum2)?.id as number,
@@ -846,8 +875,11 @@ export default function BookEditor() {
       if (pageNum2 === pageNum) {
         setPageNum(pageNum1);
       }
+    }).catch((error) => {
+      console.error("Error swapping pages:", error);
     });
   }
+  
 
   function saveBook(bookParam?: Book) {
     let saveBook = bookParam ?? book;
@@ -883,7 +915,7 @@ export default function BookEditor() {
   return (
     <div className="text-xs xl:text-lg 2xl:text-xl">
       <Navbar />
-      <div className="h-[calc(100vh-60px)] flex flex-row p-2 gap-2">
+      <div className="h-[calc(53vh-60px)] flex flex-row p-2 gap-2 flex-grow w-full">
         <PageNavigator
           pages={book.pages.sort((a, b) => a.pageNumber - b.pageNumber)}
           pageNum={pageNum}
