@@ -6,7 +6,7 @@ from prisma.partials import UpdatePage
 import openai
 import os
 import json
-from config import Config
+from src.config import settings
 
 pages_router = APIRouter()
 
@@ -178,7 +178,7 @@ async def generate_gpt_hints(bookId: int, content: list[str]) -> list[dict]:
                 {"role": "user", "content": user_message},
             ],
             max_tokens=500,
-           api_key= Config.OPENAI_API_KEY
+           api_key= settings.OPENAI_API_KEY
         )
 
         gpt_text = response["choices"][0]["message"]["content"]

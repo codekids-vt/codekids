@@ -46,7 +46,6 @@ export class PagesService {
       method: "DELETE",
       url: "/page/{page_id}",
       path: {
-
         page_id: pageId,
       },
       errors: {
@@ -95,51 +94,30 @@ export class PagesService {
       },
     });
   }
-
-//   public static pageCreateHints(
-//     bookId: number,
-//     pageId: number,
-//     content: string[],
-//     props: Record<string, unknown>,
-//   ): CancelablePromise<Page> {
-//     console.log(" pageservice pagecreate hints")
-//     return __request(OpenAPI, {
-//       method: "POST",
-//       url: "/page/createhints",
-//       query: {
-//         bookId: bookId,
-//         pageId: pageId,
-//       },
-//       body: {
-//         content: content,
-//         props: props,
-//       },
-//       errors: {
-//         422: `Validation Error`,
-//       },
-//     });
-//   }
-// }
-
-public static pageCreateHints(
-  bookId: number,
-  content: string[]
-): CancelablePromise<Page> {
-  console.log("Calling /page/createhints API");
-  
-  return __request(OpenAPI, {
-    method: "POST",
-    url: "/page/createhints",
-    query: {
-      bookId: bookId,  // ✅ bookId as a query param
-    },
-    body: {
-      content: content,  // ✅ Content should be inside request body
-    },
-    mediaType: "application/json", // ✅ Ensure correct Content-Type
-    errors: {
-      422: `Validation Error`,
-    },
-  });
-}
+  /**
+   * Create Page With Gpt
+   * Creates a new page with GPT-generated hints.
+   * Stores up to 3 hints inside `props["gptHints"]`.
+   * @param bookId
+   * @param requestBody
+   * @returns any Successful Response
+   * @throws ApiError
+   */
+  public static createPageWithGptPageCreatehintsPost(
+    bookId: number,
+    requestBody: Array<string>,
+  ): CancelablePromise<any> {
+    return __request(OpenAPI, {
+      method: "POST",
+      url: "/page/createhints",
+      query: {
+        bookId: bookId,
+      },
+      body: requestBody,
+      mediaType: "application/json",
+      errors: {
+        422: `Validation Error`,
+      },
+    });
+  }
 }

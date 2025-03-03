@@ -50,3 +50,10 @@ To take a backup of the database, you can use the following command:
 ```bash
 pg_dump -h endeavour.cs.vt.edu -p 30030 -U postgres -d codekids > codekids-db-$(date +%Y-%m-%d).bak
 ```
+### to install postgres client 16 on ubuntu
+https://dev.to/johndotowl/postgresql-16-installation-on-ubuntu-2204-51ia
+
+### to load a backup to your local database
+```bash
+psql postgres://postgres:password@localhost:5432/codekids < /tmp/codekidsbackup.dump
+```

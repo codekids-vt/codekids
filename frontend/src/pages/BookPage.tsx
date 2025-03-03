@@ -376,7 +376,7 @@ export default function BookPage() {
     console.log("In getall hints")
     console.log(page.content)
   
-    PagesService.pageCreateHints(id, page.content)
+    PagesService.createPageWithGptPageCreatehintsPost(id, page.content)
       .then((data) => {
         if (data?.props?.gptHints) {
           setAllHints(data.props.gptHints);
