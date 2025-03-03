@@ -584,7 +584,7 @@ function PageEditor({
       {/* New Section: BookImage - placed below the content */}
       <div className="absolute left-1/2 transform -translate-x-1/2 top-[calc(60vh-60px)] w-full p-4">
         {!JSON.parse(tempProps) && (
-          <div className="text-red-500">Error, try adjusting the props</div>
+          <div className="text-red-500"></div>
         )}
         <ErrorBoundary
           fallback={<div className="text-red-500">Error, try adjusting the props</div>}
