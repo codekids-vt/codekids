@@ -105,7 +105,10 @@ export class PagesService {
    */
   public static createPageWithGptPageCreatehintsPost(
     bookId: number,
-    requestBody: Array<string>,
+   
+    content: Array<string>,
+    
+
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
@@ -113,7 +116,9 @@ export class PagesService {
       query: {
         bookId: bookId,
       },
-      body: requestBody,
+      body:{
+       content: content,
+      },
       mediaType: "application/json",
       errors: {
         422: `Validation Error`,
