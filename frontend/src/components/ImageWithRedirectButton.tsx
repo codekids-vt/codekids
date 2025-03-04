@@ -23,6 +23,7 @@ export function LinkableImage({ props, setAllowNext }: LinkableImageProps) {
       <img
         src={props.imageUrl}
         className="object-contain max-w-full max-h-80"
+        alt=""
       />
       <button
         onClick={handleClick}

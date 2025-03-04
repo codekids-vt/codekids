@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 interface YoutubeEmbedProps {
   props: {
     videoUrl: string;
+    title: string;
   };
   setAllowNext: Dispatch<SetStateAction<boolean>>;
 }
@@ -26,6 +27,7 @@ export function YoutubeEmbed({ props, setAllowNext }: YoutubeEmbedProps) {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center gap-4">
       <iframe
+        title={props.title}
         width="640"
         height="360"
         src={getEmbedUrl(props.videoUrl)}

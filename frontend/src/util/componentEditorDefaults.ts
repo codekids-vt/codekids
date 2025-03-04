@@ -376,5 +376,6 @@ export const editorDefaults: { [key: string]: any } = {
 
   YoutubeEmbed: {
     videoUrl: "https://www.youtube.com/watch?v=WO2b03Zdu4Q",
+    videoTitle: "Insert Video Title.",
   },
 };
