@@ -2,25 +2,27 @@ import { Styles } from "../components/Question";
 
 export const editorDefaults: { [key: string]: any } = {
   Comparison: {
-    Title: "Match these technologies",
-    CategoryA_Title: "Front-End",
-    CategoryB_Title: "Back-End",
+    command: "Match these technologies",
+    categoryA: "Front-End",
+    categoryB: "Back-End",
     options: [
       { id: 1, label: "React", correctAssociation: "Front-End" },
       { id: 2, label: "Node.js", correctAssociation: "Back-End" },
+      { id: 3, label: "CSS", correctAssociation: "Front-End" },
+      { id: 4, label: "MongoDB", correctAssociation: "Back-End" },
     ],
     incorrectMessageTemplate:
       "Incorrect. {label} should go under {correctAssociation}. Try again.",
   },
-  // HokieBirdActivity: {
-  //   draggable: true,
-  //   command: "Drag the Colors over these boxes",
-  //   helpImage: "/help/HokieBirdColoring_Help.png",
-  // },
-  // tutor: {
-  //   code: 'number = 23\n\ncollege = "Virginia Tech"\n\nsecond_number = number + 10\n\nprint(college)\nprint(second_number)',
-  // },
-  Sequence_Runner: {
+  HokieBirdActivity: {
+    draggable: true,
+    command: "Drag the Colors over these boxes",
+    helpImage: "/help/HokieBirdColoring_Help.png",
+  },
+  tutor: {
+    code: 'number = 23\n\ncollege = "Virginia Tech"\n\nsecond_number = number + 10\n\nprint(college)\nprint(second_number)',
+  },
+  HokieBirdMazeActivity: {
     type: true,
     actions: ["turn_left()", "turn_right()", "move(2)", "move(3)"],
     draggable: false,
@@ -30,7 +32,7 @@ export const editorDefaults: { [key: string]: any } = {
     ans: ["move(3)", "turn_right()", "move(2)", "turn_left()", "move(2)"],
     helpImage: "/help/Maze_Help_1.png",
   },
-  If_Condition: {
+  HokieBirdIfConditionActivity: {
     draggable: true,
     statements: ["tshirt", "winter_jacket"],
     condition: "weather_is_hot",
@@ -39,72 +41,72 @@ export const editorDefaults: { [key: string]: any } = {
     image: "/if_condition/sun.gif",
     ans_image: "/if_condition/HokieBirdSun.gif",
   },
-  // DataTypesIntro: {},
-  // IntsAndBools: {
-  //   pageNumber: 2,
-  //   ans: ["Option 4. Make sure to read the explanation!"],
-  //   helpImage: "/help/Variables_Help_3.png",
-  // },
-  // VariableAssignment: {
-  //   pageNumber: 1,
-  //   ans: ["Option 1. Make sure to read the explanation!"],
-  //   helpImage: "/help/Variables_Help_1.png",
-  // },
-  // Strings: {
-  //   pageNumber: 1,
-  //   ans: ["Option 3. Make sure to read the explanation!"],
-  //   helpImage: "/help/Variables_Help_5.png",
-  // },
-  // Sequencing: {
-  //   ans: ["Option 3. Make sure to read the explanation!"],
-  //   helpImage: "/help/Variables_Help_4.png",
-  // },
-  // IfStatementIntro: {},
-  // ConditionalOperators: {
-  //   pageNumber: 1,
-  //   ans: ["Option 2. Make sure to read the explanation!"],
-  //   helpImage: "/help/PythonIf_Help_1.png",
-  // },
-  // LogicalOperators: {
-  //   pageNumber: 1,
-  // },
-  // IfStatements: {
-  //   pageNumber: 1,
-  //   ans: ["Option 2. Make sure to read the explanation!"],
-  //   helpImage: "/help/PythonIf_Help_8.png",
-  // },
-  // LifeOfMoose: {
-  //   pageNumber: 1,
-  // },
-  // MooseMilestone: {
-  //   pageNumber: 1,
-  // },
-  // MooseDr: {
-  //   pageNumber: 1,
-  // },
-  // MooseChallengingYear: {
-  //   pageNumber: 1,
-  // },
-  // MooseThankYou: {},
-  // BuyDonut: {
-  //   ans: [
-  //     "Option 1. Make sure to read the explanation!",
-  //     "Press Next until you reach the end of the code!",
-  //   ],
-  // },
-  // BuyMultiple: {
-  //   pageNumber: 2,
-  //   ans: ["Click Next until you reach the end of the code!"],
-  // },
-  // MultipleConditions: {
-  //   pageNumber: 2,
-  //   ans: ["Option 3. Make sure to read the explanation!"],
-  // },
-  // ChangingCondition: {
-  //   pageNumber: 1,
-  //   ans: ["Option 1. Make sure to read the explanation!"],
-  // },
-  Input_And_Output_Question: {
+  DataTypesIntro: {},
+  IntsAndBools: {
+    pageNumber: 2,
+    ans: ["Option 4. Make sure to read the explanation!"],
+    helpImage: "/help/Variables_Help_3.png",
+  },
+  VariableAssignment: {
+    pageNumber: 1,
+    ans: ["Option 1. Make sure to read the explanation!"],
+    helpImage: "/help/Variables_Help_1.png",
+  },
+  Strings: {
+    pageNumber: 1,
+    ans: ["Option 3. Make sure to read the explanation!"],
+    helpImage: "/help/Variables_Help_5.png",
+  },
+  Sequencing: {
+    ans: ["Option 3. Make sure to read the explanation!"],
+    helpImage: "/help/Variables_Help_4.png",
+  },
+  IfStatementIntro: {},
+  ConditionalOperators: {
+    pageNumber: 1,
+    ans: ["Option 2. Make sure to read the explanation!"],
+    helpImage: "/help/PythonIf_Help_1.png",
+  },
+  LogicalOperators: {
+    pageNumber: 1,
+  },
+  IfStatements: {
+    pageNumber: 1,
+    ans: ["Option 2. Make sure to read the explanation!"],
+    helpImage: "/help/PythonIf_Help_8.png",
+  },
+  LifeOfMoose: {
+    pageNumber: 1,
+  },
+  MooseMilestone: {
+    pageNumber: 1,
+  },
+  MooseDr: {
+    pageNumber: 1,
+  },
+  MooseChallengingYear: {
+    pageNumber: 1,
+  },
+  MooseThankYou: {},
+  BuyDonut: {
+    ans: [
+      "Option 1. Make sure to read the explanation!",
+      "Press Next until you reach the end of the code!",
+    ],
+  },
+  BuyMultiple: {
+    pageNumber: 2,
+    ans: ["Click Next until you reach the end of the code!"],
+  },
+  MultipleConditions: {
+    pageNumber: 2,
+    ans: ["Option 3. Make sure to read the explanation!"],
+  },
+  ChangingCondition: {
+    pageNumber: 1,
+    ans: ["Option 1. Make sure to read the explanation!"],
+  },
+  InputActivity: {
     showIOLabels: true,
     options: [1, 2, 3, 4],
     ans: [3],
@@ -112,7 +114,7 @@ export const editorDefaults: { [key: string]: any } = {
     correctImage: "/io_book/park_2.png",
     helpImage: "/help/IO_Help_1.png",
   },
-  Input_And_Ouput_Activity: {
+  FoodTruckActivity: {
     showIOLabels: true,
     options: [
       {
@@ -129,55 +131,55 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
-  // BookReview: {},
-  // InputOutputActivity: {
-  //   showIOLabels: true,
-  //   backgroundImage: "Add background image here",
-  //   categories: [
-  //     {
-  //       name: "Category Name",
-  //       options: [
-  //         {
-  //           text: "Input One",
-  //           image: "Add the first image here",
-  //           style: {
-  //             width: "Add width here (px)",
-  //             height: "Add height here (px)",
-  //           },
-  //           position: {
-  //             top: "Add top position here (%)",
-  //             left: "Add left position here (%)",
-  //           },
-  //         },
-  //         {
-  //           text: "Input Two",
-  //           image: "Add the second image here",
-  //           style: {
-  //             width: "Add width here (px)",
-  //             height: "Add height here (px)",
-  //           },
-  //           position: {
-  //             top: "Add top position here (%)",
-  //             left: "Add left position here (%)",
-  //           },
-  //         },
-  //         {
-  //           text: "Input Three",
-  //           image: "Add the third image here",
-  //           style: {
-  //             width: "Add width here (px)",
-  //             height: "Add height here (px)",
-  //           },
-  //           position: {
-  //             top: "Add top position here (%)",
-  //             left: "Add left position here (%)",
-  //           },
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
-  Select_Image_Activity: {
+  BookReview: {},
+  InputOutputActivity: {
+    showIOLabels: true,
+    backgroundImage: "Add background image here",
+    categories: [
+      {
+        name: "Category Name",
+        options: [
+          {
+            text: "Input One",
+            image: "Add the first image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)",
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)",
+            },
+          },
+          {
+            text: "Input Two",
+            image: "Add the second image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)",
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)",
+            },
+          },
+          {
+            text: "Input Three",
+            image: "Add the third image here",
+            style: {
+              width: "Add width here (px)",
+              height: "Add height here (px)",
+            },
+            position: {
+              top: "Add top position here (%)",
+              left: "Add left position here (%)",
+            },
+          },
+        ],
+      },
+    ],
+  },
+  SelectImageActivity: {
     question: "What is the color of the sky?",
     options: [
       {
@@ -194,39 +196,39 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
-  // BinaryConverter: {
-  //   correct: 7,
-  // },
-  // Computer_IO: {},
-  // CostarColoring: {
-  //   type: true,
-  //   command: "Type the Colors over these boxes",
-  //   "": "/help/HokieBirdColoring_Help.png",
-  // },
-  // ClothingActivity: {
-  //   showIOLabels: true,
-  //   options: [
-  //     {
-  //       text: "Bow",
-  //       image: "/Co-Star_InputOutputBook/justHeadband.png",
-  //     },
-  //     {
-  //       text: "Glasses",
-  //       image: "/Co-Star_InputOutputBook/justGlasses.png",
-  //     },
-  //   ],
-  //   baseLayer: "/Co-Star_InputOutputBook/baseAvatar.png",
-  // },
-  // BookRushHour: {
-  //   initialCars: [
-  //     { x: 0, y: 2, vertical: false, length: 2, color: "bg-red-500" },
-  //     { x: 4, y: 3, vertical: false, length: 2, color: "bg-blue-500" },
-  //     { x: 2, y: 2, vertical: true, length: 2, color: "bg-green-500" },
-  //   ],
-  //   solveToContinue: true,
-  //   exitImage: "Exit",
-  // },
-  Multiple_Choice_Question: {
+  BinaryConverter: {
+    correct: 7,
+  },
+  Computer_IO: {},
+  CostarColoring: {
+    type: true,
+    command: "Type the Colors over these boxes",
+    "": "/help/HokieBirdColoring_Help.png",
+  },
+  ClothingActivity: {
+    showIOLabels: true,
+    options: [
+      {
+        text: "Bow",
+        image: "/Co-Star_InputOutputBook/justHeadband.png",
+      },
+      {
+        text: "Glasses",
+        image: "/Co-Star_InputOutputBook/justGlasses.png",
+      },
+    ],
+    baseLayer: "/Co-Star_InputOutputBook/baseAvatar.png",
+  },
+  BookRushHour: {
+    initialCars: [
+      { x: 0, y: 2, vertical: false, length: 2, color: "bg-red-500" },
+      { x: 4, y: 3, vertical: false, length: 2, color: "bg-blue-500" },
+      { x: 2, y: 2, vertical: true, length: 2, color: "bg-green-500" },
+    ],
+    solveToContinue: true,
+    exitImage: "Exit",
+  },
+  ImageQuestion: {
     question: "What is the color of the sky?",
     answers: [
       {
@@ -247,9 +249,9 @@ export const editorDefaults: { [key: string]: any } = {
     ],
     style: Styles.HORIZONTAL,
     image: "/sky.jpg",
-    // code: "",
+    code: "",
   },
-  Drag_And_Drop_Question: {
+  DragMultiChoice: {
     title: "What is the title?",
     options: [
       {
@@ -271,45 +273,45 @@ export const editorDefaults: { [key: string]: any } = {
       },
     ],
   },
-  // CodeStepFlowchart: {
-  //   flowChart: {
-  //     "0": {
-  //       text: "Click next and watch the for loop execute.",
-  //       image:
-  //         "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats.svg",
-  //     },
-  //     "2": {
-  //       text: "The arrow is followed back up to the beginning of the loop.",
-  //       image:
-  //         "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_3.svg",
-  //     },
-  //     "3": {
-  //       text: "cup_number is X which is in range(0, 5). So, the True arrow will be followed.",
-  //       image:
-  //         "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_2.svg",
-  //     },
-  //     "5": {
-  //       text: "cup_number would become 5 which is not in range(0, 5). So, the False arrow is followed.",
-  //       image:
-  //         "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_4.svg",
-  //     },
-  //     "2f": {
-  //       text: "The loop begins and will execute as long as cup_number is in range(0, 5).",
-  //       image:
-  //         "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_1.svg",
-  //     },
-  //   },
-  //   code: '# cup_number is currently %N\n \nfor cup_number in range(0, 5):\n\tprint("Fed baby goats a cup!")\n \n#End of program',
-  //   skipLines: [1, 4],
-  //   loop: {
-  //     exists: true,
-  //     lines: [2, 3],
-  //     iterations: 5,
-  //     type: "for",
-  //     display: "iteration",
-  //   },
-  // },
-  Fill_In_The_Blank: {
+  CodeStepFlowchart: {
+    flowChart: {
+      "0": {
+        text: "Click next and watch the for loop execute.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats.svg",
+      },
+      "2": {
+        text: "The arrow is followed back up to the beginning of the loop.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_3.svg",
+      },
+      "3": {
+        text: "cup_number is X which is in range(0, 5). So, the True arrow will be followed.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_2.svg",
+      },
+      "5": {
+        text: "cup_number would become 5 which is not in range(0, 5). So, the False arrow is followed.",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_4.svg",
+      },
+      "2f": {
+        text: "The loop begins and will execute as long as cup_number is in range(0, 5).",
+        image:
+          "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/baby_goats/for_loop_baby_goats_1.svg",
+      },
+    },
+    code: '# cup_number is currently %N\n \nfor cup_number in range(0, 5):\n\tprint("Fed baby goats a cup!")\n \n#End of program',
+    skipLines: [1, 4],
+    loop: {
+      exists: true,
+      lines: [2, 3],
+      iterations: 5,
+      type: "for",
+      display: "iteration",
+    },
+  },
+  FillInTheBlank: {
     image:
       "https://codekids-minio.endeavour.cs.vt.edu/codekids/loops_book/riding_2.jpg",
     description: [
@@ -340,28 +342,28 @@ export const editorDefaults: { [key: string]: any } = {
         "Incorrect. Remember a for loop has a iterator variable and a iterable object.",
     },
   },
-  Think_Space: {
+  TextBoxImage: {
     prompt: "Question?",
     image:
       " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
     successMessage: "hi",
   },
-  // DragAndDrop: {
-  //   dogImage:
-  //     " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
-  //   treatImage: "/PetTrainingBook/dog_treat.png",
-  //   toyImage: "/PetTrainingBook/dog-toy.png",
-  //   prompt: "Drag and drop a toy or a treat to your pet!",
-  // },
+  DragAndDrop: {
+    dogImage:
+      " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
+    treatImage: "/PetTrainingBook/dog_treat.png",
+    toyImage: "/PetTrainingBook/dog-toy.png",
+    prompt: "Drag and drop a toy or a treat to your pet!",
+  },
 
-  // ImageClickAnimation: {
-  //   image:
-  //     "https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
-  //   animationType: "freeze",
-  //   wrongTrickMode: false,
-  // },
+  ImageClickAnimation: {
+    image:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
+    animationType: "freeze",
+    wrongTrickMode: false,
+  },
 
-  Countdown_Timer: {
+  CountdownTimer: {
     dogImage:
       "https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
     initialTime: "00:10",

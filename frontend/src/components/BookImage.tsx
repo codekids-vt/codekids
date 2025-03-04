@@ -67,7 +67,7 @@ export function BookImage({
         </div>
       )}
 
-      {image === "Countdown_Timer" && (
+      {image === "CountdownTimer" && (
         <CountdownTimer props={page?.props} setAllowNext={setAllowNext} />
       )}
 
@@ -77,7 +77,7 @@ export function BookImage({
       {image === "DragAndDrop" && (
         <DragAndDropActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
-      {image === "Think_Space" && (
+      {image === "TextBoxImage" && (
         <TextBoxImageActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
 
@@ -85,7 +85,7 @@ export function BookImage({
         <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "tutor" && <PythonTutor props={page?.props} />}
-      {image === "Sequence_Runner" && (
+      {image === "HokieBirdMazeActivity" && (
         <HokieBirdMap props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "CostarColoring" && (
@@ -94,7 +94,7 @@ export function BookImage({
       {image === "Computer_IO" && (
         <ElementPlacement props={page?.props} setAllowNext={setAllowNext} />
       )}
-      {image === "If_Condition" && (
+      {image === "HokieBirdIfConditionActivity" && (
         <HokieBirdIfCondition props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "DataTypesIntro" && <DataTypesIntro />}
@@ -141,19 +141,19 @@ export function BookImage({
       {image === "ChangingCondition" && (
         <ChangingCondition props={page.props} setAllowNext={setAllowNext} />
       )}
-      {image === "Input_And_Output_Question" && (
+      {image === "InputActivity" && (
         <InputActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
-      {image === "Input_And_Ouput_Activity" && (
+      {image === "FoodTruckActivity" && (
         <FoodTruckActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
-      {/* {image === "InputAndOuputActivity" && (
+      {image === "InputOutputActivity" && (
         <InputOutputActivity props={page?.props} setAllowNext={setAllowNext} />
-      )} */}
+      )}
       {image === "BookReview" && (
         <BookReview props={page?.props} setAllowNext={setAllowNext} />
       )}
-      {image === "Select_Image_Activity" && (
+      {image === "SelectImageActivity" && (
         <SelectImageActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "BinaryConverter" && (
@@ -165,16 +165,16 @@ export function BookImage({
       {image === "BookRushHour" && (
         <BookRushHour props={page?.props} setAllowNext={setAllowNext} />
       )}
-      {image === "Multiple_Choice_Question" && (
+      {image === "ImageQuestion" && (
         <ImageQuestion props={page?.props} setAllowNext={setAllowNext} />
       )}
-      {image === "Drag_And_Drop_Question" && (
+      {image === "DragMultiChoice" && (
         <DragMultiChoice props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "CodeStepFlowchart" && (
         <CodeStepFlowchart props={page?.props} setAllowNext={setAllowNext} />
       )}
-      {image === "Fill_In_The_Blank" && (
+      {image === "FillInTheBlank" && (
         <FillInTheBlank props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "Comparison" && (
