@@ -369,12 +369,12 @@ export const editorDefaults: { [key: string]: any } = {
     initialTime: "00:10",
   },
   ImageWithRedirectButton: {
-    "imageUrl": "https://example.com/your-image.jpg",
-    "linkUrl": "https://example.com/destination",
-    "buttonText": "Click to Visit"
+    imageUrl: "https://example.com/your-image.jpg",
+    linkUrl: "https://example.com/destination",
+    buttonText: "Click to Visit",
   },
 
   YoutubeEmbed: {
-      "videoUrl": "https://www.youtube.com/watch?v=WO2b03Zdu4Q",
+    videoUrl: "https://www.youtube.com/watch?v=WO2b03Zdu4Q",
   },
 };

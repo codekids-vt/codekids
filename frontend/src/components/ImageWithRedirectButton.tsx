@@ -10,19 +10,18 @@ interface LinkableImageProps {
 }
 
 export function LinkableImage({ props, setAllowNext }: LinkableImageProps) {
-  
-  const buttonText = props.buttonText
-  
+  const buttonText = props.buttonText;
+
   const handleClick = () => {
     // Open the link in a new tab
     window.open(props.linkUrl, "_blank");
     setAllowNext(true);
   };
-  
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center gap-4">
-      <img 
-        src={props.imageUrl} 
+      <img
+        src={props.imageUrl}
         className="object-contain max-w-full max-h-80"
       />
       <button

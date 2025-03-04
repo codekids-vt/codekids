@@ -8,9 +8,10 @@ interface YoutubeEmbedProps {
 }
 
 export function YoutubeEmbed({ props, setAllowNext }: YoutubeEmbedProps) {
-
   const getEmbedUrl = (url: string): string => {
-    const videoIdMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
+    const videoIdMatch = url.match(
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/,
+    );
     return videoIdMatch
       ? `https://www.youtube.com/embed/${videoIdMatch[1]}?rel=0&modestbranding=1&controls=1`
       : "";
