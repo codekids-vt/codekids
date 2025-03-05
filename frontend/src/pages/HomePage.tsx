@@ -61,25 +61,21 @@ export default function HomePage() {
     loadBookResults(null, null, null);
   }, [loadBookResults]);
 
+  // Helper function to format category names for display
+  const formatCategoryName = (category: string) => {
+    return category.split('_').map(word => 
+      word.charAt(0) + word.slice(1).toLowerCase()
+    ).join(' ');
+  };
+
   return (
     <>
       <Background />
       <Navbar />
-
-      {/* 
-        1) Wrap everything in a relative container, so our vertical “navbar”
-           can be absolutely placed to the left. 
-      */}
       <div className="relative flex flex-col items-center w-full z-10 min-h-screen">
-
-        {/* 
-          2) Left-side “navbar” with vertical buttons for 
-             Beginner / Intermediate / Advanced / All Topics / UNPLUGGED 
-        */}
-        <div className="absolute top-24 left-5 bg-transparent backdrop-blur-sm p-3 rounded-md 
-                        flex flex-col gap-3 items-start z-50">
-
-          {/* Level Buttons (BEGINNER, INTERMEDIATE, ADVANCED) */}
+        <div className="absolute top-14 left-5 h-60 bg-transparent p-3 rounded-md 
+                        flex flex-col flex-wrap gap-3 items-start z-50">
+          {/* Level Buttons (All categories except UNPLUGGED) */}
           {Object.values(BookCategory)
             .filter((category) => category !== BookCategory.UNPLUGGED)
             .map((category) => (
@@ -100,13 +96,13 @@ export default function HomePage() {
                 } px-4 py-1 rounded-full border-2 border-primary-green
                    hover:bg-hover-green hover:text-white 
                    transition-colors duration-300 ease-in-out 
-                   hover:shadow-xl w-40 text-center`}
+                   hover:shadow-xl w-48 text-center text-sm`}
               >
-                {category}
+                {formatCategoryName(category)}
               </button>
             ))}
 
-          {/* “All Topics” as a single button (instead of a dropdown) */}
+          {/* "All Topics" button */}
           <button
             onClick={() => {
               setSelectedCategory(null); 
@@ -117,7 +113,7 @@ export default function HomePage() {
             className={`bg-white text-primary-green px-4 py-1 rounded-full border-2 border-primary-green
                         hover:bg-hover-green hover:text-white 
                         transition-colors duration-300 ease-in-out 
-                        hover:shadow-xl w-40 text-center`}
+                        hover:shadow-xl w-48 text-center`}
           >
             All Topics
           </button>
@@ -138,13 +134,12 @@ export default function HomePage() {
             } px-4 py-1 rounded-full border-2 border-primary-green 
                hover:bg-hover-green hover:text-white 
                transition-colors duration-300 ease-in-out 
-               hover:shadow-xl w-40 text-center`}
+               hover:shadow-xl w-48 text-center`}
           >
             UNPLUGGED
           </button>
         </div>
 
-        {/* The page’s main content */}
         <div>
           <img
             src="/background.png"
@@ -166,10 +161,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* 
-          3) The search bar remains in the center of the page.
-             We removed the All Topics <select> so that we only have the search field.
-        */}
         <div className="flex flex-col w-full items-center gap-2 mt-4">
           <div className="flex flex-row items-center p-2 bg-gray-200 border-2 border-primary-green 
                           w-1/3 h-12 shadow-xl rounded-full">
@@ -207,7 +198,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Render books: unplugged vs. standard */}
         <div className="flex flex-wrap justify-center w-full mt-6 gap-4 px-4">
           {isUnplugged ? (
             <BookPreviewUnplugged BookData={unpluggedBooks} />
