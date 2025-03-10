@@ -6,6 +6,7 @@ import { BookImage } from "../components/BookImage";
 import { editorDefaults } from "../util/componentEditorDefaults";
 import { ErrorBoundary } from "react-error-boundary";
 import { BookPreview } from "../components/ActivityBookList";
+import Editor from "@monaco-editor/react";
 
 
 interface PropsFormProps {
@@ -449,6 +450,8 @@ function BookImageEditor({
   tempProps: string;
   setTempProps: React.Dispatch<React.SetStateAction<string>>;
 }) {
+  const [activeTab, setActiveTab] = useState<"prompts" | "json">("prompts");
+
   // Update the page every 3 seconds if there has been a change
   useEffect(() => {
     const interval = setInterval(() => {
@@ -481,6 +484,7 @@ function BookImageEditor({
         setTempImageType={setTempImage}
         setTempProps={setTempProps}
       />
+
       {page.image.includes("/") || page.image === "Image" ? (
         <div className="flex flex-col w-full">
           <div>image url or path:</div>
@@ -491,9 +495,44 @@ function BookImageEditor({
           />
         </div>
       ) : (
-        <div className="w-full max-h-1/2 rounded-xl">
-          <PropsForm tempProps={tempProps} setTempProps={setTempProps} />
-        </div>
+        <>
+          {/* Tab Navigation */}
+          <div className="flex space-x-4 border-b-2 mb-2">
+            <button
+              className={`p-2 ${
+                activeTab === "prompts" ? "border-b-4 border-primary-green font-bold" : ""
+              }`}
+              onClick={() => setActiveTab("prompts")}
+            >
+              Prompts
+            </button>
+            <button
+              className={`p-2 ${
+                activeTab === "json" ? "border-b-4 border-primary-green font-bold" : ""
+              }`}
+              onClick={() => setActiveTab("json")}
+            >
+              JSON
+            </button>
+          </div>
+
+          {/* Render Based on Active Tab */}
+          {activeTab === "prompts" ? (
+            <div className="w-full max-h-1/2 shadow-2xl rounded-xl">
+              <PropsForm tempProps={tempProps} setTempProps={setTempProps} />
+            </div>
+          ) : (
+            <Editor
+              key={tempImage}
+              height="50%"
+              defaultValue={tempProps}
+              onChange={(value) => value && setTempProps(value)}
+              className="w-full max-h-1/2 shadow-2xl rounded-xl"
+              theme="vs-dark"
+              language="json"
+            />
+          )}
+        </>
       )}
     </div>
   );
