@@ -48,7 +48,7 @@ function HelpMeWindow({
   return (
     <div
       id="help-modal"
-      className={`fixed top-0 left-0 right-0 z-50 ${help ? "" : "hidden"} w-full h-full bg-gray-900 bg-opacity-50`}
+      className={`fixed top-0 left-0 right-0 z-40 ${help ? "" : "hidden"} w-full h-full bg-gray-900 bg-opacity-50`}
     >
       <div className="flex items-center justify-center h-full">
         <div className="bg-white rounded-lg shadow-lg w-full md:w-1/2">
@@ -118,8 +118,8 @@ function HelpMeWindow({
 // Define types for the hints data.
 export type HintData = {
   statement: string;
-  option1: string;
-  option2: string;
+  options: string[]; // ✅ Stores both hints from API
+  correctOption?: string; // ✅ Stores the correct answer (optional)
 };
 
 export type HintsWindowProps = {
@@ -159,9 +159,9 @@ export function HintsWindow({
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 w-full h-full bg-gray-900 bg-opacity-50">
-      <div className="flex items-center justify-center h-full">
-        <div className="bg-white rounded-lg shadow-lg w-full md:w-1/2 p-6">
+    <div className="fixed bottom-4 right-4 w-96 bg-white shadow-xl rounded-lg border border-gray-300">
+      {/* <div className="flex items-center justify-center h-full"> */}
+        <div className="bg-white rounded-lg shadow-lg w-96 p-4">
           <div className="flex items-center justify-between border-b pb-3 mb-4">
             {/* Back button if showing full answer */}
             {showFullAnswer ? (
@@ -171,20 +171,20 @@ export function HintsWindow({
                 className="text-gray-600 hover:text-gray-800 flex items-center"
               >
                 <svg
-                  className="w-5 h-5 mr-2"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M7 7L1 1m6 6l6 6M7 7l6-6M7 7L1 13"
-                  />
-                </svg>
+                className="w-5 h-5 mr-2"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
                 Back
               </button>
             ) : (
@@ -224,16 +224,18 @@ export function HintsWindow({
               // Normal hints view
               <>
                 <p className="text-lg text-gray-800">{currentHint.statement}</p>
+                {currentHint?.options?.length ? (
+                currentHint.options.map((hint, index) => (
                 <p
+                  key={index}
                   className="text-lg text-gray-700 cursor-pointer block w-fit bg-gray-200 rounded-lg px-4 py-2 shadow-sm hover:bg-blue-200"
                 >
-                  {currentHint.option1}
+                  {hint}
                 </p>
-                <p
-                  className="text-lg text-gray-700 cursor-pointer block w-fit bg-gray-200 rounded-lg px-4 py-2 shadow-sm hover:bg-blue-200"
-                >
-                  {currentHint.option2}
-                </p>
+                ))
+              ) : (
+                <p className="text-lg text-gray-500">No hints available.</p> // ✅ Fallback when hints are undefined
+              )}
               </>
             ) : (
               // Full answer view
@@ -269,28 +271,47 @@ export function HintsWindow({
             {!showFullAnswer && (
               <>
                 {/* Full Answer on the bottom-left */}
-                <button
+                {/* <button
                   onClick={() => setShowFullAnswer(true)}
                   type="button"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded absolute bottom-2 left-2"
                 >
                   Full Answer
-                </button>
+                </button> */}
 
-                {/* Next Hint on the bottom-right */}
-                <button
-                  onClick={() => updateCurrentHintIndex(currentHintIndex + 1)}
-                  type="button"
-                  className="bg-primary-green hover:bg-hover-green text-white font-bold px-6 py-2 rounded absolute bottom-2 right-2"
-                  disabled={currentHintIndex >= allHints.length - 1} // Disable when max hints are reached
-                >
-                  Next Hint
-                </button>
+<div className="relative min-h-[60px] border-t pt-4 flex justify-between items-center px-4">
+  {/* Previous Hint Button - Aligned Left (Green) */}
+              <button
+                onClick={() => updateCurrentHintIndex(currentHintIndex - 1)}
+                type="button"
+                className={`font-bold px-4 py-2 rounded text-sm ${
+                  currentHintIndex === 0 ? "bg-hover-green cursor-not-allowed" : "bg-primary-green hover:bg-hover-green text-white"
+                }`}
+                disabled={currentHintIndex === 0} // Disable if at the first hint
+              >
+                Previous
+              </button>
+
+              {/* Next Hint Button - Aligned Right (Green) */}
+              <button
+                onClick={() => updateCurrentHintIndex(currentHintIndex + 1)}
+                type="button"
+                className={`font-bold px-4 py-2 rounded text-sm ${
+                  currentHintIndex >= allHints.length - 1 ? "bg-hover-green cursor-not-allowed" : "bg-primary-green hover:bg-hover-green text-white"
+                }`}
+                disabled={currentHintIndex >= allHints.length - 1} // Disable if at the last hint
+              >
+                Next →
+              </button>
+            </div>
+
+
+               
               </>
             )}
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }
@@ -306,9 +327,9 @@ export default function BookPage() {
   const [allowNext, setAllowNext] = useState(true);
   const [hintsOpen, setHintsOpen] = useState<boolean>(false);
   const [hintData, setHintData] = useState<HintData>({
-    statement: "What is the capital of France?",
-    option1: "It's known as the city of love.",
-    option2: "It is famous for the Eiffel Tower.",
+    statement: "To determine the result of an 'and' operation, it's important that all the individual conditions must be true. If one is false, what will be the result?",
+    options: ["True", "False"],  // ✅ Two hints from API
+    correctOption: "False"
   });
   const [allHints, setAllHints] = useState([]); // Stores all hints from API
   const [currentHintIndex, setCurrentHintIndex] = useState(0); // Tracks current hint
@@ -374,13 +395,24 @@ export default function BookPage() {
       return;
     }
     console.log("In getall hints")
-    console.log(page.content)
+    // console.log(page.content)
+    // console.log(id)
+    // console.log(pageNum)
+    // console.log(page.questions)
+    // console.log(page.props?.answer)
+    // console.log(page.props?.options)
   
-    PagesService.createPageWithGptPageCreatehintsPost(id, page.content)
+    PagesService.createPageWithGptPageCreatehintsPost(id,pageNum)
       .then((data) => {
+ 
         if (data?.props?.gptHints) {
-          setAllHints(data.props.gptHints);
-          console.log("Hints received:", data.props.gptHints);
+          const formattedHints = data.props.gptHints.map((hint: any) => ({
+            statement: hint.statement,
+            options: hint.hints,  //  Store options correctly
+            correctOption: hint.correctOption || null,  // Store correct answer
+          }));
+          setAllHints(formattedHints);
+          console.log("Formatted Hints:", formattedHints); // Debugging output
         } else {
           console.warn("No hints returned from API.");
         }
@@ -388,6 +420,7 @@ export default function BookPage() {
       .catch((error) => {
         console.error("Error fetching hints:", error);
       });
+      
   }
 
   function updateCurrentHintIndex(index: number) {
@@ -463,9 +496,9 @@ export default function BookPage() {
     // Here you could call an API to fetch new hint data.
     // For demonstration, we'll update the hints with new static data.
     setHintData({
-      statement: "What is 2 + 2?",
-      option1: "It is even.",
-      option2: "It is the same as two plus two.",
+      statement: "To determine the result of an 'and' operation, it's important that all the individual conditions must be true. If one is false, what will be the result?",
+      options: ["True", "False"],  // ✅ Two hints from API
+      correctOption: "False"
     });
   }
 
