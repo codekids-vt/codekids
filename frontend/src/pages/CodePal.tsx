@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import Markdown from "react-markdown";
 import { Chat, Message, InteractRequest, ChatbotService } from "../api";
 import { useAuth } from "../context/AuthContext";
 import Background from "../components/Background";
@@ -49,7 +49,8 @@ export default function CodePal() {
   // Fetch messages for a specific chat.
   const fetchMessages = async (chatId: string) => {
     try {
-      const response = await ChatbotService.getChatMessagesChatsChatIdMessagesGet(chatId);
+      const response =
+        await ChatbotService.getChatMessagesChatsChatIdMessagesGet(chatId);
       setMessages(response);
     } catch (error) {
       console.error("Error fetching messages:", error);
@@ -107,7 +108,8 @@ export default function CodePal() {
       // update currentChatId to the newest chat based on updatedAt.
       if (!currentChatId && updatedChats.length > 0) {
         const sortedChats = updatedChats.sort(
-          (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+          (a, b) =>
+            new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
         );
         setCurrentChatId(sortedChats[0].id);
       }
@@ -169,7 +171,7 @@ export default function CodePal() {
                 }`}
               >
                 {msg.sender === "Bot" ? (
-                  <div dangerouslySetInnerHTML={{ __html: msg.content }} />
+                  <Markdown>{msg.content}</Markdown>
                 ) : (
                   msg.content
                 )}

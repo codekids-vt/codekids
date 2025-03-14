@@ -45,22 +45,21 @@ export default function Navbar() {
   if (user) {
     if (user.type === AccountType.TEACHER) {
       navLinks = [
-          ...baseLinks,
-          {
-            text: "Teacher Resources",
-            href: "/teacher_resources",
-          },
-          {
-            text: "Book Editor",
-            href: "/edit_books",
-          },
-          {
-            text: "CodePal",
-            href: "/codepal",
-          },
-        ];
-    }
-    else {
+        ...baseLinks,
+        {
+          text: "Teacher Resources",
+          href: "/teacher_resources",
+        },
+        {
+          text: "Book Editor",
+          href: "/edit_books",
+        },
+        {
+          text: "CodePal",
+          href: "/codepal",
+        },
+      ];
+    } else {
       navLinks = [
         ...baseLinks,
         {
@@ -69,8 +68,7 @@ export default function Navbar() {
         },
       ];
     }
-  }
-  else {
+  } else {
     navLinks = baseLinks;
   }
 

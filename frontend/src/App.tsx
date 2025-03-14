@@ -36,7 +36,7 @@ function App() {
             <Route
               path="/book_category/:categoryString"
               element={<BookCategoryPage />}
-            />            
+            />
             <Route path="/codepal" element={<CodePal />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route
