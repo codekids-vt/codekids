@@ -368,4 +368,14 @@ export const editorDefaults: { [key: string]: any } = {
       "https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
     initialTime: "00:10",
   },
+  ImageWithRedirectButton: {
+    imageUrl: "https://example.com/your-image.jpg",
+    linkUrl: "https://example.com/destination",
+    buttonText: "Click to Visit",
+  },
+
+  YoutubeEmbed: {
+    videoUrl: "https://www.youtube.com/watch?v=WO2b03Zdu4Q",
+    videoTitle: "Insert Video Title.",
+  },
 };
