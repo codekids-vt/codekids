@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import BookPage from "./pages/BookPage";
 import BookCategoryPage from "./pages/BookCategoryPage";
 import TeacherResourcesPage from "./pages/TeacherResources";
+import CodePal from "./pages/CodePal";
 import { useOrientation } from "react-use";
 import PleaseRotateScreen from "./components/PleaseRotateScreen";
 import AboutUsPage from "./pages/AboutUsPage";
@@ -35,7 +36,8 @@ function App() {
             <Route
               path="/book_category/:categoryString"
               element={<BookCategoryPage />}
-            />
+            />            
+            <Route path="/codepal" element={<CodePal />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route
               path="/teacher_resources"

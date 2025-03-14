@@ -22,18 +22,6 @@ const baseLinks: readonly NavLinkRoute[] = [
   },
 ];
 
-const teacherLinks: readonly NavLinkRoute[] = [
-  ...baseLinks,
-  {
-    text: "Teacher Resources",
-    href: "/teacher_resources",
-  },
-  {
-    text: "Book Editor",
-    href: "/edit_books",
-  },
-];
-
 function NavButton(route: NavLinkRoute) {
   const { text, href } = route;
 
@@ -51,9 +39,40 @@ function NavButton(route: NavLinkRoute) {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { user, logout } = useAuth();
+  let navLinks: readonly NavLinkRoute[];
 
-  const navLinks =
-    user?.type === AccountType.TEACHER ? teacherLinks : baseLinks;
+  // if user exists, append codepal to baselinks
+  if (user) {
+    if (user.type === AccountType.TEACHER) {
+      navLinks = [
+          ...baseLinks,
+          {
+            text: "Teacher Resources",
+            href: "/teacher_resources",
+          },
+          {
+            text: "Book Editor",
+            href: "/edit_books",
+          },
+          {
+            text: "CodePal",
+            href: "/codepal",
+          },
+        ];
+    }
+    else {
+      navLinks = [
+        ...baseLinks,
+        {
+          text: "CodePal",
+          href: "/codepal",
+        },
+      ];
+    }
+  }
+  else {
+    navLinks = baseLinks;
+  }
 
   return (
     <header className={`top-0 sticky w-full px-2 z-[100]`}>

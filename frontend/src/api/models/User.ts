@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { AccountType } from "./AccountType";
 import type { Book } from "./Book";
+import type { Chat } from './Chat';
 import type { Course } from "./Course";
 import type { CourseStudent } from "./CourseStudent";
 import type { Interaction } from "./Interaction";
@@ -21,4 +22,5 @@ export type User = {
   courses?: Array<Course> | null;
   CourseStudent?: Array<CourseStudent> | null;
   books?: Array<Book> | null;
+  chats?: (Array<Chat> | null);
 };
