@@ -16,7 +16,9 @@ export default function HomePage() {
   const [loading, setLoading] = useState(false);
 
   // Tracks which level is selected (BEGINNER, INTERMEDIATE, ADVANCED, etc.)
-  const [selectedCategory, setSelectedCategory] = useState<BookCategory | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<BookCategory | null>(
+    null,
+  );
 
   // Tracks which topic is selected (if any)
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
@@ -40,7 +42,11 @@ export default function HomePage() {
   }, [playSound]);
 
   const loadBookResults = useCallback(
-    (category: BookCategory | null, topic: string | null, query: string | null) => {
+    (
+      category: BookCategory | null,
+      topic: string | null,
+      query: string | null,
+    ) => {
       setLoading(true);
       BooksService.searchBooksBooksGet(category, topic, null, null, true, query)
         .then((response) => {
@@ -63,57 +69,78 @@ export default function HomePage() {
 
   // Helper function to format category names for display
   const formatCategoryName = (category: string) => {
-    return category.split('_').map(word => 
-      word.charAt(0) + word.slice(1).toLowerCase()
-    ).join(' ');
+    return category
+      .split("_")
+      .map((word) => word.charAt(0) + word.slice(1).toLowerCase())
+      .join(" ");
   };
+
+  // Determine container styling based on the selected category
+  const containerClass =
+    selectedCategory === BookCategory.BEGINNER ||
+    selectedCategory === BookCategory.INTERMEDIATE ||
+    selectedCategory === BookCategory.ADVANCED
+      ? "absolute top-2 left-1/2 transform -translate-x-1/2 bg-transparent p-3 rounded-md flex flex-col flex-wrap gap-3 items-center z-50"
+      : "absolute top-2 left-5 bg-transparent p-3 rounded-md flex flex-col flex-wrap gap-3 items-start z-50";
 
   return (
     <>
       <Background />
       <Navbar />
       <div className="relative flex flex-col items-center w-full z-10 min-h-screen">
-        <div className="absolute top-14 left-5 h-60 bg-transparent p-3 rounded-md 
-                        flex flex-col flex-wrap gap-3 items-start z-50">
+        <div className={containerClass}>
           {/* Level Buttons (All categories except UNPLUGGED) */}
           {Object.values(BookCategory)
             .filter((category) => category !== BookCategory.UNPLUGGED)
-            .map((category) => (
-              <button
-                key={category}
-                onClick={() => {
-                  const newSelectedCategory =
-                    selectedCategory === category ? null : category;
-                  setSelectedCategory(newSelectedCategory);
-                  setIsUnplugged(false);
-                  setSelectedTopic(null);
-                  loadBookResults(newSelectedCategory, null, query);
-                }}
-                className={`${
-                  selectedCategory === category
-                    ? "bg-primary-green text-white"
-                    : "bg-white text-primary-green"
-                } px-4 py-1 rounded-full border-2 border-primary-green
-                   hover:bg-hover-green hover:text-white 
-                   transition-colors duration-300 ease-in-out 
-                   hover:shadow-xl w-48 text-center text-sm`}
-              >
-                {formatCategoryName(category)}
-              </button>
-            ))}
+            .map((category) => {
+              const isSelected = selectedCategory === category;
+              const isLevelCategory = [
+                BookCategory.BEGINNER,
+                BookCategory.INTERMEDIATE,
+                BookCategory.ADVANCED,
+              ].includes(category);
+
+              const buttonClasses = isLevelCategory
+                ? isSelected
+                  ? "bg-blue-500 text-white border-blue-700" // Selected LEVEL category styling (dummy)
+                  : "bg-blue-100 text-blue-500 border-blue-300" // Unselected LEVEL category styling (dummy)
+                : isSelected
+                  ? "bg-primary-green text-white"
+                  : "bg-white text-primary-green";
+
+              return (
+                <button
+                  key={category}
+                  onClick={() => {
+                    const newSelectedCategory =
+                      selectedCategory === category ? null : category;
+                    setSelectedCategory(newSelectedCategory);
+                    setIsUnplugged(false);
+                    setSelectedTopic(null);
+                    loadBookResults(newSelectedCategory, null, query);
+                  }}
+                  className={`${buttonClasses} px-4 py-1 rounded-full border-2
+                              hover:bg-hover-green hover:text-white
+                              transition-colors duration-300 ease-in-out
+                              hover:shadow-xl w-48 text-center text-sm`}
+                >
+                  {formatCategoryName(category)}
+                </button>
+              );
+            })}
 
           {/* "All Topics" button */}
           <button
             onClick={() => {
-              setSelectedCategory(null); 
-              setSelectedTopic(null); 
+              setSelectedCategory(null);
+              setSelectedTopic(null);
               setIsUnplugged(false);
               loadBookResults(null, null, query);
             }}
-            className={`bg-white text-primary-green px-4 py-1 rounded-full border-2 border-primary-green
-                        hover:bg-hover-green hover:text-white 
-                        transition-colors duration-300 ease-in-out 
-                        hover:shadow-xl w-48 text-center`}
+            className="bg-white text-primary-green px-4 py-1 rounded-full border-2 border-primary-green
+                        hover:bg-hover-green hover:text-white
+                        transition-colors duration-300 ease-in-out
+                        hover:shadow-xl w-48 text-center"
           >
             All Topics
           </button>
@@ -131,9 +158,9 @@ export default function HomePage() {
               isUnplugged
                 ? "bg-primary-green text-white"
                 : "bg-white text-primary-green"
-            } px-4 py-1 rounded-full border-2 border-primary-green 
-               hover:bg-hover-green hover:text-white 
-               transition-colors duration-300 ease-in-out 
+            } px-4 py-1 rounded-full border-2 border-primary-green
+               hover:bg-hover-green hover:text-white
+               transition-colors duration-300 ease-in-out
                hover:shadow-xl w-48 text-center`}
           >
             UNPLUGGED
@@ -162,8 +189,10 @@ export default function HomePage() {
         </div>
 
         <div className="flex flex-col w-full items-center gap-2 mt-4">
-          <div className="flex flex-row items-center p-2 bg-gray-200 border-2 border-primary-green 
-                          w-1/3 h-12 shadow-xl rounded-full">
+          <div
+            className="flex flex-row items-center p-2 bg-gray-200 border-2 border-primary-green 
+                          w-1/3 h-12 shadow-xl rounded-full"
+          >
             <svg
               className="w-4 h-4 ml-2 text-primary-green"
               aria-hidden="true"
@@ -187,7 +216,11 @@ export default function HomePage() {
                   clearTimeout(timerHandle);
                 }
                 const handle = setTimeout(() => {
-                  loadBookResults(selectedCategory, selectedTopic, e.target.value);
+                  loadBookResults(
+                    selectedCategory,
+                    selectedTopic,
+                    e.target.value,
+                  );
                 }, 500);
                 setTimerHandle(handle);
               }}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { AccountType } from "../api";
+import { useTheme } from "../context/ThemeContext";
 
 interface NavLinkRoute {
   text: string;
@@ -17,7 +18,7 @@ const baseLinks: readonly NavLinkRoute[] = [
     href: "/about_us",
   },
   {
-    text: "News", // Add News link here
+    text: "News",
     href: "/news",
   },
 ];
@@ -40,7 +41,7 @@ function NavButton(route: NavLinkRoute) {
   return (
     <a href={href}>
       <li
-        className={`p-2 mx-1 my-2 transition-colors hover:bg-black/10 hover:text-lime-700 rounded-md outline-1 outline-neutral-300/20 hover:outline`}
+        className={`p-2 mx-1 my-2 transition-colors hover:bg-black/10 hover:text-lime-700 rounded-md outline-1 outline-neutral-300/20 hover:outline dark:text-white`}
       >
         {text}
       </li>
@@ -51,12 +52,13 @@ function NavButton(route: NavLinkRoute) {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { user, logout } = useAuth();
+  const { darkMode, toggleDarkMode } = useTheme();
 
   const navLinks =
     user?.type === AccountType.TEACHER ? teacherLinks : baseLinks;
 
   return (
-    <header className={`top-0 sticky w-full px-2 z-[100]`}>
+    <header className={`top-0 sticky w-full px-2 z-[100] bg-white dark:bg-gray-800`}>
       <div className="flex flex-row justify-between relative h-[60px]">
         <div className="flex flex-row items-center justify-between py-1 sm:py-0">
           <a href="/">
@@ -98,25 +100,42 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {!user ? (
-          <a className="my-auto" href="/login">
-            <p
-              className={`px-3 py-2 text-neutral-100 text-center text-sm bg-primary-green rounded-md transition-shadow duration-200 hover:shadow-black/20 hover:shadow-md`}
-            >
-              Log in
-            </p>
-          </a>
-        ) : (
-          <div className="flex flex-row p-4 gap-2 items-center">
-            <div className="div text-xl font-semibold">Hi {user.name}!</div>
-            <button
-              onClick={logout}
-              className={`px-3 py-2 bg-primary-green text-neutral-100 text-center text-sm rounded-md transition-shadow duration-200 hover:shadow-black/20 hover:shadow-md`}
-            >
-              Log out
-            </button>
-          </div>
-        )}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={toggleDarkMode}
+            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+          >
+            {darkMode ? (
+              <svg className="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            )}
+          </button>
+
+          {!user ? (
+            <a className="my-auto" href="/login">
+              <p
+                className={`px-3 py-2 text-neutral-100 text-center text-sm bg-primary-green rounded-md transition-shadow duration-200 hover:shadow-black/20 hover:shadow-md`}
+              >
+                Log in
+              </p>
+            </a>
+          ) : (
+            <div className="flex flex-row p-4 gap-2 items-center">
+              <div className="div text-xl font-semibold dark:text-white">Hi {user.name}!</div>
+              <button
+                onClick={logout}
+                className={`px-3 py-2 bg-primary-green text-neutral-100 text-center text-sm rounded-md transition-shadow duration-200 hover:shadow-black/20 hover:shadow-md`}
+              >
+                Log out
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
