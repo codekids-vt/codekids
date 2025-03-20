@@ -405,11 +405,22 @@ function BookDetailsEditor({
       default: "/color_1.png",
     },
     readyForPublish: { options: [true, false], default: false },
-    category: {
-      options: Object.values(BookCategory),
+    level: {
+      options: [BookCategory.BEGINNER, BookCategory.INTERMEDIATE, BookCategory.ADVANCED],
       default: BookCategory.BEGINNER,
     },
+    category: {
+      options: [
+        BookCategory.ARTIFICIAL_INTELLIGENCE,
+        BookCategory.CYBER_SECURITY,
+        BookCategory.CODING,
+        BookCategory.MISCELLANEOUS,
+        BookCategory.UNPLUGGED
+      ],
+      default: BookCategory.CODING,
+    }
   };
+  
 
   const [bookTopics, setTopics] = useState<string[]>([]);
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
