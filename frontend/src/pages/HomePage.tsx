@@ -4,9 +4,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import useSound from "use-sound";
 import { Book, BookCategory, BooksService } from "../api";
-import ActivityBookList, {
-  BookPreviewUnplugged,
-} from "../components/ActivityBookList";
+import ActivityBookList, { BookPreviewUnplugged } from "../components/ActivityBookList";
 import { unpluggedBooks } from "../util/UnpluggedBooks";
 
 export default function HomePage() {
@@ -15,10 +13,11 @@ export default function HomePage() {
   const [results, setResults] = useState<Book[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Tracks which level is selected (BEGINNER, INTERMEDIATE, ADVANCED, etc.)
-  const [selectedCategory, setSelectedCategory] = useState<BookCategory | null>(
-    null,
-  );
+  // Tracks which level is selected (BEGINNER, INTERMEDIATE, ADVANCED)
+  const [selectedLevel, setSelectedLevel] = useState<BookCategory | null>(null);
+  
+  // Tracks which additional classification is selected
+  const [selectedClassification, setSelectedClassification] = useState<BookCategory | null>(null);
 
   // Tracks which topic is selected (if any)
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
@@ -29,6 +28,14 @@ export default function HomePage() {
 
   // UNPLUGGED toggle
   const [isUnplugged, setIsUnplugged] = useState(false);
+
+  const levelCategories = [BookCategory.BEGINNER, BookCategory.INTERMEDIATE, BookCategory.ADVANCED];
+  const additionalCategories = [
+    BookCategory.ARTIFICIAL_INTELLIGENCE,
+    BookCategory.CYBER_SECURITY, 
+    BookCategory.CODING,
+    BookCategory.MISCELLANEOUS
+  ];
 
   useEffect(() => {
     // Fetch the list of unique topics for possible display
@@ -41,30 +48,31 @@ export default function HomePage() {
     playSound();
   }, [playSound]);
 
-  const loadBookResults = useCallback(
-    (
-      category: BookCategory | null,
-      topic: string | null,
-      query: string | null,
-    ) => {
-      setLoading(true);
-      BooksService.searchBooksBooksGet(category, topic, null, null, true, query)
-        .then((response) => {
-          console.log(response);
-          setResults(response);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error(error);
-          setLoading(false);
-        });
-    },
-    [setResults, setLoading],
-  );
+  const loadBookResults = useCallback((level: BookCategory | null, classification: BookCategory | null, topic: string | null, query: string | null) => {
+    setLoading(true);
+    // Combine level and classification for filtering
+    const category = classification || level;
+    BooksService.searchBooksBooksGet(category, topic, null, null, true, query)
+      .then((response) => {
+        // Filter results based on both level and classification if both are selected
+        let filtered = response;
+        if (level && classification) {
+          filtered = response.filter(book => 
+            book.category === level || book.category === classification
+          );
+        }
+        setResults(filtered);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  }, [setResults, setLoading]);
 
   // Load *all* books on initial mount
   useEffect(() => {
-    loadBookResults(null, null, null);
+    loadBookResults(null, null, null, null);
   }, [loadBookResults]);
 
   // Helper function to format category names for display
@@ -75,99 +83,102 @@ export default function HomePage() {
       .join(" ");
   };
 
-  // Determine container styling based on the selected category
-  const containerClass =
-    selectedCategory === BookCategory.BEGINNER ||
-    selectedCategory === BookCategory.INTERMEDIATE ||
-    selectedCategory === BookCategory.ADVANCED
-      ? "absolute top-2 left-1/2 transform -translate-x-1/2 bg-transparent p-3 rounded-md flex flex-col flex-wrap gap-3 items-center z-50"
-      : "absolute top-2 left-5 bg-transparent p-3 rounded-md flex flex-col flex-wrap gap-3 items-start z-50";
-
   return (
     <>
       <Background />
       <Navbar />
       <div className="relative flex flex-col items-center w-full z-10 min-h-screen">
-        <div className={containerClass}>
-          {/* Level Buttons (All categories except UNPLUGGED) */}
-          {Object.values(BookCategory)
-            .filter((category) => category !== BookCategory.UNPLUGGED)
-            .map((category) => {
-              const isSelected = selectedCategory === category;
-              const isLevelCategory = [
-                BookCategory.BEGINNER,
-                BookCategory.INTERMEDIATE,
-                BookCategory.ADVANCED,
-              ].includes(category);
-
-              const buttonClasses = isLevelCategory
-                ? isSelected
-                  ? "bg-blue-500 text-white border-blue-700" // Selected LEVEL category styling (dummy)
-                  : "bg-blue-100 text-blue-500 border-blue-300" // Unselected LEVEL category styling (dummy)
-                : isSelected
-                  ? "bg-primary-green text-white"
-                  : "bg-white text-primary-green";
-
+        <div className="absolute top-2 w-full flex flex-col items-center gap-4">
+          {/* Level Categories (centered) */}
+          <div className="flex justify-center gap-2">
+            {levelCategories.map((category) => {
+              const isSelected = selectedLevel === category;
               return (
                 <button
                   key={category}
                   onClick={() => {
-                    const newSelectedCategory =
-                      selectedCategory === category ? null : category;
-                    setSelectedCategory(newSelectedCategory);
+                    const newLevel = selectedLevel === category ? null : category;
+                    setSelectedLevel(newLevel);
                     setIsUnplugged(false);
-                    setSelectedTopic(null);
-                    loadBookResults(newSelectedCategory, null, query);
+                    loadBookResults(newLevel, selectedClassification, selectedTopic, query);
                   }}
-                  className={`${buttonClasses} px-4 py-1 rounded-full border-2
-                              hover:bg-hover-green hover:text-white
-                              transition-colors duration-300 ease-in-out
-                              hover:shadow-xl w-48 text-center text-sm`}
+                  className={`${
+                    isSelected ? "bg-blue-500 text-white" : "bg-blue-100 text-blue-500"
+                  } px-4 py-1 rounded-full border-2 border-blue-300
+                    hover:bg-hover-green hover:text-white
+                    transition-colors duration-300 ease-in-out
+                    hover:shadow-xl w-48 text-center text-sm`}
+                >
+                  {formatCategoryName(category)}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Additional Classifications */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {additionalCategories.map((category) => {
+              const isSelected = selectedClassification === category;
+              return (
+                <button
+                  key={category}
+                  onClick={() => {
+                    const newClassification = selectedClassification === category ? null : category;
+                    setSelectedClassification(newClassification);
+                    setIsUnplugged(false);
+                    loadBookResults(selectedLevel, newClassification, selectedTopic, query);
+                  }}
+                  className={`${
+                    isSelected ? "bg-primary-green text-white" : "bg-white text-primary-green"
+                  } px-4 py-1 rounded-full border-2 border-primary-green
+                    hover:bg-hover-green hover:text-white
+                    transition-colors duration-300 ease-in-out
+                    hover:shadow-xl w-48 text-center text-sm`}
                 >
                   {formatCategoryName(category)}
                 </button>
               );
             })}
 
-          {/* "All Topics" button */}
-          <button
-            onClick={() => {
-              setSelectedCategory(null);
-              setSelectedTopic(null);
-              setIsUnplugged(false);
-              loadBookResults(null, null, query);
-            }}
-            className="bg-white text-primary-green px-4 py-1 rounded-full border-2 border-primary-green
-                        hover:bg-hover-green hover:text-white
-                        transition-colors duration-300 ease-in-out
-                        hover:shadow-xl w-48 text-center"
-          >
-            All Topics
-          </button>
+            {/* UNPLUGGED toggle button */}
+            <button
+              onClick={() => {
+                setIsUnplugged(!isUnplugged);
+                setSelectedLevel(null);
+                setSelectedClassification(null);
+                setSelectedTopic(null);
+                loadBookResults(null, null, null, query);
+              }}
+              className={`${
+                isUnplugged ? "bg-primary-green text-white" : "bg-white text-primary-green"
+              } px-4 py-1 rounded-full border-2 border-primary-green
+                hover:bg-hover-green hover:text-white
+                transition-colors duration-300 ease-in-out
+                hover:shadow-xl w-48 text-center text-sm`}
+            >
+              UNPLUGGED
+            </button>
 
-          {/* UNPLUGGED toggle button */}
-          <button
-            key="Unplugged"
-            onClick={() => {
-              setIsUnplugged(!isUnplugged);
-              setSelectedCategory(null);
-              setSelectedTopic(null);
-              loadBookResults(null, null, query);
-            }}
-            className={`${
-              isUnplugged
-                ? "bg-primary-green text-white"
-                : "bg-white text-primary-green"
-            } px-4 py-1 rounded-full border-2 border-primary-green
-               hover:bg-hover-green hover:text-white
-               transition-colors duration-300 ease-in-out
-               hover:shadow-xl w-48 text-center`}
-          >
-            UNPLUGGED
-          </button>
+            {/* "All Topics" button */}
+            <button
+              onClick={() => {
+                setSelectedLevel(null);
+                setSelectedClassification(null);
+                setSelectedTopic(null);
+                setIsUnplugged(false);
+                loadBookResults(null, null, null, query);
+              }}
+              className="bg-white text-primary-green px-4 py-1 rounded-full border-2 border-primary-green
+                hover:bg-hover-green hover:text-white
+                transition-colors duration-300 ease-in-out
+                hover:shadow-xl w-48 text-center text-sm"
+            >
+              All Topics
+            </button>
+          </div>
         </div>
 
-        <div>
+        <div className="mt-48">
           <img
             src="/background.png"
             alt="KIDATA"
@@ -189,10 +200,7 @@ export default function HomePage() {
         </div>
 
         <div className="flex flex-col w-full items-center gap-2 mt-4">
-          <div
-            className="flex flex-row items-center p-2 bg-gray-200 border-2 border-primary-green 
-                          w-1/3 h-12 shadow-xl rounded-full"
-          >
+          <div className="flex flex-row items-center p-2 bg-gray-200 border-2 border-primary-green w-1/3 h-12 shadow-xl rounded-full">
             <svg
               className="w-4 h-4 ml-2 text-primary-green"
               aria-hidden="true"
@@ -216,11 +224,7 @@ export default function HomePage() {
                   clearTimeout(timerHandle);
                 }
                 const handle = setTimeout(() => {
-                  loadBookResults(
-                    selectedCategory,
-                    selectedTopic,
-                    e.target.value,
-                  );
+                  loadBookResults(selectedLevel, selectedClassification, selectedTopic, e.target.value);
                 }, 500);
                 setTimerHandle(handle);
               }}
