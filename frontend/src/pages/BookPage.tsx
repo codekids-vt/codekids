@@ -29,7 +29,7 @@ function BookContent({ content }: { content: string[] }) {
   );
 }
 
-// Existing HelpMeWindow component (if you still need it)
+//  HelpMeWindow component
 function HelpMeWindow({
   help,
   setHelp,
@@ -140,6 +140,8 @@ export function HintsWindow({
   currentHintIndex,
   updateCurrentHintIndex,
   page,
+  showFullAnswer,
+  setShowFullAnswer,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -147,8 +149,10 @@ export function HintsWindow({
   currentHintIndex: number;
   updateCurrentHintIndex: (index: number) => void;
   page: Page;
+  showFullAnswer: boolean;
+  setShowFullAnswer: Dispatch<SetStateAction<boolean>>;
 }) {
-  const [showFullAnswer, setShowFullAnswer] = useState(false);
+
 
   if (!open) return null;
 
@@ -159,9 +163,9 @@ export function HintsWindow({
   };
 
   return (
-    <div className="fixed bottom-4 right-4 w-96 bg-white shadow-xl rounded-lg border border-gray-300">
-      {/* <div className="flex items-center justify-center h-full"> */}
-        <div className="bg-white rounded-lg shadow-lg w-96 p-4">
+  
+    <div className="fixed bottom-4 right-10 w-[32rem] bg-white shadow-xl rounded-lg border border-gray-300 p-4">
+  <div className="w-full">
           <div className="flex items-center justify-between border-b pb-3 mb-4">
             {/* Back button if showing full answer */}
             {showFullAnswer ? (
@@ -268,47 +272,38 @@ export function HintsWindow({
           </div>
 
           <div className="relative min-h-[80px] border-t pt-4">
-            {!showFullAnswer && (
+            {/* {!showFullAnswer && ( */}
               <>
-                {/* Full Answer on the bottom-left */}
-                {/* <button
-                  onClick={() => setShowFullAnswer(true)}
-                  type="button"
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded absolute bottom-2 left-2"
-                >
-                  Full Answer
-                </button> */}
-
-<div className="relative min-h-[60px] border-t pt-4 flex justify-between items-center px-4">
-  {/* Previous Hint Button - Aligned Left (Green) */}
-              <button
-                onClick={() => updateCurrentHintIndex(currentHintIndex - 1)}
-                type="button"
-                className={`font-bold px-4 py-2 rounded text-sm ${
-                  currentHintIndex === 0 ? "bg-hover-green cursor-not-allowed" : "bg-primary-green hover:bg-hover-green text-white"
-                }`}
-                disabled={currentHintIndex === 0} // Disable if at the first hint
-              >
-                Previous
-              </button>
-
-              {/* Next Hint Button - Aligned Right (Green) */}
-              <button
-                onClick={() => updateCurrentHintIndex(currentHintIndex + 1)}
-                type="button"
-                className={`font-bold px-4 py-2 rounded text-sm ${
-                  currentHintIndex >= allHints.length - 1 ? "bg-hover-green cursor-not-allowed" : "bg-primary-green hover:bg-hover-green text-white"
-                }`}
-                disabled={currentHintIndex >= allHints.length - 1} // Disable if at the last hint
-              >
-                Next →
-              </button>
-            </div>
-
-
                
+
+            <div className="relative min-h-[60px] border-t pt-4 flex justify-between items-center px-4">
+              {/* Show Previous only if not at the first hint */}
+              {currentHintIndex > 0 &&!showFullAnswer && (
+                <button
+                  onClick={() => updateCurrentHintIndex(currentHintIndex - 1)}
+                  type="button"
+                  className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
+                >
+                  ← Previous
+                </button>
+              )}
+
+              {/* Spacer if previous is hidden to balance layout */}
+              {currentHintIndex === 0 && <div className="w-24" />}
+
+              {/* Show Next only if not in full answer */}
+              {!showFullAnswer && (
+                <button
+                  onClick={() => updateCurrentHintIndex(currentHintIndex + 1)}
+                  type="button"
+                  className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
+                >
+                  Next →
+                </button>
+              )}
+            </div>
               </>
-            )}
+            {/* )} */}
           </div>
         </div>
       {/* </div> */}
@@ -333,10 +328,13 @@ export default function BookPage() {
   });
   const [allHints, setAllHints] = useState([]); // Stores all hints from API
   const [currentHintIndex, setCurrentHintIndex] = useState(0); // Tracks current hint
+  const [showFullAnswer, setShowFullAnswer] = useState(false);
   const [book, setBook] = useState<Book | undefined>(undefined);
   const [pageNum, setPageNum] = useState(pageNumParam ? parseInt(pageNumParam) : 1);
   const startTime = new Date().getTime();
   const navigate = useNavigate();
+
+  
 
   useEffect(() => {
     BooksService.getBookBooksBookIdGet(id)
@@ -374,20 +372,6 @@ export default function BookPage() {
     return pageNum <= 1 ? null : pageNum - 1;
   }
 
-  // function getAllHints() {
-  //   console.log("getallhints bantu")
-  //   PagesService.pageCreateHints(id, pageNum, page?.content || [], page?.props || {})
-  //     .then((data) => {
-  //       if (data?.props?.gptHints) {
-  //         setAllHints(data.props.gptHints);
-  //       } else {
-  //         console.warn("No hints returned from API.");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching hints:", error);
-  //     });
-  // }
 
   function getAllHints() {
     if (!page?.content) {
@@ -395,27 +379,38 @@ export default function BookPage() {
       return;
     }
     console.log("In getall hints")
-    // console.log(page.content)
-    // console.log(id)
-    // console.log(pageNum)
-    // console.log(page.questions)
-    // console.log(page.props?.answer)
-    // console.log(page.props?.options)
-  
+
+    console.log(page?.props
+
+    )
     PagesService.createPageWithGptPageCreatehintsPost(id,pageNum)
       .then((data) => {
- 
-        if (data?.props?.gptHints) {
-          const formattedHints = data.props.gptHints.map((hint: any) => ({
-            statement: hint.statement,
-            options: hint.hints,  //  Store options correctly
-            correctOption: hint.correctOption || null,  // Store correct answer
-          }));
-          setAllHints(formattedHints);
-          console.log("Formatted Hints:", formattedHints); // Debugging output
-        } else {
-          console.warn("No hints returned from API.");
+   
+        if (data?.props) {
+          let props;
+          try {
+            // ✅ Convert string to JSON object if necessary
+            props = typeof data.props === "string" ? JSON.parse(data.props) : data.props;
+          } catch (error) {
+            console.error("Error parsing props JSON:", error);
+            return;
+          }
+        
+          if (Array.isArray(props?.gptHints)) {
+            const formattedHints = props.gptHints.map((hint: any) => ({
+              statement: hint.statement,
+              options: hint.hints,  // ✅ Store options correctly
+              correctOption: hint.correctOption || null,  // ✅ Store correct answer
+            }));
+        
+            setAllHints(formattedHints);
+            console.log("Formatted Hints:", formattedHints); // ✅ Debugging output
+          } else {
+            console.warn("No hints returned from API.");
+          }
         }
+        
+        
       })
       .catch((error) => {
         console.error("Error fetching hints:", error);
@@ -424,9 +419,11 @@ export default function BookPage() {
   }
 
   function updateCurrentHintIndex(index: number) {
-    setCurrentHintIndex((prevIndex) =>
-      index >= 0 && index < allHints.length ? index : prevIndex
-    );
+    if (index >= allHints.length) {
+      setShowFullAnswer(true); // displays the entire answer
+      return;
+    }
+    setCurrentHintIndex(index);
   }
   function moveToNextPage() {
     const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
@@ -576,6 +573,9 @@ export default function BookPage() {
               currentHintIndex={currentHintIndex}
               updateCurrentHintIndex={updateCurrentHintIndex}
               page={page}
+              showFullAnswer={showFullAnswer}
+              setShowFullAnswer={setShowFullAnswer}
+              
               />
               <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max flex-grow">
                 <div className="flex flex-col flex-grow items-center bg-white rounded-l-2xl h-full">

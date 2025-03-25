@@ -140,23 +140,34 @@ async def create_page_with_gpt(
     # Step 2: Extract content, questions, and answers
     content = page.content  # This will be the context for GPT hints
     print("create_page.py")
-    print(page)
 
-    props = page.props
+
+    # props = page.props
+    props = page.props if isinstance(page.props, dict) else {}
     title = book.title
-    
-    
+    props_dict = json.loads(props) if isinstance(props, str) else props  # ✅ Ensure it's a dictionary
 
+# Now safely access attributes
+    question_text = props_dict.get("question", "No question found")
+    print(question_text)
 
-    gptHints = await generate_gpt_hints(bookId, pageId, content,title)
+    print("Answersss")
+    answer_options = [a.get("answerText", "") for a in props_dict.get("answers", [])]
+    # Extract correct answer with fallback to empty string
+    correct_answer: str = next((a.get("answerText") for a in props_dict.get("answers", []) if a.get("correct")),"")
+    print(answer_options)
+    print(correct_answer)
+    
+    gptHints = await generate_gpt_hints(bookId, pageId, content,title,question_text, answer_options, correct_answer)
+    props["gptHints"] = gptHints
 
     page_return = await db.page.create(
         data={
           "bookId": bookId,
             "pageNumber": pageId,
             "content": Json(content),
-            "image": "/images/blank.png",
-            "props": Json({"gptHints": gptHints}),
+            "image": page.image if page.image else "/images/blank.png",
+            "props": Json(props),
         },
         include={"book": False},
     )
@@ -166,28 +177,39 @@ async def create_page_with_gpt(
 
     return page_return
 
-async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str) -> list[dict]:
-    """
-    Calls GPT-4 to generate a maximum of 3 structured hints.
-    Each hint consists of:
-    - A statement
-    - Two hints (one correct, one incorrect)
-    """
+async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,question: str, options: list, correct_answer: str) -> list[dict]:
+   
 
-    system_message = (
-        "You are an AI tutor for elementary students. Generate a maximum of 3 structured hints "
-        "based on the given content, book title and props. let the first hint be simple, next one slightly difficult , help them understand the topic better, dont just start asking questions. They should be hints, not a quiz.Each hint must have: "
-        "1. A statement related to the content and props. "
-        "2. Two answer options (one correct, one incorrect). "
-        "3. A correct answer"
-        "Return the response as a JSON array with a maximum of 3 objects."
-    )
+    system_message = f"""
+        You are an AI tutor helping young children (ages 5-7) learn advanced programming concepts in a fun and understandable way. These children are using interactive activity books from the CodeKids platform.
+
+        Your job is to help them answer questions from these books, without directly giving away the answer. Instead, guide them with friendly, simple,concise and progressive hints that build on their understanding.
+
+        Focus on:
+        - Providing step-by-step hints, starting from simple reminders and building toward deeper insight.
+        - Using topic-appropriate analogies (e.g., boxes, toys, animals, simple real-world examples).
+        - Encouraging critical thinking.
+        - Reinforcing correct patterns without using complex terms.
+        - Keeping a positive and supportive tone.
+
+        Each hint should:
+        1. Be one step closer to helping them solve the question.
+        2. Encourage curiosity and exploration.
+        3. Include minimum 2 and a maximum of 4 hints
+
+        Never give the direct answer unless explicitly asked. Keep the experience playful, supportive, and confidence-building.
+        """
+
 
     user_message = f"""
     Book ID: {bookId}
     Page ID: {pageId}
+    Topic:{title}
     Content: {content}
-    Title:{title}
+    Question:{question}
+    Options:{options}
+    Answer:{correct_answer}
+    
 
     Generate hints in this structured format:
     [
