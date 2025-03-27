@@ -26,7 +26,7 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
     console.error("Error parsing tempProps JSON:", e);
   }
 
-  // Identify object arrays (e.g., "options", "Answers") and primitive arrays (e.g., integers, strings)
+  // Compute arrays based on the initial propsObject
   const objectArrays = Object.keys(propsObject).filter(
     (key) =>
       Array.isArray(propsObject[key]) &&
@@ -59,16 +59,28 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
     return initialState;
   });
 
+  // Re-calculate arrays inside useEffect so that dependencies are derived from tempProps only.
   useEffect(() => {
     const newProps = JSON.parse(tempProps);
+    const newObjectArrays = Object.keys(newProps).filter(
+      (key) =>
+        Array.isArray(newProps[key]) &&
+        newProps[key].every((item: any) => typeof item === "object"),
+    );
+    const newPrimitiveArrays = Object.keys(newProps).filter(
+      (key) =>
+        Array.isArray(newProps[key]) &&
+        newProps[key].every((item: any) => typeof item !== "object"),
+    );
+
     const updatedObjectArrayState: { [key: string]: Option[] } = {};
-    objectArrays.forEach((key) => {
+    newObjectArrays.forEach((key) => {
       updatedObjectArrayState[key] = newProps[key] || [];
     });
     setObjectArrayData(updatedObjectArrayState);
 
     const updatedPrimitiveArrayState: { [key: string]: any[] } = {};
-    primitiveArrays.forEach((key) => {
+    newPrimitiveArrays.forEach((key) => {
       updatedPrimitiveArrayState[key] = newProps[key] || [];
     });
     setPrimitiveArrayData(updatedPrimitiveArrayState);
@@ -176,6 +188,7 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
               </div>
             );
           }
+          return null; // Ensure every iteration returns a value
         })}
 
         {objectArrays.map((arrayKey) => (
