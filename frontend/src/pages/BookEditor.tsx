@@ -8,7 +8,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import { BookPreview } from "../components/ActivityBookList";
 import Editor from "@monaco-editor/react";
 
-
 interface PropsFormProps {
   tempProps: string;
   setTempProps: (newProps: string) => void;
@@ -29,15 +28,20 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
 
   // Identify object arrays (e.g., "options", "Answers") and primitive arrays (e.g., integers, strings)
   const objectArrays = Object.keys(propsObject).filter(
-    (key) => Array.isArray(propsObject[key]) && propsObject[key].every((item: any) => typeof item === "object")
-  );
-  
-  const primitiveArrays = Object.keys(propsObject).filter(
-    (key) => Array.isArray(propsObject[key]) && propsObject[key].every((item: any) => typeof item !== "object")
+    (key) =>
+      Array.isArray(propsObject[key]) &&
+      propsObject[key].every((item: any) => typeof item === "object"),
   );
 
-  
-  const [objectArrayData, setObjectArrayData] = useState<{ [key: string]: Option[] }>(() => {
+  const primitiveArrays = Object.keys(propsObject).filter(
+    (key) =>
+      Array.isArray(propsObject[key]) &&
+      propsObject[key].every((item: any) => typeof item !== "object"),
+  );
+
+  const [objectArrayData, setObjectArrayData] = useState<{
+    [key: string]: Option[];
+  }>(() => {
     const initialState: { [key: string]: Option[] } = {};
     objectArrays.forEach((key) => {
       initialState[key] = propsObject[key] || [];
@@ -45,7 +49,9 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
     return initialState;
   });
 
-  const [primitiveArrayData, setPrimitiveArrayData] = useState<{ [key: string]: any[] }>(() => {
+  const [primitiveArrayData, setPrimitiveArrayData] = useState<{
+    [key: string]: any[];
+  }>(() => {
     const initialState: { [key: string]: any[] } = {};
     primitiveArrays.forEach((key) => {
       initialState[key] = propsObject[key] || [];
@@ -73,18 +79,25 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
     setTempProps(JSON.stringify(updatedProps, null, 2));
   };
 
-  const handleOptionChange = (arrayKey: string, index: number, field: string, value: string) => {
+  const handleOptionChange = (
+    arrayKey: string,
+    index: number,
+    field: string,
+    value: string,
+  ) => {
     const updatedArray = [...objectArrayData[arrayKey]];
     const originalValue = updatedArray[index][field];
-  
+
     let newValue: any = value;
     if (typeof originalValue === "number") newValue = Number(value);
-    if (typeof originalValue === "boolean") newValue = value === "true"; 
-  
+    if (typeof originalValue === "boolean") newValue = value === "true";
+
     updatedArray[index] = { ...updatedArray[index], [field]: newValue };
-  
+
     setObjectArrayData({ ...objectArrayData, [arrayKey]: updatedArray });
-    setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+    setTempProps(
+      JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2),
+    );
   };
 
   const addNewItemToPrimitiveArray = (arrayKey: string) => {
@@ -93,21 +106,26 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
 
     const updatedArray = [...currentArray, newItem];
     setPrimitiveArrayData({ ...primitiveArrayData, [arrayKey]: updatedArray });
-    setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+    setTempProps(
+      JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2),
+    );
   };
 
   const removeItemFromPrimitiveArray = (arrayKey: string, index: number) => {
-    const updatedArray = primitiveArrayData[arrayKey].filter((_, i) => i !== index);
+    const updatedArray = primitiveArrayData[arrayKey].filter(
+      (_, i) => i !== index,
+    );
     setPrimitiveArrayData({ ...primitiveArrayData, [arrayKey]: updatedArray });
-    setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+    setTempProps(
+      JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2),
+    );
   };
 
   const addNewItem = (arrayKey: string) => {
     const currentArray = objectArrayData[arrayKey];
-  
-    
+
     const newItem: Record<string, any> = {};
-  
+
     if (currentArray.length > 0) {
       Object.keys(currentArray[0]).forEach((key) => {
         const existingType = typeof currentArray[0][key];
@@ -120,16 +138,22 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
         }
       });
     }
-  
+
     const updatedArray = [...currentArray, newItem as Option];
     setObjectArrayData({ ...objectArrayData, [arrayKey]: updatedArray });
-    setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+    setTempProps(
+      JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2),
+    );
   };
 
   const removeItem = (arrayKey: string, index: number) => {
-    const updatedArray = objectArrayData[arrayKey].filter((_, i) => i !== index);
+    const updatedArray = objectArrayData[arrayKey].filter(
+      (_, i) => i !== index,
+    );
     setObjectArrayData({ ...objectArrayData, [arrayKey]: updatedArray });
-    setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+    setTempProps(
+      JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2),
+    );
   };
 
   return (
@@ -160,17 +184,26 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
             {(objectArrayData[arrayKey] || []).map((item, index) => (
               <div key={index} className="flex gap-4 mb-2">
                 {Object.keys(item).map((field) => {
-
                   return (
                     <div key={field} className="flex flex-col">
-                      <label className="font-bold" htmlFor={`${field}-${index}`}>
+                      <label
+                        className="font-bold"
+                        htmlFor={`${field}-${index}`}
+                      >
                         {field}
                       </label>
                       {typeof item[field] === "boolean" ? (
                         <select
                           id={`${field}-${index}`}
                           value={item[field].toString()}
-                          onChange={(e) => handleOptionChange(arrayKey, index, field, e.target.value)}
+                          onChange={(e) =>
+                            handleOptionChange(
+                              arrayKey,
+                              index,
+                              field,
+                              e.target.value,
+                            )
+                          }
                           className="border border-gray-300 rounded p-1"
                         >
                           <option value="true">True</option>
@@ -181,7 +214,14 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                           id={`${field}-${index}`}
                           type="text"
                           value={item[field]}
-                          onChange={(e) => handleOptionChange(arrayKey, index, field, e.target.value)}
+                          onChange={(e) =>
+                            handleOptionChange(
+                              arrayKey,
+                              index,
+                              field,
+                              e.target.value,
+                            )
+                          }
                           className="border border-gray-300 rounded p-1"
                         />
                       )}
@@ -195,10 +235,10 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                   className="bg-red-500 text-white p-1 rounded mt-2 hover:bg-red-600 focus:outline-none"
                   style={{
                     alignSelf: "flex-start",
-                    marginTop: "27px",  
-                    padding: "5px 10px", 
-                    fontSize: "0.875rem",  
-                    width: "auto",  
+                    marginTop: "27px",
+                    padding: "5px 10px",
+                    fontSize: "0.875rem",
+                    width: "auto",
                   }}
                 >
                   Remove
@@ -232,8 +272,17 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                     onChange={(e) => {
                       const updatedArray = [...primitiveArrayData[arrayKey]];
                       updatedArray[index] = e.target.value;
-                      setPrimitiveArrayData({ ...primitiveArrayData, [arrayKey]: updatedArray });
-                      setTempProps(JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2));
+                      setPrimitiveArrayData({
+                        ...primitiveArrayData,
+                        [arrayKey]: updatedArray,
+                      });
+                      setTempProps(
+                        JSON.stringify(
+                          { ...propsObject, [arrayKey]: updatedArray },
+                          null,
+                          2,
+                        ),
+                      );
                     }}
                     className="border border-gray-300 rounded p-1"
                   />
@@ -245,10 +294,10 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                   className="bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"
                   style={{
                     alignSelf: "flex-start",
-                    marginTop: "27px",  
-                    padding: "5px 10px", 
-                    fontSize: "0.875rem",  
-                    width: "auto",  
+                    marginTop: "27px",
+                    padding: "5px 10px",
+                    fontSize: "0.875rem",
+                    width: "auto",
                   }}
                 >
                   Remove
@@ -500,7 +549,9 @@ function BookImageEditor({
           <div className="flex space-x-4 border-b-2 mb-2">
             <button
               className={`p-2 ${
-                activeTab === "prompts" ? "border-b-4 border-primary-green font-bold" : ""
+                activeTab === "prompts"
+                  ? "border-b-4 border-primary-green font-bold"
+                  : ""
               }`}
               onClick={() => setActiveTab("prompts")}
             >
@@ -508,7 +559,9 @@ function BookImageEditor({
             </button>
             <button
               className={`p-2 ${
-                activeTab === "json" ? "border-b-4 border-primary-green font-bold" : ""
+                activeTab === "json"
+                  ? "border-b-4 border-primary-green font-bold"
+                  : ""
               }`}
               onClick={() => setActiveTab("json")}
             >
@@ -588,14 +641,16 @@ function PageEditor({
   setPage: (page: Page) => void;
 }) {
   const [tempImage, setTempImage] = useState(page.image);
-  const [tempProps, setTempProps] = useState(JSON.stringify(page.props, null, 2));
+  const [tempProps, setTempProps] = useState(
+    JSON.stringify(page.props, null, 2),
+  );
 
   function setContent(content: string[]) {
     setPage({ ...page, content: content });
   }
 
   return (
-    <div className="flex w-full h-screen"> 
+    <div className="flex w-full h-screen">
       <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl w-full h-[calc(51vh-60px)]">
         <div className="flex flex-col w-full items-center bg-white rounded-l-2xl  h-[calc(50vh-60px)] overflow-y-auto">
           <div className="flex flex-col w-full items-center justify-center min-h-[500px] max-h-screen">
@@ -614,7 +669,10 @@ function PageEditor({
         {page.content && page.content.length > 0 && (
           <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl">
             <div className="flex flex-col items-center p-1 w-full min-h-full max-h-full overflow-y-scroll">
-              <BookContentEditor content={page.content} setContent={setContent} />
+              <BookContentEditor
+                content={page.content}
+                setContent={setContent}
+              />
             </div>
           </div>
         )}
@@ -622,11 +680,11 @@ function PageEditor({
 
       {/* New Section: BookImage - placed below the content */}
       <div className="absolute left-1/2 transform -translate-x-1/2 top-[calc(60vh-60px)] w-full p-4">
-        {!JSON.parse(tempProps) && (
-          <div className="text-red-500"></div>
-        )}
+        {!JSON.parse(tempProps) && <div className="text-red-500"></div>}
         <ErrorBoundary
-          fallback={<div className="text-red-500">Error, try adjusting the props</div>}
+          fallback={
+            <div className="text-red-500">Error, try adjusting the props</div>
+          }
         >
           <BookImage
             key={`${tempImage}-${tempProps}-${page.pageNumber}`}
@@ -888,11 +946,11 @@ export default function BookEditor() {
     if (!book || !book.pages) {
       return;
     }
-  
+
     // Get the first and last page numbers
     const firstPageNum = book.pages[0].pageNumber;
     const lastPageNum = book.pages[book.pages.length - 1].pageNumber;
-  
+
     // Prevent swapping with a non-existent page
     if (pageNum1 === firstPageNum && pageNum2 < firstPageNum) {
       console.log("Cannot swap with the top page as it's the first page.");
@@ -902,23 +960,24 @@ export default function BookEditor() {
       console.log("Cannot swap with the bottom page as it's the last page.");
       return;
     }
-  
+
     PagesService.pageSwapPageSwapPageId1PageId2Put(
       book.pages.find((page) => page.pageNumber === pageNum1)?.id as number,
       book.pages.find((page) => page.pageNumber === pageNum2)?.id as number,
-    ).then((response) => {
-      setBook(response);
-      if (pageNum1 === pageNum) {
-        setPageNum(pageNum2);
-      }
-      if (pageNum2 === pageNum) {
-        setPageNum(pageNum1);
-      }
-    }).catch((error) => {
-      console.error("Error swapping pages:", error);
-    });
+    )
+      .then((response) => {
+        setBook(response);
+        if (pageNum1 === pageNum) {
+          setPageNum(pageNum2);
+        }
+        if (pageNum2 === pageNum) {
+          setPageNum(pageNum1);
+        }
+      })
+      .catch((error) => {
+        console.error("Error swapping pages:", error);
+      });
   }
-  
 
   function saveBook(bookParam?: Book) {
     let saveBook = bookParam ?? book;
