@@ -538,6 +538,7 @@ function BookImageEditor({
   } catch (e) {
     error = true;
   }
+  console.log("error", error);
 
   return (
     <div className="flex flex-col w-full p-2 h-full">
