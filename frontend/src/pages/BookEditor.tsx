@@ -659,6 +659,12 @@ function PageEditor({
     JSON.stringify(page.props, null, 2),
   );
 
+  // Sync tempImage and tempProps when page changes
+  useEffect(() => {
+    setTempImage(page.image);
+    setTempProps(JSON.stringify(page.props, null, 2));
+  }, [page]);
+
   function setContent(content: string[]) {
     setPage({ ...page, content: content });
   }
