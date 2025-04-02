@@ -106,8 +106,9 @@ export default function HomePage() {
       <Navbar />
       <div className="relative flex flex-row min-h-screen">
         {/* Sidebar */}
+
         <div 
-          className={`fixed left-0 h-full bg-white shadow-lg transition-all duration-300 z-20 ${
+          className={`fixed left-0 h-full bg-gradient-to-br from-[#d0ecd5] to-[#ecbfa3] shadow-lg transition-all duration-300 z-20 ${
             sidebarVisible ? 'w-64' : 'w-36'
           }`}
           onMouseEnter={() => handleSidebarHover(true)}
@@ -157,7 +158,7 @@ export default function HomePage() {
                     className={`${
                       selectedClassification === category 
                         ? 'bg-primary-green text-white' 
-                        : 'bg-gray-100 hover:bg-gray-200'
+                        : 'bg-white hover:bg-gray-200'
                     } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
                       sidebarVisible ? '' : 'w-12 h-12'
                     }`}

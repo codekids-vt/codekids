@@ -78,6 +78,10 @@
   @apply border-gray-600;
 }
 
+.dark .bg-gray-100 {
+  @apply bg-gray-600;
+}
+
 /* for scroll bars */
 :root {
   --code-color: darkred;
