@@ -14,8 +14,6 @@ interface CustomColoringActivityProps {
   };
 }
 
-const availableColors = ["red", "orange", "green", "maroon", "gold"];
-
 export default function CustomColoringActivity({
   props,
 }: CustomColoringActivityProps) {
@@ -25,11 +23,17 @@ export default function CustomColoringActivity({
   const [selectedOverlay, setSelectedOverlay] = useState<{
     [key: string]: string;
   }>({});
-  const [draggedColor, setDraggedColor] = useState<string | null>(null);
+  const [availableColors, setAvailableColors] = useState<string[]>([
+    "red",
+    "orange",
+    "green",
+    "maroon",
+    "gold",
+  ]);
+  const [newColor, setNewColor] = useState<string>("");
 
   const handleDragStart = (e: React.DragEvent, color: string) => {
     e.dataTransfer.setData("color", color);
-    setDraggedColor(color);
   };
 
   const handleDrop = (e: React.DragEvent, partName: string) => {
@@ -41,15 +45,39 @@ export default function CustomColoringActivity({
     e.preventDefault();
   };
 
+  const handleAddColor = () => {
+    if (newColor && !availableColors.includes(newColor.toLowerCase())) {
+      setAvailableColors((prev) => [...prev, newColor.toLowerCase()]);
+      setNewColor("");
+    }
+  };
+
   return (
     <div className="flex flex-col items-center p-4 space-y-4">
+      <div className="flex items-center gap-2">
+        <input
+          type="text"
+          value={newColor}
+          onChange={(e) => setNewColor(e.target.value)}
+          placeholder="Enter a color (e.g., blue, #ff0000)"
+          className="px-2 py-1 border rounded-md"
+        />
+        <button
+          onClick={handleAddColor}
+          className="px-4 py-1 bg-green-600 text-white rounded-md"
+        >
+          Add Color
+        </button>
+      </div>
+
       <div className="flex flex-wrap justify-center gap-2">
         {availableColors.map((color) => (
           <div
             key={color}
             draggable
             onDragStart={(e) => handleDragStart(e, color)}
-            className={`w-20 h-10 bg-${color}-600 text-white text-center flex items-center justify-center rounded-lg shadow-lg cursor-pointer`}
+            className="w-20 h-10 text-white text-center flex items-center justify-center rounded-lg shadow-lg cursor-pointer"
+            style={{ backgroundColor: color }}
           >
             {color}
           </div>
