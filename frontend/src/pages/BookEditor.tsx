@@ -591,7 +591,7 @@ function BookImageEditor({
           ) : (
             <Editor
               key={tempImage}
-              height="50%"
+              height="100%"
               defaultValue={tempProps}
               onChange={(value) => value && setTempProps(value)}
               className="w-full max-h-1/2 shadow-2xl rounded-xl"
