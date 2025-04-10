@@ -92,26 +92,34 @@ export default function CustomColoringActivity({
               onDragOver={handleDragOver}
               style={{ ...part.style, position: "absolute" }}
             >
-              <img
-                src={part.src}
-                alt={part.name}
-                style={{ width: "100%", height: "100%", borderRadius: "12px" }}
-              />
-              {selectedOverlay[part.name] && (
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    backgroundColor: selectedOverlay[part.name],
-                    opacity: 0.5,
-                    borderRadius: "12px",
-                    zIndex: 2,
-                  }}
+              <div
+                style={{ width: "100%", height: "100%", position: "relative" }}
+              >
+                <img
+                  src={part.src}
+                  alt={part.name}
+                  style={{ width: "100%", height: "100%" }}
                 />
-              )}
+                {selectedOverlay[part.name] && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      backgroundColor: selectedOverlay[part.name],
+                      WebkitMaskImage: `url(${part.src})`,
+                      WebkitMaskRepeat: "no-repeat",
+                      WebkitMaskSize: "100% 100%",
+                      maskImage: `url(${part.src})`,
+                      maskRepeat: "no-repeat",
+                      maskSize: "100% 100%",
+                      pointerEvents: "none",
+                    }}
+                  />
+                )}
+              </div>
             </div>
           </Draggable>
         ))}
