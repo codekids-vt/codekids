@@ -157,7 +157,7 @@ export function HintsWindow({
   if (!open) return null;
 
   const currentHint = allHints[currentHintIndex] || {
-    statement: "No hints available",
+    statement: "Generating hints....",
     option1: "",
     option2: "",
   };
@@ -228,7 +228,7 @@ export function HintsWindow({
               // Normal hints view
               <>
                 <p className="text-lg text-gray-800">{currentHint.statement}</p>
-                {currentHint?.options?.length ? (
+                {/* {currentHint?.options?.length ? (
                 currentHint.options.map((hint, index) => (
                 <p
                   key={index}
@@ -239,7 +239,7 @@ export function HintsWindow({
                 ))
               ) : (
                 <p className="text-lg text-gray-500">No hints available.</p> // ✅ Fallback when hints are undefined
-              )}
+              )} */}
               </>
             ) : (
               // Full answer view
@@ -271,7 +271,7 @@ export function HintsWindow({
             )}
           </div>
 
-          <div className="relative min-h-[80px] border-t pt-4">
+        
             {/* {!showFullAnswer && ( */}
               <>
                
@@ -304,7 +304,7 @@ export function HintsWindow({
             </div>
               </>
             {/* )} */}
-          </div>
+          
         </div>
       {/* </div> */}
     </div>
@@ -329,6 +329,7 @@ export default function BookPage() {
   const [allHints, setAllHints] = useState([]); // Stores all hints from API
   const [currentHintIndex, setCurrentHintIndex] = useState(0); // Tracks current hint
   const [showFullAnswer, setShowFullAnswer] = useState(false);
+  const [hintsLoading, setHintsLoading] = useState(false);
   const [book, setBook] = useState<Book | undefined>(undefined);
   const [pageNum, setPageNum] = useState(pageNumParam ? parseInt(pageNumParam) : 1);
   const startTime = new Date().getTime();
@@ -351,7 +352,18 @@ export default function BookPage() {
     navigate(`/book/${idString}/${pageNum}`);
     setPageNum(pageNum);
   }, [playPageFlip, pageNum, idString, navigate]);
-
+  
+  useEffect(() => {
+    const currentPage = book?.pages?.find((p) => p.pageNumber === pageNum);
+  
+    if (currentPage) {
+      setHintsOpen(false);
+      setShowFullAnswer(false);
+      setCurrentHintIndex(0);
+      setAllHints([]);
+    }
+  }, [pageNum, book]);
+  
   if (!book || !book.pages) {
     return (
       <div className="flex flex-col flex-grow items-center justify-center">
@@ -364,8 +376,13 @@ export default function BookPage() {
 
   const page = book.pages.find((p) => p.pageNumber === pageNum);
 
+
+
   function getNextPageNum(): number | null {
-    return book && book.pages && pageNum > book.pages.length - 1 ? null : pageNum + 1;
+    if (!book || !book.pages) return null;
+  
+    const maxPageNum = Math.max(...book.pages.map((p) => p.pageNumber));
+    return pageNum < maxPageNum ? pageNum + 1 : null;
   }
 
   function getPrevPageNum(): number | null {
@@ -374,22 +391,26 @@ export default function BookPage() {
 
 
   function getAllHints() {
+   
     if (!page?.content) {
       console.warn("No page content available to generate hints.");
       return;
     }
     console.log("In getall hints")
-
-    console.log(page?.props
-
-    )
+    console.log(page?.props)
+    
+  // Clear previous hints immediately
+  setAllHints([]);
+  setCurrentHintIndex(0);
+  setShowFullAnswer(false);
+  setHintsLoading(true);
     PagesService.createPageWithGptPageCreatehintsPost(id,pageNum)
       .then((data) => {
-   
+       
         if (data?.props) {
           let props;
           try {
-            // ✅ Convert string to JSON object if necessary
+            // Convert string to JSON object if necessary
             props = typeof data.props === "string" ? JSON.parse(data.props) : data.props;
           } catch (error) {
             console.error("Error parsing props JSON:", error);
@@ -399,12 +420,13 @@ export default function BookPage() {
           if (Array.isArray(props?.gptHints)) {
             const formattedHints = props.gptHints.map((hint: any) => ({
               statement: hint.statement,
-              options: hint.hints,  // ✅ Store options correctly
-              correctOption: hint.correctOption || null,  // ✅ Store correct answer
+              options: hint.hints,  //  Store options correctly
+              correctOption: hint.correctOption || null,  // Store correct answer
             }));
         
             setAllHints(formattedHints);
-            console.log("Formatted Hints:", formattedHints); // ✅ Debugging output
+            setCurrentHintIndex(0); // ensure reset
+            console.log("Formatted Hints:", formattedHints); // Debugging output
           } else {
             console.warn("No hints returned from API.");
           }
@@ -414,8 +436,11 @@ export default function BookPage() {
       })
       .catch((error) => {
         console.error("Error fetching hints:", error);
+      })
+      .finally(() => {
+        setHintsLoading(false);  // ✅ Set loading to false here
       });
-      
+    
   }
 
   function updateCurrentHintIndex(index: number) {
@@ -468,7 +493,9 @@ export default function BookPage() {
   function helpMeClicked() {
     console.log("helpme bantu")
     playLowClick();
-    getAllHints();
+    setCurrentHintIndex(0);     // Reset index
+    setShowFullAnswer(false); 
+    getAllHints();    // Reset view
     const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     InteractionsService.createInteractionInteractionsPost({
       interaction_type: InteractionType.HELP_ME,
@@ -566,6 +593,11 @@ export default function BookPage() {
               )}
 
               {/* Render the HintsWindow with the updated props */}
+                {hintsLoading && (
+                <div className="fixed bottom-6 right-20 text-sm text-gray-500 animate-pulse">
+                  Generating hints...
+                </div>
+              )}
               <HintsWindow
               open={hintsOpen}
               setOpen={setHintsOpen}

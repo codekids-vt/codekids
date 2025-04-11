@@ -112,13 +112,7 @@ async def create_page_with_gpt(
     """
     print(" in route")
 
-    # book = await db.book.find_unique(where={"id": bookId})
-    # if not book:
-    #     raise HTTPException(status_code=404, detail="Book not found")
 
-    # page = await db.page.find_first(where={"id": pageId})
-    # if not page:
-    #     raise HTTPException(status_code=404, detail="Page not found")
     
     
     book = await db.book.find_unique(where={"id": bookId}, include={"pages": True})
@@ -157,8 +151,16 @@ async def create_page_with_gpt(
     correct_answer: str = next((a.get("answerText") for a in props_dict.get("answers", []) if a.get("correct")),"")
     print(answer_options)
     print(correct_answer)
+    statements = props_dict.get("statements",[])
+    print(statements)
+    ans = props_dict.get("ans",[])
+    print(ans)
+    condition: str = props_dict.get("condition","")
+    print(condition)
+
+   
     
-    gptHints = await generate_gpt_hints(bookId, pageId, content,title,question_text, answer_options, correct_answer)
+    gptHints = await generate_gpt_hints(bookId, pageId, content,title,question_text,condition, answer_options, statements, correct_answer,ans)
     props["gptHints"] = gptHints
 
     page_return = await db.page.create(
@@ -177,17 +179,17 @@ async def create_page_with_gpt(
 
     return page_return
 
-async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,question: str, options: list, correct_answer: str) -> list[dict]:
+async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,question: str,condition:str, options: list,statements:list, correct_answer: str,ans:list) -> list[dict]:
    
 
     system_message = f"""
-        You are an AI tutor helping young children (ages 5-7) learn advanced programming concepts in a fun and understandable way. These children are using interactive activity books from the CodeKids platform.
+        You are Hint Generator helping young children (ages 5-7) learn advanced programming concepts in a fun and understandable way. These children are using interactive activity books from the CodeKids platform.
 
-        Your job is to help them answer questions from these books, without directly giving away the answer. Instead, guide them with friendly, simple,concise and progressive hints that build on their understanding.
+        Your job is to help them answer questions from these books, without directly giving away the answer. Instead, guide them with simple,concise and progressive hints that build on their understanding.
 
         Focus on:
-        - Providing step-by-step hints, starting from simple reminders and building toward deeper insight.
-        - Using topic-appropriate analogies (e.g., boxes, toys, animals, simple real-world examples).
+        - Providing step-by-step hints, starting from simple conceptual reminders and building toward deeper insight specific to the problem content.
+        - Using content-appropriate analogies (e.g., boxes, toys, animals, simple real-world examples).
         - Encouraging critical thinking.
         - Reinforcing correct patterns without using complex terms.
         - Keeping a positive and supportive tone.
@@ -206,31 +208,21 @@ async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,qu
     Page ID: {pageId}
     Topic:{title}
     Content: {content}
-    Question:{question}
-    Options:{options}
-    Answer:{correct_answer}
+    Question:{question} or {condition}
+    Options:{options} or {statements}
+    Answer:{correct_answer} or{ans}
     
 
-    Generate hints in this structured format:
+    
+        Generate your output in this format:
     [
-      {{
-        "statement": "Your hint statement here",
-    "hints": ["Option 1", "Option 2"],
-    "correctOption": "Option number"
-      }},
-      {{
-         "statement": "Your hint statement here",
-    "hints": ["Option 1", "Option 2"],
-    "correctOption": "Option number"
-      }},
-      {{
-        "statement": "Your hint statement here",
-    "hints": ["Option 1", "Option 2"],
-    "correctOption": "Option number"
-      }}
+    {{ "statement": "First hint goes here." }},
+    {{ "statement": "Second hint goes here." }},
+    {{ "statement": "Third hint goes here." }}
     ]
 
-Ensure that one of the options exactly matches the provided correct answer.
+    Return ONLY this list. Do not explain anything else.
+
 """
     
 
@@ -262,122 +254,3 @@ def parse_gpt_hints(gpt_text: str) -> list[dict]:
         return json.loads(gpt_text)
     except:
         return []
-
-
-# @pages_router.post("/page/createhints", tags=["pages"])
-# async def create_page_with_gpt(
-#     bookId: int = Query(...),
-#     pageId: int = Query(...),
-#     content: List[str] = Body(...),
-#     props: Dict[str, Any] = Body(default={})  # Optional props
-# ):
-#     """
-#     Updates an existing page with GPT-generated hints.
-#     Stores up to 3 hints inside `props["gptHints"]`.
-#     """
-#     print(f"Received request: bookId={bookId}, pageId={pageId}, content={content}, props={props}")
-
-#     # Validate if the book exists
-#     book = await db.book.find_unique(where={"id": bookId})
-#     if not book:
-#         raise HTTPException(status_code=404, detail="Book not found")
-
-#     # Validate if the page exists
-#     page = await db.page.find_first(where={"id": pageId, "bookId": bookId})
-#     if not page:
-#         raise HTTPException(status_code=404, detail="Page not found")
-
-#     # Generate GPT-based hints
-#     gptHints = await generate_gpt_hints(bookId, pageId, content, props)
-
-#     # Merge provided props with generated hints
-#     updated_props = {**props, "gptHints": gptHints}
-
-#     # Update page with hints and other props
-#     updated_page = await db.page.update(
-#         where={"id": pageId},
-#         data={
-#             "content": Json(content),
-#             "props": Json(updated_props),
-#         },
-#         include={"book": False},
-#     )
-
-#     if not updated_page:
-#         raise HTTPException(status_code=500, detail="Page update with GPT hints failed")
-
-#     return {
-#     "bookId": updated_page.bookId,  # ✅ Explicitly return bookId
-#     "pageId": pageId,  # ✅ Explicitly return pageId
-#     "content": updated_page.content,  # ✅ Use latest content
-#     "props": props,  # ✅ Merged props including GPT hints
-#     "gptHints": gptHints  # ✅ Separate GPT hints field
-#     }
-
-
-
-# from openai import AsyncOpenAI
-
-# client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
-
-# async def generate_gpt_hints(bookId: int, pageId: int, content: List[str], props: Dict[str, Any]) -> List[Dict[str, Any]]:
-#     """
-#     Calls GPT-4 to generate a maximum of 3 structured hints.
-#     Each hint consists of:
-#     - A statement
-#     - Two options (one correct, one incorrect).
-#     """
-
-#     system_message = (
-#         "You are an AI tutor for K-12 students. Generate a maximum of 3 structured hints "
-#         "based on the given content. Each hint must have: "
-#         "1. A statement related to the content. "
-#         "2. Two answer options (one correct, one incorrect). "
-#         "Return the response as a JSON array with a maximum of 3 objects."
-#     )
-
-#     user_message = f"""
-#     Book ID: {bookId}
-#     Page ID: {pageId}
-#     Content: {content}
-#     Existing Props: {props}
-
-#     Generate hints in this structured format:
-#     [
-#       {{"statement": "...", "options": ["Correct Answer", "Incorrect Answer"]}},
-#       {{"statement": "...", "options": ["Correct Answer", "Incorrect Answer"]}},
-#       {{"statement": "...", "options": ["Correct Answer", "Incorrect Answer"]}}
-#     ]
-#     """
-
-#     try:
-#         # ✅ FIX: Await the response since it's an async function
-#         response = await client.chat.completions.create(
-#             model="gpt-4",
-#             messages=[
-#                 {"role": "system", "content": system_message},
-#                 {"role": "user", "content": user_message},
-#             ],
-#             max_tokens=500
-#         )
-
-#         # ✅ FIX: Extract content correctly
-#         gpt_text = response.choices[0].message.content or " "
-#         hints = parse_gpt_hints(gpt_text)
-#         return hints
-
-
-#     except Exception as e:
-#         print("GPT-4 API Error:", e)
-#         return []
-
-
-# def parse_gpt_hints(gpt_text: str) -> List[Dict[str, Any]]:
-#     """
-#     Parses GPT-4's response into structured hint sets.
-#     Ensures up to 3 structured hints are returned.
-#     """
-#     try:
-#         return json.loads(gpt_text)
-#     except:
-#         return []

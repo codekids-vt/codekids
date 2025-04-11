@@ -168,6 +168,36 @@ export default function HomePage() {
                   {category}
                 </button>
               ))}
+              {/* /*TODO:-  separated tab for books with hints */}
+              {/* {Object.values(BookCategory)
+  .filter((category) => category !== BookCategory.UNPLUGGED)
+  .map((category) => {
+    const displayLabel = category === BookCategory.HINTS ? "HINTS" : category;
+    return (
+      <button
+        key={category}
+        onClick={() => {
+          const actualCategory =
+            category === BookCategory.HINTS ? BookCategory.ADVANCED : category;
+
+          const newSelectedCategory =
+            selectedCategory === category ? null : category;
+
+          setSelectedCategory(newSelectedCategory);
+          loadBookResults(actualCategory, selectedTopic, query);
+          setIsUnplugged(false);
+        }}
+        className={`${
+          selectedCategory === category
+            ? "bg-primary-green text-white"
+            : "bg-white text-primary-green"
+        } px-4 py-1 rounded-full hover:bg-hover-green border-2 border-primary-green hover:text-white transition-colors duration-300 ease-in-out hover:shadow-xl`}
+      >
+        {displayLabel}
+      </button>
+    );
+  })} */}
+
             <button
               key={"Unplugged"}
               onClick={() => {

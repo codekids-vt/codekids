@@ -68,3 +68,10 @@ psql postgres://postgres:password@localhost:5432/codekids < /tmp/codekidsbackup.
 ```
 <!-- https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/BasicPointers2.html#what-does-it-mean-to-copy
  https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/QueueLinked.html#id1 -->
+
+ ###to setup prisma
+ ```bash
+ cd backend
+ npx prisma studio
+ 
+ ```
