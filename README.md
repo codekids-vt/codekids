@@ -8,7 +8,7 @@ cp .env.example .env
 ```
 
 ## Run backend
-
+(use python3.12)
 ```bash
 python -m venv .venv
 source .venv/bin/activate
@@ -16,6 +16,12 @@ cd backend
 pip install -r requirements.txt
 prisma generate  # needs a running database
 uvicorn src.main:app --reload --port 8080
+```
+
+## Updating Schema Database
+```bash
+cd backend
+prisma migrate dev
 ```
 
 To startup a local database, you can use the following command:

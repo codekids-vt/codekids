@@ -45,6 +45,10 @@ enum BookCategory {
   INTERMEDIATE
   ADVANCED
   UNPLUGGED
+  ARTIFICIAL_INTELLIGENCE
+  CYBER_SECURITY
+  CODING
+  MISCELLANEOUS
 }
 
 model Interaction {
@@ -87,7 +91,7 @@ model Book {
   author          String
   tags            String[]     @default([])
   bookTopic       String?
-  category        BookCategory // or String if you prefer
+  categories      BookCategory[]     @default([])
   pages           Page[]
   courses         BookCourse[]
   owner           User         @relation(fields: [ownerId], references: [id])
