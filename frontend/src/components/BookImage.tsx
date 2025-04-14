@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { HokieBirdColoring } from "../components/HokieBirdColor";
+import CustomColoringActivity from "./ColoringActivity";
 import { HokieBirdMap } from "../components/HokieBirdMap";
 import { HokieBirdIfCondition } from "../components/HokieBirdIfCondition";
 import { PythonTutor } from "../components/PythonTutor";
@@ -85,6 +86,9 @@ export function BookImage({
 
       {image === "HokieBirdActivity" && (
         <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "CustomColoringActivity" && (
+        <CustomColoringActivity props={page?.props} />
       )}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && (

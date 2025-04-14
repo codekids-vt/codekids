@@ -19,6 +19,20 @@ export const editorDefaults: { [key: string]: any } = {
     command: "Drag the Colors over these boxes",
     helpImage: "/help/HokieBirdColoring_Help.png",
   },
+  CustomColoringActivity: {
+    imageParts: [
+      {
+        name: "Enter Name",
+        src: "Enter Image",
+        style: {
+          width: "weight in px",
+          height: "height in px",
+          top: "percentage",
+          left: "percentage",
+        },
+      },
+    ],
+  },
   tutor: {
     code: 'number = 23\n\ncollege = "Virginia Tech"\n\nsecond_number = number + 10\n\nprint(college)\nprint(second_number)',
   },
