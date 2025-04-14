@@ -514,7 +514,6 @@ function BookImageEditor({
 }) {
   const [activeTab, setActiveTab] = useState<"prompts" | "json">("prompts");
 
-
   // Update the page every 3 seconds if there has been a change
   useEffect(() => {
     const interval = setInterval(() => {
@@ -530,16 +529,13 @@ function BookImageEditor({
       }
     }, 2000);
 
-
     return () => clearInterval(interval);
   }, [tempImage, tempProps, page, setPage]);
-
 
   // Make sure tempProps stays in sync with page.props when page changes
   useEffect(() => {
     setTempProps(JSON.stringify(page.props, null, 2));
   }, [page.props, setTempProps]);
-
 
   let error = false;
   try {
@@ -549,7 +545,6 @@ function BookImageEditor({
   }
   console.log("error", error);
 
-
   return (
     <div className="flex flex-col w-full p-2 h-full">
       <ImageTypeEditor
@@ -557,7 +552,6 @@ function BookImageEditor({
         setTempImageType={setTempImage}
         setTempProps={setTempProps}
       />
-
 
       {page.image.includes("/") || page.image === "Image" ? (
         <div className="flex flex-col w-full">
@@ -594,7 +588,6 @@ function BookImageEditor({
             </button>
           </div>
 
-
           {/* Render Based on Active Tab */}
           {activeTab === "prompts" ? (
             <div className="w-full max-h-1/2 shadow-2xl rounded-xl">
@@ -615,8 +608,6 @@ function BookImageEditor({
     </div>
   );
 }
-
-
 
 function ImageTypeEditor({
   tempImageType,
