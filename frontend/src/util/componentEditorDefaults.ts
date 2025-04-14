@@ -22,23 +22,13 @@ export const editorDefaults: { [key: string]: any } = {
   CustomColoringActivity: {
     imageParts: [
       {
-        name: "Wing",
-        src: "/assets/wing.png",
+        name: "Enter Name",
+        src: "Enter Image",
         style: {
-          width: "120px",
-          height: "100px",
-          top: "20%",
-          left: "30%",
-        },
-      },
-      {
-        name: "Tail",
-        src: "/assets/tail.png",
-        style: {
-          width: "100px",
-          height: "80px",
-          top: "60%",
-          left: "50%",
+          width: "weight in px",
+          height: "height in px",
+          top: "percentage",
+          left: "percentage",
         },
       },
     ],
