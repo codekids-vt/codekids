@@ -19,10 +19,7 @@ export default function HomePage() {
   const [selectedLevel, setSelectedLevel] = useState<BookCategory | null>(null);
   
   // Tracks which additional classification is selected
-  const [selectedClassification, setSelectedClassification] = useState<BookCategory | null>(null);
-
-  // Tracks which topic is selected (if any)
-  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [selectedCategories, setSelectedCategories] = useState<BookCategory[] | null>(null);
 
   // List of all available topics (fetched from API)
   const [topics, setTopics] = useState<string[]>([]);
@@ -50,18 +47,13 @@ export default function HomePage() {
     playSound();
   }, [playSound]);
 
-  const loadBookResults = useCallback((level: BookCategory | null, classification: BookCategory | null, topic: string | null, query: string | null) => {
+  const loadBookResults = useCallback((topic: string | null, query: string | null) => {
     setLoading(true);
-    BooksService.searchBooksBooksGet(null, topic, null, null, true, query)
+    BooksService.searchBooksBooksSearchPost({categories: selectedCategories, query})
       .then((response) => {
         // Filter results based on both level and classification
         let filtered = response;
-        if (level) {
-          filtered = filtered.filter(book => book.level === level);
-        }
-        if (classification) {
-          filtered = filtered.filter(book => book.category === classification);
-        }
+        console.log("Filtered books:", filtered);
         setResults(filtered);
         setLoading(false);
       })
@@ -69,11 +61,11 @@ export default function HomePage() {
         console.error(error);
         setLoading(false);
       });
-  }, [setResults, setLoading]);
+  }, [setResults, setLoading, selectedCategories]);
 
   // Load *all* books on initial mount
   useEffect(() => {
-    loadBookResults(null, null, null, null);
+    loadBookResults(null, null);
   }, [loadBookResults]);
 
   // Helper function to format category names for display
@@ -121,51 +113,60 @@ export default function HomePage() {
             
             <div className="space-y-4">
               <div>
-                <h3 className={`font-semibold mb-2 ${sidebarVisible ? '' : 'hidden'}`}>Levels</h3>
-                {levelCategories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => {
-                      const newLevel = selectedLevel === category ? null : category;
-                      setSelectedLevel(newLevel);
-                      setIsUnplugged(false);
-                      loadBookResults(newLevel, selectedClassification, selectedTopic, query);
-                    }}
-                    className={`${
-                      selectedLevel === category 
-                        ? 'bg-blue-500 text-white' 
-                        : 'bg-gray-100 hover:bg-gray-200'
-                    } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
-                      sidebarVisible ? '' : 'w-12 h-12'
-                    }`}
-                  >
-                    {sidebarVisible ? formatCategoryName(category) : category.charAt(0)}
-                  </button>
-                ))}
+          <h3 className={`font-semibold mb-2 ${sidebarVisible ? '' : 'hidden'}`}>Levels</h3>
+          {levelCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => {
+
+                setSelectedCategories((prev) => {
+            if (prev && prev.includes(category)) {
+              return prev.filter((cat) => cat !== category);
+            } else {
+              return prev ? [...prev, category] : [category];
+            }
+                });
+
+              }}
+              className={`${
+                selectedCategories?.includes(category)
+            ? 'bg-primary-green text-white' 
+            : 'bg-white hover:bg-gray-200'
+              } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
+                sidebarVisible ? '' : 'w-12 h-12'
+              }`}
+            >
+              {sidebarVisible ? formatCategoryName(category) : category.charAt(0)}
+            </button>
+          ))}
               </div>
 
               <div>
-                <h3 className={`font-semibold mb-2 ${sidebarVisible ? '' : 'hidden'}`}>Topics</h3>
-                {additionalCategories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => {
-                      const newClassification = selectedClassification === category ? null : category;
-                      setSelectedClassification(newClassification);
-                      setIsUnplugged(false);
-                      loadBookResults(selectedLevel, newClassification, selectedTopic, query);
-                    }}
-                    className={`${
-                      selectedClassification === category 
-                        ? 'bg-primary-green text-white' 
-                        : 'bg-white hover:bg-gray-200'
-                    } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
-                      sidebarVisible ? '' : 'w-12 h-12'
-                    }`}
-                  >
-                    {sidebarVisible ? formatCategoryName(category) : category.charAt(0)}
-                  </button>
-                ))}
+          <h3 className={`font-semibold mb-2 ${sidebarVisible ? '' : 'hidden'}`}>Topics</h3>
+          {additionalCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => {
+                setSelectedCategories((prev) => {
+            if (prev && prev.includes(category)) {
+              return prev.filter((cat) => cat !== category);
+            } else {
+              return prev ? [...prev, category] : [category];
+            }
+                }
+              );
+              }}
+              className={`${
+                selectedCategories && selectedCategories.includes(category) 
+            ? 'bg-primary-green text-white' 
+            : 'bg-white hover:bg-gray-200'
+              } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
+                sidebarVisible ? '' : 'w-12 h-12'
+              }`}
+            >
+              {sidebarVisible ? formatCategoryName(category) : category.charAt(0)}
+            </button>
+          ))}
               </div>
             </div>
           </div>
@@ -220,7 +221,7 @@ export default function HomePage() {
                       clearTimeout(timerHandle);
                     }
                     const handle = setTimeout(() => {
-                      loadBookResults(selectedLevel, selectedClassification, selectedTopic, e.target.value);
+                      loadBookResults(null, e.target.value);
                     }, 500);
                     setTimerHandle(handle);
                   }}

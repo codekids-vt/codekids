@@ -25,6 +25,7 @@ export type { InteractionCreateResponse } from "./models/InteractionCreateRespon
 export { InteractionType } from "./models/InteractionType";
 export type { Page } from "./models/Page";
 export type { Question } from "./models/Question";
+export type { SearchBooksRequest } from "./models/SearchBooksRequest";
 export type { SignupRequest } from "./models/SignupRequest";
 export type { UpdatePage } from "./models/UpdatePage";
 export type { UpdateUserRequest } from "./models/UpdateUserRequest";

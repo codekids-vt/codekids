@@ -1,61 +1,26 @@
-/* generated using openapi-typescript-codegen -- do not edit */
+/* generated using openapi-typescript-codegen -- do no edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 import type { Book } from "../models/Book";
-import type { BookCategory } from "../models/BookCategory";
 import type { CreateBookRequest } from "../models/CreateBookRequest";
+import type { SearchBooksRequest } from "../models/SearchBooksRequest";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
 export class BooksService {
   /**
    * Search Books
-   * @param category
-   * @param bookTopic
-   * @param limit
-   * @param ownerId
-   * @param published
-   * @param query
-   * @returns Book Successful Response
-   * @throws ApiError
-   */
-  public static searchBooksBooksGet(
-    category?: BookCategory | null,
-    bookTopic?: string | null,
-    limit?: number | null,
-    ownerId?: number | null,
-    published?: boolean | null,
-    query?: string | null,
-  ): CancelablePromise<Array<Book>> {
-    return __request(OpenAPI, {
-      method: "GET",
-      url: "/books",
-      query: {
-        category: category,
-        bookTopic: bookTopic,
-        limit: limit,
-        owner_id: ownerId,
-        published: published,
-        query: query,
-      },
-      errors: {
-        422: `Validation Error`,
-      },
-    });
-  }
-  /**
-   * Create Book
    * @param requestBody
    * @returns Book Successful Response
    * @throws ApiError
    */
-  public static createBookBooksPost(
-    requestBody: CreateBookRequest,
-  ): CancelablePromise<Book> {
+  public static searchBooksBooksSearchPost(
+    requestBody: SearchBooksRequest,
+  ): CancelablePromise<Array<Book>> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/books",
+      url: "/books/search",
       body: requestBody,
       mediaType: "application/json",
       errors: {
@@ -116,6 +81,25 @@ export class BooksService {
     return __request(OpenAPI, {
       method: "GET",
       url: "/book-topics",
+    });
+  }
+  /**
+   * Create Book
+   * @param requestBody
+   * @returns Book Successful Response
+   * @throws ApiError
+   */
+  public static createBookBooksPost(
+    requestBody: CreateBookRequest,
+  ): CancelablePromise<Book> {
+    return __request(OpenAPI, {
+      method: "POST",
+      url: "/books",
+      body: requestBody,
+      mediaType: "application/json",
+      errors: {
+        422: `Validation Error`,
+      },
     });
   }
 }

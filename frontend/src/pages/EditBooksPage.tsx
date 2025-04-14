@@ -12,7 +12,7 @@ export default function EditBooksPage() {
   const [books, setBooks] = useState<Book[]>([]);
   useEffect(() => {
     if (user) {
-      BooksService.searchBooksBooksGet(null, null, 100, user.id, null)
+      BooksService.searchBooksBooksSearchPost({owner_id: user.id, published: false})
         .then((response) => {
           setBooks(response);
         })
@@ -43,7 +43,6 @@ export default function EditBooksPage() {
           onClick={() => {
             BooksService.createBookBooksPost({
               title: "New Book",
-              category: BookCategory.BEGINNER,
             }).then((response) => {
               navigate(`/book_editor/${response.id}/1`);
             });

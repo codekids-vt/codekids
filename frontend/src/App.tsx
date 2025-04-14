@@ -3,7 +3,6 @@ import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import BookPage from "./pages/BookPage";
-import BookCategoryPage from "./pages/BookCategoryPage";
 import TeacherResourcesPage from "./pages/TeacherResources";
 import { useOrientation } from "react-use";
 import PleaseRotateScreen from "./components/PleaseRotateScreen";
@@ -31,10 +30,6 @@ function App() {
             <Route
               path="/book/:idString/:pageNumParam"
               element={<BookPage />}
-            />
-            <Route
-              path="/book_category/:categoryString"
-              element={<BookCategoryPage />}
             />
             <Route path="/contact" element={<ContactUs />} />
             <Route

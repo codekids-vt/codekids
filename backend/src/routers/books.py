@@ -12,33 +12,32 @@ from prisma.types import BookWhereInput, BookUpdateInput
 books_router = APIRouter()
 
 
-@books_router.get("/books", tags=["books"])
+class SearchBooksRequest(BaseModel):
+    categories: Optional[List[BookCategory]] = None
+    limit: Optional[int] = 100
+    owner_id: Optional[int] = None
+    published: Optional[bool] = None
+    query: Optional[str] = None
+
+@books_router.post("/books/search", tags=["books"])
 async def search_books(
-    category: Optional[BookCategory] = None,
-    bookTopic: Optional[str] = None,
-    limit: Optional[int] = 100,
-    owner_id: Optional[int] = None,
-    published: Optional[bool] = None,
-    query: Optional[str] = None,
+    req: SearchBooksRequest,
 ) -> List[Book]:
     where: BookWhereInput = {}
-    if category:
-        where["category"] = category
-    if bookTopic:
-        where["bookTopic"] = bookTopic
-    if owner_id:
-        where["ownerId"] = owner_id
-    if published is not None:
-        where["published"] = published
+    if req.categories:
+        where["categories"] = {"has_every": req.categories}
+    if req.owner_id:
+        where["ownerId"] = req.owner_id
+    if req.published is not None:
+        where["published"] = req.published
 
     books = await db.book.find_many(
-        take=limit,
+        take=req.limit,
         include={"courses": True, "pages": True},
         where=where,
-        order={"category": "asc"},
     )
 
-    if query:
+    if req.query:
         filtered_and_sorted_books = [
             book
             for book, _ in sorted(
@@ -47,7 +46,7 @@ async def search_books(
                         book,
                         len(
                             re.findall(
-                                query,
+                                req.query,
                                 (
                                     book.title
                                     + book.author
@@ -92,7 +91,7 @@ async def get_unique_book_topics() -> List[str]:
 
 class CreateBookRequest(BaseModel):
     title: str
-    category: BookCategory
+    categories: list[BookCategory] = []
     bookTopic: Optional[str] = None
     tags: list[str] = []
     bookCover: Optional[str] = None
@@ -114,7 +113,7 @@ async def create_book(
             "author": user.name,
             "bookCover": "/color_2.png",
             "title": req.title,
-            "category": req.category,
+            "categories": req.categories,
             "bookTopic": req.bookTopic,
             "tags": req.tags,
             "ownerId": user.id,
@@ -146,7 +145,7 @@ async def edit_book(
         raise HTTPException(status_code=401, detail="Unauthorized")
     book_update_data: BookUpdateInput = {
         "title": req.title,
-        "category": req.category,
+        "categories": req.categories,
         "tags": req.tags,
     }
     if req.bookCover:
