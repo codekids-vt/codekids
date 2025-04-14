@@ -532,6 +532,11 @@ function BookImageEditor({
     return () => clearInterval(interval);
   }, [tempImage, tempProps, page, setPage]);
 
+  // Make sure tempProps stays in sync with page.props when page changes
+  useEffect(() => {
+    setTempProps(JSON.stringify(page.props, null, 2));
+  }, [page.props, setTempProps]);
+
   let error = false;
   try {
     JSON.parse(tempProps);
@@ -590,9 +595,8 @@ function BookImageEditor({
             </div>
           ) : (
             <Editor
-              key={tempImage}
               height="100%"
-              defaultValue={tempProps}
+              value={tempProps}
               onChange={(value) => value && setTempProps(value)}
               className="w-full max-h-1/2 shadow-2xl rounded-xl"
               theme="vs-dark"
