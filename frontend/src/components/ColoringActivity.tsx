@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Draggable from "react-draggable";
 
 interface ImagePart {
@@ -17,9 +17,7 @@ interface CustomColoringActivityProps {
 export default function CustomColoringActivity({
   props,
 }: CustomColoringActivityProps) {
-  const [imageParts, setImageParts] = useState<ImagePart[]>(
-    props.imageParts || [],
-  );
+  const [imageParts] = useState<ImagePart[]>(props.imageParts || []);
   const [selectedOverlay, setSelectedOverlay] = useState<{
     [key: string]: string;
   }>({});
