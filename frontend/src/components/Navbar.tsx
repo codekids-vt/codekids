@@ -100,6 +100,14 @@ export default function Navbar() {
             {navLinks.map((route, i) => (
               <NavButton {...route} key={`nav-${i}`} />
             ))}
+            {/* Donate Button */}
+            <a href="https://giving.adv.vt.edu/gift?fund=821082&amt=25.00&frequency=onetime&desc=Sally%20Hamouda%20Research">
+              <li
+                className={`p-2 mx-1 my-2 transition-colors hover:bg-black/10 text-green-400 hover:text-lime-700 rounded-md outline-1 outline-neutral-300/20 hover:outline`}
+              >
+                Donate
+              </li>
+            </a>
           </ul>
         </nav>
 
