@@ -378,4 +378,104 @@ export const editorDefaults: { [key: string]: any } = {
     videoUrl: "https://www.youtube.com/watch?v=WO2b03Zdu4Q",
     videoTitle: "Insert Video Title.",
   },
+
+  WalkThroughCode: {
+    code: [
+      { CodeLines: "print('Hello World')" },
+      { CodeLines: "print('Walk Through Code')" },
+    ],
+    headerText: "Review the code below and see its output:",
+    image: "/assets/images/walkthrough_default.png",
+  },
+
+  ImagesAndText: {
+    headerText: "Introduction to Data Types",
+    sections: [
+      {
+        leftText: "jersey_number = 25",
+        leftIsImage: false,
+        rightText: "/jersey-25.png",
+        rightIsImage: true,
+      },
+      {
+        leftText: "/dog_in_box.png",
+        leftIsImage: true,
+        rightText:
+          'greeting = "Hello"\ndays_of_week = "7"\ntherapy_dog = \'Epcot\'',
+        rightIsImage: false,
+      },
+      {
+        leftText: "sky_is_blue = True",
+        leftIsImage: false,
+        rightText: "/VariablesBook/sky-boolean.png",
+        rightIsImage: true,
+      },
+    ],
+    footerText: "Note: Data types are important in programming.",
+  },
+  WalkThroughCodeWithQuestions: {
+    headerText: "Review the following code and answer the questions:",
+    slides: [
+      { slideNumber: 0, codeLine: "your_money = 2", image: "" },
+      {
+        slideNumber: 1,
+        codeLine: "donut_price = 2",
+        image: "/FlowchartsBook/BuyDonut/example1_1.svg",
+      },
+      {
+        slideNumber: 2,
+        codeLine: "if donut_price <= your_money:",
+        image: "/FlowchartsBook/BuyDonut/example1_2.svg",
+      },
+      {
+        slideNumber: 3,
+        codeLine: '    print("Yes! You can buy a donut!")',
+        image: "",
+      },
+      { slideNumber: 4, codeLine: "else:", image: "" },
+      {
+        slideNumber: 5,
+        codeLine:
+          '    print("Sorry, you don\'t have enough money to buy a yummy donut.")',
+        image: "",
+      },
+      { slideNumber: 6, codeLine: "# End of program", image: "" },
+      { slideNumber: 7, codeLine: "", image: "/FlowchartsBook/example_1.svg" },
+    ],
+    questions: [
+      {
+        slideNumber: 2,
+        question: "What condition is being checked in this code?",
+      },
+    ],
+    answers: [
+      {
+        slideNumber: 2,
+        answerText: "donut_price <= your_money",
+        answerExplanation:
+          "This checks if you have enough money for the donut.",
+        correct: true,
+      },
+      {
+        slideNumber: 2,
+        answerText: "your_money > donut_price",
+        answerExplanation:
+          "This checks if you have more money than the donut price, not if it's enough.",
+        correct: false,
+      },
+      {
+        slideNumber: 2,
+        answerText: "donut_price > your_money",
+        answerExplanation:
+          "This checks if the donut is more expensive than your money, which is the opposite.",
+        correct: false,
+      },
+      {
+        slideNumber: 2,
+        answerText: "None of the above",
+        answerExplanation: "One of the answers above is correct.",
+        correct: false,
+      },
+    ],
+  },
 };
