@@ -17,8 +17,8 @@ export function WalkThroughCode({
 }) {
   const { code, headerText, image } = props;
   const totalLines = code.length;
-  const [currentLine, setCurrentLine] = useState(0);
-  const [reload, setReload] = useState(0);
+  const [currentLine] = useState(0);
+  const [reload] = useState(0);
 
   // Enable next only when the user reaches the last line.
   useEffect(() => {
@@ -32,7 +32,7 @@ export function WalkThroughCode({
         {image && (
           <img
             src={image}
-            alt="Custom Tool Image"
+            alt="Code walkthrough illustration"
             className="w-20 h-20 xl:w-52 xl:h-52"
           />
         )}
