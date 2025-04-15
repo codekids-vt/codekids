@@ -112,27 +112,25 @@ async def create_page_with_gpt(
     """
     print(" in route")
 
-
-    
-    
     book = await db.book.find_unique(where={"id": bookId}, include={"pages": True})
     if not book:
         raise HTTPException(status_code=404, detail="Book not found")
     
 
-    print("book")
+    print("book data")
     print(book)
     # Get the specific page content
     page = await db.page.find_first(where={"pageNumber": pageId,"bookId": bookId}, include={"questions": True})
     if not page:
         raise HTTPException(status_code=404, detail="Page not found")
     
-    print("page")
+    print("page data")
     print(page)
     
 
     # Step 2: Extract content, questions, and answers
     content = page.content  # This will be the context for GPT hints
+    
     print("create_page.py")
 
 
@@ -140,46 +138,84 @@ async def create_page_with_gpt(
     props = page.props if isinstance(page.props, dict) else {}
     title = book.title
     props_dict = json.loads(props) if isinstance(props, str) else props  # ✅ Ensure it's a dictionary
+    print(json.dumps(props_dict, indent=2))
 
 # Now safely access attributes
     question_text = props_dict.get("question", "No question found")
-    print(question_text)
+    print("Question", question_text)
+    follow_up_question = props_dict.get("followUpQuestion", "")
+    follow_up_answers = props_dict.get("followUpAnswers", [])
+
+    follow_up_options = [a.get("answerText", "") for a in follow_up_answers]
+    follow_up_correct_answer = next(
+        (a.get("answerText") for a in follow_up_answers if a.get("correct")), ""
+    )
+
+    print("Follow-Up Question:", follow_up_question)
+    print("Follow-Up Options:", follow_up_options)
+    print("Follow-Up Correct Answer:", follow_up_correct_answer)
+    code = props_dict.get("code", "No Code")
+    print("Code", code)
 
     print("Answersss")
     answer_options = [a.get("answerText", "") for a in props_dict.get("answers", [])]
     # Extract correct answer with fallback to empty string
     correct_answer: str = next((a.get("answerText") for a in props_dict.get("answers", []) if a.get("correct")),"")
-    print(answer_options)
-    print(correct_answer)
+    print("answer options", answer_options)
+    print("Correct Answer", correct_answer)
     statements = props_dict.get("statements",[])
-    print(statements)
+    print("Options", statements)
     ans = props_dict.get("ans",[])
+    
     print(ans)
     condition: str = props_dict.get("condition","")
-    print(condition)
+    print("Logical", condition)
 
    
-    
-    gptHints = await generate_gpt_hints(bookId, pageId, content,title,question_text,condition, answer_options, statements, correct_answer,ans)
-    props["gptHints"] = gptHints
+    # Check if GPT hints already exist
+    if not props_dict.get("gptHints"):
+        # Only generate hints if they are not already present
+        gptHints = await generate_gpt_hints(
+            bookId,
+            pageId,
+            content,
+            title,
+            question_text,
+            condition,
+            answer_options,
+            statements,
+            correct_answer,
+            follow_up_question,
+            follow_up_options,
+            follow_up_correct_answer,
+            ans,
+            code
+        )
 
-    page_return = await db.page.create(
-        data={
-          "bookId": bookId,
-            "pageNumber": pageId,
-            "content": Json(content),
-            "image": page.image if page.image else "/images/blank.png",
-            "props": Json(props),
-        },
-        include={"book": False},
-    )
+        props["gptHints"] = gptHints
 
-    if not page_return:
-        raise HTTPException(status_code=500, detail="Page creation with GPT failed")
+        page_return = await db.page.update(
+            where={"id": page.id},
+            data={
+                "pageNumber": pageId,
+                "content": Json(content),
+                "image": page.image if page.image else "/images/blank.png",
+                "props": Json(props),
+            },
+            include={"book": False},
+        )
+    else:
+        print("GPT hints already exist. Skipping generation.")
+        page_return = page  # return the existing page if no update is needed
+   
 
+    # Return the existing or updated page
     return page_return
 
-async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,question: str,condition:str, options: list,statements:list, correct_answer: str,ans:list) -> list[dict]:
+
+  
+
+async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,question: str,condition:str, options: list,statements:list, correct_answer: str,  follow_up_question: str, follow_up_options: list, follow_up_correct_answer: str, ans:list, code:str) -> list[dict]:
    
 
     system_message = f"""
@@ -188,7 +224,7 @@ async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,qu
         Your job is to help them answer questions from these books, without directly giving away the answer. Instead, guide them with simple,concise and progressive hints that build on their understanding.
 
         Focus on:
-        - Providing step-by-step hints, starting from simple conceptual reminders and building toward deeper insight specific to the problem content.
+        - Providing step-by-step hints, starting from simple conceptual reminders and building toward deeper insight specific to the problem topic and content.
         - Using content-appropriate analogies (e.g., boxes, toys, animals, simple real-world examples).
         - Encouraging critical thinking.
         - Reinforcing correct patterns without using complex terms.
@@ -208,10 +244,13 @@ async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,qu
     Page ID: {pageId}
     Topic:{title}
     Content: {content}
+    Code:{code}
     Question:{question} or {condition}
     Options:{options} or {statements}
     Answer:{correct_answer} or{ans}
-    
+    Follow-Up Question: {follow_up_question}
+    Follow-Up Options: {follow_up_options}
+    Follow-Up Answer: {follow_up_correct_answer}
 
     
         Generate your output in this format:
