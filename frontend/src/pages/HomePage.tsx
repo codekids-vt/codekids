@@ -107,13 +107,13 @@ export default function HomePage() {
           onMouseLeave={() => handleSidebarHover(true)}
         >
           <div className="p-4">
-            <h2 className={`font-bold mb-4 ${sidebarVisible ? 'text-lg' : 'text-sm text-center'}`}>
+            <h2 className={`font-bold text-gray-600 mb-4 ${sidebarVisible ? 'text-lg' : 'text-sm text-center'}`}>
               {sidebarVisible ? 'Categories' : '≡'}
             </h2>
             
             <div className="space-y-4">
               <div>
-          <h3 className={`font-semibold mb-2 ${sidebarVisible ? '' : 'hidden'}`}>Levels</h3>
+          <h3 className={`font-semibold mb-2 text-gray-600 ${sidebarVisible ? '' : 'hidden'}`}>Levels</h3>
           {levelCategories.map((category) => (
             <button
               key={category}
@@ -142,7 +142,7 @@ export default function HomePage() {
               </div>
 
               <div>
-          <h3 className={`font-semibold mb-2 ${sidebarVisible ? '' : 'hidden'}`}>Topics</h3>
+          <h3 className={`font-semibold mb-2 text-gray-600 ${sidebarVisible ? '' : 'hidden'}`}>Topics</h3>
           {additionalCategories.map((category) => (
             <button
               key={category}
