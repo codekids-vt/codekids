@@ -8,7 +8,7 @@ import type { UpdatePage } from "../models/UpdatePage";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
-import { Question } from "../models/Question";
+
 export class PagesService {
   /**
    * Page Update
@@ -100,18 +100,13 @@ export class PagesService {
    * Creates a new page with GPT-generated hints.
    * Stores up to 3 hints inside `props["gptHints"]`.
    * @param bookId
-   * @param requestBody
+   * @param pageId
    * @returns any Successful Response
    * @throws ApiError
    */
   public static createPageWithGptPageCreatehintsPost(
     bookId: number,
     pageId:number,
-    // question: Question[] | null | undefined ,
-    // answer: string,
-    // options: string
-    // props: any
-
   ): CancelablePromise<any> {
     return __request(OpenAPI, {
       method: "POST",
@@ -120,11 +115,6 @@ export class PagesService {
         bookId: bookId,
         pageId:pageId
       },
-      // body:{
-      //   question: question ?? [],
-      //   answer:answer,
-      //   options: options
-      // },
       mediaType: "application/json",
       errors: {
         422: `Validation Error`,
