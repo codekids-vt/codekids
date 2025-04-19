@@ -118,19 +118,7 @@ function HelpMeWindow({
 // Define types for the hints data.
 export type HintData = {
   statement: string;
-  options: string[]; // ✅ Stores both hints from API
-  correctOption?: string; // ✅ Stores the correct answer (optional)
 };
-
-export type HintsWindowProps = {
-  open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-  hintData: HintData;
-  onNextHint: () => void;
-  onHintClick: (hint: "option1" | "option2") => void;
-  page: Page;
-};
-
 
 // HintsWindow component that shows a non-editable question and two clickable hints.
 export function HintsWindow({
@@ -158,8 +146,6 @@ export function HintsWindow({
 
   const currentHint = allHints[currentHintIndex] || {
     statement: "Generating hints....",
-    option1: "",
-    option2: "",
   };
 
   return (
@@ -228,18 +214,6 @@ export function HintsWindow({
               // Normal hints view
               <>
                 <p className="text-lg text-gray-800">{currentHint.statement}</p>
-                {/* {currentHint?.options?.length ? (
-                currentHint.options.map((hint, index) => (
-                <p
-                  key={index}
-                  className="text-lg text-gray-700 cursor-pointer block w-fit bg-gray-200 rounded-lg px-4 py-2 shadow-sm hover:bg-blue-200"
-                >
-                  {hint}
-                </p>
-                ))
-              ) : (
-                <p className="text-lg text-gray-500">No hints available.</p> // ✅ Fallback when hints are undefined
-              )} */}
               </>
             ) : (
               // Full answer view
@@ -321,11 +295,6 @@ export default function BookPage() {
   const [help, setHelp] = useState(false);
   const [allowNext, setAllowNext] = useState(true);
   const [hintsOpen, setHintsOpen] = useState<boolean>(false);
-  const [hintData, setHintData] = useState<HintData>({
-    statement: "To determine the result of an 'and' operation, it's important that all the individual conditions must be true. If one is false, what will be the result?",
-    options: ["True", "False"],  // ✅ Two hints from API
-    correctOption: "False"
-  });
   const [allHints, setAllHints] = useState([]); // Stores all hints from API
   const [currentHintIndex, setCurrentHintIndex] = useState(0); // Tracks current hint
   const [showFullAnswer, setShowFullAnswer] = useState(false);
@@ -505,24 +474,6 @@ export default function BookPage() {
       pageId: pageNum,
     }).then(() => {
       setHintsOpen(true);
-    });
-  }
-
-  // Callback when a hint is clicked
-  function handleHintClick(hint: "hint1" | "hint2") {
-    console.log(`${hint} clicked`);
-    // Add additional logic here if needed.
-  }
-
-  // Callback when "Next Hint" is clicked.
-  function handleNextHint() {
-    console.log("Next Hint clicked");
-    // Here you could call an API to fetch new hint data.
-    // For demonstration, we'll update the hints with new static data.
-    setHintData({
-      statement: "To determine the result of an 'and' operation, it's important that all the individual conditions must be true. If one is false, what will be the result?",
-      options: ["True", "False"],  // ✅ Two hints from API
-      correctOption: "False"
     });
   }
 
