@@ -120,7 +120,7 @@ export type HintData = {
   statement: string;
 };
 
-// HintsWindow component that shows a non-editable question and two clickable hints.
+// HintsWindow component that shows hints.
 export function HintsWindow({
   open,
   setOpen,
@@ -244,12 +244,7 @@ export function HintsWindow({
               </>
             )}
           </div>
-
-        
-            {/* {!showFullAnswer && ( */}
               <>
-               
-
             <div className="relative min-h-[60px] border-t pt-4 flex justify-between items-center px-4">
               {/* Show Previous only if not at the first hint */}
               {currentHintIndex > 0 &&!showFullAnswer && (
@@ -262,7 +257,6 @@ export function HintsWindow({
                 </button>
               )}
 
-              {/* Spacer if previous is hidden to balance layout */}
               {currentHintIndex === 0 && <div className="w-24" />}
 
               {/* Show Next only if not in full answer */}
@@ -277,10 +271,7 @@ export function HintsWindow({
               )}
             </div>
               </>
-            {/* )} */}
-          
         </div>
-      {/* </div> */}
     </div>
   );
 }
@@ -388,9 +379,7 @@ export default function BookPage() {
         
           if (Array.isArray(props?.gptHints)) {
             const formattedHints = props.gptHints.map((hint: any) => ({
-              statement: hint.statement,
-              options: hint.hints,  //  Store options correctly
-              correctOption: hint.correctOption || null,  // Store correct answer
+              statement: hint.statement
             }));
         
             setAllHints(formattedHints);
@@ -407,7 +396,7 @@ export default function BookPage() {
         console.error("Error fetching hints:", error);
       })
       .finally(() => {
-        setHintsLoading(false);  // ✅ Set loading to false here
+        setHintsLoading(false);  // Set loading to false here
       });
     
   }
@@ -458,9 +447,9 @@ export default function BookPage() {
     });
   }
 
-  // Modified helpMeClicked to open the HintsWindow
+  //helpMeClicked to open the HintsWindow
   function helpMeClicked() {
-    console.log("helpme bantu")
+    console.log("In Help Me")
     playLowClick();
     setCurrentHintIndex(0);     // Reset index
     setShowFullAnswer(false); 
@@ -552,7 +541,7 @@ export default function BookPage() {
               <HintsWindow
               open={hintsOpen}
               setOpen={setHintsOpen}
-              allHints={allHints} // ✅ Correct: Array of hints
+              allHints={allHints} // Array of hints
               currentHintIndex={currentHintIndex}
               updateCurrentHintIndex={updateCurrentHintIndex}
               page={page}
