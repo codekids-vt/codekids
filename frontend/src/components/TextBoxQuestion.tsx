@@ -17,13 +17,22 @@ export function TextBoxQuestionActivity({
   props: ITextBoxQuestionActivityProps;
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { image, completionSound, prompt, correctAnswer, successMessage, failureMessage } = props;
+  const {
+    image,
+    completionSound,
+    prompt,
+    correctAnswer,
+    successMessage,
+    failureMessage,
+  } = props;
   const [inputValue, setInputValue] = useState<string>(""); // Track the user input
   // Both states need to be tracked seperately because if both are false, user has not submitted
   const [isWrong, setIsWrong] = useState<boolean>(false); // Track if answer is wrong
   const [isCorrect, setIsCorrect] = useState<boolean>(false); // Track if answer is correct
   const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
-  const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {volume: 0.5,});
+  const [playIncorrectSound] = useSound("/sounds/incorrect.mp3", {
+    volume: 0.5,
+  });
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
