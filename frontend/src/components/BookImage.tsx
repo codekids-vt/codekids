@@ -36,7 +36,8 @@ import { ImageQuestion } from "./ImageQuestion";
 import { DragMultiChoice } from "./DragMultiChoice";
 import CodeStepFlowchart from "./CodeStepFlowchart";
 import FillInTheBlank from "./FillInTheBlank";
-import { TextBoxImageActivity } from "./TextBoxImage"; // Import your component
+import { TextBoxImageActivity } from "./TextBoxImage";
+import { TextBoxQuestionActivity } from "./TextBoxQuestion"; // Import your component
 import { DragAndDropActivity } from "./DragAndDrop";
 import { ImageClickAnimation } from "./ImageClickAnimation";
 import { CountdownTimer } from "./CountdownTimer";
@@ -82,6 +83,9 @@ export function BookImage({
       )}
       {image === "TextBoxImage" && (
         <TextBoxImageActivity props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "TextBoxQuestion" && (
+        <TextBoxQuestionActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
 
       {image === "HokieBirdActivity" && (

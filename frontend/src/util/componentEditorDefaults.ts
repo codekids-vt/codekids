@@ -362,6 +362,14 @@ export const editorDefaults: { [key: string]: any } = {
       " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
     successMessage: "hi",
   },
+  TextBoxQuestion: {
+    prompt: "This is where you can put the question",
+    image:
+      " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
+    correctAnswer: "This is where you would put the correct answer to match",
+    successMessage: "This will display for correct answers",
+    failureMessage: "This will display for wrong answers"
+  },
   DragAndDrop: {
     dogImage:
       " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
