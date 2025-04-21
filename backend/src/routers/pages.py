@@ -1,4 +1,3 @@
-
 from fastapi import APIRouter, Query, HTTPException, Body
 from typing import List, Dict, Any
 from prisma import Json
@@ -11,8 +10,9 @@ import json
 from src.config import settings
 from openai import AsyncOpenAI
 
-pages_router = APIRouter ()
+pages_router = APIRouter()
 client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
+
 
 @pages_router.put("/page/{page_id}", tags=["pages"])
 async def page_update(page_id: int, page: UpdatePage) -> Page:
@@ -103,7 +103,7 @@ async def page_swap(page_id1: int, page_id2: int) -> Book:
 @pages_router.post("/page/createhints", tags=["pages"])
 async def create_page_with_gpt(
     bookId: int,
-   pageId: int,
+    pageId: int,
 ):
     """
     Creates a new page with GPT-generated hints.
@@ -119,20 +119,22 @@ async def create_page_with_gpt(
     title = book.title
     print("Book Title ", title)
 
-
     # Get the specific page content
     print("Page Block")
-    page = await db.page.find_first(where={"pageNumber": pageId,"bookId": bookId}, include={"questions": True})
+    page = await db.page.find_first(
+        where={"pageNumber": pageId, "bookId": bookId}, include={"questions": True}
+    )
     if not page:
-        raise HTTPException(status_code=404, detail="Page not found") 
-    print("Page data ",page)   #content, questions, and answers   
-    content = page.content  
+        raise HTTPException(status_code=404, detail="Page not found")
+    print("Page data ", page)  # content, questions, and answers
+    content = page.content
     print("Content", content)
-
 
     print("Props Block")
     props = page.props if isinstance(page.props, dict) else {}
-    props_dict = json.loads(props) if isinstance(props, str) else props  #Ensure it's a dictionary
+    props_dict = (
+        json.loads(props) if isinstance(props, str) else props
+    )  # Ensure it's a dictionary
     print(json.dumps(props_dict, indent=2))
     question_text = props_dict.get("question", "No question found")
     print("Question", question_text)
@@ -150,18 +152,24 @@ async def create_page_with_gpt(
 
     print("Answer Block")
     answer_options = [a.get("answerText", "") for a in props_dict.get("answers", [])]
-    correct_answer: str = next((a.get("answerText") for a in props_dict.get("answers", []) if a.get("correct")),"")
+    correct_answer: str = next(
+        (
+            a.get("answerText")
+            for a in props_dict.get("answers", [])
+            if a.get("correct")
+        ),
+        "",
+    )
     print("Answer options ", answer_options)
     print("Correct Answer ", correct_answer)
-    statements = props_dict.get("statements",[])
+    statements = props_dict.get("statements", [])
     print("Options ", statements)
-    ans = props_dict.get("ans",[])
-    
+    ans = props_dict.get("ans", [])
+
     print("Answer ", ans)
-    condition: str = props_dict.get("condition","")
+    condition: str = props_dict.get("condition", "")
     print("Logical ", condition)
 
-   
     # Check if GPT hints already exist
     if not props_dict.get("gptHints"):
         # Only generate hints if they are not already present
@@ -179,7 +187,7 @@ async def create_page_with_gpt(
             follow_up_options,
             follow_up_correct_answer,
             ans,
-            code
+            code,
         )
 
         props["gptHints"] = gptHints
@@ -197,14 +205,26 @@ async def create_page_with_gpt(
     else:
         print("GPT hints already exist. Skipping generation.")
         page_return = page
-   
+
     return page_return
 
 
-  
-
-async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,question: str,condition:str, options: list,statements:list, correct_answer: str,  follow_up_question: str, follow_up_options: list, follow_up_correct_answer: str, ans:list, code:str) -> list[dict]:
-   
+async def generate_gpt_hints(
+    bookId: int,
+    pageId: int,
+    content: str,
+    title: str,
+    question: str,
+    condition: str,
+    options: list,
+    statements: list,
+    correct_answer: str,
+    follow_up_question: str,
+    follow_up_options: list,
+    follow_up_correct_answer: str,
+    ans: list,
+    code: str,
+) -> list[dict]:
 
     system_message = f"""
         You are Hint Generator helping young children (ages 5-7) learn advanced programming concepts in a fun and understandable way. These children are using interactive activity books from the CodeKids platform.
@@ -225,7 +245,6 @@ async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,qu
 
         Never give the direct answer unless explicitly asked. Keep the experience playful, supportive, and confidence-building.
         """
-
 
     user_message = f"""
     Book ID: {bookId}
@@ -251,7 +270,6 @@ async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,qu
     Return ONLY this list. Do not explain anything else.
 
 """
-    
 
     try:
         response = await client.chat.completions.create(
@@ -260,10 +278,10 @@ async def generate_gpt_hints(bookId: int, pageId: int,content: str, title:str,qu
                 {"role": "system", "content": system_message},
                 {"role": "user", "content": user_message},
             ],
-            max_tokens=500
+            max_tokens=500,
         )
 
-        gpt_text =  response.choices[0].message.content or ""
+        gpt_text = response.choices[0].message.content or ""
         hints = parse_gpt_hints(gpt_text)
         return hints
 
