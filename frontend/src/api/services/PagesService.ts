@@ -97,11 +97,9 @@ export class PagesService {
   }
   /**
    * Create Page With Gpt
-   * Creates a new page with GPT-generated hints.
-   * Stores up to 3 hints inside `props["gptHints"]`.
    * @param bookId
    * @param pageId
-   * @returns any Successful Response
+   * @returns hints Successful Response
    * @throws ApiError
    */
   public static createPageWithGptPageCreatehintsPost(
