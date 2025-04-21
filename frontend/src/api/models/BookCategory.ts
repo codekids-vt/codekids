@@ -6,6 +6,5 @@ export enum BookCategory {
   BEGINNER = "BEGINNER",
   INTERMEDIATE = "INTERMEDIATE",
   ADVANCED = "ADVANCED",
-  //HINTS="HINTS", //TODO:-Separate Tab for books with hints
   UNPLUGGED = "UNPLUGGED",
 }

@@ -21,7 +21,6 @@ MarkupSafe==2.1.5
 minio==7.2.5
 mypy-extensions==1.0.0
 nodeenv==1.8.0
-openai==1.65.2
 packaging==23.2
 pathspec==0.12.1
 platformdirs==4.2.0

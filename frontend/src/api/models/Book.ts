@@ -19,8 +19,8 @@ export type Book = {
   published: boolean;
   author: string;
   tags: Array<string>;
-  category: BookCategory;
   bookTopic?: string | null;
+  category: BookCategory;
   pages?: Array<Page> | null;
   courses?: Array<BookCourse> | null;
   owner?: User | null;
