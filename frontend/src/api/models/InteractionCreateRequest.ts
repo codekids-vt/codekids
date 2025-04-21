@@ -12,5 +12,5 @@ export type InteractionCreateRequest = {
   correct?: boolean | null;
   bookId?: number | null;
   pageId?: number | null;
-  thumbsUp?: boolean | undefined;
+  thumbsUp?: boolean | null;
 };
