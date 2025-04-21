@@ -1,21 +1,10 @@
 from datetime import datetime
-from typing import Annotated, Optional, List
-from fastapi import APIRouter
-from src.db import db
-from prisma.models import CourseStudent, BookCourse
+from typing import Optional
+
+from fastapi import APIRouter, HTTPException
+from prisma.enums import InteractionType
 from pydantic import BaseModel
-from typing import Annotated, Optional
-from fastapi import APIRouter, Depends
-from fastapi import HTTPException
 from src.db import db
-from prisma.models import User, CourseStudent, BookCourse, Course, Interaction
-
-
-from prisma.enums import AccountType, InteractionType
-from src.auth import get_user
-from pydantic import BaseModel
-from prisma.types import InteractionCreateInput
-
 
 interactions_router = APIRouter()
 
