@@ -26,6 +26,12 @@ jobs:
           pip install black &&
           black . --check
 
+      - name: ruff
+        run: |
+          cd backend &&
+          pip install ruff &&
+          ruff check .
+
       - name: frontend-build
         run: |
           cd frontend &&
