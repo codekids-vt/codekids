@@ -22,18 +22,6 @@ const baseLinks: readonly NavLinkRoute[] = [
   },
 ];
 
-const teacherLinks: readonly NavLinkRoute[] = [
-  ...baseLinks,
-  {
-    text: "Teacher Resources",
-    href: "/teacher_resources",
-  },
-  {
-    text: "Book Editor",
-    href: "/edit_books",
-  },
-];
-
 function NavButton(route: NavLinkRoute) {
   const { text, href } = route;
 
@@ -51,9 +39,38 @@ function NavButton(route: NavLinkRoute) {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { user, logout } = useAuth();
+  let navLinks: readonly NavLinkRoute[];
 
-  const navLinks =
-    user?.type === AccountType.TEACHER ? teacherLinks : baseLinks;
+  // if user exists, append codepal to baselinks
+  if (user) {
+    if (user.type === AccountType.TEACHER) {
+      navLinks = [
+        ...baseLinks,
+        {
+          text: "Teacher Resources",
+          href: "/teacher_resources",
+        },
+        {
+          text: "Book Editor",
+          href: "/edit_books",
+        },
+        {
+          text: "CodePal",
+          href: "/codepal",
+        },
+      ];
+    } else {
+      navLinks = [
+        ...baseLinks,
+        {
+          text: "CodePal",
+          href: "/codepal",
+        },
+      ];
+    }
+  } else {
+    navLinks = baseLinks;
+  }
 
   return (
     <header className={`top-0 sticky w-full px-2 z-[100]`}>
@@ -95,6 +112,14 @@ export default function Navbar() {
             {navLinks.map((route, i) => (
               <NavButton {...route} key={`nav-${i}`} />
             ))}
+            {/* Donate Button */}
+            <a href="https://giving.adv.vt.edu/gift?fund=821082&amt=25.00&frequency=onetime&desc=Sally%20Hamouda%20Research">
+              <li
+                className={`p-2 mx-1 my-2 transition-colors hover:bg-black/10 text-green-400 hover:text-lime-700 rounded-md outline-1 outline-neutral-300/20 hover:outline`}
+              >
+                Donate
+              </li>
+            </a>
           </ul>
         </nav>
 

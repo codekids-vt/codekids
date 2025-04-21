@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { HokieBirdColoring } from "../components/HokieBirdColor";
+import CustomColoringActivity from "./ColoringActivity";
 import { HokieBirdMap } from "../components/HokieBirdMap";
 import { HokieBirdIfCondition } from "../components/HokieBirdIfCondition";
 import { PythonTutor } from "../components/PythonTutor";
@@ -41,6 +42,8 @@ import { ImageClickAnimation } from "./ImageClickAnimation";
 import { CountdownTimer } from "./CountdownTimer";
 import { Comparison } from "./Comparison";
 import { BookReview } from "./BookReview";
+import { LinkableImage } from "./ImageWithRedirectButton";
+import { YoutubeEmbed } from "./YoutubeEmbed";
 
 export function BookImage({
   image,
@@ -83,6 +86,9 @@ export function BookImage({
 
       {image === "HokieBirdActivity" && (
         <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "CustomColoringActivity" && (
+        <CustomColoringActivity props={page?.props} />
       )}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && (
@@ -179,6 +185,12 @@ export function BookImage({
       )}
       {image === "Comparison" && (
         <Comparison props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "ImageWithRedirectButton" && (
+        <LinkableImage props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "YoutubeEmbed" && (
+        <YoutubeEmbed props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );

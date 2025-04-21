@@ -3,10 +3,334 @@ import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Book, BookCategory, BooksService, Page, PagesService } from "../api";
 import { BookImage } from "../components/BookImage";
-import Editor from "@monaco-editor/react";
 import { editorDefaults } from "../util/componentEditorDefaults";
 import { ErrorBoundary } from "react-error-boundary";
 import { BookPreview } from "../components/ActivityBookList";
+import Editor from "@monaco-editor/react";
+
+interface PropsFormProps {
+  tempProps: string;
+  setTempProps: (newProps: string) => void;
+}
+
+interface Option {
+  [key: string]: any;
+}
+
+function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
+  let propsObject: { [key: string]: any } = {};
+
+  try {
+    propsObject = JSON.parse(tempProps);
+  } catch (e) {
+    console.error("Error parsing tempProps JSON:", e);
+  }
+
+  // Compute arrays based on the initial propsObject
+  const objectArrays = Object.keys(propsObject).filter(
+    (key) =>
+      Array.isArray(propsObject[key]) &&
+      propsObject[key].every((item: any) => typeof item === "object"),
+  );
+
+  const primitiveArrays = Object.keys(propsObject).filter(
+    (key) =>
+      Array.isArray(propsObject[key]) &&
+      propsObject[key].every((item: any) => typeof item !== "object"),
+  );
+
+  const [objectArrayData, setObjectArrayData] = useState<{
+    [key: string]: Option[];
+  }>(() => {
+    const initialState: { [key: string]: Option[] } = {};
+    objectArrays.forEach((key) => {
+      initialState[key] = propsObject[key] || [];
+    });
+    return initialState;
+  });
+
+  const [primitiveArrayData, setPrimitiveArrayData] = useState<{
+    [key: string]: any[];
+  }>(() => {
+    const initialState: { [key: string]: any[] } = {};
+    primitiveArrays.forEach((key) => {
+      initialState[key] = propsObject[key] || [];
+    });
+    return initialState;
+  });
+
+  // Re-calculate arrays inside useEffect so that dependencies are derived from tempProps only.
+  useEffect(() => {
+    const newProps = JSON.parse(tempProps);
+    const newObjectArrays = Object.keys(newProps).filter(
+      (key) =>
+        Array.isArray(newProps[key]) &&
+        newProps[key].every((item: any) => typeof item === "object"),
+    );
+    const newPrimitiveArrays = Object.keys(newProps).filter(
+      (key) =>
+        Array.isArray(newProps[key]) &&
+        newProps[key].every((item: any) => typeof item !== "object"),
+    );
+
+    const updatedObjectArrayState: { [key: string]: Option[] } = {};
+    newObjectArrays.forEach((key) => {
+      updatedObjectArrayState[key] = newProps[key] || [];
+    });
+    setObjectArrayData(updatedObjectArrayState);
+
+    const updatedPrimitiveArrayState: { [key: string]: any[] } = {};
+    newPrimitiveArrays.forEach((key) => {
+      updatedPrimitiveArrayState[key] = newProps[key] || [];
+    });
+    setPrimitiveArrayData(updatedPrimitiveArrayState);
+  }, [tempProps]);
+
+  const handleInputChange = (key: string, value: string) => {
+    const updatedProps = { ...propsObject, [key]: value };
+    setTempProps(JSON.stringify(updatedProps, null, 2));
+  };
+
+  const handleOptionChange = (
+    arrayKey: string,
+    index: number,
+    field: string,
+    value: string,
+  ) => {
+    const updatedArray = [...objectArrayData[arrayKey]];
+    const originalValue = updatedArray[index][field];
+
+    let newValue: any = value;
+    if (typeof originalValue === "number") newValue = Number(value);
+    if (typeof originalValue === "boolean") newValue = value === "true";
+
+    updatedArray[index] = { ...updatedArray[index], [field]: newValue };
+
+    setObjectArrayData({ ...objectArrayData, [arrayKey]: updatedArray });
+    setTempProps(
+      JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2),
+    );
+  };
+
+  const addNewItemToPrimitiveArray = (arrayKey: string) => {
+    const currentArray = primitiveArrayData[arrayKey];
+    const newItem = ""; // Default to an empty string (or 0 for numbers)
+
+    const updatedArray = [...currentArray, newItem];
+    setPrimitiveArrayData({ ...primitiveArrayData, [arrayKey]: updatedArray });
+    setTempProps(
+      JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2),
+    );
+  };
+
+  const removeItemFromPrimitiveArray = (arrayKey: string, index: number) => {
+    const updatedArray = primitiveArrayData[arrayKey].filter(
+      (_, i) => i !== index,
+    );
+    setPrimitiveArrayData({ ...primitiveArrayData, [arrayKey]: updatedArray });
+    setTempProps(
+      JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2),
+    );
+  };
+
+  const addNewItem = (arrayKey: string) => {
+    const currentArray = objectArrayData[arrayKey];
+
+    const newItem: Record<string, any> = {};
+
+    if (currentArray.length > 0) {
+      Object.keys(currentArray[0]).forEach((key) => {
+        const existingType = typeof currentArray[0][key];
+        if (existingType === "number") {
+          newItem[key] = 0; // Default number value
+        } else if (existingType === "boolean") {
+          newItem[key] = false; // Default boolean value
+        } else {
+          newItem[key] = ""; // Default string value
+        }
+      });
+    }
+
+    const updatedArray = [...currentArray, newItem as Option];
+    setObjectArrayData({ ...objectArrayData, [arrayKey]: updatedArray });
+    setTempProps(
+      JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2),
+    );
+  };
+
+  const removeItem = (arrayKey: string, index: number) => {
+    const updatedArray = objectArrayData[arrayKey].filter(
+      (_, i) => i !== index,
+    );
+    setObjectArrayData({ ...objectArrayData, [arrayKey]: updatedArray });
+    setTempProps(
+      JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2),
+    );
+  };
+
+  return (
+    <div className="p-2">
+      <form className="flex flex-col gap-2">
+        {Object.keys(propsObject).map((key) => {
+          if (!objectArrays.includes(key) && !primitiveArrays.includes(key)) {
+            return (
+              <div key={key} className="flex flex-col">
+                <label className="font-bold" htmlFor={key}>
+                  {key}
+                </label>
+                <input
+                  id={key}
+                  type="text"
+                  value={propsObject[key]}
+                  onChange={(e) => handleInputChange(key, e.target.value)}
+                  className="border border-gray-300 rounded p-1"
+                />
+              </div>
+            );
+          }
+          return null; // Ensure every iteration returns a value
+        })}
+
+        {objectArrays.map((arrayKey) => (
+          <div key={arrayKey} className="mt-4">
+            <h3 className="font-bold">{arrayKey}</h3>
+            {(objectArrayData[arrayKey] || []).map((item, index) => (
+              <div key={index} className="flex gap-4 mb-2">
+                {Object.keys(item).map((field) => {
+                  return (
+                    <div key={field} className="flex flex-col">
+                      <label
+                        className="font-bold"
+                        htmlFor={`${field}-${index}`}
+                      >
+                        {field}
+                      </label>
+                      {typeof item[field] === "boolean" ? (
+                        <select
+                          id={`${field}-${index}`}
+                          value={item[field].toString()}
+                          onChange={(e) =>
+                            handleOptionChange(
+                              arrayKey,
+                              index,
+                              field,
+                              e.target.value,
+                            )
+                          }
+                          className="border border-gray-300 rounded p-1"
+                        >
+                          <option value="true">True</option>
+                          <option value="false">False</option>
+                        </select>
+                      ) : (
+                        <input
+                          id={`${field}-${index}`}
+                          type="text"
+                          value={item[field]}
+                          onChange={(e) =>
+                            handleOptionChange(
+                              arrayKey,
+                              index,
+                              field,
+                              e.target.value,
+                            )
+                          }
+                          className="border border-gray-300 rounded p-1"
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+
+                <button
+                  type="button"
+                  onClick={() => removeItem(arrayKey, index)}
+                  className="bg-red-500 text-white p-1 rounded mt-2 hover:bg-red-600 focus:outline-none"
+                  style={{
+                    alignSelf: "flex-start",
+                    marginTop: "27px",
+                    padding: "5px 10px",
+                    fontSize: "0.875rem",
+                    width: "auto",
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              onClick={() => addNewItem(arrayKey)}
+              className="bg-blue-500 text-white p-2 rounded mt-2"
+            >
+              Add Item
+            </button>
+          </div>
+        ))}
+
+        {primitiveArrays.map((arrayKey) => (
+          <div key={arrayKey} className="mt-4">
+            <h3 className="font-bold">{arrayKey}</h3>
+            {(primitiveArrayData[arrayKey] || []).map((item, index) => (
+              <div key={index} className="flex gap-4 mb-2">
+                <div className="flex flex-col">
+                  <label className="font-bold" htmlFor={`${arrayKey}-${index}`}>
+                    Item {index + 1}
+                  </label>
+                  <input
+                    id={`${arrayKey}-${index}`}
+                    type="text"
+                    value={item}
+                    onChange={(e) => {
+                      const updatedArray = [...primitiveArrayData[arrayKey]];
+                      updatedArray[index] = e.target.value;
+                      setPrimitiveArrayData({
+                        ...primitiveArrayData,
+                        [arrayKey]: updatedArray,
+                      });
+                      setTempProps(
+                        JSON.stringify(
+                          { ...propsObject, [arrayKey]: updatedArray },
+                          null,
+                          2,
+                        ),
+                      );
+                    }}
+                    className="border border-gray-300 rounded p-1"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => removeItemFromPrimitiveArray(arrayKey, index)}
+                  className="bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"
+                  style={{
+                    alignSelf: "flex-start",
+                    marginTop: "27px",
+                    padding: "5px 10px",
+                    fontSize: "0.875rem",
+                    width: "auto",
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              onClick={() => addNewItemToPrimitiveArray(arrayKey)}
+              className="bg-blue-500 text-white p-2 rounded mt-2"
+            >
+              Add Item
+            </button>
+          </div>
+        ))}
+      </form>
+    </div>
+  );
+}
 
 function PageNavigator({
   pages,
@@ -176,16 +500,21 @@ function BookContentEditor({
 function BookImageEditor({
   page,
   setPage,
+  tempImage,
+  setTempImage,
+  tempProps,
+  setTempProps,
 }: {
   page: Page;
   setPage: (page: Page) => void;
+  tempImage: string;
+  setTempImage: React.Dispatch<React.SetStateAction<string>>;
+  tempProps: string;
+  setTempProps: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const [tempImage, setTempImage] = useState(page.image);
-  const [tempProps, setTempProps] = useState(
-    JSON.stringify(page.props, null, 2),
-  );
+  const [activeTab, setActiveTab] = useState<"prompts" | "json">("prompts");
 
-  // update the page every 3 seconds if there has been a change
+  // Update the page every 3 seconds if there has been a change
   useEffect(() => {
     const interval = setInterval(() => {
       try {
@@ -199,8 +528,14 @@ function BookImageEditor({
         console.error(`Error parsing JSON: ${e} may not have saved changes.`);
       }
     }, 2000);
+
     return () => clearInterval(interval);
   }, [tempImage, tempProps, page, setPage]);
+
+  // Make sure tempProps stays in sync with page.props when page changes
+  useEffect(() => {
+    setTempProps(JSON.stringify(page.props, null, 2));
+  }, [page.props, setTempProps]);
 
   let error = false;
   try {
@@ -217,44 +552,59 @@ function BookImageEditor({
         setTempImageType={setTempImage}
         setTempProps={setTempProps}
       />
+
       {page.image.includes("/") || page.image === "Image" ? (
         <div className="flex flex-col w-full">
           <div>image url or path:</div>
           <input
-            className="w-10/12 h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
+            className="w-10/12 h-15 border-2 p-2 rounded-xl border-primary-green focus:outline-none"
             value={tempImage}
             onChange={(e) => setTempImage(e.target.value)}
           />
         </div>
       ) : (
-        <Editor
-          key={tempImage} // This is to force a re-render when the image changes
-          height="50%"
-          defaultValue={tempProps}
-          onChange={(value) => {
-            value && setTempProps(value);
-          }}
-          className="w-full max-h-1/2 shadow-2xl rounded-xl"
-          theme="vs-dark"
-          language="json"
-        />
-      )}
-      <div className="h-1/2 max-h-80">
-        {!error && (
-          <ErrorBoundary
-            fallback={
-              <div className="text-red-500">Error, try adjusting the props</div>
-            }
-          >
-            <BookImage
-              key={`${tempImage}-${tempProps}-${page.pageNumber}`}
-              image={tempImage}
-              page={{ ...page, image: tempImage, props: JSON.parse(tempProps) }}
-              setAllowNext={() => {}}
+        <>
+          {/* Tab Navigation */}
+          <div className="flex space-x-4 border-b-2 mb-2">
+            <button
+              className={`p-2 ${
+                activeTab === "prompts"
+                  ? "border-b-4 border-primary-green font-bold"
+                  : ""
+              }`}
+              onClick={() => setActiveTab("prompts")}
+            >
+              Prompts
+            </button>
+            <button
+              className={`p-2 ${
+                activeTab === "json"
+                  ? "border-b-4 border-primary-green font-bold"
+                  : ""
+              }`}
+              onClick={() => setActiveTab("json")}
+            >
+              JSON
+            </button>
+          </div>
+
+          {/* Render Based on Active Tab */}
+          {activeTab === "prompts" ? (
+            <div className="w-full max-h-1/2 shadow-2xl rounded-xl">
+              <PropsForm tempProps={tempProps} setTempProps={setTempProps} />
+            </div>
+          ) : (
+            <Editor
+              height="100%"
+              value={tempProps}
+              onChange={(value) => value && setTempProps(value)}
+              className="w-full max-h-1/2 shadow-2xl rounded-xl"
+              theme="vs-dark"
+              language="json"
             />
-          </ErrorBoundary>
-        )}
-      </div>
+          )}
+        </>
+      )}
     </div>
   );
 }
@@ -308,28 +658,66 @@ function PageEditor({
   page: Page;
   setPage: (page: Page) => void;
 }) {
+  const [tempImage, setTempImage] = useState(page.image);
+  const [tempProps, setTempProps] = useState(
+    JSON.stringify(page.props, null, 2),
+  );
+
+  // Sync tempImage and tempProps when page changes
+  useEffect(() => {
+    setTempImage(page.image);
+    setTempProps(JSON.stringify(page.props, null, 2));
+  }, [page]);
+
   function setContent(content: string[]) {
     setPage({ ...page, content: content });
   }
 
   return (
-    <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max w-full">
-      <div className="flex flex-col w-full items-center bg-white rounded-l-2xl h-full">
-        <div className="flex flex-col h-full w-full items-center justify-center">
-          <BookImageEditor
-            key={page.pageNumber}
-            page={page}
-            setPage={setPage}
-          />
-        </div>
-      </div>
-      {page.content && page.content.length > 0 && (
-        <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl">
-          <div className="flex flex-col items-center p-1 w-full min-h-full max-h-full overflow-y-scroll">
-            <BookContentEditor content={page.content} setContent={setContent} />
+    <div className="flex w-full h-screen">
+      <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl w-full h-[calc(51vh-60px)]">
+        <div className="flex flex-col w-full items-center bg-white rounded-l-2xl  h-[calc(50vh-60px)] overflow-y-auto">
+          <div className="flex flex-col w-full items-center justify-center min-h-[500px] max-h-screen">
+            <BookImageEditor
+              tempImage={tempImage}
+              setTempImage={setTempImage}
+              tempProps={tempProps}
+              setTempProps={setTempProps}
+              page={page}
+              setPage={setPage}
+            />
           </div>
         </div>
-      )}
+
+        {/* Right container for BookContentEditor */}
+        {page.content && page.content.length > 0 && (
+          <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl">
+            <div className="flex flex-col items-center p-1 w-full min-h-full max-h-full overflow-y-scroll">
+              <BookContentEditor
+                content={page.content}
+                setContent={setContent}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* New Section: BookImage - placed below the content */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 top-[calc(60vh-60px)] w-full p-4">
+        {!JSON.parse(tempProps) && <div className="text-red-500"></div>}
+        <ErrorBoundary
+          fallback={
+            <div className="text-red-500">Error, try adjusting the props</div>
+          }
+        >
+          <BookImage
+            key={`${tempImage}-${tempProps}-${page.pageNumber}`}
+            image={tempImage}
+            page={{ ...page, image: tempImage, props: JSON.parse(tempProps) }}
+            setAllowNext={() => {}}
+          />
+        </ErrorBoundary>
+      </div>
     </div>
   );
 }
@@ -582,18 +970,37 @@ export default function BookEditor() {
     if (!book || !book.pages) {
       return;
     }
+
+    // Get the first and last page numbers
+    const firstPageNum = book.pages[0].pageNumber;
+    const lastPageNum = book.pages[book.pages.length - 1].pageNumber;
+
+    // Prevent swapping with a non-existent page
+    if (pageNum1 === firstPageNum && pageNum2 < firstPageNum) {
+      console.log("Cannot swap with the top page as it's the first page.");
+      return;
+    }
+    if (pageNum2 === lastPageNum && pageNum1 > lastPageNum) {
+      console.log("Cannot swap with the bottom page as it's the last page.");
+      return;
+    }
+
     PagesService.pageSwapPageSwapPageId1PageId2Put(
       book.pages.find((page) => page.pageNumber === pageNum1)?.id as number,
       book.pages.find((page) => page.pageNumber === pageNum2)?.id as number,
-    ).then((response) => {
-      setBook(response);
-      if (pageNum1 === pageNum) {
-        setPageNum(pageNum2);
-      }
-      if (pageNum2 === pageNum) {
-        setPageNum(pageNum1);
-      }
-    });
+    )
+      .then((response) => {
+        setBook(response);
+        if (pageNum1 === pageNum) {
+          setPageNum(pageNum2);
+        }
+        if (pageNum2 === pageNum) {
+          setPageNum(pageNum1);
+        }
+      })
+      .catch((error) => {
+        console.error("Error swapping pages:", error);
+      });
   }
 
   function saveBook(bookParam?: Book) {
@@ -630,7 +1037,7 @@ export default function BookEditor() {
   return (
     <div className="text-xs xl:text-lg 2xl:text-xl">
       <Navbar />
-      <div className="h-[calc(100vh-60px)] flex flex-row p-2 gap-2">
+      <div className="h-[calc(53vh-60px)] flex flex-row p-2 gap-2 flex-grow w-full">
         <PageNavigator
           pages={book.pages.sort((a, b) => a.pageNumber - b.pageNumber)}
           pageNum={pageNum}

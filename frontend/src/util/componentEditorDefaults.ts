@@ -19,6 +19,20 @@ export const editorDefaults: { [key: string]: any } = {
     command: "Drag the Colors over these boxes",
     helpImage: "/help/HokieBirdColoring_Help.png",
   },
+  CustomColoringActivity: {
+    imageParts: [
+      {
+        name: "Enter Name",
+        src: "Enter Image",
+        style: {
+          width: "weight in px",
+          height: "height in px",
+          top: "percentage",
+          left: "percentage",
+        },
+      },
+    ],
+  },
   tutor: {
     code: 'number = 23\n\ncollege = "Virginia Tech"\n\nsecond_number = number + 10\n\nprint(college)\nprint(second_number)',
   },
@@ -367,5 +381,15 @@ export const editorDefaults: { [key: string]: any } = {
     dogImage:
       "https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
     initialTime: "00:10",
+  },
+  ImageWithRedirectButton: {
+    imageUrl: "https://example.com/your-image.jpg",
+    linkUrl: "https://example.com/destination",
+    buttonText: "Click to Visit",
+  },
+
+  YoutubeEmbed: {
+    videoUrl: "https://www.youtube.com/watch?v=WO2b03Zdu4Q",
+    videoTitle: "Insert Video Title.",
   },
 };
