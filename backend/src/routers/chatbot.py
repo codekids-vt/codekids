@@ -1,11 +1,12 @@
 from typing import Annotated, List, Optional
-from fastapi import APIRouter, Depends, HTTPException
+
 import openai
+from fastapi import APIRouter, Depends, HTTPException
+from prisma.models import Chat, Message, User
 from pydantic import BaseModel
 from src.auth import get_user
-from src.db import db
 from src.config import settings
-from prisma.models import User, Chat, Message
+from src.db import db
 
 # Set the OpenAI API key from your settings.
 openai.api_key = settings.OPENAI_API_KEY
