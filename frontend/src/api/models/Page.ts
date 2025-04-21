@@ -12,7 +12,7 @@ export type Page = {
   pageNumber: number;
   content: any;
   image: string;
-  props?: null;
+  props?: null | any;
   book?: Book | null;
   bookId: number;
   questions?: Array<Question> | null;
