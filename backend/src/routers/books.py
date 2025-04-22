@@ -19,6 +19,7 @@ class SearchBooksRequest(BaseModel):
     published: Optional[bool] = None
     query: Optional[str] = None
 
+
 @books_router.post("/books/search", tags=["books"])
 async def search_books(
     req: SearchBooksRequest,
