@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Book, BookCategory, BooksService } from "../api";
+import { Book, BooksService } from "../api";
 import ActivityBookList from "../components/ActivityBookList";
 import Background from "../components/Background";
 import Footer from "../components/Footer";
@@ -12,7 +12,10 @@ export default function EditBooksPage() {
   const [books, setBooks] = useState<Book[]>([]);
   useEffect(() => {
     if (user) {
-      BooksService.searchBooksBooksSearchPost({owner_id: user.id, published: false})
+      BooksService.searchBooksBooksSearchPost({
+        owner_id: user.id,
+        published: false,
+      })
         .then((response) => {
           setBooks(response);
         })

@@ -12,6 +12,7 @@ export type { Body_upload_image_images_post } from "./models/Body_upload_image_i
 export type { Book } from "./models/Book";
 export { BookCategory } from "./models/BookCategory";
 export type { BookCourse } from "./models/BookCourse";
+export type { Chat } from "./models/Chat";
 export type { Course } from "./models/Course";
 export type { CourseCreateRequest } from "./models/CourseCreateRequest";
 export type { CourseStudent } from "./models/CourseStudent";
@@ -23,6 +24,8 @@ export type { Interaction } from "./models/Interaction";
 export type { InteractionCreateRequest } from "./models/InteractionCreateRequest";
 export type { InteractionCreateResponse } from "./models/InteractionCreateResponse";
 export { InteractionType } from "./models/InteractionType";
+export type { InteractRequest } from "./models/InteractRequest";
+export type { Message } from "./models/Message";
 export type { Page } from "./models/Page";
 export type { Question } from "./models/Question";
 export type { SearchBooksRequest } from "./models/SearchBooksRequest";
@@ -35,6 +38,7 @@ export type { ValidationError } from "./models/ValidationError";
 
 export { AuthService } from "./services/AuthService";
 export { BooksService } from "./services/BooksService";
+export { ChatbotService } from "./services/ChatbotService";
 export { CoursesService } from "./services/CoursesService";
 export { ImagesService } from "./services/ImagesService";
 export { InteractionsService } from "./services/InteractionsService";

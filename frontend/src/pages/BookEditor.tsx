@@ -801,43 +801,52 @@ function BookDetailsEditor({
             <div>{field}</div>
             <div className="flex flex-col gap-2">
               <select
-          className="w-full h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
-          onChange={(e) => {
-            const currentValues = (book as any)[field] || [];
-            if (!currentValues.includes(e.target.value) && e.target.value) {
-              const newValues = [...currentValues, e.target.value];
-              const newBook = { ...book, [field]: newValues };
-              setBook(newBook);
-              saveBook(newBook);
-            }
-          }}
-              >
-          <option value="">Select {field}</option>
-          {Object.values(enumType).filter(v => typeof v === 'string').map((value) => (
-            <option key={value} value={value}>
-              {value}
-            </option>
-          ))}
-              </select>
-              <div className="flex flex-col gap-1">
-          {((book as any)[field] || []).map((value: string, index: number) => (
-            <div key={index} className="flex items-center gap-1">
-              <div className="border border-gray-300 rounded-xl p-1 w-full">
-                {value}
-              </div>
-              <button
-                className="w-8 h-8 bg-red-400 text-white rounded-full"
-                onClick={() => {
-            const newValues = ((book as any)[field] || []).filter((_: string, i: number) => i !== index);
-            const newBook = { ...book, [field]: newValues };
-            setBook(newBook);
-            saveBook(newBook);
+                className="w-full h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
+                onChange={(e) => {
+                  const currentValues = (book as any)[field] || [];
+                  if (
+                    !currentValues.includes(e.target.value) &&
+                    e.target.value
+                  ) {
+                    const newValues = [...currentValues, e.target.value];
+                    const newBook = { ...book, [field]: newValues };
+                    setBook(newBook);
+                    saveBook(newBook);
+                  }
                 }}
               >
-                X
-              </button>
-            </div>
-          ))}
+                <option value="">Select {field}</option>
+                {Object.values(enumType)
+                  .filter((v) => typeof v === "string")
+                  .map((value) => (
+                    <option key={value} value={value}>
+                      {value}
+                    </option>
+                  ))}
+              </select>
+              <div className="flex flex-col gap-1">
+                {((book as any)[field] || []).map(
+                  (value: string, index: number) => (
+                    <div key={index} className="flex items-center gap-1">
+                      <div className="border border-gray-300 rounded-xl p-1 w-full">
+                        {value}
+                      </div>
+                      <button
+                        className="w-8 h-8 bg-red-400 text-white rounded-full"
+                        onClick={() => {
+                          const newValues = ((book as any)[field] || []).filter(
+                            (_: string, i: number) => i !== index,
+                          );
+                          const newBook = { ...book, [field]: newValues };
+                          setBook(newBook);
+                          saveBook(newBook);
+                        }}
+                      >
+                        X
+                      </button>
+                    </div>
+                  ),
+                )}
               </div>
             </div>
           </div>

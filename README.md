@@ -25,7 +25,6 @@ prisma migrate dev
 ```
 
 To startup a local database, you can use the following command:
-
 ```bash
 cd backend
 docker compose up -d
@@ -51,8 +50,29 @@ cd ../backend
 black . --check
 ```
 
-To take a backup of the database, you can use the following command:
-
+To take a backup of the production database, you can use the following command:
 ```bash
 pg_dump -h endeavour.cs.vt.edu -p 30030 -U postgres -d codekids > codekids-db-$(date +%Y-%m-%d).bak
+
 ```
+### to install postgres client 16 on ubuntu
+https://dev.to/johndotowl/postgresql-16-installation-on-ubuntu-2204-51ia
+
+
+### to load a backup to your local database
+```bash
+psql postgres://postgres:password@localhost:5432/codekids < /tmp/codekids-db-2025-04-14.bak
+```
+### if u have an existing database , you will have to clear the docker volume
+```bash
+docker stop  backend-db-1 ###(name of your container- using docker ps -q)
+docker rm backend-db-1 ###(container id)
+docker volume rm backend_postgres-data ###(docker volume ls)
+docker compose up -d ###(create a new volume)
+```
+ ###to setup prisma
+ ```bash
+ cd backend
+ npx prisma studio
+ 
+ ```

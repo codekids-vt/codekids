@@ -24,26 +24,12 @@ const baseLinks: readonly NavLinkRoute[] = [
   },
 ];
 
-const teacherLinks: readonly NavLinkRoute[] = [
-  ...baseLinks,
-  {
-    text: "Teacher Resources",
-    href: "/teacher_resources",
-  },
-  {
-    text: "Book Editor",
-    href: "/edit_books",
-  },
-];
-
 function NavButton(route: NavLinkRoute) {
   const { text, href } = route;
 
   return (
     <a href={href}>
-      <li
-        className="p-2 mx-1 my-2 transition-colors hover:bg-black/10 hover:text-lime-700 rounded-md outline-1 outline-neutral-300/20 hover:outline"
-      >
+      <li className="p-2 mx-1 my-2 transition-colors hover:bg-black/10 hover:text-lime-700 rounded-md outline-1 outline-neutral-300/20 hover:outline">
         {text}
       </li>
     </a>
@@ -56,9 +42,38 @@ export default function Navbar() {
   const { darkMode, toggleDarkMode } = useTheme();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  let navLinks: readonly NavLinkRoute[];
 
-  const navLinks =
-    user?.type === AccountType.TEACHER ? teacherLinks : baseLinks;
+  // if user exists, append codepal to baselinks
+  if (user) {
+    if (user.type === AccountType.TEACHER) {
+      navLinks = [
+        ...baseLinks,
+        {
+          text: "Teacher Resources",
+          href: "/teacher_resources",
+        },
+        {
+          text: "Book Editor",
+          href: "/edit_books",
+        },
+        {
+          text: "CodePal",
+          href: "/codepal",
+        },
+      ];
+    } else {
+      navLinks = [
+        ...baseLinks,
+        {
+          text: "CodePal",
+          href: "/codepal",
+        },
+      ];
+    }
+  } else {
+    navLinks = baseLinks;
+  }
 
   return (
     <header className="top-0 sticky w-full px-2 z-[100] bg-white">
@@ -93,9 +108,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        <nav
-          className="px-1 bg-stone-800 text-white hidden sm:block my-auto sm:py-0 rounded-b-md font-semibold absolute left-1/2 transform -translate-x-1/2"
-        >
+        <nav className="px-1 bg-stone-800 text-white hidden sm:block my-auto sm:py-0 rounded-b-md font-semibold absolute left-1/2 transform -translate-x-1/2">
           <ul className="tablet:mx-auto sm:flex sm:items-center text-center text-lg">
             {navLinks.map((route, i) => (
               <NavButton {...route} key={`nav-${i}`} />
@@ -118,12 +131,32 @@ export default function Navbar() {
               className="p-2 rounded-full hover:bg-gray-200"
             >
               {darkMode ? (
-                <svg className="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                <svg
+                  className="w-6 h-6 text-yellow-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
                 </svg>
               ) : (
-                <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                <svg
+                  className="w-6 h-6 text-gray-800"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                  />
                 </svg>
               )}
             </button>
@@ -131,9 +164,7 @@ export default function Navbar() {
 
           {!user ? (
             <a className="my-auto" href="/login">
-              <p
-                className="px-3 py-2 text-neutral-100 text-center text-sm bg-primary-green rounded-md transition-shadow duration-200 hover:shadow-black/20 hover:shadow-md"
-              >
+              <p className="px-3 py-2 text-neutral-100 text-center text-sm bg-primary-green rounded-md transition-shadow duration-200 hover:shadow-black/20 hover:shadow-md">
                 Log in
               </p>
             </a>

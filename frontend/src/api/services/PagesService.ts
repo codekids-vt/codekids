@@ -94,4 +94,29 @@ export class PagesService {
       },
     });
   }
+  /**
+   * Create Page With Gpt
+   * Creates a new page with GPT-generated hints.
+   * Stores up to 3 hints inside `props["gptHints"]`.
+   * @param bookId
+   * @param pageId
+   * @returns any Successful Response
+   * @throws ApiError
+   */
+  public static createPageWithGptPageCreatehintsPost(
+    bookId: number,
+    pageId: number,
+  ): CancelablePromise<any> {
+    return __request(OpenAPI, {
+      method: "POST",
+      url: "/page/createhints",
+      query: {
+        bookId: bookId,
+        pageId: pageId,
+      },
+      errors: {
+        422: `Validation Error`,
+      },
+    });
+  }
 }

@@ -4,7 +4,9 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import useSound from "use-sound";
 import { Book, BookCategory, BooksService } from "../api";
-import ActivityBookList, { BookPreviewUnplugged } from "../components/ActivityBookList";
+import ActivityBookList, {
+  BookPreviewUnplugged,
+} from "../components/ActivityBookList";
 import { unpluggedBooks } from "../util/UnpluggedBooks";
 
 export default function HomePage() {
@@ -13,27 +15,32 @@ export default function HomePage() {
   const [results, setResults] = useState<Book[]>([]);
   const [loading, setLoading] = useState(false);
   const [sidebarVisible, setSidebarVisible] = useState(true);
-  const [sidebarTimeout, setSidebarTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [sidebarTimeout, setSidebarTimeout] = useState<NodeJS.Timeout | null>(
+    null,
+  );
 
-  // Tracks which level is selected (BEGINNER, INTERMEDIATE, ADVANCED)
-  const [selectedLevel, setSelectedLevel] = useState<BookCategory | null>(null);
-  
   // Tracks which additional classification is selected
-  const [selectedCategories, setSelectedCategories] = useState<BookCategory[] | null>(null);
+  const [selectedCategories, setSelectedCategories] = useState<
+    BookCategory[] | null
+  >(null);
 
   // List of all available topics (fetched from API)
-  const [topics, setTopics] = useState<string[]>([]);
+  const [, setTopics] = useState<string[]>([]);
   const [timerHandle, setTimerHandle] = useState<NodeJS.Timeout | null>(null);
 
   // UNPLUGGED toggle
-  const [isUnplugged, setIsUnplugged] = useState(false);
+  const [isUnplugged] = useState(false);
 
-  const levelCategories = [BookCategory.BEGINNER, BookCategory.INTERMEDIATE, BookCategory.ADVANCED];
+  const levelCategories = [
+    BookCategory.BEGINNER,
+    BookCategory.INTERMEDIATE,
+    BookCategory.ADVANCED,
+  ];
   const additionalCategories = [
     BookCategory.ARTIFICIAL_INTELLIGENCE,
-    BookCategory.CYBER_SECURITY, 
+    BookCategory.CYBER_SECURITY,
     BookCategory.CODING,
-    BookCategory.MISCELLANEOUS
+    BookCategory.MISCELLANEOUS,
   ];
 
   useEffect(() => {
@@ -47,21 +54,27 @@ export default function HomePage() {
     playSound();
   }, [playSound]);
 
-  const loadBookResults = useCallback((topic: string | null, query: string | null) => {
-    setLoading(true);
-    BooksService.searchBooksBooksSearchPost({categories: selectedCategories, query})
-      .then((response) => {
-        // Filter results based on both level and classification
-        let filtered = response;
-        console.log("Filtered books:", filtered);
-        setResults(filtered);
-        setLoading(false);
+  const loadBookResults = useCallback(
+    (topic: string | null, query: string | null) => {
+      setLoading(true);
+      BooksService.searchBooksBooksSearchPost({
+        categories: selectedCategories,
+        query,
       })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
-      });
-  }, [setResults, setLoading, selectedCategories]);
+        .then((response) => {
+          // Filter results based on both level and classification
+          let filtered = response;
+          console.log("Filtered books:", filtered);
+          setResults(filtered);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+          setLoading(false);
+        });
+    },
+    [setResults, setLoading, selectedCategories],
+  );
 
   // Load *all* books on initial mount
   useEffect(() => {
@@ -81,7 +94,7 @@ export default function HomePage() {
       clearTimeout(sidebarTimeout);
       setSidebarTimeout(null);
     }
-    
+
     if (!visible) {
       const timeout = setTimeout(() => {
         setSidebarVisible(false);
@@ -99,81 +112,95 @@ export default function HomePage() {
       <div className="relative flex flex-row min-h-screen">
         {/* Sidebar */}
 
-        <div 
+        <div
           className={`fixed left-0 h-full bg-gradient-to-br from-[#d0ecd5] to-[#ecbfa3] shadow-lg transition-all duration-300 z-20 ${
-            sidebarVisible ? 'w-64' : 'w-36'
+            sidebarVisible ? "w-64" : "w-36"
           }`}
           onMouseEnter={() => handleSidebarHover(true)}
           onMouseLeave={() => handleSidebarHover(true)}
         >
           <div className="p-4">
-            <h2 className={`font-bold text-gray-600 mb-4 ${sidebarVisible ? 'text-lg' : 'text-sm text-center'}`}>
-              {sidebarVisible ? 'Categories' : '≡'}
+            <h2
+              className={`font-bold text-gray-600 mb-4 ${sidebarVisible ? "text-lg" : "text-sm text-center"}`}
+            >
+              {sidebarVisible ? "Categories" : "≡"}
             </h2>
-            
+
             <div className="space-y-4">
               <div>
-          <h3 className={`font-semibold mb-2 text-gray-600 ${sidebarVisible ? '' : 'hidden'}`}>Levels</h3>
-          {levelCategories.map((category) => (
-            <button
-              key={category}
-              onClick={() => {
-
-                setSelectedCategories((prev) => {
-            if (prev && prev.includes(category)) {
-              return prev.filter((cat) => cat !== category);
-            } else {
-              return prev ? [...prev, category] : [category];
-            }
-                });
-
-              }}
-              className={`${
-                selectedCategories?.includes(category)
-            ? 'bg-primary-green text-white' 
-            : 'bg-white hover:bg-gray-200'
-              } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
-                sidebarVisible ? '' : 'w-12 h-12'
-              }`}
-            >
-              {sidebarVisible ? formatCategoryName(category) : category.charAt(0)}
-            </button>
-          ))}
+                <h3
+                  className={`font-semibold mb-2 text-gray-600 ${sidebarVisible ? "" : "hidden"}`}
+                >
+                  Levels
+                </h3>
+                {levelCategories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => {
+                      setSelectedCategories((prev) => {
+                        if (prev && prev.includes(category)) {
+                          return prev.filter((cat) => cat !== category);
+                        } else {
+                          return prev ? [...prev, category] : [category];
+                        }
+                      });
+                    }}
+                    className={`${
+                      selectedCategories?.includes(category)
+                        ? "bg-primary-green text-white"
+                        : "bg-white hover:bg-gray-200"
+                    } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
+                      sidebarVisible ? "" : "w-12 h-12"
+                    }`}
+                  >
+                    {sidebarVisible
+                      ? formatCategoryName(category)
+                      : category.charAt(0)}
+                  </button>
+                ))}
               </div>
 
               <div>
-          <h3 className={`font-semibold mb-2 text-gray-600 ${sidebarVisible ? '' : 'hidden'}`}>Topics</h3>
-          {additionalCategories.map((category) => (
-            <button
-              key={category}
-              onClick={() => {
-                setSelectedCategories((prev) => {
-            if (prev && prev.includes(category)) {
-              return prev.filter((cat) => cat !== category);
-            } else {
-              return prev ? [...prev, category] : [category];
-            }
-                }
-              );
-              }}
-              className={`${
-                selectedCategories && selectedCategories.includes(category) 
-            ? 'bg-primary-green text-white' 
-            : 'bg-white hover:bg-gray-200'
-              } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
-                sidebarVisible ? '' : 'w-12 h-12'
-              }`}
-            >
-              {sidebarVisible ? formatCategoryName(category) : category.charAt(0)}
-            </button>
-          ))}
+                <h3
+                  className={`font-semibold mb-2 text-gray-600 ${sidebarVisible ? "" : "hidden"}`}
+                >
+                  Topics
+                </h3>
+                {additionalCategories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => {
+                      setSelectedCategories((prev) => {
+                        if (prev && prev.includes(category)) {
+                          return prev.filter((cat) => cat !== category);
+                        } else {
+                          return prev ? [...prev, category] : [category];
+                        }
+                      });
+                    }}
+                    className={`${
+                      selectedCategories &&
+                      selectedCategories.includes(category)
+                        ? "bg-primary-green text-white"
+                        : "bg-white hover:bg-gray-200"
+                    } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
+                      sidebarVisible ? "" : "w-12 h-12"
+                    }`}
+                  >
+                    {sidebarVisible
+                      ? formatCategoryName(category)
+                      : category.charAt(0)}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className={`flex-1 transition-all duration-300 ${sidebarVisible ? 'ml-64' : 'ml-16'}`}>
+        <div
+          className={`flex-1 transition-all duration-300 ${sidebarVisible ? "ml-64" : "ml-16"}`}
+        >
           <div className="flex flex-col items-center w-full z-10">
             <div className="mt-8">
               <img
@@ -189,9 +216,9 @@ export default function HomePage() {
               <div className="card p-2 text-center mx-auto w-11/12">
                 <h1 className="text-l">
                   CodeKids offers a wide range of engaging coding activities for
-                  students of all levels. Teachers will find activities that match
-                  their lesson plans and teaching materials to make coding education
-                  exciting in the classroom.
+                  students of all levels. Teachers will find activities that
+                  match their lesson plans and teaching materials to make coding
+                  education exciting in the classroom.
                 </h1>
               </div>
             </div>
