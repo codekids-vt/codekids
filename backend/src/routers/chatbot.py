@@ -1,11 +1,12 @@
 from typing import Annotated, List, Optional
-from fastapi import APIRouter, Depends, HTTPException
+
 import openai
+from fastapi import APIRouter, Depends, HTTPException
+from prisma.models import Chat, Message, User
 from pydantic import BaseModel
 from src.auth import get_user
-from src.db import db
 from src.config import settings
-from prisma.models import User, Chat, Message
+from src.db import db
 
 # Set the OpenAI API key from your settings.
 openai.api_key = settings.OPENAI_API_KEY
@@ -37,7 +38,10 @@ async def create_chat(user: User, request_user_message: str) -> Chat:
             {"role": "user", "content": chat_title_prompt},
         ],
     )
-    chat_title = response.choices[0].message.content.strip()
+    raw_content = response.choices[0].message.content
+    if raw_content is None:
+        raise ValueError("Received empty title from API")
+    chat_title = raw_content.strip()
     chat = await db.chat.create(data={"userId": user.id, "title": chat_title})
     return chat
 
@@ -77,7 +81,10 @@ async def generate_summary(messages: List[Message]) -> str:
             {"role": "user", "content": summary_prompt},
         ],
     )
-    return response.choices[0].message.content.strip()
+    if response.choices[0].message.content is None:
+        raise ValueError("Received empty summary from API")
+    summary = response.choices[0].message.content.strip()
+    return summary
 
 
 @chatbot_router.post("/chats/interact", tags=["chatbot"])
@@ -105,7 +112,7 @@ async def interact(
         if not chat:
             raise HTTPException(status_code=404, detail="Chat not found")
 
-        messages = sorted(chat.messages, key=lambda x: x.createdAt)
+        messages = sorted(chat.messages or [], key=lambda x: x.createdAt)
         total_messages = len(messages)
 
         # Build context based on conversation length.
@@ -153,6 +160,8 @@ async def interact(
             {"role": "user", "content": full_prompt},
         ],
     )
+    if response.choices[0].message.content is None:
+        raise ValueError("Received empty response from API")
     bot_reply = response.choices[0].message.content.strip()
     await add_message(chat_id=chat.id, sender="Bot", content=bot_reply)
 
@@ -175,4 +184,4 @@ async def get_chat_messages(
     if not chat:
         raise HTTPException(status_code=404, detail="Chat not found")
 
-    return sorted(chat.messages, key=lambda x: x.createdAt)
+    return sorted(chat.messages or [], key=lambda x: x.createdAt)

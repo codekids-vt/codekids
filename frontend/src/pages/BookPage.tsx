@@ -8,11 +8,13 @@ import {
   InteractionType,
   InteractionsService,
   Page,
+  PagesService,
 } from "../api";
 import { useAuth } from "../context/AuthContext";
 import { useSound } from "use-sound";
 import { BookImage } from "../components/BookImage";
 
+// Component to display the book content.
 function BookContent({ content }: { content: string[] }) {
   return (
     <div className="h-[calc(100vh-9rem)] xl:h-[calc(100vh-13rem)] overflow-y-scroll flex flex-col justify-center gap-1 items-center w-full">
@@ -27,6 +29,7 @@ function BookContent({ content }: { content: string[] }) {
   );
 }
 
+//  HelpMeWindow component
 function HelpMeWindow({
   help,
   setHelp,
@@ -45,9 +48,7 @@ function HelpMeWindow({
   return (
     <div
       id="help-modal"
-      className={`fixed top-0 left-0 right-0 z-50 ${
-        help ? "" : "hidden"
-      } w-full h-full bg-gray-900 bg-opacity-50`}
+      className={`fixed top-0 left-0 right-0 z-40 ${help ? "" : "hidden"} w-full h-full bg-gray-900 bg-opacity-50`}
     >
       <div className="flex items-center justify-center h-full">
         <div className="bg-white rounded-lg shadow-lg w-full md:w-1/2">
@@ -97,18 +98,176 @@ function HelpMeWindow({
               alt="Help"
               width={750}
               height={250}
-            ></img>
+            />
           )}
           <div className="flex justify-end p-5 border-t rounded-b">
             <button
               onClick={() => closeHelp()}
               type="button"
-              className="text-white bg-red-600 hover:bg-red-800 font-medium rounded-lg text-sm items-center px-5 py-2.5 text-center mr-2"
+              className="bg-red-600 hover:bg-red-800 text-white font-bold px-4 py-2 rounded"
             >
               Close help
             </button>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+// Define types for the hints data.
+export type HintData = {
+  statement: string;
+};
+
+// HintsWindow component that shows hints.
+export function HintsWindow({
+  open,
+  setOpen,
+  allHints,
+  currentHintIndex,
+  updateCurrentHintIndex,
+  page,
+  showFullAnswer,
+  setShowFullAnswer,
+}: {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  allHints: HintData[]; // Now an array of hints
+  currentHintIndex: number;
+  updateCurrentHintIndex: (index: number) => void;
+  page: Page;
+  showFullAnswer: boolean;
+  setShowFullAnswer: Dispatch<SetStateAction<boolean>>;
+}) {
+  if (!open) return null;
+
+  const currentHint = allHints[currentHintIndex] || {
+    statement: "Generating hints....",
+  };
+
+  return (
+    <div className="fixed bottom-4 right-10 w-[32rem] bg-white shadow-xl rounded-lg border border-gray-300 p-4">
+      <div className="w-full">
+        <div className="flex items-center justify-between border-b pb-3 mb-4">
+          {/* Back button if showing full answer */}
+          {showFullAnswer ? (
+            <button
+              onClick={() => setShowFullAnswer(false)}
+              type="button"
+              className="text-gray-600 hover:text-gray-800 flex items-center"
+            >
+              <svg
+                className="w-5 h-5 mr-2"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              Back
+            </button>
+          ) : (
+            <h3 className="text-2xl font-semibold text-gray-900">Hints</h3>
+          )}
+
+          {/* Close button */}
+          <button
+            onClick={() => {
+              setOpen(false);
+              setShowFullAnswer(false);
+            }}
+            type="button"
+            className="text-gray-400 hover:text-gray-600"
+          >
+            <svg
+              className="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M1 1l6 6m0 0l6 6M7 7l6-6M7 7l-6 6"
+              />
+            </svg>
+            <span className="sr-only">Close</span>
+          </button>
+        </div>
+
+        <div className="p-6 space-y-6">
+          {!showFullAnswer ? (
+            // Normal hints view
+            <>
+              <p className="text-lg text-gray-800">{currentHint.statement}</p>
+            </>
+          ) : (
+            // Full answer view
+            <>
+              <ul className="flex flex-col items-center">
+                <h3 className="text-xl font-medium mb-2">
+                  The correct answer(s) is:
+                </h3>
+                {page.props?.ans &&
+                  page.props?.ans.map((answer: string, index: number) => (
+                    <li
+                      className="inline-block font-semibold text-gray-900"
+                      key={`answerTag-${index}`}
+                    >
+                      {answer}
+                    </li>
+                  ))}
+              </ul>
+              {page.props.helpImage && (
+                <img
+                  src={page.props.helpImage}
+                  alt="Help"
+                  width={750}
+                  height={250}
+                  className="mt-4"
+                />
+              )}
+            </>
+          )}
+        </div>
+        <>
+          <div className="relative min-h-[60px] border-t pt-4 flex justify-between items-center px-4">
+            {/* Show Previous only if not at the first hint */}
+            {currentHintIndex > 0 && !showFullAnswer && (
+              <button
+                onClick={() => updateCurrentHintIndex(currentHintIndex - 1)}
+                type="button"
+                className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
+              >
+                ← Previous
+              </button>
+            )}
+
+            {currentHintIndex === 0 && <div className="w-24" />}
+
+            {/* Show Next only if not in full answer */}
+            {!showFullAnswer && (
+              <button
+                onClick={() => updateCurrentHintIndex(currentHintIndex + 1)}
+                type="button"
+                className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
+              >
+                Next →
+              </button>
+            )}
+          </div>
+        </>
       </div>
     </div>
   );
@@ -122,6 +281,11 @@ export default function BookPage() {
   const { user } = useAuth();
   const [help, setHelp] = useState(false);
   const [allowNext, setAllowNext] = useState(true);
+  const [hintsOpen, setHintsOpen] = useState<boolean>(false);
+  const [allHints, setAllHints] = useState([]); // Stores all hints from API
+  const [currentHintIndex, setCurrentHintIndex] = useState(0); // Tracks current hint
+  const [showFullAnswer, setShowFullAnswer] = useState(false);
+  const [hintsLoading, setHintsLoading] = useState(false);
   const [book, setBook] = useState<Book | undefined>(undefined);
   const [pageNum, setPageNum] = useState(
     pageNumParam ? parseInt(pageNumParam) : 1,
@@ -145,6 +309,17 @@ export default function BookPage() {
     setPageNum(pageNum);
   }, [playPageFlip, pageNum, idString, navigate]);
 
+  useEffect(() => {
+    const currentPage = book?.pages?.find((p) => p.pageNumber === pageNum);
+
+    if (currentPage) {
+      setHintsOpen(false);
+      setShowFullAnswer(false);
+      setCurrentHintIndex(0);
+      setAllHints([]);
+    }
+  }, [pageNum, book]);
+
   if (!book || !book.pages) {
     return (
       <div className="flex flex-col flex-grow items-center justify-center">
@@ -158,15 +333,72 @@ export default function BookPage() {
   const page = book.pages.find((p) => p.pageNumber === pageNum);
 
   function getNextPageNum(): number | null {
-    return book && book.pages && pageNum > book.pages.length - 1
-      ? null
-      : pageNum + 1;
+    if (!book || !book.pages) return null;
+
+    const maxPageNum = Math.max(...book.pages.map((p) => p.pageNumber));
+    return pageNum < maxPageNum ? pageNum + 1 : null;
   }
 
   function getPrevPageNum(): number | null {
     return pageNum <= 1 ? null : pageNum - 1;
   }
 
+  function getAllHints() {
+    if (!page?.content) {
+      console.warn("No page content available to generate hints.");
+      return;
+    }
+    console.log("In getall hints");
+    console.log(page?.props);
+
+    // Clear previous hints immediately
+    setAllHints([]);
+    setCurrentHintIndex(0);
+    setShowFullAnswer(false);
+    setHintsLoading(true);
+    PagesService.createPageWithGptPageCreatehintsPost(id, pageNum)
+      .then((data) => {
+        if (data?.props) {
+          let props;
+          try {
+            // Convert string to JSON object if necessary
+            props =
+              typeof data.props === "string"
+                ? JSON.parse(data.props)
+                : data.props;
+          } catch (error) {
+            console.error("Error parsing props JSON:", error);
+            return;
+          }
+
+          if (Array.isArray(props?.gptHints)) {
+            const formattedHints = props.gptHints.map((hint: any) => ({
+              statement: hint.statement,
+            }));
+
+            setAllHints(formattedHints);
+            setCurrentHintIndex(0); // ensure reset
+            console.log("Formatted Hints:", formattedHints); // Debugging output
+          } else {
+            console.warn("No hints returned from API.");
+          }
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching hints:", error);
+      })
+      .finally(() => {
+        setHintsLoading(false); // Set loading to false here
+      });
+  }
+
+  function updateCurrentHintIndex(index: number) {
+    if (index >= allHints.length) {
+      setShowFullAnswer(true); // displays the entire answer
+      return;
+    }
+    setCurrentHintIndex(index);
+  }
   function moveToNextPage() {
     const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     InteractionsService.createInteractionInteractionsPost({
@@ -205,8 +437,13 @@ export default function BookPage() {
     });
   }
 
+  //helpMeClicked to open the HintsWindow
   function helpMeClicked() {
+    console.log("In Help Me");
     playLowClick();
+    setCurrentHintIndex(0); // Reset index
+    setShowFullAnswer(false);
+    getAllHints(); // Reset view
     const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     InteractionsService.createInteractionInteractionsPost({
       interaction_type: InteractionType.HELP_ME,
@@ -215,7 +452,7 @@ export default function BookPage() {
       bookId: id,
       pageId: pageNum,
     }).then(() => {
-      setHelp(!help);
+      setHintsOpen(true);
     });
   }
 
@@ -259,7 +496,7 @@ export default function BookPage() {
 
   const helpMeButton = (
     <button
-      onClick={() => helpMeClicked()}
+      onClick={helpMeClicked}
       className="bg-primary-green hover:bg-hover-green hover:shadow-2xl text-white font-bold flex flex-row items-center p-1 xl:px-4 xl:py-4 lg:text-lg xl:text-2xl rounded-full"
     >
       Help me
@@ -274,7 +511,7 @@ export default function BookPage() {
       <Navbar />
       <div className="mx-auto h-[calc(100vh-60px)]">
         <div className="px-2 py-2 min-h-full flex">
-          {page && (
+          {page ? (
             <div className="flex flex-col w-full min-h-full justify-between gap-1">
               {(page?.props?.ans?.length || page?.props?.helpImage) && (
                 <HelpMeWindow
@@ -284,11 +521,28 @@ export default function BookPage() {
                   playLowClick={playLowClick}
                 />
               )}
+
+              {/* Render the HintsWindow with the updated props */}
+              {hintsLoading && (
+                <div className="fixed bottom-6 right-20 text-sm text-gray-500 animate-pulse">
+                  Generating hints...
+                </div>
+              )}
+              <HintsWindow
+                open={hintsOpen}
+                setOpen={setHintsOpen}
+                allHints={allHints} // Array of hints
+                currentHintIndex={currentHintIndex}
+                updateCurrentHintIndex={updateCurrentHintIndex}
+                page={page}
+                showFullAnswer={showFullAnswer}
+                setShowFullAnswer={setShowFullAnswer}
+              />
               <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl min-h-max flex-grow">
                 <div className="flex flex-col flex-grow items-center bg-white rounded-l-2xl h-full">
                   <div className="flex flex-col flex-grow items-center justify-center w-full h-[calc(100vh-9rem)] xl:h-[calc(100vh-13rem)]">
                     <BookImage
-                      key={page.pageNumber} // This is to force a re-render when the page changes
+                      key={page.pageNumber} // Force re-render when page changes
                       image={page.image}
                       page={page}
                       setAllowNext={setAllowNext}
@@ -319,8 +573,7 @@ export default function BookPage() {
                 </div>
               </div>
             </div>
-          )}
-          {!page && (
+          ) : (
             <div className="flex flex-col flex-grow items-center justify-center">
               <h1 className="text-center text-lg font-medium">
                 We could not find anything for this page.

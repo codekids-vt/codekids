@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     CHATGPT_MODEL: str
 
     class Config:
-        env_file = f".env"
+        env_file = ".env"
         case_sensitive = True
 
 

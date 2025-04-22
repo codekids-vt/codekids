@@ -1,11 +1,11 @@
 from typing import Annotated, Optional
-from fastapi import APIRouter, Depends
-from fastapi import HTTPException
-from src.db import db
-from prisma.models import User, CourseStudent, BookCourse, Course
+
+from fastapi import APIRouter, Depends, HTTPException
 from prisma.enums import AccountType
-from src.auth import get_user
+from prisma.models import BookCourse, Course, CourseStudent, User
 from pydantic import BaseModel
+from src.auth import get_user
+from src.db import db
 
 
 class CourseCreate(BaseModel):
