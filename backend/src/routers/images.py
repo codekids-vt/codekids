@@ -1,13 +1,12 @@
-import os
+from io import BytesIO
 from typing import Annotated
-from fastapi import APIRouter, Depends, UploadFile, File
-from fastapi import HTTPException
-from src.db import db
-from prisma.models import User, Image
+
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from minio import Minio
+from prisma.models import Image, User
 from src.auth import get_user
 from src.config import settings
-from io import BytesIO
+from src.db import db
 
 image_router = APIRouter()
 

@@ -1,14 +1,12 @@
-from fastapi import APIRouter, Query, HTTPException, Body
-from typing import List, Dict, Any
-from prisma import Json
-from src.db import db
-from prisma.models import Page, Book
-from prisma.partials import UpdatePage
-import openai
-import os
 import json
-from src.config import settings
+
+from fastapi import APIRouter, HTTPException
 from openai import AsyncOpenAI
+from prisma import Json
+from prisma.models import Book, Page
+from prisma.partials import UpdatePage
+from src.config import settings
+from src.db import db
 
 pages_router = APIRouter()
 client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
@@ -226,7 +224,7 @@ async def generate_gpt_hints(
     code: str,
 ) -> list[dict]:
 
-    system_message = f"""
+    system_message = """
         You are Hint Generator helping young children (ages 5-7) learn advanced programming concepts in a fun and understandable way. These children are using interactive activity books from the CodeKids platform.
 
         Your job is to help them answer questions from these books, without directly giving away the answer. Instead, guide them with simple,concise and progressive hints that build on their understanding.
@@ -297,5 +295,6 @@ def parse_gpt_hints(gpt_text: str) -> list[dict]:
     """
     try:
         return json.loads(gpt_text)
-    except:
+    except Exception as e:
+        print(f"Failed to parse GPT hints: {e}")
         return []
