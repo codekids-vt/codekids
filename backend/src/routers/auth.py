@@ -1,17 +1,17 @@
-import hmac
 import hashlib
+import hmac
 import secrets
-from fastapi import APIRouter, Depends, HTTPException, Body
-from fastapi.security import HTTPBasicCredentials
 from typing import Annotated, Optional
-from pydantic import BaseModel
+
+from fastapi import APIRouter, Depends, HTTPException
+from fastapi.security import HTTPBasicCredentials
 from prisma.enums import AccountType
 from prisma.models import User
-from src.db import db
-from src.config import settings
 from prisma.partials import UserLightNoPassword
-
+from pydantic import BaseModel
 from src.auth import get_user
+from src.config import settings
+from src.db import db
 
 auth_router = APIRouter()
 
