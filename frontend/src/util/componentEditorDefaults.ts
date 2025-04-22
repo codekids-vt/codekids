@@ -413,5 +413,4 @@ export const editorDefaults: { [key: string]: any } = {
     ],
     footerText: "Note: Data types are important in programming.",
   },
-  
 };
