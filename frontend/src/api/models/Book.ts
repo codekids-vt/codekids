@@ -20,7 +20,7 @@ export type Book = {
   author: string;
   tags: Array<string>;
   bookTopic?: string | null;
-  categories: Array<BookCategory>;
+  category: BookCategory;
   pages?: Array<Page> | null;
   courses?: Array<BookCourse> | null;
   owner?: User | null;
