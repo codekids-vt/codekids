@@ -395,7 +395,6 @@ export const editorDefaults: { [key: string]: any } = {
     linkUrl: "https://example.com/destination",
     buttonText: "Click to Visit",
   },
-
   YoutubeEmbed: {
     videoUrl: "https://www.youtube.com/watch?v=WO2b03Zdu4Q",
     videoTitle: "Insert Video Title.",

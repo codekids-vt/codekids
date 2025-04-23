@@ -3,7 +3,6 @@ import useSound from "use-sound";
 
 export interface ITextBoxQuestionActivityProps {
   image: string;
-  completionSound: string;
   prompt: string;
   correctAnswer: string;
   successMessage: string;
@@ -17,16 +16,10 @@ export function TextBoxQuestionActivity({
   props: ITextBoxQuestionActivityProps;
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const {
-    image,
-    completionSound,
-    prompt,
-    correctAnswer,
-    successMessage,
-    failureMessage,
-  } = props;
+  const { image, prompt, correctAnswer, successMessage, failureMessage } =
+    props;
   const [inputValue, setInputValue] = useState<string>(""); // Track the user input
-  // Both states need to be tracked seperately because if both are false, user has not submitted
+  // Both states need to be tracked separately because if both are false, user has not submitted
   const [isWrong, setIsWrong] = useState<boolean>(false); // Track if answer is wrong
   const [isCorrect, setIsCorrect] = useState<boolean>(false); // Track if answer is correct
   const [playCorrectSound] = useSound("/sounds/correct.wav", { volume: 0.5 });
