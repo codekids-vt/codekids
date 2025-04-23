@@ -1,13 +1,14 @@
 import re
+from typing import Annotated, List, Optional
+
 from fastapi import APIRouter, Depends, HTTPException
 from prisma import Json
+from prisma.enums import AccountType, BookCategory
+from prisma.models import Book, User
+from prisma.types import BookUpdateInput, BookWhereInput
 from pydantic import BaseModel
 from src.auth import get_user
 from src.db import db
-from prisma.models import Book, User
-from typing import Annotated, Optional, List
-from prisma.enums import BookCategory, AccountType
-from prisma.types import BookWhereInput, BookUpdateInput
 
 books_router = APIRouter()
 
@@ -120,7 +121,7 @@ async def create_book(
             "ownerId": user.id,
         }
     )
-    page = await db.page.create(
+    await db.page.create(
         {
             "bookId": book.id,
             "content": Json(["This is the first page of the book"]),
@@ -167,4 +168,5 @@ async def edit_book(
     )
     if not book:
         raise HTTPException(status_code=404, detail="Book not found")
+    return book
     return book

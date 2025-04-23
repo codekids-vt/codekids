@@ -26,6 +26,14 @@ jobs:
           pip install black &&
           black . --check
 
+      - name: pyright
+        run: |
+          cd backend &&
+          pip install -r requirements.txt &&
+          prisma generate &&
+          pip install pyright &&
+          pyright .
+
       - name: ruff
         run: |
           cd backend &&
