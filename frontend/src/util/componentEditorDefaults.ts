@@ -405,7 +405,6 @@ export const editorDefaults: { [key: string]: any } = {
     image: "/assets/images/walkthrough_default.png",
     code: `print('Hello World')\nprint('Walk Through Code')`,
   },
-  
 
   ImagesAndText: {
     headerText: "Introduction to Data Types",
