@@ -19,6 +19,20 @@ export const editorDefaults: { [key: string]: any } = {
     command: "Drag the Colors over these boxes",
     helpImage: "/help/HokieBirdColoring_Help.png",
   },
+  CustomColoringActivity: {
+    imageParts: [
+      {
+        name: "Enter Name",
+        src: "Enter Image",
+        style: {
+          width: "weight in px",
+          height: "height in px",
+          top: "percentage",
+          left: "percentage",
+        },
+      },
+    ],
+  },
   tutor: {
     code: 'number = 23\n\ncollege = "Virginia Tech"\n\nsecond_number = number + 10\n\nprint(college)\nprint(second_number)',
   },
@@ -348,6 +362,14 @@ export const editorDefaults: { [key: string]: any } = {
       " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
     successMessage: "hi",
   },
+  TextBoxQuestion: {
+    prompt: "This is where you can put the question",
+    image:
+      " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
+    correctAnswer: "This is where you would put the correct answer to match",
+    successMessage: "This will display for correct answers",
+    failureMessage: "This will display for wrong answers",
+  },
   DragAndDrop: {
     dogImage:
       " https://codekids-minio.endeavour.cs.vt.edu/codekids/PetTrainingBook/dog-clipart-boy-3.png",
@@ -373,7 +395,6 @@ export const editorDefaults: { [key: string]: any } = {
     linkUrl: "https://example.com/destination",
     buttonText: "Click to Visit",
   },
-
   YoutubeEmbed: {
     videoUrl: "https://www.youtube.com/watch?v=WO2b03Zdu4Q",
     videoTitle: "Insert Video Title.",

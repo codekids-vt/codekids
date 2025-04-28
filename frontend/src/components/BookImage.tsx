@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { HokieBirdColoring } from "../components/HokieBirdColor";
+import CustomColoringActivity from "./ColoringActivity";
 import { HokieBirdMap } from "../components/HokieBirdMap";
 import { HokieBirdIfCondition } from "../components/HokieBirdIfCondition";
 import { PythonTutor } from "../components/PythonTutor";
@@ -35,7 +36,8 @@ import { ImageQuestion } from "./ImageQuestion";
 import { DragMultiChoice } from "./DragMultiChoice";
 import CodeStepFlowchart from "./CodeStepFlowchart";
 import FillInTheBlank from "./FillInTheBlank";
-import { TextBoxImageActivity } from "./TextBoxImage"; // Import your component
+import { TextBoxImageActivity } from "./TextBoxImage";
+import { TextBoxQuestionActivity } from "./TextBoxQuestion"; // Import your component
 import { DragAndDropActivity } from "./DragAndDrop";
 import { ImageClickAnimation } from "./ImageClickAnimation";
 import { CountdownTimer } from "./CountdownTimer";
@@ -84,9 +86,18 @@ export function BookImage({
       {image === "TextBoxImage" && (
         <TextBoxImageActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
+      {image === "TextBoxQuestion" && (
+        <TextBoxQuestionActivity
+          props={page?.props}
+          setAllowNext={setAllowNext}
+        />
+      )}
 
       {image === "HokieBirdActivity" && (
         <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "CustomColoringActivity" && (
+        <CustomColoringActivity props={page?.props} />
       )}
       {image === "tutor" && <PythonTutor props={page?.props} />}
       {image === "HokieBirdMazeActivity" && (

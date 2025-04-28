@@ -17,9 +17,11 @@ class Settings(BaseSettings):
     MINIO_SECRET_KEY: str
     MINIO_ROOT_PASSWORD: str
     MINIO_ACCESS_KEY: str
+    OPENAI_API_KEY: str
+    CHATGPT_MODEL: str
 
     class Config:
-        env_file = f".env"
+        env_file = ".env"
         case_sensitive = True
 
 

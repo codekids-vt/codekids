@@ -26,6 +26,7 @@ model User {
   courses       Course[]
   CourseStudent CourseStudent[]
   books         Book[]
+  chats         Chat[]
 }
 
 enum AccountType {
@@ -131,4 +132,23 @@ model BookCourse {
   bookId   Int
   course   Course @relation(fields: [courseId], references: [id])
   courseId Int
+}
+
+model Chat {
+  id        String    @id @default(uuid()) @db.Uuid // Ensuring it's UUID
+  userId    Int
+  title     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  messages  Message[]
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Message {
+  id        String   @id @default(uuid()) @db.Uuid
+  chatId    String   @db.Uuid // Ensure the type matches Chat.id
+  sender    String
+  content   String
+  createdAt DateTime @default(now())
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
 }
