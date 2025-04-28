@@ -171,24 +171,52 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
   return (
     <div className="p-2">
       <form className="flex flex-col gap-2">
-        {Object.keys(propsObject).map((key) => {
+      {Object.keys(propsObject).map((key) => {
           if (!objectArrays.includes(key) && !primitiveArrays.includes(key)) {
             return (
               <div key={key} className="flex flex-col">
                 <label className="font-bold" htmlFor={key}>
                   {key}
                 </label>
-                <input
-                  id={key}
-                  type="text"
-                  value={propsObject[key]}
-                  onChange={(e) => handleInputChange(key, e.target.value)}
-                  className="border border-gray-300 rounded p-1"
-                />
+                {key === "code" ? (
+                  <textarea
+                    id={key}
+                    value={propsObject[key]}
+                    onChange={(e) => handleInputChange(key, e.target.value)}
+                    onKeyDown={(e) => {
+                      // Check if the Tab key is pressed
+                      if (e.key === "Tab") {
+                        e.preventDefault(); // Prevent default tab behavior (focus switch)
+
+                        // Type assertion to inform TypeScript that e.target is a HTMLTextAreaElement
+                        const textarea = e.target as HTMLTextAreaElement;
+                        const { selectionStart, selectionEnd, value } = textarea;
+                        const newValue = value.substring(0, selectionStart) + "    " + value.substring(selectionEnd);
+
+                        handleInputChange(key, newValue); // Update the value with the added spaces
+
+                        // Move the cursor to the correct position after the inserted spaces
+                        setTimeout(() => {
+                          textarea.selectionStart = textarea.selectionEnd = selectionStart + 4; // Move cursor after inserted spaces
+                        }, 0);
+                      }
+                    }}
+                    rows={10}
+                    className="border border-gray-300 rounded p-1 font-mono whitespace-pre"
+                  />
+                ) : (
+                  <input
+                    id={key}
+                    type="text"
+                    value={propsObject[key]}
+                    onChange={(e) => handleInputChange(key, e.target.value)}
+                    className="border border-gray-300 rounded p-1"
+                  />
+                )}
               </div>
             );
           }
-          return null; // Ensure every iteration returns a value
+          return null;
         })}
 
         {objectArrays.map((arrayKey) => (
@@ -197,25 +225,56 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
             {(objectArrayData[arrayKey] || []).map((item, index) => (
               <div key={index} className="flex gap-4 mb-2">
                 {Object.keys(item).map((field) => {
+                  const value = item[field];
+
+                  if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+                    // value is a nested object 
+                    return (
+                      <div key={field} className="flex flex-col border p-2 rounded mb-2">
+                        <h4 className="font-bold">{field}</h4>
+                        {Object.keys(value).map((subField) => (
+                          <div key={subField} className="flex flex-col">
+                            <label className="font-bold" htmlFor={`${field}-${subField}-${index}`}>
+                              {subField}
+                            </label>
+                            <input
+                              id={`${field}-${subField}-${index}`}
+                              type="text"
+                              value={value[subField]}
+                              onChange={(e) => {
+                                const updatedArray = [...objectArrayData[arrayKey]];
+                                updatedArray[index] = {
+                                  ...updatedArray[index],
+                                  [field]: {
+                                    ...updatedArray[index][field],
+                                    [subField]: e.target.value,
+                                  },
+                                };
+                                setObjectArrayData({ ...objectArrayData, [arrayKey]: updatedArray });
+                                setTempProps(
+                                  JSON.stringify({ ...propsObject, [arrayKey]: updatedArray }, null, 2)
+                                );
+                              }}
+                              className="border border-gray-300 rounded p-1"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  }
+
+                  // Default primitive (string/number/boolean)
                   return (
                     <div key={field} className="flex flex-col">
-                      <label
-                        className="font-bold"
-                        htmlFor={`${field}-${index}`}
-                      >
+                      <label className="font-bold" htmlFor={`${field}-${index}`}>
                         {field}
                       </label>
-                      {typeof item[field] === "boolean" ? (
+                      {typeof value === "boolean" ? (
                         <select
                           id={`${field}-${index}`}
-                          value={item[field].toString()}
+                          value={value.toString()}
                           onChange={(e) =>
-                            handleOptionChange(
-                              arrayKey,
-                              index,
-                              field,
-                              e.target.value,
-                            )
+                            handleOptionChange(arrayKey, index, field, e.target.value)
                           }
                           className="border border-gray-300 rounded p-1"
                         >
@@ -226,14 +285,9 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                         <input
                           id={`${field}-${index}`}
                           type="text"
-                          value={item[field]}
+                          value={value}
                           onChange={(e) =>
-                            handleOptionChange(
-                              arrayKey,
-                              index,
-                              field,
-                              e.target.value,
-                            )
+                            handleOptionChange(arrayKey, index, field, e.target.value)
                           }
                           className="border border-gray-300 rounded p-1"
                         />
@@ -241,6 +295,7 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                     </div>
                   );
                 })}
+
 
                 <button
                   type="button"

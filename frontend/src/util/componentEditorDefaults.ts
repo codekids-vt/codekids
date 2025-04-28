@@ -401,13 +401,11 @@ export const editorDefaults: { [key: string]: any } = {
   },
 
   WalkThroughCode: {
-    code: [
-      { CodeLines: "print('Hello World')" },
-      { CodeLines: "print('Walk Through Code')" },
-    ],
     headerText: "Review the code below and see its output:",
     image: "/assets/images/walkthrough_default.png",
+    code: `print('Hello World')\nprint('Walk Through Code')`,
   },
+  
 
   ImagesAndText: {
     headerText: "Introduction to Data Types",

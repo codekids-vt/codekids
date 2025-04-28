@@ -3,7 +3,7 @@ import { Reader } from "./Reader";
 import { PythonTutor } from "./PythonTutor";
 
 export interface IWalkThroughCodeProps {
-  code: { CodeLines: string }[]; // Each object represents one line of code.
+  code: string; // Now just a single string, not an array of CodeLines!
   headerText: string;
   image: string;
 }
@@ -16,14 +16,13 @@ export function WalkThroughCode({
   setAllowNext: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { code, headerText, image } = props;
-  const totalLines = code.length;
   const [currentLine] = useState(0);
   const [reload] = useState(0);
 
   // Enable next only when the user reaches the last line.
   useEffect(() => {
-    setAllowNext(currentLine >= totalLines - 1);
-  }, [currentLine, totalLines, setAllowNext]);
+    setAllowNext(true); // Always allow next since we're not stepping line-by-line anymore
+  }, [setAllowNext]);
 
   return (
     <div className="flex flex-col w-full h-full gap-4 items-center">
@@ -44,7 +43,7 @@ export function WalkThroughCode({
         <div className="max-w-3xl w-full min-h-[300px] overflow-y-auto">
           <PythonTutor
             props={{
-              code: code.map((line) => line.CodeLines).join("\n"), // Extract CodeLines from each object.
+              code: code, // Directly pass the string code here
               instruction: currentLine,
               reload: reload,
             }}
