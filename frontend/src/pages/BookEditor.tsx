@@ -7,6 +7,7 @@ import { editorDefaults } from "../util/componentEditorDefaults";
 import { ErrorBoundary } from "react-error-boundary";
 import { BookPreview } from "../components/ActivityBookList";
 import Editor from "@monaco-editor/react";
+import { useTheme } from "../context/ThemeContext";
 
 interface PropsFormProps {
   tempProps: string;
@@ -951,6 +952,7 @@ export default function BookEditor() {
   );
   let navigate = useNavigate();
   let bookId = parseInt(bookIdParam as string);
+  const { unsavedToggleDarkMode } = useTheme();
 
   useEffect(() => {
     if (pageNum !== parseInt(pageNumParam as string)) {
@@ -959,6 +961,7 @@ export default function BookEditor() {
   }, [pageNum, navigate, bookId, pageNumParam]);
 
   useEffect(() => {
+    unsavedToggleDarkMode(false);
     BooksService.getBookBooksBookIdGet(bookId)
       .then((response) => {
         setBook(response);
@@ -966,6 +969,9 @@ export default function BookEditor() {
       .catch((error) => {
         console.error(error);
       });
+    return () => {
+      unsavedToggleDarkMode(undefined);
+    };
   }, [bookId]);
 
   if (!book || !book.pages || !book.pages.length) {

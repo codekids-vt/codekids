@@ -1,11 +1,11 @@
 import contextlib
+
+import dotenv
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import uvicorn
-import dotenv
-from src.db import db
 from src import routers
-
+from src.db import db
 
 dotenv.load_dotenv()
 

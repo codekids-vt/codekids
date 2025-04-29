@@ -21,13 +21,26 @@ class SearchBooksRequest(BaseModel):
     query: Optional[str] = None
 
 
+LEVEL_CATEGORIES = [
+    BookCategory.BEGINNER,
+    BookCategory.INTERMEDIATE,
+    BookCategory.ADVANCED,
+]
+
+
 @books_router.post("/books/search", tags=["books"])
 async def search_books(
     req: SearchBooksRequest,
 ) -> List[Book]:
     where: BookWhereInput = {}
     if req.categories:
-        where["categories"] = {"has_every": req.categories}
+        level_cats = [cat for cat in req.categories if cat in LEVEL_CATEGORIES]
+        non_level_cats = [cat for cat in req.categories if cat not in LEVEL_CATEGORIES]
+        where["AND"] = []
+        if level_cats:
+            where["AND"].append({"categories": {"has_some": level_cats}})
+        if non_level_cats:
+            where["AND"].append({"categories": {"has_some": non_level_cats}})
     if req.owner_id:
         where["ownerId"] = req.owner_id
     if req.published is not None:

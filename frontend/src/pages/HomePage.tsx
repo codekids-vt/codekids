@@ -60,6 +60,7 @@ export default function HomePage() {
       BooksService.searchBooksBooksSearchPost({
         categories: selectedCategories,
         query,
+        published: true,
       })
         .then((response) => {
           // Filter results based on both level and classification

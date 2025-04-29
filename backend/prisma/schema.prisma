@@ -82,21 +82,22 @@ model Question {
 }
 
 model Book {
-  id              Int          @id @default(autoincrement())
+  id              Int            @id @default(autoincrement())
   bookCover       String?
   coverImage      String?
   title           String
   blurb           String?
-  readyForPublish Boolean      @default(false)
-  published       Boolean      @default(false)
+  readyForPublish Boolean        @default(false)
+  published       Boolean        @default(false)
   author          String
-  tags            String[]     @default([])
+  tags            String[]       @default([])
   bookTopic       String?
-  categories      BookCategory[]     @default([])
+  category        BookCategory? // to be removed
+  categories      BookCategory[] @default([])
   pages           Page[]
   courses         BookCourse[]
-  owner           User         @relation(fields: [ownerId], references: [id])
-  ownerId         Int          @default(1)
+  owner           User           @relation(fields: [ownerId], references: [id])
+  ownerId         Int            @default(1)
 }
 
 model Page {

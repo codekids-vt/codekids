@@ -14,7 +14,6 @@ export default function EditBooksPage() {
     if (user) {
       BooksService.searchBooksBooksSearchPost({
         owner_id: user.id,
-        published: false,
       })
         .then((response) => {
           setBooks(response);
