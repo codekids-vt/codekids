@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Book, BookCategory, BooksService } from "../api";
+import { Book, BooksService } from "../api";
 import ActivityBookList from "../components/ActivityBookList";
 import Background from "../components/Background";
 import Footer from "../components/Footer";
@@ -12,7 +12,9 @@ export default function EditBooksPage() {
   const [books, setBooks] = useState<Book[]>([]);
   useEffect(() => {
     if (user) {
-      BooksService.searchBooksBooksGet(null, null, 100, user.id, null)
+      BooksService.searchBooksBooksSearchPost({
+        owner_id: user.id,
+      })
         .then((response) => {
           setBooks(response);
         })
@@ -43,7 +45,6 @@ export default function EditBooksPage() {
           onClick={() => {
             BooksService.createBookBooksPost({
               title: "New Book",
-              category: BookCategory.BEGINNER,
             }).then((response) => {
               navigate(`/book_editor/${response.id}/1`);
             });

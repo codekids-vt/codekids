@@ -7,6 +7,7 @@ import { editorDefaults } from "../util/componentEditorDefaults";
 import { ErrorBoundary } from "react-error-boundary";
 import { BookPreview } from "../components/ActivityBookList";
 import Editor from "@monaco-editor/react";
+import { useTheme } from "../context/ThemeContext";
 
 interface PropsFormProps {
   tempProps: string;
@@ -733,6 +734,7 @@ function BookDetailsEditor({
 }) {
   let textFields = ["coverImage", "title", "blurb"];
   let listFields = ["tags"];
+  let listEnumFields = { categories: BookCategory };
   let enumFields: { [key: string]: { options: any[]; default: any } } = {
     bookCover: {
       options: [
@@ -750,10 +752,6 @@ function BookDetailsEditor({
       default: "/color_1.png",
     },
     readyForPublish: { options: [true, false], default: false },
-    category: {
-      options: Object.values(BookCategory),
-      default: BookCategory.BEGINNER,
-    },
   };
 
   const [bookTopics, setTopics] = useState<string[]>([]);
@@ -765,7 +763,6 @@ function BookDetailsEditor({
       .catch((error) => console.error("Failed to fetch topics:", error));
   }, []);
 
-  console.log(book);
   return (
     <div className="flex flex-row h-full p-2 gap-2 w-full">
       <div className="flex flex-col gap-2 w-full">
@@ -794,6 +791,65 @@ function BookDetailsEditor({
                 saveBook(newBook);
               }}
             />
+          </div>
+        ))}
+
+        {Object.entries(listEnumFields).map(([field, enumType], i) => (
+          <div
+            key={i + textFields.length + listFields.length}
+            className="flex flex-col w-full gap-2"
+          >
+            <div>{field}</div>
+            <div className="flex flex-col gap-2">
+              <select
+                className="w-full h-15 border-2 p-2 shadow-2xl rounded-xl border-primary-green focus:outline-none"
+                onChange={(e) => {
+                  const currentValues = (book as any)[field] || [];
+                  if (
+                    !currentValues.includes(e.target.value) &&
+                    e.target.value
+                  ) {
+                    const newValues = [...currentValues, e.target.value];
+                    const newBook = { ...book, [field]: newValues };
+                    setBook(newBook);
+                    saveBook(newBook);
+                  }
+                }}
+              >
+                <option value="">Select {field}</option>
+                {Object.values(enumType)
+                  .filter((v) => typeof v === "string")
+                  .map((value) => (
+                    <option key={value} value={value}>
+                      {value}
+                    </option>
+                  ))}
+              </select>
+              <div className="flex flex-col gap-1">
+                {((book as any)[field] || []).map(
+                  (value: string, index: number) => (
+                    <div key={index} className="flex items-center gap-1">
+                      <div className="border border-gray-300 rounded-xl p-1 w-full">
+                        {value}
+                      </div>
+                      <button
+                        className="w-8 h-8 bg-red-400 text-white rounded-full"
+                        onClick={() => {
+                          const newValues = ((book as any)[field] || []).filter(
+                            (_: string, i: number) => i !== index,
+                          );
+                          const newBook = { ...book, [field]: newValues };
+                          setBook(newBook);
+                          saveBook(newBook);
+                        }}
+                      >
+                        X
+                      </button>
+                    </div>
+                  ),
+                )}
+              </div>
+            </div>
           </div>
         ))}
 
@@ -896,6 +952,7 @@ export default function BookEditor() {
   );
   let navigate = useNavigate();
   let bookId = parseInt(bookIdParam as string);
+  const { unsavedToggleDarkMode } = useTheme();
 
   useEffect(() => {
     if (pageNum !== parseInt(pageNumParam as string)) {
@@ -904,6 +961,7 @@ export default function BookEditor() {
   }, [pageNum, navigate, bookId, pageNumParam]);
 
   useEffect(() => {
+    unsavedToggleDarkMode(false);
     BooksService.getBookBooksBookIdGet(bookId)
       .then((response) => {
         setBook(response);
@@ -911,7 +969,10 @@ export default function BookEditor() {
       .catch((error) => {
         console.error(error);
       });
-  }, [bookId]);
+    return () => {
+      unsavedToggleDarkMode(undefined);
+    };
+  }, [bookId, unsavedToggleDarkMode]);
 
   if (!book || !book.pages || !book.pages.length) {
     return <div>Loading...</div>;
@@ -1015,7 +1076,7 @@ export default function BookEditor() {
       blurb: saveBook.blurb,
       tags: saveBook.tags,
       readyForPublish: saveBook.readyForPublish,
-      category: saveBook.category,
+      categories: saveBook.categories,
     })
       .then((response) => {
         setBook({
@@ -1026,7 +1087,7 @@ export default function BookEditor() {
           blurb: response.blurb,
           tags: response.tags,
           readyForPublish: response.readyForPublish,
-          category: response.category,
+          categories: response.categories,
         });
       })
       .catch((error) => {

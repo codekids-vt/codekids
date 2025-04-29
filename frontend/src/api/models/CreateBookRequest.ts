@@ -5,7 +5,7 @@
 import type { BookCategory } from "./BookCategory";
 export type CreateBookRequest = {
   title: string;
-  category: BookCategory;
+  categories?: Array<BookCategory>;
   bookTopic?: string | null;
   tags?: Array<string>;
   bookCover?: string | null;
