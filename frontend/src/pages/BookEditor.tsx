@@ -972,7 +972,7 @@ export default function BookEditor() {
     return () => {
       unsavedToggleDarkMode(undefined);
     };
-  }, [bookId]);
+  }, [bookId, unsavedToggleDarkMode]);
 
   if (!book || !book.pages || !book.pages.length) {
     return <div>Loading...</div>;
