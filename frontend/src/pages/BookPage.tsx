@@ -176,7 +176,9 @@ export function HintsWindow({
               Back
             </button>
           ) : (
-            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">Hints</h3>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">
+              Hints
+            </h3>
           )}
 
           {/* Close button */}
@@ -211,8 +213,8 @@ export function HintsWindow({
           {!showFullAnswer ? (
             //  hints view
             <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
-            <Reader text={currentHint.statement} />
-          </div>
+              <Reader text={currentHint.statement} />
+            </div>
           ) : (
             // Full answer view
             <>
@@ -273,7 +275,6 @@ export function HintsWindow({
     </div>
   );
 }
-
 
 export default function BookPage() {
   let { idString, pageNumParam } = useParams();
