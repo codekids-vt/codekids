@@ -271,7 +271,7 @@ async def generate_gpt_hints(
 
     try:
         response = await client.chat.completions.create(
-            model="gpt-4-turbo",
+            model=settings.CHATGPT_MODEL,
             messages=[
                 {"role": "system", "content": system_message},
                 {"role": "user", "content": user_message},

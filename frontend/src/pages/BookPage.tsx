@@ -13,6 +13,7 @@ import {
 import { useAuth } from "../context/AuthContext";
 import { useSound } from "use-sound";
 import { BookImage } from "../components/BookImage";
+import { useTheme } from "../context/ThemeContext";
 
 // Component to display the book content.
 function BookContent({ content }: { content: string[] }) {
@@ -292,8 +293,10 @@ export default function BookPage() {
   );
   const startTime = new Date().getTime();
   const navigate = useNavigate();
+  const { unsavedToggleDarkMode } = useTheme();
 
   useEffect(() => {
+    unsavedToggleDarkMode(false);
     BooksService.getBookBooksBookIdGet(id)
       .then((response) => {
         setBook(response);
@@ -301,7 +304,11 @@ export default function BookPage() {
       .catch((error) => {
         console.error(error);
       });
-  }, [id]);
+
+    return () => {
+      unsavedToggleDarkMode(undefined);
+    };
+  }, [id, unsavedToggleDarkMode]);
 
   useEffect(() => {
     playPageFlip();

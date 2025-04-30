@@ -61,6 +61,27 @@
   filter: opacity(0) drop-shadow(0 0 0 white);
 }
 
+/* Dark mode styles */
+.dark {
+  @apply bg-gray-900 text-gray-100;
+}
+
+.dark .bg-white {
+  @apply bg-gray-800;
+}
+
+.dark .text-gray-900 {
+  @apply text-gray-100;
+}
+
+.dark .border-gray-300 {
+  @apply border-gray-600;
+}
+
+.dark .bg-gray-100 {
+  @apply bg-gray-600;
+}
+
 /* for scroll bars */
 :root {
   --code-color: darkred;
@@ -69,6 +90,11 @@
   --code-line-height: 1.4;
   --scroll-bar-color: #c5c5c5;
   --scroll-bar-bg-color: #f6f6f6;
+}
+
+.dark {
+  --scroll-bar-color: #4a5568;
+  --scroll-bar-bg-color: #2d3748;
 }
 
 pre {

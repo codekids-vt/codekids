@@ -28,6 +28,7 @@ export type { InteractRequest } from "./models/InteractRequest";
 export type { Message } from "./models/Message";
 export type { Page } from "./models/Page";
 export type { Question } from "./models/Question";
+export type { SearchBooksRequest } from "./models/SearchBooksRequest";
 export type { SignupRequest } from "./models/SignupRequest";
 export type { UpdatePage } from "./models/UpdatePage";
 export type { UpdateUserRequest } from "./models/UpdateUserRequest";
