@@ -30,7 +30,7 @@ function BookContent({ content }: { content: string[] }) {
   );
 }
 
-//  HelpMeWindow component
+// HelpMeWindow component
 function HelpMeWindow({
   help,
   setHelp,
@@ -148,7 +148,7 @@ export function HintsWindow({
   };
 
   return (
-    <div className="fixed bottom-4 right-10 w-[32rem] bg-white shadow-xl rounded-lg border border-gray-300 p-4">
+    <div className="fixed bottom-4 right-4 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl bg-white shadow-xl rounded-lg border border-gray-300 p-4">
       <div className="w-full">
         <div className="flex items-center justify-between border-b pb-3 mb-4">
           {/* Back button if showing full answer */}
@@ -176,7 +176,7 @@ export function HintsWindow({
               Back
             </button>
           ) : (
-            <h3 className="text-2xl font-semibold text-gray-900">Hints</h3>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">Hints</h3>
           )}
 
           {/* Close button */}
@@ -209,10 +209,10 @@ export function HintsWindow({
 
         <div className="p-6 space-y-6">
           {!showFullAnswer ? (
-            // Normal hints view
-            <>
-              <p className="text-lg text-gray-800">{currentHint.statement}</p>
-            </>
+            //  hints view
+            <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
+            <Reader text={currentHint.statement} />
+          </div>
           ) : (
             // Full answer view
             <>
@@ -242,37 +242,38 @@ export function HintsWindow({
             </>
           )}
         </div>
-        <>
-          <div className="relative min-h-[60px] border-t pt-4 flex justify-between items-center px-4">
-            {/* Show Previous only if not at the first hint */}
-            {currentHintIndex > 0 && !showFullAnswer && (
-              <button
-                onClick={() => updateCurrentHintIndex(currentHintIndex - 1)}
-                type="button"
-                className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
-              >
-                ← Previous
-              </button>
-            )}
 
-            {currentHintIndex === 0 && <div className="w-24" />}
+        {/* Navigation Buttons */}
+        <div className="relative min-h-[60px] border-t pt-4 flex justify-between items-center px-4">
+          {/* Show Previous only if not at the first hint */}
+          {currentHintIndex > 0 && !showFullAnswer && (
+            <button
+              onClick={() => updateCurrentHintIndex(currentHintIndex - 1)}
+              type="button"
+              className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
+            >
+              ← Previous
+            </button>
+          )}
 
-            {/* Show Next only if not in full answer */}
-            {!showFullAnswer && (
-              <button
-                onClick={() => updateCurrentHintIndex(currentHintIndex + 1)}
-                type="button"
-                className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
-              >
-                Next →
-              </button>
-            )}
-          </div>
-        </>
+          {currentHintIndex === 0 && <div className="w-24" />}
+
+          {/* Show Next only if not in full answer */}
+          {!showFullAnswer && (
+            <button
+              onClick={() => updateCurrentHintIndex(currentHintIndex + 1)}
+              type="button"
+              className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
+            >
+              Next →
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
 }
+
 
 export default function BookPage() {
   let { idString, pageNumParam } = useParams();
