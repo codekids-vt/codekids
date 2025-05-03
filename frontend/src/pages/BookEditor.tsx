@@ -179,17 +179,50 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                 <label className="font-bold" htmlFor={key}>
                   {key}
                 </label>
-                <input
-                  id={key}
-                  type="text"
-                  value={propsObject[key]}
-                  onChange={(e) => handleInputChange(key, e.target.value)}
-                  className="border border-gray-300 rounded p-1"
-                />
+                {key === "code" ? (
+                  <textarea
+                    id={key}
+                    value={propsObject[key]}
+                    onChange={(e) => handleInputChange(key, e.target.value)}
+                    onKeyDown={(e) => {
+                      // Check if the Tab key is pressed
+                      if (e.key === "Tab") {
+                        e.preventDefault(); // Prevent default tab behavior (focus switch)
+
+                        // Type assertion to inform TypeScript that e.target is a HTMLTextAreaElement
+                        const textarea = e.target as HTMLTextAreaElement;
+                        const { selectionStart, selectionEnd, value } =
+                          textarea;
+                        const newValue =
+                          value.substring(0, selectionStart) +
+                          "    " +
+                          value.substring(selectionEnd);
+
+                        handleInputChange(key, newValue); // Update the value with the added spaces
+
+                        // Move the cursor to the correct position after the inserted spaces
+                        setTimeout(() => {
+                          textarea.selectionStart = textarea.selectionEnd =
+                            selectionStart + 4; // Move cursor after inserted spaces
+                        }, 0);
+                      }
+                    }}
+                    rows={10}
+                    className="border border-gray-300 rounded p-1 font-mono whitespace-pre"
+                  />
+                ) : (
+                  <input
+                    id={key}
+                    type="text"
+                    value={propsObject[key]}
+                    onChange={(e) => handleInputChange(key, e.target.value)}
+                    className="border border-gray-300 rounded p-1"
+                  />
+                )}
               </div>
             );
           }
-          return null; // Ensure every iteration returns a value
+          return null;
         })}
 
         {objectArrays.map((arrayKey) => (
@@ -198,6 +231,67 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
             {(objectArrayData[arrayKey] || []).map((item, index) => (
               <div key={index} className="flex gap-4 mb-2">
                 {Object.keys(item).map((field) => {
+                  const value = item[field];
+
+                  if (
+                    typeof value === "object" &&
+                    value !== null &&
+                    !Array.isArray(value)
+                  ) {
+                    // value is a nested object
+                    return (
+                      <div
+                        key={field}
+                        className="flex flex-col border p-2 rounded mb-2"
+                      >
+                        <h4 className="font-bold">{field}</h4>
+                        {Object.keys(value).map((subField) => (
+                          <div key={subField} className="flex flex-col">
+                            <label
+                              className="font-bold"
+                              htmlFor={`${field}-${subField}-${index}`}
+                            >
+                              {subField}
+                            </label>
+                            <input
+                              id={`${field}-${subField}-${index}`}
+                              type="text"
+                              value={value[subField]}
+                              onChange={(e) => {
+                                const updatedArray = [
+                                  ...objectArrayData[arrayKey],
+                                ];
+                                updatedArray[index] = {
+                                  ...updatedArray[index],
+                                  [field]: {
+                                    ...updatedArray[index][field],
+                                    [subField]: e.target.value,
+                                  },
+                                };
+                                setObjectArrayData({
+                                  ...objectArrayData,
+                                  [arrayKey]: updatedArray,
+                                });
+                                setTempProps(
+                                  JSON.stringify(
+                                    {
+                                      ...propsObject,
+                                      [arrayKey]: updatedArray,
+                                    },
+                                    null,
+                                    2,
+                                  ),
+                                );
+                              }}
+                              className="border border-gray-300 rounded p-1"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  }
+
+                  // Default primitive (string/number/boolean)
                   return (
                     <div key={field} className="flex flex-col">
                       <label
@@ -206,10 +300,10 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                       >
                         {field}
                       </label>
-                      {typeof item[field] === "boolean" ? (
+                      {typeof value === "boolean" ? (
                         <select
                           id={`${field}-${index}`}
-                          value={item[field].toString()}
+                          value={value.toString()}
                           onChange={(e) =>
                             handleOptionChange(
                               arrayKey,
@@ -227,7 +321,7 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                         <input
                           id={`${field}-${index}`}
                           type="text"
-                          value={item[field]}
+                          value={value}
                           onChange={(e) =>
                             handleOptionChange(
                               arrayKey,
@@ -591,15 +685,15 @@ function BookImageEditor({
 
           {/* Render Based on Active Tab */}
           {activeTab === "prompts" ? (
-            <div className="w-full max-h-1/2 shadow-2xl rounded-xl">
+            <div className="w-full shadow-2xl rounded-xl">
               <PropsForm tempProps={tempProps} setTempProps={setTempProps} />
             </div>
           ) : (
             <Editor
-              height="100%"
+              height="10000px"
               value={tempProps}
               onChange={(value) => value && setTempProps(value)}
-              className="w-full max-h-1/2 shadow-2xl rounded-xl"
+              className="w-full shadow-2xl rounded-xl"
               theme="vs-dark"
               language="json"
             />
@@ -619,6 +713,50 @@ function ImageTypeEditor({
   setTempImageType: (tempImageType: string) => void;
   setTempProps: (tempProps: string) => void;
 }) {
+  // Define the legacy tools that should be hidden for new pages
+  const legacyTools = new Set([
+    "LifeOfMoose",
+    "MooseMilestone",
+    "MooseDr",
+    "MooseChallengingYear",
+    "MooseThankYou",
+    "DragAndDrop",
+    "HokieBirdMazeActivity",
+    "HokieBirdActivity",
+    "HokieBirdIfConditionActivity",
+    "tutor",
+    "CostarColoring",
+    "Computer_IO",
+    "DataTypesIntro",
+    "IntsAndBools",
+    "VariableAssignment",
+    "Strings",
+    "Sequencing",
+    "IfStatementIntro",
+    "ConditionalOperators",
+    "LogicalOperators",
+    "IfStatements",
+    "BuyDonut",
+    "BuyMultiple",
+    "MultipleConditions",
+    "ChangingCondition",
+    "FoodTruckActivity",
+    "ClothingActivity",
+    "BookRushHour",
+    "CodeStepFlowchart",
+    "Comparison",
+  ]);
+
+  // Filter options: always show non-legacy tools.
+  // For legacy tools, only show them if the current tempImageType is already a legacy tool.
+  const availableOptions = Object.keys(editorDefaults).filter((tool) => {
+    if (legacyTools.has(tool)) {
+      // Only include the legacy tool if it's already set on the current page.
+      return tool === tempImageType;
+    }
+    return true;
+  });
+
   return (
     <div className="flex flex-col w-full">
       <select
@@ -642,7 +780,7 @@ function ImageTypeEditor({
         }}
       >
         <option value="Image">Image</option>
-        {Object.keys(editorDefaults).map((type, i) => (
+        {availableOptions.map((type, i) => (
           <option key={i} value={type}>
             {type}
           </option>
@@ -663,6 +801,9 @@ function PageEditor({
   const [tempProps, setTempProps] = useState(
     JSON.stringify(page.props, null, 2),
   );
+  // State to control the editor height (x in your calculations)
+  const [editorHeight, setEditorHeight] = useState(50); // Default height 50vh
+  const [isDragging, setIsDragging] = useState(false);
 
   // Sync tempImage and tempProps when page changes
   useEffect(() => {
@@ -670,14 +811,54 @@ function PageEditor({
     setTempProps(JSON.stringify(page.props, null, 2));
   }, [page]);
 
+  // Add event listeners for mouse movement when dragging
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDragging) {
+        // Calculate new height based on mouse position
+        const windowHeight = window.innerHeight;
+        const mousePositionFromTop = e.clientY;
+        const newHeightVh = (mousePositionFromTop / windowHeight) * 100;
+
+        // Enforce minimum height of 50vh but no maximum
+        const clampedHeight = Math.max(50, newHeightVh);
+        setEditorHeight(clampedHeight);
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDragging]);
+
   function setContent(content: string[]) {
     setPage({ ...page, content: content });
   }
 
+  // Calculate derived values based on editorHeight (x)
+  const borderHeight = editorHeight + 1; // y = x + 1
+  const bookImageTop = editorHeight + 10; // z = x + 10
+
   return (
     <div className="flex w-full h-screen">
-      <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl w-full h-[calc(51vh-60px)]">
-        <div className="flex flex-col w-full items-center bg-white rounded-l-2xl  h-[calc(50vh-60px)] overflow-y-auto">
+      <div
+        className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl w-full"
+        style={{ height: `calc(${borderHeight}vh - 60px)` }}
+      >
+        <div
+          className="flex flex-col w-full items-center bg-white rounded-l-2xl overflow-y-auto"
+          style={{ height: `calc(${editorHeight}vh - 60px)` }}
+        >
           <div className="flex flex-col w-full items-center justify-center min-h-[500px] max-h-screen">
             <BookImageEditor
               tempImage={tempImage}
@@ -692,7 +873,10 @@ function PageEditor({
 
         {/* Right container for BookContentEditor */}
         {page.content && page.content.length > 0 && (
-          <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl">
+          <div
+            className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl"
+            style={{ height: `calc(${editorHeight}vh - 60px)` }}
+          >
             <div className="flex flex-col items-center p-1 w-full min-h-full max-h-full overflow-y-scroll">
               <BookContentEditor
                 content={page.content}
@@ -703,8 +887,23 @@ function PageEditor({
         )}
       </div>
 
-      {/* New Section: BookImage - placed below the content */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 top-[calc(60vh-60px)] w-full p-4">
+      {/* Drag handle - positioned at the bottom edge of green border */}
+      <div
+        className="absolute left-1/2 transform -translate-x-1/2 w-16 h-6 cursor-ns-resize z-10"
+        style={{ top: `calc(${borderHeight + 10}vh - 64px)` }}
+        onMouseDown={(e) => {
+          e.preventDefault();
+          setIsDragging(true);
+        }}
+      >
+        <div className="w-full h-2 bg-gray-400 rounded-full opacity-70 hover:opacity-100 hover:bg-gray-600 transition-all"></div>
+      </div>
+
+      {/* BookImage section with exact original positioning */}
+      <div
+        className="absolute left-1/2 transform -translate-x-1/2 top-[calc(60vh-60px)] w-full p-4"
+        style={{ top: `calc(${bookImageTop}vh - 60px)` }}
+      >
         {!JSON.parse(tempProps) && <div className="text-red-500"></div>}
         <ErrorBoundary
           fallback={

@@ -45,6 +45,8 @@ import { Comparison } from "./Comparison";
 import { BookReview } from "./BookReview";
 import { LinkableImage } from "./ImageWithRedirectButton";
 import { YoutubeEmbed } from "./YoutubeEmbed";
+import { WalkThroughCode } from "./WalkThroughCode";
+import { ImagesAndText } from "./ImagesAndText";
 
 export function BookImage({
   image,
@@ -198,6 +200,12 @@ export function BookImage({
       )}
       {image === "YoutubeEmbed" && (
         <YoutubeEmbed props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "WalkThroughCode" && (
+        <WalkThroughCode props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "ImagesAndText" && (
+        <ImagesAndText props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );

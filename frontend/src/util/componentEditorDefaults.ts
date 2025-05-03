@@ -399,4 +399,36 @@ export const editorDefaults: { [key: string]: any } = {
     videoUrl: "https://www.youtube.com/watch?v=WO2b03Zdu4Q",
     videoTitle: "Insert Video Title.",
   },
+
+  WalkThroughCode: {
+    headerText: "Review the code below and see its output:",
+    image: "/assets/images/walkthrough_default.png",
+    code: `print('Hello World')\nprint('Walk Through Code')`,
+  },
+
+  ImagesAndText: {
+    headerText: "Introduction to Data Types",
+    sections: [
+      {
+        leftText: "jersey_number = 25",
+        leftIsImage: false,
+        rightText: "/jersey-25.png",
+        rightIsImage: true,
+      },
+      {
+        leftText: "/dog_in_box.png",
+        leftIsImage: true,
+        rightText:
+          'greeting = "Hello"\ndays_of_week = "7"\ntherapy_dog = \'Epcot\'',
+        rightIsImage: false,
+      },
+      {
+        leftText: "sky_is_blue = True",
+        leftIsImage: false,
+        rightText: "/VariablesBook/sky-boolean.png",
+        rightIsImage: true,
+      },
+    ],
+    footerText: "Note: Data types are important in programming.",
+  },
 };
