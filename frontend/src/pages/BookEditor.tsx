@@ -744,7 +744,6 @@ function ImageTypeEditor({
     "ClothingActivity",
     "BookRushHour",
     "CodeStepFlowchart",
-    "Comparison",
   ]);
 
   // Filter options: always show non-legacy tools.
