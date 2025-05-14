@@ -134,7 +134,6 @@ export default function HomePage() {
                       key={category}
                       onClick={() => {
                         if (isLevelUnplugged) {
-                          
                           setIsUnplugged((u) => !u);
                           // clear any other filters
                           setSelectedCategories(null);
@@ -267,20 +266,20 @@ export default function HomePage() {
                   className="w-full px-4 bg-transparent outline-none text-xl"
                   type="text"
                 />
-                </div>
               </div>
+            </div>
 
-          <div className="flex flex-wrap justify-center w-full mt-6 gap-4 px-4">
-            {isUnplugged ? (
-              <BookPreviewUnplugged BookData={unpluggedBooks} />
-            ) : (
-              <ActivityBookList
-                books={results}
-                linkPrefix={"/book/"}
-                linkSuffix={"/1"}
-                loading={loading}
-              />
-            )}
+            <div className="flex flex-wrap justify-center w-full mt-6 gap-4 px-4">
+              {isUnplugged ? (
+                <BookPreviewUnplugged BookData={unpluggedBooks} />
+              ) : (
+                <ActivityBookList
+                  books={results}
+                  linkPrefix={"/book/"}
+                  linkSuffix={"/1"}
+                  loading={loading}
+                />
+              )}
             </div>
           </div>
         </div>
