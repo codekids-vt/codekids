@@ -18,23 +18,19 @@ export default function HomePage() {
   const [sidebarTimeout, setSidebarTimeout] = useState<NodeJS.Timeout | null>(
     null,
   );
-
-  // Tracks which additional classification is selected
   const [selectedCategories, setSelectedCategories] = useState<
     BookCategory[] | null
   >(null);
-
-  // List of all available topics (fetched from API)
   const [, setTopics] = useState<string[]>([]);
   const [timerHandle, setTimerHandle] = useState<NodeJS.Timeout | null>(null);
 
-  // UNPLUGGED toggle
-  const [isUnplugged] = useState(false);
+  const [isUnplugged, setIsUnplugged] = useState(false);
 
   const levelCategories = [
     BookCategory.BEGINNER,
     BookCategory.INTERMEDIATE,
     BookCategory.ADVANCED,
+    BookCategory.UNPLUGGED,
   ];
   const additionalCategories = [
     BookCategory.ARTIFICIAL_INTELLIGENCE,
@@ -44,9 +40,8 @@ export default function HomePage() {
   ];
 
   useEffect(() => {
-    // Fetch the list of unique topics for possible display
     BooksService.getUniqueBookTopicsBookTopicsGet()
-      .then((response) => setTopics(response))
+      .then(setTopics)
       .catch((error) => console.error("Failed to fetch topics:", error));
   }, []);
 
@@ -63,10 +58,7 @@ export default function HomePage() {
         published: true,
       })
         .then((response) => {
-          // Filter results based on both level and classification
-          let filtered = response;
-          console.log("Filtered books:", filtered);
-          setResults(filtered);
+          setResults(response);
           setLoading(false);
         })
         .catch((error) => {
@@ -74,33 +66,28 @@ export default function HomePage() {
           setLoading(false);
         });
     },
-    [setResults, setLoading, selectedCategories],
+    [selectedCategories],
   );
 
-  // Load *all* books on initial mount
+  // The initial load of all books
   useEffect(() => {
     loadBookResults(null, null);
   }, [loadBookResults]);
 
-  // Helper function to format category names for display
-  const formatCategoryName = (category: string) => {
-    return category
+  const formatCategoryName = (category: string) =>
+    category
       .split("_")
-      .map((word) => word.charAt(0) + word.slice(1).toLowerCase())
+      .map((word) => word[0] + word.slice(1).toLowerCase())
       .join(" ");
-  };
 
   const handleSidebarHover = (visible: boolean) => {
     if (sidebarTimeout) {
       clearTimeout(sidebarTimeout);
       setSidebarTimeout(null);
     }
-
     if (!visible) {
-      const timeout = setTimeout(() => {
-        setSidebarVisible(false);
-      }, 300); // 300ms delay before hiding
-      setSidebarTimeout(timeout);
+      const t = setTimeout(() => setSidebarVisible(false), 300);
+      setSidebarTimeout(t);
     } else {
       setSidebarVisible(true);
     }
@@ -112,7 +99,6 @@ export default function HomePage() {
       <Navbar />
       <div className="relative flex flex-row min-h-screen">
         {/* Sidebar */}
-
         <div
           className={`fixed left-0 h-full bg-gradient-to-br from-[#d0ecd5] to-[#ecbfa3] shadow-lg transition-all duration-300 z-20 ${
             sidebarVisible ? "w-64" : "w-36"
@@ -122,7 +108,9 @@ export default function HomePage() {
         >
           <div className="p-4">
             <h2
-              className={`font-bold text-gray-600 mb-4 ${sidebarVisible ? "text-lg" : "text-sm text-center"}`}
+              className={`font-bold text-gray-600 mb-4 ${
+                sidebarVisible ? "text-lg" : "text-sm text-center"
+              }`}
             >
               {sidebarVisible ? "Categories" : "≡"}
             </h2>
@@ -130,40 +118,59 @@ export default function HomePage() {
             <div className="space-y-4">
               <div>
                 <h3
-                  className={`font-semibold mb-2 text-gray-600 ${sidebarVisible ? "" : "hidden"}`}
+                  className={`font-semibold mb-2 text-gray-600 ${
+                    sidebarVisible ? "" : "hidden"
+                  }`}
                 >
                   Levels
                 </h3>
-                {levelCategories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => {
-                      setSelectedCategories((prev) => {
-                        if (prev && prev.includes(category)) {
-                          return prev.filter((cat) => cat !== category);
+                {levelCategories.map((category) => {
+                  const isLevelUnplugged = category === BookCategory.UNPLUGGED;
+                  const active = isLevelUnplugged
+                    ? isUnplugged
+                    : selectedCategories?.includes(category);
+                  return (
+                    <button
+                      key={category}
+                      onClick={() => {
+                        if (isLevelUnplugged) {
+                          setIsUnplugged((u) => !u);
+                          // clear any other filters
+                          setSelectedCategories(null);
                         } else {
-                          return prev ? [...prev, category] : [category];
+                          // switch off unplugged
+                          setIsUnplugged(false);
+                          // toggle this level in the array
+                          setSelectedCategories((prev) =>
+                            prev && prev.includes(category)
+                              ? prev.filter((c) => c !== category)
+                              : prev
+                                ? [...prev, category]
+                                : [category],
+                          );
                         }
-                      });
-                    }}
-                    className={`${
-                      selectedCategories?.includes(category)
-                        ? "bg-primary-green text-white"
-                        : "bg-white hover:bg-gray-200"
-                    } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
-                      sidebarVisible ? "" : "w-12 h-12"
-                    }`}
-                  >
-                    {sidebarVisible
-                      ? formatCategoryName(category)
-                      : category.charAt(0)}
-                  </button>
-                ))}
+                      }}
+                      className={`${
+                        active
+                          ? "bg-primary-green text-white"
+                          : "bg-white hover:bg-gray-200"
+                      } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
+                        sidebarVisible ? "" : "w-12 h-12"
+                      }`}
+                    >
+                      {sidebarVisible
+                        ? formatCategoryName(category)
+                        : category.charAt(0)}
+                    </button>
+                  );
+                })}
               </div>
 
               <div>
                 <h3
-                  className={`font-semibold mb-2 text-gray-600 ${sidebarVisible ? "" : "hidden"}`}
+                  className={`font-semibold mb-2 text-gray-600 ${
+                    sidebarVisible ? "" : "hidden"
+                  }`}
                 >
                   Topics
                 </h3>
@@ -171,17 +178,17 @@ export default function HomePage() {
                   <button
                     key={category}
                     onClick={() => {
-                      setSelectedCategories((prev) => {
-                        if (prev && prev.includes(category)) {
-                          return prev.filter((cat) => cat !== category);
-                        } else {
-                          return prev ? [...prev, category] : [category];
-                        }
-                      });
+                      setIsUnplugged(false);
+                      setSelectedCategories((prev) =>
+                        prev && prev.includes(category)
+                          ? prev.filter((cat) => cat !== category)
+                          : prev
+                            ? [...prev, category]
+                            : [category],
+                      );
                     }}
                     className={`${
-                      selectedCategories &&
-                      selectedCategories.includes(category)
+                      selectedCategories?.includes(category)
                         ? "bg-primary-green text-white"
                         : "bg-white hover:bg-gray-200"
                     } w-full mb-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
@@ -200,7 +207,9 @@ export default function HomePage() {
 
         {/* Main Content */}
         <div
-          className={`flex-1 transition-all duration-300 ${sidebarVisible ? "ml-64" : "ml-16"}`}
+          className={`flex-1 transition-all duration-300 ${
+            sidebarVisible ? "ml-64" : "ml-16"
+          }`}
         >
           <div className="flex flex-col items-center w-full z-10">
             <div className="mt-8">
