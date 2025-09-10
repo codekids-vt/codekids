@@ -33,7 +33,7 @@ export const unpluggedBooks = [
     readyForPublish: false,
     tags: [],
     title: "Maze Solver Game",
-    link: "Maze_Solver.pdf",
+    link: "maze_solver.pdf",
   },
   {
     author: "Thomas",
