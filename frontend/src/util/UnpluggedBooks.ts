@@ -71,4 +71,22 @@ export const unpluggedBooks = [
     title: "Grid Puzzle",
     link: "GridPuzzleAlgorithms.pdf",
   },
+  {
+    author: "Vee",
+    blurb: "Learn about reinforcement learning using Skittles!",
+    bookCover: "/color_3.png",
+    category: "UNPLUGGED",
+    courses: [],
+    coverImage:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/rl_skittles.png",
+    id: 9999995,
+    owner: null,
+    ownerId: 16,
+    pages: [],
+    published: true,
+    readyForPublish: false,
+    tags: [],
+    title: "Reinforcement Learning with Skittles",
+    link: "Reinforcement_Learning_With_Skittles.pdf",
+  },
 ];
