@@ -105,6 +105,6 @@ export const unpluggedBooks = [
     readyForPublish: false,
     tags: [],
     title: "Parallelization",
-    link: "Parallelization_Activity.pdf",
+    link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/Parallelization_Activity.pdf",
   },
 ];

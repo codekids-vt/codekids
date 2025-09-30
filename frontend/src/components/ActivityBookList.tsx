@@ -127,7 +127,9 @@ export function BookPreviewUnplugged({ BookData }: { BookData: Array<any> }) {
     <div className="flex flex-wrap gap-4">
       {BookData.map((book, index) => (
         <div key={index} className="h-[325px] w-[275px] relative">
-          <a href={`/${book.link}`}>
+          <a
+            href={`${book.link.includes("http") ? book.link : `/${book.link}`}`}
+          >
             <div className="h-[325px] w-[275px] hover:shadow-2xl rounded-2xl hover:-translate-y-1">
               <img
                 src={book.bookCover ? book.bookCover : "/color_2.png"}
