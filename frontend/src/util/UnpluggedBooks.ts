@@ -1,7 +1,7 @@
 export const unpluggedBooks = [
   {
     author: "Daniella Efrach",
-    blurb: "Transform input to output with math operations",
+    blurb: "Transform input to output with math operations.",
     bookCover: "/color_1.png",
     category: "UNPLUGGED",
     courses: [],
@@ -19,7 +19,7 @@ export const unpluggedBooks = [
   },
   {
     author: "Thomas",
-    blurb: "Learn about loops and abstraction through a maze",
+    blurb: "Learn about loops and abstraction through a maze.",
     bookCover: "/color_7.png",
     category: "UNPLUGGED",
     courses: [],
@@ -37,7 +37,7 @@ export const unpluggedBooks = [
   },
   {
     author: "Thomas",
-    blurb: "A matching game with computer components",
+    blurb: "A matching game with computer components.",
     bookCover: "/color_4.png",
     category: "UNPLUGGED",
     courses: [],
@@ -55,7 +55,7 @@ export const unpluggedBooks = [
   },
   {
     author: "Zoe Hite",
-    blurb: "Grid puzzle activity teaching algorithms",
+    blurb: "Grid puzzle activity teaching algorithms.",
     bookCover: "/color_2.png",
     category: "UNPLUGGED",
     courses: [],
@@ -88,5 +88,23 @@ export const unpluggedBooks = [
     tags: [],
     title: "Reinforcement Learning with Skittles",
     link: "Reinforcement_Learning_With_Skittles.pdf",
+  },
+  {
+    author: "Norah",
+    blurb: "Learn about computer parallelization!",
+    bookCover: "/color_5.png",
+    category: "UNPLUGGED",
+    courses: [],
+    coverImage:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/Parallelization_Icon.png",
+    id: 9999994,
+    owner: null,
+    ownerId: 16,
+    pages: [],
+    published: true,
+    readyForPublish: false,
+    tags: [],
+    title: "Parallelization",
+    link: "Parallelization_Activity.pdf",
   },
 ];
