@@ -9,7 +9,6 @@ import { BookPreview } from "../components/ActivityBookList";
 import Editor from "@monaco-editor/react";
 import { useTheme } from "../context/ThemeContext";
 
-
 interface PropsFormProps {
   tempProps: string;
   setTempProps: (newProps: string) => void;
@@ -176,7 +175,10 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
         {Object.keys(propsObject).map((key) => {
           if (!objectArrays.includes(key) && !primitiveArrays.includes(key)) {
             return (
-              <div key={key} className="flex flex-col w-full max-w-full min-w-0">
+              <div
+                key={key}
+                className="flex flex-col w-full max-w-full min-w-0"
+              >
                 <label className="font-bold text-lg truncate" htmlFor={key}>
                   {key}
                 </label>
@@ -210,7 +212,7 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                     }}
                     rows={10}
                     className="border border-gray-300 rounded p-1 font-mono whitespace-pre w-full max-w-full min-w-0"
-                    style={{ resize: 'vertical' }}
+                    style={{ resize: "vertical" }}
                   />
                 ) : (
                   <input
@@ -232,7 +234,10 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
           <div key={arrayKey} className="mt-4 w-full max-w-full min-w-0">
             <h3 className="font-bold text-lg truncate">{arrayKey}</h3>
             {(objectArrayData[arrayKey] || []).map((item, index) => (
-              <div key={index} className="flex flex-wrap gap-2 mb-2 w-full max-w-full">
+              <div
+                key={index}
+                className="flex flex-wrap gap-2 mb-2 w-full max-w-full"
+              >
                 {Object.keys(item).map((field) => {
                   const value = item[field];
 
@@ -452,7 +457,9 @@ function PageNavigator({
   setIsCollapsed: (collapsed: boolean) => void;
 }) {
   return (
-    <div className={`transition-all duration-300 ease-in-out ${isCollapsed ? 'w-12' : 'w-1/12'} h-full flex flex-col relative overflow-y-auto`}>
+    <div
+      className={`transition-all duration-300 ease-in-out ${isCollapsed ? "w-12" : "w-1/12"} h-full flex flex-col relative overflow-y-auto`}
+    >
       {!isCollapsed && (
         <div className="flex flex-col py-2 gap-2 items-center">
           {/* Collapse button at the top when expanded */}
@@ -462,7 +469,7 @@ function PageNavigator({
           >
             ←
           </button>
-          
+
           <a
             className="w-9/12 h-12 border border-primary-green flex items-center justify-center rounded-xl text-lg hover:bg-primary-green hover:text-white text-center"
             href={`/book/${bookId}/1`}
@@ -477,7 +484,8 @@ function PageNavigator({
           </button>
           {pages.map((page, i) => {
             const isSelected = page.pageNumber === pageNum;
-            const selectedTw = "border-primary-green bg-primary-green text-white";
+            const selectedTw =
+              "border-primary-green bg-primary-green text-white";
             const unselectedTw = "border-gray-300";
             return (
               <div
@@ -505,12 +513,16 @@ function PageNavigator({
                   X
                 </button>
                 <button
-                  onClick={() => swapPages(page.pageNumber, page.pageNumber - 1)}
+                  onClick={() =>
+                    swapPages(page.pageNumber, page.pageNumber - 1)
+                  }
                 >
                   ↑
                 </button>
                 <button
-                  onClick={() => swapPages(page.pageNumber, page.pageNumber + 1)}
+                  onClick={() =>
+                    swapPages(page.pageNumber, page.pageNumber + 1)
+                  }
                 >
                   ↓
                 </button>
@@ -525,7 +537,7 @@ function PageNavigator({
           </button>
         </div>
       )}
-      
+
       {/* Collapse button in top-right corner when collapsed */}
       {isCollapsed && (
         <>
@@ -535,7 +547,7 @@ function PageNavigator({
           >
             →
           </button>
-          
+
           <div className="flex flex-col items-center py-12 gap-2">
             <a
               href={`/book/${bookId}/1`}
@@ -555,9 +567,9 @@ function PageNavigator({
               <button
                 key={page.id}
                 className={`w-8 h-8 rounded-full text-sm flex items-center justify-center ${
-                  page.pageNumber === pageNum 
-                    ? 'bg-primary-green text-white' 
-                    : 'bg-gray-200 hover:bg-gray-300'
+                  page.pageNumber === pageNum
+                    ? "bg-primary-green text-white"
+                    : "bg-gray-200 hover:bg-gray-300"
                 }`}
                 onClick={() => setPageNum(page.pageNumber)}
                 title={`Page ${page.pageNumber}`}
@@ -706,10 +718,10 @@ function BookImageEditor({
         const width = containerRef.current?.offsetWidth;
         setContainerWidth(width || null);
       };
-      
+
       updateWidth();
-      window.addEventListener('resize', updateWidth);
-      return () => window.removeEventListener('resize', updateWidth);
+      window.addEventListener("resize", updateWidth);
+      return () => window.removeEventListener("resize", updateWidth);
     }
   }, [activeTab, tempProps]);
 
@@ -769,14 +781,17 @@ function BookImageEditor({
             </div>
 
             {/* Scrollable content area */}
-            <div 
+            <div
               ref={containerRef}
               className="flex-1 rounded-xl overflow-hidden w-full min-w-0 min-h-0 bg-white"
             >
               <div className="w-full h-full min-w-0 bg-white">
                 {activeTab === "prompts" ? (
                   <div className="w-full h-full overflow-auto min-w-0">
-                    <PropsForm tempProps={tempProps} setTempProps={setTempProps} />
+                    <PropsForm
+                      tempProps={tempProps}
+                      setTempProps={setTempProps}
+                    />
                   </div>
                 ) : (
                   <div className="w-full h-full min-w-0">
@@ -790,7 +805,7 @@ function BookImageEditor({
                         automaticLayout: true,
                         scrollBeyondLastLine: false,
                         minimap: { enabled: false },
-                        wordWrap: 'on'
+                        wordWrap: "on",
                       }}
                     />
                   </div>
@@ -940,45 +955,59 @@ function PageEditor({
     setPage({ ...page, content: content });
   }
 
-  const middleSectionClass = 'w-7/12';
-  const activityEditorClass = 'flex-1';
+  const middleSectionClass = "w-7/12";
+  const activityEditorClass = "flex-1";
   const borderHeight = editorHeight + 1;
   const bookImageTop = editorHeight + 10;
 
   // Scale mapping based on image type
   const getScaleForImageType = (imageType: string): number => {
     const scaleMap: { [key: string]: number } = {
-      'Comparison': 0.40,
-      'FillInTheBlank': 0.55,
-      'YoutubeEmbed': 0.80,
-      'WalkThroughCode': 0.90,
-      'ImagesAndText': 0.75,
+      Comparison: 0.4,
+      FillInTheBlank: 0.55,
+      YoutubeEmbed: 0.8,
+      WalkThroughCode: 0.9,
+      ImagesAndText: 0.75,
     };
-    return scaleMap[imageType] || 1.00;
+    return scaleMap[imageType] || 1.0;
   };
 
   const bookImageScale = getScaleForImageType(tempImage);
 
   return (
     <div className="flex w-full h-full">
-      <div className={`${middleSectionClass} bg-white rounded-lg overflow-hidden`}>
+      <div
+        className={`${middleSectionClass} bg-white rounded-lg overflow-hidden`}
+      >
         <div className="w-full h-full p-4">
           <div className="h-full w-full shadow-2xl rounded-2xl bg-white border flex">
             <div className="w-8/12 p-4 border-r border-gray-200 flex justify-center items-center overflow-hidden">
               <div className="w-full h-full overflow-hidden rounded-lg flex justify-center items-center">
-                <div style={{ 
-                  maxWidth: '100%', 
-                  maxHeight: '100%', 
-                  width: 'auto', 
-                  height: 'auto',
-                  transform: `scale(${bookImageScale})`,
-                  transformOrigin: 'center'
-                }}>
-                  <ErrorBoundary fallback={<div className="text-red-500 text-lg">Error, try adjusting the props</div>}>
+                <div
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    width: "auto",
+                    height: "auto",
+                    transform: `scale(${bookImageScale})`,
+                    transformOrigin: "center",
+                  }}
+                >
+                  <ErrorBoundary
+                    fallback={
+                      <div className="text-red-500 text-lg">
+                        Error, try adjusting the props
+                      </div>
+                    }
+                  >
                     <BookImage
                       key={`${tempImage}-${tempProps}-${page.pageNumber}`}
                       image={tempImage}
-                      page={{ ...page, image: tempImage, props: JSON.parse(tempProps) }}
+                      page={{
+                        ...page,
+                        image: tempImage,
+                        props: JSON.parse(tempProps),
+                      }}
                       setAllowNext={() => {}}
                     />
                   </ErrorBoundary>
@@ -1000,7 +1029,9 @@ function PageEditor({
         </div>
       </div>
 
-      <div className={`${activityEditorClass} p-2 transition-all duration-300 ease-in-out min-w-0 max-w-full h-full overflow-hidden`}>
+      <div
+        className={`${activityEditorClass} p-2 transition-all duration-300 ease-in-out min-w-0 max-w-full h-full overflow-hidden`}
+      >
         <div className="h-full w-full shadow-2xl rounded-2xl bg-white border overflow-hidden flex flex-col">
           <BookImageEditor
             tempImage={tempImage}
@@ -1389,7 +1420,7 @@ export default function BookEditor() {
       });
   }
 
- return (
+  return (
     <div className="text-lg xl:text-lg 2xl:text-lg h-screen flex flex-col overflow-hidden">
       <Navbar />
       <div className="flex-1 flex flex-row p-2 gap-2 min-h-0 overflow-hidden">
@@ -1406,8 +1437,8 @@ export default function BookEditor() {
         />
         <div className="flex-1 min-w-0 overflow-hidden">
           {currentPage && (
-            <PageEditor 
-              page={currentPage} 
+            <PageEditor
+              page={currentPage}
               setPage={setPage}
               isNavigatorCollapsed={isNavigatorCollapsed}
             />
