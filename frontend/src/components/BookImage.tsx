@@ -60,7 +60,7 @@ export function BookImage({
   const isImage = image && image.includes(".");
 
   return (
-    <div className="h-full overflow-y-scroll flex flex-col items-center w-full">
+    <div className="h-full flex flex-col items-center w-full">
       {isImage && (
         <div className="flex flex-col justify-center items-center w-full h-full">
           <img
