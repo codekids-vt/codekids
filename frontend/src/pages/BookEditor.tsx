@@ -688,7 +688,6 @@ function BookImageEditor({
   setTempProps: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [activeTab, setActiveTab] = useState<"prompts" | "json">("prompts");
-  const [containerWidth, setContainerWidth] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -711,26 +710,6 @@ function BookImageEditor({
   useEffect(() => {
     setTempProps(JSON.stringify(page.props, null, 2));
   }, [page.props, setTempProps]);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      const updateWidth = () => {
-        const width = containerRef.current?.offsetWidth;
-        setContainerWidth(width || null);
-      };
-
-      updateWidth();
-      window.addEventListener("resize", updateWidth);
-      return () => window.removeEventListener("resize", updateWidth);
-    }
-  }, [activeTab, tempProps]);
-
-  let error = false;
-  try {
-    JSON.parse(tempProps);
-  } catch (e) {
-    error = true;
-  }
 
   return (
     <div className="flex flex-col h-full w-full min-w-0 max-w-full overflow-hidden">
@@ -917,39 +896,11 @@ function PageEditor({
   const [tempProps, setTempProps] = useState(
     JSON.stringify(page.props, null, 2),
   );
-  const [editorHeight, setEditorHeight] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     setTempImage(page.image);
     setTempProps(JSON.stringify(page.props, null, 2));
   }, [page]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (isDragging) {
-        const windowHeight = window.innerHeight;
-        const mousePositionFromTop = e.clientY;
-        const newHeightVh = (mousePositionFromTop / windowHeight) * 100;
-        const clampedHeight = Math.max(50, newHeightVh);
-        setEditorHeight(clampedHeight);
-      }
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
-
-    if (isDragging) {
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
-    }
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [isDragging]);
 
   function setContent(content: string[]) {
     setPage({ ...page, content: content });
@@ -957,8 +908,6 @@ function PageEditor({
 
   const middleSectionClass = "w-7/12";
   const activityEditorClass = "flex-1";
-  const borderHeight = editorHeight + 1;
-  const bookImageTop = editorHeight + 10;
 
   // Scale mapping based on image type
   const getScaleForImageType = (imageType: string): number => {
