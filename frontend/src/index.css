@@ -112,6 +112,17 @@ pre {
   border-radius: 7px;
 }
 
+/* Book editor middle adjuster */
+.gutter {
+  background-color: #e5e7eb;
+  cursor: col-resize;
+}
+
+.gutter-horizontal {
+  height: 100%;
+  width: 10px;
+}
+
 ::-webkit-scrollbar-corner {
   background: rgba(0, 0, 0, 0.5);
 }
