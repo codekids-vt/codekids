@@ -8,6 +8,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { BookPreview } from "../components/ActivityBookList";
 import Editor from "@monaco-editor/react";
 import { useTheme } from "../context/ThemeContext";
+import { ImageUploadSection } from "../components/ImageUploadSection";
 
 interface PropsFormProps {
   tempProps: string;
@@ -725,15 +726,11 @@ function BookImageEditor({
       {/* Content area - Takes remaining space */}
       <div className="flex-1 flex flex-col min-h-0 px-2 pb-2">
         {page.image.includes("/") || page.image === "Image" ? (
-          <div className="flex flex-col w-full min-w-0">
-            <div>image url or path:</div>
-            <input
-              className="w-full h-15 border-2 p-2 rounded-xl border-primary-green focus:outline-none min-w-0"
-              value={tempImage}
-              onChange={(e) => setTempImage(e.target.value)}
-            />
-          </div>
-        ) : (
+        <ImageUploadSection 
+          tempImage={tempImage} 
+          setTempImage={setTempImage} 
+        />
+      ) : (
           <>
             {/* Tab Navigation - Fixed */}
             <div className="flex-shrink-0 flex space-x-4 border-b-2 mb-2">
