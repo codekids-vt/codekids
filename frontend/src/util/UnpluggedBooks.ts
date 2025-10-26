@@ -15,7 +15,7 @@ export const unpluggedBooks = [
     readyForPublish: false,
     tags: [],
     title: "Math Input/Output Activity",
-    link: "math_io_pipeline_functions.pdf",
+    link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/math_io_pipeline_functions.pdf",
   },
   {
     author: "Thomas",
@@ -33,7 +33,7 @@ export const unpluggedBooks = [
     readyForPublish: false,
     tags: [],
     title: "Maze Solver Game",
-    link: "maze_solver.pdf",
+    link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/maze_solver.pdf",
   },
   {
     author: "Thomas",
@@ -50,8 +50,8 @@ export const unpluggedBooks = [
     published: true,
     readyForPublish: false,
     tags: [],
-    title: "Card Game",
-    link: "CardGames.pdf",
+    title: "Card Games",
+    link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/CardGames.pdf",
   },
   {
     author: "Zoe Hite",
@@ -69,7 +69,7 @@ export const unpluggedBooks = [
     readyForPublish: false,
     tags: [],
     title: "Grid Puzzle",
-    link: "GridPuzzleAlgorithms.pdf",
+    link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/GridPuzzleAlgorithms.pdf",
   },
   {
     author: "Vee",
@@ -87,7 +87,7 @@ export const unpluggedBooks = [
     readyForPublish: false,
     tags: [],
     title: "Reinforcement Learning with Skittles",
-    link: "Reinforcement_Learning_With_Skittles.pdf",
+    link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/Reinforcement_Learning_With_Skittles.pdf",
   },
   {
     author: "Norah",
@@ -106,5 +106,23 @@ export const unpluggedBooks = [
     tags: [],
     title: "Parallelization",
     link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/Parallelization_Activity.pdf",
+  },
+  {
+    author: "Norah",
+    blurb: "Learn about LLMs using recipes!",
+    bookCover: "/color_6.png",
+    category: "UNPLUGGED",
+    courses: [],
+    coverImage:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/LLMs_Lesson_Icon.png",
+    id: 9999993,
+    owner: null,
+    ownerId: 16,
+    pages: [],
+    published: true,
+    readyForPublish: false,
+    tags: [],
+    title: "Recipe for LLMs",
+    link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/LLMs_Lesson_Plan.pdf",
   },
 ];
