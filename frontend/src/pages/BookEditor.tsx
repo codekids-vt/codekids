@@ -727,11 +727,11 @@ function BookImageEditor({
       {/* Content area - Takes remaining space */}
       <div className="flex-1 flex flex-col min-h-0 px-2 pb-2">
         {page.image.includes("/") || page.image === "Image" ? (
-        <ImageUploadSection 
-          tempImage={tempImage} 
-          setTempImage={setTempImage} 
-        />
-      ) : (
+          <ImageUploadSection
+            tempImage={tempImage}
+            setTempImage={setTempImage}
+          />
+        ) : (
           <>
             {/* Tab Navigation - Fixed */}
             <div className="flex-shrink-0 flex space-x-4 border-b-2 mb-2">
