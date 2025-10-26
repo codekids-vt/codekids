@@ -21,7 +21,7 @@ client = Minio(
 )
 
 # Allowed image formats
-ALLOWED_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'}
+ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"}
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
 
 
@@ -30,32 +30,36 @@ def validate_image(contents: bytes, filename: str) -> tuple[bool, str]:
     # Check file extension
     extension = Path(filename).suffix.lower()
     if extension not in ALLOWED_EXTENSIONS:
-        return False, f"File type not allowed. Allowed types: {', '.join(ALLOWED_EXTENSIONS)}"
+        return (
+            False,
+            f"File type not allowed. Allowed types: {', '.join(ALLOWED_EXTENSIONS)}",
+        )
 
     # Check file size
     if len(contents) > MAX_FILE_SIZE:
         return False, f"File size exceeds {MAX_FILE_SIZE / (1024*1024)}MB limit"
 
     # Verify file content matches extension (for common formats)
-    if extension != '.svg':  # SVG can't be validated with imghdr
+    if extension != ".svg":  # SVG can't be validated with imghdr
         image_type = imghdr.what(None, contents)
         if image_type is None:
             return False, "File content does not appear to be a valid image"
 
         # Map imghdr types to extensions
-        type_map = {'jpeg': ['.jpg', '.jpeg'],
-                    'png': ['.png'], 'gif': ['.gif']}
+        type_map = {"jpeg": [".jpg", ".jpeg"], "png": [".png"], "gif": [".gif"]}
         if image_type in type_map:
             if extension not in type_map[image_type]:
-                return False, f"File extension {extension} does not match content type {image_type}"
+                return (
+                    False,
+                    f"File extension {extension} does not match content type {image_type}",
+                )
 
     return True, ""
 
 
 @image_router.post("/images", tags=["images"])
 async def upload_image(
-    user: Annotated[User, Depends(get_user)],
-    image: UploadFile = File(...)
+    user: Annotated[User, Depends(get_user)], image: UploadFile = File(...)
 ) -> Image:
     try:
         # Read file contents
@@ -107,8 +111,7 @@ async def upload_image(
 
 @image_router.get("/image/{image_id}", tags=["images"])
 async def get_image(
-    image_id: int,
-    user: Annotated[User, Depends(get_user)]  # Require authentication
+    image_id: int, user: Annotated[User, Depends(get_user)]  # Require authentication
 ) -> Image:
     try:
         image = await db.image.find_unique(where={"id": image_id})
@@ -123,10 +126,7 @@ async def get_image(
 
 
 @image_router.delete("/image/{image_id}", tags=["images"])
-async def delete_image(
-    image_id: int,
-    user: Annotated[User, Depends(get_user)]
-) -> dict:
+async def delete_image(image_id: int, user: Annotated[User, Depends(get_user)]) -> dict:
     """Delete an image from both database and MinIO"""
     try:
         # Get image record
@@ -135,7 +135,7 @@ async def delete_image(
             raise HTTPException(status_code=404, detail="Image not found")
 
         # Extract filename from URL
-        filename = image.image_url.split('/')[-1]
+        filename = image.image_url.split("/")[-1]
         bucket_name = settings.MINIO_DEFAULT_BUCKET
 
         # Delete from MinIO
