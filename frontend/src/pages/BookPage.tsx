@@ -122,6 +122,312 @@ export type HintData = {
 };
 
 // HintsWindow component that shows hints.
+// export function HintsWindow({
+//   open,
+//   setOpen,
+//   allHints,
+//   currentHintIndex,
+//   updateCurrentHintIndex,
+//   page,
+//   showFullAnswer,
+//   setShowFullAnswer,
+// }: {
+//   open: boolean;
+//   setOpen: Dispatch<SetStateAction<boolean>>;
+//   allHints: HintData[]; // Now an array of hints
+//   currentHintIndex: number;
+//   updateCurrentHintIndex: (index: number) => void;
+//   page: Page;
+//   showFullAnswer: boolean;
+//   setShowFullAnswer: Dispatch<SetStateAction<boolean>>;
+// }) {
+//   if (!open) return null;
+
+//   const currentHint = allHints[currentHintIndex] || {
+//     statement: "Generating hints....",
+//   };
+
+//   return (
+//     <div className="fixed bottom-4 right-4 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl bg-white shadow-xl rounded-lg border border-gray-300 p-4">
+//       <div className="w-full">
+//         <div className="flex items-center justify-between border-b pb-3 mb-4">
+//           {/* Back button if showing full answer */}
+//           {showFullAnswer ? (
+//             <button
+//               onClick={() => setShowFullAnswer(false)}
+//               type="button"
+//               className="text-gray-600 hover:text-gray-800 flex items-center"
+//             >
+//               <svg
+//                 className="w-5 h-5 mr-2"
+//                 aria-hidden="true"
+//                 xmlns="http://www.w3.org/2000/svg"
+//                 fill="none"
+//                 viewBox="0 0 24 24"
+//                 stroke="currentColor"
+//                 strokeWidth="2"
+//               >
+//                 <path
+//                   strokeLinecap="round"
+//                   strokeLinejoin="round"
+//                   d="M15 19l-7-7 7-7"
+//                 />
+//               </svg>
+//               Back
+//             </button>
+//           ) : (
+//             <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">
+//               Hints
+//             </h3>
+//           )}
+
+//           {/* Close button */}
+//           <button
+//             onClick={() => {
+//               setOpen(false);
+//               setShowFullAnswer(false);
+//             }}
+//             type="button"
+//             className="text-gray-400 hover:text-gray-600"
+//           >
+//             <svg
+//               className="w-5 h-5"
+//               aria-hidden="true"
+//               xmlns="http://www.w3.org/2000/svg"
+//               fill="none"
+//               viewBox="0 0 14 14"
+//             >
+//               <path
+//                 stroke="currentColor"
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 strokeWidth="2"
+//                 d="M1 1l6 6m0 0l6 6M7 7l6-6M7 7l-6 6"
+//               />
+//             </svg>
+//             <span className="sr-only">Close</span>
+//           </button>
+//         </div>
+
+//         <div className="p-6 space-y-6">
+//           {!showFullAnswer ? (
+//             //  hints view
+//             <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
+//               <Reader text={currentHint.statement} />
+//             </div>
+//           ) : (
+//             // Full answer view
+//             <>
+//               <ul className="flex flex-col items-center">
+//                 <h3 className="text-xl font-medium mb-2">
+//                   The correct answer(s) is:
+//                 </h3>
+//                 {page.props?.ans &&
+//                   page.props?.ans.map((answer: string, index: number) => (
+//                     <li
+//                       className="inline-block font-semibold text-gray-900"
+//                       key={`answerTag-${index}`}
+//                     >
+//                       {answer}
+//                     </li>
+//                   ))}
+//               </ul>
+//               {page.props.helpImage && (
+//                 <img
+//                   src={page.props.helpImage}
+//                   alt="Help"
+//                   width={750}
+//                   height={250}
+//                   className="mt-4"
+//                 />
+//               )}
+//             </>
+//           )}
+//         </div>
+
+//         {/* Navigation Buttons */}
+//         <div className="relative min-h-[60px] border-t pt-4 flex justify-between items-center px-4">
+//           {/* Show Previous only if not at the first hint */}
+//           {currentHintIndex > 0 && !showFullAnswer && (
+//             <button
+//               onClick={() => updateCurrentHintIndex(currentHintIndex - 1)}
+//               type="button"
+//               className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
+//             >
+//               ← Previous
+//             </button>
+//           )}
+
+//           {currentHintIndex === 0 && <div className="w-24" />}
+
+//           {/* Show Next only if not in full answer */}
+//           {!showFullAnswer && (
+//             <button
+//               onClick={() => updateCurrentHintIndex(currentHintIndex + 1)}
+//               type="button"
+//               className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
+//             >
+//               Next →
+//             </button>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+// export function HintsWindow({
+//   open,
+//   setOpen,
+//   allHints,
+//   currentHintIndex,
+//   updateCurrentHintIndex,
+//   page,
+//   showFullAnswer,
+//   setShowFullAnswer,
+// }: {
+//   open: boolean;
+//   setOpen: Dispatch<SetStateAction<boolean>>;
+//   allHints: HintData[];
+//   currentHintIndex: number;
+//   updateCurrentHintIndex: (index: number) => void;
+//   page: Page;
+//   showFullAnswer: boolean;
+//   setShowFullAnswer: Dispatch<SetStateAction<boolean>>;
+// }) {
+//   if (!open) return null;
+
+//   const currentHint = allHints[currentHintIndex] || {
+//     statement: "Generating hints....",
+//   };
+
+//   return (
+//     <div
+//       className="
+//         fixed bottom-3 right-3 z-[9999]
+//         w-[60%] sm:w-[320px] md:w-[400px] lg:w-[460px]
+//         max-h-[55vh] sm:max-h-[60vh]
+//       "
+//     >
+//       <div className="bg-white shadow-2xl border border-gray-300 rounded-xl flex flex-col overflow-hidden h-full">
+//         {/* Header */}
+//         <div className="flex items-center justify-between border-b pb-2 px-3 pt-2">
+//           {showFullAnswer ? (
+//             <button
+//               onClick={() => setShowFullAnswer(false)}
+//               type="button"
+//               className="text-gray-600 hover:text-gray-800 flex items-center text-xs sm:text-sm"
+//             >
+//               <svg
+//                 className="w-4 h-4 mr-1"
+//                 xmlns="http://www.w3.org/2000/svg"
+//                 fill="none"
+//                 viewBox="0 0 24 24"
+//                 stroke="currentColor"
+//                 strokeWidth="2"
+//               >
+//                 <path
+//                   strokeLinecap="round"
+//                   strokeLinejoin="round"
+//                   d="M15 19l-7-7 7-7"
+//                 />
+//               </svg>
+//               Back
+//             </button>
+//           ) : (
+//             <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900">
+//               Hints
+//             </h3>
+//           )}
+
+//           {/* Close button (unchanged) */}
+//           <button
+//             onClick={() => {
+//               setOpen(false);
+//               setShowFullAnswer(false);
+//             }}
+//             type="button"
+//             className="text-gray-400 hover:text-gray-600"
+//           >
+//             <svg
+//               className="w-5 h-5"
+//               aria-hidden="true"
+//               xmlns="http://www.w3.org/2000/svg"
+//               fill="none"
+//               viewBox="0 0 14 14"
+//             >
+//               <path
+//                 stroke="currentColor"
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 strokeWidth="2"
+//                 d="M1 1l6 6m0 0l6 6M7 7l6-6M7 7l-6 6"
+//               />
+//             </svg>
+//             <span className="sr-only">Close</span>
+//           </button>
+//         </div>
+
+//         {/* Content */}
+//         <div className="flex-1 overflow-y-auto px-3 py-2 text-gray-800">
+//           {!showFullAnswer ? (
+//             <div className="text-xs sm:text-sm md:text-base leading-relaxed">
+//               <Reader text={currentHint.statement} />
+//             </div>
+//           ) : (
+//             <>
+//               <ul className="flex flex-col items-center">
+//                 <h3 className="text-sm sm:text-base font-medium mb-2">
+//                   The correct answer(s) is:
+//                 </h3>
+//                 {page.props?.ans &&
+//                   page.props?.ans.map((answer: string, index: number) => (
+//                     <li
+//                       className="inline-block font-semibold text-gray-900 text-xs sm:text-sm"
+//                       key={`answerTag-${index}`}
+//                     >
+//                       {answer}
+//                     </li>
+//                   ))}
+//               </ul>
+//               {page.props.helpImage && (
+//                 <img
+//                   src={page.props.helpImage}
+//                   alt="Help"
+//                   className="rounded-md w-full h-auto max-h-[35vh] object-contain mt-2"
+//                 />
+//               )}
+//             </>
+//           )}
+//         </div>
+
+//         {/* Navigation Buttons (kept exactly as before) */}
+//         <div className="border-t pt-2 flex justify-between items-center px-3 pb-2">
+//           {currentHintIndex > 0 && !showFullAnswer && (
+//             <button
+//               onClick={() => updateCurrentHintIndex(currentHintIndex - 1)}
+//               type="button"
+//               className="bg-primary-green hover:bg-hover-green text-white font-bold px-3 py-1 rounded text-xs sm:text-sm"
+//             >
+//               ← Previous
+//             </button>
+//           )}
+
+//           {currentHintIndex === 0 && <div className="w-16" />}
+
+//           {!showFullAnswer && (
+//             <button
+//               onClick={() => updateCurrentHintIndex(currentHintIndex + 1)}
+//               type="button"
+//               className="bg-primary-green hover:bg-hover-green text-white font-bold px-3 py-1 rounded text-xs sm:text-sm"
+//             >
+//               Next →
+//             </button>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 export function HintsWindow({
   open,
   setOpen,
@@ -134,7 +440,7 @@ export function HintsWindow({
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  allHints: HintData[]; // Now an array of hints
+  allHints: HintData[];
   currentHintIndex: number;
   updateCurrentHintIndex: (index: number) => void;
   page: Page;
@@ -144,23 +450,31 @@ export function HintsWindow({
   if (!open) return null;
 
   const currentHint = allHints[currentHintIndex] || {
-    statement: "Generating hints....",
+    statement: "Generating hints...",
   };
 
   return (
-    <div className="fixed bottom-4 right-4 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl bg-white shadow-xl rounded-lg border border-gray-300 p-4">
-      <div className="w-full">
-        <div className="flex items-center justify-between border-b pb-3 mb-4">
-          {/* Back button if showing full answer */}
+   <div
+  className="
+    fixed inset-x-4 bottom-4 sm:inset-auto sm:bottom-3 sm:right-3
+    z-[9999]
+    w-auto sm:w-[320px] md:w-[400px] lg:w-[460px]
+    max-w-[90vw] max-h-[75vh]
+    flex justify-center sm:justify-end
+  "
+>
+      <div className="bg-white shadow-2xl border border-gray-300 rounded-xl flex flex-col h-full overflow-hidden max-h-[75vh] sm:max-h-[70vh]">
+
+        {/* Header */}
+        <div className="flex items-center justify-between border-b pb-2 px-3 pt-2 bg-gray-50">
           {showFullAnswer ? (
             <button
               onClick={() => setShowFullAnswer(false)}
               type="button"
-              className="text-gray-600 hover:text-gray-800 flex items-center"
+              className="text-gray-600 hover:text-gray-800 flex items-center text-xs sm:text-sm"
             >
               <svg
-                className="w-5 h-5 mr-2"
-                aria-hidden="true"
+                className="w-4 h-4 mr-1"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -176,12 +490,12 @@ export function HintsWindow({
               Back
             </button>
           ) : (
-            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">
+            <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900">
               Hints
             </h3>
           )}
 
-          {/* Close button */}
+          {/* Close Button (unchanged) */}
           <button
             onClick={() => {
               setOpen(false);
@@ -209,63 +523,76 @@ export function HintsWindow({
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        {/* Scrollable Body */}
+      <div
+  className={`
+    flex-1 overflow-y-auto text-gray-800
+    scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent
+    ${showFullAnswer
+      ? "px-3 py-3"               // normal padding for full answer
+      : "px-4 py-6 sm:py-8"}      // more top/bottom padding for hints
+  `}
+>
           {!showFullAnswer ? (
-            //  hints view
-            <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
+            <div className="text-xs sm:text-sm md:text-base leading-relaxed">
               <Reader text={currentHint.statement} />
             </div>
           ) : (
-            // Full answer view
             <>
               <ul className="flex flex-col items-center">
-                <h3 className="text-xl font-medium mb-2">
+                <h3 className="text-sm sm:text-base font-medium mb-2">
                   The correct answer(s) is:
                 </h3>
                 {page.props?.ans &&
                   page.props?.ans.map((answer: string, index: number) => (
                     <li
-                      className="inline-block font-semibold text-gray-900"
+                      className="inline-block font-semibold text-gray-900 text-xs sm:text-sm"
                       key={`answerTag-${index}`}
                     >
                       {answer}
                     </li>
                   ))}
               </ul>
+
+              {/* Responsive, contained image */}
               {page.props.helpImage && (
-                <img
-                  src={page.props.helpImage}
-                  alt="Help"
-                  width={750}
-                  height={250}
-                  className="mt-4"
-                />
+                <div className="flex justify-center mt-3">
+                  <img
+                    src={page.props.helpImage}
+                    alt="Help"
+                    className="
+                      rounded-md
+                      w-full sm:w-[90%]
+                      h-auto
+                      max-h-[40vh]
+                      object-contain
+                    "
+                  />
+                </div>
               )}
             </>
           )}
         </div>
 
-        {/* Navigation Buttons */}
-        <div className="relative min-h-[60px] border-t pt-4 flex justify-between items-center px-4">
-          {/* Show Previous only if not at the first hint */}
+        {/* Footer (kept same as before) */}
+        <div className="border-t pt-2 flex justify-between items-center px-3 pb-2 bg-gray-50">
           {currentHintIndex > 0 && !showFullAnswer && (
             <button
               onClick={() => updateCurrentHintIndex(currentHintIndex - 1)}
               type="button"
-              className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
+              className="bg-primary-green hover:bg-hover-green text-white font-bold px-3 py-1 rounded text-xs sm:text-sm"
             >
               ← Previous
             </button>
           )}
 
-          {currentHintIndex === 0 && <div className="w-24" />}
+          {currentHintIndex === 0 && <div className="w-16" />}
 
-          {/* Show Next only if not in full answer */}
           {!showFullAnswer && (
             <button
               onClick={() => updateCurrentHintIndex(currentHintIndex + 1)}
               type="button"
-              className="bg-primary-green hover:bg-hover-green text-white font-bold px-4 py-2 rounded text-sm"
+              className="bg-primary-green hover:bg-hover-green text-white font-bold px-3 py-1 rounded text-xs sm:text-sm"
             >
               Next →
             </button>
@@ -275,6 +602,7 @@ export function HintsWindow({
     </div>
   );
 }
+
 
 export default function BookPage() {
   let { idString, pageNumParam } = useParams();
