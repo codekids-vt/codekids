@@ -124,10 +124,14 @@ export default function ActivityBookList({
 
 export function BookPreviewUnplugged({ BookData }: { BookData: Array<any> }) {
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap gap-4 justify-center">
       {BookData.map((book, index) => (
         <div key={index} className="h-[325px] w-[275px] relative">
-          <a href={`/${book.link}`}>
+          <a
+            href={`${book.link.includes("http") ? book.link : `/${book.link}`}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             <div className="h-[325px] w-[275px] hover:shadow-2xl rounded-2xl hover:-translate-y-1">
               <img
                 src={book.bookCover ? book.bookCover : "/color_2.png"}

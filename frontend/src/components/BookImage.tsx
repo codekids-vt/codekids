@@ -45,6 +45,8 @@ import { Comparison } from "./Comparison";
 import { BookReview } from "./BookReview";
 import { LinkableImage } from "./ImageWithRedirectButton";
 import { YoutubeEmbed } from "./YoutubeEmbed";
+import { WalkThroughCode } from "./WalkThroughCode";
+import { ImagesAndText } from "./ImagesAndText";
 
 export function BookImage({
   image,
@@ -58,7 +60,7 @@ export function BookImage({
   const isImage = image && image.includes(".");
 
   return (
-    <div className="h-full overflow-y-scroll flex flex-col items-center w-full">
+    <div className="h-full flex flex-col overflow-y-auto items-center w-full">
       {isImage && (
         <div className="flex flex-col justify-center items-center w-full h-full">
           <img
@@ -198,6 +200,12 @@ export function BookImage({
       )}
       {image === "YoutubeEmbed" && (
         <YoutubeEmbed props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "WalkThroughCode" && (
+        <WalkThroughCode props={page?.props} setAllowNext={setAllowNext} />
+      )}
+      {image === "ImagesAndText" && (
+        <ImagesAndText props={page?.props} setAllowNext={setAllowNext} />
       )}
     </div>
   );

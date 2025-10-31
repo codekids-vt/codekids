@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Book, BookCategory, BooksService, Page, PagesService } from "../api";
@@ -8,6 +8,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { BookPreview } from "../components/ActivityBookList";
 import Editor from "@monaco-editor/react";
 import { useTheme } from "../context/ThemeContext";
+import Split from "react-split";
 
 interface PropsFormProps {
   tempProps: string;
@@ -170,46 +171,148 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
   };
 
   return (
-    <div className="p-2">
-      <form className="flex flex-col gap-2">
+    <div className="p-2 w-full max-w-full overflow-hidden min-w-0">
+      <form className="flex flex-col gap-2 w-full max-w-full min-w-0">
         {Object.keys(propsObject).map((key) => {
           if (!objectArrays.includes(key) && !primitiveArrays.includes(key)) {
             return (
-              <div key={key} className="flex flex-col">
-                <label className="font-bold" htmlFor={key}>
+              <div
+                key={key}
+                className="flex flex-col w-full max-w-full min-w-0"
+              >
+                <label className="font-bold text-lg truncate" htmlFor={key}>
                   {key}
                 </label>
-                <input
-                  id={key}
-                  type="text"
-                  value={propsObject[key]}
-                  onChange={(e) => handleInputChange(key, e.target.value)}
-                  className="border border-gray-300 rounded p-1"
-                />
+                {key === "code" ? (
+                  <textarea
+                    id={key}
+                    value={propsObject[key]}
+                    onChange={(e) => handleInputChange(key, e.target.value)}
+                    onKeyDown={(e) => {
+                      // Check if the Tab key is pressed
+                      if (e.key === "Tab") {
+                        e.preventDefault(); // Prevent default tab behavior (focus switch)
+
+                        // Type assertion to inform TypeScript that e.target is a HTMLTextAreaElement
+                        const textarea = e.target as HTMLTextAreaElement;
+                        const { selectionStart, selectionEnd, value } =
+                          textarea;
+                        const newValue =
+                          value.substring(0, selectionStart) +
+                          "    " +
+                          value.substring(selectionEnd);
+
+                        handleInputChange(key, newValue); // Update the value with the added spaces
+
+                        // Move the cursor to the correct position after the inserted spaces
+                        setTimeout(() => {
+                          textarea.selectionStart = textarea.selectionEnd =
+                            selectionStart + 4; // Move cursor after inserted spaces
+                        }, 0);
+                      }
+                    }}
+                    rows={10}
+                    className="border border-gray-300 rounded p-1 font-mono whitespace-pre w-full max-w-full min-w-0"
+                    style={{ resize: "vertical" }}
+                  />
+                ) : (
+                  <input
+                    id={key}
+                    type="text"
+                    value={propsObject[key]}
+                    onChange={(e) => handleInputChange(key, e.target.value)}
+                    className="border border-gray-300 rounded p-1 w-full max-w-full min-w-0"
+                  />
+                )}
               </div>
             );
           }
-          return null; // Ensure every iteration returns a value
+          return null;
         })}
 
+        {/* Object Arrays Section with width constraints */}
         {objectArrays.map((arrayKey) => (
-          <div key={arrayKey} className="mt-4">
-            <h3 className="font-bold">{arrayKey}</h3>
+          <div key={arrayKey} className="mt-4 w-full max-w-full min-w-0">
+            <h3 className="font-bold text-lg truncate">{arrayKey}</h3>
             {(objectArrayData[arrayKey] || []).map((item, index) => (
-              <div key={index} className="flex gap-4 mb-2">
+              <div
+                key={index}
+                className="flex flex-wrap gap-2 mb-2 w-full max-w-full"
+              >
                 {Object.keys(item).map((field) => {
+                  const value = item[field];
+
+                  if (
+                    typeof value === "object" &&
+                    value !== null &&
+                    !Array.isArray(value)
+                  ) {
+                    // Nested object with width constraints
+                    return (
+                      <div
+                        key={field}
+                        className="flex flex-col border p-2 rounded mb-2 min-w-0 flex-1"
+                      >
+                        <h4 className="font-bold text-lg truncate">{field}</h4>
+                        {Object.keys(value).map((subField) => (
+                          <div key={subField} className="flex flex-col min-w-0">
+                            <label
+                              className="font-bold text-lg truncate"
+                              htmlFor={`${field}-${subField}-${index}`}
+                            >
+                              {subField}
+                            </label>
+                            <input
+                              id={`${field}-${subField}-${index}`}
+                              type="text"
+                              value={value[subField]}
+                              onChange={(e) => {
+                                const updatedArray = [
+                                  ...objectArrayData[arrayKey],
+                                ];
+                                updatedArray[index] = {
+                                  ...updatedArray[index],
+                                  [field]: {
+                                    ...updatedArray[index][field],
+                                    [subField]: e.target.value,
+                                  },
+                                };
+                                setObjectArrayData({
+                                  ...objectArrayData,
+                                  [arrayKey]: updatedArray,
+                                });
+                                setTempProps(
+                                  JSON.stringify(
+                                    {
+                                      ...propsObject,
+                                      [arrayKey]: updatedArray,
+                                    },
+                                    null,
+                                    2,
+                                  ),
+                                );
+                              }}
+                              className="border border-gray-300 rounded p-1 w-full max-w-full min-w-0"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  }
+
+                  // Primitive fields with width constraints
                   return (
-                    <div key={field} className="flex flex-col">
+                    <div key={field} className="flex flex-col min-w-0 flex-1">
                       <label
-                        className="font-bold"
+                        className="font-bold text-lg truncate"
                         htmlFor={`${field}-${index}`}
                       >
                         {field}
                       </label>
-                      {typeof item[field] === "boolean" ? (
+                      {typeof value === "boolean" ? (
                         <select
                           id={`${field}-${index}`}
-                          value={item[field].toString()}
+                          value={value.toString()}
                           onChange={(e) =>
                             handleOptionChange(
                               arrayKey,
@@ -218,7 +321,7 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                               e.target.value,
                             )
                           }
-                          className="border border-gray-300 rounded p-1"
+                          className="border border-gray-300 rounded p-1 w-full max-w-full min-w-0"
                         >
                           <option value="true">True</option>
                           <option value="false">False</option>
@@ -227,7 +330,7 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                         <input
                           id={`${field}-${index}`}
                           type="text"
-                          value={item[field]}
+                          value={value}
                           onChange={(e) =>
                             handleOptionChange(
                               arrayKey,
@@ -236,7 +339,7 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                               e.target.value,
                             )
                           }
-                          className="border border-gray-300 rounded p-1"
+                          className="border border-gray-300 rounded p-1 w-full max-w-full min-w-0"
                         />
                       )}
                     </div>
@@ -246,12 +349,12 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                 <button
                   type="button"
                   onClick={() => removeItem(arrayKey, index)}
-                  className="bg-red-500 text-white p-1 rounded mt-2 hover:bg-red-600 focus:outline-none"
+                  className="bg-red-500 text-white p-1 rounded hover:bg-red-600 focus:outline-none flex-shrink-0"
                   style={{
                     alignSelf: "flex-start",
                     marginTop: "27px",
                     padding: "5px 10px",
-                    fontSize: "0.875rem",
+                    fontSize: "0.75rem",
                     width: "auto",
                   }}
                 >
@@ -263,7 +366,7 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
             <button
               type="button"
               onClick={() => addNewItem(arrayKey)}
-              className="bg-blue-500 text-white p-2 rounded mt-2"
+              className="bg-blue-500 text-white p-2 rounded mt-2 text-lg"
             >
               Add Item
             </button>
@@ -332,7 +435,7 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
     </div>
   );
 }
-
+/**Left side of the book editor interface */
 function PageNavigator({
   pages,
   pageNum,
@@ -341,6 +444,8 @@ function PageNavigator({
   deletePage,
   swapPages,
   bookId,
+  isCollapsed,
+  setIsCollapsed,
 }: {
   pages: Page[];
   pageNum: number | undefined;
@@ -349,74 +454,143 @@ function PageNavigator({
   deletePage: (pageId: number) => void;
   swapPages: (pageNum1: number, pageNum2: number) => void;
   bookId: number;
+  isCollapsed: boolean;
+  setIsCollapsed: (collapsed: boolean) => void;
 }) {
   return (
-    <div className="min-h-full max-h-full overflow-y-scroll w-1/6 bg-gray-200">
-      <div className="flex flex-col py-2 gap-2 items-center">
-        <a
-          key={0}
-          className="w-9/12 h-12 border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:bg-primary-green hover:text-white"
-          href={`/book/${bookId}/1`}
-        >
-          Preview Book
-        </a>
-        <button
-          key={0}
-          className="w-9/12 h-12 border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:bg-primary-green hover:text-white"
-          onClick={() => setPageNum(0)}
-        >
-          Book Details
-        </button>
-        {pages.map((page, i) => {
-          const isSelected = page.pageNumber === pageNum;
-          const selectedTw = "border-primary-green bg-primary-green text-white";
-          const unselectedTw = "border-gray-300";
-          return (
-            <div
-              className="flex flex-row w-9/12 h-12 items-center gap-1"
-              key={i}
-            >
-              <button
+    <div
+      className={`transition-all duration-300 ease-in-out ${isCollapsed ? "w-12" : "w-1/12"} h-full flex flex-col relative overflow-y-auto`}
+    >
+      {!isCollapsed && (
+        <div className="flex flex-col py-2 gap-2 items-center">
+          {/* Collapse button at the top when expanded */}
+          <button
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="w-9/12 h-10 bg-primary-green text-white rounded-full flex items-center justify-center hover:bg-green-600"
+          >
+            ←
+          </button>
+
+          <a
+            className="w-9/12 h-12 border border-primary-green flex items-center justify-center rounded-xl text-lg hover:bg-primary-green hover:text-white text-center"
+            href={`/book/${bookId}/1`}
+          >
+            Preview Book
+          </a>
+          <button
+            className="w-9/12 h-12 border border-primary-green flex items-center justify-center rounded-xl text-lg hover:bg-primary-green hover:text-white text-center"
+            onClick={() => setPageNum(0)}
+          >
+            Book Details
+          </button>
+          {pages.map((page, i) => {
+            const isSelected = page.pageNumber === pageNum;
+            const selectedTw =
+              "border-primary-green bg-primary-green text-white";
+            const unselectedTw = "border-gray-300";
+            return (
+              <div
+                className="flex flex-row w-9/12 h-12 items-center gap-1"
                 key={i}
-                className={`w-full h-full border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:shadow-md ${isSelected ? selectedTw : unselectedTw}`}
+              >
+                <button
+                  className={`w-full h-full border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:shadow-md ${isSelected ? selectedTw : unselectedTw}`}
+                  onClick={() => setPageNum(page.pageNumber)}
+                >
+                  {page.pageNumber}
+                </button>
+                <button
+                  className="flex flex-col items-center justify-center w-8 h-8 bg-red-400 text-white rounded-full"
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        "Are you sure you wish to delete this page? This action cannot be undone.",
+                      )
+                    ) {
+                      deletePage(page.id);
+                    }
+                  }}
+                >
+                  X
+                </button>
+                <button
+                  onClick={() =>
+                    swapPages(page.pageNumber, page.pageNumber - 1)
+                  }
+                >
+                  ↑
+                </button>
+                <button
+                  onClick={() =>
+                    swapPages(page.pageNumber, page.pageNumber + 1)
+                  }
+                >
+                  ↓
+                </button>
+              </div>
+            );
+          })}
+          <button
+            className="w-9/12 h-12 border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:bg-primary-green hover:text-white"
+            onClick={addPage}
+          >
+            +
+          </button>
+        </div>
+      )}
+
+      {/* Collapse button in top-right corner when collapsed */}
+      {isCollapsed && (
+        <>
+          <button
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="absolute top-2 right-2 w-8 h-8 bg-primary-green text-white rounded-full flex items-center justify-center hover:bg-green-600 z-10"
+          >
+            →
+          </button>
+
+          <div className="flex flex-col items-center py-12 gap-2">
+            <a
+              href={`/book/${bookId}/1`}
+              className="w-8 h-8 rounded-full text-sm flex items-center justify-center bg-gray-200 hover:bg-gray-300"
+              title="Preview Book"
+            >
+              👁️
+            </a>
+            <button
+              className="w-8 h-8 rounded-full text-sm flex items-center justify-center bg-gray-200 hover:bg-gray-300"
+              onClick={() => setPageNum(0)}
+              title="Book Details"
+            >
+              📖
+            </button>
+            {pages.slice(0, 8).map((page) => (
+              <button
+                key={page.id}
+                className={`w-8 h-8 rounded-full text-sm flex items-center justify-center ${
+                  page.pageNumber === pageNum
+                    ? "bg-primary-green text-white"
+                    : "bg-gray-200 hover:bg-gray-300"
+                }`}
                 onClick={() => setPageNum(page.pageNumber)}
+                title={`Page ${page.pageNumber}`}
               >
                 {page.pageNumber}
               </button>
-              <button
-                className="flex flex-col items-center justify-center w-8 h-8 bg-red-400 text-white rounded-full"
-                onClick={() => {
-                  if (
-                    window.confirm(
-                      "Are you sure you wish to delete this page? This action cannot be undone.",
-                    )
-                  ) {
-                    deletePage(page.id);
-                  }
-                }}
-              >
-                X
-              </button>
-              <button
-                onClick={() => swapPages(page.pageNumber, page.pageNumber - 1)}
-              >
-                ↑
-              </button>
-              <button
-                onClick={() => swapPages(page.pageNumber, page.pageNumber + 1)}
-              >
-                ↓
-              </button>
-            </div>
-          );
-        })}
-        <button
-          className="w-9/12 h-12 border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:bg-primary-green hover:text-white"
-          onClick={addPage}
-        >
-          +
-        </button>
-      </div>
+            ))}
+            {pages.length > 8 && (
+              <div className="text-xs text-gray-500">+{pages.length - 8}</div>
+            )}
+            <button
+              className="w-8 h-8 rounded-full text-lg flex items-center justify-center bg-primary-green text-white hover:bg-green-600"
+              onClick={addPage}
+              title="Add Page"
+            >
+              +
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -469,7 +643,7 @@ function BookContentEditor({
       {tempContents.map((item, index) => (
         <div key={index} className="flex items-center gap-1 w-full">
           <textarea
-            className="border border-gray-300 rounded-xl p-1 w-full text-sm h-32"
+            className="border border-gray-300 rounded-xl p-1 w-full text-lg h-32"
             value={item}
             onChange={(e) => {
               const newTempContents = [...tempContents];
@@ -498,6 +672,7 @@ function BookContentEditor({
   );
 }
 
+//Editor with Prompts and JSON
 function BookImageEditor({
   page,
   setPage,
@@ -514,8 +689,8 @@ function BookImageEditor({
   setTempProps: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [activeTab, setActiveTab] = useState<"prompts" | "json">("prompts");
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Update the page every 3 seconds if there has been a change
   useEffect(() => {
     const interval = setInterval(() => {
       try {
@@ -533,79 +708,93 @@ function BookImageEditor({
     return () => clearInterval(interval);
   }, [tempImage, tempProps, page, setPage]);
 
-  // Make sure tempProps stays in sync with page.props when page changes
   useEffect(() => {
     setTempProps(JSON.stringify(page.props, null, 2));
   }, [page.props, setTempProps]);
 
-  let error = false;
-  try {
-    JSON.parse(tempProps);
-  } catch (e) {
-    error = true;
-  }
-  console.log("error", error);
-
   return (
-    <div className="flex flex-col w-full p-2 h-full">
-      <ImageTypeEditor
-        tempImageType={tempImage}
-        setTempImageType={setTempImage}
-        setTempProps={setTempProps}
-      />
+    <div className="flex flex-col h-full w-full min-w-0 max-w-full overflow-hidden">
+      {/* Image Type Selector - Fixed at top */}
+      <div className="flex-shrink-0 p-2">
+        <ImageTypeEditor
+          tempImageType={tempImage}
+          setTempImageType={setTempImage}
+          setTempProps={setTempProps}
+        />
+      </div>
 
-      {page.image.includes("/") || page.image === "Image" ? (
-        <div className="flex flex-col w-full">
-          <div>image url or path:</div>
-          <input
-            className="w-10/12 h-15 border-2 p-2 rounded-xl border-primary-green focus:outline-none"
-            value={tempImage}
-            onChange={(e) => setTempImage(e.target.value)}
-          />
-        </div>
-      ) : (
-        <>
-          {/* Tab Navigation */}
-          <div className="flex space-x-4 border-b-2 mb-2">
-            <button
-              className={`p-2 ${
-                activeTab === "prompts"
-                  ? "border-b-4 border-primary-green font-bold"
-                  : ""
-              }`}
-              onClick={() => setActiveTab("prompts")}
-            >
-              Prompts
-            </button>
-            <button
-              className={`p-2 ${
-                activeTab === "json"
-                  ? "border-b-4 border-primary-green font-bold"
-                  : ""
-              }`}
-              onClick={() => setActiveTab("json")}
-            >
-              JSON
-            </button>
-          </div>
-
-          {/* Render Based on Active Tab */}
-          {activeTab === "prompts" ? (
-            <div className="w-full max-h-1/2 shadow-2xl rounded-xl">
-              <PropsForm tempProps={tempProps} setTempProps={setTempProps} />
-            </div>
-          ) : (
-            <Editor
-              height="100%"
-              value={tempProps}
-              onChange={(value) => value && setTempProps(value)}
-              className="w-full max-h-1/2 shadow-2xl rounded-xl"
-              theme="vs-dark"
-              language="json"
+      {/* Content area - Takes remaining space */}
+      <div className="flex-1 flex flex-col min-h-0 px-2 pb-2">
+        {page.image.includes("/") || page.image === "Image" ? (
+          <div className="flex flex-col w-full min-w-0">
+            <div>image url or path:</div>
+            <input
+              className="w-full h-15 border-2 p-2 rounded-xl border-primary-green focus:outline-none min-w-0"
+              value={tempImage}
+              onChange={(e) => setTempImage(e.target.value)}
             />
-          )}
-        </>
-      )}
+          </div>
+        ) : (
+          <>
+            {/* Tab Navigation - Fixed */}
+            <div className="flex-shrink-0 flex space-x-4 border-b-2 mb-2">
+              <button
+                className={`p-2 ${
+                  activeTab === "prompts"
+                    ? "border-b-4 border-primary-green font-bold"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("prompts")}
+              >
+                Prompts
+              </button>
+              <button
+                className={`p-2 ${
+                  activeTab === "json"
+                    ? "border-b-4 border-primary-green font-bold"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("json")}
+              >
+                JSON
+              </button>
+            </div>
+
+            {/* Scrollable content area */}
+            <div
+              ref={containerRef}
+              className="flex-1 rounded-xl overflow-hidden w-full min-w-0 min-h-0 bg-white"
+            >
+              <div className="w-full h-full min-w-0 bg-white">
+                {activeTab === "prompts" ? (
+                  <div className="w-full h-full overflow-auto min-w-0">
+                    <PropsForm
+                      tempProps={tempProps}
+                      setTempProps={setTempProps}
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full h-full min-w-0">
+                    <Editor
+                      value={tempProps}
+                      onChange={(value) => value && setTempProps(value)}
+                      className="w-full h-full"
+                      theme="vs-dark"
+                      language="json"
+                      options={{
+                        automaticLayout: true,
+                        scrollBeyondLastLine: false,
+                        minimap: { enabled: false },
+                        wordWrap: "on",
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
@@ -619,6 +808,49 @@ function ImageTypeEditor({
   setTempImageType: (tempImageType: string) => void;
   setTempProps: (tempProps: string) => void;
 }) {
+  // Define the legacy tools that should be hidden for new pages
+  const legacyTools = new Set([
+    "LifeOfMoose",
+    "MooseMilestone",
+    "MooseDr",
+    "MooseChallengingYear",
+    "MooseThankYou",
+    "DragAndDrop",
+    "HokieBirdMazeActivity",
+    "HokieBirdActivity",
+    "HokieBirdIfConditionActivity",
+    "tutor",
+    "CostarColoring",
+    "Computer_IO",
+    "DataTypesIntro",
+    "IntsAndBools",
+    "VariableAssignment",
+    "Strings",
+    "Sequencing",
+    "IfStatementIntro",
+    "ConditionalOperators",
+    "LogicalOperators",
+    "IfStatements",
+    "BuyDonut",
+    "BuyMultiple",
+    "MultipleConditions",
+    "ChangingCondition",
+    "FoodTruckActivity",
+    "ClothingActivity",
+    "BookRushHour",
+    "CodeStepFlowchart",
+  ]);
+
+  // Filter options: always show non-legacy tools.
+  // For legacy tools, only show them if the current tempImageType is already a legacy tool.
+  const availableOptions = Object.keys(editorDefaults).filter((tool) => {
+    if (legacyTools.has(tool)) {
+      // Only include the legacy tool if it's already set on the current page.
+      return tool === tempImageType;
+    }
+    return true;
+  });
+
   return (
     <div className="flex flex-col w-full">
       <select
@@ -642,7 +874,7 @@ function ImageTypeEditor({
         }}
       >
         <option value="Image">Image</option>
-        {Object.keys(editorDefaults).map((type, i) => (
+        {availableOptions.map((type, i) => (
           <option key={i} value={type}>
             {type}
           </option>
@@ -655,16 +887,17 @@ function ImageTypeEditor({
 function PageEditor({
   page,
   setPage,
+  isNavigatorCollapsed,
 }: {
   page: Page;
   setPage: (page: Page) => void;
+  isNavigatorCollapsed: boolean;
 }) {
   const [tempImage, setTempImage] = useState(page.image);
   const [tempProps, setTempProps] = useState(
     JSON.stringify(page.props, null, 2),
   );
 
-  // Sync tempImage and tempProps when page changes
   useEffect(() => {
     setTempImage(page.image);
     setTempProps(JSON.stringify(page.props, null, 2));
@@ -674,11 +907,92 @@ function PageEditor({
     setPage({ ...page, content: content });
   }
 
+  const middleSectionClass = "w-7/12";
+  const activityEditorClass = "flex-1";
+
+  // Scale mapping based on image type
+  const getScaleForImageType = (imageType: string): number => {
+    const scaleMap: { [key: string]: number } = {
+      Comparison: 0.4,
+      FillInTheBlank: 0.55,
+      YoutubeEmbed: 0.8,
+      WalkThroughCode: 0.9,
+      ImagesAndText: 0.75,
+    };
+    return scaleMap[imageType] || 1.0;
+  };
+
+  const bookImageScale = getScaleForImageType(tempImage);
+
   return (
-    <div className="flex w-full h-screen">
-      <div className="flex flex-row justify-between bg-primary-green shadow-xl p-1 gap-1 rounded-2xl w-full h-[calc(51vh-60px)]">
-        <div className="flex flex-col w-full items-center bg-white rounded-l-2xl  h-[calc(50vh-60px)] overflow-y-auto">
-          <div className="flex flex-col w-full items-center justify-center min-h-[500px] max-h-screen">
+    <div className="flex w-full h-full">
+      <Split
+        sizes={[70, 30]}
+        minSize={200}
+        expandToMin={false}
+        gutterSize={10}
+        gutterAlign="center"
+        snapOffset={30}
+        dragInterval={1}
+        direction="horizontal"
+        className="flex w-full h-full"
+      >
+        <div
+          className={`${middleSectionClass} bg-white rounded-lg overflow-hidden`}
+        >
+          <div className="w-full h-full p-4">
+            <div className="h-full w-full shadow-2xl rounded-2xl bg-white border flex">
+              <div className="w-8/12 p-4 border-r border-gray-200 flex justify-center items-center overflow-hidden">
+                <div className="w-full h-full overflow-hidden rounded-lg flex justify-center items-center">
+                  <div
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      width: "auto",
+                      height: "auto",
+                      transform: `scale(${bookImageScale})`,
+                      transformOrigin: "center",
+                    }}
+                  >
+                    <ErrorBoundary
+                      fallback={
+                        <div className="text-red-500 text-lg">
+                          Error, try adjusting the props
+                        </div>
+                      }
+                    >
+                      <BookImage
+                        key={`${tempImage}-${tempProps}-${page.pageNumber}`}
+                        image={tempImage}
+                        page={{
+                          ...page,
+                          image: tempImage,
+                          props: JSON.parse(tempProps),
+                        }}
+                        setAllowNext={() => {}}
+                      />
+                    </ErrorBoundary>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-4/12 p-4 overflow-y-auto">
+                <div className="h-full overflow-hidden">
+                  {page.content && page.content.length > 0 && (
+                    <BookContentEditor
+                      content={page.content}
+                      setContent={setContent}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={`${activityEditorClass} p-2 transition-all duration-300 ease-in-out min-w-0 max-w-full h-full overflow-hidden`}
+        >
+          <div className="h-full w-full shadow-2xl rounded-2xl bg-white border overflow-hidden flex flex-col">
             <BookImageEditor
               tempImage={tempImage}
               setTempImage={setTempImage}
@@ -689,36 +1003,7 @@ function PageEditor({
             />
           </div>
         </div>
-
-        {/* Right container for BookContentEditor */}
-        {page.content && page.content.length > 0 && (
-          <div className="flex flex-col w-1/3 items-center justify-between bg-gray-100 rounded-r-2xl">
-            <div className="flex flex-col items-center p-1 w-full min-h-full max-h-full overflow-y-scroll">
-              <BookContentEditor
-                content={page.content}
-                setContent={setContent}
-              />
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* New Section: BookImage - placed below the content */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 top-[calc(60vh-60px)] w-full p-4">
-        {!JSON.parse(tempProps) && <div className="text-red-500"></div>}
-        <ErrorBoundary
-          fallback={
-            <div className="text-red-500">Error, try adjusting the props</div>
-          }
-        >
-          <BookImage
-            key={`${tempImage}-${tempProps}-${page.pageNumber}`}
-            image={tempImage}
-            page={{ ...page, image: tempImage, props: JSON.parse(tempProps) }}
-            setAllowNext={() => {}}
-          />
-        </ErrorBoundary>
-      </div>
+      </Split>
     </div>
   );
 }
@@ -945,6 +1230,7 @@ function BookDetailsEditor({
 }
 
 export default function BookEditor() {
+  const [isNavigatorCollapsed, setIsNavigatorCollapsed] = useState(false);
   const { bookIdParam, pageNumParam } = useParams();
   const [book, setBook] = useState<Book | undefined>(undefined);
   const [pageNum, setPageNum] = useState(
@@ -1096,9 +1382,9 @@ export default function BookEditor() {
   }
 
   return (
-    <div className="text-xs xl:text-lg 2xl:text-xl">
+    <div className="text-lg xl:text-lg 2xl:text-lg h-screen flex flex-col overflow-hidden">
       <Navbar />
-      <div className="h-[calc(53vh-60px)] flex flex-row p-2 gap-2 flex-grow w-full">
+      <div className="flex-1 flex flex-row p-2 gap-2 min-h-0 overflow-hidden">
         <PageNavigator
           pages={book.pages.sort((a, b) => a.pageNumber - b.pageNumber)}
           pageNum={pageNum}
@@ -1107,15 +1393,25 @@ export default function BookEditor() {
           deletePage={deletePage}
           swapPages={swapPages}
           bookId={bookId}
+          isCollapsed={isNavigatorCollapsed}
+          setIsCollapsed={setIsNavigatorCollapsed}
         />
-        {currentPage && <PageEditor page={currentPage} setPage={setPage} />}
-        {pageNum === 0 && book && (
-          <BookDetailsEditor
-            book={book}
-            setBook={setBook}
-            saveBook={saveBook}
-          />
-        )}
+        <div className="flex-1 min-w-0 overflow-hidden">
+          {currentPage && (
+            <PageEditor
+              page={currentPage}
+              setPage={setPage}
+              isNavigatorCollapsed={isNavigatorCollapsed}
+            />
+          )}
+          {pageNum === 0 && book && (
+            <BookDetailsEditor
+              book={book}
+              setBook={setBook}
+              saveBook={saveBook}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
