@@ -45,10 +45,11 @@ export function FoodTruckActivity({
   };
 
   React.useEffect(() => {
+    setAllowNext(false);
     const all = selectedOptions.length === options.length;
     if (all) {
       const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
-      setAllowNext(all);
+      setAllowNext(true);
       playCorrectSound();
       handleInteraction(
         "completed",
