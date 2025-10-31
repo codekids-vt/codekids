@@ -147,17 +147,16 @@ export function HintsWindow({
   };
 
   return (
-   <div
-  className="
+    <div
+      className="
     fixed inset-x-4 bottom-4 sm:inset-auto sm:bottom-3 sm:right-3
     z-[9999]
     w-auto sm:w-[320px] md:w-[400px] lg:w-[460px]
     max-w-[90vw] max-h-[75vh]
     flex justify-center sm:justify-end
   "
->
+    >
       <div className="bg-white shadow-2xl border border-gray-300 rounded-xl flex flex-col h-full overflow-hidden max-h-[75vh] sm:max-h-[70vh]">
-
         {/* Header */}
         <div className="flex items-center justify-between border-b pb-2 px-3 pt-2 bg-gray-50">
           {showFullAnswer ? (
@@ -217,15 +216,17 @@ export function HintsWindow({
         </div>
 
         {/* Scrollable Body */}
-      <div
-  className={`
+        <div
+          className={`
     flex-1 overflow-y-auto text-gray-800
     scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent
-    ${showFullAnswer
-      ? "px-3 py-3"               // normal padding for full answer
-      : "px-4 py-6 sm:py-8"}      // more top/bottom padding for hints
+    ${
+      showFullAnswer
+        ? "px-3 py-3" // normal padding for full answer
+        : "px-4 py-6 sm:py-8"
+    }      // more top/bottom padding for hints
   `}
->
+        >
           {!showFullAnswer ? (
             <div className="text-xs sm:text-sm md:text-base leading-relaxed">
               <Reader text={currentHint.statement} />
@@ -295,7 +296,6 @@ export function HintsWindow({
     </div>
   );
 }
-
 
 export default function BookPage() {
   let { idString, pageNumParam } = useParams();
