@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useSound from "use-sound";
 
 interface ISelectImageActivityProps {
@@ -25,9 +25,11 @@ export function SelectImageActivity({
     setSelectedOption(choice);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (selectedOption !== undefined) {
+      playCorrectSound();
+    }
     setAllowNext(true);
-    playCorrectSound();
   }, [selectedOption, setAllowNext, playCorrectSound]);
 
   return (
@@ -44,7 +46,6 @@ export function SelectImageActivity({
             <button
               key={index}
               className={`px-4 py-2 text-lg font-medium ${
-                //if in the selected options array
                 selectedOption === option.text
                   ? "bg-primary-green text-white"
                   : "bg-gray-100 text-gray-800"
