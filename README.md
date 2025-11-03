@@ -11,14 +11,14 @@ cp .env.example .env
 
 ## Run backend
 
-[install uv](https://github.com/astral-sh/uv?tab=readme-ov-file#installation)
+(use python3.12)
 
 ```bash
-cd backend
-uv sync # or pip install .
+python -m venv .venv
 source .venv/bin/activate
-docker compose up -d # to start database & bucket
-prisma generate
+cd backend
+pip install -r requirements.txt
+prisma generate  # needs a running database
 uvicorn src.main:app --reload --port 8080
 ```
 
@@ -26,21 +26,29 @@ uvicorn src.main:app --reload --port 8080
 
 ```bash
 cd backend
-uv run prisma migrate dev
+prisma migrate dev
+```
+
+To startup a local database, you can use the following command:
+
+```bash
+cd backend
+docker compose up -d
 ```
 
 Prisma studio (visual database editor)
 
 ```bash
-cd backend && prisma studio
+cd backend
+npx prisma studio
 ```
 
 ## Run frontend
 
 ```bash
 cd frontend
-bun i
-bun run start
+npm i
+npm start
 ```
 
 ## Checks and Formatting
@@ -49,19 +57,17 @@ These commands should be run before pushing code. They will check if the code is
 
 ```bash
 cd frontend
-bun run format
-CI=True bun run build
+npm run format
+CI=True npm run build
 cd ../backend
 black . --check
-pyright .
-ruff check .
 ```
 
 To update the frontend client to match backend schema.
 
 ```bash
 cd frontend
-bun run generate
+npm run generate
 # then change one line back to any because that type is too complicate to type properly
 # make sure it looks like this in frontend/src/api/models/Page.ts
 #   props?: any;
