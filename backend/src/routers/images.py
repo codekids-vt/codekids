@@ -46,8 +46,7 @@ def validate_image(contents: bytes, filename: str) -> tuple[bool, str]:
             return False, "File content does not appear to be a valid image"
 
         # Map imghdr types to extensions
-        type_map = {"jpeg": [".jpg", ".jpeg"],
-                    "png": [".png"], "gif": [".gif"]}
+        type_map = {"jpeg": [".jpg", ".jpeg"], "png": [".png"], "gif": [".gif"]}
         if image_type in type_map:
             if extension not in type_map[image_type]:
                 return (
@@ -113,7 +112,8 @@ async def upload_image(
 @image_router.get("/image/{image_id}", tags=["images"])
 async def get_image(
     # Require authentication
-    image_id: int, user: Annotated[User, Depends(get_user)]
+    image_id: int,
+    user: Annotated[User, Depends(get_user)],
 ) -> Image:
     try:
         image = await db.image.find_unique(where={"id": image_id})
