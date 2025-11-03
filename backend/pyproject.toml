@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Codekids Backend service"
 requires-python = ">=3.10"
 dependencies = [
-    "fastapi>=0.120.4",
+    "fastapi[all]>=0.120.4",
     "minio>=7.2.18",
     "openai>=2.6.1",
     "prisma>=0.15.0",
