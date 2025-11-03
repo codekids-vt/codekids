@@ -1,64 +1,15 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-
-# Virtual environments
-.venv/
-venv/
-ENV/
-env/
-
-# Environment variables
-.env
-.env.*
-!.env.example
-
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-
-# Linting and formatting
+.venv
+**/__pycache__
+**/*.pyc
+openapi.json
+.env*
 .ruff_cache/
 .mypy_cache/
 .pyright/
-
-# Git
 .git/
 .gitignore
-
-# Docker
 Dockerfile
 .dockerignore
 docker-compose.yml
-
-# Documentation
-README.md
-*.md
-
-# Logs
-*.log
-
-# OS
 .DS_Store
-Thumbs.db
-
-# Lock files (uv.lock is needed for reproducible builds, but pip doesn't use it)
-uv.lock
-
-# Python version file
 .python-version
-
-# Prisma
-prisma/migrations/
