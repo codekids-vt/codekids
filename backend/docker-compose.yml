@@ -23,3 +23,18 @@ services:
     env_file:
       - .env
     command: server /data --console-address ":9001"
+
+  backend:
+    build: .
+    profiles:
+      - backend
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+    environment:
+      - DATABASE_PRISMA_URL=postgres://postgres:password@db:5432/codekids
+      - MINIO_ENDPOINT=minio:9000
+    depends_on:
+      - db
+      - minio

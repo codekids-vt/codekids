@@ -1,0 +1,21 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "Codekids Backend service"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi[all]>=0.120.4",
+    "minio>=7.2.18",
+    "openai>=2.6.1",
+    "prisma>=0.15.0",
+    "pydantic-settings>=2.11.0",
+    "python-multipart>=0.0.20",
+    "uvicorn>=0.38.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.9.0",
+    "pyright>=1.1.407",
+    "ruff>=0.14.3",
+]
