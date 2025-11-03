@@ -29,7 +29,7 @@ jobs:
       - name: pyright
         run: |
           cd backend &&
-          pip install -r requirements.txt &&
+          pip install . &&
           prisma generate &&
           pip install pyright &&
           pyright .
