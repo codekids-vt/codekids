@@ -31,7 +31,8 @@ export function ImageUploadSection({
         sessionStorage.getItem("token");
 
       // Also check if user object is stored
-      const userStr = localStorage.getItem("user") || sessionStorage.getItem("user");
+      const userStr =
+        localStorage.getItem("user") || sessionStorage.getItem("user");
       let tokenFromUser = null;
       if (userStr) {
         try {
@@ -54,7 +55,10 @@ export function ImageUploadSection({
       };
 
       console.log("Uploading to:", `${baseUrl}/images`);
-      console.log("Token:", finalToken ? `Present (${finalToken.substring(0, 10)}...)` : "Missing");
+      console.log(
+        "Token:",
+        finalToken ? `Present (${finalToken.substring(0, 10)}...)` : "Missing",
+      );
 
       const response = await fetch(`${baseUrl}/images`, {
         method: "POST",
@@ -72,7 +76,9 @@ export function ImageUploadSection({
         // Parse error details if available
         try {
           const errorJson = JSON.parse(errorText);
-          throw new Error(errorJson.detail || `Upload failed: ${response.status}`);
+          throw new Error(
+            errorJson.detail || `Upload failed: ${response.status}`,
+          );
         } catch {
           throw new Error(`Upload failed: ${response.status} - ${errorText}`);
         }
@@ -182,10 +188,11 @@ export function ImageUploadSection({
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          className={`w-full border-2 border-dashed border-primary-green rounded-xl p-4 text-center cursor-pointer transition-colors min-w-0 ${isUploading
+          className={`w-full border-2 border-dashed border-primary-green rounded-xl p-4 text-center cursor-pointer transition-colors min-w-0 ${
+            isUploading
               ? "bg-gray-100 cursor-not-allowed opacity-60"
               : "hover:bg-green-50"
-            }`}
+          }`}
           onClick={() => !isUploading && fileInputRef.current?.click()}
         >
           <input
