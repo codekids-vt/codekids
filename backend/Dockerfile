@@ -5,11 +5,11 @@ FROM python:3.12
 WORKDIR /app
 
 # Copy the requirements file to the working directory
-COPY requirements.txt .
+COPY pyproject.toml .
 
 # Install dependencies
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install .
 
 # Copy the source code into the container
 COPY . .
