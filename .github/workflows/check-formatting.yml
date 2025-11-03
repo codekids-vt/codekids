@@ -2,10 +2,9 @@ name: check-build-and-formatting
 
 on:
   pull_request:
-  workflow_dispatch: # Allows manual triggering
 
 jobs:
-  check-formatting:
+  check-all:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository (for forks and branches)
@@ -15,33 +14,88 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           fetch-depth: 0
 
-      - name: prettier
+      - name: Create backend .env file
+        run: |
+          cp backend/.env.example backend/.env
+
+      - name: Install backend dependencies
+        run: |
+          cd backend &&
+          pip install . &&
+          pip install black ruff pyright &&
+          prisma generate
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install frontend dependencies
         run: |
           cd frontend &&
-          npx prettier . --check
+          bun install
 
       - name: black
         run: |
           cd backend &&
-          pip install black &&
           black . --check
-
-      - name: pyright
-        run: |
-          cd backend &&
-          pip install -r requirements.txt &&
-          prisma generate &&
-          pip install pyright &&
-          pyright .
 
       - name: ruff
         run: |
           cd backend &&
-          pip install ruff &&
           ruff check .
+
+      - name: pyright
+        run: |
+          cd backend &&
+          pyright .
+
+      - name: prettier
+        run: |
+          cd frontend &&
+          bun run prettier . --check
 
       - name: frontend-build
         run: |
           cd frontend &&
-          npm install &&
-          CI=True npm run build
+          CI=True bun run build
+
+      - name: Start database for schema generation
+        run: |
+          cd backend &&
+          docker compose up -d &&
+          sleep 5
+
+      - name: Generate OpenAPI schema
+        run: |
+          cd backend &&
+          python generate_openapi.py
+
+      - name: Generate frontend API client
+        run: |
+          cd frontend &&
+          bun run openapi -i ../backend/openapi.json -o src/api &&
+          bun run prettier --write src/api
+
+      - name: Check for schema differences
+        run: |
+          API_CHANGES=$(git diff --name-only | grep '^frontend/src/api/' || true)
+          
+          if [ -z "$API_CHANGES" ]; then
+            echo "✓ Frontend API client is up to date"
+            exit 0
+          fi
+          
+          # Allow only Page.ts with props change
+          if [ "$API_CHANGES" = "frontend/src/api/models/Page.ts" ]; then
+            if git diff -- frontend/src/api/models/Page.ts | grep -q 'props.*:'; then
+              CHANGE_COUNT=$(git diff --numstat -- frontend/src/api/models/Page.ts | awk '{print $1 + $2}')
+              if [ "$CHANGE_COUNT" -eq 2 ]; then
+                echo "✓ Only expected Page.ts props change (see README)"
+                exit 0
+              fi
+            fi
+          fi
+          
+          echo "✗ Frontend API client out of sync"
+          echo "See README for regeneration steps"
+          git diff --stat | grep 'frontend/src/api/'
+          exit 1
