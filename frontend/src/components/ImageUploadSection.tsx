@@ -1,4 +1,7 @@
 import { useRef, useState } from "react";
+// OpenAPI is the API client config, not related to OpenAI
+// Remove this import if it's causing issues - we'll handle auth differently
+// import { OpenAPI } from "../api";
 
 export function ImageUploadSection({
   tempImage,
@@ -13,21 +16,82 @@ export function ImageUploadSection({
 
   const uploadToMinIO = async (file: File): Promise<string> => {
     const formData = new FormData();
-    formData.append("image", file);
+    formData.append("image", file); // Backend expects "image"
 
     try {
-      const response = await fetch("/images", {
+      // Backend is running on port 8080
+      const baseUrl = "http://localhost:8080";
+
+      // Check multiple token storage locations
+      // The backend's login returns a user object with a token field
+      const token =
+        localStorage.getItem("token") ||
+        localStorage.getItem("userToken") ||
+        localStorage.getItem("authToken") ||
+        sessionStorage.getItem("token");
+
+      // Also check if user object is stored
+      const userStr = localStorage.getItem("user") || sessionStorage.getItem("user");
+      let tokenFromUser = null;
+      if (userStr) {
+        try {
+          const user = JSON.parse(userStr);
+          tokenFromUser = user.token;
+        } catch (e) {
+          console.error("Failed to parse user object:", e);
+        }
+      }
+
+      const finalToken = token || tokenFromUser;
+
+      if (!finalToken) {
+        throw new Error("No authentication token found. Please log in.");
+      }
+
+      const headers: HeadersInit = {
+        // Backend expects token in X-API-Key header
+        "X-API-Key": finalToken,
+      };
+
+      console.log("Uploading to:", `${baseUrl}/images`);
+      console.log("Token:", finalToken ? `Present (${finalToken.substring(0, 10)}...)` : "Missing");
+
+      const response = await fetch(`${baseUrl}/images`, {
         method: "POST",
+        headers,
         body: formData,
+        credentials: "include",
       });
 
+      console.log("Response status:", response.status);
+
       if (!response.ok) {
-        throw new Error("Upload failed");
+        const errorText = await response.text();
+        console.error("Upload failed:", errorText);
+
+        // Parse error details if available
+        try {
+          const errorJson = JSON.parse(errorText);
+          throw new Error(errorJson.detail || `Upload failed: ${response.status}`);
+        } catch {
+          throw new Error(`Upload failed: ${response.status} - ${errorText}`);
+        }
       }
 
       const data = await response.json();
-      return data.image_url; // MinIO file URL from your backend
+      console.log("Upload response:", data);
+
+      // Backend returns an Image object with image_url property
+      if (!data.image_url) {
+        throw new Error("No image URL in response");
+      }
+
+      return data.image_url;
     } catch (error) {
+      console.error("Upload error:", error);
+      if (error instanceof Error) {
+        throw new Error(`Failed to upload: ${error.message}`);
+      }
       throw new Error("Failed to upload to MinIO");
     }
   };
@@ -55,9 +119,12 @@ export function ImageUploadSection({
     setIsUploading(true);
 
     try {
+      console.log("Uploading file:", file.name, "Size:", file.size);
       const minioUrl = await uploadToMinIO(file);
+      console.log("Upload successful, URL:", minioUrl);
       setTempImage(minioUrl);
     } catch (error) {
+      console.error("Upload failed:", error);
       setUploadError(error instanceof Error ? error.message : "Upload failed");
     } finally {
       setIsUploading(false);
@@ -115,11 +182,10 @@ export function ImageUploadSection({
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          className={`w-full border-2 border-dashed border-primary-green rounded-xl p-4 text-center cursor-pointer transition-colors min-w-0 ${
-            isUploading
+          className={`w-full border-2 border-dashed border-primary-green rounded-xl p-4 text-center cursor-pointer transition-colors min-w-0 ${isUploading
               ? "bg-gray-100 cursor-not-allowed opacity-60"
               : "hover:bg-green-50"
-          }`}
+            }`}
           onClick={() => !isUploading && fileInputRef.current?.click()}
         >
           <input
@@ -152,7 +218,7 @@ export function ImageUploadSection({
         {/* Error Message */}
         {uploadError && (
           <div className="text-red-500 text-sm p-2 bg-red-50 rounded">
-            {uploadError}
+            ❌ {uploadError}
           </div>
         )}
       </div>
