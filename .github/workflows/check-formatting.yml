@@ -58,12 +58,6 @@ jobs:
           cd frontend &&
           CI=True bun run build
 
-      - name: Start database for schema generation
-        run: |
-          cd backend &&
-          docker compose up -d &&
-          sleep 5
-
       - name: Generate OpenAPI schema
         run: |
           cd backend &&
