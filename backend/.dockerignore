@@ -1,0 +1,15 @@
+.venv
+**/__pycache__
+**/*.pyc
+openapi.json
+.env*
+.ruff_cache/
+.mypy_cache/
+.pyright/
+.git/
+.gitignore
+Dockerfile
+.dockerignore
+docker-compose.yml
+.DS_Store
+.python-version

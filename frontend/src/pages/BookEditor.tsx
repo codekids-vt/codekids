@@ -925,84 +925,73 @@ function PageEditor({
 
   return (
     <div className="flex w-full h-full">
-      <Split
-        sizes={[70, 30]}
-        minSize={200}
-        expandToMin={false}
-        gutterSize={10}
-        gutterAlign="center"
-        snapOffset={30}
-        dragInterval={1}
-        direction="horizontal"
-        className="flex w-full h-full"
+      <div
+        className={`${middleSectionClass} bg-white rounded-lg overflow-hidden`}
       >
-        <div
-          className={`${middleSectionClass} bg-white rounded-lg overflow-hidden`}
-        >
-          <div className="w-full h-full p-4">
-            <div className="h-full w-full shadow-2xl rounded-2xl bg-white border flex">
-              <div className="w-8/12 p-4 border-r border-gray-200 flex justify-center items-center overflow-hidden">
-                <div className="w-full h-full overflow-hidden rounded-lg flex justify-center items-center">
-                  <div
-                    style={{
-                      maxWidth: "100%",
-                      maxHeight: "100%",
-                      width: "auto",
-                      height: "auto",
-                      transform: `scale(${bookImageScale})`,
-                      transformOrigin: "center",
-                    }}
+        <div className="w-full h-full p-4">
+          <div className="h-full w-full shadow-2xl rounded-2xl bg-white border flex">
+            <div className="w-8/12 p-4 border-r border-gray-200 flex justify-center items-center overflow-hidden">
+              <div className="w-full h-full overflow-hidden rounded-lg flex justify-center items-center">
+                <div
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    width: "auto",
+                    height: "auto",
+                    transform: `scale(${bookImageScale})`,
+                    transformOrigin: "center",
+                  }}
+                >
+                  <ErrorBoundary
+                    fallback={
+                      <div className="text-red-500 text-lg">
+                        Error, try adjusting the props
+                      </div>
+                    }
                   >
-                    <ErrorBoundary
-                      fallback={
-                        <div className="text-red-500 text-lg">
-                          Error, try adjusting the props
-                        </div>
-                      }
-                    >
-                      <BookImage
-                        key={`${tempImage}-${tempProps}-${page.pageNumber}`}
-                        image={tempImage}
-                        page={{
-                          ...page,
-                          image: tempImage,
-                          props: JSON.parse(tempProps),
-                        }}
-                        setAllowNext={() => {}}
-                      />
-                    </ErrorBoundary>
-                  </div>
+                    <BookImage
+                      key={`${tempImage}-${tempProps}-${page.pageNumber}`}
+                      image={tempImage}
+                      page={{
+                        ...page,
+                        image: tempImage,
+                        props: JSON.parse(tempProps),
+                      }}
+                      setAllowNext={() => {}}
+                    />
+                  </ErrorBoundary>
                 </div>
               </div>
+            </div>
 
-              <div className="w-4/12 p-4 overflow-y-auto">
-                <div className="h-full overflow-hidden">
-                  {page.content && page.content.length > 0 && (
-                    <BookContentEditor
-                      content={page.content}
-                      setContent={setContent}
-                    />
-                  )}
-                </div>
+            <div className="w-4/12 p-4 overflow-y-auto">
+              <div className="h-full overflow-hidden">
+                {page.content && page.content.length > 0 && (
+                  <BookContentEditor
+                    content={page.content}
+                    setContent={setContent}
+                  />
+                )}
               </div>
             </div>
           </div>
         </div>
-        <div
-          className={`${activityEditorClass} p-2 transition-all duration-300 ease-in-out min-w-0 max-w-full h-full overflow-hidden`}
-        >
-          <div className="h-full w-full shadow-2xl rounded-2xl bg-white border overflow-hidden flex flex-col">
-            <BookImageEditor
-              tempImage={tempImage}
-              setTempImage={setTempImage}
-              tempProps={tempProps}
-              setTempProps={setTempProps}
-              page={page}
-              setPage={setPage}
-            />
-          </div>
+      </div>
+
+      <div
+        className={`${activityEditorClass} p-2 transition-all duration-300 ease-in-out min-w-0 max-w-full h-full overflow-hidden`}
+      >
+        <div className="h-full w-full shadow-2xl rounded-2xl bg-white border overflow-hidden flex flex-col">
+          <BookImageEditor
+            tempImage={tempImage}
+            setTempImage={setTempImage}
+            tempProps={tempProps}
+            setTempProps={setTempProps}
+            page={page}
+            setPage={setPage}
+          />
         </div>
-      </Split>
+      </div>
     </div>
   );
 }

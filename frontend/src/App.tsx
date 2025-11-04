@@ -13,6 +13,11 @@ import EditBooksPage from "./pages/EditBooksPage";
 import BookEditor from "./pages/BookEditor";
 import Article from "./pages/Article";
 import NewsPage from "./pages/NewsPage";
+import { OpenAPI } from "./api";
+
+OpenAPI.BASE =
+  process.env.REACT_APP_BACKEND_URL ||
+  "https://codekids-backend.endeavour.cs.vt.edu";
 
 function App() {
   const orientation = useOrientation();
