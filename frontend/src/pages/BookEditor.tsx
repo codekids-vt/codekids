@@ -8,7 +8,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import { BookPreview } from "../components/ActivityBookList";
 import Editor from "@monaco-editor/react";
 import { useTheme } from "../context/ThemeContext";
-import Split from "react-split";
 import { ImageUploadSection } from "../components/ImageUploadSection";
 
 interface PropsFormProps {
