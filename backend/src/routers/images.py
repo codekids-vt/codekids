@@ -46,8 +46,7 @@ def validate_image(contents: bytes, filename: str) -> tuple[bool, str]:
             return False, "File content does not appear to be a valid image"
 
         # Map imghdr types to extensions
-        type_map = {"jpeg": [".jpg", ".jpeg"],
-                    "png": [".png"], "gif": [".gif"]}
+        type_map = {"jpeg": [".jpg", ".jpeg"], "png": [".png"], "gif": [".gif"]}
         if image_type in type_map:
             if extension not in type_map[image_type]:
                 return (
@@ -60,8 +59,7 @@ def validate_image(contents: bytes, filename: str) -> tuple[bool, str]:
 
 @image_router.post("/images", tags=["images"])
 async def upload_image(
-    user: Annotated[User, Depends(get_user)],
-    image: UploadFile = File(...)
+    user: Annotated[User, Depends(get_user)], image: UploadFile = File(...)
 ) -> Image:
     try:
         # Read file contents
