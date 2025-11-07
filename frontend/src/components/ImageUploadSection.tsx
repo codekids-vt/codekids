@@ -1,7 +1,5 @@
 import { useRef, useState } from "react";
-// OpenAPI is the API client config, not related to OpenAI
-// Remove this import if it's causing issues - we'll handle auth differently
-// import { OpenAPI } from "../api";
+import { ImagesService, Body_upload_image_images_post } from "../api";
 
 export function ImageUploadSection({
   tempImage,
@@ -15,89 +13,60 @@ export function ImageUploadSection({
   const [isUploading, setIsUploading] = useState(false);
 
   const uploadToMinIO = async (file: File): Promise<string> => {
-    const formData = new FormData();
-    formData.append("image", file); // Backend expects "image"
-
     try {
-      // Backend is running on port 8080
-      const baseUrl = "http://localhost:8080";
+      console.log("=== Upload Debug Info ===");
+      console.log("File name:", file.name);
+      console.log("File type:", file.type);
+      console.log("File size:", file.size);
+      console.log("File lastModified:", new Date(file.lastModified));
 
-      // Check multiple token storage locations
-      // The backend's login returns a user object with a token field
-      const token =
-        localStorage.getItem("token") ||
-        localStorage.getItem("userToken") ||
-        localStorage.getItem("authToken") ||
-        sessionStorage.getItem("token");
+      // Verify file is readable
+      const fileContent = await file.arrayBuffer();
+      console.log("File content length:", fileContent.byteLength);
 
-      // Also check if user object is stored
-      const userStr =
-        localStorage.getItem("user") || sessionStorage.getItem("user");
-      let tokenFromUser = null;
-      if (userStr) {
-        try {
-          const user = JSON.parse(userStr);
-          tokenFromUser = user.token;
-        } catch (e) {
-          console.error("Failed to parse user object:", e);
-        }
-      }
-
-      const finalToken = token || tokenFromUser;
-
-      if (!finalToken) {
-        throw new Error("No authentication token found. Please log in.");
-      }
-
-      const headers: HeadersInit = {
-        // Backend expects token in X-API-Key header
-        "X-API-Key": finalToken,
+      // Create the form data object matching the generated type
+      const formData: Body_upload_image_images_post = {
+        image: file,
       };
 
-      console.log("Uploading to:", `${baseUrl}/images`);
-      console.log(
-        "Token:",
-        finalToken ? `Present (${finalToken.substring(0, 10)}...)` : "Missing",
-      );
+      console.log("Sending request...");
 
-      const response = await fetch(`${baseUrl}/images`, {
-        method: "POST",
-        headers,
-        body: formData,
-        credentials: "include",
-      });
+      // Use the generated ImagesService
+      const result = await ImagesService.uploadImageImagesPost(formData);
 
-      console.log("Response status:", response.status);
+      console.log("Upload successful:", result);
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Upload failed:", errorText);
-
-        // Parse error details if available
-        try {
-          const errorJson = JSON.parse(errorText);
-          throw new Error(
-            errorJson.detail || `Upload failed: ${response.status}`,
-          );
-        } catch {
-          throw new Error(`Upload failed: ${response.status} - ${errorText}`);
-        }
+      if (!result.image_url) {
+        throw new Error("No image URL returned from server");
       }
 
-      const data = await response.json();
-      console.log("Upload response:", data);
+      return result.image_url;
+    } catch (error: any) {
+      console.error("=== Upload Error ===");
+      console.error("Error object:", error);
+      console.error("Error status:", error.status);
+      console.error("Error body:", error.body);
+      console.error("Error message:", error.message);
 
-      // Backend returns an Image object with image_url property
-      if (!data.image_url) {
-        throw new Error("No image URL in response");
+      // Handle validation errors
+      if (error.status === 422) {
+        const detail = error.body?.detail || "Invalid image data";
+        throw new Error(`Validation error: ${JSON.stringify(detail)}`);
       }
 
-      return data.image_url;
-    } catch (error) {
-      console.error("Upload error:", error);
+      if (error.status === 400) {
+        throw new Error(error.body?.detail || "Bad request - invalid image");
+      }
+
+      // Handle API errors
+      if (error.body?.detail) {
+        throw new Error(error.body.detail);
+      }
+
       if (error instanceof Error) {
         throw new Error(`Failed to upload: ${error.message}`);
       }
+
       throw new Error("Failed to upload to MinIO");
     }
   };
@@ -125,12 +94,9 @@ export function ImageUploadSection({
     setIsUploading(true);
 
     try {
-      console.log("Uploading file:", file.name, "Size:", file.size);
       const minioUrl = await uploadToMinIO(file);
-      console.log("Upload successful, URL:", minioUrl);
       setTempImage(minioUrl);
     } catch (error) {
-      console.error("Upload failed:", error);
       setUploadError(error instanceof Error ? error.message : "Upload failed");
     } finally {
       setIsUploading(false);
@@ -188,11 +154,10 @@ export function ImageUploadSection({
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          className={`w-full border-2 border-dashed border-primary-green rounded-xl p-4 text-center cursor-pointer transition-colors min-w-0 ${
-            isUploading
+          className={`w-full border-2 border-dashed border-primary-green rounded-xl p-4 text-center cursor-pointer transition-colors min-w-0 ${isUploading
               ? "bg-gray-100 cursor-not-allowed opacity-60"
               : "hover:bg-green-50"
-          }`}
+            }`}
           onClick={() => !isUploading && fileInputRef.current?.click()}
         >
           <input

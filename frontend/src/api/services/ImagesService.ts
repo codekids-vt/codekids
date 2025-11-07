@@ -47,4 +47,25 @@ export class ImagesService {
       },
     });
   }
+  /**
+   * Delete Image
+   * Delete an image from both database and MinIO
+   * @param imageId
+   * @returns any Successful Response
+   * @throws ApiError
+   */
+  public static deleteImageImageImageIdDelete(
+    imageId: number,
+  ): CancelablePromise<Record<string, any>> {
+    return __request(OpenAPI, {
+      method: "DELETE",
+      url: "/image/{image_id}",
+      path: {
+        image_id: imageId,
+      },
+      errors: {
+        422: `Validation Error`,
+      },
+    });
+  }
 }

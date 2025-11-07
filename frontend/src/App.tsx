@@ -14,10 +14,43 @@ import BookEditor from "./pages/BookEditor";
 import Article from "./pages/Article";
 import NewsPage from "./pages/NewsPage";
 import { OpenAPI } from "./api";
+import type { ApiRequestOptions } from "./api/core/ApiRequestOptions";
 
-OpenAPI.BASE =
-  process.env.REACT_APP_BACKEND_URL ||
+OpenAPI.BASE = process.env.REACT_APP_BACKEND_URL ||
   "https://codekids-backend.endeavour.cs.vt.edu";
+
+// Configure authentication token
+OpenAPI.TOKEN = async (options: ApiRequestOptions) => {
+  // Get token from localStorage
+  const token = localStorage.getItem('token');
+
+  // If no direct token, check if user object exists
+  if (!token) {
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      try {
+        const user = JSON.parse(userStr);
+        return user.token || '';
+      } catch (e) {
+        return '';
+      }
+    }
+  }
+
+  return token || '';
+};
+
+// Configure headers with type assertion
+OpenAPI.HEADERS = (async (options: ApiRequestOptions) => {
+  const tokenFn = OpenAPI.TOKEN;
+  if (typeof tokenFn === 'function') {
+    const token = await tokenFn(options);
+    if (token) {
+      return { 'X-API-Key': token } as Record<string, string>;
+    }
+  }
+  return {} as Record<string, string>;
+}) as any;
 
 function App() {
   const orientation = useOrientation();

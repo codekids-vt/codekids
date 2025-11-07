@@ -74,21 +74,21 @@ export function BookImage({
       )}
 
       {image === "CountdownTimer" && (
-        <CountdownTimer props={page?.props} setAllowNext={setAllowNext} />
+        <CountdownTimer props={page?.props!} setAllowNext={setAllowNext} />
       )}
 
       {image === "ImageClickAnimation" && (
-        <ImageClickAnimation props={page?.props} setAllowNext={setAllowNext} />
+        <ImageClickAnimation props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "DragAndDrop" && (
-        <DragAndDropActivity props={page?.props} setAllowNext={setAllowNext} />
+        <DragAndDropActivity props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "TextBoxImage" && (
-        <TextBoxImageActivity props={page?.props} setAllowNext={setAllowNext} />
+        <TextBoxImageActivity props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "TextBoxQuestion" && (
         <TextBoxQuestionActivity
-          props={page?.props}
+          props={page?.props!}
           setAllowNext={setAllowNext}
         />
       )}
@@ -97,9 +97,9 @@ export function BookImage({
         <HokieBirdColoring props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "CustomColoringActivity" && (
-        <CustomColoringActivity props={page?.props} />
+        <CustomColoringActivity props={page?.props!} />
       )}
-      {image === "tutor" && <PythonTutor props={page?.props} />}
+      {image === "tutor" && <PythonTutor props={page?.props!} />}
       {image === "HokieBirdMazeActivity" && (
         <HokieBirdMap props={page?.props} setAllowNext={setAllowNext} />
       )}
@@ -166,16 +166,16 @@ export function BookImage({
         <InputOutputActivity props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "BookReview" && (
-        <BookReview props={page?.props} setAllowNext={setAllowNext} />
+        <BookReview props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "SelectImageActivity" && (
-        <SelectImageActivity props={page?.props} setAllowNext={setAllowNext} />
+        <SelectImageActivity props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "BinaryConverter" && (
-        <BinaryConverter props={page?.props} setAllowNext={setAllowNext} />
+        <BinaryConverter props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "ClothingActivity" && (
-        <ClothingActivity props={page?.props} setAllowNext={setAllowNext} />
+        <ClothingActivity props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "BookRushHour" && (
         <BookRushHour props={page?.props} setAllowNext={setAllowNext} />
@@ -184,7 +184,7 @@ export function BookImage({
         <ImageQuestion props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "DragMultiChoice" && (
-        <DragMultiChoice props={page?.props} setAllowNext={setAllowNext} />
+        <DragMultiChoice props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "CodeStepFlowchart" && (
         <CodeStepFlowchart props={page?.props} setAllowNext={setAllowNext} />
@@ -193,19 +193,19 @@ export function BookImage({
         <FillInTheBlank props={page?.props} setAllowNext={setAllowNext} />
       )}
       {image === "Comparison" && (
-        <Comparison props={page?.props} setAllowNext={setAllowNext} />
+        <Comparison props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "ImageWithRedirectButton" && (
-        <LinkableImage props={page?.props} setAllowNext={setAllowNext} />
+        <LinkableImage props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "YoutubeEmbed" && (
-        <YoutubeEmbed props={page?.props} setAllowNext={setAllowNext} />
+        <YoutubeEmbed props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "WalkThroughCode" && (
-        <WalkThroughCode props={page?.props} setAllowNext={setAllowNext} />
+        <WalkThroughCode props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "ImagesAndText" && (
-        <ImagesAndText props={page?.props} setAllowNext={setAllowNext} />
+        <ImagesAndText props={page?.props!} setAllowNext={setAllowNext} />
       )}
     </div>
   );
