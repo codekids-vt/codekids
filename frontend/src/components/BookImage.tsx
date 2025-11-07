@@ -84,7 +84,10 @@ export function BookImage({
         <DragAndDropActivity props={page?.props!} setAllowNext={setAllowNext} />
       )}
       {image === "TextBoxImage" && (
-        <TextBoxImageActivity props={page?.props!} setAllowNext={setAllowNext} />
+        <TextBoxImageActivity
+          props={page?.props!}
+          setAllowNext={setAllowNext}
+        />
       )}
       {image === "TextBoxQuestion" && (
         <TextBoxQuestionActivity
