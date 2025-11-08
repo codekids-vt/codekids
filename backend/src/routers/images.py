@@ -1,8 +1,8 @@
-from io import BytesIO
-from typing import Annotated
-import uuid
 import imghdr
+import uuid
+from io import BytesIO
 from pathlib import Path
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from minio import Minio
@@ -17,7 +17,7 @@ client = Minio(
     settings.MINIO_ENDPOINT,
     access_key=settings.MINIO_ROOT_USER,
     secret_key=settings.MINIO_ROOT_PASSWORD,
-    secure=False,
+    secure=not settings.DEV_MODE,
 )
 
 # Allowed image formats
