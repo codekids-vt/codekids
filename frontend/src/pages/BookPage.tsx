@@ -82,9 +82,8 @@ function HelpMeWindow({
           <div className="p-6 space-y-6">
             <ul className="flex flex-col items-center">
               <h3>The correct answer(s) is:</h3>
-              {page.props &&
-                (page.props as any).ans &&
-                (page.props as any).ans.map((answer: string, index: number) => (
+              {page.props?.ans &&
+                page.props?.ans.map((answer: string, index: number) => (
                   <li
                     className="inline-block font-semibold text-gray-900"
                     key={`answerTag-${index}`}
@@ -94,9 +93,9 @@ function HelpMeWindow({
                 ))}
             </ul>
           </div>
-          {page.props && (page.props as any).helpImage && (
+          {page.props.helpImage && (
             <img
-              src={(page.props as any).helpImage}
+              src={page.props.helpImage}
               alt="Help"
               width={750}
               height={250}
@@ -238,25 +237,22 @@ export function HintsWindow({
                 <h3 className="text-sm sm:text-base font-medium mb-2">
                   The correct answer(s) is:
                 </h3>
-                {page.props &&
-                  (page.props as any).ans &&
-                  (page.props as any).ans.map(
-                    (answer: string, index: number) => (
-                      <li
-                        className="inline-block font-semibold text-gray-900 text-xs sm:text-sm"
-                        key={`answerTag-${index}`}
-                      >
-                        {answer}
-                      </li>
-                    ),
-                  )}
+                {page.props?.ans &&
+                  page.props?.ans.map((answer: string, index: number) => (
+                    <li
+                      className="inline-block font-semibold text-gray-900 text-xs sm:text-sm"
+                      key={`answerTag-${index}`}
+                    >
+                      {answer}
+                    </li>
+                  ))}
               </ul>
 
               {/* Responsive, contained image */}
-              {page.props && (page.props as any).helpImage && (
+              {page.props.helpImage && (
                 <div className="flex justify-center mt-3">
                   <img
-                    src={(page.props as any).helpImage}
+                    src={page.props.helpImage}
                     alt="Help"
                     className="
                       rounded-md
@@ -547,16 +543,14 @@ export default function BookPage() {
         <div className="px-2 py-2 min-h-full flex">
           {page ? (
             <div className="flex flex-col w-full min-h-full justify-between gap-1">
-              {page?.props &&
-                ((page.props as any).ans?.length ||
-                  (page.props as any).helpImage) && (
-                  <HelpMeWindow
-                    help={help}
-                    setHelp={setHelp}
-                    page={page}
-                    playLowClick={playLowClick}
-                  />
-                )}
+              {(page?.props?.ans?.length || page?.props?.helpImage) && (
+                <HelpMeWindow
+                  help={help}
+                  setHelp={setHelp}
+                  page={page}
+                  playLowClick={playLowClick}
+                />
+              )}
 
               {/* Render the HintsWindow with the updated props */}
               {hintsLoading && (
@@ -596,9 +590,7 @@ export default function BookPage() {
               <div className="flex flex-row justify-between">
                 <div className="flex flex-row justify-start items-center p-1 xl:p-2 space-x-2">
                   {backButton}
-                  {page?.props &&
-                    ((page.props as any).ans?.length ||
-                      (page.props as any).helpImage) &&
+                  {(page?.props?.ans?.length || page?.props?.helpImage) &&
                     helpMeButton}
                 </div>
                 <div className="flex flex-row items-center">
