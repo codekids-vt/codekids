@@ -35,6 +35,17 @@ Prisma studio (visual database editor)
 cd backend && prisma studio
 ```
 
+## Create Local Minio bucket and set permissions
+
+Install the [minio client mc](https://docs.min.io/docs/minio-client-quickstart-guide.html)
+
+```bash
+mc alias set local-codekids http://localhost:9000 minioadmin minioadmin
+mc mb local-codekids/test-bucket
+mc config host ls # to verify
+mc anonymous set download local-codekids/test-bucket
+```
+
 ## Run frontend
 
 ```bash

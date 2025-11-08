@@ -16,6 +16,8 @@
         buildInputs = with pkgs; [
           nodePackages.prisma
           bashInteractive
+          minio-client
+          kubectl
         ];
 
         shellHook = ''
@@ -24,6 +26,10 @@
           export PRISMA_QUERY_ENGINE_LIBRARY="${pkgs.prisma-engines}/lib/libquery_engine.node"
           export PRISMA_INTROSPECTION_ENGINE_BINARY="${pkgs.prisma-engines}/bin/introspection-engine"
           export PRISMA_FMT_BINARY="${pkgs.prisma-engines}/bin/prisma-fmt"
+
+          if [ -n "$BASH" ] && [ -f "${pkgs.minio-client}/share/bash-completion/completions/mc" ]; then
+            source "${pkgs.minio-client}/share/bash-completion/completions/mc"
+          fi
         '';
       };
     };
