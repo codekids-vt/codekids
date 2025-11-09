@@ -74,13 +74,16 @@ async def upload_image(
         original_extension = Path(image.filename or "").suffix.lower()
         secure_filename = f"{uuid.uuid4()}{original_extension}"
 
+        # Add folder prefix - images will go into uploaded_images folder
+        object_name = f"uploaded_images/{secure_filename}"
+
         # Upload to MinIO
         bucket_name = settings.MINIO_DEFAULT_BUCKET
         temp_file = BytesIO(contents)
 
         client.put_object(
             bucket_name=bucket_name,
-            object_name=secure_filename,
+            object_name=object_name,  # Changed from secure_filename
             data=temp_file,
             length=len(contents),
             content_type=image.content_type or "application/octet-stream",
@@ -90,7 +93,8 @@ async def upload_image(
 
         # Generate URL
         endpoint = settings.MINIO_ENDPOINT
-        image_url = f"http://{endpoint}/{bucket_name}/{secure_filename}"
+        # Changed from secure_filename
+        image_url = f"http://{endpoint}/{bucket_name}/{object_name}"
 
         # Store in database with original filename for reference
         image_obj = await db.image.create(
