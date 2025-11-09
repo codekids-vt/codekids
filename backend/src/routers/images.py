@@ -46,8 +46,7 @@ def validate_image(contents: bytes, filename: str) -> tuple[bool, str]:
             return False, "File content does not appear to be a valid image"
 
         # Map imghdr types to extensions
-        type_map = {"jpeg": [".jpg", ".jpeg"],
-                    "png": [".png"], "gif": [".gif"]}
+        type_map = {"jpeg": [".jpg", ".jpeg"], "png": [".png"], "gif": [".gif"]}
         if image_type in type_map:
             if extension not in type_map[image_type]:
                 return (
@@ -133,10 +132,7 @@ async def get_image(
 
 
 @image_router.delete("/image/{image_id}", tags=["images"])
-async def delete_image(
-    image_id: int,
-    user: Annotated[User, Depends(get_user)]
-) -> dict:
+async def delete_image(image_id: int, user: Annotated[User, Depends(get_user)]) -> dict:
     """Delete an image from both database and MinIO"""
     try:
         # Get image record
@@ -145,7 +141,7 @@ async def delete_image(
             raise HTTPException(status_code=404, detail="Image not found")
 
         # Extract filename from URL
-        filename = image.image_url.split('/')[-1]
+        filename = image.image_url.split("/")[-1]
         bucket_name = settings.MINIO_DEFAULT_BUCKET
 
         # Delete from MinIO
