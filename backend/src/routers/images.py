@@ -46,7 +46,8 @@ def validate_image(contents: bytes, filename: str) -> tuple[bool, str]:
             return False, "File content does not appear to be a valid image"
 
         # Map imghdr types to extensions
-        type_map = {"jpeg": [".jpg", ".jpeg"], "png": [".png"], "gif": [".gif"]}
+        type_map = {"jpeg": [".jpg", ".jpeg"],
+                    "png": [".png"], "gif": [".gif"]}
         if image_type in type_map:
             if extension not in type_map[image_type]:
                 return (
@@ -74,13 +75,16 @@ async def upload_image(
         original_extension = Path(image.filename or "").suffix.lower()
         secure_filename = f"{uuid.uuid4()}{original_extension}"
 
+        # Add folder prefix - images will go into uploaded_images folder
+        object_name = f"uploaded_images/{secure_filename}"
+
         # Upload to MinIO
         bucket_name = settings.MINIO_DEFAULT_BUCKET
         temp_file = BytesIO(contents)
 
         client.put_object(
             bucket_name=bucket_name,
-            object_name=secure_filename,
+            object_name=object_name,  # Changed from secure_filename
             data=temp_file,
             length=len(contents),
             content_type=image.content_type or "application/octet-stream",
@@ -90,7 +94,8 @@ async def upload_image(
 
         # Generate URL
         endpoint = settings.MINIO_ENDPOINT
-        image_url = f"http://{endpoint}/{bucket_name}/{secure_filename}"
+        # Changed from secure_filename
+        image_url = f"http://{endpoint}/{bucket_name}/{object_name}"
 
         # Store in database with original filename for reference
         image_obj = await db.image.create(
@@ -128,7 +133,10 @@ async def get_image(
 
 
 @image_router.delete("/image/{image_id}", tags=["images"])
-async def delete_image(image_id: int, user: Annotated[User, Depends(get_user)]) -> dict:
+async def delete_image(
+    image_id: int,
+    user: Annotated[User, Depends(get_user)]
+) -> dict:
     """Delete an image from both database and MinIO"""
     try:
         # Get image record
@@ -137,7 +145,7 @@ async def delete_image(image_id: int, user: Annotated[User, Depends(get_user)]) 
             raise HTTPException(status_code=404, detail="Image not found")
 
         # Extract filename from URL
-        filename = image.image_url.split("/")[-1]
+        filename = image.image_url.split('/')[-1]
         bucket_name = settings.MINIO_DEFAULT_BUCKET
 
         # Delete from MinIO
