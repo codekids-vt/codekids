@@ -28,6 +28,27 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
     console.error("Error parsing tempProps JSON:", e);
   }
 
+  const imageKeys = new Set([
+    "image",
+    "imageUrl",
+    "imageSrc",
+    "backgroundImage",
+    "img",
+  ]);
+
+  // Helper to check if a key is an image field
+  const isImageField = (key: string): boolean => {
+    const lowerKey = key.toLowerCase();
+    return (
+      imageKeys.has(lowerKey) ||
+      lowerKey.includes("image") ||
+      lowerKey.includes("img") ||
+      (typeof propsObject[key] === "string" &&
+        (propsObject[key].startsWith("http") ||
+          propsObject[key].startsWith("/")))
+    );
+  };
+
   // Compute arrays based on the initial propsObject
   const objectArrays = Object.keys(propsObject).filter(
     (key) =>
@@ -215,6 +236,14 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                     className="border border-gray-300 rounded p-1 font-mono whitespace-pre w-full max-w-full min-w-0"
                     style={{ resize: "vertical" }}
                   />
+                ) : isImageField(key) ? (
+                  // *** NEW: Use ImageUploadSection for image fields ***
+                  <ImageUploadSection
+                    tempImage={propsObject[key]}
+                    setTempImage={(newValue) =>
+                      handleInputChange(key, newValue)
+                    }
+                  />
                 ) : (
                   <input
                     id={key}
@@ -326,6 +355,14 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                           <option value="true">True</option>
                           <option value="false">False</option>
                         </select>
+                      ) : isImageField(field) ? (
+                        // *** NEW: Use ImageUploadSection for image fields in arrays ***
+                        <ImageUploadSection
+                          tempImage={value}
+                          setTempImage={(newValue) =>
+                            handleOptionChange(arrayKey, index, field, newValue)
+                          }
+                        />
                       ) : (
                         <input
                           id={`${field}-${index}`}
@@ -472,13 +509,13 @@ function PageNavigator({
           </button>
 
           <a
-            className="w-9/12 h-12 border border-primary-green flex items-center justify-center rounded-xl text-lg hover:bg-primary-green hover:text-white text-center"
+            className="w-9/12 h-12 bg-primary-green text-white flex items-center justify-center rounded-xl text-lg hover:bg-green-700 text-center transition-colors"
             href={`/book/${bookId}/1`}
           >
             Preview Book
           </a>
           <button
-            className="w-9/12 h-12 border border-primary-green flex items-center justify-center rounded-xl text-lg hover:bg-primary-green hover:text-white text-center"
+            className="w-9/12 h-12 bg-primary-green text-white flex items-center justify-center rounded-xl text-lg hover:bg-green-700 text-center transition-colors"
             onClick={() => setPageNum(0)}
           >
             Book Details
@@ -531,7 +568,7 @@ function PageNavigator({
             );
           })}
           <button
-            className="w-9/12 h-12 border border-primary-green flex flex-col items-center justify-center rounded-xl text-xl hover:bg-primary-green hover:text-white"
+            className="w-9/12 h-12 bg-primary-green text-white flex flex-col items-center justify-center rounded-xl text-xl hover:bg-green-700 transition-colors"
             onClick={addPage}
           >
             +
@@ -731,6 +768,7 @@ function BookImageEditor({
           <ImageUploadSection
             tempImage={tempImage}
             setTempImage={setTempImage}
+            showLabel={true}
           />
         ) : (
           <>
