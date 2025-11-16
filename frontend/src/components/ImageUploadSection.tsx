@@ -4,9 +4,11 @@ import { ImagesService, Body_upload_image_images_post } from "../api";
 export function ImageUploadSection({
   tempImage,
   setTempImage,
+  showLabel = false,
 }: {
   tempImage: string;
   setTempImage: (value: string) => void;
+  showLabel?: boolean;
 }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadError, setUploadError] = useState<string>("");
@@ -130,7 +132,8 @@ export function ImageUploadSection({
 
   return (
     <div className="flex flex-col w-full min-w-0 gap-3">
-      <div>image url or path:</div>
+      {/* Conditionally show label */}
+      {showLabel && <div>image url or path:</div>}
 
       <div className="flex flex-col gap-2 w-full">
         {/* URL Input */}
@@ -154,11 +157,10 @@ export function ImageUploadSection({
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          className={`w-full border-2 border-dashed border-primary-green rounded-xl p-4 text-center cursor-pointer transition-colors min-w-0 ${
-            isUploading
+          className={`w-full border-2 border-dashed border-primary-green rounded-xl p-4 text-center cursor-pointer transition-colors min-w-0 ${isUploading
               ? "bg-gray-100 cursor-not-allowed opacity-60"
               : "hover:bg-green-50"
-          }`}
+            }`}
           onClick={() => !isUploading && fileInputRef.current?.click()}
         >
           <input
