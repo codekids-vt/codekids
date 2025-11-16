@@ -157,10 +157,11 @@ export function ImageUploadSection({
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          className={`w-full border-2 border-dashed border-primary-green rounded-xl p-4 text-center cursor-pointer transition-colors min-w-0 ${isUploading
+          className={`w-full border-2 border-dashed border-primary-green rounded-xl p-4 text-center cursor-pointer transition-colors min-w-0 ${
+            isUploading
               ? "bg-gray-100 cursor-not-allowed opacity-60"
               : "hover:bg-green-50"
-            }`}
+          }`}
           onClick={() => !isUploading && fileInputRef.current?.click()}
         >
           <input

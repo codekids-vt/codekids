@@ -28,16 +28,25 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
     console.error("Error parsing tempProps JSON:", e);
   }
 
-  const imageKeys = new Set(['image', 'imageUrl', 'imageSrc', 'backgroundImage', 'img']);
+  const imageKeys = new Set([
+    "image",
+    "imageUrl",
+    "imageSrc",
+    "backgroundImage",
+    "img",
+  ]);
 
   // Helper to check if a key is an image field
   const isImageField = (key: string): boolean => {
     const lowerKey = key.toLowerCase();
-    return imageKeys.has(lowerKey) ||
-      lowerKey.includes('image') ||
-      lowerKey.includes('img') ||
-      (typeof propsObject[key] === 'string' &&
-        (propsObject[key].startsWith('http') || propsObject[key].startsWith('/')));
+    return (
+      imageKeys.has(lowerKey) ||
+      lowerKey.includes("image") ||
+      lowerKey.includes("img") ||
+      (typeof propsObject[key] === "string" &&
+        (propsObject[key].startsWith("http") ||
+          propsObject[key].startsWith("/")))
+    );
   };
 
   // Compute arrays based on the initial propsObject
@@ -231,7 +240,9 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
                   // *** NEW: Use ImageUploadSection for image fields ***
                   <ImageUploadSection
                     tempImage={propsObject[key]}
-                    setTempImage={(newValue) => handleInputChange(key, newValue)}
+                    setTempImage={(newValue) =>
+                      handleInputChange(key, newValue)
+                    }
                   />
                 ) : (
                   <input
@@ -593,10 +604,11 @@ function PageNavigator({
             {pages.slice(0, 8).map((page) => (
               <button
                 key={page.id}
-                className={`w-8 h-8 rounded-full text-sm flex items-center justify-center ${page.pageNumber === pageNum
-                  ? "bg-primary-green text-white"
-                  : "bg-gray-200 hover:bg-gray-300"
-                  }`}
+                className={`w-8 h-8 rounded-full text-sm flex items-center justify-center ${
+                  page.pageNumber === pageNum
+                    ? "bg-primary-green text-white"
+                    : "bg-gray-200 hover:bg-gray-300"
+                }`}
                 onClick={() => setPageNum(page.pageNumber)}
                 title={`Page ${page.pageNumber}`}
               >
@@ -751,8 +763,8 @@ function BookImageEditor({
       {/* Content area - Takes remaining space */}
       <div className="flex-1 flex flex-col min-h-0 px-2 pb-2">
         {page.image.includes("/") ||
-          page.image === "Image" ||
-          page.image === "" ? (
+        page.image === "Image" ||
+        page.image === "" ? (
           <ImageUploadSection
             tempImage={tempImage}
             setTempImage={setTempImage}
@@ -763,19 +775,21 @@ function BookImageEditor({
             {/* Tab Navigation - Fixed */}
             <div className="flex-shrink-0 flex space-x-4 border-b-2 mb-2">
               <button
-                className={`p-2 ${activeTab === "prompts"
-                  ? "border-b-4 border-primary-green font-bold"
-                  : ""
-                  }`}
+                className={`p-2 ${
+                  activeTab === "prompts"
+                    ? "border-b-4 border-primary-green font-bold"
+                    : ""
+                }`}
                 onClick={() => setActiveTab("prompts")}
               >
                 Prompts
               </button>
               <button
-                className={`p-2 ${activeTab === "json"
-                  ? "border-b-4 border-primary-green font-bold"
-                  : ""
-                  }`}
+                className={`p-2 ${
+                  activeTab === "json"
+                    ? "border-b-4 border-primary-green font-bold"
+                    : ""
+                }`}
                 onClick={() => setActiveTab("json")}
               >
                 JSON
@@ -980,7 +994,7 @@ function PageEditor({
                         image: tempImage,
                         props: JSON.parse(tempProps),
                       }}
-                      setAllowNext={() => { }}
+                      setAllowNext={() => {}}
                     />
                   </ErrorBoundary>
                 </div>
