@@ -107,7 +107,7 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
-        
+
         {/* removed "absolute left-1/2 transform -translate-x-1/2" and replaced it with "mx-auto" to allow the navbar to stop overlapping with the content borders in the book pages */}
         <nav className="px-2 bg-stone-800 text-white hidden sm:block my-auto sm:py-0 rounded-b-md font-semibold mx-auto">
           <ul className="tablet:mx-auto sm:flex sm:items-center text-center text-lg">
