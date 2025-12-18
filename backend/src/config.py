@@ -19,6 +19,8 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str
     CHATGPT_MODEL: str
 
+    DEV_MODE: bool = False
+
     class Config:
         env_file = ".env"
         case_sensitive = True
