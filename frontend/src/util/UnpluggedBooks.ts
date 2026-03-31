@@ -125,4 +125,22 @@ export const unpluggedBooks = [
     title: "Recipe for LLMs",
     link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/LLMs_Lesson_Plan.pdf",
   },
+  {
+    author: "Jenna",
+    blurb: "Learn how games \"think\" by exploring if-statements and loops through videos, activities, and gameplay.",
+    bookCover: "/color_2.png",
+    category: "UNPLUGGED",
+    courses: [],
+    coverImage:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/controller.jpg",
+    id: 9999992,
+    owner: null,
+    ownerId: 16,
+    pages: [],
+    published: true,
+    readyForPublish: false,
+    tags: [],
+    title: " Intro to Game Logic",
+    link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/Intro_to_Game_Logic.pdf",
+  },
 ];
