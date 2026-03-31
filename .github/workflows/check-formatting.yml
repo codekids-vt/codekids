@@ -22,7 +22,7 @@ jobs:
         run: |
           cd backend &&
           pip install . &&
-          pip install black ruff pyright &&
+          pip install black==24.1.1 ruff pyright &&
           prisma generate
 
       - name: Setup Bun
