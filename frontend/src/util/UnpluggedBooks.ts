@@ -127,7 +127,8 @@ export const unpluggedBooks = [
   },
   {
     author: "Jenna",
-    blurb: "Learn how games \"think\" by exploring if-statements and loops through videos, activities, and gameplay.",
+    blurb:
+      'Learn how games "think" by exploring if-statements and loops through videos, activities, and gameplay.',
     bookCover: "/color_2.png",
     category: "UNPLUGGED",
     courses: [],
