@@ -100,8 +100,8 @@ export default function HomePage() {
       <div className="relative flex flex-row min-h-screen">
         {/* Sidebar */}
         <div
-          className={`fixed left-0 h-full bg-gradient-to-br from-[#d0ecd5] to-[#ecbfa3] shadow-lg transition-all duration-300 z-20 ${
-            sidebarVisible ? "w-64" : "w-36"
+          className={`fixed left-0 h-full bg-gradient-to-br from-[#d0ecd5] to-[#ecbfa3] shadow-lg transition-all duration-300 z-40 ${
+            sidebarVisible ? "w-60" : "w-36"
           }`}
           onMouseEnter={() => handleSidebarHover(true)}
           onMouseLeave={() => handleSidebarHover(true)}
@@ -208,7 +208,7 @@ export default function HomePage() {
         {/* Main Content */}
         <div
           className={`flex-1 transition-all duration-300 ${
-            sidebarVisible ? "ml-64" : "ml-16"
+            sidebarVisible ? "ml-60" : "ml-36"
           }`}
         >
           <div className="flex flex-col items-center w-full z-10">

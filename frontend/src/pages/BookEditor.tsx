@@ -1074,7 +1074,7 @@ function BookDetailsEditor({
   }, []);
 
   return (
-    <div className="flex flex-row h-full p-2 gap-2 w-full">
+    <div className="flex flex-row h-full min-h-screen p-2 gap-2 overflow-y-auto">
       <div className="flex flex-col gap-2 w-full">
         {textFields.map((field, i) => (
           <div key={i} className="flex flex-col w-full gap-2">
@@ -1409,33 +1409,35 @@ export default function BookEditor() {
   return (
     <div className="text-lg xl:text-lg 2xl:text-lg h-screen flex flex-col overflow-hidden">
       <Navbar />
-      <div className="flex-1 flex flex-row p-2 gap-2 min-h-0 overflow-hidden">
-        <PageNavigator
-          pages={book.pages.sort((a, b) => a.pageNumber - b.pageNumber)}
-          pageNum={pageNum}
-          setPageNum={setPageNum}
-          addPage={addPage}
-          deletePage={deletePage}
-          swapPages={swapPages}
-          bookId={bookId}
-          isCollapsed={isNavigatorCollapsed}
-          setIsCollapsed={setIsNavigatorCollapsed}
-        />
-        <div className="flex-1 min-w-0 overflow-hidden">
-          {currentPage && (
-            <PageEditor
-              page={currentPage}
-              setPage={setPage}
-              isNavigatorCollapsed={isNavigatorCollapsed}
-            />
-          )}
-          {pageNum === 0 && book && (
-            <BookDetailsEditor
-              book={book}
-              setBook={setBook}
-              saveBook={saveBook}
-            />
-          )}
+      <div className="flex-1 overflow-y-auto">
+        <div className="flex flex-row p-2 gap-2 min-h-0 overflow-hidden">
+          <PageNavigator
+            pages={book.pages.sort((a, b) => a.pageNumber - b.pageNumber)}
+            pageNum={pageNum}
+            setPageNum={setPageNum}
+            addPage={addPage}
+            deletePage={deletePage}
+            swapPages={swapPages}
+            bookId={bookId}
+            isCollapsed={isNavigatorCollapsed}
+            setIsCollapsed={setIsNavigatorCollapsed}
+          />
+          <div className="flex-1 min-w-0 overflow-hidden">
+            {currentPage && (
+              <PageEditor
+                page={currentPage}
+                setPage={setPage}
+                isNavigatorCollapsed={isNavigatorCollapsed}
+              />
+            )}
+            {pageNum === 0 && book && (
+              <BookDetailsEditor
+                book={book}
+                setBook={setBook}
+                saveBook={saveBook}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
