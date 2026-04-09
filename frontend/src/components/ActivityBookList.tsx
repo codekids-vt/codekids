@@ -56,16 +56,18 @@ function BookPreviewList({
   linkSuffix,
   loading,
   showPublished,
+  useOwnGrid,
 }: {
   pageBookData: Book[];
   linkPrefix: string;
   linkSuffix: string;
   loading: boolean;
   showPublished: boolean;
+  useOwnGrid: boolean;
 }) {
   const emptyBookData = Array.from({ length: 6 }, () => ({}));
-  return (
-    <ul className="flex-wrap gap-2 flex items-center justify-center">
+  const content = (
+    <>
       {!loading
         ? pageBookData.map((BookData: Book, i: number) => (
             <li key={`BookData-${i}`} className="pl-3">
@@ -88,8 +90,18 @@ function BookPreviewList({
               <LoadingBookPreview />
             </li>
           ))}
-    </ul>
+    </>
   );
+
+  if (useOwnGrid) {
+    return (
+      <ul className="flex-wrap gap-2 flex items-center justify-center">
+        {content}
+      </ul>
+    );
+  } else {
+    return content;
+  }
 }
 
 export default function ActivityBookList({
@@ -98,33 +110,44 @@ export default function ActivityBookList({
   linkSuffix,
   loading,
   showPublished,
-  isUnplugged,
+  useOwnGrid = true,
 }: {
   books: Book[];
   linkPrefix: string;
   linkSuffix: string;
   loading?: boolean;
   showPublished?: boolean;
-  isUnplugged?: boolean;
+  useOwnGrid?: boolean;
 }) {
-  return (
+  const content = (
     <>
-      <section className="p-2 mx-auto flex flex-wrap">
-        <BookPreviewList
-          pageBookData={books}
-          linkPrefix={linkPrefix}
-          linkSuffix={linkSuffix}
-          loading={loading === undefined ? false : loading}
-          showPublished={showPublished === undefined ? false : showPublished}
-        />
-      </section>
+      <BookPreviewList
+        pageBookData={books}
+        linkPrefix={linkPrefix}
+        linkSuffix={linkSuffix}
+        loading={loading === undefined ? false : loading}
+        showPublished={showPublished === undefined ? false : showPublished}
+        useOwnGrid={useOwnGrid}
+      />
     </>
   );
+
+  if (useOwnGrid) {
+    return <section className="p-2 mx-auto flex flex-wrap">{content}</section>;
+  } else {
+    return content;
+  }
 }
 
-export function BookPreviewUnplugged({ BookData }: { BookData: Array<any> }) {
-  return (
-    <div className="flex flex-wrap gap-4 justify-center">
+export function BookPreviewUnplugged({
+  BookData,
+  useOwnGrid = true,
+}: {
+  BookData: Array<any>;
+  useOwnGrid?: boolean;
+}) {
+  const content = (
+    <>
       {BookData.map((book, index) => (
         <div key={index} className="h-[325px] w-[275px] relative">
           <a
@@ -157,6 +180,12 @@ export function BookPreviewUnplugged({ BookData }: { BookData: Array<any> }) {
           </a>
         </div>
       ))}
-    </div>
+    </>
   );
+
+  if (useOwnGrid) {
+    return <div className="flex flex-wrap gap-4 justify-center">{content}</div>;
+  } else {
+    return content;
+  }
 }

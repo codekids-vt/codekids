@@ -4,7 +4,10 @@ import Background from "../components/Background";
 import PostPreview from "../components/PostPreview";
 import { useCallback, useEffect, useState } from "react";
 import { Book, BooksService } from "../api";
-import ActivityBookList from "../components/ActivityBookList";
+import ActivityBookList, {
+  BookPreviewUnplugged,
+} from "../components/ActivityBookList";
+import { unpluggedBooks } from "../util/UnpluggedBooks";
 
 export default function ActivityPostList() {
   const [results, setResults] = useState<Book[]>([]);
@@ -70,13 +73,20 @@ export default function ActivityPostList() {
           </ul>
         </section>
         <section className="w-full p-2 mt-2">
-          <h2 className="text-2xl">Books for Teachers</h2>
-          <ActivityBookList
-            books={results}
-            linkPrefix="/book/"
-            linkSuffix="/1"
-            loading={loading}
-          />
+          <h2 className="text-2xl mb-2 font-bold">Books for Teachers</h2>
+          <ul className="flex-wrap gap-2 flex items-center justify-center">
+            <BookPreviewUnplugged
+              BookData={unpluggedBooks}
+              useOwnGrid={false}
+            />
+            <ActivityBookList
+              books={results}
+              linkPrefix="/book/"
+              linkSuffix="/1"
+              loading={loading}
+              useOwnGrid={false}
+            />
+          </ul>
         </section>
       </div>
       <Footer />
