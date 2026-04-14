@@ -22,18 +22,16 @@ export function ImageUploadSection({
       console.log("File size:", file.size);
       console.log("File lastModified:", new Date(file.lastModified));
 
-      // Verify file is readable
       const fileContent = await file.arrayBuffer();
       console.log("File content length:", fileContent.byteLength);
 
-      // Create the form data object matching the generated type
-      const formData: Body_upload_image_images_post = {
-        image: file,
-      };
+      // Temporary workaround: generated type says string, but backend expects a file upload
+      const formData = {
+        image: file as any,
+      } as Body_upload_image_images_post;
 
       console.log("Sending request...");
 
-      // Use the generated ImagesService
       const result = await ImagesService.uploadImageImagesPost(formData);
 
       console.log("Upload successful:", result);
@@ -50,7 +48,6 @@ export function ImageUploadSection({
       console.error("Error body:", error.body);
       console.error("Error message:", error.message);
 
-      // Handle validation errors
       if (error.status === 422) {
         const detail = error.body?.detail || "Invalid image data";
         throw new Error(`Validation error: ${JSON.stringify(detail)}`);
@@ -60,7 +57,6 @@ export function ImageUploadSection({
         throw new Error(error.body?.detail || "Bad request - invalid image");
       }
 
-      // Handle API errors
       if (error.body?.detail) {
         throw new Error(error.body.detail);
       }

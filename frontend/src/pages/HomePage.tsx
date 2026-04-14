@@ -58,7 +58,9 @@ export default function HomePage() {
         published: true,
       })
         .then((response) => {
-          setResults(response);
+          setResults(
+            response.filter((book) => !book.tags.includes("teacher_resource")),
+          );
           setLoading(false);
         })
         .catch((error) => {
