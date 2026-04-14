@@ -142,7 +142,9 @@ async def create_page_with_gpt(
 
     props = dict(props_dict)
     print(json.dumps(props_dict, indent=2))
-    content_lines = [c for c in content if isinstance(c, str)] if isinstance(content, list) else []
+    content_lines = (
+        [c for c in content if isinstance(c, str)] if isinstance(content, list) else []
+    )
     content_question = next(
         (line.strip() for line in content_lines if "?" in line and line.strip()),
         "",
@@ -154,10 +156,7 @@ async def create_page_with_gpt(
     )
 
     question_text = (
-        props_dict.get("question")
-        or question_from_page
-        or content_question
-        or ""
+        props_dict.get("question") or question_from_page or content_question or ""
     )
     print("Question", question_text)
     follow_up_question = props_dict.get("followUpQuestion", "")
@@ -182,9 +181,17 @@ async def create_page_with_gpt(
         ),
         "",
     )
-    if not answer_options and page.questions and getattr(page.questions[0], "options", None):
+    if (
+        not answer_options
+        and page.questions
+        and getattr(page.questions[0], "options", None)
+    ):
         answer_options = page.questions[0].options
-    if not correct_answer and page.questions and getattr(page.questions[0], "answer", None):
+    if (
+        not correct_answer
+        and page.questions
+        and getattr(page.questions[0], "answer", None)
+    ):
         correct_answer = page.questions[0].answer
     print("Answer options ", answer_options)
     print("Correct Answer ", correct_answer)
@@ -197,13 +204,10 @@ async def create_page_with_gpt(
     print("Logical ", condition)
 
     existing_hints = props_dict.get("gptHints")
-    stale_hints = (
-        isinstance(existing_hints, list)
-        and any(
-            isinstance(h, dict)
-            and "no question found" in str(h.get("statement", "")).lower()
-            for h in existing_hints
-        )
+    stale_hints = isinstance(existing_hints, list) and any(
+        isinstance(h, dict)
+        and "no question found" in str(h.get("statement", "")).lower()
+        for h in existing_hints
     )
 
     # Check if GPT hints already exist
@@ -247,6 +251,7 @@ async def create_page_with_gpt(
         page_return = page
 
     return page_return
+
 
 async def generate_gpt_hints(
     bookId: int,
@@ -308,7 +313,10 @@ async def generate_gpt_hints(
     Return ONLY this list. Do not explain anything else.
     """
 
-    print("OPENAI_API_KEY =", settings.OPENAI_API_KEY[:10] if settings.OPENAI_API_KEY else "EMPTY")
+    print(
+        "OPENAI_API_KEY =",
+        settings.OPENAI_API_KEY[:10] if settings.OPENAI_API_KEY else "EMPTY",
+    )
     print("DEV_MODE =", settings.DEV_MODE)
 
     if settings.DEV_MODE or settings.OPENAI_API_KEY in ("openai-api-key", ""):
@@ -320,7 +328,9 @@ async def generate_gpt_hints(
             else "Read the task instructions carefully and focus on the exact thing being asked."
         )
         return [
-            {"statement": f"Think about what '{title}' means. What is the main idea of this page?"},
+            {
+                "statement": f"Think about what '{title}' means. What is the main idea of this page?"
+            },
             {"statement": question_hint},
             {"statement": "Try removing the wrong choices first."},
         ]
