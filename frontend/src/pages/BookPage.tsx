@@ -396,7 +396,10 @@ export default function BookPage() {
     Promise.race([
       PagesService.createPageWithGptPageCreatehintsPost(id, pageNum),
       new Promise<never>((_, reject) => {
-        setTimeout(() => reject(new Error("Timed out generating hints")), 12000);
+        setTimeout(
+          () => reject(new Error("Timed out generating hints")),
+          12000,
+        );
       }),
     ])
       .then((data) => {
