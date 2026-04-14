@@ -32,6 +32,14 @@ const availableParts = [
   "letter_r",
 ];
 
+// Helper function to format display names (e.g., "letter_c" -> "Letter C")
+const formatDisplayName = (name: string): string => {
+  return name
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 enum AlertType {
   NONE,
   SUCCESS,
@@ -54,6 +62,7 @@ export function CostarColoring({
     letter_a: "",
     letter_r: "",
   });
+  const [rowColors, setRowColors] = useState<string[]>(["", "", "", "", "", ""]);
 
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const colorNextPart = (color: string) => {
@@ -91,36 +100,74 @@ export function CostarColoring({
         });
       }
     };
+    const handleValueOnBlur = (value: string, isColorInput: boolean = false) => {
+      const val = value.toLowerCase().trim();
 
-    const handleValueOnBlur = (value: string) => {
-      if (
-        !availableColors.includes(value) &&
-        !availableParts.includes(value) &&
-        value !== ""
-      ) {
-        setCurrentAlert({
-          type: AlertType.FAILURE,
-          message: "That isn't quite one of the options. Try again.",
-        });
+
+      if (isColorInput) {
+        const strippedValue = val.startsWith('"') && val.endsWith('"')
+          ? val.substring(1, val.length - 1)
+          : val;
+
+        if (
+          !availableColors.includes(strippedValue) &&
+          value !== ""
+        ) {
+          setCurrentAlert({
+            type: AlertType.FAILURE,
+            message: "That isn't quite one of the options. Try again.",
+          });
+        }
+      } else {
+        // For letter input
+        if (
+          !availableParts.includes(val) &&
+          value !== ""
+        ) {
+          setCurrentAlert({
+            type: AlertType.FAILURE,
+            message: "That isn't quite one of the options. Try again.",
+          });
+        }
       }
     };
 
-    const handleColorChange = (part: string, value: string) => {
+
+
+    const handleColorChange = (part: string, value: string, rowIndex?: number) => {
       const val = value.toLowerCase();
       if (availableParts.includes(val)) {
         setCurrentAlert({
           type: AlertType.FAILURE,
           message: "This value is a color, not a body part!",
         });
+        return;
       }
       if (value.startsWith('"') && value.endsWith('"')) {
         const strippedValue = val.substring(1, val.length - 1);
-        if (availableColors.includes(strippedValue) && part !== "") {
+        if (availableColors.includes(strippedValue)) {
           setCurrentAlert({ type: AlertType.SUCCESS, message: "Correct!" });
-          setColors((prevColors) => ({
-            ...prevColors,
-            [part]: strippedValue,
-          }));
+
+          // If typeVariable mode, store by row index
+          if (props?.typeVariable && rowIndex !== undefined) {
+            const updatedRowColors = [...rowColors];
+            updatedRowColors[rowIndex] = strippedValue;
+            setRowColors(updatedRowColors);
+
+            // Also update the actual variable if it's been typed
+            if (part && part !== "") {
+              setColors((prevColors) => ({
+                ...prevColors,
+                [part]: strippedValue,
+              }));
+            }
+          } else {
+            // Normal mode - store by variable name
+            setColors((prevColors) => ({
+              ...prevColors,
+              [part]: strippedValue,
+            }));
+          }
         } else if (availableParts.includes(strippedValue)) {
           setCurrentAlert({
             type: AlertType.FAILURE,
@@ -129,6 +176,8 @@ export function CostarColoring({
         }
       }
     };
+
+
 
     function handleOnDrop(e: React.DragEvent, part: string) {
       const color = e.dataTransfer.getData("Color") as string;
@@ -188,40 +237,41 @@ export function CostarColoring({
                 onDragOver={(e) => handleDragOver(e)}
                 className="border-2 flex flex-row rounded-sm outline-dotted text-center"
               >
-                <label htmlFor={`${part}Text`}>
+                <label htmlFor={`${availablePart}Text`}>
                   {props?.typeVariable ? (
                     <input
-                      key={`${part}Text1`}
+                      key={`${availablePart}Text1`}
                       className={`rounded-sm w-24`}
                       type="text"
                       placeholder="Type a letter"
-                      onBlur={(e) => handleValueOnBlur(e.target.value)}
+                      onBlur={(e) => handleValueOnBlur(e.target.value, false)}
                       onChange={(e) => handlePart(index, e.target.value)}
                       defaultValue={part[index]}
                       disabled={!props.type}
                     />
                   ) : (
-                    `${availablePart}`
+                    formatDisplayName(availablePart)
                   )}
                   {"="}
                   <input
-                    key={`${part}Text2`}
+                    key={`${availablePart}Text2-${rowColors[index]}`}
                     type="text"
                     className={`rounded-sm w-24`}
                     placeholder={
                       props?.type ? "Type a color here" : "Drag a color here"
                     }
-                    onBlur={(e) => handleValueOnBlur(e.target.value)}
+
                     onChange={(e) =>
                       handleColorChange(
-                        props?.typeVariable ? part[index] : availablePart,
+                        props?.typeVariable && part[index] ? part[index] : availablePart,
                         e.target.value,
+                        props?.typeVariable ? index : undefined
                       )
                     }
                     defaultValue={
                       props?.typeVariable
-                        ? colors[part[index] as keyof CostarColorState]
-                          ? `"${colors[part[index] as keyof CostarColorState]}"`
+                        ? rowColors[index]
+                          ? `"${rowColors[index]}"`
                           : ""
                         : colors[availablePart as keyof CostarColorState]
                           ? `"${colors[availablePart as keyof CostarColorState]}"`
@@ -229,9 +279,13 @@ export function CostarColoring({
                     }
                     disabled={!props.type}
                   />
+
                 </label>
               </div>
             ))}
+
+
+
           </div>
           <div className="flex flex-col px-2">
             <h1 className="font-bold text-center">Options:</h1>
@@ -263,7 +317,9 @@ export function CostarColoring({
                       if (!props?.type) colorNextPart(color);
                     }}
                   >
-                    <q className={`text-white`}>{color}</q>
+                    <span className={`text-white`}>
+  {props?.type ? `"${color}"` : formatDisplayName(color)}
+</span>
                   </div>
                 ))}
               </div>
@@ -275,6 +331,18 @@ export function CostarColoring({
   }
 
   function CostarColor() {
+    // Determine which colors to display based on mode
+    const displayColors = props?.typeVariable
+      ? {
+        letter_c: rowColors[0] || "",
+        letter_o: rowColors[1] || "",
+        letter_s: rowColors[2] || "",
+        letter_t: rowColors[3] || "",
+        letter_a: rowColors[4] || "",
+        letter_r: rowColors[5] || "",
+      }
+      : colors;
+
     return (
       <div className="flex flex-col flex-grow justify-center items-center relative">
         <img
@@ -287,42 +355,42 @@ export function CostarColoring({
         <img
           src="/Costar_Images/Letter_C.png"
           alt="book"
-          className={`absolute center-left img-${colors.letter_c} `}
+          className={`absolute center-left img-${displayColors.letter_c.replace(/"/g, "")} `}
           width={500}
           height={500}
         />
         <img
           src="/Costar_Images/Letter_O.png"
           alt="book"
-          className={`absolute center-left img-${colors.letter_o} `}
+          className={`absolute center-left img-${displayColors.letter_o.replace(/"/g, "")} `}
           width={500}
           height={500}
         />
         <img
           src="/Costar_Images/Letter_S.png"
           alt="book"
-          className={`absolute center-left img-${colors.letter_s} `}
+          className={`absolute center-left img-${displayColors.letter_s.replace(/"/g, "")} `}
           width={500}
           height={500}
         />
         <img
           src="/Costar_Images/Letter_T.png"
           alt="book"
-          className={`absolute center-left img-${colors.letter_t} `}
+          className={`absolute center-left img-${displayColors.letter_t.replace(/"/g, "")} `}
           width={500}
           height={500}
         />
         <img
           src="/Costar_Images/Letter_A.png"
           alt="book"
-          className={`absolute center-left img-${colors.letter_a} `}
+          className={`absolute center-left img-${displayColors.letter_a.replace(/"/g, "")} `}
           width={500}
           height={500}
         />
         <img
           src="/Costar_Images/Letter_R.png"
           alt="book"
-          className={`absolute center-left img-${colors.letter_r} `}
+          className={`absolute center-left img-${displayColors.letter_r.replace(/"/g, "")} `}
           width={500}
           height={500}
         />
