@@ -77,7 +77,7 @@ export default function Navbar() {
 
   return (
     <header className="top-0 sticky w-full px-2 z-[100] bg-white">
-      <div className="flex flex-row justify-between relative h-[60px]">
+      <div className="flex flex-row justify-between relative">
         <div className="flex flex-row items-center justify-between py-1 sm:py-0">
           <a href="/">
             <img
@@ -108,7 +108,8 @@ export default function Navbar() {
           </button>
         </div>
 
-        <nav className="px-1 bg-stone-800 text-white hidden sm:block my-auto sm:py-0 rounded-b-md font-semibold absolute left-1/2 transform -translate-x-1/2">
+        {/* removed "absolute left-1/2 transform -translate-x-1/2" and replaced it with "mx-auto" to allow the navbar to stop overlapping with the content borders in the book pages */}
+        <nav className="px-2 bg-stone-800 text-white hidden sm:block my-auto sm:py-0 rounded-b-md font-semibold mx-auto">
           <ul className="tablet:mx-auto sm:flex sm:items-center text-center text-lg">
             {navLinks.map((route, i) => (
               <NavButton {...route} key={`nav-${i}`} />
