@@ -41,6 +41,7 @@ export function HokieBirdMap({
 
   function handleOnDragStatement(e: React.DragEvent, statement: string) {
     e.dataTransfer.setData("statement", statement);
+    e.dataTransfer.effectAllowed = "copyMove";
   }
 
   function handleDragOver(e: React.DragEvent) {
@@ -123,6 +124,16 @@ export function HokieBirdMap({
     setProcedures(newProcedures);
   }
 
+  function clearProcedure(index: number) {
+    const newProcedures = [...procedures];
+    newProcedures[index] = "";
+    setProcedures(newProcedures);
+    if (errorProcedure === index) {
+      setErrorProcedure(null);
+      setMessage(null);
+    }
+  }
+
   function resetAll() {
     setProcedures(blankProcedures);
     setMessage(null);
@@ -156,10 +167,22 @@ export function HokieBirdMap({
                     disabled={!isFireFox && !props.type}
                     value={statement}
                     onChange={(e) => setProcedure(index, e.target.value)}
+                    onDrop={(e) => handleOnDropStatement(e, index)}
+                    onDragOver={(e) => handleDragOver(e)}
                   />
                 </div>
                 {errorProcedure === index && (
                   <div className="pl-1 text-red-500">x</div>
+                )}
+                {procedures[index] !== "" && (
+                  <button
+                    type="button"
+                    onClick={() => clearProcedure(index)}
+                    className="ml-1 px-2 rounded-full bg-gray-200 hover:bg-gray-300 text-xs"
+                    aria-label={`Clear block ${index + 1}`}
+                  >
+                    ×
+                  </button>
                 )}
               </div>
             );
@@ -170,7 +193,7 @@ export function HokieBirdMap({
             {props.actions.map((action: string, i: number) => (
               <div key={i} className="p-1 hover:shadow-2xl">
                 <div
-                  draggable={props.draggable}
+                  draggable={true}
                   className="text-black bg-blue-200 rounded-2xl px-2"
                   onDragStart={(e) => handleOnDragStatement(e, action)}
                   onClick={() => handleActionClick(action)}

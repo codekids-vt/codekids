@@ -93,9 +93,9 @@ function HelpMeWindow({
                 ))}
             </ul>
           </div>
-          {page.props.helpImage && (
+          {page.props?.helpImage && (
             <img
-              src={page.props.helpImage}
+              src={page.props?.helpImage}
               alt="Help"
               width={750}
               height={250}
@@ -249,10 +249,10 @@ export function HintsWindow({
               </ul>
 
               {/* Responsive, contained image */}
-              {page.props.helpImage && (
+              {page.props?.helpImage && (
                 <div className="flex justify-center mt-3">
                   <img
-                    src={page.props.helpImage}
+                    src={page.props?.helpImage}
                     alt="Help"
                     className="
                       rounded-md
@@ -282,7 +282,7 @@ export function HintsWindow({
 
           {currentHintIndex === 0 && <div className="w-16" />}
 
-          {!showFullAnswer && (
+          {!showFullAnswer && allHints.length > 0 && (
             <button
               onClick={() => updateCurrentHintIndex(currentHintIndex + 1)}
               type="button"
@@ -306,7 +306,7 @@ export default function BookPage() {
   const [help, setHelp] = useState(false);
   const [allowNext, setAllowNext] = useState(true);
   const [hintsOpen, setHintsOpen] = useState<boolean>(false);
-  const [allHints, setAllHints] = useState([]); // Stores all hints from API
+  const [allHints, setAllHints] = useState<HintData[]>([]); // Stores all hints from API
   const [currentHintIndex, setCurrentHintIndex] = useState(0); // Tracks current hint
   const [showFullAnswer, setShowFullAnswer] = useState(false);
   const [hintsLoading, setHintsLoading] = useState(false);
@@ -386,7 +386,19 @@ export default function BookPage() {
     setCurrentHintIndex(0);
     setShowFullAnswer(false);
     setHintsLoading(true);
-    PagesService.createPageWithGptPageCreatehintsPost(id, pageNum)
+    const fallbackHints: HintData[] = [
+      {
+        statement:
+          "No hints are available for this page yet. Try clicking Help me again.",
+      },
+    ];
+
+    Promise.race([
+      PagesService.createPageWithGptPageCreatehintsPost(id, pageNum),
+      new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new Error("Timed out generating hints")), 12000);
+      }),
+    ])
       .then((data) => {
         if (data?.props) {
           let props;
@@ -398,6 +410,7 @@ export default function BookPage() {
                 : data.props;
           } catch (error) {
             console.error("Error parsing props JSON:", error);
+            setAllHints(fallbackHints);
             return;
           }
 
@@ -406,16 +419,24 @@ export default function BookPage() {
               statement: hint.statement,
             }));
 
-            setAllHints(formattedHints);
-            setCurrentHintIndex(0); // ensure reset
-            console.log("Formatted Hints:", formattedHints); // Debugging output
+            if (formattedHints.length > 0) {
+              setAllHints(formattedHints);
+              setCurrentHintIndex(0); // ensure reset
+              console.log("Formatted Hints:", formattedHints); // Debugging output
+            } else {
+              setAllHints(fallbackHints);
+            }
           } else {
             console.warn("No hints returned from API.");
+            setAllHints(fallbackHints);
           }
+        } else {
+          setAllHints(fallbackHints);
         }
       })
       .catch((error) => {
         console.error("Error fetching hints:", error);
+        setAllHints(fallbackHints);
       })
       .finally(() => {
         setHintsLoading(false); // Set loading to false here
@@ -423,6 +444,9 @@ export default function BookPage() {
   }
 
   function updateCurrentHintIndex(index: number) {
+    if (allHints.length === 0) {
+      return;
+    }
     if (index >= allHints.length) {
       setShowFullAnswer(true); // displays the entire answer
       return;
@@ -473,6 +497,7 @@ export default function BookPage() {
     playLowClick();
     setCurrentHintIndex(0); // Reset index
     setShowFullAnswer(false);
+    setHintsOpen(true);
     getAllHints(); // Reset view
     const timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
     InteractionsService.createInteractionInteractionsPost({
@@ -481,8 +506,8 @@ export default function BookPage() {
       user_id: user?.id,
       bookId: id,
       pageId: pageNum,
-    }).then(() => {
-      setHintsOpen(true);
+    }).catch((error) => {
+      console.error("Error logging Help me interaction:", error);
     });
   }
 
@@ -590,8 +615,7 @@ export default function BookPage() {
               <div className="flex flex-row justify-between">
                 <div className="flex flex-row justify-start items-center p-1 xl:p-2 space-x-2">
                   {backButton}
-                  {(page?.props?.ans?.length || page?.props?.helpImage) &&
-                    helpMeButton}
+                  {helpMeButton}
                 </div>
                 <div className="flex flex-row items-center">
                   {allowNext && forwardButton}
