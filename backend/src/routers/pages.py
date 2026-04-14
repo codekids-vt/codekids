@@ -129,12 +129,35 @@ async def create_page_with_gpt(
     print("Content", content)
 
     print("Props Block")
-    props = page.props if isinstance(page.props, dict) else {}
-    props_dict = (
-        json.loads(props) if isinstance(props, str) else props
-    )  # Ensure it's a dictionary
+    raw_props = page.props
+    if isinstance(raw_props, str):
+        try:
+            props_dict = json.loads(raw_props)
+        except Exception:
+            props_dict = {}
+    elif isinstance(raw_props, dict):
+        props_dict = raw_props
+    else:
+        props_dict = {}
+
+    props = dict(props_dict)
     print(json.dumps(props_dict, indent=2))
-    question_text = props_dict.get("question", "No question found")
+    content_lines = (
+        [c for c in content if isinstance(c, str)] if isinstance(content, list) else []
+    )
+    content_question = next(
+        (line.strip() for line in content_lines if "?" in line and line.strip()),
+        "",
+    )
+    question_from_page = (
+        page.questions[0].question
+        if page.questions and getattr(page.questions[0], "question", "")
+        else ""
+    )
+
+    question_text = (
+        props_dict.get("question") or question_from_page or content_question or ""
+    )
     print("Question", question_text)
     follow_up_question = props_dict.get("followUpQuestion", "")
     follow_up_answers = props_dict.get("followUpAnswers", [])
@@ -158,6 +181,18 @@ async def create_page_with_gpt(
         ),
         "",
     )
+    if (
+        not answer_options
+        and page.questions
+        and getattr(page.questions[0], "options", None)
+    ):
+        answer_options = page.questions[0].options
+    if (
+        not correct_answer
+        and page.questions
+        and getattr(page.questions[0], "answer", None)
+    ):
+        correct_answer = page.questions[0].answer
     print("Answer options ", answer_options)
     print("Correct Answer ", correct_answer)
     statements = props_dict.get("statements", [])
@@ -168,8 +203,15 @@ async def create_page_with_gpt(
     condition: str = props_dict.get("condition", "")
     print("Logical ", condition)
 
+    existing_hints = props_dict.get("gptHints")
+    stale_hints = isinstance(existing_hints, list) and any(
+        isinstance(h, dict)
+        and "no question found" in str(h.get("statement", "")).lower()
+        for h in existing_hints
+    )
+
     # Check if GPT hints already exist
-    if not props_dict.get("gptHints"):
+    if not existing_hints or stale_hints:
         # Only generate hints if they are not already present
         gptHints = await generate_gpt_hints(
             bookId,
@@ -188,18 +230,22 @@ async def create_page_with_gpt(
             code,
         )
 
-        props["gptHints"] = gptHints
+        if gptHints:
+            props["gptHints"] = gptHints
 
-        page_return = await db.page.update(
-            where={"id": page.id},
-            data={
-                "pageNumber": pageId,
-                "content": Json(content),
-                "image": page.image if page.image else "/images/blank.png",
-                "props": Json(props),
-            },
-            include={"book": False},
-        )
+            page_return = await db.page.update(
+                where={"id": page.id},
+                data={
+                    "pageNumber": pageId,
+                    "content": Json(content),
+                    "image": page.image if page.image else "/images/blank.png",
+                    "props": Json(props),
+                },
+                include={"book": False},
+            )
+        else:
+            print("Warning: generate_gpt_hints returned empty list, not persisting.")
+            page_return = page
     else:
         print("GPT hints already exist. Skipping generation.")
         page_return = page
@@ -225,49 +271,71 @@ async def generate_gpt_hints(
 ) -> list[dict]:
 
     system_message = """
-        You are Hint Generator helping young children (ages 5-7) learn advanced programming concepts in a fun and understandable way. These children are using interactive activity books from the CodeKids platform.
+    You are Hint Generator helping young children (ages 5-7) learn advanced programming concepts in a fun and understandable way. These children are using interactive activity books from the CodeKids platform.
 
-        Your job is to help them answer questions from these books, without directly giving away the answer. Instead, guide them with simple,concise and progressive hints that build on their understanding.
+    Your job is to help them answer questions from these books, without directly giving away the answer. Instead, guide them with simple, concise and progressive hints that build on their understanding.
 
-        Focus on:
-        - Providing step-by-step hints, starting from simple conceptual reminders and building toward deeper insight specific to the problem topic and content.
-        - Using content-appropriate analogies (e.g., boxes, toys, animals, simple real-world examples).
-        - Encouraging critical thinking.
-        - Reinforcing correct patterns without using complex terms.
-        - Keeping a positive and supportive tone.
+    Focus on:
+    - Providing step-by-step hints, starting from simple conceptual reminders and building toward deeper insight specific to the problem topic and content.
+    - Using content-appropriate analogies (e.g., boxes, toys, animals, simple real-world examples).
+    - Encouraging critical thinking.
+    - Reinforcing correct patterns without using complex terms.
+    - Keeping a positive and supportive tone.
 
-        Each hint should:
-        1. Be one step closer to helping them solve the question.
-        2. Encourage curiosity and exploration.
-        3. Include minimum 2 and a maximum of 4 hints
+    Each hint should:
+    1. Be one step closer to helping them solve the question.
+    2. Encourage curiosity and exploration.
+    3. Include minimum 2 and a maximum of 4 hints.
 
-        Never give the direct answer unless explicitly asked. Keep the experience playful, supportive, and confidence-building.
-        """
+    Never give the direct answer unless explicitly asked. Keep the experience playful, supportive, and confidence-building.
+    """
 
     user_message = f"""
     Book ID: {bookId}
     Page ID: {pageId}
-    Topic:{title}
+    Topic: {title}
     Content: {content}
-    Code:{code}
-    Question:{question} or {condition}
-    Options:{options} or {statements}
-    Answer:{correct_answer} or{ans}
+    Code: {code}
+    Question: {question} or {condition}
+    Options: {options} or {statements}
+    Answer: {correct_answer} or {ans}
     Follow-Up Question: {follow_up_question}
     Follow-Up Options: {follow_up_options}
     Follow-Up Answer: {follow_up_correct_answer}
 
-    
-        Generate your output in this format:
+    Generate your output in this format:
     [
-    {{ "statement": "First hint goes here." }},
-    {{ "statement": "Second hint goes here." }},
-    {{ "statement": "Third hint goes here." }}
+      {{ "statement": "First hint goes here." }},
+      {{ "statement": "Second hint goes here." }},
+      {{ "statement": "Third hint goes here." }}
     ]
 
     Return ONLY this list. Do not explain anything else.
+    """
 
-"""
+    print(
+        "OPENAI_API_KEY =",
+        settings.OPENAI_API_KEY[:10] if settings.OPENAI_API_KEY else "EMPTY",
+    )
+    print("DEV_MODE =", settings.DEV_MODE)
+
+    if settings.DEV_MODE or settings.OPENAI_API_KEY in ("openai-api-key", ""):
+        print("USING MOCK HINTS")
+        safe_question = question.strip() if question else ""
+        question_hint = (
+            f"Look carefully at the question: '{safe_question}'. Which part helps most?"
+            if safe_question
+            else "Read the task instructions carefully and focus on the exact thing being asked."
+        )
+        return [
+            {
+                "statement": f"Think about what '{title}' means. What is the main idea of this page?"
+            },
+            {"statement": question_hint},
+            {"statement": "Try removing the wrong choices first."},
+        ]
+
+    print("CALLING OPENAI NOW")
 
     try:
         response = await client.chat.completions.create(
@@ -280,11 +348,14 @@ async def generate_gpt_hints(
         )
 
         gpt_text = response.choices[0].message.content or ""
+        print("RAW OPENAI RESPONSE:", gpt_text)
+
         hints = parse_gpt_hints(gpt_text)
+        print("PARSED HINTS:", hints)
         return hints
 
     except Exception as e:
-        print("GPT-4 API Error:", e)
+        print("GPT API Error:", e)
         return []
 
 
