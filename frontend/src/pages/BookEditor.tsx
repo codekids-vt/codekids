@@ -23,7 +23,10 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
   let propsObject: { [key: string]: any } = {};
 
   try {
-    propsObject = JSON.parse(tempProps);
+    const parsed = JSON.parse(tempProps);
+    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+      propsObject = parsed;
+    }
   } catch (e) {
     console.error("Error parsing tempProps JSON:", e);
   }
@@ -84,7 +87,15 @@ function PropsForm({ tempProps, setTempProps }: PropsFormProps) {
 
   // Re-calculate arrays inside useEffect so that dependencies are derived from tempProps only.
   useEffect(() => {
-    const newProps = JSON.parse(tempProps);
+    let newProps: { [key: string]: any } = {};
+    try {
+      const parsed = JSON.parse(tempProps);
+      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+        newProps = parsed;
+      }
+    } catch (e) {
+      console.error("Error parsing tempProps JSON:", e);
+    }
     const newObjectArrays = Object.keys(newProps).filter(
       (key) =>
         Array.isArray(newProps[key]) &&
