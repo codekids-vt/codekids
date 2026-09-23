@@ -5,8 +5,9 @@ from pathlib import Path
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
-from minio import Minio
 from prisma.models import Image, User
+
+from minio import Minio
 from src.auth import get_user
 from src.config import settings
 from src.db import db
@@ -47,19 +48,18 @@ def validate_image(contents: bytes, filename: str) -> tuple[bool, str]:
 
         # Map imghdr types to extensions
         type_map = {"jpeg": [".jpg", ".jpeg"], "png": [".png"], "gif": [".gif"]}
-        if image_type in type_map:
-            if extension not in type_map[image_type]:
-                return (
-                    False,
-                    f"File extension {extension} does not match content type {image_type}",
-                )
+        if image_type in type_map and extension not in type_map[image_type]:
+            return (
+                False,
+                f"File extension {extension} does not match content type {image_type}",
+            )
 
     return True, ""
 
 
 @image_router.post("/images", tags=["images"])
 async def upload_image(
-    user: Annotated[User, Depends(get_user)], image: UploadFile = File(...)
+    user: Annotated[User, Depends(get_user)], image: Annotated[UploadFile, File()]
 ) -> Image:
     try:
         # Read file contents

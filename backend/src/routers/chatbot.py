@@ -1,9 +1,10 @@
-from typing import Annotated, List, Optional
+from typing import Annotated
 
 import openai
 from fastapi import APIRouter, Depends, HTTPException
 from prisma.models import Chat, Message, User
 from pydantic import BaseModel
+
 from src.auth import get_user
 from src.config import settings
 from src.db import db
@@ -16,7 +17,7 @@ chatbot_router = APIRouter()
 
 
 class InteractRequest(BaseModel):
-    chat_id: Optional[str] = None
+    chat_id: str | None = None
     user_message: str
 
 
@@ -58,12 +59,12 @@ async def add_message(chat_id: str, sender: str, content: str) -> Message:
             }
         )
     except Exception as e:
-        raise RuntimeError(f"Failed to create message: {str(e)}")
+        raise RuntimeError(f"Failed to create message: {e!s}")
 
     return new_message
 
 
-async def generate_summary(messages: List[Message]) -> str:
+async def generate_summary(messages: list[Message]) -> str:
     """
     Summarizes a list of messages using ChatGPT.
     """

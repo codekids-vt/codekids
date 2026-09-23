@@ -18,12 +18,16 @@ jobs:
         run: |
           cp backend/.env.example backend/.env
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
       - name: Install backend dependencies
         run: |
           cd backend &&
-          pip install . &&
-          pip install black==24.1.1 ruff pyright &&
-          prisma generate
+          uv sync --locked &&
+          uv run prisma generate
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
@@ -36,17 +40,17 @@ jobs:
       - name: black
         run: |
           cd backend &&
-          black . --check
+          uv run black . --check
 
       - name: ruff
         run: |
           cd backend &&
-          ruff check .
+          uv run ruff check .
 
       - name: pyright
         run: |
           cd backend &&
-          pyright .
+          uv run pyright .
 
       - name: prettier
         run: |
@@ -61,7 +65,7 @@ jobs:
       - name: Generate OpenAPI schema
         run: |
           cd backend &&
-          python generate_openapi.py
+          uv run python generate_openapi.py
 
       - name: Generate frontend API client
         run: |

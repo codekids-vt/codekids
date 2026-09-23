@@ -1,16 +1,14 @@
-from fastapi import Security, HTTPException, status
+from fastapi import HTTPException, Security, status
 from fastapi.security import APIKeyHeader
-from src.db import db
 
+from src.db import db
 
 api_key_header = APIKeyHeader(name="X-API-Key")
 
 
 async def check_api_key(api_key: str):
     user = await db.user.find_first(where={"token": api_key})
-    if user:
-        return True
-    return False
+    return bool(user)
 
 
 async def get_user_from_api_key(api_key: str):

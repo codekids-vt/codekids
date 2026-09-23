@@ -1,9 +1,9 @@
-from datetime import datetime
-from typing import Optional
+from datetime import datetime, timezone
 
 from fastapi import APIRouter, HTTPException
 from prisma.enums import InteractionType
 from pydantic import BaseModel
+
 from src.db import db
 
 interactions_router = APIRouter()
@@ -12,13 +12,13 @@ interactions_router = APIRouter()
 class InteractionCreateRequest(BaseModel):
     interaction_type: InteractionType
     time_since_load: int
-    user_id: Optional[int] = None
-    question_id: Optional[int] = None
-    answer: Optional[str] = None
-    correct: Optional[bool] = None
-    bookId: Optional[int] = None
-    pageId: Optional[int] = None
-    thumbsUp: Optional[bool] = None
+    user_id: int | None = None
+    question_id: int | None = None
+    answer: str | None = None
+    correct: bool | None = None
+    bookId: int | None = None
+    pageId: int | None = None
+    thumbsUp: bool | None = None
 
 
 class InteractionCreateResponse(BaseModel):
@@ -33,7 +33,7 @@ async def create_interaction(
         interaction = await db.interaction.create(
             data={
                 "interactionType": interaction_data.interaction_type,
-                "date": datetime.now(),
+                "date": datetime.now(timezone.utc),
                 "timeSinceLoad": interaction_data.time_since_load,
                 "answer": interaction_data.answer,
                 "correct": interaction_data.correct,
