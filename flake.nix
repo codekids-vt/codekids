@@ -15,6 +15,7 @@
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
           nodePackages.prisma
+          nodejs
           bashInteractive
           minio-client
           kubectl
