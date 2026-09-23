@@ -15,7 +15,12 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "black>=25.9.0",
-    "pyright>=1.1.407",
-    "ruff>=0.14.3",
+    "black>=26.5.1",
+    "pyright>=1.1.414",
+    "ruff>=0.16.8",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+# Route handlers deliberately catch Exception so an unexpected failure becomes
+# an HTTP error response (or an empty result) instead of an unhandled 500.
+"src/routers/*" = ["BLE001"]

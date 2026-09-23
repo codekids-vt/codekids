@@ -3,6 +3,7 @@
 import json
 
 from fastapi.openapi.utils import get_openapi
+
 from src.main import app
 
 if __name__ == "__main__":
