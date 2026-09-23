@@ -19,7 +19,7 @@ import { useTheme } from "../context/ThemeContext";
 function BookContent({ content }: { content: string[] }) {
   return (
     <div className="h-[calc(100vh-9rem)] xl:h-[calc(100vh-13rem)] overflow-y-scroll flex flex-col justify-center gap-1 items-center w-full">
-      <ul className="flex flex-col justify-center py-2 md:space-y-1 xl:space-y-4">
+      <ul className="flex flex-col justify-center py-2 md:space-y-1 xl:space-y-4 text-base md:text-lg lg:text-xl xl:text-2xl">
         {content.map((line, i) => (
           <li key={i}>
             <Reader text={line} />
@@ -220,11 +220,10 @@ export function HintsWindow({
           className={`
     flex-1 overflow-y-auto text-gray-800
     scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent
-    ${
-      showFullAnswer
-        ? "px-3 py-3" // normal padding for full answer
-        : "px-4 py-6 sm:py-8"
-    }      // more top/bottom padding for hints
+    ${showFullAnswer
+              ? "px-3 py-3" // normal padding for full answer
+              : "px-4 py-6 sm:py-8"
+            }      // more top/bottom padding for hints
   `}
         >
           {!showFullAnswer ? (

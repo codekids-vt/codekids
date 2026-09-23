@@ -47,7 +47,7 @@ export default function BinaryConverter({
     dec = parseInt(binary, 2);
   }
   return (
-    <div className="p-2 flex flex-col gap-2">
+    <div className="p-2 flex flex-col gap-2 text-lg md:text-xl xl:text-2xl">
       <label className="py-2">Enter a binary number:</label>
       <input
         type="text"
@@ -61,7 +61,7 @@ export default function BinaryConverter({
         className="p-2"
         style={{ color: dec === undefined || isNaN(dec) ? "red" : "black" }}
       >
-        {dec === undefined || isNaN(dec) ? "Invalid" : dec}
+        {binary === "" ? "" : (dec === undefined || isNaN(dec) ? "Invalid" : dec)}
       </div>
       <div className="p-2">
         {dec !== undefined && !isNaN(dec) && conversionSteps
