@@ -2,9 +2,10 @@ import json
 
 from fastapi import APIRouter, HTTPException
 from openai import AsyncOpenAI
-from prisma import Json
 from prisma.models import Book, Page
 from prisma.partials import UpdatePage
+
+from prisma import Json
 from src.config import settings
 from src.db import db
 

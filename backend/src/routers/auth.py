@@ -1,7 +1,7 @@
 import hashlib
 import hmac
 import secrets
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import HTTPBasicCredentials
@@ -9,6 +9,7 @@ from prisma.enums import AccountType
 from prisma.models import User
 from prisma.partials import UserLightNoPassword
 from pydantic import BaseModel
+
 from src.auth import get_user
 from src.config import settings
 from src.db import db
@@ -28,9 +29,9 @@ class LoginResponse(BaseModel):
 
 
 class UpdateUserRequest(BaseModel):
-    username: Optional[str] = None
-    email: Optional[str] = None
-    password: Optional[str] = None
+    username: str | None = None
+    email: str | None = None
+    password: str | None = None
 
 
 @auth_router.post("/signup", tags=["auth"])

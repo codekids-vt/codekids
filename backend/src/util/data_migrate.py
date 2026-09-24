@@ -1,28 +1,24 @@
-import json
-import asyncio
-from prisma import Prisma
 import argparse
+import asyncio
+import json
+
+from prisma import Prisma
 
 client = Prisma()
 
 
-async def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("id", type=int)
-    args = parser.parse_args()
-    id = args.id
+def load_book(book_id: int):
+    # Open and load the JSON file
+    with open("../frontend/src/util/books.json") as file:
+        books = json.load(file)
 
+    return next((book for book in books if book["BookId"] == book_id), None)
+
+
+async def main(book):
     # Connect to the database
     await client.connect()
 
-    # Open and load the JSON file
-    with open("../frontend/src/util/books.json", "r") as file:
-        books = json.load(file)
-
-    book = [book for book in books if book["BookId"] == id][0]
-    if not book:
-        print(f"Book with id {id} not found")
-        return
     # Create book record
     created_book = await client.book.create(
         {
@@ -53,4 +49,12 @@ async def main():
 
 
 # Run the main function
-asyncio.run(main())
+parser = argparse.ArgumentParser()
+parser.add_argument("id", type=int)
+args = parser.parse_args()
+
+book = load_book(args.id)
+if book is None:
+    print(f"Book with id {args.id} not found")
+else:
+    asyncio.run(main(book))

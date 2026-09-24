@@ -1,9 +1,10 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
 from prisma.enums import AccountType
 from prisma.models import BookCourse, Course, CourseStudent, User
 from pydantic import BaseModel
+
 from src.auth import get_user
 from src.db import db
 
@@ -11,8 +12,8 @@ from src.db import db
 class CourseCreate(BaseModel):
     title: str
     teacherId: int
-    students: Optional[list[CourseStudent]] = None
-    books: Optional[list[BookCourse]] = None
+    students: list[CourseStudent] | None = None
+    books: list[BookCourse] | None = None
 
 
 courses_router = APIRouter()

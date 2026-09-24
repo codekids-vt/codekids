@@ -63,9 +63,9 @@ cd frontend
 bun run format
 CI=True bun run build
 cd ../backend
-black . --check
-pyright .
-ruff check .
+uv run black . --check
+uv run pyright .
+uv run ruff check .
 ```
 
 To update the frontend client to match backend schema.

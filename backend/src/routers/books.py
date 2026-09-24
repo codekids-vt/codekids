@@ -1,12 +1,13 @@
 import re
-from typing import Annotated, List, Optional
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
-from prisma import Json
 from prisma.enums import AccountType, BookCategory
 from prisma.models import Book, User
 from prisma.types import BookUpdateInput, BookWhereInput
 from pydantic import BaseModel
+
+from prisma import Json
 from src.auth import get_user
 from src.db import db
 
@@ -14,11 +15,11 @@ books_router = APIRouter()
 
 
 class SearchBooksRequest(BaseModel):
-    categories: Optional[List[BookCategory]] = None
-    limit: Optional[int] = 100
-    owner_id: Optional[int] = None
-    published: Optional[bool] = None
-    query: Optional[str] = None
+    categories: list[BookCategory] | None = None
+    limit: int | None = 100
+    owner_id: int | None = None
+    published: bool | None = None
+    query: str | None = None
 
 
 LEVEL_CATEGORIES = [
@@ -31,7 +32,7 @@ LEVEL_CATEGORIES = [
 @books_router.post("/books/search", tags=["books"])
 async def search_books(
     req: SearchBooksRequest,
-) -> List[Book]:
+) -> list[Book]:
     where: BookWhereInput = {}
     if req.categories:
         level_cats = [cat for cat in req.categories if cat in LEVEL_CATEGORIES]
@@ -98,22 +99,22 @@ async def get_book(book_id: int) -> Book:
 
 
 @books_router.get("/book-topics", tags=["books"])
-async def get_unique_book_topics() -> List[str]:
+async def get_unique_book_topics() -> list[str]:
     books = await db.book.find_many()
-    unique_topics = set(book.bookTopic for book in books if book.bookTopic)
+    unique_topics = {book.bookTopic for book in books if book.bookTopic}
     return list(unique_topics)
 
 
 class CreateBookRequest(BaseModel):
     title: str
     categories: list[BookCategory] = []
-    bookTopic: Optional[str] = None
+    bookTopic: str | None = None
     tags: list[str] = []
-    bookCover: Optional[str] = None
-    coverImage: Optional[str] = None
-    author: Optional[str] = None
-    blurb: Optional[str] = None
-    readyForPublish: Optional[bool] = False
+    bookCover: str | None = None
+    coverImage: str | None = None
+    author: str | None = None
+    blurb: str | None = None
+    readyForPublish: bool | None = False
 
 
 @books_router.post("/books", tags=["books"])

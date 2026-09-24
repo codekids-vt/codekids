@@ -1,4 +1,4 @@
-from prisma.models import User, Page
+from prisma.models import Page, User
 
 User.create_partial(
     "UserLightNoPassword",
