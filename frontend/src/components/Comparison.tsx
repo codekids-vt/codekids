@@ -235,15 +235,15 @@ export function Comparison({
       <h1 className="text-center font-bold">
         {props?.command || "Drag and Drop Classification"}
       </h1>
-
-      <div className="flex flex-row space-x-4 justify-center">
+      {/* These changes ensure the comparison activity can be viewed without any/slight scrolling and is larger.  */}
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 justify-center items-center lg:items-start p-4">
         {/* Bank of Options (Now droppable) */}
         <div
-          className="flex flex-col space-y-2 p-4 bg-white rounded-2xl border-2 border-gray-300 w-96 h-96"
+          className="flex flex-col space-y-6 p-6 bg-white rounded-2xl border-2 border-gray-300 w-full max-w-md lg:max-w-lg xl:max-w-xl"
           onDrop={(e) => onDrop(e, "bank")}
           onDragOver={(e) => onDragOver(e)}
         >
-          <h2 className="text-center font-semibold">Options</h2>
+          <h2 className="text-center font-semibold text-xl">Options</h2>
           {renderOptionsForStatus("bank")}
         </div>
 
@@ -251,9 +251,9 @@ export function Comparison({
         <div
           onDrop={(e) => onDrop(e, categoryA)}
           onDragOver={(e) => onDragOver(e)}
-          className="flex-1 flex flex-col space-y-2 p-4 bg-white rounded-2xl border-2 border-gray-300 w-96 h-96"
+          className="flex-1 flex flex-col space-y-6 p-6 bg-white rounded-2xl border-2 border-gray-300 w-full max-w-md lg:max-w-lg xl:max-w-xl"
         >
-          <h2 className="text-center font-semibold">{categoryA}</h2>
+          <h2 className="text-center font-semibold text-xl">{categoryA}</h2>
           {renderOptionsForStatus(categoryA)}
         </div>
 
@@ -261,9 +261,9 @@ export function Comparison({
         <div
           onDrop={(e) => onDrop(e, categoryB)}
           onDragOver={(e) => onDragOver(e)}
-          className="flex-1 flex flex-col space-y-2 p-4 bg-white rounded-2xl border-2 border-gray-300 w-96 h-96"
+          className="flex-1 flex flex-col space-y-6 p-6 bg-white rounded-2xl border-2 border-gray-300 w-full max-w-md lg:max-w-lg xl:max-w-xl"
         >
-          <h2 className="text-center font-semibold">{categoryB}</h2>
+          <h2 className="text-center font-semibold text-xl">{categoryB}</h2>
           {renderOptionsForStatus(categoryB)}
         </div>
       </div>

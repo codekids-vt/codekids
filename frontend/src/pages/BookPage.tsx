@@ -539,7 +539,7 @@ export default function BookPage() {
   return (
     <div className="text-xs xl:text-lg 2xl:text-xl">
       <Navbar />
-      <div className="mx-auto h-[calc(100vh-60px)]">
+      <div className="mx-auto h-[calc(100vh-68px)]">
         <div className="px-2 py-2 min-h-full flex">
           {page ? (
             <div className="flex flex-col w-full min-h-full justify-between gap-1">
