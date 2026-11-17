@@ -312,7 +312,7 @@ export default function BookPage() {
   const [hintsLoading, setHintsLoading] = useState(false);
   const [book, setBook] = useState<Book | undefined>(undefined);
   const navigate = useNavigate();
-  // The URL is the source of truth for the page so browser Back/Forward stays in sync.
+  // URL so back and forward stays in sync
   const pageNum = pageNumParam ? parseInt(pageNumParam) : 1;
   const setPageNum = (newPageNum: number) =>
     navigate(`/book/${idString}/${newPageNum}`);
