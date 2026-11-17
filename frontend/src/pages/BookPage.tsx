@@ -311,11 +311,12 @@ export default function BookPage() {
   const [showFullAnswer, setShowFullAnswer] = useState(false);
   const [hintsLoading, setHintsLoading] = useState(false);
   const [book, setBook] = useState<Book | undefined>(undefined);
-  const [pageNum, setPageNum] = useState(
-    pageNumParam ? parseInt(pageNumParam) : 1,
-  );
-  const startTime = new Date().getTime();
   const navigate = useNavigate();
+  // The URL is the source of truth for the page so browser Back/Forward stays in sync.
+  const pageNum = pageNumParam ? parseInt(pageNumParam) : 1;
+  const setPageNum = (newPageNum: number) =>
+    navigate(`/book/${idString}/${newPageNum}`);
+  const startTime = new Date().getTime();
   const { unsavedToggleDarkMode } = useTheme();
 
   useEffect(() => {
@@ -335,9 +336,7 @@ export default function BookPage() {
 
   useEffect(() => {
     playPageFlip();
-    navigate(`/book/${idString}/${pageNum}`);
-    setPageNum(pageNum);
-  }, [playPageFlip, pageNum, idString, navigate]);
+  }, [playPageFlip, pageNum]);
 
   useEffect(() => {
     const currentPage = book?.pages?.find((p) => p.pageNumber === pageNum);
