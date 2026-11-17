@@ -23,7 +23,7 @@ export default function BinaryConverter({
     if (correct === undefined) {
       setAllowNext(true);
     } else {
-      let isCorrect = parseInt(strippedBinary, 2) === correct;
+      let isCorrect = isValidBinary && parseInt(strippedBinary, 2) === correct;
       setAllowNext(isCorrect);
       if (isCorrect) {
         playCorrectSound();
