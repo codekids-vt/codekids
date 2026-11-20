@@ -218,4 +218,22 @@ export const unpluggedBooks = [
     title: "Rock Paper Scissors AI Activity",
     link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/Rock_Paper_Scissors_AI_Activity.pdf",
   },
+  {
+    author: "Juan",
+    blurb: "Learn about decision trees by sorting together!",
+    bookCover: "/color_5.png",
+    category: "UNPLUGGED",
+    courses: [],
+    coverImage:
+      "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/DecisionTreeImg.jpg",
+    id: 9999987,
+    owner: null,
+    ownerId: 16,
+    pages: [],
+    published: true,
+    readyForPublish: false,
+    tags: [],
+    title: "Decision Tree Activity",
+    link: "https://codekids-minio.endeavour.cs.vt.edu/codekids/unplugged/Decision_Tree_Activity.pdf",
+  },
 ];
